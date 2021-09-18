@@ -1,287 +1,286 @@
 
-BODY {
-	PADDING-TOP: 0px; 
-        FONT-FAMILY: 'Trebuchet MS', Helvetica, sans-serif;
-        TEXT-ALIGN: center;
+body {
+	padding-top: 0px; 
+	font-family: 'trebuchet ms', helvetica, sans-serif;
 }
 
 .mycode {
-	BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 5px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-        FONT: 8pt Verdana;
-		text-indent:0pt;
-        BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
-        TEXT-ALIGN: left;
-		
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 5px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font: 8pt verdana;
+	text-indent:0pt;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
+	text-align: left;
+	
 }
 .mycode1 {
-	BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 1px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-		font:8pt Arial, Helvetica, sans-serif;
-		text-indent:0pt;
-        BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
-        TEXT-ALIGN: left;
-		
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 1px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font:8pt arial, helvetica, sans-serif;
+	text-indent:0pt;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
+	text-align: left;
+	
 }
 .mycode2 {
-	BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 1px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-		FONT-SIZE:11px;
-		FONT-FAMILY: Courier New, sans-serif;
-		text-indent:0pt;
-        BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
-        TEXT-ALIGN: left;
-		
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 1px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font-size:11px;
+	font-family: courier new, sans-serif;
+	text-indent:0pt;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
+	text-align: left;
+	
 }
 
 .mycode3 {
-	BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 1px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-		FONT-SIZE:8pt;
-		FONT-FAMILY: Verdana;
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 1px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font-size:8pt;
+	font-family: verdana;
      
-		text-indent:0pt;
-        BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
-        TEXT-ALIGN: left;
-		
+	text-indent:0pt;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
+	text-align: left;
+	
 }
 .mytext {
 	
-        FONT: 8pt Verdana;
-        COLOR: #3366FF; 
-		font-style: italic;
-        TEXT-ALIGN: left
+	font: 8pt verdana;
+	color: #3366ff; 
+	font-style: italic;
+	text-align: left
 }
 .mainblock {
-	BORDER-RIGHT: #c0c0c0 1px solid; BORDER-TOP: medium none; MARGIN-LEFT: 19px; BORDER-LEFT: #c0c0c0 1px solid; BORDER-BOTTOM: medium none; HEIGHT: 500px
+	border-right: #c0c0c0 1px solid; border-top: medium none; margin-left: 19px; border-left: #c0c0c0 1px solid; border-bottom: medium none; height: 500px
 }
 .conthdr {
-	PADDING-LEFT: 18px
+	padding-left: 18px
 }
 .nblock {
-	PADDING-BOTTOM: 7px; MARGIN-LEFT: 40px; WIDTH: 600px; PADDING-TOP: 10px
+	padding-bottom: 7px; margin-left: 40px; width: 600px; padding-top: 10px
 }
 .ntitle {
-	PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #707070; PADDING-TOP: 6px; FONT-FAMILY: Tahoma
+	padding-left: 2px; font-weight: bold; font-size: 8pt; color: #707070; padding-top: 6px; font-family: tahoma
 }
 .news {
-	PADDING-RIGHT: 15px; 
-      PADDING-LEFT: 15px; 
-      FONT-SIZE: 8pt; 
-      PADDING-BOTTOM: 15px; 
-      TEXT-INDENT: 10px; 
-      FONT-FAMILY: verdana
+	padding-right: 15px; 
+      padding-left: 15px; 
+      font-size: 8pt; 
+      padding-bottom: 15px; 
+      text-indent: 10px; 
+      font-family: verdana
 }
 .mytab
 {
- BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: #c0c0c0 1px solid
+ border-right: medium none; border-top: medium none; border-left: medium none; border-bottom: #c0c0c0 1px solid
 }
 p {
 	text-align:justify;
 }
 .codes
 {	
-    FONT: 8pt verdana;
+    font: 8pt verdana;
 	text-align: left;
-	FONT-WEIGHT: bold;
+	font-weight: bold;
 }	
 .kays{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: justify;
-	FONT-WEIGHT: bold;
+	font-weight: bold;
 } 
 .text{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: justify;
 	
 } 
 .kays1{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: justify;
-	FONT-WEIGHT: bold;
-	COLOR: #CC0000;
+	font-weight: bold;
+	color: #cc0000;
 }
 .kays2{	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: center;
-	FONT-WEIGHT: bold;
-	COLOR: maroon;
+	font-weight: bold;
+	color: maroon;
 }
 .kays3{	
-    FONT: 7pt Verdana;
+    font: 7pt verdana;
 	text-align: center;
-	FONT-WEIGHT: bold;
-	COLOR: #3300CC;
+	font-weight: bold;
+	color: #3300cc;
 }
 .kays4{	
-    FONT: 7pt Verdana;
+    font: 7pt verdana;
 	text-align: center;
-	FONT-WEIGHT: bold;
+	font-weight: bold;
 } 
 .kays5{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: center;
-	FONT-WEIGHT: bold;
+	font-weight: bold;
 } 
 .text1{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: center;
 	
 } 
 .text2{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: justify;
-	COLOR: maroon;
+	color: maroon;
 } 
 .text3{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: justify;
-	COLOR: red;
+	color: red;
 }
 .text4{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: justify;
-	COLOR: navy;
+	color: navy;
 }  
 .text5{	
-    FONT: 9pt Verdana;
+    font: 9pt verdana;
 	text-align: center;
-	COLOR: maroon;
+	color: maroon;
 } 
 
 .text7{	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-	FONT-WEIGHT: bold;
+	font-weight: bold;
 }	
 .text8{	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-}	  
-.news A:link {
-	COLOR: #004891
+}	 
+.news a:link {
+	color: #004891
 }
-.news A:visited {
-	COLOR: #004891
+.news a:visited {
+	color: #004891
 }
-.news A:hover {
-	COLOR: #FF3333
+.news a:hover {
+	color: #ff3333
 }
 .var{	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-	COLOR: navy;
+	color: navy;
 }  	
 .var1{	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-	COLOR: maroon;
+	color: maroon;
 } 
 .var2{	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-	COLOR: green;
+	color: green;
 } 
 .var3 {	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-	COLOR: blue;
+	color: blue;
 } 
 .var4 {	
-    FONT: 8pt Verdana;
+    font: 8pt verdana;
 	text-align: justify;
-	COLOR: teal;
+	color: teal;
 } 
 .neocod {
-        BORDER-RIGHT: #254069 1px dotted;
-		PADDING-RIGHT: 5px; 
-		BORDER-TOP: #254069 1px dotted; 
-		PADDING-LEFT: 10px; 
-		PADDING-BOTTOM: 5px; 
-		BORDER-LEFT: #254069 3px solid; 
-		COLOR: #254069; 
-		PADDING-TOP: 5px; 
-		BORDER-BOTTOM: #254069 1px dotted; 
-		BACKGROUND-COLOR: #ffffe1;
-		FONT: 8pt Verdana;
+	border-right: #254069 1px dotted;
+	padding-right: 5px; 
+	border-top: #254069 1px dotted; 
+	padding-left: 10px; 
+	padding-bottom: 5px; 
+	border-left: #254069 3px solid; 
+	color: #254069; 
+	padding-top: 5px; 
+	border-bottom: #254069 1px dotted; 
+	background-color: #ffffe1;
+	font: 8pt verdana;
 }
-.stro {color: #FF0800}
-.string {color: #A50FBC}
-.model {color: #59003B}
+.stro {color: #ff0800}
+.string {color: #a50fbc}
+.model {color: #59003b}
 .main1 {
-	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: white; FONT-FAMILY: Tahoma, sans-serif
+	font-weight: bold; font-size: 11px; color: white; font-family: tahoma, sans-serif
 }
 .top {
-	FONT-SIZE: 12px; CURSOR: hand; COLOR: white; FONT-FAMILY: Verdana, sans-serif; TEXT-DECORATION: none
+	font-size: 12px; cursor: hand; color: white; font-family: verdana, sans-serif; text-decoration: none
 }
 .ans {
-	FONT-SIZE: 11px; FONT-FAMILY: Verdana, sans-serif; TEXT-DECORATION: none
+	font-size: 11px; font-family: verdana, sans-serif; text-decoration: none
 }
 .link {
-	FONT-SIZE: 11px; FONT-FAMILY: Verdana, sans-serif
+	font-size: 11px; font-family: verdana, sans-serif
 }
 .div {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 5px; MARGIN: 1px 0px 0px; WIDTH: 934px; CURSOR: hand; COLOR: white; PADDING-TOP: 5px; BACKGROUND-COLOR: #053f7b
+	padding-right: 5px; padding-left: 5px; font-weight: bold; padding-bottom: 5px; margin: 1px 0px 0px; width: 934px; cursor: hand; color: white; padding-top: 5px; background-color: #053f7b
 }
 .col {
-	FONT-WEIGHT: normal; FONT-SIZE: 10px; CURSOR: hand; COLOR: black; FONT-FAMILY: Arial, sans-serif
+	font-weight: normal; font-size: 10px; cursor: hand; color: black; font-family: arial, sans-serif
 }
 .code {
-	FONT-SIZE: 11px; COLOR: black; FONT-FAMILY: Courier New, sans-serif; BACKGROUND-COLOR: #fbfcee
+	font-size: 11px; color: black; font-family: courier new, sans-serif; background-color: #fbfcee
 }
 .legal {
-	FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #909090; FONT-FAMILY: Verdana, sans-serif; TEXT-ALIGN: right
+	font-weight: normal; font-size: 10px; color: #909090; font-family: verdana, sans-serif; text-align: right
 }
 .gomer {
-	FONT: bold 17pt Sylfaen; TEXT-ALIGN: right
+	font: bold 17pt sylfaen; text-align: right
 }
 
-.gText {
-	FONT-SIZE:11px;
-	FONT-FAMILY: Courier New, sans-serif;
+.gtext {
+	font-size:11px;
+	font-family: courier new, sans-serif;
 	text-indent:0pt;
 	font-weight: bold
 }
 
 .prim {
-	FONT: 8pt Sylfaen; COLOR: #909090
+	font: 8pt sylfaen; color: #909090
 }
 .marg {
-	FONT: bold 10pt Sylfaen; TEXT-ALIGN: center
+	font: bold 10pt sylfaen; text-align: center
 }
-.news_P {
+.news_p {
 	color: #009966
 }
-.news_O {
-	color: #0033FF
+.news_o {
+	color: #0033ff
 }
 
 .general1-class { color: #808000; font-weight: bold; }
@@ -293,204 +292,203 @@ p {
 .general1-number { color: #800000; }
 .general1-reservedword { font-weight: bold; }
 .general1-space { }
-.general1-string { color: #FF0000; }
+.general1-string { color: #ff0000; }
 .general1-symbol { color: #000000; }
-.general1-variable { color: #0000FF;}
+.general1-variable { color: #0000ff;}
 
 .news1 {
-	PADDING-RIGHT: 10px; 
-      PADDING-LEFT: 10px; 
-      FONT-SIZE: 8pt; 
-      PADDING-BOTTOM: 17px; 
-      TEXT-INDENT: 10px; 
-      FONT-FAMILY: verdana
+	padding-right: 10px; 
+      padding-left: 10px; 
+      font-size: 8pt; 
+      padding-bottom: 17px; 
+      text-indent: 10px; 
+      font-family: verdana
 }
 
-.news1 A:link {
-	COLOR: #004891
+.news1 a:link {
+	color: #004891
 }
-.news1 A:visited {
-	COLOR: #004891
+.news1 a:visited {
+	color: #004891
 }
-.news1 A:hover {
-	COLOR: #FF3333
+.news1 a:hover {
+	color: #ff3333
 }
 
 .kbd {
- color: #333333;
- background-color: #EFEFEF;
- font-weight: bold;
- font-family:verdana;
- font-size: 90%;
- text-align: center;
- border-top: 1px solid #CFCFCF;
- border-left: 2px solid #BABABA;
- border-right: 2px solid #AAAAAA;
- border-bottom: 3px solid #909090;
- padding: 0 2px; 
- line-height: 1.6em;
- vertical-align: center;
- white-space: nowrap;
- cursor:hand;
+	color: #333333;
+	background-color: #efefef;
+	font-weight: bold;
+	font-family:verdana;
+	font-size: 90%;
+	text-align: center;
+	border-top: 1px solid #cfcfcf;
+	border-left: 2px solid #bababa;
+	border-right: 2px solid #aaaaaa;
+	border-bottom: 3px solid #909090;
+	padding: 0 2px; 
+	line-height: 1.6em;
+	vertical-align: center;
+	white-space: nowrap;
+	cursor:hand;
 }
 
-PRE {
-	 PADDING-RIGHT: 0px;
-	 PADDING-LEFT: 0px;
-	 PADDING-BOTTOM: 25px;
-	 MARGIN: 0px 0.5em 0px 0px; 
-	 FONT-SIZE:12px;
-	 FONT-FAMILY: Courier New;
-	 text-indent:0pt;
-	 text-align:left;
-	 overflow-x: auto;
-	 overflow-y:visible;
+pre {
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 25px;
+	margin: 0px 0.5em 0px 0px; 
+	font-size:12px;
+	font-family: courier new;
+	text-indent:0pt;
+	text-align:left;
+	overflow-x: auto;
+	overflow-y:visible;
      width: 580px; 
      height: auto;
 }
-.NON {
-	 PADDING-RIGHT: 0px;
-	 PADDING-LEFT: 0px;
-	 PADDING-BOTTOM: 0px;
-	 MARGIN: 0px 0.5em 0px 0px; 
-	 FONT-SIZE:12px;
-	 FONT-FAMILY: Courier New;
-	 text-indent:0pt;
-	 text-align:left;
-         height: auto;
+.non {
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	margin: 0px 0.5em 0px 0px; 
+	font-size:12px;
+	font-family: courier new;
+	text-indent:0pt;
+	text-align:left;
+	height: auto;
 }
-.NONS {
-	 PADDING-RIGHT: 0px;
-	 PADDING-LEFT: 0px;
-	 PADDING-BOTTOM: 0px;
-	 MARGIN: 0px 0.5em 0px 0px; 
-	 FONT-SIZE:12px;
-	 FONT-FAMILY: Courier New;
-	 text-indent:0pt;
-	 text-align:left;
-	 overflow-x: auto;
-	 overflow-y:auto;
-	 width: auto;
-         height: auto;
+.nons {
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	margin: 0px 0.5em 0px 0px; 
+	font-size:12px;
+	font-family: courier new;
+	text-indent:0pt;
+	text-align:left;
+	overflow-x: auto;
+	overflow-y:auto;
+	width: auto;
+	height: auto;
 }
 .mycode5 {
-		BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 1px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-		FONT-SIZE:12px;
-		FONT-FAMILY: Courier New;
-		text-indent:0pt;
-        BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
-        TEXT-ALIGN: left;
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 1px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font-size:12px;
+	font-family: courier new;
+	text-indent:0pt;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
+	text-align: left;
 }
-.HEX {
-	 BACKGROUND-COLOR: #FFF4C9; 
-	 FONT-FAMILY: Verdana;
-	 font-size:12px;
-	 FONT-WEIGHT: bold;
-	 text-align: center;
-	 color:#990000;
+.hex {
+	background-color: #fff4c9; 
+	font-family: verdana;
+	font-size:12px;
+	font-weight: bold;
+	text-align: center;
+	color:#990000;
 }
-.Decimal {
-	 FONT-FAMILY: Verdana;
-	 font-size:12px;
-	 text-align: center;
-	 FONT-WEIGHT: bold;
-	 BACKGROUND-COLOR: #D1FFE7; 
-	 
+.decimal {
+	font-family: verdana;
+	font-size:12px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #d1ffe7; 
+	
 }
-.Character {
-	 BACKGROUND-COLOR: #000066; 
-	 FONT-FAMILY: Verdana;
-	 font-size:12px;
-	 FONT-WEIGHT: bold;
-	 color:#FFFF00;
-	 text-align: center;
+.character {
+	background-color: #000066; 
+	font-family: verdana;
+	font-size:12px;
+	font-weight: bold;
+	color:#ffff00;
+	text-align: center;
 }
-.Character1 {
-	 BACKGROUND-COLOR: #000066; 
-	 FONT-FAMILY: Verdana;
-	 font-size:12px;
-	 FONT-WEIGHT: bold;
-	 color:#FFFF00;
-	 text-align: left;
+.character1 {
+	background-color: #000066; 
+	font-family: verdana;
+	font-size:12px;
+	font-weight: bold;
+	color:#ffff00;
+	text-align: left;
 }
-.Character2 {
-	 FONT-FAMILY: Verdana;
-	 font-size:12px;
-	 FONT-WEIGHT: bold;
-	 color:#000099;
-	 text-align: left;
+.character2 {
+	font-family: verdana;
+	font-size:12px;
+	font-weight: bold;
+	color:#000099;
+	text-align: left;
 }
-TABLE.LINE {
-border-collapse: collapse;
-
-cursor:pointer
+table.line {
+	border-collapse: collapse;
+	cursor:pointer
 } 
 
 .mycode4 {
-		BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 1px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-		BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 1px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
 }
 .short {
-	 PADDING-RIGHT: 0px;
-	 PADDING-LEFT: 0px;
-	 PADDING-BOTTOM: 25px;
-	 MARGIN: 0px 0.5em 0px 0px; 
-	 FONT-SIZE:12px;
-	 FONT-FAMILY: Courier New, sans-serif;
-	 text-indent:0pt;
-	 text-align:left;
-	 overflow-x: auto;
-	 overflow-y: visible;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 25px;
+	margin: 0px 0.5em 0px 0px; 
+	font-size:12px;
+	font-family: courier new, sans-serif;
+	text-indent:0pt;
+	text-align:left;
+	overflow-x: auto;
+	overflow-y: visible;
      width: 540px; 
      height: auto;
 }
 .shorty {
-	 PADDING-RIGHT: 0px;
-	 PADDING-LEFT: 0px;
-	 PADDING-BOTTOM: 5px;
-	 MARGIN: 0px 0.5em 0px 0px; 
-	 FONT-SIZE:12px;
-	 FONT-FAMILY: Courier New, sans-serif;
-	 text-indent:0pt;
-	 text-align:left;
-	 width: 540px;
-	 height: auto;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 5px;
+	margin: 0px 0.5em 0px 0px; 
+	font-size:12px;
+	font-family: courier new, sans-serif;
+	text-indent:0pt;
+	text-align:left;
+	width: 540px;
+	height: auto;
 }
 .imgcursor{
- background-color: #EEEEEE;
+ background-color: #eeeeee;
 }
 .divcode5 {
-		BORDER-RIGHT: rgb(190,190,190) 1px dotted;
-        PADDING-RIGHT: 1px; 
-        BORDER-TOP: rgb(190,190,190) 1px dotted; 
-        PADDING-LEFT: 5px;
-        PADDING-BOTTOM: 5px;
-		FONT-SIZE:12px;
-		FONT-FAMILY: Courier New;
-		text-indent:0pt;
-        BORDER-LEFT: rgb(190,190,190) 1px dotted;
-        COLOR: #000000; 
-        PADDING-TOP: 5px;
-        BORDER-BOTTOM: rgb(190,190,190) 1px dotted; 
-        BACKGROUND-COLOR: lightyellow; 
-        TEXT-ALIGN: left;
-		overflow-x: auto;
+	border-right: rgb(190,190,190) 1px dotted;
+	padding-right: 1px; 
+	border-top: rgb(190,190,190) 1px dotted; 
+	padding-left: 5px;
+	padding-bottom: 5px;
+	font-size:12px;
+	font-family: courier new;
+	text-indent:0pt;
+	border-left: rgb(190,190,190) 1px dotted;
+	color: #000000; 
+	padding-top: 5px;
+	border-bottom: rgb(190,190,190) 1px dotted; 
+	background-color: lightyellow; 
+	text-align: left;
+	overflow-x: auto;
      width: 545px; 
      height: auto;
 }
