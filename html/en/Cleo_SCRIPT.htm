@@ -1,44 +1,15 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>CLEO 3: scripts</TITLE>
-<link rel="stylesheet" type="text/css" href="style/style.css">
-<META http-equiv=Content-Type content="text/html; charset=windows-1251">
-</HEAD>
-<BODY topMargin=0 >
-<TABLE
-style="BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: #c0c0c0 1px solid"
-height=121 cellSpacing=0 cellPadding=0 width=640>
-  <TBODY>
-  <TR>
-    <TD vAlign=top><IMG
-      src="img/en/logo2.jpg" width="640" height="121" border=0 class="conthdr" ></TD>
-</TR></TBODY></TABLE>
-<TABLE cellSpacing=0 cellPadding=0 width=640 border=0>
-  <TBODY>
-
-  <TD width="100%" height="100%" vAlign=top>
-   <DIV><IMG
-      src="img/en/old/CLEO/articles.png" width="640" height="33"></DIV>
-
-
-      <TABLE cellSpacing=0 cellPadding=0 width="100%">
-        <TBODY>
-        <TR>
-          <TD width=3><IMG height=36
-            src="img/en/mtdl.png" width=5></TD>
-          <TD width="571" height=36 vAlign=top
-          background="mtdbg.png" class=ntitle>CLEO3: scripts</TD>
-      <TD width=18><IMG height=36
-            src="img/en/mtdr.png"
-      width=20></TD></TR></TBODY></TABLE>
-      <TABLE cellSpacing=0 cellPadding=0 width="100%">
-        <TBODY>
-        <TR>
-          <TD width=5 background="ltd.gif"></TD>
-          <TD width="598" vAlign=top class=news>
-
-	<P>CLEO 3 allows adding new  scripts needlessly to start a new game. Strictly speaking, the main.scm  state does not matter for these scripts as CLEO-scripts are run and functioned  separately from it.<br><br>
+  <title>CLEO 3: scripts</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+<script src="../../js/partial/header.js"></script>
+<p>
+CLEO 3 allows adding new  scripts needlessly to start a new game. Strictly speaking, the main.scm  state does not matter for these scripts as CLEO-scripts are run and functioned  separately from it.<br><br>
 What does it give? You can add new script at any stage of the game or  delete existing one. Even so, you do not need to edit the main.scm, so the need  of starting a new game, the saves incompatibility, script limits – all these problems  disappear right away. <br><br>
 The CLEO-script is an  ordinary script written using the opcodes in Sanny Builder. Each script should  be made as a single file with an extension .cs (Custom Script). The dominant  requirement of writing such scripts is they must be compiled as the external  scripts. <br><br>
 There are several ways of making of a CLEO-script being able to work correctly  in the game. First: you add a new external script in the source file, compile  it, and then extract that script from the file script.img. The extracted file  will have the extension .scm, so you only need to change it on the .cs and copy  to the folder ‘game\CLEO’.<br><br>
