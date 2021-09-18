@@ -2,31 +2,54 @@ document.querySelector("body").setAttribute("topMargin", 0)
 
 document.write('\
 <table\
-style="border-right: medium none; border-top: medium none; border-left: medium none; border-bottom: #c0c0c0 1px solid"\
-height=121 cellspacing=0 cellpadding=0 width=640>\
+  height=121\
+  cellspacing=0\
+  cellpadding=0\
+  width="100%"\
+  >\
   <tbody>\
   <tr>\
-    <td valign=top width="100%"><img\
-      src="../../img/en/logo2.jpg" width="640" height="121" border=0 class="conthdr" ></td>\
+    <td valign=top width="100%" background="../../img/en/logo1.jpg">\
+      <img\
+      src="../../img/en/logo2.jpg" width="640" height="121" border=0 class="conthdr" >\
+    </td>\
   </tr></tbody></table>\
-<table cellspacing=0 cellpadding=0 width=640 border=0>\
+<table cellspacing=0 cellpadding=0 width="100%" border=0>\
   <tbody>\
   <td width="100%" height="100%" valign=top>\
-   <div><img\
-      src="../../img/en/old/scm/articles.png" width="640" height="33"></div>\
+    <div style="\
+    background-image: linear-gradient(\
+      0deg, #6487bb 2px, #3c5177 2px, #7280a7 26px, #739dcb\
+    );\
+    color: white;\
+    font-weight: bold;\
+    font-style: italic;\
+    font-family: sans-serif;\
+    text-shadow: 6px 4px 8px black;\
+    box-shadow: inset 0px 0px 12px 7px #8483f77a, 2px 3px 3px 0px #d2d2d2;\
+    border-radius: 11px;\
+    margin-bottom: 10px;\
+">\
+    <div style="background: repeating-linear-gradient(136deg, #00006612 3px, #00006612 3px, transparent 6px, transparent 8px);padding: 8px 33px 0px;height: 1.6rem;">SCM Documentation</div>\
+</div>\
       <table cellspacing=0 cellpadding=0 width="100%">\
         <tbody>\
         <tr>\
-          <td width=5><img height=36\
-            src="../../img/en/mtdl.png" width=5></td>\
+          <td width=5><img height="36" src="../../img/en/mtdl.png" width="5" style="\
+    position: relative;\
+    top: -1px;\
+"></td>\
           <td class=ntitle valign=top\
-          background="mtdbg.png" height=36>sanny builder help: '+document.title+'</td>\
+          background="../../img/en/mtdbg.png" height=36>sanny builder help: '+document.title+'</td>\
           <td width=5><img height=36\
             src="../../img/en/mtdr.png"\
-      width=20></td></tr></tbody></table>\
+      width=20 style="\
+    position: relative;\
+    top: -1px;\
+"></td></tr></tbody></table>\
       <table cellspacing=0 cellpadding=0 width="100%">\
         <tbody>\
         <tr>\
-          <td width=5 background="ltd.gif"></td>\
+          <td width=5 background="../../img/en/ltd.gif"></td>\
           <td class=news valign=top>\
 ')
