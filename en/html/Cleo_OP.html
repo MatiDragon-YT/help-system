@@ -221,7 +221,7 @@ The using of the  following opcodes is only possible at the CLEO 3 library insta
             <p>0AA4 returns the address  of the specified exported DLL function. This address can be used in the opcodes  of the call type. This opcode can be used as a condition: if the function is  not found it return False, otherwise it’s True. <br><br>
               <strong>Parameters:</strong><br>
 1 – variable to store the function address.<br>
-2 – function name (a string or a string variable). Pay attention that the get_proc_address  is sensitive to the letter case.  If the  function is exported having the name GetVersion, it means that, for example, get_proc_address  “getversion” will not find such a function. You must specify exact name. Also  remember that Sanny Builder compiles all strings in uppercase by default. It  means that this example will be compiled as “GETVERSION”, so the function  GetVersion won’t be found again. To avoid that, <a href="O_102.htm#strA">select the “As is” letter case</a> in the program options. <br>
+2 – function name (a string or a string variable). Pay attention that the get_proc_address  is sensitive to the letter case.  If the  function is exported having the name GetVersion, it means that, for example, get_proc_address  “getversion” will not find such a function. You must specify exact name. Also  remember that Sanny Builder compiles all strings in uppercase by default. It  means that this example will be compiled as “GETVERSION”, so the function  GetVersion won’t be found again. To avoid that, <a href="O_102.html#strA">select the “As is” letter case</a> in the program options. <br>
 3 – loaded  library handle (0AA2)</p>
             <hr> <br><a name="0AA5"></a>
             <div class="mycode5">0AA5: call <span class="general1-variable">$hPROC</span> num_params <span class="general1-number">1</span> pop <span class="general1-number">1</span> <span class="general1-variable">$param</span></div>
@@ -261,7 +261,7 @@ The using of the  following opcodes is only possible at the CLEO 3 library insta
             <hr> <br><a name="0AAB"></a>
             <div class="mycode5">0AAB:   file_exists <span class="general1-string">&quot;CLEO\version.dll&quot;</span></div>
             <p>0AAB tests if a specified  file exists. This check is a part of opcodes 0A9A and 0AA2, so there is no need  to duplicate it for them.</p>
-            <strong>Parameter:</strong> file name. If the path is relative (without specifying of a disk name),  it’s searched relatively of the current active directory (<a href="O_102.htm#strA">opcode 0A99</a>).
+            <strong>Parameter:</strong> file name. If the path is relative (without specifying of a disk name),  it’s searched relatively of the current active directory (<a href="O_102.html#strA">opcode 0A99</a>).
             <hr> <br><a name="0AAC"></a>
             <div class="mycode5">0AAC: <span class="general1-variable">$hMP3</span> = load_mp3<span class="general1-string"> &quot;CLEO\playlist\01.mp3&quot;</span></div>
             <p>0AAC loads a mp3 file and  stores a handle to it to a variable. </p>

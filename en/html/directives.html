@@ -69,7 +69,7 @@ or<br>
 <h3><a name="EXTERNAL"></a>$EXTERNAL</h3>
 <p>This directive makes the compiler to process the file like external script. Meaning, the outputfile will be without header and with local label offsets, so it will be the same as an .scm file from the script.img. Using this directive requires that the file will contain only one thread (also without missions and other scripts).</a></p>
 
-<p>The alternative way to get such file is a debug option <a href="console.htm#SKIP_SCM">SKIP_SCM_HEADER</a>. This option could be enabled in the console or from the list on the main panel.</p>
+<p>The alternative way to get such file is a debug option <a href="console.html#SKIP_SCM">SKIP_SCM_HEADER</a>. This option could be enabled in the console or from the list on the main panel.</p>
 
 <p class="syntax">Syntax:<br>
 <span class="directive">{$EXTERNAL}</span><br>
@@ -85,7 +85,7 @@ or<br>
 <p>So this directive is the perfect solution to compile a <a href="Cleo_SCRIPT.html">CLEO script</a>.
 
 <h3><a name="NOSOURCE"></a>$NOSOURCE</h3>
-<p>This directive prohibits the compiler from including a source code of the script. By default, when the option <a href="O_101.htm#SCM">Add extra info to SCM</a> is enabled, Sanny Builder adds a source code into a script file (only when either the directive <b>$EXTERNAL</b> or <b>$CLEO</b> is present). This directive changes the default behaviour of the compiler, not allowing to include the source code into an output file.</p>
+<p>This directive prohibits the compiler from including a source code of the script. By default, when the option <a href="O_101.html#SCM">Add extra info to SCM</a> is enabled, Sanny Builder adds a source code into a script file (only when either the directive <b>$EXTERNAL</b> or <b>$CLEO</b> is present). This directive changes the default behaviour of the compiler, not allowing to include the source code into an output file.</p>
 <p class="syntax">Syntax:<br>
 <span class="directive">{$NOSOURCE}</span></p>
 
@@ -97,7 +97,7 @@ or<br>
 or<br>
 <span class="directive">{$OPCODE}</span></p>
 
-It accepts an <span class="i">opcode definition</span> in <a href="gta_ini.htm#syntax">the same syntax</a> as the INI file.</p>
+It accepts an <span class="i">opcode definition</span> in <a href="gta_ini.html#syntax">the same syntax</a> as the INI file.</p>
 <p>Example: <span class="directive">{$OPCODE 0CCC=1,my_new_opcode %1d%}</span></p>
 <p>This directive also accepts a <span class="i">file name</span> as its parameter. This file must contain only opcodes definitions to be loaded. If no global path is specified for the file, the compiler searches it using <a href="#rules">same rules as for $INCLUDE</a>.</p>
 <p>Example: <span class="directive">{$OPCODE additional_opcodes.ini}</span></p>
