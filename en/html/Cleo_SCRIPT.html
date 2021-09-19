@@ -34,23 +34,6 @@ If at the loading one of saved thread is not found, there is no error. If you ad
       The CLEO thread is the ordinary  thread on the whole. It has 32 local variables and 2 timers incrementing  constantly. You can pass up to 34 parameters at creation of that thread or a  CLEO mission (by analogy with the opcode 004F).<br><br>
       An important thing concerns  with data communication between a CLEO script and the main.scm. To use the SCM  code, its variables, threads you have to compile the CLEO script as an external  one (first way). But this method is not recommended, as such a script becomes  very sensible to the any main.scm change. <span class="general1-comment">Implicitly,  a CLEO script should be sufficient for itself and use minimum of the SCM data</span><em>. </em>However,  you can freely use global variables names from the CustomVaribles.ini (for  example, <span class="general1-variable">$PLAYER_CHAR</span>, <span class="general1-variable">$PLAYER_ACTOR</span>, <span class="general1-variable">$ONMISSION</span>, etc). <br>
       Also, for the data communicate between the main.scm and CLEO, or between the  CLEO scripts you may use the CLEO variables (see opcodes 0AB3, 0AB4).<br><br>
-      The CLEO complete set includes  the examples of simple scripts with sources.</p>
-    </TD>
-          <TD width="5"
-        background="rtd.gif"></TD>
-      </TR></TBODY></TABLE>
-      <TABLE cellSpacing=0 cellPadding=0 width="100%">
-        <TBODY>
-        <TR>
-          <TD width=5><IMG height=20
-            src="img/en/mtdlbot.png" width=5 border=0></TD>
-          <TD align=left
-            background="mtdbgbot.png"></TD>
-          <TD class=ninfo align=right
-          background="mtdbgbot.png">&nbsp;
-            </TD>
-          <TD width=5><IMG height=20
-            src="img/en/mtdrbot.png" width=5
-        border=0></TD></TR></TBODY></TABLE></DIV>
-<BR><BR></TD></TR><td width="100%"></TBODY></TABLE>
-</TABLE></body></html>
+      The CLEO complete set includes  the examples of simple scripts with sources.
+</p>
+<script src="../../js/partial/footer.js"></script>
