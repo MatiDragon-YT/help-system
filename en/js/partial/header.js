@@ -9,9 +9,9 @@ document.write('\
   >\
   <tbody>\
   <tr>\
-    <td valign=top width="100%" background="../../img/en/logo1.jpg">\
+    <td valign=top width="100%" background="../../img/logo1.jpg">\
       <div style="\
-        background: url(\'../../img/en/logo2.jpg\') no-repeat;\
+        background: url(\'../../img/logo2.jpg\') no-repeat;\
         height: 121px;\
       "></div>\
     </td>\
@@ -30,14 +30,14 @@ document.write('\
       <table cellspacing=0 cellpadding=0 width="100%">\
         <tbody>\
         <tr>\
-          <td width=5><img height="36" src="../../img/en/mtdl.png" width="5" style="\
+          <td width=5><img height="36" src="../../img/mtdl.png" width="5" style="\
     position: relative;\
     top: -1px;\
 "></td>\
           <td class=ntitle valign=top\
-          background="../../img/en/mtdbg.png" height=36>sanny builder help: '+document.title+'</td>\
+          background="../../img/mtdbg.png" height=36>sanny builder help: '+document.title+'</td>\
           <td width=5><img height=36\
-            src="../../img/en/mtdr.png"\
+            src="../../img/mtdr.png"\
       width=20 style="\
     position: relative;\
     top: -1px;\
@@ -46,6 +46,6 @@ document.write('\
 <table cellspacing=0 cellpadding=0 width="100%">\
   <tbody>\
   <tr>\
-    <td width=5 background="../../img/en/ltd.gif"></td>\
+    <td width=5 background="../../img/ltd.gif"></td>\
     <td class=news valign=top>\
 ')
