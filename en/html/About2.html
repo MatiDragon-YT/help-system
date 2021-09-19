@@ -75,8 +75,8 @@
 </ul>
 <a name='3.2.0'></a><h3>v. 3.2.0 - 22.03.2014</h3>
 <ul>
-	<li>adding <a href="edit_modes.htm">custom edit modes</a> by editing the games.xml file is now possible</li>
-	<li>new edit mode - <a href="edit_modes.htm">GTA SA SCR</a></li>
+	<li>adding <a href="edit_modes.html">custom edit modes</a> by editing the games.xml file is now possible</li>
+	<li>new edit mode - <a href="edit_modes.html">GTA SA SCR</a></li>
 	<li>variables can be quickly <a href="variables.html">declared using a type name prefix</a></li>
 	<li>CLEO updated to the version 4.3.16</li>
 	<li>added <a href="features.htm#jumpLabel">the InstaSearch feature</a> (formerly 'jump to label' function)</li>
@@ -95,7 +95,7 @@
 </ul>
 <a name='3.1.3'></a><h3>v. 3.1.3 - 22.12.2013</h3>
 <ul>
-	<li>added <a href="edit_modes.htm">support for iOS and Android versions</a> of GTA: San Andreas</li>
+	<li>added <a href="edit_modes.html">support for iOS and Android versions</a> of GTA: San Andreas</li>
 	<li><a href="O_103.htm#auto">a looking depth value</a> is now used when making a list of constants</li>
 	<li>updated <a href="O_101.htm#lang">Chinese and German translations</a></li>
 </ul>
@@ -117,9 +117,9 @@
 	<li>when the option <a href="O_101.htm#SCM">Add extra info to SCM</a> is enabled, Sanny Builder remembers the game a script is compiled for, to use the <a href="features.htm#current edit mode">proper edit mode</a> when decompiling</li>
 	<li>when the option Add extra info to SCM is enabled, Sanny Builder adds a source code into a script file (only when the directive <a href="directives.htm#EXTERNAL">$EXTERNAL</a> or <a href="directives.htm#CLEO">$CLEO</a> is present)</li>
 	<li>added a new directive <a href="directives.htm#NOSOURCE">$NOSOURCE</a> to prohibit including a source code into a compiled script</li>
-	<li>some <a href="hotkeys.htm">hotkeys</a> are now customizable in <a href="O_105.htm">the options</a></li>
+	<li>some <a href="hotkeys.html">hotkeys</a> are now customizable in <a href="O_105.html">the options</a></li>
 	<li>added a feature to check automatically if an update exists at the program startup</li>
-	<li><a href="directives.htm">directives</a> $VERSION and $VERSION_RESTORE are deprecated</li>
+	<li><a href="directives.html">directives</a> $VERSION and $VERSION_RESTORE are deprecated</li>
 	<li>updated Spanish and Chinese translations</li>
 	<li>The Coords manager is now able to change the player's angle in GTA VC</li>
 	<li>The Sanny Builder installation now includes the <a href="http://www.gtagarage.com/mods/show.php?id=23846">SCRLog CLEO plugin</a> by LINK/2012 (can be found in the 'tools' folder)</li>
@@ -140,14 +140,14 @@
 	<li>added <a href="http://www.gtagarage.com/mods/show.php?id=21709" target="_blank">Silent's ASI Loader</a> v1.1 as a default ASI loader for CLEO 3 and CLEO 4</li>
 	<li>added Chinese translation</li>
 	<li>added classes File and Audiostream for backward compatibility with CLEO 4 by Alien*</li>
-	<li>the compiler now accepts a literal string as a parameter in <a href="classes.htm">a class property</a>**</li>
+	<li>the compiler now accepts a literal string as a parameter in <a href="classes.html">a class property</a>**</li>
 	<li>the compiler is no more allowed to compile a string like text1"text2" or text1'text2' (without a leading quotation mark)</li>
 	<li>the compiler is allowed to compile the comment characters within a string ("{text1}text2")</li>
 	<li>the semicolon (;) can not be used to comment out a line of the code</li>
 	<li>changed syntax of <a href=console.htm#DEBUG>the \debug parameter</a></li>
 	<li>added flag icons for <a href="O_101.htm#lang">the available languages</a> in the options</li>
 	<li>fixed some issues in VCS decompiling</li>
-	<p class="note">* File.Open, Audiostream.Load, Audiostream.Load3D were <a href="classes.htm">methods</a> in CLEO 4. Now they are <a href="classes.htm"> properties</a>. It means, if you get an error when compiling old sources with these commands, change their syntax to:<br>
+	<p class="note">* File.Open, Audiostream.Load, Audiostream.Load3D were <a href="classes.html">methods</a> in CLEO 4. Now they are <a href="classes.html"> properties</a>. It means, if you get an error when compiling old sources with these commands, change their syntax to:<br>
 	var = File.Open(file_name, mode)<br>
 	var = Audiostream.Load(file_name)<br>
 	var = Audiostream.Load3D(file_name)</p>
@@ -155,15 +155,15 @@
 </ul>
 <a name='3.06'></a><h3>v. 3.06 - 17.06.2013</h3>
 <ul>
-	<li>added <a href="additional.htm">new operators ++ and --</a></li>
+	<li>added <a href="additional.html">new operators ++ and --</a></li>
 	<li>added support for <a href="features.htm#CodeComments">block comments</a> /* &nbsp; */</li>
 	<li>SASCM.INI is updated with help of the <a href="http://gtag.gtagaming.com/opcode-database/" target="_blank
 	">GTAG Database</a></li>
-	<li><a href="classes.htm">properties</a> Actor.Armour and Actor.Car are replaced with their correct versions Actor.AddArmour and Actor.MissionCar</li>
+	<li><a href="classes.html">properties</a> Actor.Armour and Actor.Car are replaced with their correct versions Actor.AddArmour and Actor.MissionCar</li>
 	<li>added new property Actor.CurrentCar for the opcode 03C0 in the SA and VC classes.</li>
-	<li>added <a href="hotkeys.htm">new hotkeys</a> Ctrl+Num+ and Ctrl+Num- to quickly change the text size</li>
+	<li>added <a href="hotkeys.html">new hotkeys</a> Ctrl+Num+ and Ctrl+Num- to quickly change the text size</li>
 	<li>Sanny Builder now remembers a number of closed files for the option <a href="O_103.htm#LoadAllClosedFiles">Load all closed files</a></li>
-	<li>fixed bug when the compiler failed to compile numerous <a href="hex_end.htm">hex..end constructs</a></li>
+	<li>fixed bug when the compiler failed to compile numerous <a href="hex_end.html">hex..end constructs</a></li>
 	<li>fixed bug of version 3.05 when the program hung on startup trying to open a file passed as a parameter</li>
 </ul>
 <a name='3.05'></a><h3>v. 3.05 - 05.06.2013</h3>
@@ -201,27 +201,27 @@
 </ul>
 <a name='3.00'></a><h3>v. 3.00 - 04.08.2007</h3>
 <ul>
-	<li>the <a href="Cleo.htm">CLEO 3</a> library is integrated into Sanny Builder</li>
+	<li>the <a href="Cleo.html">CLEO 3</a> library is integrated into Sanny Builder</li>
 	<li>VCS SCM format support (decompiling only)</li>
-	<li><a href="constants.htm">constants</a> support</li>
+	<li><a href="constants.html">constants</a> support</li>
 	<li>new directives <a href="directives.htm#INCLUDE">$INCLUDE</a>,<a href="directives.htm#EXTERNAL">$EXTERNAL</a>,<a href="directives.htm#CLEO">$CLEO</a></li>
 	<li>writing of <a href="O_101.htm#SCM">the additional info</a> in the end of the main.scm</li>
 	<li><a href="O_102.htm#LABLE">custom arrays support</a></li>
 	<li>possibility to decompile the files <a href="console.htm#SKIP_SCM">having no header</a></li>
 	<li>ability to create an external script named AAA</li>
 	<li>new command line <a href="About.htm#CommandLineParams">parameter \compile</a></li>
-	<li>possibility to use the floating-point values as a counter value in <a href="loops.htm">FOR..END</a> loop</li>
+	<li>possibility to use the floating-point values as a counter value in <a href="loops.html">FOR..END</a> loop</li>
 	<li>the commands WriteMem and ReadMem are not supported anymore</li>
 	<li>possibility to use the regular expressions when searching</li>
 	<li>possibility to save a source file in the <a href="O_104.htm#RTF">RTF or HTML</a> formats</li>
 	<li>ability to <a href="O_101.htm#F8">skip the splashes</a> at SA startup</li>
 	<li>new key combo <a href="hotkeys.htm#Ctrl_Enter">Ctrl+Enter</a></li>
-	<li>updated <a href="GTA_INI.htm">SASCM.INI</a></li>
+	<li>updated <a href="GTA_INI.html">SASCM.INI</a></li>
 </ul>
 <a name='2.99e'></a><h3>v. 2.99e - 01.01.2007</h3>
 <ul>
 	<li>fixed bug when parts of the code within the HEX..END contruction disappeared in the debug_mode decompiling</li>
-	<li>a <a href="hex_end.htm">hex..end</a> statement could accept the aDMA type</li>
+	<li>a <a href="hex_end.html">hex..end</a> statement could accept the aDMA type</li>
 	<li>a FOR statement could accept the model identifiers as the counter values</li>
 	<li>a hex..end statement could accept the <a href="hex_end.htm#strings">strings</a></li>
 </ul>
@@ -234,11 +234,11 @@
 <ul>
 	<li>added the Memory Hacker plug-in</li>
 	<li>possibility to decompile the main.scm of Liberty City Stories</li>
-	<li>support for numbers as indexes of global <a href="arrays.htm">arrays</a></li>
+	<li>support for numbers as indexes of global <a href="arrays.html">arrays</a></li>
 	<li>global variables are decompiled with the type aDMA (&amp;) if are not dividable by 4</li>
 	<li>at compilation the default values for the segments are used when the file header is not present</li>
 	<li>possibility to Drag&Drop a file into the editor to open it</li>
-	<li>new preprocessor <a href="directives.htm">directives</a>: {$VERSION}, {$VERSION_RESTORE}</li>
+	<li>new preprocessor <a href="directives.html">directives</a>: {$VERSION}, {$VERSION_RESTORE}</li>
 </ul>
 <p class="note">If you get a compiler error message like "Unknown directive xxxx" when compiling the sources from v2.99, replace the line {$VERSION xxxx} to any place after the header, for instance before the comment //-------------MAIN---------------</p>
 <a name='2.99'></a><h3>v. 2.99 - 27.09.2006</h3>
