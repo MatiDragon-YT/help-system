@@ -24,7 +24,7 @@ document.write('\
   <tbody>\
     <tr>\
       <td valign=top width="100%" background="../../img/logo1.jpg">\
-        <div style="background: url(\'../../img/logo2.jpg\') no-repeat;height: 121px;"></div>\
+        <div style="background-image: url(\'../../img/logo2.jpg\') no-repeat;height: 121px;"></div>\
       </td>\
     </tr>\
   </tbody>\
