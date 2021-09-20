@@ -9,10 +9,10 @@
 <body>
 <script src="../../js/partial/header.js"></script>
 <p>
-<img src="img/en/old/options/sbo/formats_page.png" width="447" height="406">
+<img src="../img/sbo/formats_page.png" width="447" height="406">
             <p class="text">Here you can set up source file names, labels format, and identifiers case.</p>
             <hr>
-            <img src="img/en/old/options/sbo/form_form.png" width="208" height="303">
+            <img src="../img/sbo/form_form.png" width="208" height="303">
 
 		    <p class="text">There the file  name masks are present. The upper line contains path and name of the text file  which is created at decompiling. Bottom lines contain paths and names of two  binary files SCM and IMG which are created at compiling. All lines have the  same syntax. It uses special words meaning part of full file name:<br><br>
                 <b>$dir </b>– file path<br>
@@ -26,7 +26,7 @@
 		      So, if the mask is <b>$dir\$name.txt</b>, the output file will  be named <b>C:\MyDir\main.txt</b></p>
 
 		<hr>
-		<img src="img/en/old/options/sbo/form_label.png" width="210" height="147">
+		<img src="../img/sbo/form_label.png" width="210" height="147">
 		<p class="text">Here you may choose  one of the various name formats for the labels used at decompiling.<br><br>
             <b>Global  Offset: all labels</b> will have a numeric  name, for example <span class="general1-label">@12345</span>. The number means this label’s offset in  the file being decompiled.<br><br>
             <b>Thread+Local  Offset: </b>label name will consist of two  parts: a name of the thread where the label is (the name_thread opcode is used  for this), and additionally offset from this thread’s beginning, for example <span class="general1-label">@MAIN_12</span>.<br><br>
@@ -34,7 +34,7 @@
 		  If you want the  offsets to be hexadimal, select the proper option. By default, all offsets are  decimal.</p>
 <a name="LABLE"></a>
 		<hr>
-		<img src="img/en/old/options/sbo/form_names.png" width="208" height="102">
+		<img src="../img/sbo/form_names.png" width="208" height="102">
 	    <p class="text">These options  make the decompiler use or not the custom names for various script literals.<br><br>
   The labels names  are contained in the file CustomLabels.ini in the folder SB\data\&lt;game&gt;. This  file contains the list of labels names and offsets (for main.scm version 1.0).  If the first box checked, the decompiler names the label as defined. <br><br>
 	      The variables  names are present in the file CustomVariables.ini for each game. It looks like  the list of global variables addresses (DMA) and their textual representation. If  this box checked, the decompiler gives to the global variable its custom name.<br><br>
@@ -42,7 +42,7 @@
 
 	<a name="strA"></a>
 	<hr>
-	<img src="img/en/old/options/sbo/form_case.png" width="208" height="55">
+	<img src="../img/sbo/form_case.png" width="208" height="55">
 	<p class="text">This option has two meanings. The decompiler names global variables, labels, arrays using the selected letters case. The compiler writes the strings in the SCM using the selected letter case also.
 </p>
 <script src="../../js/partial/footer.js"></script>
