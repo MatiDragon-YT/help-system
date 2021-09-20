@@ -5,11 +5,96 @@
 <!-- Sitemap 1.0 -->
 </HEAD><BODY>
 <OBJECT type="text/site properties">
-	<param name="Background" value="0xFFFFFF">
+	<param name="Background" value="0xffffff">
 	<param name="Foreground" value="0x383226">
 	<param name="Window Styles" value="0x800025">
 	<param name="ImageType" value="Folder">
 </OBJECT>
 <UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="About Sanny builder">
+		<param name="Local" value="en\html\about.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Version History">
+			<param name="Local" value="en\html\about.history.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Coding">
+		<param name="Local" value="en\html\coding.html">
+		<param name="URL" value="en\html\coding.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Data types">
+			<param name="Local" value="en\html\coding.data_types.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Variables">
+			<param name="Local" value="en\html\coding.variables.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Constants">
+			<param name="Local" value="en\html\coding.constants.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Arrays">
+			<param name="Local" value="en\html\coding.arrays.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Conditions">
+			<param name="Local" value="en\html\coding.conditions.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Loops">
+			<param name="Local" value="en\html\coding.loops.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Classes">
+			<param name="Local" value="en\html\coding.classes.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Keywords">
+			<param name="Local" value="en\html\coding.keywords.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Additional commands">
+			<param name="Local" value="en\html\coding.additional.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="HEX..END">
+			<param name="Local" value="en\html\coding.hex_end.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Directives">
+			<param name="Local" value="en\html\coding.directives.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Editor/IDE">
+		<param name="Local" value="en\html\editor.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Options">
+			<param name="Local" value="en\html\editor.options.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="General">
+				<param name="Local" value="en\html\editor.options.general.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Formats">
+				<param name="Local" value="en\html\editor.options.formats.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Editor">
+				<param name="Local" value="en\html\editor.options.editor.html">
+				</OBJECT>
+		</UL>
+	</UL>
 </UL>
 </BODY></HTML>
