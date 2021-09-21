@@ -27,30 +27,30 @@ Their values are available only within the current thread or mission.</p>
 <h3><a name="VAR_END"></a>VAR..END construct</h3>
 <p>Variables are commonly used in expressions. If the right operand is a number constant, an opcode is not needed:
 
-<pre><span class="variable">$var</span> = <span class="number">0</span>
-<span class="variable">$myarray</span>(<span class="variable">$index</span>, <span class="number">10i</span>) >= <span class="number">150</span></pre></p>
+<pre>$var = 0
+$myarray($index, 10i) >= 150</pre></p>
 
 <p>If both operands in an expression are variables, the compiler can not detect a correct opcode, because of unknown type of the variables.
 <p>For example, there are two opcodes for incrementing a variable value by another value: 0058 and 0059, one for the integer values and another one for the floating-point values.</p>
-<pre>0058: <span class="variable">$Var1</span> += <span class="variable">$Var2</span> // (int)
-0059: <span class="variable">$Var1</span> += <span class="variable">$Var2</span> // (float)</pre>
+<pre>0058: $Var1 += $Var2 // (int)
+0059: $Var1 += $Var2 // (float)</pre>
 Assuming there is no opcode, which one to use?
-<pre><span class="variable">$Var1</span> += <span class="variable">$Var2</span> // ??</pre>
+<pre>$Var1 += $Var2 // ??</pre>
 </p>
 In order to define a variable type, there is a specific construct.</p>
 
-<p><span class="i">VAR..END construct</span> allows to declare variables and their types for advanced use.</p>
+<p>VAR..END construct allows to declare variables and their types for advanced use.</p>
 
-<p class="syntax">Syntax:<br>
-<span class="reservedword">var</span><br>&lt;var name&gt;: &lt;type&gt;<br><span class="reservedword">end</span></p>
+<p>Syntax:<br>
+var<br>&lt;var name&gt;: &lt;type&gt;<br>end</p>
 
 <p>For example, if both variables were declared, the compiler correctly processes expressions without opcodes:</p>
 
-<pre><span class="reservedword">var</span>
-<span class="variable">$Var1</span> : Integer
-<span class="variable">$Var2 </span>: Integer
-<span class="reservedword">end</span>
-<span class="variable">$Var1</span> += <span class="variable">$Var2</span> <span class="comment">// opcode 0058</span></pre>
+<pre>var
+$Var1 : Integer
+$Var2 : Integer
+end
+$Var1 += $Var2 // opcode 0058</pre>
 
 <a name="type"></a><p>The following types of variables are supported:</p>
 	<ul>
@@ -65,23 +65,23 @@ In order to define a variable type, there is a specific construct.</p>
 
 <p>Take a note that a declared variable will have the same type in every thread. So, you can redeclare variables to set the new types:</p>
 
-<pre><span class="reservedword">thread</span> <span class="string">'Food'</span>
-<span class="reservedword">var</span>
-<span class="variable">10@</span> : Float
-<span class="variable">$Var</span> : Float
-<span class="reservedword">end</span>
-<span class="variable">$var</span> = <span class="number">1</span>
-<span class="variable">10@</span> = <span class="variable">$Var</span>
-<span class="reservedword">end_thread</span>
+<pre>thread 'Food'
+var
+10@ : Float
+$Var : Float
+end
+$var = 1
+10@ = $Var
+end_thread
 
-<span class="reservedword">thread</span> <span class="string">'Loop'</span>
-<span class="reservedword">var</span>
-<span class="variable">10@ </span>: Int
-<span class="variable">$Var</span> : Int
-<span class="reservedword">end</span>
-<span class="variable">$var</span> = <span class="number">1</span>
-<span class="variable">10@ </span>= <span class="variable">$Var</span>
-<span class="reservedword">end_thread</span></pre>
+thread 'Loop'
+var
+10@ : Int
+$Var : Int
+end
+$var = 1
+10@ = $Var
+end_thread</pre>
 
 <p>In the thread named "Food" 10@ is the floating-point variable. In the one named "Loop" 10@ is the integer variable.</p>
 
@@ -89,21 +89,21 @@ In order to define a variable type, there is a specific construct.</p>
 
 <h3>Short form of Declaration</h3>
 <p>Since v3.2.0 it's possible to declare a variable of a built-in type (Int, Float, String, LongString) shortly using the type name.</p>
-<p class="syntax">Syntax:<br> &lt;type&gt;&nbsp;&lt;variable name&gt;</p>
-<pre>int <span class="variable">0@</span> <span class="comment">// 0@ declared as an integer variable.</span></pre>
+<p>Syntax:<br> &lt;type&gt;&nbsp;&lt;variable name&gt;</p>
+<pre>int 0@ // 0@ declared as an integer variable.</pre>
 
 <h3>Variable Initialization</h3>
 <p>Also you can set an initial value for the variable when declaring it. Write symbol = and then the initial value:</p>
 
-<pre><span class="reservedword">var</span>
-<span class="variable">$fVar</span>: float = <span class="number">1.0</span>
-<span class="reservedword">end</span>
+<pre>var
+$fVar: float = 1.0
+end
 </pre>
 or
-<pre>float <span class="variable">$fVar</span> = <span class="number">1.0</span></pre>
+<pre>float $fVar = 1.0</pre>
 <p>Variable $fVar declared as Float and also the compiler will add an opcode in the script:</p>
 
-<pre>0005: <span class="variable">$fVar</span> = <span class="number">1.0</span></pre>
+<pre>0005: $fVar = 1.0</pre>
 
 <p>Initialization is allowed for the variables only, not for arrays.</p>
 

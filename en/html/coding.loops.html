@@ -15,92 +15,92 @@
 <h3><a name="FOR..END"></a>FOR loop</h3>
 
 <p>The FOR loop has a strictly certain number of iterations (repetitions).</p>
-<p class='syntax'>Syntax:<br>
-<span class="reservedword">FOR</span> &lt;loop variable&gt; = &lt;initial value&gt; <span class="reservedword">TO/DOWNTO</span> &lt;final value&gt; [<span class="reservedword">step</span> = 1]<br>
+<p>Syntax:<br>
+FOR &lt;loop variable&gt; = &lt;initial value&gt; TO/DOWNTO &lt;final value&gt; [step = 1]<br>
 &lt;the loop body&gt;<br>
-<span class="reservedword">END</span></p>
+END</p>
 
-<p><strong>&lt;loop variable&gt;</strong> - a variable used as a counter for iterations</p>
-<p><strong>&lt;initial value&gt;</strong> - a starting value of the loop variable (any value including a model identifier)</p>
-<p><strong>TO/DOWNTO</strong>- increment or decrement the loop variable between iterations</p>
-<p><strong>&lt;final value&gt;</strong> - a final value of the loop variable when finished (any value including a model identifier)</p>
-<p><strong>&lt;step&gt;</strong> - an optional value the loop variable will be incremented or decremented with between iterations. By default its value is equal to 1.</p>
+<p><b>&lt;loop variable&gt;</b> - a variable used as a counter for iterations</p>
+<p><b>&lt;initial value&gt;</b> - a starting value of the loop variable (any value including a model identifier)</p>
+<p><b>TO/DOWNTO</b>- increment or decrement the loop variable between iterations</p>
+<p><b>&lt;final value&gt;</b> - a final value of the loop variable when finished (any value including a model identifier)</p>
+<p><b>&lt;step&gt;</b> - an optional value the loop variable will be incremented or decremented with between iterations. By default its value is equal to 1.</p>
 <p>Example:</p>
-<pre><span class="reservedword">var</span>
-<span class="variable">$value</span>: int = <span class="number">0</span>
-<span class="variable">$final</span>: int = <span class="number">100</span>
-<span class="reservedword">end</span>
+<pre>var
+$value: int = 0
+$final: int = 100
+end
 
-<span class="reservedword">FOR</span> <span class="variable">$MyCounter</span> = <span class="number">1</span> <span class="reservedword">to</span> <span class="variable">$final </span>step <span class="number">2</span>
-<span class="variable">$value</span> += <span class="variable">$mycounter</span>
-<span class="reservedword">end</span></pre>
+FOR $MyCounter = 1 to $final step 2
+$value += $mycounter
+end</pre>
 
 <p class='note'>If the starting/final values or a step value contained in variables, these variables will get the same type the loop variable has. If the loop variable is not declared with any type before using in a loop it gets an integer type. In order to use the floating-point values as the FOR loop ranges, declare the loop variable with the float type.</p>
 <p>Example:</p>
-<pre><span class="reservedword">var</span>
-<span class="variable">$MyCounter</span>: float
-<span class="reservedword">end</span>
+<pre>var
+$MyCounter: float
+end
 
-<span class="reservedword">FOR</span> <span class="variable">$MyCounter</span> = <span class="number">1.0</span> <span class="reservedword">to</span> <span class="variable">$final</span> step <span class="number">2.0</span>
-<span class="reservedword">end</span></pre>
-<p>Variables <span class="variable">$MyCounter</span> and <span class="variable">$final</span> both have the Float type after the loop.</p>
+FOR $MyCounter = 1.0 to $final step 2.0
+end</pre>
+<p>Variables $MyCounter and $final both have the Float type after the loop.</p>
 
 <h3><a name="WHILE..END"></a>WHILE loop</h3>
-<p class='syntax'>Syntax:<br>
-<span class="reservedword">WHILE</span> &lt;loop condition&gt;<br>
+<p>Syntax:<br>
+WHILE &lt;loop condition&gt;<br>
 &lt;the loop body&gt;<br>
-<span class="reservedword">END</span></p>
+END</p>
 <p>Example:</p>
-<pre><span class="reservedword">while not</span> <span class="model">#AK47</span>.<span class="command">Available</span>
-<span class="reservedword">wait</span><span class="number"> 0</span><span class="reservedword">
-end</span></pre>
+<pre>while not #AK47.Available
+wait 0
+end</pre>
 <p>The WHILE loop is working until the loop condition returns true. The condition is evaluated before the loop iterations. Hence, if the condition is false, the statement sequence is never executed.</p>
-<pre><span class="variable">$var</span> = <span class="number">10</span>
+<pre>$var = 10
 
-<span class="reservedword">while</span> <span class="variable">$var</span> > <span class="number">11</span>
-inc(<span class="variable">$var</span>)
-<span class="reservedword">end</span></pre>
+while $var > 11
+inc($var)
+end</pre>
 
-<p>As the condition <span class="variable">$var</span> > <span class="number">11</span> is false, the command inc(<span class="variable">$var</span>) will never be executed.</p>
+<p>As the condition $var > 11 is false, the command inc($var) will never be executed.</p>
 
-<p>Constants <span class="reservedword">true</span> and <span class="reservedword">false</span> are valid for the use as the loop condition.</p>
-<pre><span class="reservedword">while true</span>
+<p>Constants true and false are valid for the use as the loop condition.</p>
+<pre>while true
 &lt;the loop body&gt;
-<span class="reservedword">end</span></pre>
+end</pre>
 <p>This loop's body executes infinitely until the loop stopped with the command Break.</p>
-<pre><span class="reservedword">while false</span>
+<pre>while false
 &lt;the loop body&gt;
-<span class="reservedword">end</span></pre>
+end</pre>
 <p>This loop is ignored by the compiler as the condition is never evaluated.</p>
 <p>Currently the compiler accepts only one condition to be checked in the loop condition, but you can check more conditions within the loop body and use the commands Break and Continue.</p>
 
 <h3><a name="REPEAT..UNTIL"></a>REPEAT..UNTIL loop</h3>
 
-<p class='syntax'>Syntax:<br>
-<span class="reservedword">REPEAT</span><br>
+<p>Syntax:<br>
+REPEAT<br>
 &lt;the loop body&gt;<br>
-<span class="reservedword">UNTIL</span> &lt;loop condition&gt;</p>
+UNTIL &lt;loop condition&gt;</p>
 <p>The repeat..until loop executes until the loop condition returns False. The condition is evaluated after iteration therefore the loop is guaranteed to be executed at least once.</p>
 
-<p>Constants <span class="reservedword">true</span> and <span class="reservedword">false</span> are valid for the use as the loop condition.</p>
+<p>Constants true and false are valid for the use as the loop condition.</p>
 
-<p><span class="reservedword">repeat</span>..<span class="reservedword">until true</span> - the loop has the only iteration.</p>
-<p><span class="reservedword">repeat</span>..<span class="reservedword">until false</span> - the loop executes infinitely until it's stopped with the Break command.</p>
+<p>repeat..until true - the loop has the only iteration.</p>
+<p>repeat..until false - the loop executes infinitely until it's stopped with the Break command.</p>
 <p>Currently the compiler accepts only one condition to be checked in the loop condition, but you can check more conditions within the loop body and use the commands Break and Continue.</p>
 
 <h3><a name="CONTINUE"></a><a name="BREAK"></a>Continue and Break</h3>
 <p>If you want to skip the current iteration and proceed to the next one, use the Continue command. The Break command causes the loop immediately to stop and proceed to the command after the loop body.</p>
 <p>They can be used as an opcode parameter (for example, jf continue) or a separate single command.</p>
 <p>Example:</p>
-<pre><span class="reservedword">if</span>
-    <span class="variable">$currentactor</span>.<span class="command">dead</span>
-<span class="reservedword">jf</span> Break <span class="comment">// exit from the loop</span>
+<pre>if
+    $currentactor.dead
+jf Break // exit from the loop
 
-<span class="reservedword">if</span>
-    <span class="reservedword">not </span><span class="variable">$currentactor</span>.<span class="command">dead</span>
-<span class="reservedword">then</span>
-   Continue <span class="comment">// goes next iteration</span>
-<span class="reservedword">end</span>
+if
+    not $currentactor.dead
+then
+   Continue // goes next iteration
+end
 </pre>
 
 </p>
