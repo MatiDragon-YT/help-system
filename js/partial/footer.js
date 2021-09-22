@@ -1,19 +1,19 @@
 document.write('\
     </td>\
           <td width=5\
-        background="../../img/rtd.gif"></td></tr></tbody></table>\
+        background="'+ Direction() +'img/rtd.gif"></td></tr></tbody></table>\
       <table cellspacing=0 cellpadding=0 width="100%">\
         <tbody>\
         <tr>\
           <td width=5><img height=20\
-            src="../../img/mtdlbot.png" width=5 border=0></td>\
+            src="'+ Direction() +'img/mtdlbot.png" width=5 border=0></td>\
           <td align=left\
-            background="../../img/mtdbgbot.png"></td>\
+            background="'+ Direction() +'img/mtdbgbot.png"></td>\
           <td class=ninfo align=right\
-          background="../../img/mtdbgbot.png">&nbsp;\
+          background="'+ Direction() +'img/mtdbgbot.png">&nbsp;\
             </td>\
           <td width=5><img height=20\
-            src="../../img/mtdrbot.png" width=5\
+            src="'+ Direction() +'img/mtdrbot.png" width=5\
         border=0></td></tr></tbody></table></div>\
 </td></tr><td width="100%"></tbody></table>\
 </table></body></html>\

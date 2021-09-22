@@ -13,228 +13,330 @@
 <UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="About Sanny builder">
-		<param name="Local" value="en\html\about.html">
+		<param name="Local" value="en\about.html">
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Version History">
-			<param name="Local" value="en\html\about.history.html">
+			<param name="Local" value="en\about\history.html">
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Coding">
-		<param name="Local" value="en\html\coding.html">
-		<param name="URL" value="en\html\coding.html">
+		<param name="Local" value="en\coding.html">
+		<param name="URL" value="en\coding.html">
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Data types">
-			<param name="Local" value="en\html\coding.data_types.html">
+			<param name="Local" value="en\coding\data_types.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Variables">
-			<param name="Local" value="en\html\coding.variables.html">
+			<param name="Local" value="en\coding\variables.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Constants">
-			<param name="Local" value="en\html\coding.constants.html">
+			<param name="Local" value="en\coding\constants.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Arrays">
-			<param name="Local" value="en\html\coding.arrays.html">
+			<param name="Local" value="en\coding\arrays.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Conditions">
-			<param name="Local" value="en\html\coding.conditions.html">
+			<param name="Local" value="en\coding\conditions.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Loops">
-			<param name="Local" value="en\html\coding.loops.html">
+			<param name="Local" value="en\coding\loops.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Classes">
-			<param name="Local" value="en\html\coding.classes.html">
+			<param name="Local" value="en\coding\classes.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Keywords">
-			<param name="Local" value="en\html\coding.keywords.html">
+			<param name="Local" value="en\coding\keywords.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Additional commands">
-			<param name="Local" value="en\html\coding.additional.html">
+			<param name="Local" value="en\coding\additional.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="HEX..END">
-			<param name="Local" value="en\html\coding.hex_end.html">
+			<param name="Local" value="en\coding\hex_end.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Directives">
-			<param name="Local" value="en\html\coding.directives.html">
+			<param name="Local" value="en\coding\directives.html">
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Editor/IDE">
-		<param name="Local" value="en\html\editor.html">
+		<param name="Local" value="en\editor.html">
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Options">
-			<param name="Local" value="en\html\editor.options.html">
+			<param name="Local" value="en\editor\options.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="General">
-				<param name="Local" value="en\html\editor.options.general.html">
+				<param name="Local" value="en\editor\options\general.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Formats">
-				<param name="Local" value="en\html\editor.options.formats.html">
+				<param name="Local" value="en\editor\options\formats.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Editor">
-				<param name="Local" value="en\html\editor.options.editor.html">
+				<param name="Local" value="en\editor\options\editor.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Highlighter">
-				<param name="Local" value="en\html\editor.options.highlighter.html">
+				<param name="Local" value="en\editor\options\highlighter.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Hotkeys">
-				<param name="Local" value="en\html\editor.options.hotkeys.html">
+				<param name="Local" value="en\editor\options\hotkeys.html">
 				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Features">
-			<param name="Local" value="en\html\editor.features.html">
+			<param name="Local" value="en\editor\features.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Edit Modes">
-			<param name="Local" value="en\html\editor.edit_modes.html">
+			<param name="Local" value="en\editor\edit_modes.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Console">
-			<param name="Local" value="en\html\editor.console.html">
+			<param name="Local" value="en\editor\console.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Hotkeys">
-			<param name="Local" value="en\html\editor.hotkeys.html">
+			<param name="Local" value="en\editor\hotkeys.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Opcode Search Tool">
-			<param name="Local" value="en\html\editor.opcode_search.html">
+			<param name="Local" value="en\editor\opcode_search.html">
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="SCM Documentation">
-		<param name="Local" value="en\html\scm.html">
+		<param name="Local" value="en\scm.html">
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Opcodes List (INI)">
-			<param name="Local" value="en\html\scm.GTA_INI.html">
+			<param name="Local" value="en\scm\GTA_INI.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="GTA Limits">
-			<param name="Local" value="en\html\scm.GTALimit.html">
+			<param name="Local" value="en\scm\GTALimit.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="GTA SA">
-			<param name="Local" value="en\html\scm.sa.html">
+			<param name="Local" value="en\scm\sa.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Car Variations">
-				<param name="Local" value="en\html\scm.sa.0.html">
+				<param name="Local" value="en\scm\sa\0.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Garage names">
-				<param name="Local" value="en\html\scm.sa.1.html">
+				<param name="Local" value="en\scm\sa\1.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Clothes: TORSO">
-				<param name="Local" value="en\html\scm.sa.3.html">
+				<param name="Local" value="en\scm\sa\3.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Clothes: LEGS">
-				<param name="Local" value="en\html\scm.sa.3_1.html">
+				<param name="Local" value="en\scm\sa\3_1.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Clothes: SHOES, NECKLACES, WATCHES">
-				<param name="Local" value="en\html\scm.sa.3_2.html">
+				<param name="Local" value="en\scm\sa\3_2.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Clothes: GLASSES, HATS, SPECIAL">
-				<param name="Local" value="en\html\scm.sa.3_3.html">
+				<param name="Local" value="en\scm\sa\3_3.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Interior">
-				<param name="Local" value="en\html\scm.sa.17.html">
+				<param name="Name" value="interiours">
+				<param name="Local" value="en\scm\sa\17.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="HairCuts">
-				<param name="Local" value="en\html\scm.sa.4.html">
+				<param name="Local" value="en\scm\sa\4.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Buttons">
-				<param name="Local" value="en\html\scm.sa.5.html">
+				<param name="Local" value="en\scm\sa\5.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Particle effects">
-				<param name="Local" value="en\html\scm.sa.6.html">
+				<param name="Local" value="en\scm\sa\6.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="PedTypes">
-				<param name="Local" value="en\html\scm.sa.7.html">
+				<param name="Local" value="en\scm\sa\7.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Player body parts">
-				<param name="Local" value="en\html\scm.sa.8.html">
+				<param name="Local" value="en\scm\sa\8.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Radar Icons ">
-				<param name="Local" value="en\html\scm.sa.9.html">
+				<param name="Local" value="en\scm\sa\9.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Special actors">
-				<param name="Local" value="en\html\scm.sa.10.html">
+				<param name="Local" value="en\scm\sa\10.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Statistics ID">
-				<param name="Local" value="en\html\scm.sa.11.html">
+				<param name="Local" value="en\scm\sa\11.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Tattos">
-				<param name="Local" value="en\html\scm.sa.12.html">
+				<param name="Local" value="en\scm\sa\12.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Train types">
-				<param name="Local" value="en\html\scm.sa.13.html">
+				<param name="Local" value="en\scm\sa\13.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Weapon numbers">
-				<param name="Local" value="en\html\scm.sa.14.html">
+				<param name="Local" value="en\scm\sa\14.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Weather IDs">
-				<param name="Local" value="en\html\scm.sa.15.html">
+				<param name="Local" value="en\scm\sa\15.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Zones">
-				<param name="Local" value="en\html\scm.sa.16.html">
+				<param name="Local" value="en\scm\sa\16.html">
 				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="GTA VC">
-			<param name="Local" value="en\html\scm.vc.html">
+			<param name="Local" value="en\scm\vc.html">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Gang IDs">
+				<param name="Local" value="en\scm\vc\0.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Garage ID">
+				<param name="Local" value="en\scm\vc\1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="interiours">
+				<param name="Local" value="en\scm\vc\2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Buttons">
+				<param name="Local" value="en\scm\vc\3.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="PedTypes ">
+				<param name="Local" value="en\scm\vc\6.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Radar Icons">
+				<param name="Local" value="en\scm\vc\4.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weapon Numbers">
+				<param name="Local" value="en\scm\vc\5.html">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="GTA LCS">
-			<param name="Local" value="en\html\scm.lcs.html">
+			<param name="Local" value="en\scm\lcs.html">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Gang IDs">
+				<param name="Local" value="en\scm\lcs\0.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Model IDs">
+				<param name="Local" value="en\scm\lcs\1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Player Skins">
+				<param name="Local" value="en\scm\lcs\2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Special Actors">
+				<param name="Local" value="en\scm\lcs\3.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weapon Numbers">
+				<param name="Local" value="en\scm\lcs\4.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weather">
+				<param name="Local" value="en\scm\lcs\5.html">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="GTA VCS">
-			<param name="Local" value="en\html\scm.vcs.html">
+			<param name="Local" value="en\scm\vcs.html">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Clothes IDs">
+				<param name="Local" value="en\scm\vcs\1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Gang IDs">
+				<param name="Local" value="en\scm\vcs\2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weather IDs">
+				<param name="Local" value="en\scm\vcs\3.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Articles">
+		<param name="Local" value="en\articles.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Coding Bible I">
+			<param name="Local" value="en\articles\mcp1.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Coding Bible II">
+			<param name="Local" value="en\articles\mcp2.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Virtual key codes (for 0AB0)">
+			<param name="Local" value="en\articles\virtual.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CLEO 3 Code Library ">
+			<param name="Local" value="en\articles\cleo_library.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CLEO 3: scripts">
+				<param name="Local" value="en\articles\cleo_about.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CLEO 3: opcodes ">
+				<param name="Local" value="en\articles\cleo_opcodes.html">
+				</OBJECT>
+		</UL>
 	</UL>
 </UL>
 </BODY></HTML>
