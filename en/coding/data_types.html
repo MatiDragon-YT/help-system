@@ -9,82 +9,81 @@
 <body>
 <script src="../../js/partial/header.js"></script>
 <p>$ - global variables.</p>
-<code class=mycode5>
-0004: <span class="general1-variable">$MyVar</span> = <span class="general1-number">100</span> </code><br>
+<pre>
+0004: $MyVar = 100 </pre><br>
 <br><hr><br>
-<p >	@ - (in the beginning): of a label. The text directly after is used to reference the label in jumps</p>
-<code class=mycode5>
-0002: <span class="general1-reservedword">jump</span> <span class="general1-label">@MyLabel</span></code><br>
+<p>	@ - (in the beginning): of a label. The text directly after is used to reference the label in jumps</p>
+<pre>
+0002: jump @MyLabel</pre><br>
 <p> (in the end): a local variable. Number BEFORE denotes a variable </p>
-<code class=mycode5>
- 0006: <span class="general1-variable">100@</span> = <span class="general1-number">10</span> </code><br>
+<pre>
+ 0006: 100@ = 10 </pre><br>
  <a name="string"></a><br>
  <hr>
 <p>
-	<span class="stro">'...'</span> - short string (15 chars max).</p>
-	<code class=mycode5>
-03A4: name_thread<span class="general1-string"> 'MAIN'</span></code><br>
-<p>Empty string is also allowed: <span class="stro">'&nbsp;&nbsp;'</span> </p><hr>
+	'...' - short string (15 chars max).</p> 
+	<pre>
+03A4: name_thread 'MAIN'</pre><br>
+<p>Empty string is also allowed: '&nbsp;&nbsp;' </p><hr>
 
-<p>
-<span class="general1-string">"..."</span> - long string (maximum length is determined by the opcode it uses)</p>
+<p>	
+"..." - long string (maximum length is determined by the opcode it uses)</p>
 <p>
 Single quotes do not need anything  special, but to use double quotes you must  specify slash char \ before a quote.<br>
-</p>
+</p>   
 <p>
-Empty string is also allowed: <span class="general1-string">"&nbsp;&nbsp;"</span> </p>
+Empty string is also allowed: "&nbsp;&nbsp;" </p>
 	 <br>
-<code class=mycode5>
-0662: write_debug_message <span class="general1-string">"Hello, \"world\"! \n 'Here we go!'"</span></code><br>
+<pre>
+0662: write_debug_message "Hello, \"world\"! \n 'Here we go!'"</pre><br>
 <br><hr>
 <p>
-<span class="general1-variable">s$</span> - global string variable	</p>
+s$ - global string variable	</p>
 <br>
-<code class=mycode5>
-05A9: <span class="general1-variable">s$MyString</span> = <span class="general1-string">'GLOBAL'</span ></code><br>
+<pre>
+05A9: s$MyString = 'GLOBAL'</pre><br>
 <br><hr>
 <p>
-	<span class="general1-variable">@s</span> - local string variable </p><br>
-<code class=mycode5>
-05AA: <span class="general1-variable">1@s</span> = <span class="stro">'LOCAL'</span></code><br>
+	@s - local string variable </p><br>
+<pre>
+05AA: 1@s = 'LOCAL'</pre><br>
 <br><hr>
 <p>
-	<span class="general1-variable">v$</span> - global long string variable</p>
+	v$ - global long string variable</p>
 <br>
-<code class=mycode5>
-06D1: <span class="general1-variable">v$MyString</span> =<span class="general1-string"> "LONG_GLOBAL"</span></code><br>
+<pre>
+06D1: v$MyString = "LONG_GLOBAL"</pre><br>
 <br><hr>
 <p>
-<span class="general1-variable">@v</span> - local long string variable</p><br>
-<code class=mycode5>
-06D2: <span class="general1-variable">1@v</span> = <span class="general1-string">"LONG_LOCAL"</span></code><br>
+@v - local long string variable</p><br>
+<pre>
+06D2: 1@v = "LONG_LOCAL"</pre><br>
 <br><hr>
 <p>
-	<span class="general1-model">#</span> - model identifier from '.ide' files </p>
+	# - model identifier from '.ide' files </p>
 <br>
-<code class=mycode5>
-0247: request_model <span class="general1-model">#CELLPHONE</span></code><br>
+<pre>
+0247: request_model #CELLPHONE</pre><br>
 <br><hr><p>
 
-	& - ADMA (Advanced Direct Memory Access).<br>
+	& - ADMA (Advanced Direct Memory Access).<br> 
 	Reads/writes the values within the SCM even not in the variables block.<br>
 	Does not affect the second segment size. </p>
 <p>ADMA can be used the same as a global  variable. </p>
 <br>
-<code class=mycode5>
-<span class="general1-variable">&57</span> += <span class="general1-variable">&120</span>(<span class="general1-variable">&231</span>,<span class="general1-number">4i</span>) </code><br>
+<pre>
+&57 += &120(&231,4i) </pre><br>
 <br><hr>
 
 
 <p><br>
-  <span class="general1-number">0x</span> - a hexadimal number<br>
-	<span class="general1-number">-0x</span> - a negative hexadimal number</p>
+  0x - a hexadimal number<br>
+	-0x - a negative hexadimal number</p>
 
-<code class=mycode5>
-0004: <span class="general1-variable">$var</span> = <span class="general1-number">-0xBB08</span></code>
+<pre>
+0004: $var = -0xBB08</pre>
 <br>
 <p>
 
-	A number has to be within -80000000..7FFFFFFF range.
-</p>
+	A number has to be within -80000000..7FFFFFFF range.</p>
 <script src="../../js/partial/footer.js"></script>
