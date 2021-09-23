@@ -1,6 +1,8 @@
 for (var i = 0;i < document.getElementsByName("markdown").length;i++){ 
 	var element = document.getElementsByName("markdown")[i];
-	element.innerHTML = element.innerHTML
+	element.innerHTML = 
+	'<p>' + 
+		element.innerHTML
 		/*** CITES ***/
 		.replace(/^(>)!?(\s[\w\d].+)\n/gim, '<blockquote>$2</blockquote>')
 		.replace('</blockquote><blockquote>', '<br>')
@@ -18,5 +20,8 @@ for (var i = 0;i < document.getElementsByName("markdown").length;i++){
 		/*** CODES ***/
 		.replace(/```(sb3|ini|fxt|csm)?([\x09-\x5F\x61-\xFF]*)```/, '<pre class="$1">$2</pre>')
 		.replace(/`(sb3|ini|fxt|csm)?([\x09-\x5F\x61-\xFF]*)`/, '<code class="$1">$2</code>')
-	;
+		/*** DIVS ***/
+		.replace('\n(---|===)\n', '<hr>')
+		.replace('\n\n', '</p></p>')
+	+ '</p>'
 }
