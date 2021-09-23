@@ -21,8 +21,8 @@ function DIRECTION(){
 const ID = ($('html')[0].id || 'Documentation_SCM').replace(/(_)/, ' ');
 const TITLE = document.title || "Topic";
 document.write('\
-<div style="background: #263238 url(\''+ DIRECTION() +'img/logo1.png\')">\
-  <div style="background: #263238 url(\''+ DIRECTION() +'img/logo2.png\') no-repeat;height: 121px;width: 640px"></div>\
+<div style="background: #fff url(\''+ DIRECTION() +'img/logo1.png\')">\
+  <div style="background: #fff url(\''+ DIRECTION() +'img/logo2.png\') no-repeat;height: 121px;width: 640px"></div>\
 </div>\
 <div style="background: #5a97f3;color: black;font-weight: bold;">\
   <h2 style="padding: 9px 33px">'+ ID +'</h2>\
