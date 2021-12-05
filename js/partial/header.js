@@ -1,12 +1,19 @@
 /** Selector of the DOM
- * str : DOMString
+ * @param str : DOMString
 */
-function $(str){
-  return document.querySelectorAll(str);
+function $(str) {
+    var d = document;
+    if (str.charAt(0) === '#' && !/\s/.test(str) || d.querySelectorAll(str).length === 1) { 
+        return d.querySelector(str);
+    }
+    else {
+        if(d.querySelectorAll(str).length === 0){return undefined}
+        return d.querySelectorAll(str);
+    }
 }
 
 function DIRECTION(){
-  var defDirection = parseInt($('html')[0].getAttribute('cd')) || '../../';
+  var defDirection = parseInt($('html').getAttribute('cd')) || '../../';
 
   if (isNaN(defDirection)){
     return defDirection
@@ -18,15 +25,12 @@ function DIRECTION(){
   return newDirection
 }
 
-const ID = ($('html')[0].id || 'Documentation_SCM').replace(/(_)/, ' ');
-const TITLE = document.title || "Topic";
 document.write('\
 <div style="background: #fff url(\''+ DIRECTION() +'img/logo1.png\')">\
-  <div style="background: #fff url(\''+ DIRECTION() +'img/logo2.png\') no-repeat;height: 121px;width: 640px"></div>\
+  <div style="background: #fff url(\''+ DIRECTION() +'img/logo2.png\') no-repeat;height: 121px;max-width: 640px"></div>\
 </div>\
 <div style="background: #5a97f3;color: black;font-weight: bold;">\
-  <h2 style="padding: 9px 33px">'+ ID +'</h2>\
+  <h1 style="padding: 9px 33px">'+ document.title +'</h1>\
 </div>\
-<div style="padding: 0.67pc 2pc">\
-  <h2 style="font-weight: lighter;">'+ TITLE +'</h2>\
+<main class="markdown">\
 ')
