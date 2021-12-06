@@ -1,8 +1,8 @@
+var d = document;
 /** Selector of the DOM
  * @param str : DOMString
 */
 function $(str) {
-    var d = document;
     if (str.charAt(0) === '#' && !/\s/.test(str) || d.querySelectorAll(str).length === 1) { 
         return d.querySelector(str);
     }
@@ -24,13 +24,3 @@ function DIRECTION(){
   }
   return newDirection
 }
-
-document.write('\
-<div style="background: #fff url(\''+ DIRECTION() +'img/logo1.png\')">\
-  <div style="background: #fff url(\''+ DIRECTION() +'img/logo2.png\') no-repeat;height: 121px;max-width: 640px"></div>\
-</div>\
-<div style="background: #5a97f3;color: black;font-weight: bold;">\
-  <h1 style="padding: 9px 33px">'+ document.title +'</h1>\
-</div>\
-<main class="markdown">\
-')
