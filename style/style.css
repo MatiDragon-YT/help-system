@@ -29,7 +29,6 @@ a {
 .markdown {
     color: #3b454e;
     padding: 1rem 0;
-    width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -103,8 +102,8 @@ hr {
 
 p { padding: 8px 0 }
 
-dl { margin: 0.5rem 0 }
-dd { margin-left: 2rem }
+dl { margin: 0.5rem 2rem }
+ul { margin: 0.5rem 2rem }
 
 code, kbd, pre, samp {
     background: #eceff1;
