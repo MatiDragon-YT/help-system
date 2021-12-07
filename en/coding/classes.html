@@ -32,9 +32,9 @@ Player.SetMinWantedLevel($PLAYER_CHAR, 2)
 
 There are three types of class members:
 
-* conditions
-* methods
-* properties
+* [conditions](#Conditions)
+* [methods](#Methods)
+* [properties](#Properties)
 
 ### Conditions
 
@@ -63,7 +63,6 @@ In Sanny Builder the constructor can be written in two equivalent ways:
 
 ```sb3
 Player.Create($PLAYER_CHAR, #NULL, 2488.5601, -1666.84, 13.38)
-
 ```
 
 ```sb3
@@ -124,7 +123,7 @@ end
 
 It instructs the compiler that <code class=variables>$PLAYER_CHAR</code> holds an instance of the class <code class=classes>Player</code>. This variable can serve as an alias to the class name:
 
-```
+```sb3
 if
     $PLAYER_CHAR.Defined
 jf @anywhere
@@ -148,9 +147,9 @@ Variables declared as instances of a class can be redeclared with another type.
 
 ### The `Model` Class 
 
-[Model names](data-types.md#model-names) are always instances of the `Model` class:
+[Model names](data-types.html#model-names) are always instances of the <code class="models">Model</code> class:
 
-```
+```sb3
 #AK47.Load
   
 :loop
@@ -162,7 +161,7 @@ jf @loop
 
 It is equivalent to:
 
-```
+```sb3
 Model.Load(#AK47)
 
 :loop
@@ -174,9 +173,9 @@ jf @loop
 
 ## Class constants
 
-Class parameters can be assigned to an [enumerated type](../edit-modes/enums.txt.md). It makes the source code more readable:
+Class parameters can be assigned to an [enumerated type](../edit-modes/enums.txt.html). It makes the source code more readable:
 
-```
+```sb3
 Player.SetClothes($PLAYER_CHAR, "VEST", "VEST", BodyPart.Torso)
 ```
 
