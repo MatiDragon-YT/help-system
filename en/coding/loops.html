@@ -1,107 +1,188 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Loops</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p>
 
-<h2>Loops</h2>
-<p>A loop is a statement which allows code to be repeatedly executed. Sanny Builder supports three kinds of controls loops: <a href="#REPEAT..UNTIL">repeat</a>, <a href="#WHILE..END">while</a>, <a href="#FOR..END">for</a>.</p>
-<h3><a name="FOR..END"></a>FOR loop</h3>
+A **loop **is a statement which allows code to be repeatedly executed. Sanny Builder supports three kinds of controls loops: [for](#FOR..END), [while](#WHILE..END), [repeat](#REPEAT..UNTIL).
 
-<p>The FOR loop has a strictly certain number of iterations (repetitions).</p>
-<p>Syntax:<br>
-FOR &lt;loop variable&gt; = &lt;initial value&gt; TO/DOWNTO &lt;final value&gt; [step = 1]<br>
-&lt;the loop body&gt;<br>
-END</p>
+## FOR..END
 
-<p><b>&lt;loop variable&gt;</b> - a variable used as a counter for iterations</p>
-<p><b>&lt;initial value&gt;</b> - a starting value of the loop variable (any value including a model identifier)</p>
-<p><b>TO/DOWNTO</b>- increment or decrement the loop variable between iterations</p>
-<p><b>&lt;final value&gt;</b> - a final value of the loop variable when finished (any value including a model identifier)</p>
-<p><b>&lt;step&gt;</b> - an optional value the loop variable will be incremented or decremented with between iterations. By default its value is equal to 1.</p>
-<p>Example:</p>
-<pre>var
-$value: int = 0
-$final: int = 100
+The `FOR` loop has a strictly certain number of iterations (repetitions).
+
+Syntax:
+```
+FOR &lt;loop variable&gt; = &lt;initial value&gt; TO/DOWNTO &lt;final value&gt; [step = 1]
+    &lt;the loop body&gt;
+END
+```
+
+`&lt;loop variable&gt;` - a [variable](variables.md) used as a counter for iterations\
+`&lt;initial value&gt;` - a value of the loop variable before the first iteration (any value including a [model identifier](data-types.md#model-names))\
+`TO` or `DOWNTO`** **- increment or decrement the loop variable between iterations\
+`&lt;final value&gt;` - a value of the loop variable after the last iteration (any value including a model identifier)\
+`&lt;step&gt;` - an optional value the loop variable will be incremented or decremented with between iterations. By default it is equal to `1`.
+
+```sb3
+var
+    $value: int = 0
+    $final: int = 100
 end
 
 FOR $MyCounter = 1 to $final step 2
-$value += $mycounter
-end</pre>
+    $value += $mycounter
+end
+```
 
-<p class='note'>If the starting/final values or a step value contained in variables, these variables will get the same type the loop variable has. If the loop variable is not declared with any type before using in a loop it gets an integer type. In order to use the floating-point values as the FOR loop ranges, declare the loop variable with the float type.</p>
-<p>Example:</p>
-<pre>var
-$MyCounter: float
+If the `loop variable` is not [declared](variables.md#var-end-construct) with any type before the loop it gets the `Integer` type. If  `initial value`, `final value` or `step` are variables, they get the same type the `loop variable` has To use floating-point numbers for the initial and final values, declare the loop variable with the `Float `type.
+
+```sb3
+var
+    $MyCounter: float
 end
 
 FOR $MyCounter = 1.0 to $final step 2.0
-end</pre>
-<p>Variables $MyCounter and $final both have the Float type after the loop.</p>
-
-<h3><a name="WHILE..END"></a>WHILE loop</h3>
-<p>Syntax:<br>
-WHILE &lt;loop condition&gt;<br>
-&lt;the loop body&gt;<br>
-END</p>
-<p>Example:</p>
-<pre>while not #AK47.Available
-wait 0
-end</pre>
-<p>The WHILE loop is working until the loop condition returns true. The condition is evaluated before the loop iterations. Hence, if the condition is false, the statement sequence is never executed.</p>
-<pre>$var = 10
-
-while $var > 11
-inc($var)
-end</pre>
-
-<p>As the condition $var > 11 is false, the command inc($var) will never be executed.</p>
-
-<p>Constants true and false are valid for the use as the loop condition.</p>
-<pre>while true
-&lt;the loop body&gt;
-end</pre>
-<p>This loop's body executes infinitely until the loop stopped with the command Break.</p>
-<pre>while false
-&lt;the loop body&gt;
-end</pre>
-<p>This loop is ignored by the compiler as the condition is never evaluated.</p>
-<p>Currently the compiler accepts only one condition to be checked in the loop condition, but you can check more conditions within the loop body and use the commands Break and Continue.</p>
-
-<h3><a name="REPEAT..UNTIL"></a>REPEAT..UNTIL loop</h3>
-
-<p>Syntax:<br>
-REPEAT<br>
-&lt;the loop body&gt;<br>
-UNTIL &lt;loop condition&gt;</p>
-<p>The repeat..until loop executes until the loop condition returns False. The condition is evaluated after iteration therefore the loop is guaranteed to be executed at least once.</p>
-
-<p>Constants true and false are valid for the use as the loop condition.</p>
-
-<p>repeat..until true - the loop has the only iteration.</p>
-<p>repeat..until false - the loop executes infinitely until it's stopped with the Break command.</p>
-<p>Currently the compiler accepts only one condition to be checked in the loop condition, but you can check more conditions within the loop body and use the commands Break and Continue.</p>
-
-<h3><a name="CONTINUE"></a><a name="BREAK"></a>Continue and Break</h3>
-<p>If you want to skip the current iteration and proceed to the next one, use the Continue command. The Break command causes the loop immediately to stop and proceed to the command after the loop body.</p>
-<p>They can be used as an opcode parameter (for example, jf continue) or a separate single command.</p>
-<p>Example:</p>
-<pre>if
-    $currentactor.dead
-jf Break // exit from the loop
-
-if
-    not $currentactor.dead
-then
-   Continue // goes next iteration
 end
-</pre>
+```
 
-</p>
-<script src="../../js/partial/footer.js"></script>
+Variables `$MyCounter` and `$final` both have the `Float` type after the loop.
+
+## WHILE..END
+
+Syntax:
+```
+WHILE &lt;loop condition&gt;
+  &lt;the loop body&gt;
+END
+```
+
+`loop condition` - a single conditional opcode\
+`loop body` - commands to execute on each iteration; can be omitted
+
+```sb3
+while not #AK47.Available
+    wait 0
+end
+```
+
+The `WHILE` loop works while the loop condition is true. The condition is evaluated before a loop iteration. Hence, if the condition is false, the loop body never gets executed.
+
+```sb3
+$var = 10
+
+while $var &gt; 11
+    inc($var)
+end
+
+// as the loop condition is false, inc($var) never gets executed
+```
+
+[Constants](constants.md) `True` and `False` can be used as a loop condition.
+
+```sb3
+while true
+    &lt;loop body&gt;
+end
+```
+
+This loop body executes infinitely until the loop is stopped with the `Break` command.
+
+```sb3
+while false
+    &lt;loop body&gt;
+end
+```
+
+This loop is ignored by the compiler as the condition is never met.
+
+{% hint style="info" %}
+Currently the compiler accepts only one opcode in the loop condition, but you can check more conditions before the loop body and use the commands `Break `and `Continue`.
+
+```sb3
+while true
+    if and
+       $var &gt;= 0
+       $var &lt;= 100
+    then
+       Break
+    end
+    // loop executes while $var is in the range [0...100]
+      
+    &lt;loop body&gt;
+end
+```
+{% endhint %}
+
+## REPEAT..UNTIL
+
+Syntax:
+```
+REPEAT
+    &lt;the loop body&gt;
+UNTIL &lt;loop condition&gt;
+```
+
+`loop body` - commands to execute on each iteration; can be omitted\
+`loop condition` - a single conditional opcode
+
+The `REPEAT..UNTIL` loop executes until the loop condition returns false. The condition is evaluated after iteration therefore the loop is guaranteed to be executed at least once.
+
+[Constants](constants.md) `True` and `False` can be used as the loop condition.
+
+```sb3
+repeat
+  // the loop has the only iteration
+until true 
+```
+
+```sb3
+repeat
+  // the loop executes infinitely until it's stopped with the Break command
+until false
+```
+
+{% hint style="info" %}
+Currently the compiler accepts only one opcode in the loop condition, but you can check more conditions after the loop body and use the commands `Break` and `Continue`.
+
+```sb3
+repeat  
+   &lt;loop body&gt;
+   if and
+     $var &gt;= 0
+     $var &lt;= 100
+   then
+     Break
+   end
+  // loop executes while $var is in the range [0...100]      
+until false
+```
+{% endhint %}
+
+## Continue and Break
+
+If you want to skip the current iteration and proceed to the next one, use the `Continue` command. 
+
+The `Break` command causes the loop to stop immediately and proceed to the command after the loop body.
+
+They can substitute an opcode parameter (e.g., `jf Continue`) or serve as a standalone statement.
+
+```sb3
+while true
+  if
+    not $currentactor.dead
+  jf Break // exit the loop
+
+  if
+    $currentactor.dead
+  then
+    Continue // go to the next iteration
+  end
+end
+```
+
+<script src="../../js/markdown.js"></script>

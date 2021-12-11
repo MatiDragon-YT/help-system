@@ -3,72 +3,129 @@
 <head>
   <title>Variables</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p>
-<h2>Variables</h2>
 
-<p>A variable (var) is a named storage location that contains a value and can be read/rewrite many times. There are two kinds of variables:<br>
+A **variable (var)** is a named storage location that contains a value and can be read/rewrite many times. There are two types of variables.
 
-<h3>Global variables</h3>
-Global variables are denoted by a $ (dollar sign, before a name identifier). A global variable name is any combination of letters, underscores, and digits:
-<p class="note">$variable1 $100 $____</p>
-Their values are available from any place of a code.
-<h3>Local variables</h3>
-Local variables are denoted by a @ (AT sign, after a name identifier). A local variable name can only include digits:
-<p class="note">0@ 999@ 56@</p>
-Their values are available only within the current thread or mission.</p>
+## Global variables
 
-<p>Threads, external scripts and CLEO scripts each have a limited set of local variables. These sets include variables from 0@ to 33@ in San Andreas and from 0@ to 17@ in GTA 3 and VC. SA missions have a bigger set than usual. They use local variables in range from 0@ to 1023@.</p>
+A global variable starts with `$` followed by an identifier (name).  The global variable name is any combination of letters, digits and `_`:
 
-<h3><a name="VAR_END"></a>VAR..END construct</h3>
-<p>Variables are commonly used in expressions. If the right operand is a number constant, an opcode is not needed:
+`$variable1 $100 $____`
 
-<pre>$var = 0
-$myarray($index, 10i) >= 150</pre></p>
+{% hint style="info" %}
+A global variable with the name that only consists of digits is called a `DMA`-variable (**D**irect **M**emory **A**ddress). See also [Alloc](built-in-commands.md#alloc).
+{% endhint %}
 
-<p>If both operands in an expression are variables, the compiler can not detect a correct opcode, because of unknown type of the variables.
-<p>For example, there are two opcodes for incrementing a variable value by another value: 0058 and 0059, one for the integer values and another one for the floating-point values.</p>
-<pre>0058: $Var1 += $Var2 // (int)
-0059: $Var1 += $Var2 // (float)</pre>
+Their values are available from any place of the code.
+
+### **Saved Variables**
+
+A saved variable is a special global variable available only in `LCS `and `VCS `modes. Its name is prefixed with `$_`, e.g. `$_var`. The value of this variable persists across saved games. Global variables denoted by `$` only (e.g. `$var`) are not saved and they get blank values when the LCS or VCS game loads.
+
+## Local variables
+
+A local variable name may only be a number followed by `@`.
+
+```sb3
+0@ 
+999@ 
+56@
+```
+
+Their values are available only within the current script or the mission.
+
+{% hint style="warning" %}
+The number of local variables per script is strictly [limited](../scm-documentation/gta-limits.md).
+{% endhint %}
+
+### **Timer Variables**
+
+Each script or a mission have 2 special local variables called `TIMERA `and `TIMERB`. The value of a timer variable is increased automatically when the game clock advances, so they are commonly used to measure time elapsed since the timer reset:
+
+```sb3
+0006: TIMERA = 0 // reset the timer
+
+:WAIT_2S
+0001: wait 0 ms
+00D6: if
+0019:   TIMERA > 2000 // if the timer value is > 2000, i.e. 2 seconds has passed
+004D: jump_if_false @WAIT_2S
+0662: printstring "2 seconds has passed" // display the message
+```
+
+{% hint style="info" %}
+`TIMERA `and `TIMERB `names are only available starting with Sanny Builder v3.3.0. In older scripts the timers are known as `16@`, `17@` (GTA3, VC) or `32@`, `33@` (SA).
+{% endhint %}
+
+## VAR..END construct
+
+Variables are commonly used in the expressions. If the right operand is a number constant, the opcode can be omitted:
+
+```sb3
+$var = 0
+$myarray($index, 10i) >= 150
+```
+
+If both operands in the expression are variables, the compiler can not determine the correct opcode, because the types of the variables are unknown.
+
+For example, there are two opcodes to increment a variable value: `0058 `for integer values and `0059 `for floating-point values.
+
+```sb3
+0058: $Var1 += $Var2 // (int)
+0059: $Var1 += $Var2 // (float)
+```
+
 Assuming there is no opcode, which one to use?
-<pre>$Var1 += $Var2 // ??</pre>
-</p>
-In order to define a variable type, there is a specific construct.</p>
 
-<p>VAR..END construct allows to declare variables and their types for advanced use.</p>
+```sb3
+$Var1 += $Var2 // ??
+```
 
-<p>Syntax:<br>
-var<br>&lt;var name&gt;: &lt;type&gt;<br>end</p>
+To communicate the compiler a variable type use the `VAR..END` construct.
 
-<p>For example, if both variables were declared, the compiler correctly processes expressions without opcodes:</p>
+`VAR..END` construct allows to declare variables and their types for the advanced use.
 
-<pre>var
-$Var1 : Integer
-$Var2 : Integer
-end
-$Var1 += $Var2 // opcode 0058</pre>
-
-<a name="type"></a><p>The following types of variables are supported:</p>
-	<ul>
-	<li>Integer, Int - integer values</li>
-	<li>Float - floating-points values</li>
-	<li>String, ShortString - a variable containing a string literal with the fixed length (only for arrays, use s$, @s for variables)</li>
-	<li>LongString - a variable containing a string literal with the variable length (only for arrays, use v$, @v for variables)</li>
-	<li>&lt;Class name&gt; - any available <a href="classes.html">class name</a></li>
-	</ul>
-
-<p>Local variables can be declared too.</p>
-
-<p>Take a note that a declared variable will have the same type in every thread. So, you can redeclare variables to set the new types:</p>
-
-<pre>thread 'Food'
+Syntax:
+```sb3
 var
-10@ : Float
-$Var : Float
+&lt;variable>: &lt;type&gt;
+end
+```
+
+For example, if both variables are declared, the compiler is able to process the expression without opcodes:
+
+```sb3
+var
+    $Var1 : Integer
+    $Var2 : Integer
+end
+$Var1 += $Var2 // opcode 0058
+```
+
+The following types of variables are supported:
+
+* `Integer`, `Int `- integer values
+* `Float `- floating-points values
+* `String`, `ShortString `- a variable containing a string literal with the fixed length (only for the arrays, use `s$`, `@s` for variables)
+* `LongString `- a variable containing a string literal with the variable length (only for the arrays, use `v$`, `@v` for variables)
+* `&lt;Class name&gt;` - any available [class name](classes.md)
+
+The types of the local variables can be declared too.
+
+{% hint style="info" %}
+Once the type of the variable is declared it is used for all the code following the declaration.\
+You can re-declare variables to set the new type:
+
+```sb3
+script_name 'Food'
+var
+    10@ : Float
+    $Var : Float
 end
 $var = 1
 10@ = $Var
@@ -76,36 +133,84 @@ end_thread
 
 thread 'Loop'
 var
-10@ : Int
-$Var : Int
+    10@ : Int
+    $Var : Int
 end
 $var = 1
 10@ = $Var
-end_thread</pre>
+end_thread
+```
 
-<p>In the thread named "Food" 10@ is the floating-point variable. In the one named "Loop" 10@ is the integer variable.</p>
+In the `'Food'` script `10@` is the floating-point variable. In the `'Loop'` script `10@` is the integer variable.
 
-<p>You can redeclare variables as many times as you need.</p>
+You can re-declare variables as many times as you need.
+{% endhint %}
 
-<h3>Short form of Declaration</h3>
-<p>Since v3.2.0 it's possible to declare a variable of a built-in type (Int, Float, String, LongString) shortly using the type name.</p>
-<p>Syntax:<br> &lt;type&gt;&nbsp;&lt;variable name&gt;</p>
-<pre>int 0@ // 0@ declared as an integer variable.</pre>
+## Shorter Form of Declaration
 
-<h3>Variable Initialization</h3>
-<p>Also you can set an initial value for the variable when declaring it. Write symbol = and then the initial value:</p>
+Since v3.2.0 it's possible to declare a variable of a built-in type (`Int`, `Float`, `String`, `LongString`) using only the type name.
 
-<pre>var
-$fVar: float = 1.0
+Syntax:\
+`&lt;type&gt; &lt;variable name&gt;`
+
+```sb3
+int 0@ // 0@ declared as an integer variable.
+```
+
+Starting from v3.4.0 it is possible to declare variables with custom names:
+
+```sb3
+int a
+float distance
+string name
+
+a = 1
+distance = 15.5
+name = 'CJ'
+```
+
+An initial value can follow the variable name to reduce the number of the lines of code:
+
+```sb3
+int a = 1
+float distance = 15.5
+string name = 'CJ'
+```
+
+The compiler binds a new local variable to each name. In the example above one may expect a resulting code to look like:
+
+```sb3
+0006: 0@ = 1 
+0007: 1@ = 15.5 
+05AA: 2@ = 'CJ'
+```
+
+{% hint style="info" %}
+Due to [design limitations](https://github.com/sannybuilder/dev/issues/32) this feature is only available in CLEO scripts.
+{% endhint %}
+
+## Variable Initialization
+
+You can specify an initial value for the variable when declaring it. Write `=` and then the value:
+
+```sb3
+var
+    $fVar: float = 1.0
 end
-</pre>
+```
+
 or
-<pre>float $fVar = 1.0</pre>
-<p>Variable $fVar declared as Float and also the compiler will add an opcode in the script:</p>
 
-<pre>0005: $fVar = 1.0</pre>
+```sb3
+float $fVar = 1.0
+```
 
-<p>Initialization is allowed for the variables only, not for arrays.</p>
+The variable `$fVar` is now declared as `Float` and the compiler adds the opcode `0005` in the script:
 
-</p>
-<script src="../../js/partial/footer.js"></script>
+```sb3
+0005: $fVar = 1.0
+```
+
+Initialization is allowed for variables, but not for arrays.
+
+<script src="../../js/markdown.js"></script>

@@ -77,14 +77,39 @@ a {
 table {
     width: 100%;
     margin: .5rem 0;
+    border-spacing: 0;
+    border-color: red;
+    border: 1px solid #d3dce4;
+    border-radius: 4px;
 }
 
+th, td {
+    padding: .6rem;
+}
+
+th, td {
+    border-left: #d3dce4 1px solid;
+}
+
+th:first-child,
+td:first-child {
+    border-left: none
+}
+td {
+    border-top: #d3dce4 1px solid;
+}
 
 h1, h2, h3, h4, h5, h6 {
-	padding: 1rem 0;
-    border-top: #d3dce4 1px solid;
-    margin-top: 1rem;
     font-weight: 700;
+}
+h1, h2, h3 {
+    padding: 1rem 0 0.77rem;
+    margin-top: 1rem;
+    border-top: #d3dce4 1px solid;
+}
+
+h4, h5, h6 {
+    padding: .5rem 0;
 }
 
 h1 { font-size: calc(1.375rem + 1.5vw) }
@@ -94,6 +119,26 @@ h4 { font-size: calc(1.275rem + .3vw) }
 h5 { font-size: 1.25rem }
 h6 { font-size: 1rem }
 
+details {
+    display: block;
+}
+
+details > summary:first-of-type {
+    display: list-item;
+    counter-increment: list-item 0;
+    list-style: inside disclosure-closed;
+}
+
+summary {
+    display: block;
+    padding: 0;
+    font-size: calc(1.275rem + .3vw);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+b { font-weight: 800 }
+
 hr {
     border: none;
     border-top: solid #d3dce4 1px;
@@ -102,13 +147,24 @@ hr {
 
 p { padding: 8px 0 }
 
-dl { margin: 0.5rem 2rem }
-ul { margin: 0.5rem 2rem }
+p b { font-weight: 500 }
+
+dl, ol, ul { margin: 1rem 2rem }
+
+dd, li { margin: 0 0 5px }
 
 code, kbd, pre, samp {
     background: #eceff1;
     color: #212121;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+img {
+    max-height : 100%;
+    max-width : 100%;
+    width : auto;
+    height : auto;
+    margin: 0.5rem 0;
 }
 
 pre {
@@ -118,46 +174,48 @@ pre {
 }
 
 code {
-    padding: 1px 3px;
+    padding: 2px 6px;
     border-radius: 3px;
 }
 
 blockquote {
-    margin-left: 2rem;
-    padding-left: 1rem;
-    margin: 1rem 0 0;
+    padding: 5px 1rem;
+    margin: 0.3rem 0;
+    border-left: #9e9e9e 4px solid;
 }
 
 .warning {
-    border-left: red 3px solid;
-    color: red;
+    border-left: #f44336 4px solid;
+    color: #f44336;
 }
 
-div.warning {
-    padding: 0.4rem 2rem;
-    display: block;
+.info {
+    border-left: #2196f3 4px solid;
+    color: #3f51b5;
+}
+
+div.warning, div.info {
+    padding: 5px 1rem;
     margin: 1rem 0;
-}
-
-.note {
-    border-left: blue 3px solid;
-    color: blue;
+    display: block;
 }
 
 .light { font-weight: 300!important }
 .center { text-align: center!important }
 .uppercase { text-transform: uppercase!important }
 
-.comments { color: #616161 }
 .labels { color: #009688 }
-.variables { color: #607d8b }
 .keywords { color: #ff5722 }
 .numbers { color: #7e57c2 }
-.strings { color: #009688 }
 .models { color: #607d8b }
 .classes { color: #d32f2f }
 .commands { color: #0288d1 }
 .directives { color: #607d8b }
+.variables { color: #607d8b }
+.strings,
+.strings * { color: #009688 }
+.comments,
+.comments * { color: #616161 }
 
 @media (min-width:576px) {
     .markdown { max-width: 540px }
@@ -170,10 +228,10 @@ div.warning {
 }
 @media (min-width:1200px) {
     .markdown { max-width: 1140px }
-    .h1, h1 { font-size: 2.5rem }
-    .h2, h2 { font-size: 2rem }
-    .h3, h3 { font-size: 1.75rem }
-    .h4, h4 { font-size: 1.5rem }
+    h1 { font-size: 2.5rem }
+    h2 { font-size: 2rem }
+    h3 { font-size: 1.75rem }
+    h4 { font-size: 1.5rem }
 }
 @media (min-width:1400px) {
     .markdown { max-width: 1320px }

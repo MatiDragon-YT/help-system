@@ -1,57 +1,70 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Constants</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p><RR>
-		 <p>A constant  is an identifier with a predefined value. As against a variable the value of the  constant can�t be changed in run-time. At compilation the name of the constant is  replaced with the value set to it. The constants can be numeric (<em>numerals</em>) and string (<em>string literals</em>), and contain an  expression.</p>
-		 <p>To define  new constant use the construct <strong>CONST..END</strong>. It syntax looks like this:</p>
-		 <div class="mycode5"><span class="general1-reservedword">CONST</span><br>
-		   &lt;constant name&gt; = &lt;constant value&gt;<br>
-<span class="general1-reservedword">END</span></div>
-<p>The  constant name is any allowed identifier (letters, numbers and �_�). There are  reserved names that can�t be used, as <em>Continue,  True, And</em> and so on. <br>
-The  constant value may be a number (a model identifier, a label); a string; an  expression (for example class or variable); another constant.</p>
-<p>Example:
-    <br>
-</p>
-<div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard();"  ></span>
-<TEXTAREA ID="holdtext" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext" class="NON"><span class="general1-reservedword">const</span>
-MoneyRequired = <span class="general1-number">30</span>
-PlayerMoney = <span class="general1-variable">$PLAYER_CHAR</span>.<span class="general1-command">Money</span>
-<span class="general1-reservedword">end</span>
 
-<span class="general1-reservedword">if</span>
-PlayerMoney &gt; MoneyRequired
-<span class="general1-reservedword">then</span>
-PlayerMoney += <span class="general1-number">-1</span>
-<span class="general1-reservedword">end</span></pre></div>
-<p>At  compilation the constant MoneyRequired will be replaced with a number 30 and  PlayerMoney with <span class="general1-variable">$PLAYER_CHAR</span>.<span class="general1-command">Money</span>.</p>
-<p>The  compiler also uses 2 internal constants True and False which values are equals  to 1 and 0 accordingly.</p>
-<p>You can use  the constant elsewhere except the case:</p>
-<br>
-<div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard1();"  ></span>
-<TEXTAREA ID="holdtext1" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext1" class="NON"><span class="general1-reservedword">const</span>
-VarName = <span class="general1-variable">$Var</span>
-IndexName = <span class="general1-number">25</span>
-<span class="general1-reservedword">end</span>
+A **constant** is an identifier with a predefined value. Contrary to a variable the value of the constant can not be changed in run-time. In compile-time the constant gets replaced with the value associated with it. The value of the constant can be numeric (numbers, [model names](data-types.md#model-names) or [labels](data-types.md#labels)) and string (string literals), and contain an expression.
 
-VarName[IndexName] = <span class="general1-number">0</span></pre></div>
-<br>
-<p>To compile such expression, you must write the opcode, for example:</p>
-<br>
-<div class="mycode5">
-0004: VarName[IndexName] = <span class="general1-number">0</span></div>
-<p>Also there  are the limits with using of a complex expression as a constant.</p>
+Constants are declared either statically or dynamically. Each [edit mode](../edit-modes/) can load static constant definitions from a file using the `&lt;constants&gt;` parameter in the `modes.xml`. Dynamic declarations get created in the script code with the syntax outlined below.
 
-The list of the constants could be called at any place  of the code by pressing Ctrl + [space].
-</p>
-<script src="../../js/partial/footer.js"></script>
+## Syntax
+
+To declare a new constant in the code use the `CONST..END` construct:
+
+```
+CONST
+    &lt;constant name&gt; = &lt;constant value&gt;
+END```
+
+A constant name is any allowed identifier (a combination of letters, numbers and `_`). There are names reserved by the compiler that can not be used, such as `Continue`, `Break`, `And`, etc (see `compiler.ini`).
+
+A constant value might be a number (also a [model identifier](data-types.md#model-names) or a [label](data-types.md#labels)); a [string literal](data-types.md#string-literals); a [variable](variables.md) (also a [class property](classes.md#properties)); another constant.
+
+```sb3
+var
+   $PLAYER_CHAR: Player
+end
+
+const
+    MoneyRequired = 30
+    PlayerMoney = $PLAYER_CHAR.Money
+end
+
+if
+    PlayerMoney > MoneyRequired
+then
+    PlayerMoney += -1
+end
+```
+
+During compilation the constant `MoneyRequired` gets replaced with the number `30 `and `PlayerMoney `with `$PLAYER_CHAR.Money`
+
+When the [Language service](../editor/language-service.md) is enabled, a list of constants gets displayed after pressing `Ctrl+Space`.
+
+## Limitations
+
+You can use constants anywhere except the case:
+
+```sb3
+const
+    VarName = $Var
+    IndexName = 25
+end
+VarName[IndexName] = 0
+```
+
+To compile such expression, you must write the opcode, for example:
+
+```sb3
+0004: VarName[IndexName] = 0
+```
+
+Also there are some limitations with using an expression as the constant value.
+
+<script src="../../js/markdown.js"></script>

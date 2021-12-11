@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Mission Pack</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+One way to load `main.scm` without modifying the original is in MPACK.\
+That gives us the opportunity to select the desired mode when starting a new game, from the available list.
+
+---
+
+We just need to create a folder called `MPACK` in the directory "My Documents\GTA San Andreas User Files". Now the game will understand that the player needs to choose a `main`.
+.
+To do this, we must first create another folder as follows, with which we configure the order of the list::
+| MPACK + Sequence number
+
+The sequence number is integer from 1 to 24.
+
+<div class="info">
+Note that there should not be identical numbers.
+</div>
+
+For example, we are going to create a folder called `MPACK1`.
+.
+Now inside the folder do the following:
+
+_ Create a `mpack.dat` file with a normal notepad.\nOpen it and add the following entry: `1#Testeo MD v1.0#`. <blockquote>`1` - the sequence number of the mission set.\n`Testeo MD v1.0` - the name of the set, will be displayed when selected. It must be written in Latin letters, as the game does not always recognize the encoding.</blockquote>
+_ Add files: `american.gxt` from the `GTASA\text` folder and `main.scm` from the `GTASA\data\script` folder.
+_ Rename `main.scm` to `scr.scm` and `american.gxt` to `text.gxt`
+
+Now our package is ready. When we launch a new game, this we will see:
+
+![](mpack/preview.jpg)
+
+The standard game is the main one found in the `GTASA\data\script` folder.\
+The other will launch our `main` customed.
+
+<div class="warning">
+* All CLEO scripts will work when running any MPACK, so if they do interact with the `main` in any way, you should take this into account.
+* You can only add up to a maximum of 24 packages.
+* In mission packs, external scripts cannot be downloaded (plugins required)
+* If you installed the mission pack incorrectly, you will see the following:
+
+![](mpack/fail.jpg)
+</div>
+
+<script src="../../js/markdown.js"></script>

@@ -1,89 +1,132 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Arrays</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p>
-An array represents an indexed collection of elements of the same
-	type (called the base type). You can work with any element directly
-	via its	index. An index numeration begins with a zero.<br>
-	These arrays are supported by SA and LCS, VCS.<br>
-	<br>
 
-	Syntax:</p>
-<p>
-	San Andreas:<br>
-<strong>&lt;array name&gt;(&lt;index var name&gt;,&lt;size&gt;&lt;type&gt;)</strong></p><p>
-	Liberty City Stories, Vice City Stories:<br>
-<strong>&lt;array name&gt;(&lt;index var name&gt;,&lt;size&gt;)</strong></p>
-<p>
-<strong>&lt;array name&gt;:</strong> local or global variable.</p><p><strong>
-	<a name="Index"></a>&lt;index var name&gt;</strong>: any variable containing an index value.<br>
-	<a name="size"></a><br>
-<strong>
-	&lt;size&gt;</strong>: any value greater than 0.<br>
-	<a name="type"></a><br>
-<strong>
-	&lt;type&gt;</strong>: chars i f s v denote one of the array types:<br><br>
-<strong>
-	i:</strong> integer 4 bytes<br>
-<strong>f:</strong> float,  4 bytes<br>
-<strong>s:</strong> shortstring, 8 bytes<br>
-<strong>v:</strong> longstring, 16 bytes<br>
-</p>
-<p>In LCS, VCS, the array elements are only 4 bytes in length.&nbsp; Therefore, there is no need for  declaring its type.<br><br>
+An **array** represents an indexed collection of elements of the same type (called the base type). You can work with any element directly via its index. An index numeration begins with a zero. Arrays are supported in San Andreas, LCS and VCS.
 
-	An array could contain the elements of same type only.<br><br>
+## General Syntax
 
-	Example:</p>
-<div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard();"  ></span>
-<TEXTAREA ID="holdtext" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext" class="NON"><span class="general1-variable">$index</span> = <span class="general1-number">0</span>
-<span class="general1-variable">$array</span>(<span class="general1-variable">$index</span>,<span class="general1-number">10i</span>) = <span class="general1-number">1</span></pre></div>
-<p>Sanny Builder can work with the arrays in  two easier ways:</p>
-<p>	<a name="VAR_END" id="VAR_END">1)</a> declare an array using VAR..END construct</p><p>	The following syntax is used:</p><br>
-<div class=mycode5>	<span class="general1-reservedword">var</span><br>
-	 &lt;array name&gt;: array &lt;size&gt; of &lt;type&gt;<br>
-	 <span class="general1-reservedword">end</span></div>
-<br>
-	<br>
-	e.g.:<br>
-<br><div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard1();"  ></span>
-<TEXTAREA ID="holdtext1" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext1" class="NON"><span class="general1-reservedword">var</span>
-<span class="general1-variable">$FloatArray</span>: array <span class="general1-number">10</span> of Float
-<span class="general1-reservedword">end</span></pre></div>
-<p>You can operate this array without specifying its type and size:</p>
-<div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard2();"  ></span>
-<TEXTAREA ID="holdtext2" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext2" class="NON"><span class="general1-variable">$FloatArray</span>[<span class="general1-variable">$RndIndex</span>] += <span class="general1-number">100.0</span></pre></div>
-<p>	2) use a constant number as an index</p>
-<p>
-	For instance, you have the array $strings, containing 10 elements of
-	type s. You can use a constant number to work with the specified element:</p>
+San Andreas:\
+`&lt;array name&gt;(&lt;index var name&gt;,&lt;size&gt;&lt;type&gt;)`
 
-<div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard3();"  ></span>
-<TEXTAREA ID="holdtext3" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext3" class="NON"><span class="general1-variable">s$strings</span>[<span class="general1-number">0</span>] =<span class="general1-string"> 'str1'</span>
-<span class="general1-variable">s$strings</span>[<span class="general1-number">1</span>] = <span class="general1-string">'str2'</span>
-	...
-<span class="general1-variable">s$strings</span>[<span class="general1-number">9</span>] = <span class="general1-string">'str10'</span></pre></div>
-<p>	These variables could be used as the class name when declared:</p>
-<div  class="imgcursor" align="right"><span class="kbd"><img src="img/en/ico_cb.gif" alt="Copy to Clipboard" width="16" height="16"  onClick="ClipBoard4();"  ></span>
-<TEXTAREA ID="holdtext4" STYLE="display:none;"></TEXTAREA></div>
-<div class=mycode5>
-<pre id="copytext4" class="NON"><span class="general1-variable">$players</span>[<span class="general1-number">0</span>].<span class="general1-command">Build</span></pre></div>
-<p>By default in SA mode, the array elements decompile with the number of indexes. You can turn this feature off through the <a href="console.html">Console</a> using the command
-	toggle constant_indexes off.
-	The possibility of decompiling with the number of  indexes is allowed in LCS, VCS but is disabled by default.&nbsp; You can enable this  through the Console.
-</p>
-<script src="../../js/partial/footer.js"></script>
+```sb3
+$index = 0
+$array($index,10i) = 1
+```
+
+`&lt;array name&gt;`: local or global [variable](variables.md)\
+`&lt;index var name&gt;`: any variable containing an index of the element to read or write\
+`&lt;size&gt;`: any value greater than 0\
+`&lt;type&gt;`: one of characters `i` `f` `s` `v`:
+
+<table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Item Type</th>
+<th>Item Size (bytes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+<tr>
+<td>f</td>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>s</td>
+<td>string</td>
+<td>8</td>
+</tr>
+<tr>
+<td>v</td>
+<td>string</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+
+
+Liberty City Stories, Vice City Stories:\
+`&lt;array name&gt;(&lt;index var name&gt;,&lt;size&gt;)`
+
+{% hint style="info" %}
+In LCS, VCS, array elements are only 4 bytes in length. Therefore, there is no need in type declaration.
+{% endhint %}
+
+```sb3
+$index = 0
+$array($index,10) = 1
+```
+
+## Array Declaration
+
+Arrays can be declared using the [`VAR..END`](variables.md#var-end-construct) construct:\
+`var`\
+`   &lt;array name&gt;: array &lt;size&gt; of &lt;type&gt;`\
+`end`
+
+```sb3
+var
+    $FloatArray: array 10 of Float
+end
+```
+
+### Accessing array elements after declaration
+
+After declaring an array you can work access its elements using square brackets:
+
+```sb3
+var
+    $FloatArray: array 10 of Float
+end
+$index = 1
+$FloatArray[$index] += 100.0
+```
+
+### Using constant indexes
+
+You can use positive integer numbers and zero to access a particular array element:
+
+```sb3
+var
+    $FloatArray: array 10 of Float
+end
+$FloatArray[1] += 100.0
+```
+
+Elements of an array containing [string literals](data-types.md#string-literals) can be accessed with [string variables](data-types.md#string-variables):
+
+```sb3
+// initializing first three elements of the $strings array
+s$strings[0] = 'str1'
+s$strings[1] = 'str2'
+s$strings[2] = 'str3'
+```
+
+An array can be declared as a collection of [class instances](classes.md#class-instances):
+
+```sb3
+var
+  $players: array 2 of Player
+end
+$players[0].Build
+```
+
+{% hint style="info" %}
+By default in the `GTA SA` [edit mode](../edit-modes/), the disassembler prints array elements with the numbers as indexes. The same feature is available in LCS and VCS but is disabled by default. You can turn this feature on and off using the [debug option](../editor/console.md#constant_indexes) `CONSTANT_INDEXES`. 
+{% endhint %}
+
+<script src="../../js/markdown.js"></script>

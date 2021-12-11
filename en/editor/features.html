@@ -4,118 +4,154 @@
   <title>Features</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p>
-<h2>Features</h2>
-<p>Sanny Builder grants the end-user the following possibilities:</p>
 
-<h3>Syntax Highlighting</h3>
-<p>Sanny Builder highlights a code for easier understanding. The highlighting color scheme is <a href="O_104.html">changeable via the options.</a></p>
+Sanny Builder provides the end-user the following features:
 
-<h3>Bookmarks / Quick jump</h3>
-<p>You can bookmark the line by pressing <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">0..9</span> and then to pass to this one by pressing <span class="kbd">Ctrl</span>+<span class="kbd">0..9</span>. To delete all bookmarks, use option Edit -&gt; Clear All Bookmarks. The second method is via an option 'Go To Line' invoked by pressing <span class="kbd">Ctrl</span>+<span class="kbd">G</span>. Enter a sequence number of the necessary line and the editor will move the cursor to it.</p>
+## Integration with Sanny Builder Library
 
-<h3><a name="jumpLabel" id="jumpLabel"></a>InstaSearch</h3>
-<p>The InstaSearch feature allows to find a word or a label directly in the editor without using the Find dialog box.</p>
-<p>To find another occurrence of a word under the cursor, press <span class="kbd">Ctrl</span> + <span class="kbd">Num6</span> to start searching it below in a code, or <span class="kbd">Ctrl</span> + <span class="kbd">Num4</span> to search above. The cursor will immediately move to the line where such word is found. Keep pressing <span class="kbd">Ctrl</span> + <span class="kbd">Num4</span>/<span class="kbd">Num6</span> to find other occurrences of this word.</p>
+Sanny Builder Library is a community-driven portal aiming to document all known scripting commands used in GTA III, Vice City and San Andreas. You can find it here: [library.sannybuilder.com](https://library.sannybuilder.com)
+.
+Starting with v3.8.0 Sanny Builder uses library's files to provide brief descriptions to all opcodes directly in the IDE complimentary to the [Show opcode info](#Displaying Information about Opcode) feature. Those files are controlled with the new `&lt;library&gt;` parameter in the [edit mode configuration](../edit-modes/README.html#library).
+.
+Double-clicking the opcode description in the status bar opens the library's page with this opcode's full description in the browser.
+.
+If the current edit mode uses the library documentation there is a text in the status bar telling the version of the documentation, e.g. `SBL v0.119`. The version may vary from mode to mode.
+.
+![](../.gitbook/assets/sbl-update-popup-en.png)
+.
+Clicking the library version text in the status bar brings up a popup menu from which you can check if there are newer versions and download them. If you enable `Automatic updates` option Sanny Builder will check the updates and download them on startup.
 
-<p>To jump to the line with a label (for example, :MyLabel), put the cursor on a label reference (@MyLabel) and press <span class="kbd">Ctrl</span> + <span class="kbd">Num2</span>. The editor will move the cursor to the line with this label.</p>
+## Color Themes
 
-<p>If the cursor position remains the same, it means that the InstaSearch did not find the needed word in a code.</p>
+Sanny Builder's look and feel can be customized with themes. They define colors and style of the interface and code elements for easier reading. The active color theme can be changed in the [options](options/editor.html#color-theme). 
 
-<p>Before changing the cursor position the InstaSearch remembers where it is now, so if you want to return back press <span class="kbd">Ctrl</span> + <span class="kbd">Num8</span>.</p>
+<div class="info">
+If you launch Sanny Builder v3.8.0 with `settings.ini` from a prior version, your syntax highlighting configuration will be converted to a custom user theme (stored in`themes\custom.ini`).
+</div>
 
-<h3>Displaying Various Information About Opcode</h3>
+Also Sanny Builder has a built-in [theme editor](options/theme-editor.md) for quick customization of the existing themes.
 
-<p>SB displays a number of parameters for the opcode, a digital value of the model under the cursor in the statusbar when the option <a href="O_103.html#IDE">Show opcode info</a> is enabled.</p>
+## Bookmarks / Quick jump
 
-<h3>SA Mission Builder Source Code Converter</h3>
-<p>Sanny supports SAMB 0.33 syntax. To use the converter, open the source file in Sanny Builder and select menu  item: 'Tools -&gt; Code converter -&gt; MB -&gt; SB'.  Note the convertor uses the file 'MB.ini' from  the SB directory which contains the variables used by SAMB and their memory addresses. If you added your own variables in the file variables.ini (from the SAMB 0.33), copy them into the file MB.ini.</p>
+You can bookmark a line by pressing `Ctrl+Shift+0..9` and then get back to it by pressing `Ctrl+0..9`. To delete all bookmarks, use the menu option `Edit->Clear All Bookmarks`. 
+.
+Alternatively you can go to a particular line using the `Go To Line` feature. Press `Ctrl+G`, enter the line number and the editor will move the cursor to it.
 
-<h3>Opcode Search</h3>
-<p>Use a built-in <a href="opcode_search.html">Opcode Search tool</a> to find an opcode you need.</p>
+## Navigate to Symbol
 
-<h3><a name="Player coords managing"></a>Player Coordinates Management</h3>
-<p>Press F4 when SA is running and the  Coords Manager window will appear. Here, you can set new player coords and copy the  current ones. In the upper edit line, you can input  all three coordinates XYZ, delimited by a single space or &quot;,&quot;. Additionally,  you can insert CJ's  current coords in the text by pressing <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">C</span>. To insert the player's angle, press <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">E</span>.</p>
+The IDE allows to quickly navigate to some points of interest in the code without using the `Find` dialog box.
+.
+To go to the line marked with a label (e.g, `:MyLabel`), put the cursor on the label reference (`@MyLabel`) and press `Alt+Right`. If the label exists, the cursor position will change.
+.
+Similarly, to navigate to the start of a function or mission, use `Alt+Right` on the function or mission name.
+.
+To return back to the previous position, press `Alt+Left`. Keep pressing if you had more than one navigation.
+.
+These shortcuts can be redefined in the [options](options/hotkeys.md).
 
-<h3><a name="use macros"></a>Macros Support</h3>
-<p>A macro is the group of lines that are inserted in the editor when you type a macro name (for example, <span class="i">load</span>) and press the <span class="kbd">F2</span> button. The editor will add the following piece of the code:</p>
+## Displaying Information about Opcode
 
-<pre><span class="model">#</span>.<span class="command">Load</span>
+When the [option](options/editor.md#editor-configuration) `Show opcode info` is enabled the bottom bar displays:
 
-<span class="reservedword">while not</span> <span class="model">#</span>.<span class="command">Available</span><br>
-  <span class="reservedword">wait</span> <span class="number">0</span><br>
-<span class="reservedword">end</span></pre>
+* a number of parameters for the current opcode;
+* a model ID when the cursor is on the [model name](../coding/data-types.md#model-names) and `IDE` files for the current [edit mode](../edit-modes/#ide) have been loaded;
+* a constant value when the cursor is on the constant name and the [language service](language-service.md) is enabled.
+* a brief description what this command does (from [Sanny Builder Library](features.md#integration-with-sanny-builder-library))
 
-<p class="note"> All macros are contained in the file 'macroes.txt'. Syntax of this file is that:<br><span class="i">A macro name</span> is written as a single line. The equals sign (=) should follow the macro name. After the equals sign you can also write a short description of the macro. The macro code lines follow its name, each line begins with the equals sign. The cursor position is  marked with the | character</p>
-<p>Additionally, it's possible to add a macro in the file macroes.txt directly from the editor. For this purpose, select the a piece of the code and click the &quot;Service -&gt; Add macros&quot; menu. Type in the name of a new macro, the description (optionally) in the dialog window and press the OK buton. The macro is ready to be used.</p>
+## Opcode Search
 
-<p>To call the macros list, press <span class="kbd">Ctrl</span>+<span class="kbd">J</span>.</p>
+Use the built-in [Opcode Search tool](opcode-search-tool.md) to find an opcode you need.
 
-<p>You can also record your key pressing sequence (macros) and reproduce it later. Consider the following code:</p>
-<pre><span class="variable">$Actor</span><span class="space"> = </span><span class="class">Actor</span><span class="symbol">.</span><span class="command">Create</span><span class="symbol">(CivMale, </span><span class="model">#MALE01</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">10.0</span><span class="symbol">)</span>
-<span class="variable">$ActorWithGun</span><span class="space"> = </span><span class="class">Actor</span><span class="symbol">.</span><span class="command">Create</span><span class="symbol">(CivMale, </span><span class="model">#MALE01</span><span class="symbol">, </span><span class="number">110.0</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">20.0</span><span class="symbol">)</span>
-<span class="variable">$Gang01</span><span class="space"> = </span><span class="class">Actor</span><span class="symbol">.</span><span class="command">Create</span><span class="symbol">(CivMale, </span><span class="model">#MALE01</span><span class="symbol">, </span><span class="number">120.0</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">30.0</span><span class="symbol">)</span>
-<span class="variable">$Gang02</span><span class="space"> = </span><span class="class">Actor</span><span class="symbol">.</span><span class="command">Create</span><span class="symbol">(CivMale, </span><span class="model">#MALE01</span><span class="symbol">, </span><span class="number">130.0</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">40.0</span><span class="symbol">)</span>
-<span class="variable">$Killer</span><span class="space"> = </span><span class="class">Actor</span><span class="symbol">.</span><span class="command">Create</span><span class="symbol">(CivMale, </span><span class="model">#MALE01</span><span class="symbol">, </span><span class="number">140.0</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">50.0</span><span class="symbol">)</span>
-<span class="variable">$ActorWithoutGun</span><span class="space"> = </span><span class="class">Actor</span><span class="symbol">.</span><span class="command">Create</span><span class="symbol">(CivMale, </span><span class="model">#MALE01</span><span class="symbol">, </span><span class="number">150.0</span><span class="symbol">, </span><span class="number">100.0</span><span class="symbol">, </span><span class="number">60.0</span><span class="symbol">) </span></pre>
+## Player Coordinates Management
 
-<p>Say you need to exchange the actor's handles in each pair (i.e have <span class="variable">$ActorWithGun</span> instead of <span class="variable">$Actor</span>, and vice versa).</p>
+Press `Ctrl+Alt+1` when GTA San Andreas is running and the Coords Manager window will appear. You can read the player's coordinates from the game memory and modify them there. 
+.
+In the top edit line you can enter the XYZ coordinates, delimited by the space character or the comma character `,`. Additionally, you can insert the player's coordinates in the script source by pressing `Ctrl+Shift+C`. To insert the player's z-angle, press `Ctrl+Shift+E`.
 
-<p>Put the cursor on the first line and press <span class="kbd">Ctrl</span>+<span class="kbd">M</span>. The editor immediately begins logging all keystrokes - so be careful!</p>
+## Keypress Recording (Macro)
 
-<p>- Press and hold <span class="kbd">Ctrl</span> and press once [Right arrow]<br>
-- Now press <span class="kbd">Shift</span>+<span class="kbd">Home</span> and <span class="kbd">Ctrl</span>+<span class="kbd">Ins</span>.<br>
-- Press [Down arrow]. The cursor must be on the second line with the global variable  on the clipboard<br>
-- Press <span class="kbd">Ctrl</span> + [Right arrow] and <span class="kbd">Shift</span>+<span class="kbd">Ins</span>.<br>
-- Press <span class="kbd">Ctrl</span> + [Left arrow], <span class="kbd">Shift</span>+<span class="kbd">Home</span>, <span class="kbd">Ctrl</span>+<span class="kbd">Ins</span> and <span class="kbd">Delete</span><br>
-- Press [Up arrow]<br>
-- Press <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + [Right arrow] and <span class="kbd">Shift</span>+<span class="kbd">Ins</span><br>
-- Press <span class="kbd">Home</span> button.</p>
-<p>Now the first two lines look like these:</p>
-<pre><span class="variable">$ActorWithGun</span> = <span class="class">Actor</span>.<span class="command">Create</span>(CivMale, <span class="number">100.0</span>, <span class="number">100.0</span>, <span class="number">10.0</span>)
-<span class="variable">$Actor</span> = <span class="class">Actor</span>.<span class="command">Create</span>(CivMale, <span class="number">110.0</span>, <span class="number">100.0</span>, <span class="number">20.0</span>)</pre>
-<p>and cursor is in the beginning of the first line. Now press <span class="kbd">Ctrl</span>+<span class="kbd">M</span> to stop recording.</p>
-<p>Now you can repeat the recorded keystrokes by pressing <span class="kbd">Ctrl</span>+<span class="kbd">P</span>. Put the cursor on the third line, press <span class="kbd">Ctrl</span>+<span class="kbd">P</span> and the actors handles will be exchanged.</p>
-<p>While processing, you can pause/unpause the recording by pressing <span class="kbd">Ctrl</span>+<span class="kbd">P</span>.</p>
+You can record a key pressing sequence (macro) and playback it later. Consider the following code:
 
-<h3>Replacing  Mission Numbers With Their Names</h3>
-<p>Sanny Builder allows using a mission name in the opcode 'start_mission'. The mission name is the label defined with a DEFINE MISSION command. For example, you have:</p>
-<pre>DEFINE MISSION <span class="number">10</span> AT <span class="label">@MYMISSION</span></pre>
-<p>Instead of <span class="reservedword">start_mission</span> <span class="number">10</span> you can use <span class="reservedword">start_mission</span> MYMISSION.</p>
-<p>There is also the <a href="O_101.html#mission">Replace Mission Numbers</a> option. When it's enabled, the decompiler automatically replaces all mission numbers with their names.</p>
-<p>To call the mission names list, press <span class="kbd">Ctrl</span>+<span class="kbd">Space</span>. The cursor has to be directly after the start_mission command.</p>
-<p>Additionally, you can use <a href="#jumpLabel">the InstaSearch</a> to jump to the mission from its name.</p>
+```sb3
+$Actor = Actor.Create(CivMale, #MALE01, 100.0, 100.0, 10.0)
+$ActorWithGun = Actor.Create(CivMale, #MALE01, 110.0, 100.0, 20.0)
+$Gang01 = Actor.Create(CivMale, #MALE01, 120.0, 100.0, 30.0)
+$Gang02 = Actor.Create(CivMale, #MALE01, 130.0, 100.0, 40.0)
+$Killer = Actor.Create(CivMale, #MALE01, 140.0, 100.0, 50.0)
+$ActorWithoutGun = Actor.Create(CivMale, #MALE01, 150.0, 100.0, 60.0) 
+```
 
-<h3><a name="mission_names"></a>Custom Mission Names</h3>
-<p>Since v3.2.0 Sanny supports custom mission names for each available <a href="edit_modes.html">edit mode</a>. Mission names are commonly stored into a file missions.txt located in a data\&lt;game&gt; folder. This file is used by the decompiler to comment each mission entry with its title. If a main.scm file contains some custom missions you may edit this file to have proper titles after decompiling.</p>
+Say, you need to exchange the actor's handles in each pair (i.e have `$ActorWithGun` instead of `$Actor`, and vice versa).
+.
+Place the cursor in the first line before `$Actor` and press `Ctrl+M`. The editor immediately begins recording all keys - so be careful!
 
-<h3><a name="The multilingual interface"></a>Multilingual Interface</h3>
-<p>Sanny Builder has fully multilingual interface translated into 15 languages. You can switch languages in the options (<span class="kbd">F10</span>). The file 'lang\How to translate.txt' contains more information about creating your own translation.</p>
+_ Press and hold `Ctrl` and press the `Right Arrow` button once 
+_ Press `Shift+Home` and `Ctrl+Ins`.
+_ Press the `Down Arrow` button. The cursor must be on the second line with the global variable in the clipboard
+_ Press `Ctrl+Right Arrow` and `Shift+Ins`.
+_ Press `Ctrl+Left Arrow`, `Shift+Home`, `Ctrl+Ins` and `Delete`
+_ Press the `Up Arrow` button
+_ Press `Ctrl+Shift+Right Arrow` and `Shift+Ins`
+_ Press the `Home` button.
 
-<h3>External Tools/Plug-ins Menu</h3>
-<p>You can add up to 9 tools which can be executed whenever you need them. Every tool has its own hotkey for your convenience. You may also pass the parameters to your tool. To pass the name of the current opened file use a special word $SB_FileName.</p>
+Now the first two lines should look like these:
 
-<h3><a name="CodeComments"></a>Commenting Code</h3>
-<p>Comments are denoted by a double slash //, as seen in other scripting languages (php etc.). All text placed after // (within that same line) will be ignored by the compiler.</p>
+```sb3
+$ActorWithGun = Actor.Create(CivMale, 100.0, 100.0, 10.0)
+$Actor = Actor.Create(CivMale, 110.0, 100.0, 20.0)
+```
 
-<p>To comment out multiple lines or part of the line, use block comments {}:</p>
-<pre>0001: <span class="reservedword">wait</span>  <span class="comment">{comments here}</span> <span class="number">0</span> ms</pre>
-<p>Since version 3.06 Sanny Builder also supports <i>C++</i>-like comments <b>/*  */</b>.</p>
-<pre>0001: <span class="reservedword">wait</span>  <span class="comment">/* comments here */</span> <span class="number">0</span> ms</pre>
-<p>Also it is possible to comment out multiple lines by selecting them and pressing <span class="kbd">Ctrl</span>+<span class="kbd">Q</span>. To uncomment the lines repeat it once again.</p>
+with the cursor being in the beginning of the first line. Now press `Ctrl+M` to stop recording.
+.
+You can playback the recorded sequence by pressing `Ctrl+P`. Place the cursor in the beginning of the third line, press `Ctrl+P` and the actor handles will be swapped.
+.
+During recording, you can pause/unpause it by pressing `Ctrl+P`.
 
-<h3>Custom Labels</h3>
-<p>You can give labels custom names that are  not dependent on  decompiler options. The names are specified in the file CustomLabels.ini (separately for each game).</p>
-<p class="note">File syntax:<br>&lt;label offset&gt;=&lt;custom name&gt;</p>
-<p>If the decompiler finds a label at the specified offset, it will get the custom name.</p>
-<p>To find out the label offset set the labels format to "Global Offset" in the options. After decompiling, the number in a label name is its offset.</p>
+## Replacing Mission Numbers with their Names
 
-<h3>Checking for updates</h3>
-<p>Sanny Builder is able to check if a new version is available. To use this feature go to menu "Help->Check for update...". The editor will connect to the update servers and propose to download and install an update file if the latter exists. The editor can automatically check for an available update at startup if you enable this option in the updater window.</p>
+Sanny Builder allows using a mission name in the opcode `start_mission`. The mission name is the label defined with a `DEFINE MISSION` command. Say, you have:
 
-</p>
-<script src="../../js/partial/footer.js"></script>
+```sb3
+DEFINE MISSION 10 AT @MYMISSION
+```
+
+Instead of `start_mission 10` you can write`start_mission MYMISSION`.
+.
+There is also the [Replace Mission Numbers](options/general.md#replace-mission-numbers) option. When it's enabled, the decompiler automatically replaces all mission numbers with their names.
+.
+To call the mission names list, press `Ctrl+Space`. The cursor has to be directly after the `start_mission` command.
+.
+Additionally, you can use [navigate](features.md#navigate-to-symbol) to the mission code when the cursor is under the mission name.
+
+## Custom Mission Titles
+
+Since v3.2.0 Sanny supports custom mission titles for each available [edit mode](../edit-modes/#missions). They are stored in the `missions.txt` file. This file is used by the disassembler to add the title as a comment on line with mission define (`DEFINE MISSION`) or start (`mission_start`) command. 
+.
+If a `SCM` file contains custom-made missions you may edit the `missions.txt` to have the correct titles after disassembling.
+
+## Multilingual Interface
+
+Sanny Builder has fully multilingual interface translated into 15 languages. You can switch the languages in the [options](options/general.md#interface-language) (`F10`). Refer to [sannybuilder/translations](https://github.com/sannybuilder/translations) for more information on how to create or update a translation.
+
+## External Tools Menu
+
+You can configure up to `9` apps to run when you need them. Each app has its own hotkey for your convenience. You may also pass the parameters to your app if needed. To pass the name of the currently opened file use the special word `$SB_FileName`.
+.
+Since v3.7.0 it's also possible to pass the variables `@sb:` and `@game:` that represent Sanny Builder directory and current game directory respectively into the command-line parameters of the external app:
+
+```
+Parameters:
+--cwd=@sb: --game-dir=@game:
+```
+
+## Checking for updates
+
+Sanny Builder is able to check if a new version is available. To use this feature go to menu `Help->Check for update...`. The editor will connect to a remote server and if a newer version is available it prompts the download and install.
+.
+The editor can also check for an update during startup if you enable this option in the updater window.
+
+<script src="../../js/markdown.js"></script>

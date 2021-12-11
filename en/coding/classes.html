@@ -1,13 +1,13 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Classes</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
 
 A **class** is a group of commands applied to the in-game entities: player, peds, objects, etc. For example, the `Player` class groups the commands performed over the player character.
 
@@ -20,7 +20,7 @@ Syntax:\
 
 `Class name` - the name of a group of commands defined in the `classes.db` file for this edit mode\
 `Class member` - one of the commands included in the class\
-`Parameters` - 0 or more comma-delimited [parameters](data-types.md)
+`Parameters` - 0 or more comma-delimited [parameters](data-types.html)
 
 ```sb3
 Player.SetMinWantedLevel($PLAYER_CHAR, 2)
@@ -103,7 +103,7 @@ Almost all class members take a variable as the first parameter. This variable h
 Player.Build($PLAYER_CHAR)
 ```
 
-<code class=variables>$PLAYER_CHAR</code> - the class instance. 
+`$PLAYER_CHAR` - the class instance. 
 
 For some in-game entities there is only one instance to exist. An example of that would be the camera that controls what the player can see. The members of classes for such entities do not require a variable with the class instance:
 
@@ -121,7 +121,7 @@ var
 end
 ```
 
-It instructs the compiler that <code class=variables>$PLAYER_CHAR</code> holds an instance of the class <code class=classes>Player</code>. This variable can serve as an alias to the class name:
+It instructs the compiler that `$PLAYER_CHAR` holds an instance of the class `Player`. This variable can serve as an alias to the class name:
 
 ```sb3
 if
@@ -147,7 +147,7 @@ Variables declared as instances of a class can be redeclared with another type.
 
 ### The `Model` Class 
 
-[Model names](data-types.html#model-names) are always instances of the <code class="models">Model</code> class:
+[Model names](data-types.html#model-names) are always instances of the `Model` class:
 
 ```sb3
 #AK47.Load
@@ -184,9 +184,9 @@ The last parameter (`BodyPart.Torso`) is a member of the `BodyPart` enum substit
 #### Extended parameters (deprecated)
 
 Sanny Builder prior to v3.6 defined special constants for class members in the file `classes.db` . These parameters were called extended. This solution only allowed for one extended parameter per class member. 
-
+.
 Since v3.6 class members use enum names as their types and may have any number of enumerated parameters. 
-
+.
 For backward compatibility Sanny Builder still supports old extended parameters during compilation.  `classes.db` keeps them under the `DEPRECATED_ENUMS` section.
 
 <script src="../../js/markdown.js"></script>

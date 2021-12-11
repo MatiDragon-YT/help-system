@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comments</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+Comments start with the double slash `//`. Everything after `//` to the end of the line is ignored by the compiler.
+
+To comment out multiple lines or a part of the line, use block comments `{}`:
+
+```sb3
+0001: wait {comments here} 0 ms
+```
+
+Since version 3.06 Sanny Builder also supports the C++-like comments `/* */`.
+
+```sb3
+0001: wait /* comments here */ 0 ms
+```
+
+To comment out or uncomment multiple selected lines of the code press `Ctrl+Q` (this hotkey is configurable in the [options](../editor/options/hotkeys.md)).
+
+<script src="../../js/markdown.js"></script>

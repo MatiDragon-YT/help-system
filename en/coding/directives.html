@@ -1,108 +1,156 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Directives</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p>
-<h2>Directives</h2>
 
-<p>Preprocessing directives are the special words that make the compiler function in different ways. They are denoted with the symbol $ and located between brackets {}.</p>
+Preprocessing **directives **are the special words that make the compiler function in different ways. They starts with `$` and enclosed between the curly brackets `{}`.
 
-<p>List of available directives:</p>
-<ol>
-	<li><a href="#VERSION">$VERSION</a></li>
-	<li><a href="#RESTORE_VERSION">$VERSION_RESTORE</a></li>
-	<li><a href="#INCLUDE">$INCLUDE / $I</a></li>
-	<li><a href="#EXTERNAL">$EXTERNAL / $O</a></li>
-	<li><a href="#CLEO">$CLEO</a></li>
-	<li><a href="#NOSOURCE">$NOSOURCE</a></li>
-	<li><a href="#OPCODE">$OPCODE / $O</a></li>
-</ol>
+## $VERSION
 
-<h3><a name="VERSION"></a>$VERSION</h3>
-<p class="note">This directive is deprecated since v3.1.0</p>
+{% hint style="warning" %}
+This directive is deprecated since v3.1.0
+{% endhint %}
 
-<p>This directive sets what version of opcodes should be used during compilation.
+Sets what version of [opcodes](../edit-modes/opcodes-list-scm.ini.md) to use during compilation.
 
-<p class="syntax">Syntax:<br>
+Syntax:\
+`{$VERSION x.y.zzzz}`
 
-$VERSION x.y.zzzz<br><br>
-x - <a href="edit_modes.html">edit mode ID</a><br>
+* `X`- [edit mode](../edit-modes/) ID
+* `y` - parameters order
+  * `0` - original: 0, 1, 2, etc
+  * `1` - custom order, some parameters reordered
+* `zzzz` - opcodes version
 
-y - parameters order.<br>
-&nbsp;&nbsp;&nbsp;0 - original, numeric<br>
-&nbsp;&nbsp;&nbsp;1 - custom order<br>
-zzzz - opcodes version
-</p>
+By default the compiler uses the version `current_edit_mode.1.0000`.
 
-<p>By default the compiler uses version <span class="i">current edit mode.1.0000</span>.</p>
+## $VERSION_RESTORE
 
-<h3><a name="RESTORE_VERSION"></a>$VERSION_RESTORE</h3>
-<p class="note">This directive is deprecated since v3.1.0</p>
+{% hint style="warning" %}
+This directive is deprecated since v3.1.0
+{% endhint %}
 
-<p>This directive sets the version to its previous value prior to using $VERSION.</p>
+Restores the version to the value prior to using `$VERSION`.
 
-<h3><a name="INCLUDE"></a>$INCLUDE</h3>
-<p>This directive allows to insert the content of an external text file in the current file. If the compiler finds this directive it opens the file by the path passing as the directive�s parameter and continues the compiling process from the code written in the included file. When it reaches the end of the file it returns back to the previous file.</p>
-<p class="syntax">Syntax:<br>
-<span class="directive">{$INCLUDE file path}</span><br>
-or<br>
-<span class="directive">{$I file path}</span></p>
-<p>Example: <span class="directive">{$I loadwav.txt}</span> or <span class="directive">{$I C:\dev\getarrayindex.txt}</span></p>
-<p><a name="rules"></a>If the <span class="i">file path</span> is relative, the compiler searches the file in the following order:</p>
-<ol>
-<li>directory of the file with the directive*</li>
-<li>Sanny Builder\data\&lt;game&gt;</li>
-<li>Sanny Builder root directory</li>
-<li>game directory</li></ol>
+Syntax:\
+`{$VERSION_RESTORE}`
 
-<p>It none of these directories contains a needed file the compiler throws an exception.
-  You can use this directive unlimited number of times. The included files  can contain this directive as well.
+## $INCLUDE
 
-<p class="note">* All paths used in the $INCLUDE directive are relative to the directory of a currently processed file.</p>
+Allows to insert the content of an external text file in the current file. If the compiler finds this directive it opens the file at the location provided as the parameter and proceeds from the code written in the included file. When it reaches the end of the included file it returns back to the previous file.
 
-<h3><a name="EXTERNAL"></a>$EXTERNAL</h3>
-<p>This directive makes the compiler to process the file like external script. Meaning, the outputfile will be without header and with local label offsets, so it will be the same as an .scm file from the script.img. Using this directive requires that the file will contain only one thread (also without missions and other scripts).</a></p>
+Syntax:\
+`{$INCLUDE path\to\file}`
 
-<p>The alternative way to get such file is a debug option <a href="console.html#SKIP_SCM">SKIP_SCM_HEADER</a>. This option could be enabled in the console or from the list on the main panel.</p>
+```sb3
+{$INCLUDE loadwav.txt}
+{$INCLUDE C:\dev\getarrayindex.txt}
+```
 
-<p class="syntax">Syntax:<br>
-<span class="directive">{$EXTERNAL}</span><br>
-or<br>
-<span class="directive">{$E}</span></p>
+If the file path is relative, the compiler scans directories in the following order to find the file:
 
-<h3><a name="CLEO"></a>$CLEO</h3>
-<p>This directive is an analogue of the $E one, but the output file is copied into the �game\CLEO� directory automatically. It also gets the file extension specified as a directive parameter.</p>
-<p class="syntax">Syntax:<br>
-<span class="directive">{$CLEO &lt;file extension&gt;}</span>
-<br><span class="i">File extension</span> is an optional parameter. If no extension is present, the compiler uses a default value <span class="i">.cs</span></p>
-<p>Example: <span class="directive">{$CLEO}</span> <span class="comment">// a file will get the default extension .cs</span></p>
-<p>So this directive is the perfect solution to compile a <a href="Cleo_SCRIPT.html">CLEO script</a>.
+1. directory of the file with the directive
+2. `data` folder for the current edit mode
+3. Sanny Builder root directory
+4. the game directory
 
-<h3><a name="NOSOURCE"></a>$NOSOURCE</h3>
-<p>This directive prohibits the compiler from including a source code of the script. By default, when the option <a href="O_101.html#SCM">Add extra info to SCM</a> is enabled, Sanny Builder adds a source code into a script file (only when either the directive <b>$EXTERNAL</b> or <b>$CLEO</b> is present). This directive changes the default behaviour of the compiler, not allowing to include the source code into an output file.</p>
-<p class="syntax">Syntax:<br>
-<span class="directive">{$NOSOURCE}</span></p>
+If none of these directories contains a requested file the compiler throws an exception. 
 
-<h3><a name="OPCODE"></a>$OPCODE</h3>
-<p>This directive allows to register a custom opcode directly via the script. Commonly, all the opcodes definitions are contained in a <a href="gta_ini.html">special file</a>, one for each supported game. But sometimes it's necessary to add a custom opcode for the current script. The directive $OPCODE makes it possible without editing an opcodes INI file.</p>
-<p class="syntax">Syntax:<br><span class="directive">{$OPCODE &lt;opcode definition&gt;}</span><br>
-or<br>
-<span class="directive">{$OPCODE &lt;file name&gt;}</span><br>
-or<br>
-<span class="directive">{$OPCODE}</span></p>
+You may use this directive unlimited number of times. The included files may contain this directive too.
 
-It accepts an <span class="i">opcode definition</span> in <a href="gta_ini.html#syntax">the same syntax</a> as the INI file.</p>
-<p>Example: <span class="directive">{$OPCODE 0CCC=1,my_new_opcode %1d%}</span></p>
-<p>This directive also accepts a <span class="i">file name</span> as its parameter. This file must contain only opcodes definitions to be loaded. If no global path is specified for the file, the compiler searches it using <a href="#rules">same rules as for $INCLUDE</a>.</p>
-<p>Example: <span class="directive">{$OPCODE additional_opcodes.ini}</span></p>
-<p>When used <span class="i">without any parameter</span>, this directive reloads the original opcodes definitions file, so all the changes made by previous using of this directive are gone.</p>
-<p>Example: <span class="directive">{$OPCODE}</span></p>
-<p class="note">The short variant of this directive is $O.
-</p>
-<script src="../../js/partial/footer.js"></script>
+{% hint style="info" %}
+A shorter form of this directive is `$I`.
+{% endhint %}
+
+## $EXTERNAL
+
+Makes the compiler to treat the file as an external script. Meaning, the resulting output file will be header-less and with relative [label](data-types.md#labels) offsets, as an `.scm` file from the `script.img`. Using this directive requires that the file contains only one script or a single mission.
+
+An alternative way to get such file is the debug [option](../editor/console.md#skip_scm_header) `SKIP_SCM_HEADER`. This option could be enabled in the console or from the dropdown list on the main toolbar.
+
+Syntax:\
+`{$EXTERNAL}`
+
+{% hint style="info" %}
+A shorter form of this directive is `$E`.
+{% endhint %}
+
+## $CLEO
+
+An analogue of the `$E` one, but the compiler automatically copies an output file to the `game\CLEO` directory. The file also gets an extension provided as the directive parameter.
+
+Syntax:\
+`{$CLEO &lt;extension&gt;}`
+
+`extension` is an optional parameter specifying the file extension of the output file. It starts with the period character `.`. If no extension is present, the compiler uses the default value `.cs`
+
+```sb3
+{$CLEO .cm} // the file gets the extension .cm
+{$CLEO} // the file gets the default extension .cs
+```
+
+So this directive is the perfect solution to make a CLEO script.
+
+{% hint style="info" %}
+`{$CLEO}` also implies `{$USE CLEO}`
+{% endhint %}
+
+## $NOSOURCE
+
+Prohibits the compiler from including a source code of the script. 
+
+Without this directive when either the directive `$EXTERNAL` or `$CLEO` is present and the [option](../editor/options/general.md#add-extra-info-to-scm)` Add extra info to SCM` is enabled, Sanny Builder adds the source code into an output file.
+
+Syntax:\
+`{$NOSOURCE}`
+
+## $OPCODE
+
+Registers a custom opcode via the script. 
+
+All the opcodes definitions are contained in a [special file](../edit-modes/opcodes-list-scm.ini.md), one for each supported game. But sometimes it's necessary to add a custom opcode to use in the current script. `$OPCODE` makes it possible without touching the INI file.
+
+Syntax:\
+`{$OPCODE &lt;opcode definition&gt;}`\
+ or\
+`{$OPCODE &lt;path\to\file&gt;}`\
+ or\
+`{$OPCODE}`
+
+`opcode definition` - it accepts an definition in the same [format](../edit-modes/opcodes-list-scm.ini.md#opcode-definition) as the INI file.
+
+```sb3
+{$OPCODE 0CCC=1,my_new_opcode %1d%}
+```
+
+`path\to\file` - this directive also accepts a file name as its parameter. This file must contain only opcodes definitions to be loaded. If a relative path is provided, the compiler scans directories using the same rules as for [$INCLUDE](directives.md#usdinclude).
+
+```sb3
+{$OPCODE additional_opcodes.ini}
+```
+
+When used without any parameter, this directive reloads the original opcodes definitions file and reverts all changes made.
+
+```sb3
+{$OPCODE}
+```
+
+{% hint style="info" %}
+A shorter form of this directive is `$O`.
+{% endhint %}
+
+## $USE
+
+Enables custom instructions set to the compiler. See [Extensions](../edit-modes/extensions.md) for more information.
+
+```sb3
+{$USE CLEO+}
+```
+
+<script src="../../js/markdown.js"></script>
