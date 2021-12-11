@@ -1,6 +1,6 @@
 # Sanny Builder Help
 
-This is the first offline version of https://docs.sannybuilder.com/, worked to understand the Markdown of the GitBook site and highlight SB3 code with the code blocks labeled `sb3` after the backsticks (<code>&#x0060;</code>).
+This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked to understand the Markdown of the GitBook site and highlight SB3 code with the code blocks labeled `sb3` after the backsticks (<code>&#x0060;</code>).
 
 ![image](https://user-images.githubusercontent.com/43966706/145693853-b557f3c9-8127-4a90-841a-f102cc848703.png)
 
