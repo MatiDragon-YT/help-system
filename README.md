@@ -4,6 +4,9 @@ This is the first offline version of [docs.sannybuilder.com](https://docs.sannyb
 
 ![image](https://user-images.githubusercontent.com/43966706/145693853-b557f3c9-8127-4a90-841a-f102cc848703.png)
 
+## Design
+Based on the original that brings the `help.chm`, GitBook and [my own `help3082.chm`](https://github.com/MatiDragon-YT/doc-chm)
+
 This repository contains sources for Sanny Builder compiled help files (CHM). Currently the English version exist.
 
 ## Compiling CHM files
