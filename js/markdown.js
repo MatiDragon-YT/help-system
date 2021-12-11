@@ -44,9 +44,9 @@ $('.markdown').innerHTML
 .replace(/^\|\s(.+)/gim, '<blockquote>$1</blockquote>')
 .replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 /*** FORMAT ***/
-.replace(/(\s|\W)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
-.replace(/(\s|\W)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
-.replace(/(\s|\W)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
+.replace(/(\s|\()\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
+.replace(/(\s|\()\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
+.replace(/(\s|\()\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
 /*** TITLE ***/
 .replace(/^######\s([\x20-\x22\x24-\xFF].+)/gm, '<h6 id="$1">$1</h6>')
 .replace(/^#####\s([\x20-\x22\x24-\xFF].+)/gm, '<h5 id="$1">$1</h5>')
