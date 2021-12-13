@@ -44,9 +44,9 @@ $('.markdown').innerHTML
 .replace(/^\|\s(.+)/gim, '<blockquote>$1</blockquote>')
 .replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 /*** FORMAT ***/
-.replace(/(\s|\()\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
-.replace(/(\s|\()\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
-.replace(/(\s|\()\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
+.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
+.replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
+.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
 /*** TITLE ***/
 .replace(/^######\s([\x20-\x22\x24-\xFF].+)/gm, '<h6 id="$1">$1</h6>')
 .replace(/^#####\s([\x20-\x22\x24-\xFF].+)/gm, '<h5 id="$1">$1</h5>')
@@ -66,11 +66,12 @@ $('.markdown').innerHTML
 .replace(/<\/ol>(\s+)<ol>/g, '')
 .replace(/<\/dl>(\s+)<dl>/g, '')
 /*** ATTACH ***/
-.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\w\d\?\=\/\\\.\-:#?&@]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3" loading="lazy"></center>')
-.replace(/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\w\d\s\?\=\/\\\.\-:#?&@]+)(\s"[\w\d\s].+")?\)/g, '<a href="$2" title="$3">$1</a>')
+.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
+.replace(/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<a href="$2" title="$3">$1</a>')
 /*** CODE ***/
 .replace(/```(\w+|\n)?\s([\x09-\x5F\x61-\xFF]*)```/g, '<pre class="$1">$2</pre>')
 .replace(/`([\x20-\x5F\x61-\xFF]+)`/g, '<code>$1</code>')
++ '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v0.3.0 - by MatiDragon & Seemann with <3 for you</p>'
 
 var $firstElementChild = $('.markdown').firstElementChild.style
 
@@ -126,7 +127,7 @@ const code = {
 /**
  * @param e : DocumentElement 
  * @param f : function */
-function test(e, f){
+function apply(e, f){
   if(e){ 
     if(""+e == '[object NodeList]'){ 
       for (var i = 0; i < e.length; i++) {
@@ -138,4 +139,4 @@ function test(e, f){
   }
 }
 
-test($('.sb3'), code.sb3)
+apply($('.sb3'), code.sb3)
