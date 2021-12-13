@@ -1,2 +1,0 @@
-# Liberty City Stories
-
