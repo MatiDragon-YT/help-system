@@ -62,11 +62,18 @@ en\editor\edit-modes\extensions.html
 en\editor\edit-modes\opcodes-list-scm.ini.html
 en\scm-documentation\README.html
 en\scm-documentation\gta-limits.html
-
 en\scm-documentation\gta3\README.html
 en\scm-documentation\gta3\pedtypes.html
 en\scm-documentation\gta3\radar-icons.html
+
 en\scm-documentation\lcs\README.html
+en\scm-documentation\lcs\clothes.html
+en\scm-documentation\lcs\gangs.html
+en\scm-documentation\lcs\models.html
+en\scm-documentation\lcs\special-actors.html
+en\scm-documentation\lcs\weapons.html
+en\scm-documentation\lcs\weather.html
+
 en\scm-documentation\sa\README.html
 en\scm-documentation\vc\README.html
 en\scm-documentation\vcs\README.html
@@ -92,7 +99,6 @@ img\assets\main_opt.png
 img\assets\theme-editor-en.png
 img\assets\options-hotkeys-en.png
 img\assets\ost.png
-
 img\assets\radar_dot.png
 img\assets\radar_asuka.png
 img\assets\radar_bomb.png

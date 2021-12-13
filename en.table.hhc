@@ -194,6 +194,32 @@
 			<param name="Name" value="Liberty City Stories">
 			<param name="Local" value="en\scm-documentation\lcs\README.html">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Gang IDs">
+				<param name="Local" value="en\scm-documentation\lcs\gangs.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Model IDs">
+				<param name="Local" value="en\scm-documentation\lcs\models.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Player Clothes">
+				<param name="Local" value="en\scm-documentation\lcs\clothes.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Special Actors">
+				<param name="Local" value="en\scm-documentation\lcs\special-actors.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weapon IDs">
+				<param name="Local" value="en\scm-documentation\lcs\weapons.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weather IDs">
+				<param name="Local" value="en\scm-documentation\lcs\weather.html">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Vice City Stories">
 			<param name="Local" value="en\scm-documentation\vcs\README.html">
