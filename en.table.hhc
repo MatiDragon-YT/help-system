@@ -159,5 +159,35 @@
 				</OBJECT>
 		</UL>
 	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SCM DOCUMENTATION">
+		<param name="Local" value="en\scm-documentation\README.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GTA Limits">
+			<param name="Local" value="en\scm-documentation\gta-limits.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="GTA III">
+			<param name="Local" value="en\scm-documentation\gta3\README.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Vice City">
+			<param name="Local" value="en\scm-documentation\vc\README.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="San Andreas">
+			<param name="Local" value="en\scm-documentation\sa\README.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Liberty City Stories">
+			<param name="Local" value="en\scm-documentation\lcs\README.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Vice City Stories">
+			<param name="Local" value="en\scm-documentation\vcs\README.html">
+			</OBJECT>
+	</UL>
 </UL>
 </BODY></HTML>

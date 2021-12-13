@@ -61,9 +61,15 @@ en\editor\edit-modes\enums.txt.html
 en\editor\edit-modes\extensions.html
 en\editor\edit-modes\opcodes-list-scm.ini.html
 en\scm-documentation\README.html
+en\scm-documentation\gta-limits.html
+
+en\scm-documentation\gta3\README.html
+en\scm-documentation\lcs\README.html
+en\scm-documentation\sa\README.html
+en\scm-documentation\vc\README.html
+en\scm-documentation\vcs\README.html
 
 img\assets\sbl-update-popup-en.png
-
 img\assets\ide-add-template-en.png
 img\assets\edit_modes.png
 img\assets\options-editor-en.png
@@ -76,7 +82,6 @@ img\assets\formats-files-en.png
 img\assets\formats-labels-en.png
 img\assets\formats-custom-names-en.png
 img\assets\formats-case-en.png
-
 img\assets\options-general-en.png
 img\assets\main_dir.png
 img\assets\general-language-en.png
@@ -85,7 +90,6 @@ img\assets\main_opt.png
 img\assets\theme-editor-en.png
 img\assets\options-hotkeys-en.png
 img\assets\ost.png
-
 
 img\logo1.png
 img\logo2.png
