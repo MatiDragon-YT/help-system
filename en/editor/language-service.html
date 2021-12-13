@@ -1,4 +1,13 @@
-# Language Service
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Language Service</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
 
 **Language service** is one of the Sanny Builder features providing rich developer experience. It's responsible for continuous mining data out of the opened document and all imported files. It's important to know that the mining works in a separate thread and does not immediately reflect what you've just typed. There could be a noticeable delay while the language service reacts on a document change. If, for some reason, it distracts you, or you're not satisfied with the service performance you can disable it in the [options](options/editor.md#editor-configuration).
 
@@ -6,7 +15,7 @@ For better responsiveness the language service only scans a slice of the current
 
 Since v3.7.0 the language service is capable of finding [defined constants](../coding/constants.md#syntax) and their values. This information then becomes available to the editor for [highlighting purposes](options/editor.md#color-theme) and for [displaying values](features.md#displaying-information-about-opcode) of constants.
 
-```
+```sb3
 const
     x = 10
 end
@@ -29,3 +38,5 @@ Read more technical details on the service implementation there:
 * [Notes on constants highlighting. Part 1/2](https://www.patreon.com/posts/45844911)
 * [Notes on constants highlighting. Part 2/2](https://www.patreon.com/posts/46873773)
 {% endhint %}
+
+<script src="../../js/markdown.js"></script>

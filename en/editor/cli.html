@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Command Line Interface</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+## --compile
+
+`--compile &lt;input file path&gt; [output file path]` - compiles the file and exits
+
+```
+sanny.exe --compile C:\myscm.txt C:\myscm.scm
+```
+
+{% hint style="info" %}
+The `output file path`_ _parameter is optional. If there is no output path parameter, the compiler uses the [format rules](options/formats.md#file-name-format) to compute the output file name. 
+{% endhint %}
+
+{% hint style="info" %}
+The input file must have no errors. If there are errors found during compilation, they will be logged in the file `compile.log`. When compilation ends, the program shuts down.
+{% endhint %}
+
+Shortcut: `-c`
+
+## --debug
+
+`--debug` - toggles [debug options](console.md#running-with-debug)
+
+```
+sanny.exe --debug 110000
+```
+
+## --game
+
+`--game &lt;game&gt;` - selects the [default mode](../edit-modes/#type) for the given game. Known `game` values are:
+
+* `gta3`
+* `vc`
+* `sa`
+* `lcs`
+* `vcs`
+* `vc_mobile`
+* `sa_mobile`
+
+Shortcut: `-g`
+
+```
+sanny.exe --game sa
+```
+
+## --mode
+
+`--mode &lt;id&gt;` - selects the mode by `id`. [Modes](../edit-modes/) and their ids are defined in the `modes.xml` file.
+
+Shortcut: `-m`
+
+```
+sanny.exe --mode vcs_psp
+```
+
+## --no-splash
+
+`--no-splash` - runs Sanny Builder without the splash screen
+
+```
+sanny.exe --no-splash
+```
+
+## -x
+
+`-x &lt;file path&gt;` - sets the path to the file with the [edit modes](../edit-modes/) configuration
+
+```
+sanny.exe -x ..\my-modes.xml
+```
+
+## --option
+
+{% hint style="info" %}
+Available since v3.8.0
+{% endhint %}
+
+`-o &lt;option name&gt; &lt;value&gt;` - sets the value of the specified [option](options/). To set multiple options, list each of them individually:
+
+`-o &lt;option1 name&gt; &lt;option1 value&gt; -o &lt;option2 name&gt; &lt;option2 value&gt; ... -o &lt;optionN name&gt; &lt;optionN value&gt;` 
+
+Option name can be one of the following:
+
+{% hint style="warning" %}
+This list is not final and subject to change at any moment.
+{% endhint %}
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Allowed Values</th>
+<th>Options Tab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::ShowPanel</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::ShowOpcodeInfo</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::ShowLineNumbers</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::ShowGutterBorder</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::OpenLastFile</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::OpenAllClosedFiles</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::ConfirmExit</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::LanguageService</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#editor-configuration">Editor::SemanticConstHighlighting</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#code-scan-distance">Editor::IdentifiersListAuto</a></td>
+<td>0, 1</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/editor.md#code-scan-distance">Editor::ScanDistance</a></td>
+<td>0..65535</td>
+<td>Editor</td>
+</tr>
+<tr>
+<td><a href="options/general.md#interface-language">Editor::Lang</a></td>
+<td>known locale id</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#quick-game-loading">Editor::QuickGameLoading</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#show-progress">Editor::ShowProgress</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#show-report">Editor::ShowReport</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#always-overwrite-output-file">Decompiler::OverwriteOutputFile</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#manual-img-opening">Decompiler::ManualIMGOpening</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/formats.md#label-name-format">Decompiler::HexadimalOffsets</a></td>
+<td>0, 1</td>
+<td>Formats</td>
+</tr>
+<tr>
+<td><a href="options/formats.md#label-name-format">Decompiler::LabelsFormat</a></td>
+<td>0, 1, 2</td>
+<td>Formats</td>
+</tr>
+<tr>
+<td><a href="options/general.md#write-opcodes">Decompiler::AlwaysWriteOpcodes</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#replace-mission-numbers">Decompiler::ReplaceMissionNumbers</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#insert-original-mission-names">Decompiler::InsertOriginalMissionNames</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#show-warning">Compiler::ShowIMGWarning</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#check-conditions">Compiler::CheckConditions</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#ranges-check">Compiler::CheckLocalVariables</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/general.md#add-extra-info-to-scm">Compiler::AddExtraInfo</a></td>
+<td>0, 1</td>
+<td>General</td>
+</tr>
+<tr>
+<td><a href="options/formats.md#custom-names">CustomNames::UseCustomLabels</a></td>
+<td>0, 1</td>
+<td>Formats</td>
+</tr>
+<tr>
+<td><a href="options/formats.md#custom-names">CustomNames::UseCustomVariables</a></td>
+<td>0, 1</td>
+<td>Formats</td>
+</tr>
+<tr>
+<td><a href="options/formats.md#custom-names">CustomNames::UseCustomArrays</a></td>
+<td>0, 1</td>
+<td>Formats</td>
+</tr>
+<tr>
+<td><a href="options/formats.md#case-converting">CustomNames::Format</a></td>
+<td>0, 1, 2</td>
+<td>Formats</td>
+</tr>
+</tbody>
+</table>
+
+{% hint style="info" %}
+Options set via CLI are not persistent and only applied to the current session. On the next launch Sanny Builder will use values stored in the `settings.ini`.
+{% endhint %}
+
+Shortcut: `-o`
+
+```
+sanny.exe -o Compiler::CheckConditions 0 -o Editor::LanguageService 1
+```
+
+<script src="../../js/markdown.js"></script>

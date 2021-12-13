@@ -1,10 +1,19 @@
-# Code Templates
+<!DOCTYPE html>
+<html cd=3>
+<head>
+  <title>Code Templates</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+</head>
+<body>
 
 You can insert a predefined piece of code called a code template by typing the template name and pressing `F2`. To display the list of available templates, press `Ctrl+J`. 
 
 For example, if you type `for` and press `F2` the editor adds:
 
-```
+```sb3
 for  =  to  // step 1
 
 end // for
@@ -15,7 +24,7 @@ end // for
 There are two types of templates: _shared_ and _exclusive_. Shared templates are available across all [edit modes](./). They are contained in the file `data\templates.txt`. Exclusive templates are designed specifically for the current edit mode. A path to the exclusive template file can be customized with the [`template`](./#templates) key in the `modes.xml`:
 
 ```
-<templates type="default">@sb:\data\gta3\templates.txt</templates>
+&lt;templates type="default">@sb:\data\gta3\templates.txt&lt;/templates>
 ```
 
 The editor merges the content of shared and exclusive templates in a single list. Exclusive templates have priority over the shared with the same name.
@@ -29,16 +38,18 @@ A template name is written in a separate line. The equal sign `=` follows the na
 
 It's also possible to add a new template from the editor. Select the code and click the `Service->Add template` menu. 
 
-![](../.gitbook/assets/ide-add-template-en.png)
+![](../../../img/assets/ide-add-template-en.png)
 
 Enter a name of the template, a description (optionally) in the dialog window, choose the type of the template, and press the `OK` button. The template is ready to use. 
 
-Custom templates are saved in either `data\templates.custom.txt` (_custom shared templates_) or in `data\<edit mode>\templates.custom.txt`(_custom exclusive templates_). The latter can be customized in the [modes configuration](./#templates).
+Custom templates are saved in either `data\templates.custom.txt` (_custom shared templates_) or in `data\&lt;edit mode>\templates.custom.txt`(_custom exclusive templates_). The latter can be customized in the [modes configuration](./#templates).
 
 {% hint style="info" %}
-The option to save a template only for current mode becomes available if `modes.xml` has a file path defined in `<template type="custom">`tag.
+The option to save a template only for current mode becomes available if `modes.xml` has a file path defined in `&lt;template type="custom">`tag.
 {% endhint %}
 
 {% hint style="info" %}
 A template with the name `CLEO` unlocks the "New CLEO Script..." item in the main menu. The editor uses this template as the content for a newly created file.
 {% endhint %}
+
+<script src="../../../js/markdown.js"></script>

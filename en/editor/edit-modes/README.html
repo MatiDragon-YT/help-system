@@ -1,11 +1,11 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html cd=3>
 <head>
   <title>Edit Modes</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+  <link rel="stylesheet" type="text/css" href="../../../style/style.css">
 </head>
 <body>
 
@@ -114,7 +114,7 @@ path to either an `.ide` or `.dat` file:\
 `ide` element may have an optional `base` attribute to specify a folder that is used to resolve relative paths in the `.dat` file.
 
 ```
-<ide base="@game:\">default.dat</ide>
+&lt;ide base="@game:\"&gt;default.dat&lt;/ide&gt;
 ```
 
 Without `base` all relative paths are resolved starting from the location of the `.dat` file.
@@ -181,18 +181,78 @@ Both paths do not include the trailing slash.
 
 Sanny Builder offers many different modes and their number may vary from version to version:
 
-| Title               | Naming schema  | Parameters order | Game                                 |
-| ------------------- | -------------- | ---------------- | ------------------------------------ |
-| GTA III             | community      | custom           | all versions of GTA III              |
-| GTA VC              | community      | custom           | all versions of Vice City            |
-| GTA SA v1.0         | community      | custom           | SA v1.0                              |
-| GTA SA v2.0         | community      | custom           | SA v2.0                              |
-| GTA SA (v1.0 - SCR) | Rockstar       | original         | SA v1.0                              |
-| GTA LCS             | Rockstar       | original         | all versions of Liberty City Stories |
-| GTA VCS (PSP)       | Rockstar       | original         | VCS for PSP                          |
-| GTA VCS (PS2)       | Rockstar       | original         | VCS for PS2                          |
-| VC Mobile           | community      | custom           | VC Android and iOS versions          |
-| SA Mobile           | community      | custom           | SA Android and iOS versions          |
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Naming schema</th>
+<th>Parameters order</th>
+<th>Game</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GTA III</td>
+<td>community</td>
+<td>custom</td>
+<td>all versions of GTA III</td>
+</tr>
+<tr>
+<td>GTA VC</td>
+<td>community</td>
+<td>custom</td>
+<td>all versions of Vice City</td>
+</tr>
+<tr>
+<td>GTA SA v1.0</td>
+<td>community</td>
+<td>custom</td>
+<td>SA v1.0</td>
+</tr>
+<tr>
+<td>GTA SA v2.0</td>
+<td>community</td>
+<td>custom</td>
+<td>SA v2.0</td>
+</tr>
+<tr>
+<td>GTA SA (v1.0 - SCR)</td>
+<td>Rockstar</td>
+<td>original</td>
+<td>SA v1.0</td>
+</tr>
+<tr>
+<td>GTA LCS</td>
+<td>Rockstar</td>
+<td>original</td>
+<td>all versions of Liberty City Stories</td>
+</tr>
+<tr>
+<td>GTA VCS (PSP)</td>
+<td>Rockstar</td>
+<td>original</td>
+<td>VCS for PSP</td>
+</tr>
+<tr>
+<td>GTA VCS (PS2)</td>
+<td>Rockstar</td>
+<td>original</td>
+<td>VCS for PS2</td>
+</tr>
+<tr>
+<td>VC Mobile</td>
+<td>community</td>
+<td>custom</td>
+<td>VC Android and iOS versions</td>
+</tr>
+<tr>
+<td>SA Mobile</td>
+<td>community</td>
+<td>custom</td>
+<td>SA Android and iOS versions</td>
+</tr>
+</tbody>
+</table>
 
 The naming schema defines the way of describing the opcodes. The c_ommunity_ schema has the names randomly guessed over the years, such as `actor` or `thread`. The _Rockstar_ schema has the original taxonomy used by the game developers (e.g. `char` or `script`) that is consistent with the game's inner structures.  
 .
@@ -202,11 +262,10 @@ The parameters order defines the way of arranging the opcode parameters. In the 
 
 To change the mode, click at the right bottom corner of the Sanny Builder's main window. A list of the available modes will appear. As you click the mode name Sanny Builder makes all necessary adjustments and you may continue working immediately.
 
-![ ](../.gitbook/assets/edit_modes.png)
+![](../../../img/assets/edit_modes.png)
 
 To select the mode using CLI run Sanny Builder with the `--mode` [option](../editor/cli.md#mode). To select a default mode for the game use the `--game` [option](../editor/cli.md#game).
 .
 Running Sanny Builder with the `-x` [option](../editor/cli.md#x) allows loading the modes configuration from a file different from the default `modes.xml`. If Sanny Builder is already running, it reloads the configuration and updates the list of modes.
 
-
-<script src="../../js/markdown.js"></script>
+<script src="../../../js/markdown.js"></script>

@@ -7,6 +7,7 @@ Default Font=,11,0
 Default Window=MAIN
 Default topic=en\README.html
 Display compile progress=Yes
+Enhanced decompilation=Yes
 Index file=en.index.hhk
 Language=0x409 Inglés (Estados Unidos)
 Title=Sanny Builder Help
@@ -40,12 +41,6 @@ en\coding\hex..end.html
 en\coding\keywords.html
 en\coding\loops.html
 en\coding\variables.html
-en\edit-modes\README.html
-en\edit-modes\code-templates.html
-en\edit-modes\customlabels.ini.html
-en\edit-modes\enums.txt.html
-en\edit-modes\extensions.html
-en\edit-modes\opcodes-list-scm.ini.html
 en\editor\README.html
 en\editor\cli.html
 en\editor\console.html
@@ -59,7 +54,39 @@ en\editor\options\formats.html
 en\editor\options\general.html
 en\editor\options\hotkeys.html
 en\editor\options\theme-editor.html
+en\editor\edit-modes\README.html
+en\editor\edit-modes\code-templates.html
+en\editor\edit-modes\customlabels.ini.html
+en\editor\edit-modes\enums.txt.html
+en\editor\edit-modes\extensions.html
+en\editor\edit-modes\opcodes-list-scm.ini.html
 en\scm-documentation\README.html
+
+img\assets\sbl-update-popup-en.png
+
+img\assets\ide-add-template-en.png
+img\assets\edit_modes.png
+img\assets\options-editor-en.png
+img\assets\sb-options-color-theme.png
+img\assets\editor-code-scan-en.png
+img\assets\editor-font-en.png
+img\assets\sb-editor-configuration.png
+img\assets\options-format-en.png
+img\assets\formats-files-en.png
+img\assets\formats-labels-en.png
+img\assets\formats-custom-names-en.png
+img\assets\formats-case-en.png
+
+img\assets\options-general-en.png
+img\assets\main_dir.png
+img\assets\general-language-en.png
+img\assets\sb-options-associate.png
+img\assets\main_opt.png
+img\assets\theme-editor-en.png
+img\assets\options-hotkeys-en.png
+img\assets\ost.png
+
+
 img\logo1.png
 img\logo2.png
 

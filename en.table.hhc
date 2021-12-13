@@ -77,5 +77,87 @@
 			<param name="Local" value="en\coding\comments.html">
 			</OBJECT>
 	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="EDITOR">
+		<param name="Local" value="en\editor\README.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Features">
+			<param name="Local" value="en\editor\features.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Options">
+			<param name="Local" value="en\editor\options\README.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="General">
+				<param name="Local" value="en\editor\options\general.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Formats">
+				<param name="Local" value="en\editor\options\formats.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Editor">
+				<param name="Local" value="en\editor\options\editor.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Theme Editor">
+				<param name="Local" value="en\editor\options\theme-editor.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Hotkeys">
+				<param name="Local" value="en\editor\options\hotkeys.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Console">
+			<param name="Local" value="en\editor\console.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Hotkeys">
+			<param name="Local" value="en\editor\hotkeys.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Opcode Search Tool">
+			<param name="Local" value="en\editor\opcode-search-tool.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Command Line Interface">
+			<param name="Local" value="en\editor\cli.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Language Service">
+			<param name="Local" value="en\editor\language-service.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Edit Modes">
+			<param name="Local" value="en\editor\edit-modes\README.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="CustomLabels.ini">
+				<param name="Local" value="en\editor\edit-modes\customlabels.ini.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Code Templates">
+				<param name="Local" value="en\editor\edit-modes\code-templates.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Enums.ini">
+				<param name="Local" value="en\editor\edit-modes\enums.txt.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Extensions">
+				<param name="Local" value="en\editor\edit-modes\extensions.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Opcodes List (SCM.INI)">
+				<param name="Local" value="en\editor\edit-modes\opcodes-list-scm.ini.html">
+				</OBJECT>
+		</UL>
+	</UL>
 </UL>
 </BODY></HTML>

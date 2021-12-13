@@ -1,8 +1,17 @@
-# Opcode Search Tool
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Opcode Search Tool</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
 
 You can call this tool by pressing `Ctrl+Alt+2` or by selecting the menu item: `Tools->IDE Tools->Opcode Search`.
 
-![](../.gitbook/assets/ost.PNG)
+![](../../img/assets/ost.png)
 
 To find an opcode, type some words in the input line, e.g. `actor car`. The tool displays the opcodes with these words. You can also use special search operators.
 
@@ -49,8 +58,7 @@ Finds all opcodes with either `@` or `player`.
 
 If you write `|` as the first character in the search, the tool will connect all the following words with the OR operator.
 
-```
-| actor player car
+``` | actor player car
 ```
 
 Finds opcodes with either `actor`, `player` or `car`.
@@ -109,3 +117,5 @@ Finds opcodes with `player`, with the exception of the conditional opcodes with 
 ```
 
 Finds opcodes where `@` `=` `@` follow each other (possibly with other words in between).
+
+<script src="../../js/markdown.js"></script>
