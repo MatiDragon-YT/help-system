@@ -33,17 +33,17 @@ table {
     width: 100%;
     margin: .5rem 0;
     border-spacing: 0;
-    border-color: red;
     border: 1px solid #d3dce4;
     border-radius: 4px;
+    display: block;
+    overflow: auto;
+    max-height: 83vh;
 }
 
 th, td {
     padding: .6rem;
-}
-
-th, td {
     border-left: #d3dce4 1px solid;
+    width: 1%;
 }
 
 th:first-child,
@@ -92,7 +92,6 @@ summary {
     cursor: pointer;
 }
 
-b { font-weight: 800 }
 
 hr {
     border: none;
@@ -102,7 +101,14 @@ hr {
 
 p { padding: 8px 0 }
 
-p b { font-weight: 500 }
+h1 b,
+h2 b,
+h3 b,
+h4 b,
+h5 b,
+h6 b { font-weight: 800 }
+
+b { font-weight: 700 }
 
 dl, ol, ul { margin: 1rem 2rem }
 
