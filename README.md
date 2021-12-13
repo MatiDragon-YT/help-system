@@ -13,4 +13,4 @@ This repository contains sources for Sanny Builder compiled help files (CHM). Cu
 Use HTML Help Workshop v4.
 
 ## Reporting issues
-Create a ticket against the new documentation portal: https://github.com/sannybuilder/docs/issues The CHM help is no longer maintained.
+Create a ticket against the new documentation portal: https://github.com/MatiDragon-YT/help-system/issues The CHM help is no longer maintained.
