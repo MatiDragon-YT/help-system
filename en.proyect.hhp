@@ -64,6 +64,8 @@ en\scm-documentation\README.html
 en\scm-documentation\gta-limits.html
 
 en\scm-documentation\gta3\README.html
+en\scm-documentation\gta3\pedtypes.html
+en\scm-documentation\gta3\radar-icons.html
 en\scm-documentation\lcs\README.html
 en\scm-documentation\sa\README.html
 en\scm-documentation\vc\README.html
@@ -90,6 +92,28 @@ img\assets\main_opt.png
 img\assets\theme-editor-en.png
 img\assets\options-hotkeys-en.png
 img\assets\ost.png
+
+img\assets\radar_dot.png
+img\assets\radar_asuka.png
+img\assets\radar_bomb.png
+img\assets\radar_catalina.png
+img\assets\radar_centre.png
+img\assets\radar_copcar.png
+img\assets\radar_don.png
+img\assets\radar_eight.png
+img\assets\radar_el.png
+img\assets\radar_ice.png
+img\assets\radar_joey.png
+img\assets\radar_kenji.png
+img\assets\radar_liz.png
+img\assets\radar_luigi.png
+img\assets\radar_north.png
+img\assets\radar_ray.png
+img\assets\radar_sal.png
+img\assets\radar_save.png
+img\assets\radar_spray.png
+img\assets\radar_tony.png
+img\assets\radar_weapon.png
 
 img\logo1.png
 img\logo2.png

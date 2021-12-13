@@ -172,6 +172,16 @@
 			<param name="Name" value="GTA III">
 			<param name="Local" value="en\scm-documentation\gta3\README.html">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Ped Types">
+				<param name="Local" value="en\scm-documentation\gta3\pedtypes.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Radar Icons">
+				<param name="Local" value="en\scm-documentation\gta3\radar-icons.html">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Vice City">
 			<param name="Local" value="en\scm-documentation\vc\README.html">

@@ -71,7 +71,7 @@ $('.markdown').innerHTML
 /*** CODE ***/
 .replace(/```(\w+|\n)?\s([\x09-\x5F\x61-\xFF]*)```/g, '<pre class="$1">$2</pre>')
 .replace(/`([\x20-\x5F\x61-\xFF]+)`/g, '<code>$1</code>')
-+ '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v0.3.0 - by MatiDragon & Seemann with <3 for you</p>'
++ '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v0.3.1 - by MatiDragon & Seemann with <3 for you</p>'
 
 var $firstElementChild = $('.markdown').firstElementChild.style
 
