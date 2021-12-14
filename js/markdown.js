@@ -26,8 +26,8 @@ function DIRECTION(){
 }
 
 $('body').innerHTML = '\
-<div style="background: #fff url(\''+ DIRECTION() +'img/logo1.png\')">\
-  <div style="background: #fff url(\''+ DIRECTION() +'img/logo2.png\') no-repeat;height: 121px;max-width: 640px"></div>\
+<div style="background: url(\''+ DIRECTION() +'img/logo1.jpg\')">\
+  <div style="background: url(\''+ DIRECTION() +'img/logo2.jpg\') no-repeat;height: 121px;max-width: 640px"></div>\
 </div>\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
   <h1 style="padding: 9px 33px;border-top: none;margin-top: 0;">'+ d.title +'</h1>\
@@ -124,7 +124,7 @@ const code = {
     //.replace(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
   }
 }
-/**
+/** 
  * @param e : DocumentElement 
  * @param f : function */
 function apply(e, f){
