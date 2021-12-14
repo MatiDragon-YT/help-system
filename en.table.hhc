@@ -190,6 +190,72 @@
 			<param name="Name" value="San Andreas">
 			<param name="Local" value="en\scm-documentation\sa\README.html">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Buttons IDs">
+				<param name="Local" value="en\scm-documentation\sa\buttons.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Gang IDs">
+				<param name="Local" value="en\scm-documentation\sa\gangs.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Garage IDs">
+				<param name="Local" value="en\scm-documentation\sa\gangs.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Haircuts">
+				<param name="Local" value="en\scm-documentation\sa\haircuts.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Interiors">
+				<param name="Local" value="en\scm-documentation\sa\interiors.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Particles Effects">
+				<param name="Local" value="en\scm-documentation\sa\particles.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Ped Types">
+				<param name="Local" value="en\scm-documentation\sa\pedtypes.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Player Clothes">
+				<param name="Local" value="en\scm-documentation\sa\clothes.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Player Body Parts">
+				<param name="Local" value="en\scm-documentation\sa\player-body-parts.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Special Actors">
+				<param name="Local" value="en\scm-documentation\sa\special-actors.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Statistics ID">
+				<param name="Local" value="en\scm-documentation\sa\stats.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Tattoos">
+				<param name="Local" value="en\scm-documentation\sa\tattoos.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Train Types">
+				<param name="Local" value="en\scm-documentation\sa\trains.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weapon IDs">
+				<param name="Local" value="en\scm-documentation\sa\weapons.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Weather IDs">
+				<param name="Local" value="en\scm-documentation\sa\weather.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Zones">
+				<param name="Local" value="en\scm-documentation\sa\zones.html">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Liberty City Stories">
 			<param name="Local" value="en\scm-documentation\lcs\README.html">
