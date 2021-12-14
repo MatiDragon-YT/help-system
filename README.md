@@ -1,4 +1,6 @@
 # Sanny Builder Help
+[![Release](https://img.shields.io/github/v/tag/MatiDragon-YT/help-system?style=for-the-badge)](https://github.com/MatiDragon-YT/help-system/releases)
+[![License](https://img.shields.io/github/license/MatiDragon-YT/help-system?style=for-the-badge)](https://github.com/MatiDragon-YT/help-system/blob/master/LICENSE)
 
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked to understand the Markdown of the GitBook site and highlight SB3 code with the code blocks labeled `sb3` after the backsticks (<code>&#x0060;</code>).
 
