@@ -3,34 +3,34 @@ var d = document;
  * @param str : DOMString
 */
 function $(str) {
-    if (str.charAt(0) === '#' && !/\s/.test(str) || d.querySelectorAll(str).length === 1) { 
-        return d.querySelector(str);
-    }
-    else {
-        if(d.querySelectorAll(str).length === 0){return undefined}
-        return d.querySelectorAll(str);
-    }
+		if (str.charAt(0) === '#' && !/\s/.test(str) || d.querySelectorAll(str).length === 1) { 
+				return d.querySelector(str);
+		}
+		else {
+				if(d.querySelectorAll(str).length === 0){return undefined}
+				return d.querySelectorAll(str);
+		}
 }
 
 function DIRECTION(){
-  var defDirection = parseInt($('html').getAttribute('cd')) || '../../';
+	var defDirection = parseInt($('html').getAttribute('cd')) || '../../';
 
-  if (isNaN(defDirection)){
-    return defDirection
-  }
-  var newDirection = '../';
-  for (var i = 1; i < defDirection; i++) {
-    newDirection += '../';
-  }
-  return newDirection
+	if (isNaN(defDirection)){
+		return defDirection
+	}
+	var newDirection = '../';
+	for (var i = 1; i < defDirection; i++) {
+		newDirection += '../';
+	}
+	return newDirection
 }
 
 $('body').innerHTML = '\
 <div style="background: url(\''+ DIRECTION() +'img/logo1.jpg\')">\
-  <div style="background: url(\''+ DIRECTION() +'img/logo2.jpg\') no-repeat;height: 121px;max-width: 640px"></div>\
+	<div style="background: url(\''+ DIRECTION() +'img/logo2.jpg\') no-repeat;height: 121px;max-width: 640px"></div>\
 </div>\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
-  <h1 style="padding: 9px 33px;border-top: none;margin-top: 0;">'+ d.title +'</h1>\
+	<h1 style="padding: 9px 33px;border-top: none;margin-top: 0;">'+ d.title +'</h1>\
 </div><div class="markdown">' + $('body').innerHTML
 
 $('.markdown').innerHTML = 
@@ -80,63 +80,84 @@ $firstElementChild['margin-top'] = 0
 $firstElementChild['border-top'] = 0
 
 const code = {
-  sb3 : function (e){
-    
-    e.innerHTML = e.innerHTML
+	sb3 : function (e){
+		
+		e.innerHTML = e.innerHTML
 
-    //Comentarios 
-    .replace(/(\/\/.+)/gm, "<span class=comments>$1<\/span>")
-    .replace(/(\/\*[\x09-.0-¦]*\*\/)/gmi, "<span class=comments>$1<\/span>")
-    .replace(/(\{[\x09-z\|~-¦]*\})/gmi, "<span class=comments>$1<\/span>")
-    //Cadenas de texto
-    .replace(/\"([\x09-\!#-¦]*)\"/gmi, "<span class=strings>\"$1\"<\/span>")
-    .replace(/\'([!-&(-¦]+)\'/gmi, "<span class=strings>\'$1\'<\/span>")
-    //Palabras Reservadas
-    .replace(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
-    //Etiquetas
-    .replace(/(\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
-    .replace(/(\s)([A-Za-z]+\(\))/gm, "$1<span class=commands>$2<\/span>")
-    //Arreglos
-    .replace(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
-    //Opcodes
-    .replace(/([a-fA-F0-9]{4}\:)/gmi, "<span class='uppercase'>$1<\/span>")
-    //Numeros
-    .replace(/\b(\d+)(x|\.)(\w+)\b/gmi, "<span class=numbers>$1$2$3<\/span>")
-    .replace(/\b(true|false)\b/gmi, "<span class=numbers>$1<\/span>")
-    .replace(/(\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i)?\b/gmi, "$1<span class=numbers>$2$3<\/span>")
-    //Modelos
-    .replace(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
-    //Clases
-    .replace(/(^|\s)(Actor|Animation|Attractor|Audio|AudioStream|Blip|Boat|Button|Camera|Car|CarGenerator|CardDecks|Checkpoint|Clock|Component|Credits|Cutscene|Debugger|DecisionMaker|DecisionMakerActor|DecisionMakerGroup|DynamicLibrary|File|Fs|Fx|Game|Gang|Garage|Group|Heli|Hid|ImGui|IniFile|Input|Interior|Key|Marker|Math|Memory|Menu|Model|Mouse|Multiplayer|List|Object|ObjectGroup|Particle|Path|Pickup|Plane|Player|Rampage|Rc|Render|Restart|Screen|ScriptEvent|ScriptFire|Searchlight|Sequence|Shopping|Skip|Sound|Soundtrack|SpecialActor|Sphere|Sprite|Stat|StreamedScript|Streaming|String|StuckCarCheck|Task|Text|Texture|Trailer|Train|Txd|WeaponInfo|Weather|Widget|World|Zone)(\.)(\w+)/gmi, "<span class=classes>$2<\/span>$3<span class=commands>$4</span>")
-    .replace(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
-    .replace(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
-    .replace(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
-    .replace(/\.([0-9A-Z_a-z]+)\n/gm, ".<span class=commands>$1</span>\n")
-    //Directivas
-    .replace(/(\{\$)(CLEO|OPCODE|NOSOURCE)(\s\w+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
-    //Variables  
-    .replace(/\b(timera|timerb)\b/gmi, "<span class=variables>$1<\/span>")
-    .replace(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
-    .replace(/(\&amp;\d+)/gim, "<span class=variables>$1<\/span>")
-    .replace(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
-    //Simbolos
-    .replace(/(\t)/gmi, "    ")
-    //.replace(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
-  }
+		//Comentarios 
+		.replace(/(\/\/.+)/gm, "<span class=comments>$1<\/span>")
+		.replace(/(\/\*[\x09-.0-¦]*\*\/)/gmi, "<span class=comments>$1<\/span>")
+		.replace(/(\{[\x09-z\|~-¦]*\})/gmi, "<span class=comments>$1<\/span>")
+		//Cadenas de texto
+		.replace(/\"([\x09-\!#-¦]*)\"/gmi, "<span class=strings>\"$1\"<\/span>")
+		.replace(/\'([!-&(-¦]+)\'/gmi, "<span class=strings>\'$1\'<\/span>")
+		//Palabras Reservadas
+		.replace(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
+		//Etiquetas
+		.replace(/(\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
+		.replace(/(\s)([A-Za-z]+\(\))/gm, "$1<span class=commands>$2<\/span>")
+		//Arreglos
+		.replace(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
+		//Opcodes
+		.replace(/([a-fA-F0-9]{4}\:)/gmi, "<span class='uppercase'>$1<\/span>")
+		//Numeros
+		.replace(/\b(\d+)(x|\.)(\w+)\b/gmi, "<span class=numbers>$1$2$3<\/span>")
+		.replace(/\b(true|false)\b/gmi, "<span class=numbers>$1<\/span>")
+		.replace(/(\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i)?\b/gmi, "$1<span class=numbers>$2$3<\/span>")
+		//Modelos
+		.replace(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
+		//Clases
+		.replace(/(^|\s)(Actor|Animation|Attractor|Audio|AudioStream|Blip|Boat|Button|Camera|Car|CarGenerator|CardDecks|Checkpoint|Clock|Component|Credits|Cutscene|Debugger|DecisionMaker|DecisionMakerActor|DecisionMakerGroup|DynamicLibrary|File|Fs|Fx|Game|Gang|Garage|Group|Heli|Hid|ImGui|IniFile|Input|Interior|Key|Marker|Math|Memory|Menu|Model|Mouse|Multiplayer|List|Object|ObjectGroup|Particle|Path|Pickup|Plane|Player|Rampage|Rc|Render|Restart|Screen|ScriptEvent|ScriptFire|Searchlight|Sequence|Shopping|Skip|Sound|Soundtrack|SpecialActor|Sphere|Sprite|Stat|StreamedScript|Streaming|String|StuckCarCheck|Task|Text|Texture|Trailer|Train|Txd|WeaponInfo|Weather|Widget|World|Zone)(\.)(\w+)/gmi, "<span class=classes>$2<\/span>$3<span class=commands>$4</span>")
+		.replace(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
+		.replace(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
+		.replace(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
+		.replace(/\.([0-9A-Z_a-z]+)\n/gm, ".<span class=commands>$1</span>\n")
+		//Directivas
+		.replace(/(\{\$)(CLEO|OPCODE|NOSOURCE)(\s\w+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
+		//Variables  
+		.replace(/\b(timera|timerb)\b/gmi, "<span class=variables>$1<\/span>")
+		.replace(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
+		.replace(/(\&amp;\d+)/gim, "<span class=variables>$1<\/span>")
+		.replace(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
+		//Simbolos
+		.replace(/(\t)/gmi, "    ")
+		//.replace(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
+	}
 }
 /** 
  * @param e : DocumentElement 
  * @param f : function */
 function apply(e, f){
-  if(e){ 
-    if(""+e == '[object NodeList]'){ 
-      for (var i = 0; i < e.length; i++) {
-        f(e[i])
-      }
-    }else{  
-      f(e)
-    }
-  }
+	if(e){ 
+		if(""+e == '[object NodeList]'){ 
+			for (var i = 0; i < e.length; i++) {
+				f(e[i])
+			}
+		}else{  
+			f(e)
+		}
+	}
 }
 
 apply($('.sb3'), code.sb3)
+
+function myFunction() {
+	var filter = $('#myInput').value.toUpperCase(),
+		tr = $('#myTable tr'),
+		td, i;
+
+	$('#myInput').onkeydown = function (EVENT) {
+		if(EVENT.keyCode === 13){//ENTER
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					if ((td.textContent || td.innerText).toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}       
+			}
+		}
+	}
+}

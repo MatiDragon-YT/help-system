@@ -258,6 +258,10 @@
 				<param name="Local" value="en\scm-documentation\sa\player-body-parts.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Radar Icons">
+				<param name="Local" value="en\scm-documentation\sa\radar-icons.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Special Actors">
 				<param name="Local" value="en\scm-documentation\sa\special-actors.html">
 				</OBJECT>
@@ -272,6 +276,10 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Train Types">
 				<param name="Local" value="en\scm-documentation\sa\trains.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Vehicle Variations">
+				<param name="Local" value="en\scm-documentation\sa\vehicle-variations.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Weapon IDs">

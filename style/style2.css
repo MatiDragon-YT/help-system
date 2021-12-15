@@ -1,3 +1,13 @@
+body{
+  scrollbar-base-color: red;
+  scrollbar-face-color: #5a97f3;
+  scrollbar-3dlight-color: white;
+  scrollbar-highlight-color: white;
+  scrollbar-track-color: #eceff1;
+  scrollbar-arrow-color: black;
+  scrollbar-shadow-color: white;
+  scrollbar-dark-shadow-color: white;
+}
 
 .markdown-fluid {
     width: 100%;

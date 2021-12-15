@@ -37,6 +37,7 @@ table {
     border-radius: 4px;
     display: block;
     overflow: auto;
+    max-height: 80vh;
 }
 
 th, td {
@@ -97,7 +98,6 @@ hr {
     border-top: solid #d3dce4 1px;
     margin: 1rem 0;
 }
-
 p { padding: 8px 0 }
 
 h1 b,
@@ -125,6 +125,9 @@ img {
     width : auto;
     height : auto;
     margin: 0.5rem 0;
+}
+td img {
+    margin: 0;
 }
 
 pre {
@@ -173,6 +176,19 @@ div.success, div.warning, div.info {
 .light { font-weight: 300!important }
 .center { text-align: center!important }
 .uppercase { text-transform: uppercase!important }
+
+
+input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+#myInput {
+    width: 100%;
+    padding: 1rem;
+    background: none;
+    transform: translate(-0.6rem, 0rem);
+}
 
 .labels { color: #009688 }
 .keywords { color: #ff5722 }
