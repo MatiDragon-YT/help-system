@@ -4,7 +4,7 @@
 
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked to understand the Markdown of the GitBook site and highlight SB3 code with the code blocks labeled `sb3` after the backsticks (<code>&#x0060;</code>).
 
-![image](https://user-images.githubusercontent.com/43966706/145916879-4642d636-5116-4f9e-bdfe-f4b8ace99e5a.png)
+![image](https://user-images.githubusercontent.com/43966706/146110839-e366b39b-4e16-465f-8c64-937afef2b089.png)
 
 ## Design
 Based on the original that brings the `help.chm`, GitBook and [my own `help3082.chm`](https://github.com/MatiDragon-YT/doc-chm)
