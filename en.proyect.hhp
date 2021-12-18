@@ -83,7 +83,6 @@ en\scm-documentation\sa\vehicle-variations.html
 en\scm-documentation\sa\weapons.html
 en\scm-documentation\sa\weather.html
 en\scm-documentation\sa\zones.html
-
 en\scm-documentation\vc\README.html
 en\scm-documentation\vc\buttons.html
 en\scm-documentation\vc\gangs.html
@@ -92,11 +91,12 @@ en\scm-documentation\vc\interiors.html
 en\scm-documentation\vc\pedtypes.html
 en\scm-documentation\vc\radar-icons.html
 en\scm-documentation\vc\weapons.html
-
 en\scm-documentation\vcs\README.html
 en\scm-documentation\vcs\clothes.html
 en\scm-documentation\vcs\gangs.html
 en\scm-documentation\vcs\weather.html
+
+
 
 img\assets\sbl-update-popup-en.png
 img\assets\ide-add-template-en.png
@@ -119,7 +119,6 @@ img\assets\main_opt.png
 img\assets\theme-editor-en.png
 img\assets\options-hotkeys-en.png
 img\assets\ost.png
-
 img\gta3\radar\dot.png
 img\gta3\radar\asuka.png
 img\gta3\radar\bomb.png
@@ -244,7 +243,6 @@ img\sa\radar\icon60.gif
 img\sa\radar\icon61.gif
 img\sa\radar\icon62.gif
 img\sa\radar\icon63.gif
-
 img\sa\tatoo\4weed.gif
 img\sa\tatoo\4rip.gif
 img\sa\tatoo\4spider.gif
@@ -293,7 +291,6 @@ img\sa\tatoo\12dager.gif
 img\sa\tatoo\12bndit.gif
 img\sa\tatoo\12cross.gif
 img\sa\tatoo\12myfac.gif
-
 img\sa\weapon\fist.png
 img\sa\weapon\BRASSKNUCKLEicon.png
 img\sa\weapon\golfclubicon.png
@@ -341,7 +338,6 @@ img\sa\weapon\gun_paraIcon.png
 img\sa\weapon\jetpackicon.png
 img\sa\weapon\cellphoneicon.png
 img\sa\weapon\skateboardicon.png
-
 img\vc\weapon\fist.gif
 img\vc\weapon\brassknuckle.gif
 img\vc\weapon\screwdriver.gif
@@ -376,6 +372,7 @@ img\vc\weapon\minigun.gif
 img\vc\weapon\sniper.gif
 img\vc\weapon\laser.gif
 img\vc\weapon\camera.gif
+
 
 img\logo1.jpg
 img\logo2.jpg
