@@ -15,18 +15,16 @@ A **loop **is a statement which allows code to be repeatedly executed. Sanny Bui
 
 The `FOR` loop has a strictly certain number of iterations (repetitions).
 
-Syntax:
-```
-FOR &lt;loop variable&gt; = &lt;initial value&gt; TO/DOWNTO &lt;final value&gt; [step = 1]
-    &lt;the loop body&gt;
-END
-```
-
-`&lt;loop variable&gt;` - a [variable](variables.md) used as a counter for iterations\
-`&lt;initial value&gt;` - a value of the loop variable before the first iteration (any value including a [model identifier](data-types.md#model-names))\
+Syntax:\
+`FOR <loop variable> = <initial value> TO/DOWNTO <final value> [step = 1]`\
+`<the loop body>`\
+`END`\
+\
+`<loop variable>` - a [variable](variables.md) used as a counter for iterations\
+`<initial value>` - a value of the loop variable before the first iteration (any value including a [model identifier](data-types.md#model-names))\
 `TO` or `DOWNTO`** **- increment or decrement the loop variable between iterations\
-`&lt;final value&gt;` - a value of the loop variable after the last iteration (any value including a model identifier)\
-`&lt;step&gt;` - an optional value the loop variable will be incremented or decremented with between iterations. By default it is equal to `1`.
+`<final value>` - a value of the loop variable after the last iteration (any value including a model identifier)\
+`<step>` - an optional value the loop variable will be incremented or decremented with between iterations. By default it is equal to `1`.
 
 ```sb3
 var
@@ -185,4 +183,4 @@ while true
 end
 ```
 
-<script src="../../js/markdown.js"></script>
+<script src="../../js/main.min.js"></script>

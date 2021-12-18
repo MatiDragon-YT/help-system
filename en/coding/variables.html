@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Variables</title>
@@ -90,13 +90,11 @@ To communicate the compiler a variable type use the `VAR..END` construct.
 
 `VAR..END` construct allows to declare variables and their types for the advanced use.
 
-Syntax:
-```sb3
-var
-&lt;variable>: &lt;type&gt;
-end
-```
-
+Syntax:\
+`var`\
+`<variable>: <type>`\
+`end`
+.
 For example, if both variables are declared, the compiler is able to process the expression without opcodes:
 
 ```sb3
@@ -113,7 +111,7 @@ The following types of variables are supported:
 * `Float `- floating-points values
 * `String`, `ShortString `- a variable containing a string literal with the fixed length (only for the arrays, use `s$`, `@s` for variables)
 * `LongString `- a variable containing a string literal with the variable length (only for the arrays, use `v$`, `@v` for variables)
-* `&lt;Class name&gt;` - any available [class name](classes.md)
+* `<Class name>` - any available [class name](classes.md)
 
 The types of the local variables can be declared too.
 
@@ -151,7 +149,7 @@ You can re-declare variables as many times as you need.
 Since v3.2.0 it's possible to declare a variable of a built-in type (`Int`, `Float`, `String`, `LongString`) using only the type name.
 
 Syntax:\
-`&lt;type&gt; &lt;variable name&gt;`
+`<type> <variable name>`
 
 ```sb3
 int 0@ // 0@ declared as an integer variable.
@@ -213,4 +211,4 @@ The variable `$fVar` is now declared as `Float` and the compiler adds the opcode
 
 Initialization is allowed for variables, but not for arrays.
 
-<script src="../../js/markdown.js"></script>
+<script src="../../js/main.min.js"></script>

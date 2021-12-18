@@ -14,13 +14,11 @@ A **class** is a group of commands applied to the in-game entities: player, peds
 ## General Syntax
 
 Syntax:\
-```sb3
-&lt;Class name&gt;.&lt;Class member&gt;(parameters)
-```
+`<Class name>.<Class member>(parameters)`
 
-`Class name` - the name of a group of commands defined in the `classes.db` file for this edit mode\
-`Class member` - one of the commands included in the class\
-`Parameters` - 0 or more comma-delimited [parameters](data-types.html)
+| `Class name` - the name of a group of commands defined in the `classes.db` file for this edit mode.
+| `Class member` - one of the commands included in the class.
+| `Parameters` - 0 or more comma-delimited [parameters](data-types.md)
 
 ```sb3
 Player.SetMinWantedLevel($PLAYER_CHAR, 2)
@@ -147,7 +145,7 @@ Variables declared as instances of a class can be redeclared with another type.
 
 ### The `Model` Class 
 
-[Model names](data-types.html#model-names) are always instances of the `Model` class:
+[Model names](data-types.md#model-names) are always instances of the `Model` class:
 
 ```sb3
 #AK47.Load
@@ -173,7 +171,7 @@ jf @loop
 
 ## Class constants
 
-Class parameters can be assigned to an [enumerated type](../edit-modes/enums.txt.html). It makes the source code more readable:
+Class parameters can be assigned to an [enumerated type](../edit-modes/enums.txt.md). It makes the source code more readable:
 
 ```sb3
 Player.SetClothes($PLAYER_CHAR, "VEST", "VEST", BodyPart.Torso)
@@ -183,10 +181,10 @@ The last parameter (`BodyPart.Torso`) is a member of the `BodyPart` enum substit
 
 #### Extended parameters (deprecated)
 
-Sanny Builder prior to v3.6 defined special constants for class members in the file `classes.db` . These parameters were called extended. This solution only allowed for one extended parameter per class member. 
-.
-Since v3.6 class members use enum names as their types and may have any number of enumerated parameters. 
-.
+Sanny Builder prior to v3.6 defined special constants for class members in the file `classes.db` . These parameters were called extended. This solution only allowed for one extended parameter per class member.
+
+Since v3.6 class members use enum names as their types and may have any number of enumerated parameters.
+
 For backward compatibility Sanny Builder still supports old extended parameters during compilation.  `classes.db` keeps them under the `DEPRECATED_ENUMS` section.
 
-<script src="../../js/markdown.js"></script>
+<script src="../../js/main.min.js"></script>

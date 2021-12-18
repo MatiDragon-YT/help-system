@@ -14,17 +14,17 @@ An **array** represents an indexed collection of elements of the same type (call
 ## General Syntax
 
 San Andreas:\
-`&lt;array name&gt;(&lt;index var name&gt;,&lt;size&gt;&lt;type&gt;)`
+`<array name>(<index var name>,<size><type>)`
 
 ```sb3
 $index = 0
 $array($index,10i) = 1
 ```
 
-`&lt;array name&gt;`: local or global [variable](variables.md)\
-`&lt;index var name&gt;`: any variable containing an index of the element to read or write\
-`&lt;size&gt;`: any value greater than 0\
-`&lt;type&gt;`: one of characters `i` `f` `s` `v`:
+`<array name>`: local or global [variable](variables.md)\
+`<index var name>`: any variable containing an index of the element to read or write\
+`<size>`: any value greater than 0\
+`<type>`: one of characters `i` `f` `s` `v`:
 
 <table>
 <thead>
@@ -60,7 +60,7 @@ $array($index,10i) = 1
 
 
 Liberty City Stories, Vice City Stories:\
-`&lt;array name&gt;(&lt;index var name&gt;,&lt;size&gt;)`
+`<array name>(<index var name>,<size>)`
 
 {% hint style="info" %}
 In LCS, VCS, array elements are only 4 bytes in length. Therefore, there is no need in type declaration.
@@ -75,7 +75,7 @@ $array($index,10) = 1
 
 Arrays can be declared using the [`VAR..END`](variables.md#var-end-construct) construct:\
 `var`\
-`   &lt;array name&gt;: array &lt;size&gt; of &lt;type&gt;`\
+`   <array name>: array <size> of <type>`\
 `end`
 
 ```sb3
@@ -129,4 +129,4 @@ $players[0].Build
 By default in the `GTA SA` [edit mode](../edit-modes/), the disassembler prints array elements with the numbers as indexes. The same feature is available in LCS and VCS but is disabled by default. You can turn this feature on and off using the [debug option](../editor/console.md#constant_indexes) `CONSTANT_INDEXES`. 
 {% endhint %}
 
-<script src="../../js/markdown.js"></script>
+<script src="../../js/main.min.js"></script>
