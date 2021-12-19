@@ -4,6 +4,9 @@ const VERSION = "1.0";
 // GLOBAL VARS
 const d = document;
 
+String.prototype.toLinkCase = function(){
+	return this.toLowerCase().replace(/\s/g, '-')
+}
 
 /** Smart selector for elements of the DOM
  * @param str : DOMString
@@ -47,29 +50,6 @@ function dir(){
 	return dirCreate
 }
 
-function convertH(input) {
-	var number = 0
-	var output
-
-	function index(text) {
-		if(/^#+\s/.test(text)){
-			number++
-			text = text.replace(/^#/, '')
-			index(text, number)
-		}else{
-			if (number == 0){
-				output = text
-				return;
-			}
-			const TITLE = text.replace(/^\s/, '')
-			output = '<h'+number+' id="'+ TITLE.toLowerCase().replace(/\s/g, '-') +'">\n\t' + TITLE + '\n</h'+number+'>'
-		}
-	}
-	index(input)
-
-	return output
-}
-
 $('body').innerHTML = '\
 <div style="background: url(\''+ dir() +'img/logo1.jpg\')">\
 	<div style="background: url(\''+ dir() +'img/logo2.jpg\') no-repeat;height: 121px;max-width: 640px"></div>\
@@ -78,41 +58,70 @@ $('body').innerHTML = '\
 	<h1 style="padding: 9px 33px;border-top: none;margin-top: 0;">'+ d.title +'</h1>\
 </div><div class="markdown">' + $('body').innerHTML
 
-$('.markdown').innerHTML = 
-$('.markdown').innerHTML
-/*** HR ***/
-.replace(/\n-+-\n/g, '<hr>\n')
-/*** DIVS ***/
-.replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
-.replace(/{% hint style="(\w+)" %}/g, '<div class=$1>')
-.replace(/{% endhint %}/g, '</div>')
-/*** CITE ***/
-.replace(/^\|([A-Za-z]+(-(\d|\w)+)?)\s(.+)/gim, '<blockquote class="$1">$4</blockquote>')
-.replace(/^\|\s(.+)/gim, '<blockquote>$1</blockquote>')
-.replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
-/*** FORMAT ***/
-.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
-.replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
-.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
-/*** TITLE ***/
-.replace(/^#.+\s([\x20-\x22\x24-\xFF].+)/gm, convertH)
-/*** BR ***/
-.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
-.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
-/*** LIST ***/
-.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
-.replace(/^_\s(.+)/gim, '<ol><li>$1</li></ol>')
-.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
-.replace(/<\/ul>(\s+)<ul>/g, '')
-.replace(/<\/ol>(\s+)<ol>/g, '')
-.replace(/<\/dl>(\s+)<dl>/g, '')
-/*** ATTACH ***/
-.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
-.replace(/\.md(\)|#)/g, '.html$1')
-.replace(/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<a href="$2" title="$3">$1</a>')
-/*** CODE ***/
-.replace(/```(\w+|\n)?\s([\x09-\x5F\x61-\xFF]*)```/g, '<pre class="$1">$2</pre>')
-.replace(/`([\x20-\x5F\x61-\xFF]+)`/g, '<code>$1</code>')
+$('.markdown').innerHTML = $('.markdown').innerHTML
+	/*** LIST ***/
+	.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
+	.replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
+	.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
+	.replace(/<\/ul>(\s+)<ul>/g, '')
+	.replace(/<\/ol>(\s+)<ol>/g, '')
+	.replace(/<\/dl>(\s+)<dl>/g, '')
+	/*** HR ***/
+	.replace(/^(\w.+)\n==+=/gim, function(input){
+		var a = input.replace(/^(\w.+)\n==+=/gim, '$1')
+		return '<h1 id="'+ a.toLinkCase() +'"">' + a + '</h1><hr>'
+	})
+	.replace(/^(\w.+)\n--+-/gim, function(input){
+		var a = input.replace(/^(\w.+)\n--+-/gim, '$1')
+		return '<h2 id="'+ a.toLinkCase() +'"">' + a + '</h2><hr>'
+	})
+	.replace(/\n--+-\n/g, '<hr>\n')
+	/*** DIVS ***/
+	.replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
+	.replace(/{% hint style="(\w+)" %}/g, '<div class=$1>')
+	.replace(/{% endhint %}/g, '</div>')
+	/*** CITE ***/
+	.replace(/^(\||&gt;)\s(.+)/gim, '<blockquote>$2</blockquote>')
+	.replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
+	/*** FORMAT ***/
+	.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
+	.replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
+	.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
+	.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/, '$1<ins>$2</ins>')
+	.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/, '$1<mark>$2</mark>')
+	/*** TITLE ***/
+	.replace(/^#.+\s([\x20-\x22\x24-\xFF].+)/gm, function(input) {
+		var number = 0
+		var output
+
+		function index(text) {
+			if(/^#+\s/.test(text)){
+				number++
+				text = text.replace(/^#/, '')
+				index(text, number)
+			}else{
+				if (number == 0){
+					output = text
+					return;
+				}
+				const TITLE = text.replace(/^\s/, '')
+				output = '<h'+number+' id="'+ TITLE.toLinkCase() +'">\n\t' + TITLE + '\n</h'+number+'>'
+			}
+		}
+		index(input)
+
+		return output
+	})
+	/*** BR ***/
+	.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
+	.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
+	/*** ATTACH ***/
+	.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
+	.replace(/\.md(\)|#)/g, '.html$1')
+	.replace(/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<a href="$2" title="$3">$1</a>')
+	/*** CODE ***/
+	.replace(/```(\w+|\n)?\s([\x09-\x5F\x61-\xFF]*)```/g, '<pre class="$1">$2</pre>')
+	.replace(/`([\x20-\x5F\x61-\xFF]+)`/g, '<code>$1</code>')
 + '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v' + VERSION + ' - by MatiDragon & Seemann with <3 for you</p>'
 
 var $firstElementChild = $('.markdown').firstElementChild.style
