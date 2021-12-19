@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.0";
+const VERSION = "1.1";
 
 // GLOBAL VARS
 const d = document;
@@ -81,7 +81,7 @@ $('.markdown').innerHTML = $('.markdown').innerHTML
 	.replace(/{% hint style="(\w+)" %}/g, '<div class=$1>')
 	.replace(/{% endhint %}/g, '</div>')
 	/*** CITE ***/
-	.replace(/^(\||&gt;)\s(.+)/gim, '<blockquote>$2</blockquote>')
+	.replace(/^&gt;\s(.+)/gim, '<blockquote>$1</blockquote>')
 	.replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 	/*** FORMAT ***/
 	.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
