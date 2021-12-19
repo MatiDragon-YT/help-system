@@ -20,7 +20,6 @@ MAIN=,"en.table.hhc","en.index.hhk","en\README.html","en\README.html",,,,,0x4212
 en\README.html
 en\credits.html
 en\version-history.html
-en\coding\README.html
 en\coding\arrays.html
 en\coding\built-in-commands.html
 en\coding\classes.html
@@ -33,7 +32,6 @@ en\coding\hex..end.html
 en\coding\keywords.html
 en\coding\loops.html
 en\coding\variables.html
-en\editor\README.html
 en\editor\cli.html
 en\editor\console.html
 en\editor\features.html
@@ -52,19 +50,15 @@ en\editor\edit-modes\customlabels.ini.html
 en\editor\edit-modes\enums.txt.html
 en\editor\edit-modes\extensions.html
 en\editor\edit-modes\opcodes-list-scm.ini.html
-en\scm-documentation\README.html
 en\scm-documentation\gta-limits.html
-en\scm-documentation\gta3\README.html
 en\scm-documentation\gta3\pedtypes.html
 en\scm-documentation\gta3\radar-icons.html
-en\scm-documentation\lcs\README.html
 en\scm-documentation\lcs\clothes.html
 en\scm-documentation\lcs\gangs.html
 en\scm-documentation\lcs\models.html
 en\scm-documentation\lcs\special-actors.html
 en\scm-documentation\lcs\weapons.html
 en\scm-documentation\lcs\weather.html
-en\scm-documentation\sa\README.html
 en\scm-documentation\sa\buttons.html
 en\scm-documentation\sa\clothes.html
 en\scm-documentation\sa\gangs.html
@@ -83,7 +77,6 @@ en\scm-documentation\sa\vehicle-variations.html
 en\scm-documentation\sa\weapons.html
 en\scm-documentation\sa\weather.html
 en\scm-documentation\sa\zones.html
-en\scm-documentation\vc\README.html
 en\scm-documentation\vc\buttons.html
 en\scm-documentation\vc\gangs.html
 en\scm-documentation\vc\garages.html
@@ -91,13 +84,9 @@ en\scm-documentation\vc\interiors.html
 en\scm-documentation\vc\pedtypes.html
 en\scm-documentation\vc\radar-icons.html
 en\scm-documentation\vc\weapons.html
-en\scm-documentation\vcs\README.html
 en\scm-documentation\vcs\clothes.html
 en\scm-documentation\vcs\gangs.html
 en\scm-documentation\vcs\weather.html
-
-
-
 img\assets\sbl-update-popup-en.png
 img\assets\ide-add-template-en.png
 img\assets\edit_modes.png
@@ -372,8 +361,6 @@ img\vc\weapon\minigun.gif
 img\vc\weapon\sniper.gif
 img\vc\weapon\laser.gif
 img\vc\weapon\camera.gif
-
-
 img\logo1.jpg
 img\logo2.jpg
 
