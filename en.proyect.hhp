@@ -51,6 +51,8 @@ en\editor\edit-modes\enums.txt.html
 en\editor\edit-modes\extensions.html
 en\editor\edit-modes\opcodes-list-scm.ini.html
 en\scm-documentation\gta-limits.html
+en\scm-documentation\ascii-character-codes.html
+en\scm-documentation\virtual-key-codes.html
 en\scm-documentation\gta3\pedtypes.html
 en\scm-documentation\gta3\radar-icons.html
 en\scm-documentation\lcs\clothes.html
@@ -361,8 +363,6 @@ img\vc\weapon\minigun.gif
 img\vc\weapon\sniper.gif
 img\vc\weapon\laser.gif
 img\vc\weapon\camera.gif
-img\logo1.jpg
-img\logo2.jpg
 
 [INFOTYPES]
 

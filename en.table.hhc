@@ -166,6 +166,14 @@
 			<param name="Local" value="en\scm-documentation\gta-limits.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ASCII Character Codes">
+			<param name="Local" value="en\scm-documentation\ascii-character-codes.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Virtual Key Codes">
+			<param name="Local" value="en\scm-documentation\virtual-key-codes.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="GTA III">
 			</OBJECT>
 		<UL>
