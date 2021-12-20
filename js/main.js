@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.1";
+const VERSION = "1.2";
 
 // GLOBAL VARS
 const d = document;
@@ -37,26 +37,11 @@ function apply(ele, func){
 	}
 }
 
-function dir(){
-	var dirDefault = parseInt($('html').getAttribute('cd')) || '../../'
-	var dirCreate = '../'
-
-	if (isNaN(dirDefault)){
-		return dirDefault
-	}
-	for (var i = 1; i < dirDefault; i++) {
-		dirCreate += '../'
-	}
-	return dirCreate
-}
-
 $('body').innerHTML = '\
-<div style="background: url(\''+ dir() +'img/logo1.jpg\')">\
-	<div style="background: url(\''+ dir() +'img/logo2.jpg\') no-repeat;height: 121px;max-width: 640px"></div>\
-</div>\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
-	<h1 style="padding: 9px 33px;border-top: none;margin-top: 0;">'+ d.title +'</h1>\
-</div><div class="markdown">' + $('body').innerHTML
+	<h1 style="padding: 9px 33px;border-bottom: none;margin-bottom: 0;">'+ d.title +'</h1>\
+</div>\
+<div class="markdown">' + $('body').innerHTML
 
 $('.markdown').innerHTML = $('.markdown').innerHTML
 	/*** LIST ***/
@@ -89,6 +74,7 @@ $('.markdown').innerHTML = $('.markdown').innerHTML
 	.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
 	.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/, '$1<ins>$2</ins>')
 	.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/, '$1<mark>$2</mark>')
+	.replace(/(\s|\(|>)~~([\x20-\x7D\xA0-\xFF]+)~~/g, '$1<strike>$2</strike>')
 	/*** TITLE ***/
 	.replace(/^#.+\s([\x20-\x22\x24-\xFF].+)/gm, function(input) {
 		var number = 0
@@ -165,8 +151,8 @@ apply($('.sb3'), function(e){
 	//Palabras Reservadas
 	.replace(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
 	//Etiquetas
-	.replace(/(\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
-	.replace(/(\s)([A-Za-z]+\(\))/gm, "$1<span class=commands>$2<\/span>")
+	.replace(/(^|\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
+	.replace(/(^|\s+)([A-Za-z0-9_]+\(\))/gm, "$1<span class=commands>$2<\/span>")
 	//Arreglos
 	.replace(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
 	//Opcodes
