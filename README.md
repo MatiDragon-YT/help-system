@@ -3,7 +3,7 @@
 
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked together, to understand much of the GitBook site Markdown and highlight SB3 code easy and quickly.
 
-![image](https://user-images.githubusercontent.com/43966706/146648598-1a8849a7-b2a3-4b0a-af48-3538512ceff2.png)
+![image](https://user-images.githubusercontent.com/43966706/146701538-c03bc730-51bc-414e-8253-f33cf0d591d9.png)
 
 ## About
 This repository contains sources for Sanny Builder compiled help files (CHM). Currently the English version exist.\
