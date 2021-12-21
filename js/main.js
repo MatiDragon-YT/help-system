@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.2";
+const VERSION = "1.3";
 
 // GLOBAL VARS
 const d = document;
