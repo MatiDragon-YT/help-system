@@ -5,7 +5,7 @@ const VERSION = "1.3";
 const d = document;
 
 String.prototype.toLinkCase = function(){
-	return this.toLowerCase().replace(/\s/g, '-')
+	return this.toLowerCase().replace(/<(\/)?[\!\w\d\s\.,-="]+>/g, '').replace(/\s/g, '-')
 }
 
 /** Smart selector for elements of the DOM
@@ -41,102 +41,145 @@ $('body').innerHTML = '\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
 	<h1 style="padding: 9px 33px;border-bottom: none;margin-bottom: 0;">'+ d.title +'</h1>\
 </div>\
-<div class="markdown">' + $('body').innerHTML
+<textarea id="inputText" style="display:none;">'
++ $('body').innerHTML +
+'</textarea>\
+<div class="markdown"></div>'
 
-$('.markdown').innerHTML = $('.markdown').innerHTML
-	/*** LIST ***/
-	.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
-	.replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
-	.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
-	.replace(/<\/ul>(\s+)<ul>/g, '')
-	.replace(/<\/ol>(\s+)<ol>/g, '')
-	.replace(/<\/dl>(\s+)<dl>/g, '')
-	/*** HR ***/
-	.replace(/^(\w.+)\n==+=/gim, function(input){
-		var a = input.replace(/^(\w.+)\n==+=/gim, '$1')
-		return '<h1 id="'+ a.toLinkCase() +'"">' + a + '</h1><hr>'
-	})
-	.replace(/^(\w.+)\n--+-/gim, function(input){
-		var a = input.replace(/^(\w.+)\n--+-/gim, '$1')
-		return '<h2 id="'+ a.toLinkCase() +'"">' + a + '</h2><hr>'
-	})
-	.replace(/\n--+-\n/g, '<hr>\n')
-	/*** DIVS ***/
-	.replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
-	.replace(/{% hint style="(\w+)" %}/g, '<div class=$1>')
-	.replace(/{% endhint %}/g, '</div>')
-	/*** CITE ***/
-	.replace(/^&gt;\s(.+)/gim, '<blockquote>$1</blockquote>')
-	.replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
-	/*** FORMAT ***/
-	.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
-	.replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
-	.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
-	.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/, '$1<ins>$2</ins>')
-	.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/, '$1<mark>$2</mark>')
-	.replace(/(\s|\(|>)~~([\x20-\x7D\xA0-\xFF]+)~~/g, '$1<strike>$2</strike>')
-	/*** TITLE ***/
-	.replace(/^#.+\s([\x20-\x22\x24-\xFF].+)/gm, function(input) {
-		var number = 0
-		var output
+$('#inputText').value = $('#inputText').value
 
-		function index(text) {
-			if(/^#+\s/.test(text)){
-				number++
-				text = text.replace(/^#/, '')
-				index(text, number)
-			}else{
-				if (number == 0){
-					output = text
-					return;
-				}
-				const TITLE = text.replace(/^\s/, '')
-				output = '<h'+number+' id="'+ TITLE.toLinkCase() +'">\n\t' + TITLE + '\n</h'+number+'>'
+/******** LIST ********/
+
+/*** FORMAT ***/
+.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
+.replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
+.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
+.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/g, '$1<ins>$2</ins>')
+.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/g, '$1<mark>$2</mark>')
+.replace(/(\s|\(|>)~~([\x20-\x7D\xA0-\xFF]+)~~/g, '$1<s>$2</s>')
+
+// UL LI
+.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
+.replace(/<\/ul>(\s+)<ul>/g, '')
+
+// OL LI
+.replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
+.replace(/<\/ol>(\s+)<ol>/g, '')
+
+// DL DD
+.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
+.replace(/<\/dl>(\s+)<dl>/g, '')
+
+// HR
+.replace(/(\n|^)--+-\n/g, '<hr>\n')
+
+/*** DIVS ***/
+.replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
+.replace(/{% hint style="(\w+)" %}/g, '<div class=$1>')
+.replace(/{% endhint %}/g, '</div>')
+
+/*** BLOCKQUOTE ***/
+.replace(/^>\x20(.+)/gim, '<blockquote>$1</blockquote>')
+.replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
+
+/*** TITLE ***/
+.replace(/^(\w.+)\n==+=\n/gim, function(input){
+	input = input.trim().replace(/^(\w.+)\n==+=/gim, '$1')
+	return '<h1 id="'+ input.toLinkCase() +'">' + input + '</h1>'
+})
+.replace(/^(\w.+)\n--+-\n/gim, function(input){
+	input = input.trim().replace(/^(\w.+)\n--+-/gim, '$1')
+	return '<h2 id="'+ input.toLinkCase() +'">' + input + '</h2>'
+})
+.replace(/^#+\x20(.+)/gm, function(input) {
+	var number = 0
+	var output
+
+	function index(text) {
+
+		if(/^#+\x20/.test(text)){
+			number++
+			text = text.replace(/^#/, '')
+			index(text, number)
+		}else{
+			if (number == 0){
+				output = text
+				return;
 			}
+			const TITLE = text.replace(/^\x20/, '')
+			output = '<h'+number+' id="'+ TITLE.toLinkCase() +'">' + TITLE + '</h'+number+'>'
 		}
-		index(input)
+	}
+	index(input)
 
-		return output
+	return output
+})
+/*** BR ***/
+.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
+.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
+
+// IMG
+.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
+
+// A
+.replace(
+	/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x21-\x27\x2A-\xFF]+)(\x20"[\w\d\s]+")?\)/g, function(input){
+		
+		var display = input.match(/\[(.+)\]/)[1]
+		var href = input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '')
+		var title = getTitle()
+
+		function getTitle(){
+			if(/"(.+)"/.test(input)){
+				return input.match(/"(.+)"/)[1]
+			}
+			return ''
+		}
+
+		return '<a href="'+href+'" title="'+title+'">'+display+'</a>'
 	})
-	/*** BR ***/
-	.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
-	.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
-	/*** ATTACH ***/
-	.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
-	.replace(/\.md(\)|#)/g, '.html$1')
-	.replace(/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<a href="$2" title="$3">$1</a>')
-	/*** CODE ***/
-	.replace(/```(\w+|\n)?\s([\x09-\x5F\x61-\xFF]*)```/g, '<pre class="$1">$2</pre>')
-	.replace(/`([\x20-\x5F\x61-\xFF]+)`/g, '<code>$1</code>')
+
+// PRE
+.replace(/```([\x09-\x5F\x61-\xFF]*)```/g, function(input){
+
+	var display = input
+		.replace(/```(\w+)?\n([\x09-\x5F\x61-\xFF]*)```/, '$2')
+		.replace(/</g, '&lt;')
+
+	function getLang(){
+		if(/```(\w+)\n/.test(input)){
+			return input.match(/```(\w+)\n/)[1]
+		}
+		return ''
+	}
+
+	return '<pre class="' + getLang() + '">' + display + '</pre>'
+})
+
+// CODE
+.replace(/`([\x20-\x5F\x61-\xFF]+)`/g, function(input){
+	input = input
+		.replace(/`([\x20-\x5F\x61-\xFF]+)`/, '$1')
+		.replace(/</g, '&lt;')
+		.replace(/=""/g, '')
+
+	return '<code>' + input + '</code>'
+})
+
+// OTHERS
+.replace(/\t/g, '    ')    // tab -> 4 Spaces
+.replace(/\.md/g, '.html') // .md -> .html
 + '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v' + VERSION + ' - by MatiDragon & Seemann with <3 for you</p>'
 
-var $firstElementChild = $('.markdown').firstElementChild.style
-
-$firstElementChild['padding-top'] = 0
-$firstElementChild['margin-top'] = 0
-$firstElementChild['border-top'] = 0
+$('.markdown').innerHTML = $('#inputText').value 
+$('body').style['display'] = 'block'
 
 
-apply($('code'), function(e){
-	e.innerText = e.innerHTML
-	.replace(/=""/g, '')
-	.replace(/<\/(\w+|\w)?>/g, '')
 
-	e.innerHTML = e.innerHTML
-	.replace(/&amp;/g, '&')
-})
 
-apply($('pre'), function(e){
-	e.innerText = e.innerHTML
-	.replace(/=""/g, '')
-	.replace(/<\/(\w+|\w)?>/g, '');
 
-	e.innerHTML = e.innerText
-	.replace(/<br>/g, '\n')
-	
-	e.innerHTML = e.innerHTML
-	.replace(/&amp;/g, '&')
-})
+
+
 
 apply($('.sb3'), function(e){
 	e.innerHTML = e.innerHTML
@@ -176,8 +219,6 @@ apply($('.sb3'), function(e){
 	.replace(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
 	.replace(/(\&amp;\d+)/gim, "<span class=variables>$1<\/span>")
 	.replace(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
-	//Simbolos
-	.replace(/(\t)/gmi, "    ")
 	//.replace(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })
 /* Search at TABLE
