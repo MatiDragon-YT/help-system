@@ -101,7 +101,7 @@ p { padding: 8px 0 }
 
 b { font-weight: 700 }
 
-dl, ol, ul { margin: 1rem 2rem }
+dl, ol, ul { margin: 1rem calc(1.5rem + .5vw) }
 
 dd, li { margin: 0 0 5px }
 
@@ -118,8 +118,9 @@ pre {
 }
 
 code {
-    padding: 2px 6px;
+    padding: 2px 5px;
     border-radius: 3px;
+    margin: 0 2px;
 }
 
 img {

@@ -1,11 +1,14 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.3";
+const VERSION = "1.4";
 
 // GLOBAL VARS
 const d = document;
 
 String.prototype.toLinkCase = function(){
 	return this.toLowerCase().replace(/<(\/)?[\!\w\d\s\.,-="]+>/g, '').replace(/\s/g, '-')
+}
+String.prototype.parseHTML = function(){
+	return this.replace(/<br>/g, '\n').replace(/</g, '&lt;').replace(/=""/g, '')
 }
 
 /** Smart selector for elements of the DOM
@@ -50,6 +53,26 @@ $('#inputText').value = $('#inputText').value
 
 /******** LIST ********/
 
+// UL LI
+.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
+.replace(/^\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1</li></ul></ul>')
+.replace(/^\x20{4}\*\s(.+)/gim, '<ul><ul><ul><li>$1</li></ul></ul></ul>')
+.replace(/<\/ul>(\s+)<ul>/g, '')
+.replace(/<\/ul><\/ul><ul><ul>/g, '')
+.replace(/<\/ul><ul>/g, '')
+
+// OL LI
+.replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
+.replace(/^\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1</li></ol></ol>')
+.replace(/<\/ol>(\s+)<ol>/g, '')
+.replace(/<\/ol><ol>/g, '')
+
+// DL DD
+.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
+.replace(/^\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1</dd></dl></dl>')
+.replace(/<\/dl>(\s+)<dl>/g, '')
+.replace(/<\/dl><dl>/g, '')
+
 /*** FORMAT ***/
 .replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
 .replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
@@ -57,21 +80,6 @@ $('#inputText').value = $('#inputText').value
 .replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/g, '$1<ins>$2</ins>')
 .replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/g, '$1<mark>$2</mark>')
 .replace(/(\s|\(|>)~~([\x20-\x7D\xA0-\xFF]+)~~/g, '$1<s>$2</s>')
-
-// UL LI
-.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
-.replace(/<\/ul>(\s+)<ul>/g, '')
-
-// OL LI
-.replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
-.replace(/<\/ol>(\s+)<ol>/g, '')
-
-// DL DD
-.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
-.replace(/<\/dl>(\s+)<dl>/g, '')
-
-// HR
-.replace(/(\n|^)--+-\n/g, '<hr>\n')
 
 /*** DIVS ***/
 .replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
@@ -83,6 +91,7 @@ $('#inputText').value = $('#inputText').value
 .replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
 /*** TITLE ***/
+
 .replace(/^(\w.+)\n==+=\n/gim, function(input){
 	input = input.trim().replace(/^(\w.+)\n==+=/gim, '$1')
 	return '<h1 id="'+ input.toLinkCase() +'">' + input + '</h1>'
@@ -114,7 +123,11 @@ $('#inputText').value = $('#inputText').value
 
 	return output
 })
-/*** BR ***/
+
+// HR
+.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
+
+// BR
 .replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
 .replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
 
@@ -126,9 +139,17 @@ $('#inputText').value = $('#inputText').value
 	/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x21-\x27\x2A-\xFF]+)(\x20"[\w\d\s]+")?\)/g, function(input){
 		
 		var display = input.match(/\[(.+)\]/)[1]
-		var href = input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '')
-		var title = getTitle()
+		var href   =   ' href="' + input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '') + '"'
+		var title  =  ' title="' + getTitle() + '"'
+		var target = ' target="'
 
+		if(/http/.test(href)){
+			target += '_blank"'
+		}else{
+			target += '_self"'
+			href = href.replace(/\.md/g, '.html')
+		}
+		
 		function getTitle(){
 			if(/"(.+)"/.test(input)){
 				return input.match(/"(.+)"/)[1]
@@ -136,15 +157,14 @@ $('#inputText').value = $('#inputText').value
 			return ''
 		}
 
-		return '<a href="'+href+'" title="'+title+'">'+display+'</a>'
+		return '<a'+ href + title + target + '>' + display + '</a>'
 	})
 
 // PRE
 .replace(/```([\x09-\x5F\x61-\xFF]*)```/g, function(input){
 
 	var display = input
-		.replace(/```(\w+)?\n([\x09-\x5F\x61-\xFF]*)```/, '$2')
-		.replace(/</g, '&lt;')
+		.replace(/```(\w+)?\n([\x09-\x5F\x61-\xFF]*)```/, '$2').parseHTML()
 
 	function getLang(){
 		if(/```(\w+)\n/.test(input)){
@@ -159,16 +179,10 @@ $('#inputText').value = $('#inputText').value
 // CODE
 .replace(/`([\x20-\x5F\x61-\xFF]+)`/g, function(input){
 	input = input
-		.replace(/`([\x20-\x5F\x61-\xFF]+)`/, '$1')
-		.replace(/</g, '&lt;')
-		.replace(/=""/g, '')
+		.replace(/`([\x20-\x5F\x61-\xFF]+)`/, '$1').parseHTML()
 
 	return '<code>' + input + '</code>'
 })
-
-// OTHERS
-.replace(/\t/g, '    ')    // tab -> 4 Spaces
-.replace(/\.md/g, '.html') // .md -> .html
 + '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v' + VERSION + ' - by MatiDragon & Seemann with <3 for you</p>'
 
 $('.markdown').innerHTML = $('#inputText').value 
