@@ -280,6 +280,10 @@
 				<param name="Local" value="en\scm-documentation\sa\trains.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Vehicle IDs">
+				<param name="Local" value="en\scm-documentation\sa\vehicles.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Vehicle Variations">
 				<param name="Local" value="en\scm-documentation\sa\vehicle-variations.html">
 				</OBJECT>

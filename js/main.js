@@ -183,7 +183,7 @@ $('#inputText').value = $('#inputText').value
 
 	return '<code>' + input + '</code>'
 })
-+ '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM EN v' + VERSION + ' - by MatiDragon & Seemann with <3 for you</p>'
++ '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM ' + ($('html').getAttribute('lang') || 'en').toUpperCase() + ' ' + VERSION + ' - with <3 for you.</p>'
 
 $('.markdown').innerHTML = $('#inputText').value 
 $('body').style['display'] = 'block'
