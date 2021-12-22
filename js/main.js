@@ -2,8 +2,14 @@
 const VERSION = "1.4";
 
 // GLOBAL VARS
-const d = document;
+const EMOJIS = {
+	'clap': '👏',
+	'+1' : '👍',
+	'-1' : '👎'
+}
+const D = document
 
+// PROTOTIPES
 String.prototype.toLinkCase = function(){
 	return this.toLowerCase().replace(/<(\/)?[\!\w\d\s\.,-="]+>/g, '').replace(/\s/g, '-')
 }
@@ -15,12 +21,12 @@ String.prototype.parseHTML = function(){
  * @param str : DOMString
 */
 function $(str) {
-	if (str.charAt(0) === '#' && !/\s/.test(str) || d.querySelectorAll(str).length === 1) { 
-		return d.querySelector(str);
+	if (str.charAt(0) === '#' && !/\s/.test(str) || D.querySelectorAll(str).length === 1) { 
+		return D.querySelector(str);
 	}
 	else {
-		if(d.querySelectorAll(str).length === 0){return undefined}
-		return d.querySelectorAll(str);
+		if(D.querySelectorAll(str).length === 0){return undefined}
+		return D.querySelectorAll(str);
 	}
 }
 
@@ -42,7 +48,7 @@ function apply(ele, func){
 
 $('body').innerHTML = '\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
-	<h1 style="padding: 9px 33px;border-bottom: none;margin-bottom: 0;">'+ d.title +'</h1>\
+	<h1 style="padding: 9px 33px;border-bottom: none;margin-bottom: 0;">'+ D.title +'</h1>\
 </div>\
 <textarea id="inputText" style="display:none;">'
 + $('body').innerHTML +
@@ -77,9 +83,18 @@ $('#inputText').value = $('#inputText').value
 .replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\xFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
 .replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\xFF]+)\*\*/g, '$1<b>$2</b>')
 .replace(/(\s|\(|>)\*([\x20-\x29\x2B-\xFF]+)\*/g, '$1<i>$2</i>')
-.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/g, '$1<ins>$2</ins>')
-.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/g, '$1<mark>$2</mark>')
 .replace(/(\s|\(|>)~~([\x20-\x7D\xA0-\xFF]+)~~/g, '$1<s>$2</s>')
+.replace(/(\s|\(|>)__([\x20-\x5E\x60-\xFF]+)__/g, '$1<u>$2</u>')
+.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\xFF]+)==/g, '$1<mark>$2</mark>')
+.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/g, '$1<ins>$2</ins>')
+
+// EMOJIS
+.replace(/(\B|\s+):([\w\d\+-]+):(\B)/g, function(input){
+
+	input = input.split(':')
+
+	return input[0] + EMOJIS[input[1]] + input[2]
+})
 
 /*** DIVS ***/
 .replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
@@ -124,13 +139,6 @@ $('#inputText').value = $('#inputText').value
 	return output
 })
 
-// HR
-.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
-
-// BR
-.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
-.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
-
 // IMG
 .replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
 
@@ -138,27 +146,34 @@ $('#inputText').value = $('#inputText').value
 .replace(
 	/\[([\x20-\x5A\x5C\x5E-\xFF]+)\]\(([\x21-\x27\x2A-\xFF]+)(\x20"[\w\d\s]+")?\)/g, function(input){
 		
-		var display = input.match(/\[(.+)\]/)[1]
-		var href   =   ' href="' + input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '') + '"'
-		var title  =  ' title="' + getTitle() + '"'
-		var target = ' target="'
+	var display = input.match(/\[(.+)\]/)[1]
+	var href   =   ' href="' + input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '') + '"'
+	var title  =  ' title="' + getTitle() + '"'
+	var target = ' target="'
 
-		if(/http/.test(href)){
-			target += '_blank"'
-		}else{
-			target += '_self"'
-			href = href.replace(/\.md/g, '.html')
+	if(/http/.test(href)){
+		target += '_blank"'
+	}else{
+		target += '_self"'
+		href = href.replace(/\.md/g, '.html')
+	}
+	
+	function getTitle(){
+		if(/"(.+)"/.test(input)){
+			return input.match(/"(.+)"/)[1]
 		}
-		
-		function getTitle(){
-			if(/"(.+)"/.test(input)){
-				return input.match(/"(.+)"/)[1]
-			}
-			return ''
-		}
+		return ''
+	}
 
-		return '<a'+ href + title + target + '>' + display + '</a>'
-	})
+	return '<a'+ href + title + target + '>' + display + '</a>'
+})
+
+// HR
+.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
+
+// BR
+.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
+.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
 
 // PRE
 .replace(/```([\x09-\x5F\x61-\xFF]*)```/g, function(input){
