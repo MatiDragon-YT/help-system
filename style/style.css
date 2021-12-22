@@ -101,6 +101,11 @@ p { padding: 8px 0 }
 
 b { font-weight: 700 }
 
+ins { 
+    text-decoration: dotted underline;
+    text-underline-position: under;
+}
+
 dl, ol, ul { margin: 1rem calc(1.5rem + .5vw) }
 
 dd, li { margin: 0 0 5px }
