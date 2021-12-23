@@ -84,20 +84,18 @@ const keys = [
 ["Parachute",46,"gun_para",371,12,"gun_paraIcon","PARACHUTE"],
 ["Jetpack","-","jetpack",370,"-","jetpackicon","-"],
 ["Cellphone","-","cellphone",330,"-","cellphoneicon","-"]
-],
-$tbody = $('tbody')
+]
 
-for (var i = 0; i < keys.length; i++) {
-
-$tbody.innerHTML +=
-  "<tr>"+
-  "<td>"+ keys[i][0] +"</td>"+ // name
-  "<td>"+ keys[i][1] +"</td>"+ // id
-  "<td>"+ keys[i][2] +"<hr>"+ keys[i][3] +"</td>"+ // model
-  "<td>"+ keys[i][4] +"</td>"+ // group
-  "<td><center><img src='../../../img/sa/weapon/"+ keys[i][5] +".png'></center></td>"+
-  "<td><code>"+ keys[i][6] +"</code></td>"+ // gxt
-  "</tr>"
+for (var i=0,text=""; i < keys.length; i++) {
+text+=
+"<tr>"+
+"<td>"+keys[i][0]+"</td>"+ // name
+"<td>"+keys[i][1]+"</td>"+ // id
+"<td>"+keys[i][2]+"<hr>"+keys[i][3]+"</td>"+ // model
+"<td>"+keys[i][4]+"</td>"+ // group
+"<td><center><img src='../../../img/sa/weapon/"+keys[i][5]+".png'></center></td>"+
+"<td><code>"+keys[i][6]+"</code></td>"+ // gxt
+"</tr>"
 }
-
+$('tbody').innerHTML+=text
 </script>
