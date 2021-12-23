@@ -17,395 +17,87 @@ th:nth-child(2),th:nth-child(3),th:nth-child(4),th:nth-child(5),th:nth-child(6),
 td:nth-child(2),td:nth-child(3),td:nth-child(4),td:nth-child(5),td:nth-child(6){
  text-align: center;
 }
-/*
-td:nth-child(2),td:nth-child(3),td:nth-child(4){
- color: #F44336;
- font-weight: bolder!important; 
-}
-*/
 </STYLE>
 
-<TABLE>
-<THEAD>
-<TR>
+<table>
+<thead>
+<tr>
 <th>Name</th>
 <th>ID</th>
 <th>Model</th>
 <th>Group</th>  
 <th>Icon</th>
 <th>GXT & ENUM</th>
-</TR>
-</THEAD>
+</tr>
+</thead>
 <tbody>
-<tr>
-<td>Unarmed</td>
-<td>0</td>
-<td>-1<hr>-1</td>
-<td>1</td>
-<td>![](../../../img/sa/weapon/fist.png)</td>
-<td><code>UNARMED</code></td>        
-</tr>
-<tr>
-<td>Brass Knuckles</td>
-<td>1</td>
-<td>#brassknuckle<hr>331</td>
-<td>1</td>
-<td>![](../../../img/sa/weapon/BRASSKNUCKLEicon.png)</td>
-<td><code>BRASSKNUCKLE</code></td>        
-</tr>
-<tr>
-<td>Golf Club</td>
-<td>2</td>
-<td>#golfclub<hr>333</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/golfclubicon.png)</td>
-<td><code>GOLFCLUB</code></td>        
-</tr>
-<tr>
-<td>Night Stick</td>
-<td>3</td>
-<td>#nitestick<hr>334</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/nitestickicon.png)</td>
-<td><code>NIGHTSTICK</code></td>        
-</tr>
-<tr>
-<td>Knife</td>
-<td>4</td>
-<td>#knifecur<hr>335</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/knifecuricon.png)</td>
-<td><code>KNIFE</code></td>        
-</tr>
-<tr>
-<td>Baseball Bat</td>
-<td>5</td>
-<td>#bat<hr>336</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/baticon.png)</td>
-<td><code>BASEBALLBAT</code></td>        
-</tr>
-<tr>
-<td>Shovel</td>
-<td>6</td>
-<td>#shovel<hr>337</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/shovelicon.png)</td>
-<td><code>SHOVEL</code></td>        
-</tr>
-<tr>
-<td>Pool cue</td>
-<td>7</td>
-<td>#poolcue<hr>338</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/poolcueicon.png)</td>
-<td><code>POOLCUE</code></td>        
-</tr>
-<tr>
-<td>Katana</td>
-<td>8</td>
-<td>#katana<hr>339</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/katanaicon.png)</td>
-<td><code>KATANA</code></td>        
-</tr> 
-<tr>
-<td>Chainsaw</td>
-<td>9</td>
-<td>#chnsaw<hr>341</td>
-<td>2</td>
-<td>![](../../../img/sa/weapon/chnsawicon.png)</td>
-<td><code>CHAINSAW</code></td>        
-</tr>
-<tr>
-<td>Purple Dildo</td>
-<td>10</td>
-<td>#gun_dildo1<hr>321</td>
-<td>11</td>
-<td>![](../../../img/sa/weapon/gun_dildo1icon.png)</td>
-<td><code>PURPLEDILDO</code></td>        
-</tr>
-<tr>
-<td>White Dildo</td>
-<td>11</td>
-<td>#gun_dildo2<hr>322</td>
-<td>11</td>
-<td>![](../../../img/sa/weapon/gun_dildo2icon.png)</td>
-<td><code>WHILEDILDO</code></td>        
-</tr>
-<tr>
-<td>Long White Dildo</td>
-<td>12</td>
-<td>#gun_vibe1<hr>323</td>
-<td>11</td>
-<td>![](../../../img/sa/weapon/gun_vibe1icon.png)</td>
-<td><code>LONGWHITEDILDO</code></td>        
-</tr>
-<tr>
-<td>White Dildo 2</td>
-<td>13</td>
-<td>#gun_vibe2<hr>324</td>
-<td>11</td>
-<td>![](../../../img/sa/weapon/gun_vibe2icon.png)</td>
-<td><code>WHILEDILDO2</code></td>        
-</tr>
-<tr>
-<td>Flowers</td>
-<td>14</td>
-<td>#flowera<hr>325</td>
-<td>11</td>
-<td>![](../../../img/sa/weapon/floweraicon.png)</td>
-<td><code>FLOWERS</code></td>        
-</tr>
-<tr>
-<td>Cane</td>
-<td>15</td>
-<td>#gun_cane<hr>326</td>
-<td>11</td>
-<td>![](../../../img/sa/weapon/gun_caneicon.png)</td>
-<td><code>CANE</code></td>        
-</tr>
-<tr>
-<td>Grenades</td>
-<td>16</td>
-<td>#grenade<hr>342</td>
-<td>9</td>
-<td>![](../../../img/sa/weapon/grenadeicon.png)</td>
-<td><code>GRANADE</code></td>        
-</tr>
-<tr>
-<td>Tear Gas</td>
-<td>17</td>
-<td>#teargas<hr>343</td>
-<td>9</td>
-<td>![](../../../img/sa/weapon/TearGasicon.png)</td>
-<td><code>TEARGAS</code></td>        
-</tr>
-<tr>
-<td>Molotovs</td>
-<td>18</td>
-<td>#molotovs<hr>334</td>
-<td>9</td>
-<td>![](../../../img/sa/weapon/molotovicon.png)</td>
-<td><code>MOLOTOV</code></td>        
-</tr>
-<tr>
-<td>Pistol</td>
-<td>22</td>
-<td>#colt45<hr>346</td>
-<td>3</td>
-<td>![](../../../img/sa/weapon/colt45icon.png)</td>
-<td><code>PISTOL</code></td>        
-</tr>
-<tr>
-<td>Silenced Pistol</td>
-<td>23</td>
-<td>#silenced<hr>347</td>
-<td>3</td>
-<td>![](../../../img/sa/weapon/silencedicon.png)</td>
-<td><code>SILENCED</code></td>        
-</tr>
-<tr>
-<td>Desert Eagle</td>
-<td>24</td>
-<td>#desert_eagle<hr>348</td>
-<td>3</td>
-<td>![](../../../img/sa/weapon/desert_eagleicon.png)</td>
-<td><code>DESERTEAGLE</code></td>        
-</tr>
-<tr>
-<td>Shotgun</td>
-<td>25</td>
-<td>#chromegun<hr>349</td>
-<td>4</td>
-<td>![](../../../img/sa/weapon/chromegunicon.png)</td>
-<td><code>SHOTGUN</code></td>        
-</tr>
-<tr>
-<td>Sawn Off Shotgun</td>
-<td>26</td>
-<td>#sawnoff<hr>350</td>
-<td>4</td>
-<td>![](../../../img/sa/weapon/sawnofficon.png)</td>
-<td><code>SAWNOFF</code></td>        
-</tr>
-<tr>
-<td>Combat Shotgun</td>
-<td>27</td>
-<td>#shotgspa<hr>351</td>
-<td>4</td>
-<td>![](../../../img/sa/weapon/shotgspaicon.png)</td>
-<td><code>COMBATSHOTGUN</code></td>        
-</tr>
-<tr>
-<td>Micro UZI (Mac 10)</td>
-<td>28</td>
-<td>#micro_uzi<hr>352</td>
-<td>5</td>
-<td>![](../../../img/sa/weapon/micro_uziicon.png)</td>
-<td><code>MICROUZI</code></td>        
-</tr>
-<tr>
-<td>MP5</td>
-<td>29</td>
-<td>#mp5lng<hr>353</td>
-<td>5</td>
-<td>![](../../../img/sa/weapon/mp5lngicon.png)</td>
-<td><code>MP5</code></td>        
-</tr>
-<tr>
-<td>AK47</td>
-<td>30</td>
-<td>#ak47<hr>355</td>
-<td>6</td>
-<td>![](../../../img/sa/weapon/ak47icon.png)</td>
-<td><code>AK47</code></td>        
-</tr>
-<tr>
-<td>M4</td>
-<td>31</td>
-<td>#m4<hr>356</td>
-<td>6</td>
-<td>![](../../../img/sa/weapon/M4icon.png)</td>
-<td><code>M4</code></td>        
-</tr>
-<tr>
-<td>Tec9</td>
-<td>32</td>
-<td>#tec9<hr>372</td>
-<td>5</td>
-<td>![](../../../img/sa/weapon/tec9icon.png)</td>
-<td><code>TEC9</code></td>        
-</tr>
-<tr>
-<td>Rifle</td>
-<td>33</td>
-<td>#cuntgun<hr>357</td>
-<td>7</td>
-<td>![](../../../img/sa/weapon/cuntgunicon.png)</td>
-<td><code>RIFLE</code></td>        
-</tr>
-<tr>
-<td>Sniper Rifle</td>
-<td>34</td>
-<td>#sniper<hr>358</td>
-<td>7</td>
-<td>![](../../../img/sa/weapon/SNIPERicon.png)</td>
-<td><code>SNIPERRIFLE</code></td>        
-</tr>
-<tr>
-<td>RPG</td>
-<td>35</td>
-<td>#rocketla<hr>359</td>
-<td>8</td>
-<td>![](../../../img/sa/weapon/rocketlaicon.png)</td>
-<td><code>RPG</code></td>        
-</tr>
-<tr>
-<td>Missile Launcher</td>
-<td>36</td>
-<td>#heatseek<hr>360</td>
-<td>8</td>
-<td>![](../../../img/sa/weapon/heatseekicon.png)</td>
-<td><code>HEATSEEK</code></td>        
-</tr>
-<tr>
-<td>Flame Thrower</td>
-<td>37</td>
-<td>#flame<hr>361</td>
-<td>8</td>
-<td>![](../../../img/sa/weapon/flameicon.png)</td>
-<td><code>FLAMETHROWER</code></td>        
-</tr>
-<tr>
-<td>Minigun</td>
-<td>38</td>
-<td>#minigun<hr>362</td>
-<td>8</td>
-<td>![](../../../img/sa/weapon/minigunicon.png)</td>
-<td><code>MINIGUN</code></td>        
-</tr>
-<tr>
-<td>Sachet Charges</td>
-<td>39</td>
-<td>#satchel<hr>363</td>
-<td>9</td>
-<td>![](../../../img/sa/weapon/satchelicon.png)</td>
-<td><code>SACHETCHARGES</code></td>        
-</tr>
-<tr>
-<td>Detonator</td>
-<td>40</td>
-<td>#remote<hr>364</td>
-<td>13</td>
-<td>before long</td>
-<td><code>DETONATOR</code></td>        
-</tr>
-<tr>
-<td>Spray Paint</td>
-<td>41</td>
-<td>#spraycan<hr>365</td>
-<td>10</td>
-<td>![](../../../img/sa/weapon/SPRAYCANicon.png)</td>
-<td><code>SPRAYCAN</code></td>        
-</tr>
-<tr>
-<td>Fire Extinguisher</td>
-<td>42</td>
-<td>#fire_ex<hr>366</td>
-<td>10</td>
-<td>![](../../../img/sa/weapon/fire_exicon.png)</td>
-<td><code>FIREEXTINGUISHER</code></td>        
-</tr>
-<tr>
-<td>Camera</td>
-<td>43</td>
-<td>#camera<hr>367</td>
-<td>10</td>
-<td>![](../../../img/sa/weapon/Cameraicon.png)</td>
-<td><code>CAMERA</code></td>        
-</tr>
-<tr>
-<td>Nightvision Goggles</td>
-<td>44</td>
-<td>#nvgoggles<hr>368</td>
-<td>12</td>
-<td>![](../../../img/sa/weapon/irgogglesicon.png)</td>
-<td><code>NIGHTGOGGLES</code></td>        
-</tr>
-<tr>
-<td>Thermal Goggles</td>
-<td>45</td>
-<td>#irgoggles<hr>369</td>
-<td>12</td>
-<td>![](../../../img/sa/weapon/irgogglesicon.png)</td>
-<td><code>THERMALGOGGLES</code></td>        
-</tr>
-<tr>
-<td>Parachute</td>
-<td>46</td>
-<td>#gun_para<hr>371</td>
-<td>12</td>
-<td>![](../../../img/sa/weapon/gun_paraIcon.png)</td>
-<td><code>PARACHUTE</code></td>        
-</tr>
-<tr>
-<td>Jetpack</td>
-<td>-</td>
-<td>#jetpack<hr>370</td>
-<td>-</td>
-<td>![](../../../img/sa/weapon/jetpackicon.png)</td>
-<td><code>-</code></td>        
-</tr>
-<tr>
-<td>Cellphone</td>
-<td>-</td>
-<td>#cellphone<hr>330</td>
-<td>-</td>
-<td>![](../../../img/sa/weapon/cellphoneicon.png)</td>
-<td><code>-</code></td>        
-</tr>
 </tbody>
-</TABLE>
+</table>
 
 <script src="../../../js/main.min.js"></script>
+
+<script>
+const keys = [
+["Unarmed",0,"1",-1,1,"fist","UNARMED"],
+["Brass Knuckles",1,"brassknuckle",331,1,"BRASSKNUCKLEicon","BRASSKNUCKLE"],
+["Golf Club",2,"golfclub",333,2,"golfclubicon","GOLFCLUB"],
+["Night Stick",3,"nitestick",334,2,"nitestickicon","NIGHTSTICK"],
+["Knife",4,"knifecur",335,2,"knifecuricon","KNIFE"],
+["Baseball Bat",5,"bat",336,2,"baticon","BASEBALLBAT"],
+["Shovel",6,"shovel",337,2,"shovelicon","SHOVEL"],
+["Pool cue",7,"poolcue",338,2,"poolcueicon","POOLCUE"],
+["Katana",8,"katana",339,2,"katanaicon","KATANA"], 
+["Chainsaw",9,"chnsaw",341,2,"chnsawicon","CHAINSAW"],
+["Purple Dildo",10,"gun_dildo1",321,11,"gun_dildo1icon","PURPLEDILDO"],
+["White Dildo",11,"gun_dildo2",322,11,"gun_dildo2icon","WHILEDILDO"],
+["Long White Dildo",12,"gun_vibe1",323,11,"gun_vibe1icon","LONGWHITEDILDO"],
+["White Dildo 2",13,"gun_vibe2",324,11,"gun_vibe2icon","WHILEDILDO2"],
+["Flowers",14,"flowera",325,11,"floweraicon","FLOWERS"],
+["Cane",15,"gun_cane",326,11,"gun_caneicon","CANE"],
+["Grenades",16,"grenade",342,9,"grenadeicon","GRANADE"],
+["Tear Gas",17,"teargas",343,9,"TearGasicon","TEARGAS"],
+["Molotovs",18,"molotovs",334,9,"molotovicon","MOLOTOV"],
+["Pistol",22,"colt45",346,3,"colt45icon","PISTOL"],
+["Silenced Pistol",23,"silenced",347,3,"silencedicon","SILENCED"],
+["Desert Eagle",24,"desert_eagle",348,3,"desert_eagleicon","DESERTEAGLE"],
+["Shotgun",25,"chromegun",349,4,"chromegunicon","SHOTGUN"],
+["Sawn Off Shotgun",26,"sawnoff",350,4,"sawnofficon","SAWNOFF"],
+["Combat Shotgun",27,"shotgspa",351,4,"shotgspaicon","COMBATSHOTGUN"],
+["Micro UZI",28,"micro_uzi",352,5,"micro_uziicon","MICROUZI"],
+["MP5",29,"mp5lng",353,5,"mp5lngicon","MP5"],
+["AK47",30,"ak47",355,6,"ak47icon","AK47"],
+["M4",31,"m4",356,6,"M4icon","M4"],
+["Tec9",32,"tec9",372,5,"tec9icon","TEC9"],
+["Rifle",33,"cuntgun",357,7,"cuntgunicon","RIFLE"],
+["Sniper Rifle",34,"sniper",358,7,"SNIPERicon","SNIPERRIFLE"],
+["RPG",35,"rocketla",359,8,"rocketlaicon","RPG"],
+["Missile Launcher",36,"heatseek",360,8,"heatseekicon","HEATSEEK"],
+["Flame Thrower",37,"flame",361,8,"flameicon","FLAMETHROWER"],
+["Minigun",38,"minigun",362,8,"minigunicon","MINIGUN"],
+["Sachet Charges",39,"satchel",363,9,"satchelicon","SACHETCHARGES"],
+["Detonator",40,"remote",364,13,"before long","DETONATOR"],
+["Spray Paint",41,"spraycan",365,10,"SPRAYCANicon","SPRAYCAN"],
+["Fire Extinguisher",42,"fire_ex",366,10,"fire_exicon","FIREEXTINGUISHER"],
+["Camera",43,"camera",367,10,"Cameraicon","CAMERA"],
+["Nightvision Goggles",44,"nvgoggles",368,12,"irgogglesicon","NIGHTGOGGLES"],
+["Thermal Goggles",45,"irgoggles",369,12,"irgogglesicon","THERMALGOGGLES"],
+["Parachute",46,"gun_para",371,12,"gun_paraIcon","PARACHUTE"],
+["Jetpack","-","jetpack",370,"-","jetpackicon","-"],
+["Cellphone","-","cellphone",330,"-","cellphoneicon","-"]
+],
+$tbody = $('tbody')
+
+for (var i = 0; i < keys.length; i++) {
+
+$tbody.innerHTML +=
+  "<tr>"+
+  "<td>"+ keys[i][0] +"</td>"+ // name
+  "<td>"+ keys[i][1] +"</td>"+ // id
+  "<td>"+ keys[i][2] +"<hr>"+ keys[i][3] +"</td>"+ // model
+  "<td>"+ keys[i][4] +"</td>"+ // group
+  "<td><center><img src='../../../img/sa/weapon/"+ keys[i][5] +".png'></center></td>"+
+  "<td>"+ keys[i][6] +"</td>"+ // gxt
+  "</tr>"
+}
+
+</script>
