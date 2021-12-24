@@ -2,6 +2,7 @@
 const VERSION = "1.5";
 
 // GLOBAL VARS
+var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
 const EMOJIS = {
 	'clap': '👏',
 	'+1' : '👍',
@@ -9,39 +10,39 @@ const EMOJIS = {
 }
 const D = document
 
-// PROTOTIPES
+/** Smart selector for elements of the DOM
+ * @param {DOMString}
+*/
+function $(element) {
+	if (element.charAt(0) === '#' && !/\s/.test(element) || D.querySelectorAll(element).length === 1) { 
+		return D.querySelector(element);
+	}
+	else {
+		if(D.querySelectorAll(element).length === 0){return undefined}
+		return D.querySelectorAll(element);
+	}
+}
+
 String.prototype.toLinkCase = function(){
 	return this.toLowerCase().replace(/<(\/)?[\!\w\d\s\.,-="]+>/g, '').replace(/\s/g, '-')
 }
+
 String.prototype.parseHTML = function(){
 	return this.replace(/<br>/g, '\n').replace(/</g, '&lt;').replace(/=""/g, '')
 }
 
-/** Smart selector for elements of the DOM
- * @param str : DOMString
-*/
-function $(str) {
-	if (str.charAt(0) === '#' && !/\s/.test(str) || D.querySelectorAll(str).length === 1) { 
-		return D.querySelector(str);
-	}
-	else {
-		if(D.querySelectorAll(str).length === 0){return undefined}
-		return D.querySelectorAll(str);
-	}
-}
-
 /** Apply a function to all elements of the DOM
- * @param ele : DocumentElement 
- * @param func : function
+ * @param {DocumentElement} 
+ * @param {function}
 */
-function apply(ele, func){
-	if(ele){ 
-		if('' + ele == '[object NodeList]'){ 
-			for (var i = 0; i < ele.length; i++) {
-				func(ele[i])
+function apply(element, callback){
+	if(element){ 
+		if('' + element == '[object NodeList]'){ 
+			for (var i = 0; i < element.length; i++) {
+				callback(element[i])
 			}
 		}else{  
-			func(ele)
+			callback(element)
 		}
 	}
 }
@@ -155,7 +156,7 @@ $('#inputText').value = $('#inputText').value
 		target += '_blank"'
 	}else{
 		target += '_self"'
-		href = href.replace(/\.md/g, '.html')
+		href = href.replace(/\.md/, '.html')
 	}
 	
 	function getTitle(){
@@ -236,7 +237,7 @@ apply($('.sb3'), function(e){
 	//Modelos
 	.replace(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
-	.replace(/(^|\s)(Actor|Animation|Attractor|Audio|AudioStream|Blip|Boat|Button|Camera|Car|CarGenerator|CardDecks|Checkpoint|Clock|Component|Credits|Cutscene|Debugger|DecisionMaker|DecisionMakerActor|DecisionMakerGroup|DynamicLibrary|File|Fs|Fx|Game|Gang|Garage|Group|Heli|Hid|ImGui|IniFile|Input|Interior|Key|Marker|Math|Memory|Menu|Model|Mouse|Multiplayer|List|Object|ObjectGroup|Particle|Path|Pickup|Plane|Player|Rampage|Rc|Render|Restart|Screen|ScriptEvent|ScriptFire|Searchlight|Sequence|Shopping|Skip|Sound|Soundtrack|SpecialActor|Sphere|Sprite|Stat|StreamedScript|Streaming|String|StuckCarCheck|Task|Text|Texture|Trailer|Train|Txd|WeaponInfo|Weather|Widget|World|Zone)(\.)(\w+)/gmi, "$1<span class=classes>$2<\/span>$3<span class=commands>$4</span>")
+	.replace(/\b([a-z]+)\.([a-z]+)/gmi, "<span class=classes>$1<\/span>.<span class=commands>$2</span>")
 	.replace(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
 	.replace(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
 	.replace(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")

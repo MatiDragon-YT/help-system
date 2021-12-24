@@ -21,7 +21,7 @@
 <script src="../../js/main.min.js"></script>
 
 <script>
-const keys = [
+t="";const keys=[
 ["Horizontal Tabulation (HT)",9],
 ["Newline Character (LF)",10],
 ["Carriage Return (CR)",13],
@@ -190,14 +190,12 @@ const keys = [
 ["ý",253],
 ["þ",254],
 ["ÿ",255]
-] 
-
-for (var i=0,text=""; i < keys.length; i++) {
-text+=
+].forEach(function(key){
+t+=
 "<tr>"+
-"<td>"+keys[i][0]+"</td>"+
-"<td>"+keys[i][1]+"</td>"+
+"<td>"+key[0]+"</td>"+
+"<td>"+key[1]+"</td>"+
 "</tr>"
-}
-$('tbody').innerHTML+=text
+})
+$('tbody').innerHTML+=t
 </script>
