@@ -43,11 +43,13 @@ th, td {
     padding: .6rem;
     border-left: #d3dce4 1px solid;
     width: 1%;
+    text-align: center;
 }
 
 th:first-child,
 td:first-child {
-    border-left: none
+    border-left: none;
+    text-align: left;
 }
 td {
     border-top: #d3dce4 1px solid;
