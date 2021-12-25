@@ -59,8 +59,8 @@ Just create a [ticket](https://github.com/MatiDragon-YT/help-system/issues/new) 
 ## Thanks
 | Contributor | by |
 | --- | --- |
-| [Seemann](https://github.com/x87) | critics and error reports from early stages |
-| yushae raza (darksavage) | Aggrege to SA the Vehicle ID List  |
+| [Seemann](https://github.com/x87) | v0.1 - v1.3 : Critics and error reports from early stages |
+| Yushae Raza (darksavage) | v1.4 : Aggrege to SA the Vehicle ID List<br>v1.6 : fix weapons GXT |
 
 ## Compiling CHM files
 Use HTML Help Workshop v4.
