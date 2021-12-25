@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.5";
+const VERSION = "1.6";
 
 // GLOBAL VARS
 var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
