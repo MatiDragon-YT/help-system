@@ -22,6 +22,7 @@ function $(element) {
 		return D.querySelectorAll(element);
 	}
 }
+const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
 
 String.prototype.toLinkCase = function(){
 	return this.toLowerCase().replace(/<(\/)?[\!\w\d\s\.,-="]+>/g, '').replace(/\s/g, '-')
@@ -199,7 +200,11 @@ $('#inputText').value = $('#inputText').value
 
 	return '<code>' + input + '</code>'
 })
-+ '<hr><p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">CHM ' + ($('html').getAttribute('lang') || 'en').toUpperCase() + ' ' + VERSION + ' - with <3 for you.</p>'
++ '\
+<hr>\
+<p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">\
+	CHM ' + (LANG + ' ' + VERSION + ' - with <3 for you.\
+</p>'
 
 $('.markdown').innerHTML = $('#inputText').value 
 $('body').style['display'] = 'block'
