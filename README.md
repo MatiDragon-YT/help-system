@@ -26,6 +26,9 @@ And optionally, move the file to directory.
 ```
 <sanny builder foldes>\help\<here>
 ```
+> ### BUG: Blank views?
+> If when you open the file, it does not load the content. Only by unchecking the Windows security box when opening the file, you could have solved the problem.
+
 
 ## Collaborations
 The world is very welcome to collaborate in what you want with the documentation.\
