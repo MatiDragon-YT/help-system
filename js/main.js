@@ -2,11 +2,12 @@
 const VERSION = "1.6";
 
 // GLOBAL VARS
-var a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
+var t="";
 const EMOJIS = {
 	'clap': '👏',
 	'+1' : '👍',
-	'-1' : '👎'
+	'-1' : '👎',
+	'iSearch' : '<input onkeyup="searchTable()" placeholder="Description">'
 }
 const D = document
 
@@ -47,6 +48,31 @@ function apply(element, callback){
 		}
 	}
 }
+
+/** mini search for tables.
+ * @param {DOMElement}
+*/
+function searchTable() {
+	var filter = $("input").value.toUpperCase(),
+		tr = $('table tr'),
+		td, i;
+	console.log('hola')
+	$("input").onkeydown = function (EVENT) {
+		if(EVENT.keyCode === 13){//ENTER
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					if ((td.textContent || td.innerText).toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}       
+			}
+		}
+	}
+}
+
 
 $('body').innerHTML = '\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
@@ -91,7 +117,7 @@ $('#inputText').value = $('#inputText').value
 .replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\xFF]+)\+\+/g, '$1<ins>$2</ins>')
 
 // EMOJIS
-.replace(/(\B|\s+):([\w\d\+-]+):(\B)/g, function(input){
+.replace(/(\B|\s+):([\x21-\x39\x3B-\xFF]+):(\B)/g, function(input){
 
 	input = input.split(':')
 
@@ -195,15 +221,13 @@ $('#inputText').value = $('#inputText').value
 
 // CODE
 .replace(/`([\x20-\x5F\x61-\xFF]+)`/g, function(input){
-	input = input
-		.replace(/`([\x20-\x5F\x61-\xFF]+)`/, '$1').parseHTML()
+	input = input.replace(/`([\x20-\x5F\x61-\xFF]+)`/, '$1').parseHTML()
 
 	return '<code>' + input + '</code>'
 })
-+ '\
-<hr>\
++ '<hr>\
 <p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">\
-	CHM ' + (LANG + ' ' + VERSION + ' - with <3 for you.\
+	CHM ' + LANG + ' ' + VERSION + ' - by MatiDragon, Seemann & Yushae Raza, with <3 for you.\
 </p>'
 
 $('.markdown').innerHTML = $('#inputText').value 
@@ -256,25 +280,3 @@ apply($('.sb3'), function(e){
 	.replace(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
 	//.replace(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })
-/* Search at TABLE
-function myFunction() {
-	var filter = $('#myInput').value.toUpperCase(),
-		tr = $('#myTable tr'),
-		td, i;
-
-	$('#myInput').onkeydown = function (EVENT) {
-		if(EVENT.keyCode === 13){//ENTER
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[0];
-				if (td) {
-					if ((td.textContent || td.innerText).toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				}       
-			}
-		}
-	}
-}
-*/

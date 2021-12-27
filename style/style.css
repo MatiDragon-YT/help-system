@@ -46,6 +46,7 @@ th, td {
 
 th:first-child,
 td:first-child {
+    position: relative;
     border-left: none;
     text-align: left;
 }
@@ -178,17 +179,16 @@ div.success, div.warning, div.info {
 .center { text-align: center!important }
 .uppercase { text-transform: uppercase!important }
 
-
 input {
     border: none;
     outline: none;
     font-size: 1rem;
-}
-#myInput {
     width: 100%;
     padding: 1rem;
     background: none;
     transform: translate(-0.6rem, 0rem);
+    transform: translate(-1rem, -1.5rem);
+    position: absolute;
 }
 
 .labels { color: #009688 }
