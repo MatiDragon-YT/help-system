@@ -35,8 +35,6 @@ table {
     border: 1px solid #d3dce4;
     border-radius: 4px;
     display: block;
-    overflow: auto;
-    max-height: 80vh;
 }
 
 th, td {
@@ -199,12 +197,13 @@ input {
 .models { color: #607d8b }
 .classes { color: #d32f2f }
 .commands { color: #0288d1 }
-.directives { color: #607d8b }
 .variables { color: #607d8b }
 .strings,
 .strings * { color: #009688 }
 .comments,
 .comments * { color: #616161 }
+.directives,
+.directives * { color: #607d8b }
 
 @media (min-width:576px) {
     .markdown { max-width: 540px }
