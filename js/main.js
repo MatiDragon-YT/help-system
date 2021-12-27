@@ -6,8 +6,7 @@ var t="";
 const EMOJIS = {
 	'clap': '👏',
 	'+1' : '👍',
-	'-1' : '👎',
-	'iSearch' : '<input onkeyup="searchTable()" placeholder="Description">'
+	'-1' : '👎'
 }
 const D = document
 
@@ -48,31 +47,6 @@ function apply(element, callback){
 		}
 	}
 }
-
-/** mini search for tables.
- * @param {DOMElement}
-*/
-function searchTable() {
-	var filter = $("input").value.toUpperCase(),
-		tr = $('table tr'),
-		td, i;
-	console.log('hola')
-	$("input").onkeydown = function (EVENT) {
-		if(EVENT.keyCode === 13){//ENTER
-			for (i = 0; i < tr.length; i++) {
-				td = tr[i].getElementsByTagName("td")[0];
-				if (td) {
-					if ((td.textContent || td.innerText).toUpperCase().indexOf(filter) > -1) {
-						tr[i].style.display = "";
-					} else {
-						tr[i].style.display = "none";
-					}
-				}       
-			}
-		}
-	}
-}
-
 
 $('body').innerHTML = '\
 <div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
