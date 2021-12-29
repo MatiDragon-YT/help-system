@@ -8,18 +8,17 @@
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
 
 CLEO 3 allows adding new  scripts needlessly to start a new game. Strictly speaking, the main.scm  state does not matter for these scripts as CLEO-scripts are run and functioned  separately from it.
-.
+
 What does it give? You can add new script at any stage of the game or  delete existing one. Even so, you do not need to edit the main.scm, so the need  of starting a new game, the saves incompatibility, script limits – all these problems  disappear right away.
-.
+
 The CLEO-script is an  ordinary script written using the opcodes in Sanny Builder. Each script should  be made as a single file with an extension .cs (Custom Script). The dominant  requirement of writing such scripts is they must be compiled as the external  scripts.
-.
+
 There are several ways of making of a CLEO-script being able to work correctly  in the game. First: you add a new external script in the source file, compile  it, and then extract that script from the file script.img. The extracted file  will have the extension .scm, so you only need to change it on the .cs and copy  to the folder `game\CLEO`.
-.
+
 The second way is easier. Create a new file in Sanny Builder, write the <a href="directives.html#EXTERNAL">directive  $E</a> at the beginning of it, and compile.  The compiled file will be the same as that one extracted from the script.img.  You only need to change its extension on the .cs and copy to the ‘game\CLEO’.
-.
+
 Finally, the easiest one. Create a new file in  Sanny Builder, write the  <a href="directives.html#CLEO">directive $CLEO</a> at the beginning of the file, and compile. The compiled file will be  copied into the ‘game\CLEO’ directory and will have a file extension specified  by the directive (.cs by default).<br>
 <br>
 The CLEO-scripts could be  used as missions. The compiling process is the same, but the output file must  have the extension .cm (Custom Mission). To start this mission, use <a href="Cleo_OP.html#0A94">the opcode 0A94</a>. <br>
@@ -42,4 +41,4 @@ An important thing concerns  with data communication between a CLEO script and t
 Also, for the data communicate between the main.scm and CLEO, or between the  CLEO scripts you may use the CLEO variables (see opcodes 0AB3, 0AB4).<br><br>
 The CLEO complete set includes  the examples of simple scripts with sources.
 
-<script src="../../js/markdown.js"></script>
+<script src="../../js/main.js"></script>

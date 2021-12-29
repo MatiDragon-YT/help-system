@@ -347,5 +347,14 @@
 				</OBJECT>
 		</UL>
 	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ARTICLES">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Coding Bible I">
+			<param name="Local" value="en\articles\mcp1.html">
+			</OBJECT>
+	</UL>
 </UL>
 </BODY></HTML>

@@ -32,6 +32,28 @@ String.prototype.parseHTML = function(){
 	return this.replace(/<br>/g, '\n').replace(/</g, '&lt;').replace(/=""/g, '')
 }
 
+/**
+ * Object.prototype.forEach() polyfill
+ * https://gomakethings.com/looping-through-objects-with-es6/
+ * @author Chris Ferdinandi
+ * @license MIT
+ */
+if (!Object.prototype.forEach) {
+	Object.defineProperty(Object.prototype, 'forEach', {
+		value: function (callback, thisArg) {
+			if (this == null) {
+				throw new TypeError('Not an object');
+			}
+			thisArg = thisArg || window;
+			for (var key in this) {
+				if (this.hasOwnProperty(key)) {
+					callback.call(thisArg, this[key], key, this);
+				}
+			}
+		}
+	});
+}
+
 /** Apply a function to all elements of the DOM
  * @param {DocumentElement} 
  * @param {function}
@@ -72,6 +94,9 @@ $('#inputText').value = $('#inputText').value
 // OL LI
 .replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
 .replace(/^\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1</li></ol></ol>')
+
+.replace(/<\/li><\/ol>\n<ul><ul><li>(.*)<\/ul><\/ul>/g, '<\/li><ul><li>$1</ul></ol>')
+
 .replace(/<\/ol>(\s+)<ol>/g, '')
 .replace(/<\/ol><ol>/g, '')
 
@@ -100,8 +125,9 @@ $('#inputText').value = $('#inputText').value
 
 /*** DIVS ***/
 .replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
-.replace(/{% hint style="(\w+)" %}/g, '<div class=$1>')
-.replace(/{% endhint %}/g, '</div>')
+.replace(/{% hint style="(\w+)" %}|:::([\w\d\x20-]+)\n/g, '<div class="$1$2">')
+.replace(/{% endhint %}|:::\n/g, '</div>')
+//.replace(/:::([\w\d\x20-]+)\n([\x09-\x39\x3B-\xFF]+):::/gim, '<div class=$1>$2</div>')
 
 /*** BLOCKQUOTE ***/
 .replace(/^>\x20(.+)/gim, '<blockquote>$1</blockquote>')
@@ -174,8 +200,11 @@ $('#inputText').value = $('#inputText').value
 .replace(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 // BR
-.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|`(``)?!))/g, '$2<br><br>$3')
-.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|`(``)?!))/g, '$2<br>$3')
+.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|<|\*|`(``)?!))/g, '$2<br><br>$3')
+.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|<|\*|`(``)?!))/g, '$2<br>$3')
+
+// SPAN
+.replace(/\[([\w\d\-\x20]+)\]\[([\w\d\-\x20]+)\]/gim, '<span class="$1">$2</span>')
 
 // PRE
 .replace(/```([\x09-\x5F\x61-\xFF]*)```/g, function(input){
@@ -202,14 +231,22 @@ $('#inputText').value = $('#inputText').value
 + '<hr>\
 <p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">\
 	CHM ' + LANG + ' ' + VERSION + ' - by MatiDragon, Seemann & Yushae Raza, with <3 for you.\
-</p>'
+</p>\
+<span id="alinks">Hoooola</span>'
 
 $('.markdown').innerHTML = $('#inputText').value 
 $('body').style['display'] = 'block'
 
+$('a').forEach(function(e){
+	e.onmouseover = function(){
+		$('#alinks').style.display = 'block'
+		alinks.innerText = e.getAttribute('href')
+	}
 
-
-
+	e.onmouseleave = function(){
+		$('#alinks').style.display = 'none'
+	}
+})
 
 
 
