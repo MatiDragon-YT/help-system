@@ -32,28 +32,6 @@ String.prototype.parseHTML = function(){
 	return this.replace(/<br>/g, '\n').replace(/</g, '&lt;').replace(/=""/g, '')
 }
 
-/**
- * Object.prototype.forEach() polyfill
- * https://gomakethings.com/looping-through-objects-with-es6/
- * @author Chris Ferdinandi
- * @license MIT
- */
-if (!Object.prototype.forEach) {
-	Object.defineProperty(Object.prototype, 'forEach', {
-		value: function (callback, thisArg) {
-			if (this == null) {
-				throw new TypeError('Not an object');
-			}
-			thisArg = thisArg || window;
-			for (var key in this) {
-				if (this.hasOwnProperty(key)) {
-					callback.call(thisArg, this[key], key, this);
-				}
-			}
-		}
-	});
-}
-
 /** Apply a function to all elements of the DOM
  * @param {DocumentElement} 
  * @param {function}
@@ -237,7 +215,7 @@ $('#inputText').value = $('#inputText').value
 $('.markdown').innerHTML = $('#inputText').value 
 $('body').style['display'] = 'block'
 
-$('a').forEach(function(e){
+apply($('a'), function(e){
 	e.onmouseover = function(){
 		$('#alinks').style.display = 'block'
 		alinks.innerText = e.getAttribute('href')
@@ -247,9 +225,6 @@ $('a').forEach(function(e){
 		$('#alinks').style.display = 'none'
 	}
 })
-
-
-
 
 apply($('.sb3'), function(e){
 	e.innerHTML = e.innerHTML
