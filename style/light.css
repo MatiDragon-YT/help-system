@@ -170,6 +170,25 @@ a:hover {
     font-size: 0.87rem;
 }
 
+#navbar {
+    background: #5a97f3;
+    color: black;
+    font-weight: bold;
+    overflow: hidden;
+}
+#navbar h1{
+    padding: 9px 33px;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+#credits {
+    line-height: 22px;
+    font-weight: 500;
+    font-size: 14px;
+    color:#8899a8;
+}
+
 blockquote {
     padding: 5px 1rem;
     margin: 5px 0;
