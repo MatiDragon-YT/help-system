@@ -4,7 +4,7 @@
 Based on the original that brings the [`help.chm`](https://github.com/sannybuilder/help-system), GitBook and my own [`help3082.chm`](https://github.com/MatiDragon-YT/doc-chm).
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked together, to understand much of the GitBook site Markdown and highlight SB3 code easy and quickly.
 
-![image](https://user-images.githubusercontent.com/43966706/146701538-c03bc730-51bc-414e-8253-f33cf0d591d9.png)
+![image](https://user-images.githubusercontent.com/43966706/147687312-4b6a7a8d-1fe9-4e8a-8b8e-2d19f665ad7c.png)
  
 ##### Table of content
 * [Install](#install)
