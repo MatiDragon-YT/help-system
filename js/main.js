@@ -207,8 +207,8 @@ String.prototype.toMarkdown = function(){
 }
 
 $('body').innerHTML = '\
-<div id="navbar" style="background: #5a97f3;color: black;font-weight: bold;overflow: hidden;">\
-	<h1 style="padding: 9px 33px;border-bottom: none;margin-bottom: 0;">'+ D.title +'</h1>\
+<div id="navbar">\
+	<h1>'+ D.title +'</h1>\
 </div>\
 <div id="c"><div id="d"><textarea id="inputText" style="display:none;" disabled>'
 + $('body').innerHTML +
@@ -216,7 +216,7 @@ $('body').innerHTML = '\
 <div class="markdown">\
 	<div class="cont"></div>\
 	<hr>\
-	<p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">\
+	<p id="credits">\
 		CHM ' + LANG + ' ' + VERSION + ' - Mada with <3 by MatiDragon, Seemann & Yushae Raza.\
 	</p>\
 	<span id="alinks"></span>\
