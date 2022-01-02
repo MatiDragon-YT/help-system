@@ -136,10 +136,13 @@ img {
     max-width : 100%;
     width : auto;
     height : auto;
-    margin: 0.5rem 0;
 }
 td img {
     margin: 0;
+}
+
+.center img {
+    margin: 0.5rem 0;
 }
 
 a, a *{
@@ -192,10 +195,6 @@ div.success, div.warning, div.info {
     margin: 1rem 0;
     display: block;
 }
-
-.light { font-weight: 300!important }
-.center { text-align: center!important }
-.uppercase { text-transform: uppercase!important }
 
 .red { color:red }
 .orange { color:orange }
@@ -250,3 +249,12 @@ input {
 @media (min-width:1400px) {
     .markdown { max-width: 1320px }
 }
+
+.light { font-weight: 300 }
+.center { text-align: center }
+.right {text-align: right}
+.uppercase { text-transform: uppercase }
+.p-2 { padding: .5rem }
+.p-4 { padding: 1.5rem }
+.cols-4 { columns: 4 auto}
+.pre {white-space: pre}
