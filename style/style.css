@@ -112,7 +112,7 @@ dl, ol, ul { margin: 1rem calc(1.5rem + .5vw) }
 
 dd, li { margin: 0 0 5px }
 
-code, kbd, pre, samp {
+code, .code, kbd, pre, samp {
     background: #eceff1;
     color: #212121;
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
@@ -125,7 +125,7 @@ pre {
     max-height: 80vh;
 }
 
-code {
+code, .code {
     padding: 2px 5px;
     border-radius: 3px;
     margin: 0 2px;
@@ -196,14 +196,6 @@ div.success, div.warning, div.info {
     display: block;
 }
 
-.red { color:red }
-.orange { color:orange }
-.green { color:green }
-.yellow { color:yellow }
-.blue { color:blue }
-.purple { color:purple }
-.gray { color:gray }
-
 input {
     border: none;
     outline: none;
@@ -258,3 +250,11 @@ input {
 .p-4 { padding: 1.5rem }
 .cols-4 { columns: 4 auto}
 .pre {white-space: pre}
+
+.red { color:red }
+.orange { color:orange }
+.green { color:green }
+.yellow { color:yellow }
+.blue { color:blue }
+.purple { color:purple }
+.gray { color:gray }
