@@ -355,6 +355,27 @@
 			<param name="Name" value="Coding Bible I">
 			<param name="Local" value="en\articles\mcp1.html">
 			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Coding Bible II">
+			<param name="Local" value="en\articles\mcp2.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CLEO 3">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Code Library">
+			<param name="Local" value="en\cleo-3\code-library.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Opcodes">
+			<param name="Local" value="en\cleo-3\opcodes.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Scripts">
+			<param name="Local" value="en\cleo-3\scripts.html">
+			</OBJECT>
 	</UL>
 </UL>
 </BODY></HTML>
