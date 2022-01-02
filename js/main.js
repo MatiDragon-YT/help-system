@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.6";
+const VERSION = "1.8";
 
 // GLOBAL VARS
 var t="";
@@ -104,7 +104,7 @@ $('#inputText').value = $('#inputText').value
 /*** DIVS ***/
 .replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
 .replace(/{% hint style="(\w+)" %}|:::([\w\d\x20-]+)\n/g, '<div class="$1$2">')
-.replace(/{% endhint %}|:::\n/g, '</div>')
+.replace(/{% endhint %}|:::\n/g, '</div>\n')
 //.replace(/:::([\w\d\x20-]+)\n([\x09-\x39\x3B-\xFF]+):::/gim, '<div class=$1>$2</div>')
 
 /*** BLOCKQUOTE ***/
@@ -146,7 +146,7 @@ $('#inputText').value = $('#inputText').value
 })
 
 // IMG
-.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<center><img src="$2" alt="$1" title="$3"></center>')
+.replace(/\!\[([\x20-\x5A\x5C\x5E-\xFF]+)?\]\(([\x20-\x27\x2A-\xFF]+)(\s"[\w\d\s].+")?\)/g, '<img src="$2" alt="$1" title="$3">')
 
 // A
 .replace(
@@ -178,11 +178,8 @@ $('#inputText').value = $('#inputText').value
 .replace(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 // BR
-.replace(/(\n^\.\n|(\.|:|\))\n\n(\w|\d|<|\*|`(``)?!))/g, '$2<br><br>$3')
-.replace(/(\\\n|\\n\w|(\.|:|\))\n(\w|\d|<|\*|`(``)?!))/g, '$2<br>$3')
-
-// SPAN
-.replace(/\[([\w\d\-\x20]+)\]\[([\w\d\-\x20]+)\]/gim, '<span class="$1">$2</span>')
+.replace(/(\n^\.\n|(\.|:|\!|\))\n\n(\w|\d|<|\*|`(``)?!))/g, '$2<br><br>$3')
+.replace(/(\\\n|\\n\w|(\.|:|\!|\))\n(\w|\d|<|\*\|`(``)?!))/g, '$2<br>$3')
 
 // PRE
 .replace(/```([\x09-\x5F\x61-\xFF]*)```/g, function(input){
@@ -206,9 +203,12 @@ $('#inputText').value = $('#inputText').value
 
 	return '<code>' + input + '</code>'
 })
+// SPAN
+.replace(/\[([\w\d\-\x20]+)\]\[([\x20-\x57\x59\x6B-\xFF]+)\]/gim, '<span class="$1">$2</span>')
+
 + '<hr>\
 <p style="line-height: 22px;font-weight: 500;font-size: 14px; color:#8899a8;">\
-	CHM ' + LANG + ' ' + VERSION + ' - by MatiDragon, Seemann & Yushae Raza, with <3 for you.\
+	CHM ' + LANG + ' ' + VERSION + ' - Mada with <3 by MatiDragon, Seemann & Yushae Raza.\
 </p>\
 <span id="alinks">Hoooola</span>'
 
