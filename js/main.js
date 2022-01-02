@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.8";
+const VERSION = "1.9";
 
 function log(value){
 	console.log(value)
@@ -55,8 +55,8 @@ function apply(element, callback){
 	}
 }
 
-function textToMarkdown(str){
-	return str
+String.prototype.toMarkdown = function(){
+	return this
 
 	/******** LIST ********/
 
@@ -224,7 +224,7 @@ $('body').innerHTML = '\
 
 
 
-$('.markdown .cont').innerHTML = textToMarkdown($('#inputText').value)
+$('.markdown .cont').innerHTML = $('#inputText').value.toMarkdown()
 $('body').style['display'] = 'block'
 
 apply($('a'), function(e){
