@@ -1,1954 +1,1144 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
-  <title>Mission Coding with Sanny Builder Tutorial Part II</title>
+  <title>Mission Coding - Part II</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<script src="../../js/partial/header.js"></script>
-<p>
 
-		   <center>
-                <span style="font-size: 21pt; "><span class="style1">Grand Theft Auto</span><br>
-                <br>
-                <span class="style1" style="color: orange;">San Andreas</span><br>
-                <br>
-                <br>
-                <span class="style1" style="color: red;">Mission Coding with Sanny Builder Tutorial</span><br>
-                <span class="style1" style="color: gray;">Part II</span><br>
-                <span class="style1" style="color: gray;">Coding Basics</span><br>
-                <br>
-                <br>
-                </span>
-		   </center>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="0intro"> Introduction </a></b></u></span>
-                 <br>
-                <br>
-                Hi, in Part II we will get some basics of coding, create
-                spheres, actors, cars, markers, texts, panels etc....<br>
-                <br>
-                If you need to look at Part I it's <a href="articles11.html">here</a>.<br>
-                <br>
-                As in <a href="articles11.html">Part I</a>, I recommend you to print the
-                topic using Printable Version of Topic, by clicking <b>print
-                this topic</b> on top right of the first message.<br>
-                <br>
-                <br>
-                <br>
-                A lot of examples here use globals (variables that start with
-                a $ like : <span class="general1-variable">$markerxx</span> ,
-                <span class="general1-variable">$car00</span> , <span class="general1-variable">$actor00</span> , <span class="general1-variable">$myweaps00</span> ) but it doesn't
-                mean you cannot use locals (varaiables that end with a @ like
-                : <span class="general1-variable">0@</span> , <span class="general1-variable">1@</span> , <span class="general1-variable">28@</span> , <span class="general1-variable">1004@</span> ). I use gobals so I
-                can name them for easier understading. But when you'll be
-                coding you should use locals, for many reasons they are
-                better. You only need to use gloabls when you need the
-                varaible in two (or more) different threads (it's pretty
-                rare, and it isn't usually much more than a few varaible).<br>
-                <br>
-                <br>
-                <br>
-                Often I will give a four digit hexadecimal number (like 0103,
-                02a8, 00ec, 032b, etc...) they're opcodes, to have a
-                description write the four digit number on a new line in
-                Sanny Builder and press F1.<br>
-                <br>
-                <br>
-                Most examples are given in a CODE tag like this :<br>
- <strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard();" height="16" width="16"></span><textarea id="holdtext" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext" class="NON">CODE tag</pre></div>
+:::center h3
+Grand Theft Auto\
+[orange][San Andreas]\
+\
+[red][Mission Coding with Sanny Builder Tutorial]\
+[gray][Part II]\
+[gray][Getting started]\
+\
+\
+:::
 
+### Introduction
 
-                <p><br>
-                So you can copy and past it in Sanny, I recommand you to do
-                so often, it will help you understanding. And you won't have
-                to write the opcode number and press F1 everytime.<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="1sanny"> 1. Using Sanny : </a></b></u></span>
-                 <br>
-                <br>
-                This part is most repeat parts of <a href="hotkeys.html">Sanny's Help</a> but
-                sometimes explained differently. But you can still report to
-                the <a href="hotkeys.html">Hotkeys page</a> for more details.<br>
-                <br>
-                <u>Hotkeys : </u><br>
-                <br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">F1</span>
-                 : the magic hotkey !!!!! write an opcode like 004F and press
-                F1 and ho magic appears :<br>
-                </p>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard1();" height="16" width="16"></span>
-<textarea id="holdtext1" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext1" class="NON">004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@ODDVE</span></pre></div>
-<br><br>
-                or write thread and press it and press it again, Sanny will
-                suggest you all those different lines :<br><br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard2();" height="16" width="16"></span>
-<textarea id="holdtext2" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext2" class="NON">004E: <span class="general1-reservedword">end_thread</span>
+Hi, in Part II we will get some basics of coding, create spheres, actors, cars, markers, texts, panels etc....
 
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@ODDVEH</span>
+If you need to look at Part I it's [here](mcp1.md).
 
-00D7: create_thread_with_wasted_busted_check <span class="general1-label">@NONAME_2</span>
+As in [Part I](mcp1.md), I recommend you to print the topic using Printable Version of Topic, by clicking print this topic on top right of the first message.
 
-03A4: name_thread <span class="general1-string">'MAIN'</span>
+A lot of examples here use globals (variables that start with a `$` like : `$markerxx`, `$car00`, `$actor00`, `$myweaps00`) but it doesn't mean you cannot use locals (varaiables that end with a `@` like : `0@`, `1@`, `28@`, `1004@`). I use gobals so I can name them for easier understading. But when you'll be coding you should use locals, for many reasons they are better. You only need to use gloabls when you need the varaible in two (or more) different threads (it's pretty rare, and it isn't usually much more than a few varaible).
 
-0459: <span class="general1-reservedword">end_thread_named</span> <span class="general1-string">'INT'</span>
+Often I will give a four digit hexadecimal number (like `0103`, `02a8`, `00ec`, `032b`, etc...) they're opcodes, to have a description write the four digit number on a new line in Sanny Builder and press `F1`.
 
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@ODDVEH</span></pre></div>
-                <br>
-                <br>
-                F1 will be the key you'll use a lot, just think about what
-                you want (car, actor, checkpoint, markers, weapon, money,
-                paintjob, etc...) write it and press F1. It won't do what you
-                want everytime but it will get you going. <br>
-                F1 is kind of google for Sanny !!!!!!!<br>
-                <br>
-                But notice that it only works for one and only one word. <br>
-                <br>
-                Remember (or learn if you didn't know) that F1 gets it's
-                suggestions from opcodes.txt so make sure you did what it's
-                in part II <u>introduction</u>.<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Shift +
-                &lt;0..9&gt;</span>
-                 : make bookmark, at the line you are like :<br>
-                <img src="../../img/Part20II.files/tyhtyhety.gif" width="418" height="83"><br>
-                They should be save when you save the file.<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl +
-                &lt;0..9&gt;</span>
-                 : go to bookmark number &lt;0..9&gt;, put you at the line of
-                the bookmark (if it exist)<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl +
-                Num2/Num8</span>
-                 : when you place your cusor (the blinky |) on a jump (or
-                gosub or jf -jump_if_false-)and press it the editor will
-                bring you the the label. Look animation to see that I've
-                place on <span class="general1-label">@PSAVE1_1498</span> and
-                it bring me to the label it self <span class="general1-label">:PSAVE1_1498</span> . <br>
-                <img src="../../img/Part20II.files/azdzefqerf.gif" width="556" height="561"><br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">F3</span>
-                 : find next<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl +
-                F3</span>
-                 : find previous<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl +
-                Alt</span>
-                 holded : Rectangular selection :<br>
-                <img src="../../img/Part20II.files/fgywdfwgwd.gif" width="486" height="426"><br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Alt +
-                1</span>
-                 : Coords Manager (game must be running)<br>
-                <img src="../../img/Part20II.files/erferfertgyyhze2.png" width="210" height="230"><br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Alt +
-                C</span>
-                 : Insert player coordinates where you cursor is<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Alt +
-                E</span>
-                 : Insert z angle value where you cursor is<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + T</span>
-                 : delete word, remember things like end_thread will be
-                considered as one word.<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Y</span>
-                 : delete line<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Shift +
-                Y</span>
-                 : clear line, leave the line but delete what's written in
-                it.<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Scroll
-                Up/Down</span>
-                 : page up / down<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Shift +
-                U/L</span>
-                 : make word UPPERCASE / lowercase.<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + Q</span>
-                 : comment out the line your cursor is (adds // at begining
-                of the line), so the line will be ignored when compiling.<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + G</span>
-                 : go to line<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + R</span>
-                 : replace<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + C</span>
-                 : copy <br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">Ctrl + V</span>
-                 : paste<br>
-                <br>
-                -
-                 <span style="font-size: 14pt; line-height: 100%;">F7</span>
-                 : compile and copy to GTA SA folder main.scm and
-                script.img<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <u>Editor completion : </u><br>
-                <br>
-                Sanny can complete some thing for you like global variables,
-                labels, model IDs, to use it just write first character ($,
-                @, or #) and get what you need. Look the animation I think it
-                explains well : <br>
-                <img src="../../img/Part20II.files/ertyydjyj.gif" width="484" height="260"><br>
-                <br>
-                Those are the most used exemples, but you might find many use
-                for this tool.<br>
-                <br>
-                Notice that with models, the nudel number is shown, so it's a
-                pretty easy way to find what number a model is.<br>
-                <img src="../../img/Part20II.files/xdfgsdrgs.png" width="381" height="94"><br>
-                <br>
-                <br>
-                <br>
-                <u>Coords Manager : </u><br>
-                <br>
-                Very usefull tool here which get the 3D position of the
-                player. Of course the game muste be running....<br>
-                <br>
-                The 3 dimension position is the value of each axis (x, y, z).
-                The San Andreas map goes from <span class="general1-number">-3000.0</span> to <span class="general1-number">3000.0</span> on x and y axis. The
-                altitude (z) max of planes is about <span class="general1-number">800.0</span> units. Axis x is
-                oriented west east, the x value increases when going east.
-                Axis y is oriented south north, the y value increases when
-                going north. Center of the map is located at <span class="general1-number">0.0 0.0 0.0</span> .<br>
-                Well it looks like that : <br>
-                <img src="../../img/Part20II.files/SDVDF.gif" width="192" height="277"><br>
-                This screenshot is from old Sanny Builder new coord manager
-                is slightly different.<br>
-                <br>
-                <br>
-                <b>Copy</b> will copy into clipboard the 3d pos like <span class="general1-number">747.756 -1809.0986 13.0234</span> <br>
-                <br>
-                <b>Read</b> will refresh the position of the player
-                ingame.<br>
-                <br>
-                <b>Set</b> will put player at the position you've written in
-                the three dimensions.<br>
-                <br>
-                <br>
-                In new Sanny Builder you get the Z angle value. This is the
-                value of the angle around z axis which means what direction
-                the player (CJ) is looking at. 0.0 is north, 180.0 is south,
-                90.0 is east, 270.0 is west.<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+Most examples are given in a CODE tag like this:
+**CODE** 
+```
+CODE tag
+```
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="2addmod"> 2. Adding mission mods : </a></b></u></span>
-                 <br>
-                <br>
-                This isn't really coding but it is usefull for everyone to
-                look/test/use/imitate parts of other's mods. <br>
-                <br>
-                First thing to know when adding mods : FOLLOW INSTRUCTIONS
-                !!!!!!!!!!!!!!!!!!!! Every mods is different so when adding a
-                mod first follow the author instructions to add it, they're
-                the best instructions. But sometimes there isn't much
-                instruction.<br>
-                <br>
-                Then, most of mods are main part (look part I, 1.Main.scm
-                architecture) mods. So they're activated (create_thread) and
-                executed in the main part. You probably want to add mods to
-                original main.scm (or modded main.scm), then you'll will use
-                004F (create_thread) here :<br><br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard3();" height="16" width="16"></span>
-<textarea id="holdtext3" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext3" class="NON">004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@ODDVEH</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@R3</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@GYM</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@SHOOT</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@BLOODR</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@HOTR</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@KICKS</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@PSAVE1</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@FLOW</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@HELP</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@COLLS</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@CRANES</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@BUY_PRO</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@VALET_L</span>
-004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@ADPLANE</span></pre></div>
-Between any of those lines you'll add :
-<br>
-<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard4();" height="16" width="16"></span>
-<textarea id="holdtext4" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext4" class="NON">004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@modlabel</span></pre></div>
-                 where it will be of course the mod's first label name
-                instead of <span class="general1-label">modlabel</span>.<br>
-                <br>
-                Then you've got the mod itself, you have to add it anywhere
-                in main part. BUT it isn't really anywhere, it's more like
-                anywhere after it's been created/activated, and not inside
-                another thread. to simplify just put it at the very end of
-                main part, so before : <br><br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard5();" height="16" width="16"></span>
-<textarea id="holdtext5" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext5" class="NON"><span class="general1-comment">//-------------Mission 0---------------
-// Originally: Initial 1</span></pre></div>
-                <br>
-                <br>
-                <br>
-                Then compile and copy to San Andreas data\script (F7), launch
-                the game, start a new game and.....<br>
-                <br>
-                <br>
-                <br>
-                have fun <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                Hang on, if it really did work, you're like really very very
-                lucky (and you did a good job apparently) !!!! Most of time
-                first try simply doesn't work. So watch what you've done,
-                look how the author of the mod did it, watch global variables
-                (if only numbers you should change it to a custom name), the
-                try again, and if you really can't get it working, ask the
-                author how he did (do that after several tries and checks,
-                don't disturb the author for a mistake you've done).<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+So you can copy and past it in Sanny, I recommand you to do so often, it will help you understanding. And you won't have to write the opcode number and press `F1` everytime.
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="3weapik"> 3. Weapon pickups and parked cars : </a></b></u></span>
-                 <br>
-                <br>
-                For me this part isn't real coding neither but it's usefull
-                and asked very very very often, and it's a good opportunity
-                to explain how it works.<br>
-                <br>
-                Pickups and parked car are spaecial opcode because it telle
-                the engine to create such car or such weapon if player is
-                close enough to the point.<br>
-                <br>
-                Well I'll take exemple to the cars/vehicles that you always
-                find in one place (the skimmer near the dam, the AT400 at
-                Vegas airport, the cropduster in the desert, these are the
-                only one I can think of right now) everytime (actually not
-                everytime) you come back it's here. Same for weapons (the
-                heatseek rockets at the abandonned village, the gun behind
-                Sweet's house...), life (red heart in gang wars), and
-                armor.<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <u>Parked cars : </u><br><br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard6();" height="16" width="16"></span>
-<textarea id="holdtext6" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext6">014B: <span class="general1-variable">$mycarx00</span> = init_parked_car_generator <span class="general1-model">#CHEETAH</span> <span class="general1-number">15 15 1</span> alarm <span class="general1-number">0</span> door_lock <span class="general1-number">0 0 0</span> at <span class="general1-number">-1253.1 -348.0 13.9</span> angle <span class="general1-number">0.0</span>
-014C: set_parked_car_generator <span class="general1-variable">$mycarx00</span> cars_to_generate_to <span class="general1-number">101</span></pre>
-</div>
-                <br>
-                <br>
-                <br>
-                - This will create a cheetah (<b><span class="general1-model">#CHEETAH</span> </b>) <br>
-                <br>
-                - at the 3d coordinate <span class="general1-number">-1253.1
-                -348.0 13.9</span> <br>
-                <br>
-                - the car will be headed the z_angle <span class="general1-number">219.0</span> (z_angle is the angle
-                around the axis z, 0.0 and 360.0 is north, <span class="general1-number">180.0</span> is south, <span class="general1-number">90.0</span> is east, <span class="general1-number">270.0</span> is west), so this car is
-                <br>
-                directed to south-west<br>
-                <br>
-                - with color one number <span class="general1-number">15</span> (you can notice sometimes
-                <span class="general1-number">-1</span> which mean any)<br>
-                <br>
-                - with color two number <span class="general1-number">15</span> (you can notice sometimes
-                <span class="general1-number">-1</span> which mean any)<br>
-                <br>
-                - Car belongs to the player (the cops don't think you've
-                stole it) becasue next parameters is set to <span class="general1-number">1</span> . If would set on <span class="general1-number">0</span> cops will give you a wanted
-                level when you enter it<br>
-                <br>
-                - Without alarm, because it's <span class="general1-number">0</span> . It's actaully percentage
-                of chances of getting alarm. So if you want the alarm to go
-                off everytime set it to <span class="general1-number">100</span> , if you want it once out
-                of two time then <span class="general1-number">50</span>
-                etc....<br>
-                <br>
-                - Doors won't be lock. As you can read door_lock is set to
-                <span class="general1-number">0</span> . If <span class="general1-number">1</span> doors will be lock. The two
-                others parameters are unknown.<br>
-                <br>
-                - This car generation (not the car itself) is set as handle
-                <span class="general1-variable">$mycarx00</span> <br>
-                <br>
-                <br>
-                And you should be wondering how do I know all that (beside
-                simply reading and thinking) ???????<br>
-                Well go check <a href="http://sa-db.webtools4you.net/" target="_blank">http://sa-db.webtools4you.net/</a>, clic go
-                without writting anything, and with your internet browser (if
-                you don't know what it is then it's Internet Explorer) go
-                Edition\Find in the page, and search for 014B.<br>
-                <br>
-                You'll then get <a href="http://sa-db.webtools4you.net/?show=all&amp;mark=014b#014b" target="_blank">014B description</a>.
-Wait till your internet browser brings you to 014 description (4 or 5
-seconds), and it will be at top of th page highlighted in yellow. <br>
-                <br>
-                <br>
-                The line after 014C just activates or unactivate the parked
-                car generator for this car generation handle : <span class="general1-number">101</span> makes it spawn and <span class="general1-number">0</span> doesn't. It is needed don't
-                forget one for each car generation, but they don't have to be
-                together you can separate them.<br>
-                <br>
-                <br>
-                There is other types of parked cars they're very close to
-                this one and they ain't much usefull.<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <u>Weapon pickups : </u><br>
-                <br>
-                There is two types of weapons pickups, one for weapons which
-                doesn't need ammunitions (like dildos, katana, golf club,
-                shovel, parachute....), and is actualy just a normal
-                pickup.<br>
-                <br>
-                Those both pickup opcodes like with parked cars opcode don't
-                need to request and load the model before using.
-                <ol type="A"><li class="Myli">Melee (and gift) weapons<br><br>
-                    <strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard7();" height="16" width="16"></span>
-<textarea id="holdtext7" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext7" class="shorty">0213: <span class="general1-variable">$myweaps00</span> = create_pickup <span class="general1-model">#CHNSAW      </span> type <span class="general1-number">15</span> at <span class="general1-number">-2083.0 298.0 42.0</span>
-0213: <span class="general1-variable">$myweaps01</span> = create_pickup <span class="general1-model">#BAT         </span> type <span class="general1-number">15</span> at <span class="general1-number">-2306.0  93.0 35.0</span>
-0213: <span class="general1-variable">$myweaps02</span> = create_pickup <span class="general1-model">#SHOVEL      </span> type <span class="general1-number">15</span> at <span class="general1-number">-2796.4 123.6  6.8</span>
-0213: <span class="general1-variable">$myweaps03</span> = create_pickup <span class="general1-model">#POOLCUE     </span> type <span class="general1-number">15</span> at <span class="general1-number">-2135.0 197.0 35.0</span>
-0213: <span class="general1-variable">$myweaps04</span> = create_pickup <span class="general1-model">#KATANA      </span> type <span class="general1-number">15</span> at <span class="general1-number">-2208.0 696.0 50.0</span>
-0213: <span class="general1-variable">$myweaps05</span> = create_pickup <span class="general1-model">#BRASSKNUCKLE</span> type <span class="general1-number">15</span> at <span class="general1-number">-2206.0 961.0 80.0</span></pre>
-</div>
-                    <br>
-                    <br>
-                    You can use this opcode for other pickups like the
-                    keycard (what you get with the croupier girl- model :
-                    <b><span class="general1-model">#KEYCARD</span> </b>),
-                    armour (model : <b><span class="general1-model">#BODYARMOUR</span> </b>), life
-                    (model : <b><span class="general1-model">#HEALTH</span>
-                    </b>), bribe (model : <b><span class="general1-model">#BRIBE</span> </b>), save disks
-                    (only the pickup not the saving routine ! - model :
-                    <b><span class="general1-model">#PICKUPSAVE</span> </b>),
-                    briefcase (model : <b><span class="general1-model">#BRIEFCASE</span> </b>) etc...<br>
-                    <br>
-                    All the melee weapons (including parachute -<b><span class="general1-model">#PARA_PACK</span> </b>- but not
-                    the goggles), and health, armour, bribes, are hardcoded
-                    that mean you don't have to check if the player picks up
-                    the so-called pickup, just go to the pickup and it
-                    automaticly gives the weapon/bribe/armour/health
-                    etc....<br>
-                    <br>
-                    <br>
-                    For keycard, save disk, briefcase, but as well as all
-                    define objects models (if there ain't too big of course)
-                    because they can be use as a pickup, you have to check if
-                    the pickup has been pickup or not. You don't have to
-                    destroy it once it's been picked, because as soon as the
-                    player is on it it will automaticly disappear.<br>
-                    For this you must use something like this :<br><br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard8();" height="16" width="16"></span>
-<textarea id="holdtext8" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext8" class="shorty">00D6: <span class="general1-reservedword">if</span>
-0214: pickup <span class="general1-variable">$pickupvar</span> picked_up
-004D: jump_if_false <span class="general1-label">@</span></pre>
-</div>
-                    <br>
-                    <br>
-                    <br>
-                  </li>
-                  <li class="Myli">Firearms (and all others)<br>
-                    But for weapons which have ammunition, with an exeption
-                    for the night and infrared goggles, (models : <b><span class="general1-model">#NVGOGGLES</span> </b>, and
-                    <b><span class="general1-model">#IRGOGGLES</span> </b>)
-                    you'll need to use the pickups which give ammunition with
-                    the weapon (doesn't it sound obvious ?) :<br>
-                    <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard9();" height="16" width="16"></span>
-<textarea id="holdtext9" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext9" class="short">032B: <span class="general1-variable">$myweaps06</span> = create_weapon_pickup <span class="general1-model">#NVGOGGLES</span> <span class="general1-number">15</span> ammo <span class="general1-number">1  </span> at <span class="general1-number">  299.5   -31.7 1001.0</span>
-032B: <span class="general1-variable">$myweaps07</span> = create_weapon_pickup <span class="general1-model">#IRGOGGLES</span> <span class="general1-number">15</span> ammo <span class="general1-number">1  </span> at <span class="general1-number">  299.6   -41.3 1001.0</span>
-032B: <span class="general1-variable">$myweaps08</span> = create_weapon_pickup <span class="general1-model">#M4       </span> <span class="general1-number">15</span> ammo <span class="general1-number">60 </span> at <span class="general1-number"> 2021.8  1001.4   10.3</span>
-032B: <span class="general1-variable">$myweaps09</span> = create_weapon_pickup <span class="general1-model">#MP5LNG   </span> <span class="general1-number">15</span> ammo <span class="general1-number">120</span> at <span class="general1-number"> 2025.2  1001.4   10.3</span>
-032B: <span class="general1-variable">$myweaps10</span> = create_weapon_pickup <span class="general1-model">#SHOTGSPA </span> <span class="general1-number">15</span> ammo <span class="general1-number">120</span> at <span class="general1-number"> 2021.0  1013.3   10.3</span>
-032B: <span class="general1-variable">$myweaps11</span> = create_weapon_pickup <span class="general1-model">#SATCHEL  </span> <span class="general1-number">15</span> ammo <span class="general1-number">20 </span> at <span class="general1-number"> 2023.7  1013.5   10.5</span>
-032B: <span class="general1-variable">$myweaps12</span> = create_weapon_pickup <span class="general1-model">#SNIPER   </span> <span class="general1-number">15</span> ammo <span class="general1-number">60 </span> at <span class="general1-number">-2035.7   139.4   28.3</span>
-032B: <span class="general1-variable">$myweaps13</span> = create_weapon_pickup <span class="general1-model">#MICRO_UZI</span> <span class="general1-number">15</span> ammo <span class="general1-number">120</span> at <span class="general1-number">-2038.4   139.6   28.3</span>
-032B: <span class="general1-variable">$myweaps14</span> = create_weapon_pickup <span class="general1-model">#CHROMEGUN</span> <span class="general1-number">15</span> ammo <span class="general1-number">120</span> at <span class="general1-number">-2038.6   137.4   28.3</span>
-032B: <span class="general1-variable">$myweaps15</span> = create_weapon_pickup <span class="general1-model">#GRENADE</span>   <span class="general1-number">15</span> ammo <span class="general1-number">20 </span> at <span class="general1-number">-2035.4   137.2   28.3</span>
-032B: <span class="general1-variable">$myweaps16</span> = create_weapon_pickup <span class="general1-model">#AK47   </span>   <span class="general1-number">15</span> ammo <span class="general1-number">120</span> at <span class="general1-number"> 2499.3 -1707.4 1014.2</span>
-032B: <span class="general1-variable">$myweaps17</span> = create_weapon_pickup <span class="general1-model">#TEC9   </span>   <span class="general1-number">15</span> ammo <span class="general1-number">120</span> at <span class="general1-number"> 2499.5 -1709.6 1014.2</span>
-032B: <span class="general1-variable">$myweaps18</span> = create_weapon_pickup <span class="general1-model">#SAWNOFF</span>   <span class="general1-number">15</span> ammo <span class="general1-number">60 </span> at <span class="general1-number"> 2493.4 -1708.2 1014.9</span>
-032B: <span class="general1-variable">$myweaps19</span> = create_weapon_pickup <span class="general1-model">#MOLOTOV</span>   <span class="general1-number">15</span> ammo <span class="general1-number">20 </span> at <span class="general1-number"> 2493.5 -1706.8 1015.1</span>
-032B: <span class="general1-variable">$myweaps22</span> = create_weapon_pickup <span class="general1-model">#COLT45 </span>   <span class="general1-number">15</span> ammo <span class="general1-number">100</span> at <span class="general1-number"> -365.4 -1422.4   25.5</span>
-032B: <span class="general1-variable">$myweaps23</span> = create_weapon_pickup <span class="general1-model">#FLAME  </span>   <span class="general1-number">15</span> ammo <span class="general1-number">200</span> at <span class="general1-number"> -366.0 -1418.6   25.5</span></pre>
-</div>
-                    <br>
-                    <br>
-                    Well for those ones, the number after
-                     <span class="general1-space">ammo</span> is the number
-                    of ammunition you'll have when you pick the weapon
-                  up.</li>
-                </ol>
-                For all pickups (both 0213 and 032B) :<br>
-                <br>
-                type <span class="general1-number">1</span> disables the
-                pickup (you can't pick it up)<br>
-                type <span class="general1-number">3</span> make the pickup
-                pickable only one time <br>
-                type <span class="general1-number">15</span> make the pickup
-                re-grows up everytime after you picked it up (probably what
-                you want)<br>
-                <br>
-                <br>
-                the three floats are the coordinates of the pickup like those
-                :<span class="general1-number">-366.0 -1418.6 25.5</span>
-                <br>
-                <br>
-                <span class="general1-variable">$myweapsxx</span> is the
-                handle of the pickup, the variable that contains it.<br>
-                <br>
-                and <b><span class="general1-model">#GRENADE</span> </b> is
-                the model.<br>
-                <br>
-                One last thing is that you can find a weapon list <a href="SCMHELPGTASA14.html">right here</a>.<br>
-                <br>
-                There is some weapons like the jetpack, or the parachute
-                where you can use either 0213 or 032B with ammo 1 it has the
-                same result.<br>
-                <br>
-                <br>
-                You can destroy pickups before it's been pickup, with 0215
-                :<br><br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard10();" height="16" width="16"></span>
-<textarea id="holdtext10" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext10" class="NON">0215: destroy_pickup <span class="general1-variable">$myweaps01</span></pre></div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+### 1. Using Sanny
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="4thread"> 4. Threads : </a></b></u></span>
-                 <br>
-                <br>
-                There isn't much to say more than what's been told in <a href="articles11.html#4thredlab">Part I : 4. Threads and labels</a>. <br>
-                <br>
-                Just that you create them with 004F like that :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard11();" height="16" width="16"></span>
-<textarea id="holdtext11" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext11" class="NON">004F: <span class="general1-reservedword">create_thread</span> <span class="general1-label">@name_of_your_thread</span></pre></div>
-                <br>
-                <br>
-                You name it with 03A4 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard12();" height="16" width="16"></span>
-<textarea id="holdtext12" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext12" class="NON">03A4: name_thread <span class="general1-string">'NAME'</span></pre></div>
-                No more than 7 letter.<br>
-                <br>
-                <br>
-                You can end it with 004E from the thread itself :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard13();" height="16" width="16"></span>
-<textarea id="holdtext13" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext13" class="NON">004E: <span class="general1-reservedword">end_thread</span></pre></div>
-                <br>
-                <br>
-                Or from anywhere else with 0459 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard14();" height="16" width="16"></span>
-<textarea id="holdtext14" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext14" class="NON">0459: <span class="general1-reservedword">end_thread_named</span> <span class="general1-string">'NAME'</span></pre></div>
-                <br>
-                <br>
-                <br>
-                <br>
-                Sometime you can find weird 004F like :<br>
-                <br>
-                <img src="../../img/Part20II.files/drhtfy.png" width="406" height="24"><br>
-                <br>
-                Don't worry it's just how you can set local variable for the
-                thread you create. Like on the example <span class="general1-variable">$ACTOR_RYDER</span> will be <span class="general1-variable">0@</span> , <span class="general1-number">0</span> (first one) will be <span class="general1-variable">1@</span> , <span class="general1-number">0</span> (second one) will be <span class="general1-variable">2@</span> , <span class="general1-number">2</span> will be <span class="general1-variable">3@</span> , <span class="general1-number">1</span> will be <span class="general1-variable">4@</span> in the thread <span class="general1-label">:AUDIOL</span> .<br>
-                <br>
-                Like Sanny tells you you can set up to 32 locals there for
-                the thread you create from <span class="general1-variable">0@</span> to <span class="general1-variable">31@</span> . It can be very usefull
-                but if you don't really understend it doesn't really matter,
-                it's just so you know about it. <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="5sphere"> 5. Spheres and markers : </a></b></u></span>
-                <br>
-                <br>
-                <br>
-                <u>Spheres : </u><br>
-                A sphere (also called POI cylinder) is the red round thingy
-                that you walk in when you start a mission. <br>
-                <br>
-                Even if you don't actually see the red circle, the game (and
-                you while modding) uses many sphere all the time. Just to
-                check if actor x is near a given coordinate within a certain
-                radius.<br>
-                <br>
-                To create thoses special spheres that checks if actor is near
-                it you need a special type of opcodes that have a command and
-                are conditional !!!! There rare but so usefull since GTA III.
-                They are conditional because they check <u>if</u> the actor
-                is near it and in the meanwhile they display the red sphere
-                ingame.
-                <ol type="a">
-                  <li class="Myli">2d opcodes<br>
-                    from <a href="http://sa-db.webtools4you.net/?show=all&amp;mark=00ec#00ec" target="_blank">00ec</a> to <a href="http://sa-db.webtools4you.net/?show=all&amp;mark=00f4#00ec" target="_blank">00f4</a>.<br>
-                    <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard15();" height="16" width="16"></span>
-<textarea id="holdtext15" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext15" class="short">00EC: actor <span class="general1-variable">$PLAYER_ACTOR</span> <span class="general1-number">0</span> near_point <span class="general1-number">1812.369 -1929.9215</span> radius <span class="general1-number">80.0 80.0</span>
-00ED: actor <span class="general1-variable">$PLAYER_ACTOR</span> <span class="general1-number">0</span> near_point_on_foot <span class="general1-number">2043.6801 -1635.73</span> radius <span class="general1-number">4.0 4.0</span>
-00EE: actor <span class="general1-variable">$PLAYER_ACTOR</span> <span class="general1-number">0</span> near_point_in_car <span class="general1-number">2067.3999 -1831.2</span> radius <span class="general1-number">15.0 15.0</span>
-00EF: actor <span class="general1-variable">$PLAYER_ACTOR</span> stopped <span class="general1-number">0</span> near_point <span class="general1-number">2196.239 -1191.459</span> radius <span class="general1-number">2.0 2.0</span>
-00F0: actor <span class="general1-variable">$PLAYER_ACTOR</span> stopped <span class="general1-number">0</span> near_point_on_foot <span class="general1-number">2175.29 -2259.22</span> radius <span class="general1-number">3.0 3.0</span>
-00F1: actor <span class="general1-variable">$PLAYER_ACTOR</span> stopped <span class="general1-number">0</span> near_point_in_car <span class="general1-number">-175.29 -59.22</span> radius <span class="general1-number">3.0 3.0</span>
-00F2: actor <span class="general1-variable">67@</span> near_actor <span class="general1-variable">$PLAYER_ACTOR</span> radius <span class="general1-number">20.0 20.0 0</span>
-00F3: actor <span class="general1-variable">$PLAYER_ACTOR</span> near_actor_on_foot <span class="general1-variable">15@</span> radius <span class="general1-number">2.0 2.0 0</span>
-00F4: actor <span class="general1-variable">34@</span> near_actor_in_car <span class="general1-variable">$PLAYER_ACTOR</span> radius <span class="general1-number">6.0 6.0 0</span></pre>
-</div>
-                    <br>
-                    <br>
-                    Those opcodes shouldn't be used because they can lead to
-                    many bugs particulary in interiors. <br>
-                    <br>
-                  </li>
-                  <li class="Myli">3d opcodes<br>
-                    from <a href="http://sa-db.webtools4you.net/?show=all&amp;mark=00fe#00fe" target="_blank">00fe</a> to <a href="http://sa-db.webtools4you.net/?show=all&amp;mark=0106#00fe" target="_blank">0106</a>.<br>
-                    <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard16();" height="16" width="16"></span>
-<textarea id="holdtext16" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre class="short" id="copytext16">00FE: actor <span class="general1-variable">$PLAYER_ACTOR</span> <span class="general1-number">0</span> near_point_3d <span class="general1-number">658.0068 -1866.3127 4.4537</span> radius <span class="general1-number">15.0 15.0 15.0</span>
-00FF: actor <span class="general1-variable">$PLAYER_ACTOR</span> <span class="general1-number">0</span> near_point_3d_on_foot <span class="general1-variable">$X_JOHNSON_HOUSE $Y_JOHNSON_HOUSE $Z_JOHNSON_HOUSE</span> radius <span class="general1-number">1.0 1.0 2.0</span>
-0100: actor <span class="general1-variable">$PLAYER_ACTOR</span> near_point_3d_in_car <span class="general1-number">1793.0676 -1904.2538 12.3989</span> radius <span class="general1-number">4.0 4.0 4.0</span> sphere <span class="general1-number">1</span>
-0101: actor <span class="general1-variable">$PLAYER_ACTOR</span> stopped_near_point_3d <span class="general1-variable">10@ 11@ 12@</span> radius <span class="general1-number">5.0 5.0 3.0</span> sphere <span class="general1-number">0</span>
-0103: actor <span class="general1-variable">$PLAYER_ACTOR</span> stopped_near_point_3d_in_car <span class="general1-number">-1577.9417 52.6333 16.3281</span> radius <span class="general1-number">4.0 4.0 6.0</span> sphere <span class="general1-number">0</span>
-0104: actor <span class="general1-variable">$PLAYER_ACTOR</span> near_actor_3d <span class="general1-variable">1@</span> radius <span class="general1-number">15.0 15.0 15.0</span> sphere <span class="general1-number">0</span>
-0105: actor <span class="general1-variable">$PLAYER_ACTOR</span> near_actor_3d_on_foot <span class="general1-variable">102@</span>(<span class="general1-variable">42@</span>,<span class="general1-number">9i</span>) radius <span class="general1-number">5.0 5.0 2.0</span> sphere <span class="general1-number">0</span>
-0106: actor <span class="general1-variable">$PLAYER_ACTOR</span> near_actor_3d_in_car <span class="general1-variable">71@</span> radius <span class="general1-number">15.0 15.0 15.0 0</span></pre>
-</div>
-        These opcodes are good use them !!!</li>
-                </ol>
-                For all of them opcodes :<br>
-                <br>
-                Where ever it is placed the integer <span class="general1-number">0</span> or <span class="general1-number">1</span> tells the engine to show the
-                red circle (1=show;0=don't show). <br>
-                <br>
-                The first 2 or 3 (2 for 2D, 3 for 3D) floats like <span class="general1-number">-366.066 -1418.683 25.5</span> are
-                the position.<br>
-                <br>
-                The second 2 or 3 (2 for 2D, 3 for 3D) floats like <span class="general1-number">4.0 4.0 6.0</span> are the radius of
-                the sphere.<br>
-                <br>
-                <span class="general1-variable">$PLAYER_ACTOR</span> or <span class="general1-variable">71@</span> , are the actor
-                variables. <br>
-                <br>
-                <br>
-                To have the sphere working (and then appearing) you need to
-                place it in a loop :<br>
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard17();" height="16" width="16"></span>
-<textarea id="holdtext17" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext17" class="NON"><span class="general1-label">:SPHERE_LOOP</span>
-0001: <span class="general1-reservedword">wait</span> <span class="general1-number">0</span> ms
-00D6: <span class="general1-reservedword">if</span>
-00EC: actor <span class="general1-variable">$PLAYER_ACTOR</span> <span class="general1-number">0</span> near_point <span class="general1-number">1812.369 -1929.9215</span> radius <span class="general1-number">80.0 80.0</span>
-004D: jump_if_false <span class="general1-label">@SPHERE_LOOP</span></pre></div>
-                <br>
-                <br>
-                The thread must be running on the loop for the condition to
-                checked, and for the red circle to appear. The wait is needed
-                don't make it too long otherwise it will be flickering, keep
-                to 0 ms to have it nice.<br>
-                <br>
-                <br>
-                <br>
-                <u>Markers : </u>
-                <ul>
-                  <li class="Myli">Marker icons<br>
-                    Markers icons are the radar assets you go to to do a
-                    mission. Like <img src="../../img/Part20II.files/icon6.gif" width="16" height="16">, <img src="../../img/Part20II.files/icon11.gif" width="16" height="16">, or <img src="../../img/Part20II.files/icon16.gif" width="16" height="16">, etc...<br>
-                    <br>
-                    Thanks to LazioFreak for finding them. You can find a
-                    list of the icons and the numbers to use them on this
-                    page <a href="http://www.lzfdownloads.de/index2.php?page=46&amp;action=text" target="_blank">[SA] radar icons</a> or in <a href="SCMHELPGTASA9.html">Sanny Builder's
-                    Help contents in <i>SCM Documentation: GTA SA: radar
-                    icons</i></a>.<br>
-                    <br>
-                    <br>
-                    There is four opcodes to create them :<br>
-                    <br>
-                    Three without sphere (like it's said in the opcode
-                    description) 04ce and 0570 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard18();" height="16" width="16"></span>
-<textarea id="holdtext18" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre class="short" id="copytext18">04CE: <span class="general1-variable">$marker01</span> = create_icon_marker_without_sphere <span class="general1-number">12</span> at <span class="general1-number">2447.3643 -1974.4963 12.5469</span>
-0570: <span class="general1-variable">$marker02</span> = create_asset_radar_marker_with_icon <span class="general1-number">36</span> at <span class="general1-number">1837.3643 -1974.4963 12.5469</span>
-02A8: <span class="general1-variable">$marker03</span> = create_marker <span class="general1-number">23</span> at <span class="general1-number">658.0068 -1866.3127 4.4537</span></pre>
-</div>
-                    <br>
-                    02a8 will ALWAYS be visible on the radar.<br>
-                    <br>
-                    <br>
-                    One with a sphere 02a7 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard19();" height="16" width="16"></span>
-<textarea id="holdtext19" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext19" class="shorty">02A7: <span class="general1-variable">$marker00</span> = create_icon_marker_and_sphere <span class="general1-number">33</span> at <span class="general1-number">2514.5601 -1666.84 13.38</span></pre>
-</div>
-                    <br>
-                    Like 02a8, this one is pretty cool because it will be
-                    ALWAYS visible on the radar, where ever you go you'll see
-                    it.<br>
-                    But watch out it's only a sphere (just the red circle) it
-                    doesn't check if the player is near it, just the radar
-                    marker and the sphere. To check if the player is near it
-                    use opcodes told upper in spheres.<br>
-                    <br>
-                    All of them are 5 parameters opcodes :
-                    <ul>
-                      <li class="Myli"><span class="general1-variable">$markerxx</span> is
-                        the handle of the marker</li>
-                      <li class="Myli">The integer like <span class="general1-number">12</span> , <span class="general1-number">36</span> , or <span class="general1-number">23</span> are the marker
-                        icons number you can find on <a href="SCMHELPGTASA9.html"><i>SCM Documentation: GTA SA: radar
-                    icons</i></a></li>
-                      <li class="Myli">The three floats are the x y z coordinates</li>
-                    </ul>
-                  </li>
-                  <li class="Myli">Color markers<br>
-                    The color markers are that :<br>
-                   <img src="../../img/Part20II.files/rtgerterh.jpg" width="555" height="459"><br>
-                    <br>
-                    And on the radar they are represented by a colored square
-                    like that :<br>
-                    <img src="../../img/Part20II.files/rthrtyjty.jpg" width="143" height="134"><br>
-                    <br>
-                    <br>
-                    <br>
-                    To create them on vehicle/actor/object/pickup :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard20();" height="16" width="16"></span>
-<textarea id="holdtext20" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext20" class="shorty">0186: <span class="general1-variable">$marker04</span> = create_marker_above_car <span class="general1-variable">$car00</span>
-0187: <span class="general1-variable">$marker05</span> = create_marker_above_actor <span class="general1-variable">$actor00</span>
-0188: <span class="general1-variable">$marker06</span> = create_marker_above_object <span class="general1-variable">$object00</span>
-03DC: <span class="general1-variable">$marker07</span> = create_marker_above_pickup <span class="general1-variable">$myweaps00</span></pre>
-</div>
-                    <br>
-                    Watch out the vehicle/actor/object/pickup must be
-                    existing and store in the hanlde otherwise you'll crash
-                    the game.<br>
-                    With 03dc, the marker over the pickup will always be
-                    green what ever you do with it.
-                    <ul>
-                      <li class="Myli"><span class="general1-variable">$markerxx</span> is
-                        the handle of the marker</li>
-                      <li class="Myli"><span class="general1-variable">$car00</span> ,
-                        <span class="general1-variable">$actor00 </span> ,
-                        <span class="general1-variable">$object00</span> ,
-                        <span class="general1-variable">$myweaps00</span> are
-                        the handles of vehicle/actor/object/pickup</li>
-                    </ul>
-                    You can change the color of the marker with :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard21();" height="16" width="16"></span>
-<textarea id="holdtext21" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext21" class="shorty">0165: set_marker <span class="general1-variable">$marker05</span> color_to <span class="general1-number">1</span></pre>
-</div>
-                    <ul>
-                      <li class="Myli"><span class="general1-number">0</span> = red</li>
-                      <li class="Myli"><span class="general1-number">1</span> = green</li>
-                      <li class="Myli"><span class="general1-number">2</span> = light
-                      blue</li>
-                      <li class="Myli"><span class="general1-number">3</span> = white</li>
-                      <li class="Myli"><span class="general1-number">4</span> = light
-                      yelow</li>
-                    </ul>
-                    With 0168 you can change the size of the marker (unlike
-                    the description says) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard22();" height="16" width="16"></span>
-<textarea id="holdtext22" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext22" class="shorty">0168: show_on_radar <span class="general1-variable">$marker04</span> <span class="general1-number">1</span></pre>
-</div>
-                    <ul>
-                      <li class="Myli">&lt; <span class="general1-number">3</span> :
-                        smaller the default size</li>
-                      <li class="Myli">= <span class="general1-number">3</span> : default
-                        size</li>
-                      <li class="Myli">&gt; <span class="general1-number">3</span> :
-                      bigger</li>
-                    </ul>
-                    You can set to enemy or friendly color (it only change
-                    the color):<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard23();" height="16" width="16"></span>
-<textarea id="holdtext23" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext23" class="shorty">07E0: set_marker <span class="general1-variable">$marker02</span> type_to <span class="general1-number">1</span></pre>
-</div>
-                    <ul>
-                      <li class="Myli"><span class="general1-number">0</span> : enemy
-                      red</li>
-                      <li class="Myli"><span class="general1-number">1</span> : friendly
-                        blue</li>
-                    </ul>
-                  </li>
-                </ul>
-                To hide and show them (both icons and colored markers) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard24();" height="16" width="16"></span>
-<textarea id="holdtext24" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext24" class="NON">018B: show_on_radar <span class="general1-variable">$marker04</span> <span class="general1-number">1</span></pre></div>
-                <ul>
-                  <li class="Myli"><span class="general1-number">0</span> = hide</li>
-                  <li class="Myli"><span class="general1-number">1</span> = hide</li>
-                  <li class="Myli"><span class="general1-number">2</span> = show</li>
-                  <li class="Myli"><span class="general1-number">3</span> = show</li>
-                  <li class="Myli"><span class="general1-number">4</span> = hide</li>
-                  <li class="Myli"><span class="general1-number">5</span> = hide</li>
-                </ul>
-                To destroy them (both icons an colored markers) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard25();" height="16" width="16"></span>
-<textarea id="holdtext25" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext25" class="NON">0164: disable_marker <span class="general1-variable">$markerxx</span></pre></div>
-                <br>
-                Where of course <span class="general1-variable">$markerxx</span> is the handle of
-                the marker.<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+This part is most repeat parts of Sanny's Help but sometimes explained differently. But you can still report to the Hotkeys page for more details.
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="6acwecar"> 6. Actors, weapons and vehicles : </a></b></u></span>
-                 <br>
-                <br>
-                Now let's create some things to destroy them !!!!!<br>
-                <br>
-                <br>
-                First when you create actors, vehicles, objects, or give
-                weapons to an actor, you have to load the models and check
-                they are loaded before creating them. <br>
-                <br>
-                So you need to request the models with 0247 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard26();" height="16" width="16"></span>
-<textarea id="holdtext26" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext26" class="NON">0247: request_model <span class="general1-model">#CHEETAH</span>
-0247: request_model <span class="general1-model">#DESERT_EAGLE</span></pre></div>
-                <br>
-                <br>
-                then load requested models with 038b :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard27();" height="16" width="16"></span>
-<textarea id="holdtext27" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext27" class="NON">038B: load_requested_models</pre></div>
-                <br>
-                <br>
-                <br>
-                After you need a check to confirm that the models are really
-                loaded (available for the engine to use):<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard28();" height="16" width="16"></span>
-<textarea id="holdtext28" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext28" class="NON">00D6: <span class="general1-reservedword">if and</span>
-0248: model <span class="general1-model">#HEATSEEK</span> available
-0248: model <span class="general1-model">#DESERT_EAGLE</span> available
-0248: model <span class="general1-model">#MP5LNG</span> available
-0248: model <span class="general1-model">#CR_AMMOBOX</span> available
-0248: model <span class="general1-model">#CHEETAH</span> available
-0248: model <span class="general1-model">#WFYSEX</span> available
-004D: jump_if_false <span class="general1-label">@LOOP_RQ_10</span></pre></div>
-                <br>
-                <br>
-                The jump if false jumps to <span class="general1-label">:LOOP_RQ_10</span> where the model
-                will be requested again loaded again.<br>
-                <br>
-                All in one it look like that :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard29();" height="16" width="16"></span>
-<textarea id="holdtext29" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext29" class="NON"><span class="general1-label">:LOOP_RQ_10</span>
-0001: <span class="general1-reservedword">wait</span> <span class="general1-number">0</span>
-0247: request_model <span class="general1-model">#WFYSEX</span>
-0247: request_model <span class="general1-model">#CR_AMMOBOX</span>
-0247: request_model <span class="general1-model">#CHEETAH</span>
-0247: request_model <span class="general1-model">#DESERT_EAGLE</span>
-0247: request_model <span class="general1-model">#MP5LNG</span>
-0247: request_model <span class="general1-model">#HEATSEEK</span>
+#### Hotkeys
+
+##### F1
+The magic hotkey !!!!! write an opcode like `004F` and press `F1` and ho magic appears:
+
+**CODE**
+```sb3
+004F: create_thread @ODDVE
+```
+
+or write thread and press it and press it again, Sanny will suggest you all those different lines:
+
+**CODE**
+```sb3
+004E: end_thread
+
+004F: create_thread @ODDVEH
+
+00D7: create_thread_with_wasted_busted_check @NONAME_2
+
+03A4: name_thread 'MAIN'
+
+0459: end_thread_named 'INT'
+
+004F: create_thread @ODDVEH
+```
+
+`F1` will be the key you'll use a lot, just think about what you want (car, actor, checkpoint, markers, weapon, money, paintjob, etc...) write it and press `F1`. It won't do what you want everytime but it will get you going.\
+`F1` is kind of google for Sanny!!!!!!!
+
+But notice that it only works for one and only one word.
+
+Remember (or learn if you didn't know) that `F1` gets it's suggestions from opcodes.txt so make sure you did what it's in part II __introduction__.
+
+##### Ctrl + Shift + <0..9>
+make bookmark, at the line you are like:
+
+:::center
+![](mcp2/tyhtyhety.gif)
+:::
+
+They should be save when you save the file.
+
+##### Ctrl + <0..9>
+Go to bookmark number <0..9>, put you at the line of the bookmark (if it exist)
+
+##### Ctrl + Num2/Num8
+When you place your cusor (the blinky |) on a jump (or `gosub` or `jf`-jump_if_false-)and press it the editor will bring you the the label. Look animation to see that I've place on `@PSAVE1_1498` and it bring me to the label it self `:PSAVE1_1498`
+
+:::center
+![](mcp2/azdzefqerf.gif)
+:::
+
+##### F3
+Find Next 
+
+##### Ctrl + F3
+Find previous
+
+##### Ctrl + Alt 
+Holded, Rectangular selection
+
+:::center
+![](mcp2/fgywdfwgwd.gif)
+:::
+
+##### Ctrl + Alt + 1
+Coords Manager (game must be running)
+
+:::center
+![](mcp2/erferfertgyyhze2.png)
+:::
+
+##### Ctrl + Alt + C
+Insert player coordinates where you cursor is
+
+##### Ctrl + Alt + E
+Insert z angle value where you cursor is
+
+##### Ctrl + T
+delete word, remember things like end_thread will be considered as one word
+
+##### Ctrl + Y
+delete line
+
+##### Ctrl + Shift + Y
+clear line, leave the line but delete what's written in it
+
+##### Ctrl + Scroll Up/Down
+page up/down
+
+##### Ctrl + Shift + U/L
+make word UPPERCASE/lowercase
+
+##### Ctrl + Q
+comment out the line your cursor is (adds // at begining of the line), so the line will be ignored when compiling
+
+##### Ctrl + G
+go to line
+
+##### Ctrl + R
+replace
+
+##### Ctrl + C
+copy 
+
+##### Ctrl + V
+paste
+
+##### F7
+compile and copy to GTA SA folder main.scm and script.img
+
+#### Editor completion
+Sanny can complete some thing for you like global variables, labels, model IDs, to use it just write first character ($, @, or #) and get what you need. Look the animation I think it explains well:
+
+:::center
+![](mcp2/ertyydjyj.gif)
+:::
+
+Those are the most used exemples, but you might find many use for this tool.
+
+Notice that with models, the nudel number is shown, so it's a pretty easy way to find what number a model is.
+
+:::center
+![](mcp2/xdfgsdrgs.png)
+:::
+
+#### Coords Manager
+
+Very usefull tool here which get the 3D position of the player. Of course the game muste be running....
+
+The 3 dimension position is the value of each axis (x, y, z). The San Andreas map goes from `-3000.0` to `3000.0` on x and y axis. The altitude (z) max of planes is about `800.0` units. Axis x is oriented west east, the x value increases when going east. Axis y is oriented south north, the y value increases when going north. Center of the map is located at `0.0 0.0 0.0`.
+Well it looks like that:
+
+:::center
+![](mcp2/SDVDF.gif)
+:::
+
+This screenshot is from old Sanny Builder new coord manager is slightly different.
+- **Copy** will copy into clipboard the 3d pos like `747.756 -1809.0986 13.0234`.
+- **Read** will refresh the position of the player ingame.
+- **Set** will put player at the position you've written in the three dimensions.
+
+In new Sanny Builder you get the Z angle value. This is the value of the angle around z axis which means what direction the player (CJ) is looking at. `0.0` is north, `180.0` is south, `90.0` is east, `270.0` is west.
+
+### 2. Adding mission mods
+
+This isn't really coding but it is usefull for everyone to look/test/use/imitate parts of other's mods.
+
+First thing to know when adding mods : FOLLOW INSTRUCTIONS !!!!!!!!!!!!!!!!!!!! Every mods is different so when adding a mod first follow the author instructions to add it, they're the best instructions. But sometimes there isn't much instruction.
+
+Then, most of mods are main part (look part I, 1.Main.scm architecture) mods. So they're activated (create_thread) and executed in the main part. You probably want to add mods to original main.scm (or modded `main.scm`), then you'll will use `004F: create_thread` here:
+**CODE**
+```sb3
+004F: create_thread @ODDVEH
+004F: create_thread @R3
+004F: create_thread @GYM
+004F: create_thread @SHOOT
+004F: create_thread @BLOODR
+004F: create_thread @HOTR
+004F: create_thread @KICKS
+004F: create_thread @PSAVE1
+004F: create_thread @FLOW
+004F: create_thread @HELP
+004F: create_thread @COLLS
+004F: create_thread @CRANES
+004F: create_thread @BUY_PRO
+004F: create_thread @VALET_L
+004F: create_thread @ADPLANE
+```
+Between any of those lines you'll add:
+**CODE**
+```sb3
+004F: create_thread @modlabel
+```
+- where it will be of course the mod's first label name instead of `modlabel`.
+
+Then you've got the mod itself, you have to add it anywhere in main part. BUT it isn't really anywhere, it's more like anywhere after it's been created/activated, and not inside another thread. to simplify just put it at the very end of main part, so before:
+
+**CODE**
+```
+//-------------Mission 0---------------
+// Originally: Initial 1
+```
+
+Then compile and copy to San Andreas data\script (F7), launch the game, start a new game and...
+
+have fun...
+
+Hang on, if it really did work, you're like really very very lucky (and you did a good job apparently) !!!! Most of time first try simply doesn't work. So watch what you've done, look how the author of the mod did it, watch global variables (if only numbers you should change it to a custom name), the try again, and if you really can't get it working, ask the author how he did (do that after several tries and checks, don't disturb the author for a mistake you've done).
+
+### 3. Weapon pickups and parked cars
+opportunity to explain how it works.
+
+Pickups and parked car are spaecial opcode because it telle the engine to create such car or such weapon if player is close enough to the point.
+
+Well I'll take exemple to the cars/vehicles that you always find in one place (the skimmer near the dam, the AT400 at Vegas airport, the cropduster in the desert, these are the only one I can think of right now) everytime (actually not everytime) you come back it's here. Same for weapons (the heatseek rockets at the abandonned village, the gun behind Sweet's house...), life (red heart in gang wars), and armor.
+
+#### Parked cars
+**CODE**
+```sb3
+014B: $mycarx00 = init_parked_car_generator #CHEETAH 15 15 1 alarm 0 door_lock 0 0 0 at -1253.1 -348.0 13.9 angle 0.0
+014C: set_parked_car_generator $mycarx00 cars_to_generate_to 101
+```
+
+* This will create a cheetah (`#CHEETAH`).
+* at the 3d coordinate `-1253.1 -348.0 13.9`.
+* the car will be headed the z_angle `219.0` (z_angle is the angle around the axis z, `0.0` and `360.0` is north, `180`.0 is south, `90.0` is east, `270.0` is west), so this car is directed to south-west.
+* with color one number `15` (you can notice sometimes `-1` which mean any).
+* with color two number `15` (you can notice sometimes `-1` which mean any).
+* Car belongs to the player (the cops don't think you've stole it) becasue next parameters is set to `1` . If would set on 0 cops will give you a wanted level when you enter it.
+* Without alarm, because it's `0` . It's actaully percentage of chances of getting alarm. So if you want the alarm to go off everytime set it to `100` , if you want it once out of two time then `50` etc.
+* Doors won't be lock. As you can read door_lock is set to `0`. If 1 doors will be lock. The two others parameters are unknown.
+* This car generation (not the car itself) is set as handle `$mycarx00`.
+
+And you should be wondering how do I know all that (beside simply reading and thinking) ???????
+Well go check [http://sa-db.webtools4you.net/](http://sa-db.webtools4you.net/), clic go without writting anything, and with your internet browser (if you don't know what it is then it's Internet Explorer) go Edition\Find in the page, and search for 014B.
+
+You'll then get [`014B` description](http://sa-db.webtools4you.net/?show=all&mark=014b#014b). Wait till your internet browser brings you to 014 description 4 or 5 seconds), and it will be at top of th page highlighted in yellow.
+
+The line after `014C` just activates or unactivate the parked car generator for this car generation handle : 101 makes it spawn and 0 doesn't. It is needed don't forget one for each car generation, but they don't have to be together you can separate them.
+
+There is other types of parked cars they're very close to this one and they ain't much usefull.
+
+#### Weapon pickups
+
+There is two types of weapons pickups, one for weapons which doesn't need ammunitions (like dildos, katana, golf club, shovel, parachute....), and is actualy just a normal pickup.
+
+Those both pickup opcodes like with parked cars opcode don't need to request and load the model before using.
+
+##### Melee (and gift) weapons
+
+**CODE**
+```sb3
+0213: $myweaps00 = create_pickup #CHNSAW       type 15 at -2083.0 298.0 42.0
+0213: $myweaps01 = create_pickup #BAT          type 15 at -2306.0  93.0 35.0
+0213: $myweaps02 = create_pickup #SHOVEL       type 15 at -2796.4 123.6  6.8
+0213: $myweaps03 = create_pickup #POOLCUE      type 15 at -2135.0 197.0 35.0
+0213: $myweaps04 = create_pickup #KATANA       type 15 at -2208.0 696.0 50.0
+0213: $myweaps05 = create_pickup #BRASSKNUCKLE type 15 at -2206.0 961.0 80.0
+```
+
+You can use this opcode for other pickups like the keycard (what you get with the croupier girl- model : `#KEYCARD`), armour (model : `#BODYARMOUR`), life (model : `#HEALTH`), bribe (model : `#BRIBE`), save disks (only the pickup not the saving routine ! - model : `#PICKUPSAVE`), briefcase (model : `#BRIEFCASE`) etc...
+
+All the melee weapons (including parachute -`#PARA_PACK` - but not the goggles), and health, armour, bribes, are hardcoded that mean you don't have to check if the player picks up the so-called pickup, just go to the pickup and it automaticly gives the weapon/bribe/armour/health etc....
+
+For keycard, save disk, briefcase, but as well as all define objects models (if there ain't too big of course) because they can be use as a pickup, you have to check if the pickup has been pickup or not. You don't have to destroy it once it's been picked, because as soon as the player is on it it will automaticly disappear.
+For this you must use something like this:
+
+**CODE**
+```sb3
+00D6: if
+0214: pickup $pickupvar picked_up
+004D: jump_if_false @
+```
+
+##### Firearms (and all others)
+But for weapons which have ammunition, with an exeption for the night and infrared goggles, (models : `#NVGOGGLES`, and `#IRGOGGLES`) you'll need to use the pickups which give ammunition with the weapon (doesn't it sound obvious ?):
+
+**CODE**
+```sb3
+032B: $myweaps06 = create_weapon_pickup #NVGOGGLES 15 ammo 1   at   299.5   -31.7 1001.0
+032B: $myweaps07 = create_weapon_pickup #IRGOGGLES 15 ammo 1   at   299.6   -41.3 1001.0
+032B: $myweaps08 = create_weapon_pickup #M4        15 ammo 60  at  2021.8  1001.4   10.3
+032B: $myweaps09 = create_weapon_pickup #MP5LNG    15 ammo 120 at  2025.2  1001.4   10.3
+032B: $myweaps10 = create_weapon_pickup #SHOTGSPA  15 ammo 120 at  2021.0  1013.3   10.3
+032B: $myweaps11 = create_weapon_pickup #SATCHEL   15 ammo 20  at  2023.7  1013.5   10.5
+032B: $myweaps12 = create_weapon_pickup #SNIPER    15 ammo 60  at -2035.7   139.4   28.3
+032B: $myweaps13 = create_weapon_pickup #MICRO_UZI 15 ammo 120 at -2038.4   139.6   28.3
+032B: $myweaps14 = create_weapon_pickup #CHROMEGUN 15 ammo 120 at -2038.6   137.4   28.3
+032B: $myweaps15 = create_weapon_pickup #GRENADE   15 ammo 20  at -2035.4   137.2   28.3
+032B: $myweaps16 = create_weapon_pickup #AK47      15 ammo 120 at  2499.3 -1707.4 1014.2
+032B: $myweaps17 = create_weapon_pickup #TEC9      15 ammo 120 at  2499.5 -1709.6 1014.2
+032B: $myweaps18 = create_weapon_pickup #SAWNOFF   15 ammo 60  at  2493.4 -1708.2 1014.9
+032B: $myweaps19 = create_weapon_pickup #MOLOTOV   15 ammo 20  at  2493.5 -1706.8 1015.1
+032B: $myweaps22 = create_weapon_pickup #COLT45    15 ammo 100 at  -365.4 -1422.4   25.5
+032B: $myweaps23 = create_weapon_pickup #FLAME     15 ammo 200 at  -366.0 -1418.6   25.5
+```
+Well for those ones, the number after ammo is the number of ammunition you'll have when you pick the weapon up.
+
+For all pickups (both `0213` and `032B`)
+
+- type 1 disables the pickup (you can't pick it up)
+- type 3 make the pickup pickable only one time 
+- type 15 make the pickup re-grows up everytime after you picked it up (probably what you want)
+
+the three floats are the coordinates of the pickup like those: `-366.0 -1418.6 25.5`.
+
+`$myweapsxx` is the handle of the pickup, the variable that contains it.
+
+and `#GRENADE` is the model.
+
+One last thing is that you can find a weapon list right here.
+
+There is some weapons like the jetpack, or the parachute where you can use either `0213` or `032B` with ammo `1` it has the same result.
+
+You can destroy pickups before it's been pickup, with `0215`:
+
+**CODE**
+```sb3
+0215: destroy_pickup $myweaps01
+```
+
+### 4. Threads
+There isn't much to say more than what's been told in [Part I: 4. Threads and labels](mcp1.md#4.-threads-and-labels).
+
+Just that you create them with `004F` like that :
+**CODE** 
+
+```sb3
+004F: create_thread @name_of_your_thread
+```
+
+You name it with `03A4`:
+**CODE**
+```sb3
+03A4: name_thread 'NAME'
+```
+No more than 7 letter.
+
+You can end it with `004E` from the thread itself:
+**CODE**
+```sb3
+004E: end_thread
+```
+
+Or from anywhere else with `0459`:
+**CODE**
+```sb3
+0459: end_thread_named 'NAME'
+```
+
+Sometime you can find weird `004F` like:
+**CODE**
+```sb3
+004F: create_thread @AUDIOL $ACTOR_RYDER 0 0 2 1
+```
+
+Don't worry it's just how you can set local variable for the thread you create. Like on the example `$ACTOR_RYDER` will be `0@`, 0 (first one) will be `1@`, `0` (second one) will be `2@`, 2 will be `3@`, 1 will be `4@` in the thread `:AUDIOL`.
+
+Like Sanny tells you you can set up to 32 locals there for the thread you create from `0@` to `31@` . It can be very usefull but if you don't really understend it doesn't really matter, it's just so you know about it.
+
+### 5. Spheres and markers
+#### Spheres
+A sphere (also called POI cylinder) is the red round thingy that you walk in when you start a mission.
+
+Even if you don't actually see the red circle, the game (and you while modding) uses many sphere all the time. Just to check if actor x is near a given coordinate within a certain radius.
+
+To create thoses special spheres that checks if actor is near it you need a special type of opcodes that have a command and are conditional !!!! There rare but so usefull since GTA III. They are conditional because they check if the actor is near it and in the meanwhile they display the red sphere ingame.
+
+2d opcodes from [00ec](http://sa-db.webtools4you.net/?show=all&mark=00ec#00ec) to [00f4](http://sa-db.webtools4you.net/?show=all&mark=00f4#00ec).
+**CODE**
+```sb3
+00EC: actor $PLAYER_ACTOR 0 near_point 1812.369 -1929.9215 radius 80.0 80.0
+00ED: actor $PLAYER_ACTOR 0 near_point_on_foot 2043.6801 -1635.73 radius 4.0 4.0
+00EE: actor $PLAYER_ACTOR 0 near_point_in_car 2067.3999 -1831.2 radius 15.0 15.0
+00EF: actor $PLAYER_ACTOR stopped 0 near_point 2196.239 -1191.459 radius 2.0 2.0
+00F0: actor $PLAYER_ACTOR stopped 0 near_point_on_foot 2175.29 -2259.22 radius 3.0 3.0
+00F1: actor $PLAYER_ACTOR stopped 0 near_point_in_car -175.29 -59.22 radius 3.0 3.0
+00F2: actor 67@ near_actor $PLAYER_ACTOR radius 20.0 20.0 0
+00F3: actor $PLAYER_ACTOR near_actor_on_foot 15@ radius 2.0 2.0 0
+00F4: actor 34@ near_actor_in_car $PLAYER_ACTOR radius 6.0 6.0 0
+```
+Those opcodes shouldn't be used because they can lead to many bugs particulary in interiors.
+
+3d opcodes from [00fe](http://sa-db.webtools4you.net/?show=all&mark=00fe#00fe) to [0106](http://sa-db.webtools4you.net/?show=all&mark=0106#00fe).
+**CODE**
+```sb3
+00FE: actor $PLAYER_ACTOR 0 near_point_3d 658.0068 -1866.3127 4.4537 radius 15.0 15.0 15.0
+00FF: actor $PLAYER_ACTOR 0 near_point_3d_on_foot $X_JOHNSON_HOUSE $Y_JOHNSON_HOUSE $Z_JOHNSON_HOUSE radius 1.0 1.0 2.0
+0100: actor $PLAYER_ACTOR near_point_3d_in_car 1793.0676 -1904.2538 12.3989 radius 4.0 4.0 4.0 sphere 1
+0101: actor $PLAYER_ACTOR stopped_near_point_3d 10@ 11@ 12@ radius 5.0 5.0 3.0 sphere 0
+0103: actor $PLAYER_ACTOR stopped_near_point_3d_in_car -1577.9417 52.6333 16.3281 radius 4.0 4.0 6.0 sphere 0
+0104: actor $PLAYER_ACTOR near_actor_3d 1@ radius 15.0 15.0 15.0 sphere 0
+0105: actor $PLAYER_ACTOR near_actor_3d_on_foot 102@(42@,9i) radius 5.0 5.0 2.0 sphere 0
+0106: actor $PLAYER_ACTOR near_actor_3d_in_car 71@ radius 15.0 15.0 15.0 0
+```
+These opcodes are good use them!!!
+For all of them opcodes:
+
+Where ever it is placed the integer `0` or `1` tells the engine to show the red circle (1=show;0=don't show).
+
+The first 2 or 3 (2 for 2D, 3 for 3D) floats like `-366.066 -1418.683 25.5` are the position.
+
+The second 2 or 3 (2 for 2D, 3 for 3D) floats like `4.0 4.0 6.0` are the radius of the sphere.
+
+`$PLAYER_ACTOR` or `71@` , are the actor variables.
+
+To have the sphere working (and then appearing) you need to place it in a loop:
+**CODE**
+```sb3
+:SPHERE_LOOP
+0001: wait 0 ms
+00D6: if
+00EC: actor $PLAYER_ACTOR 0 near_point 1812.369 -1929.9215 radius 80.0 80.0
+004D: jump_if_false @SPHERE_LOOP
+```
+The thread must be running on the loop for the condition to checked, and for the red circle to appear. The wait is needed don't make it too long otherwise it will be flickering, keep to 0 ms to have it nice.
+
+#### Markers
+##### Marker icons
+Markers icons are the radar assets you go to to do a mission. Like ![](../../img/sa/radar/icon6.gif), ![](../../img/sa/radar/icon11.gif), or ![](../../img/sa/radar/icon16.gif), etc...
+
+Thanks to LazioFreak for finding them. You can find a list of the icons and the numbers to use them on this page [SA: radar icons](http://www.lzfdownloads.de/index2.php?page=46&action=text) or in Sanny Builder's Help contents in [SCM Documentation: GTA SA: radar icons](../scm-documentation/sa/radar-icons.md).
+
+There is four opcodes to create them:
+
+Three without sphere (like it's said in the opcode description) 04ce and `0570`:
+**CODE**
+```sb3
+04CE: $marker01 = create_icon_marker_without_sphere 12 at 2447.3643 -1974.4963 12.5469
+0570: $marker02 = create_asset_radar_marker_with_icon 36 at 1837.3643 -1974.4963 12.5469
+02A8: $marker03 = create_marker 23 at 658.0068 -1866.3127 4.4537
+```
+`02a8` will ALWAYS be visible on the radar.
+
+One with a sphere 02a7:
+**CODE**
+```sb3
+02A7: $marker00 = create_icon_marker_and_sphere 33 at 2514.5601 -1666.84 13.38
+```
+Like `02a8`, this one is pretty cool because it will be ALWAYS visible on the radar, where ever you go you'll see it.
+But watch out it's only a sphere (just the red circle) it doesn't check if the player is near it, just the radar marker and the sphere. To check if the player is near it use opcodes told upper in spheres.
+
+All of them are 5 parameters opcodes:
+* `$markerxx` is the handle of the marker.
+* The integer like `12`, `36`, or `23` are the marker icons number you can find on [SCM Documentation: GTA SA: radar icons](../scm-documentation/sa/radar-icons.md).
+* The three floats are the x y z coordinates.
+
+##### Color markers
+The color markers are that:
+:::center
+![](mcp2/rtgerterh.jpg)
+:::
+
+And on the radar they are represented by a colored square like that:
+
+:::center
+![](mcp2/rthrtyjty.jpg)
+:::
+
+To create them on vehicle/actor/object/pickup:
+**CODE**
+```sb3
+0186: $marker04 = create_marker_above_car $car00
+0187: $marker05 = create_marker_above_actor $actor00
+0188: $marker06 = create_marker_above_object $object00
+03DC: $marker07 = create_marker_above_pickup $myweaps00
+```
+Watch out the vehicle/actor/object/pickup must be existing and store in the hanlde otherwise you'll crash the game.
+With `03dc`, the marker over the pickup will always be green what ever you do with it.
+- `$markerxx` is the handle of the marker 
+- `$car00`, `$actor00`, `$object00`, `$myweaps00` are the handles of vehicle/actor/object/pickup 
+You can change the color of the marker with:
+**CODE**
+```sb3
+0165: set_marker $marker05 color_to 1
+```
+- 0 : red
+- 1 : green
+- 2 : light blue
+- 3 : white
+- 4 : light yelow
+With 0168 you can change the size of the marker (unlike the description says):
+**CODE**
+```sb3
+0168: show_on_radar $marker04 1
+```
+- < 3 : smaller the default size
+- = 3 : default size
+- > 3 : bigger
+You can set to enemy or friendly color (it only change the color):
+**CODE**
+```sb3
+07E0: set_marker $marker02 type_to 1
+```
+- 0 : enemy red
+- 1 : friendly blue
+
+To hide and show them (both icons and colored markers) :
+**CODE**
+```sb3
+018B: show_on_radar $marker04 1
+```
+- 0 : hide
+- 1 : hide
+- 2 : show
+- 3 : show
+- 4 : hide
+- 5 : hide
+
+To destroy them (both icons an colored markers):
+**CODE**
+```
+0164: disable_marker $markerxx
+```
+Where of course `$markerxx` is the handle of the marker.
+
+### 6. Actors, weapons and vehicles
+Now let's create some things to destroy them!!!!
+
+First when you create actors, vehicles, objects, or give weapons to an actor, you have to load the models and check they are loaded before creating them.
+
+So you need to request the models with 0247:
+**CODE**
+```sb3
+0247: request_model #CHEETAH
+0247: request_model #DESERT_EAGLE
+```
+
+then load requested models with 038b:
+**CODE**
+```sb3
 038B: load_requested_models
-00D6: <span class="general1-reservedword">if and</span>
-0248: model <span class="general1-model">#HEATSEEK</span> available
-0248: model <span class="general1-model">#DESERT_EAGLE</span> available
-0248: model <span class="general1-model">#MP5LNG</span> available
-0248: model <span class="general1-model">#CR_AMMOBOX</span> available
-0248: model <span class="general1-model">#CHEETAH</span> available
-0248: model <span class="general1-model">#WFYSEX</span> available
-004D: jump_if_false <span class="general1-label">@LOOP_RQ_10</span></pre></div>
-                <br>
-                <br>
-                Notice the wait because it's very important here you do a
-                loop, you make the engine comes back to where it was before.
-                You need this wait, wait 0 ms is far enough, you don't need
-                more, but you DO need it.<br>
-                <br>
-                <br>
-                Now that the models are available you can create your
-                actors/vehicles/objects, and give weapons to the actors :<br>
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard30();" height="16" width="16"></span>
-<textarea id="holdtext30" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext30">00A5: <span class="general1-variable">$car00</span> = create_car <span class="general1-model">#CHEETAH</span> at <span class="general1-number">2368.5601 -1666.84 13.38</span>
-009A: <span class="general1-variable">$actor00</span> = create_actor <span class="general1-number">22</span> <span class="general1-model">#WFYSEX</span> at <span class="general1-number">2490.56 -1666.84 14.38</span>
-009A: <span class="general1-variable">$actor01</span> = create_actor <span class="general1-number">22</span> <span class="general1-model">#WFYSEX</span> at <span class="general1-number">2495.56 -1666.84 14.38</span>
-009A: <span class="general1-variable">$actor02</span> = create_actor <span class="general1-number">22</span> <span class="general1-model">#WFYSEX</span> at <span class="general1-number">2490.56 -1660.84 14.38</span>
-009A: <span class="general1-variable">$actor03</span> = create_actor <span class="general1-number">22</span> <span class="general1-model">#WFYSEX</span> at <span class="general1-number">2495.56 -1660.84 14.38</span>
-0107: <span class="general1-variable">$object00</span> = create_object <span class="general1-model">#CR_AMMOBOX</span> at <span class="general1-number">2502.5601 -1566.84 24.38</span>
-01B2: give_actor <span class="general1-variable">$actor00</span> weapon <span class="general1-number">36</span> ammo <span class="general1-number">900</span> <span class="general1-comment">// Load the weapon model before using this</span>
-01B2: give_actor <span class="general1-variable">$actor01</span> weapon <span class="general1-number">29</span> ammo <span class="general1-number">900</span> <span class="general1-comment">// Load the weapon model before using this</span>
-01B2: give_actor <span class="general1-variable">$actor02</span> weapon <span class="general1-number">24</span> ammo <span class="general1-number">300</span> <span class="general1-comment">// Load the weapon model before using this</span>
-01B2: give_actor <span class="general1-variable">$actor03</span> weapon <span class="general1-number">29</span> ammo <span class="general1-number">900</span> <span class="general1-comment">// Load the weapon model before using this</span></pre>
-</div>
-                <ol type="A">
-                  <li class="Myli">For creating a car with 00a5 :
-                    <ul>
-                      <li class="Myli"><span class="general1-variable">$car00</span> is
-                        the car handle</li>
-                      <li class="Myli"><b><span class="general1-model">#CHEETAH</span>
-                        </b> is the model. Use editor completion to have a
-                        list of models (watch out there is ALL models, cars,
-                        actors, objects).</li>
-                      <li class="Myli"><span class="general1-number">2490.56 -1666.84
-                        14.38</span> are the coordinates.</li>
-                    </ul>
-                  </li>
-                  <li class="Myli">Create actor with 009a :
-                    <ul>
-                      <li class="Myli"><span class="general1-variable">$actor00</span> is
-                        the actor handle</li>
-                      <li class="Myli"><b><span class="general1-model">#WFYSEX</span> </b>
-                        is the model. Use editor completion to have a list of
-                        models.</li>
-                      <li class="Myli">The integer <span class="general1-number">22</span>
-                        is the ped type. The ped type is the temper, the way
-                        the actor will act by default (without any order
-                        given). You can find a list of ped types in Sanny
-                        Builder help contents in <i>SCM Documentation: GTA
-                        SA: PedTypes</i>. Here they don't like cops and will
-                        defend themself if they're attacked, among other
-                        things.</li>
-                      <li class="Myli"><span class="general1-number">2368.5601 -1666.84
-                        13.38</span> are the coordinates.</li>
-                    </ul>
-                  </li>
-                  <li class="Myli">0107 will create an object :
-                    <ul>
-                      <li class="Myli"><span class="general1-variable">$object00</span> is
-                        the object handle</li>
-                      <li class="Myli"><b><span class="general1-model">#CR_AMMOBOX</span>
-                        </b> is the model. Here you can use any objects
-                        defined in the map files (.ide files in GTA San
-                        Andreas\data\maps folder) as long as you defined the
-                        object in define object section in the scm. See <a href="articles11.html#1scmarchi">Part I : 1. Main.scm
-                      architecture</a>.</li>
-                      <li class="Myli"><span class="general1-number">2502.5601 -1566.84
-                        24.38</span> are the coordinates.</li>
-                    </ul>
-                  </li>
-                  <li class="Myli">Finally 01b2 gives an actor a weapon :
-                    <ul>
-                      <li class="Myli"><span class="general1-variable">$actor00</span> is
-                        the actor handle</li>
-                      <li class="Myli">The first integer <span class="general1-number">36</span> , <span class="general1-number">29</span> or <span class="general1-number">24</span> after weapon is the
-                        Weapon number. You can find a list of weapons their
-                        numbers and the correponding model in Sanny Builder
-                        help contents in <i>SCM Documentation: GTA SA: Weapon
-                        numbers</i>.</li>
-                      <li class="Myli">The second integer <span class="general1-number">300</span> or <span class="general1-number">900</span> after ammo is the
-                        number of ammunition given to the actor along with
-                        it's weapon. Here it's too much depends of how time
-                        the actor will live but I found that 150 is usualy
-                        far enough.</li>
-                    </ul>
-                    Even if you might think that this opcode don't need the
-                    weapon model to be loaded, but it DO NEEDS the model to
-                    be loaded. To ensure you can look at the comment (after
-                    //) which says : "<span class="general1-comment">// Load
-                    the weapon model before using this</span> "</li>
-                </ol>
-                Now they're ready to shoot away but they'll have to wait a
-                bit !!!!<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                You might need to change the direction of the car (z angle),
-                or its colors (there is up to four colors for cars) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard31();" height="16" width="16"></span>
-<textarea id="holdtext31" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext31" class="NON">0175: set_car <span class="general1-number">$car00</span> z_angle_to <span class="general1-number">90.0</span>
-0229: set_car <span class="general1-number">$car00</span> color_to <span class="general1-number">11 0</span>
-0A11: set_car <span class="general1-number">$car00</span> tertiary_color_to <span class="general1-number">6</span> quaternary_color_to <span class="general1-number">12</span></pre></div>
-                <br>
-                <br>
-                It's pretty easy so I'll be fast :
-                <ul>
-                  <li class="Myli">for all of them <span class="general1-variable">$car00</span> is the car handle
-                    as usual !!!!</li>
-                  <li class="Myli">In 0175 the float <span class="general1-number">90.0</span> is the z angle from
-                    <span class="general1-number">-360.0</span> to <span class="general1-number">360.0</span> .</li>
-                  <li class="Myli">In 0229 the integers <span class="general1-number">11</span> is the primary color
-                    and <span class="general1-number">0</span> is the
-                    secondary color.</li>
-                  <li class="Myli">In 0a11 the integers <span class="general1-number">6</span> is the tertiary color
-                    and <span class="general1-number">12</span> is the
-                    quaternary color. Don't worry about the opcode
-                    description, by the time the sascm.ini used here (the one
-                    given with Sanny) was written the opcode wasn't known
-                    yet, but it will still work very well, and now that you
-                    know what the opcode does, there is nothing to stop you
-                    !!!</li>
-                </ul>
-                For infos, those were only "set" opcodes, but there is
-                opposite opcodes for all thoses "get" opcodes. The "get"
-                opcodes will get the color/angle of the car and stores it in
-                variables :<br>
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard32();" height="16" width="16"></span>
-<textarea id="holdtext32" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext32">0174: <span class="general1-variable">$carangle</span> = car <span class="general1-variable">$car00</span> z_angle
-03F3: get_car <span class="general1-variable">$car00</span> color <span class="general1-variable">$primcolor $scndcolor</span>
-0A12: get_car <span class="general1-variable">$car00</span> tertiary_color_to <span class="general1-variable">$tertcolor</span> quaternary_color_to <span class="general1-variable">$quatcolor</span></pre>
-</div>
-                <br>
-                <br>
-                Well, what can I say, it the same as before but the all way
-                around, instead of saying the engine to put a color on the
-                car or put the car in such direction, it finds what color the
-                car is or what direction the car is and put the resulting
-                integer in the variable. <br>
-                The variable names should speak form themselves.<br>
-                <br>
-                <br>
-                As much obvious as it is, you can't change the color of an
-                actor !!!!!! But you can change the direction (s)he's looking
-                at, and know where (s)he's looking :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard33();" height="16" width="16"></span>
-<textarea id="holdtext33" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext33" class="NON">0172: <span class="general1-variable">$actorangle</span> = actor <span class="general1-variable">$actor00</span> z_angle
-0173: set_actor <span class="general1-variable">$actor00</span> z_angle_to <span class="general1-number">262.0</span></pre></div>
-<br>
-                <br>
-                <br>
-                Same for objects, here is just the angle, but there is more
-                on objects just next :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard34();" height="16" width="16"></span>
-<textarea id="holdtext34" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext34" class="NON">0176: <span class="general1-variable">$objangle</span> = object <span class="general1-number">$object00</span> z_angle
-0177: set_object <span class="general1-variable">$object00</span> z_angle_to <span class="general1-number">180.0</span></pre></div>
-                <br>
-                <br>
-                <br>
-                <br>
-                When you finished using those actor/vehicles/object you have
-                two different ways to get rid of them :
-                <ul>
-                  <li class="Myli">First you can simply destroy them (they will just
-                    disappear straight away) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard35();" height="16" width="16"></span>
-<textarea id="holdtext35" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre class="shorty" id="copytext35">00A6: destroy_car <span class="general1-variable">$car00</span>
-0108: destroy_object <span class="general1-variable">$object00</span>
-009B: destroy_actor_instantly <span class="general1-variable">$actor01</span>
-034F: destroy_actor_with_fade <span class="general1-variable">$actor00</span> <span class="general1-comment">// The actor fades away like a ghost</span></pre>
-</div>
-                    <br>
-                    034f as the comment says "<span class="general1-comment">// The actor fades away like a
-                    ghost</span> ". Is usualy what you see happening in
-                    original game when an actor is dead, it slowly
-                    disappear.<br>
-                  </li>
-                  <li class="Myli">Secondly you can remove references from them, this will
-                    turn them into normal peds (just like every
-                    pedestrian/vehicle you see ingame). So the
-                    actor/vehicle/object will still be there but the handle
-                    <span class="general1-variable">$car00</span> /<span class="general1-variable">$actor00 </span> /<span class="general1-variable">$object00</span> won't hold the
-                    actor/vehicle/object anymore :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard36();" height="16" width="16"></span>
-<textarea id="holdtext36" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre class="short" id="copytext36">01C2: remove_references_to_actor <span class="general1-variable">$actor00</span> <span class="general1-comment">// Like turning an actor into a random pedestrian</span>
-01C3: remove_references_to_car <span class="general1-variable">$car00</span> <span class="general1-comment">// Like turning a car into any random car</span>
-01C4: remove_references_to_object <span class="general1-variable">$object00</span> <span class="general1-comment">//This object will now disappear when the player looks away</span></pre>
-</div>
-                    <br>
-                    The comments (after //) explain what the opcodes do
-                    pretty well again.</li>
-                </ul>
-                Now that the actors/vehicles/objects are destroyed the engine
-                don't need the models any more. So to free some game memory
-                <strike>you can</strike> release the models with 0249 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard37();" height="16" width="16"></span>
-<textarea id="holdtext37" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext37" class="NON">0249: release_model <span class="general1-model">#WFYSEX</span>
-0249: release_model <span class="general1-model">#CR_AMMOBOX</span>
-0249: release_model <span class="general1-model">#CHEETAH</span>
-0249: release_model <span class="general1-model">#DESERT_EAGLE</span>
-0249: release_model <span class="general1-model">#MP5LNG</span>
-0249: release_model <span class="general1-model">#HEATSEEK</span></pre></div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <u><b>About special actors :</b></u><br>
-                <br>
-                Actors like Ryder, BigSmoke, Sweet, Tenpeny, Pulaski, Toreno,
-                Ceasar, Jethro etc... are called special actors, they're not
-                like the usual ped you find on the street. Then, in scm
-                coding, they're handled in a special way, with special
-                opcodes those so special actors !!!! <br>
-                <br>
-                It goes like this :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard38();" height="16" width="16"></span>
-<textarea id="holdtext38" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext38" class="NON">023C: request_special_actor <span class="general1-string">'TENPEN'</span> as <span class="general1-number">1</span>
-023C: request_special_actor <span class="general1-string">'PULASKI'</span> as <span class="general1-number">2</span>
-023C: request_special_actor <span class="general1-string">'HERN'</span> as <span class="general1-number">3</span>
-023C: request_special_actor <span class="general1-string">'CESAR'</span> as <span class="general1-number">4</span>
-023C: request_special_actor <span class="general1-string">'JETHRO'</span> as <span class="general1-number">5</span>
-023C: request_special_actor <span class="general1-string">'MADDOGG'</span> as <span class="general1-number">6</span></pre></div>
-                <br>
-                <br>
-                Here you have requested the models <span class="general1-string">'TENPEN'</span> , <span class="general1-string">'PULASKI'</span> and <span class="general1-string">'HERN'</span> and define them as
-                special actor models integers <span class="general1-number">1</span> , <span class="general1-number">2</span> and <span class="general1-number">3</span> .<br>
-                You can find a special actor list in Sanny Builder help
-                contents in <i>SCM Documentation: GTA SA: Special actors</i>.
-                You can only define 9 special actor models at the same time
-                (integers from <span class="general1-number">1</span> to
-                <span class="general1-number">10</span> included).<br>
-                <br>
-                <br>
-                Then you have to check if the special actors are loaded and
-                create them either on foot or in a car with the usual
-                create_actor opcodes :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard39();" height="16" width="16"></span>
-<textarea id="holdtext39" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext39" class="NON"><span class="general1-reservedword">wait</span> <span class="general1-number">0</span>
-00D6: <span class="general1-reservedword">if and</span>
-023D:  special_actor <span class="general1-number">1</span> loaded
-023D:  special_actor <span class="general1-number">2</span> loaded
-023D:  special_actor <span class="general1-number">3</span> loaded
-023D:  special_actor <span class="general1-number">4</span> loaded
-023D:  special_actor <span class="general1-number">5</span> loaded
-023D:  special_actor <span class="general1-number">6</span> loaded
-0248:  model <span class="general1-model">#COPCARLA</span> available
-004D: jump_if_false <span class="general1-label">@check_1</span>
-00A5: <span class="general1-variable">0@</span> = create_car <span class="general1-model">#COPCARLA</span> at <span class="general1-number">2431.609 -1254.061 22.8303</span>
-01C8: <span class="general1-variable">1@</span> = create_actor <span class="general1-number">23</span> <span class="general1-model">#SPECIAL01</span> in_car <span class="general1-variable">0@</span> passenger_seat <span class="general1-number">0</span>
-0129: <span class="general1-variable">2@</span> = create_actor <span class="general1-number">23</span> <span class="general1-model">#SPECIAL02</span> in_car <span class="general1-variable">0@</span> driverseat
-01C8: <span class="general1-variable">3@</span> = create_actor <span class="general1-number">23</span> <span class="general1-model">#SPECIAL03</span> in_car <span class="general1-variable">0@</span> passenger_seat <span class="general1-number">1</span>
-009A: <span class="general1-variable">4@</span> = create_actor <span class="general1-number">23</span> <span class="general1-model">#SPECIAL04</span> at <span class="general1-number">2436.609 -1254.061 22.8303</span>
-009A: <span class="general1-variable">5@</span> = create_actor <span class="general1-number">23</span> <span class="general1-model">#SPECIAL05</span> at <span class="general1-number">2437.609 -1254.061 22.8303</span>
-009A: <span class="general1-variable">6@</span> = create_actor <span class="general1-number">23</span> <span class="general1-model">#SPECIAL06</span> at <span class="general1-number">2438.609 -1254.061 22.8303</span></pre></div>
-                <br>
-                <br>
-                When creating actors, see how the model is named <b><span class="general1-model">#SPECIAL01</span> </b> and that it
-                refers to the integer used in 023c(request_special_actor).
-                Then special actors models are named from <b><span class="general1-model">#SPECIAL01</span> </b> to <b><span class="general1-model">#SPECIAL10</span> </b>.<br>
-                <br>
-                If you need other special actors later (like in another
-                mission) follow the same procedure with different models
-                names but keeping <span class="general1-number">1</span> ,
-                <span class="general1-number">2</span> and <span class="general1-number">3</span> as special actor model
-                integer, like :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard40();" height="16" width="16"></span>
-<textarea id="holdtext40" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext40" class="NON">023C: request_special_actor <span class="general1-string">'SMOKE'</span> as <span class="general1-number">1</span>
-023C: request_special_actor <span class="general1-string">'TORINO'</span> as <span class="general1-number">2</span>
-023C: request_special_actor <span class="general1-string">'SWEET'</span> as <span class="general1-number">3</span>
-023C: request_special_actor <span class="general1-string">'TRUTH'</span> as <span class="general1-number">4</span>
-023C: request_special_actor <span class="general1-string">'CESAR'</span> as <span class="general1-number">5</span>
-023C: request_special_actor <span class="general1-string">'MADDOGG'</span> as <span class="general1-number">6</span>
-023C: request_special_actor <span class="general1-string">'ZERO'</span> as <span class="general1-number">4</span></pre></div>
-                <br>
-                <br>
-                To release the model simply use 0296 with the special actor
-                integer model, and destroy the actor with usual 009b, 034f or
-                01c2 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard41();" height="16" width="16"></span>
-<textarea id="holdtext41" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext41" class="NON">0296: unload_special_actor <span class="general1-number">1</span>
-0296: unload_special_actor <span class="general1-number">2</span>
-0296: unload_special_actor <span class="general1-number">3</span>
-0296: unload_special_actor <span class="general1-number">4</span>
-0296: unload_special_actor <span class="general1-number">5</span>
-0296: unload_special_actor <span class="general1-number">6</span>
-009B: destroy_actor_instantly <span class="general1-variable">0@</span>
-009B: destroy_actor_instantly <span class="general1-variable">1@</span>
-009B: destroy_actor_instantly <span class="general1-variable">2@</span>
-009B: destroy_actor_instantly <span class="general1-variable">4@</span>
-009B: destroy_actor_instantly <span class="general1-variable">5@</span>
-009B: destroy_actor_instantly <span class="general1-variable">6@</span>
-00A6: destroy_car <span class="general1-variable">3@</span></pre></div>
-                <br>
-                <br>
-                <br>
-                <br>
+```
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="7movobj"> 7. Objects and moving them : </a></b></u></span>
-                 <br>
-                <br>
-                In Grand Theft Auto San Andreas there is many many things you
-                can do with objects, but I won't (and I can't) tell you
-                everything about it. I'll give you far enough to do nice and
-                fun things with them.<br>
-                <br>
-                I won't repeat (even if I do repeat a lot of things) how to
-                request and load models to create objects, it's told upper. I
-                won't repeat neither how to destroy/remove references and
-                release objects for the same reason.<br>
-                <br>
-                <br>
-                <br>
-                First some general (general because there is similar opcodes
-                for vehicles and actors) things about coordinates and
-                offsets. Sometime you need to know where the object is
-                placed, and sometimes you need to know what are the
-                coordinates just a bit away from the object (this is called
-                an offset) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard42();" height="16" width="16"></span>
-<textarea id="holdtext42" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext42" >01BB: store_object <span class="general1-variable">$object00</span> position_to <span class="general1-variable">$objpos_x $objpos_y $objpos_z</span><br>
-0400: create_coordinate <span class="general1-variable">$objpos_x $objpos_y $objpos_z</span> from_object <span class="general1-variable">$object00</span> offset <span class="general1-number">1.0 2.0 3.0</span></pre></div>
-                <ul>
-                  <li class="Myli">01bb will simply get the object <span class="general1-variable">$object00</span> x y z
-                    coordinates and store them into <span class="general1-variable">$objpos_x $objpos_y
-                    $objpos_z</span> .</li>
-                  <li class="Myli">In 0400 it will store the coordinates at the offsets
-                    <span class="general1-number">1.0 2.0 3.0</span> of the
-                    object. It means that the coordinates that will be stored
-                    in <span class="general1-variable">$objpos_x $objpos_y
-                    $objpos_z</span> will be <span class="general1-number">1.0</span> unit away from the
-                    object on the object's z axis, <span class="general1-number">2.0</span> unit away from the
-                    object on the object's y axis, and <span class="general1-number">3.0</span> unit away from the
-                    object on the object's z axis.</li>
-                </ul>
+After you need a check to confirm that the models are really loaded (available for the engine to use):
+**CODE**
+```sb3
+00D6: if and
+0248: model #HEATSEEK available
+0248: model #DESERT_EAGLE available
+0248: model #MP5LNG available
+0248: model #CR_AMMOBOX available
+0248: model #CHEETAH available
+0248: model #WFYSEX available
+004D: jump_if_false @LOOP_RQ_10
+```
 
-                <center>
-                <br>
+The jump if false jumps to `:LOOP_RQ_10` where the model will be requested again loaded again.
+
+All in one it look like that :
+**CODE**
+```sb3
+:LOOP_RQ_10
+0001: wait 0
+0247: request_model #WFYSEX
+0247: request_model #CR_AMMOBOX
+0247: request_model #CHEETAH
+0247: request_model #DESERT_EAGLE
+0247: request_model #MP5LNG
+0247: request_model #HEATSEEK
+038B: load_requested_models
+00D6: if and
+0248: model #HEATSEEK available
+0248: model #DESERT_EAGLE available
+0248: model #MP5LNG available
+0248: model #CR_AMMOBOX available
+0248: model #CHEETAH available
+0248: model #WFYSEX available
+004D: jump_if_false @LOOP_RQ_10
+```
+
+Notice the wait because it's very important here you do a loop, you make the engine comes back to where it was before. You need this wait, wait 0 ms is far enough, you don't need more, but you DO need it.
 
 
-                <table class="news1">
-                  <tbody>
-                    <tr valign="top">
-                      <td >As I
-                        said there is similar opcodes for cars and actors,
-                        the explaination is the same as before just replace
-                        object by car or actor :
-                        <ul>
-                          <li class="Myli">For vehicles :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard43();" height="16" width="16"></span>
-<textarea id="holdtext43" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext43" class="short">00AA: store_car <span class="general1-variable">$car00</span> position_to <span class="general1-variable">$carpos_x $carpos_y $carpos_z</span>
-0407: create_coordinate <span class="general1-variable">$carpos_x $carpos_y $carpos_z</span> from_car <span class="general1-variable">$car00</span> offset <span class="general1-number">1.0 2.0 3.0</span></pre>
-</div>
-                          </li>
-                          <li class="Myli">For actors :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard44();" height="16" width="16"></span>
-<textarea id="holdtext44" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext44" class="short">00A0: store_actor <span class="general1-variable">$actor00</span> position_to <span class="general1-variable">$actorpos_x $actorpos_y $actorpos_z</span>
-04C4: create_coordinate <span class="general1-variable">$actorpos_x $actorpos_y $actorpos_z</span> from_actor <span class="general1-variable">$actor00</span> offset <span class="general1-number">1.0 2.0 3.0</span></pre>
-</div>
-                          </li>
-                      </ul>                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                </center>
-                <br>
-                <br>
-                <br>
-                <br>
-                Once the object is created you can move the object to new
-                coordinates :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard45();" height="16" width="16"></span>
-<textarea id="holdtext45" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext45" class="NON">01BC: put_object <span class="general1-variable">$object00</span> at <span class="general1-number">2368.5601 -1666.84 13.38</span></pre></div>
-                <br>
-                For info similar opcodes for actors and cars are : 00a1 for
-                actors and 00ab for cars.<br>
-                <br>
-                You can use this to make the object move along, it's isn't
-                the best way to do it but it's simple and works well. Here is
-                an example :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard46();" height="16" width="16"></span>
-<textarea id="holdtext46" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext46" class="NON"><span class="general1-label">:MOVE_10</span>
-0001: <span class="general1-reservedword">wait</span> <span class="general1-number">3</span> ms
-00D6: <span class="general1-reservedword">if</span>
-0031:  <span class="general1-variable">0@</span> &gt;= <span class="general1-number">200.0</span> <span class="general1-comment">// floating-point values</span>
-004D: jump_if_false <span class="general1-label">@MOVEND</span>
-01BC: put_object <span class="general1-variable">$object00</span> at <span class="general1-variable">0@ 1@ 2@</span>
-000B: <span class="general1-variable">0@</span> += <span class="general1-number">0.1</span> <span class="general1-comment">// floating-point values</span>
-0002: <span class="general1-reservedword">jump</span> <span class="general1-label">@MOVE_10</span></pre></div>
-                <br>
-                You can see here that the object will move along x axis, as
-                every 3ms the object will go <span class="general1-number">0.1</span> distance unit further on
-                the x axis until <span class="general1-variable">0@</span>
-                (which is here the x axis unit) reaches <span class="general1-number">200.0</span> . DON'T FORGET THE WAIT
-                !!!!!!<br>
-                <br>
-                <br>
-                The same way you can change the created object angles x y and
-                z<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard47();" height="16" width="16"></span>
-<textarea id="holdtext47" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext47" class="NON">0453: object <span class="general1-variable">$object00</span> set_rotation <span class="general1-number">0.0 0.0 180.0</span></pre></div>
-                <br>
-                Same as 01bc with a little loop you can make the object turn
-                around. And as for 01bc there is better ways to do it, but
-                this one is simple and works well. It also as the advantage
-                of giving you the possibility to change any angle x y or
-                z.<br>
-                <br>
-                <br>
-                But you can as well use 034d so it will move around x axis :
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard48();" height="16" width="16"></span>
-<textarea id="holdtext48" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext48" class="NON">034D: object <span class="general1-variable">$object00</span> at_angle <span class="general1-number">0.0</span> then_rotate_by_angle <span class="general1-number">360.0</span> flag <span class="general1-number">0</span></pre></div>
-                <br>
-                This is how Rockstar open many garage doors (not all).<br>
-                <br>
-                But before using moving opcodes (like 034d or 0381) you need
-                to give the object the ability to move (objects ain't able to
-                move when you create them) :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard49();" height="16" width="16"></span>
-<textarea id="holdtext49" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext49" class="NON">0392: object <span class="general1-variable">$object00</span> toggle_in_moving_list <span class="general1-number">1</span></pre></div>
-                <ul>
-                  <li class="Myli"><span class="general1-number">0</span> = unable to
-                  move</li>
-                  <li class="Myli"><span class="general1-number">1</span> = able to
-                  move</li>
-                </ul>
-                You can aswell throw the object (just like throwing a ball)
-                with 0381 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard50();" height="16" width="16"></span>
-<textarea id="holdtext50" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext50" class="NON">0381: throw_object <span class="general1-variable">$object00</span> distance <span class="general1-number">20.0 10.0 5.0</span></pre></div>
-                <ul>
-                  <li class="Myli"><span class="general1-number">20</span> is the distance
-                    on x axis</li>
-                  <li class="Myli"><span class="general1-number">10</span> the distance on
-                    y axis</li>
-                  <li class="Myli"><span class="general1-number">5</span> the distance on
-                    z axis</li>
-                </ul>
-                You can attach object to cars, actors or other objects :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard51();" height="16" width="16"></span>
-<textarea id="holdtext51" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext51">0681: attach_object <span class="general1-variable">$object00</span> to_car <span class="general1-variable">$car00</span> at_offset <span class="general1-number">0.5 0.3 0.3</span> rotation <span class="general1-number">0.0 0.0 0.0</span>
-069B: attach_object <span class="general1-variable">$object00</span> to_actor <span class="general1-variable">$actor00</span> at_offset <span class="general1-number">0.0 0.5 -1.0</span> rotation <span class="general1-number">0.0 0.0 0.0</span>
-069A: attach_object <span class="general1-variable">$object00</span> to_object <span class="general1-variable">$object01</span> at_offset <span class="general1-number">0.0 0.0 0.0</span> rotation <span class="general1-number">0.0 0.0 0.0</span></pre>
-</div>
-                <br>
-                Those are pretty obvious, and as I already explained about
-                offsets, so I'll just have to tell that the three floats
-                after rotation are the x y and z angles that will be set, and
-                that the object isn't solid whan attach to something else.<br>
-                <br>
-                <br>
-                If you don't want the object to be solid you can turn off the
-                collision detection <br>
- <strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard52();" height="16" width="16"></span>
-<textarea id="holdtext52" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext52" class="NON">0382: set_object <span class="general1-variable">$object00</span> collision_detection <span class="general1-number">0</span></pre></div>
-                <ul>
-                  <li class="Myli"><span class="general1-number">0</span> not solid</li>
-                  <li class="Myli"><span class="general1-number">1</span> solid</li>
-                </ul>
-                You can make the object liftable like this :<br>
-                <img src="../../img/Part20II.files/TRXCT.jpg" width="215" height="412"><br>
-                with 08e9 :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard53();" height="16" width="16"></span>
-<textarea id="holdtext53" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext53" class="NON">08E9: set_object <span class="general1-variable">$object00</span> liftable <span class="general1-number">1<span class="general1-variable"></span></span></pre></div>
-                <br>
-                As usual <span class="general1-number">1</span> = on, <span class="general1-number">0</span> = off.<br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                This is a very very very cool thing (thanks to DexX and
-                PLPynton) :<br>
-                <img src="../../img/Part20II.files/azerdfy.jpg" width="168" height="252"><br>
-                You can attach object to body parts of the actor, actually
-                you can attach 2 object to the actor and make the actor do an
-                animation !!!!!!!<br>
-                There will be more on animation later, but I'll explain those
-                now :<br>
-                <br>
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard54();" height="16" width="16"></span>
-<textarea id="holdtext54" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext54">070A: AS_actor <span class="general1-variable">$PLAYER_ACTOR</span> attach_to_object <span class="general1-variable">$object00</span> offset <span class="general1-number">0.0 0.0 0.0</span> on_bone <span class="general1-number">6 16</span> perform_animation <span class="general1-model">"NULL"</span> IFP_file <span class="general1-model">"NULL"</span> time <span class="general1-number">0</span></pre>
-</div>
-                <br>
-                attach the first object (object A)<br>
-                <br>
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard55();" height="16" width="16"></span>
-<textarea id="holdtext55" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext55">09A0: actor <span class="general1-variable">$PLAYER_ACTOR</span> attach_object <span class="general1-variable">$object01</span> with_offset <span class="general1-number">0.0 0.0 0.0</span> on_bone <span class="general1-number">5 16</span> perform_animation <span class="general1-model">"NULL"</span> IFP_file <span class="general1-model">"NULL"</span> time <span class="general1-number">-1</span></pre>
-</div>
-                <br>
-                attach the second object (object B)<br>
-                <br>
-                For both of them :
-                <ul>
-                  <li class="Myli"><span class="general1-variable">$PLAYER_ACTOR</span> is
-                    the actor handle (here it's you CJ)</li>
-                  <li class="Myli">the three floats <span class="general1-number">0.0 0.0
-                    0.0</span> are the x y and z offsets from the normal bone
-                    coordinates</li>
-                  <li class="Myli">the first integer <span class="general1-number">5</span> or <span class="general1-number">6</span> is the bone number (it's not the same as player body parts numbers for clothes)<ul>
-                      <li class="Myli"><span class="general1-number">0</span> - crashes
-                        the game</li>
-                      <li class="Myli"><span class="general1-number">1</span> - chest?</li>
-                      <li class="Myli"><span class="general1-number">2</span> - neck?</li>
-                      <li class="Myli"><span class="general1-number">3</span> - left
-                        shoulder</li>
-                      <li class="Myli"><span class="general1-number">4</span> - right
-                        shoulder</li>
-                      <li class="Myli"><span class="general1-number">5</span> - left
-                      hand</li>
-                      <li class="Myli"><span class="general1-number">6</span> - right
-                      hand</li>
-                      <li class="Myli"><span class="general1-number">7</span> - root?</li>
-                      <li class="Myli"><span class="general1-number">8</span> - ??</li>
-                      <li class="Myli"><span class="general1-number">9</span> - left
-                      foot</li>
-                      <li class="Myli"><span class="general1-number">10</span> - right
-                      foot</li>
-                      <li class="Myli"><span class="general1-number">11</span> - right
-                      knee</li>
-                      <li class="Myli"><span class="general1-number">12</span> - ??</li>
-                      <li class="Myli"><span class="general1-number">13</span> - left
-                      elbow</li>
-                      <li class="Myli"><span class="general1-number">14</span> - right
-                        elbow</li>
-                      <li class="Myli"><span class="general1-number">15</span> - left
-                        clavicle</li>
-                      <li class="Myli"><span class="general1-number">16</span> - right
-                        clavicle</li>
-                      <li class="Myli"><span class="general1-number">17</span> - back of
-                        neck</li>
-                      <li class="Myli"><span class="general1-number">18</span> - mouth or
-                        chin</li>
-                      <li class="Myli"><span class="general1-number">19</span> - crashes
-                        the game</li>
-                    </ul>
-                  </li>
-                  <li class="Myli">the second integer <span class="general1-number">16</span> is unknown and is
-                    always <span class="general1-number">16</span> </li>
-                  <li class="Myli">the first long string <span class="general1-string">"NULL"</span> is the animation
-                    file (more on them later, and IT HAS TO BE LOADED like
-                    models) where the engine will get the animation. Here
-                    <span class="general1-string">"NULL"</span> means that no
-                    animation will be done.</li>
-                  <li class="Myli">the second long string <span class="general1-string">"NULL"</span> is the animation
-                    itself within the animation file. Here <span class="general1-string">"NULL"</span> again means that no
-                    animation will be done.</li>
-                  <li class="Myli">Last integer <span class="general1-number">0</span> ,
-                    <span class="general1-number">1</span> or <span class="general1-number">-1</span> is unknown</li>
-                </ul>
-                To take theses objects off you have two opcodes :<br>
-                <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard56();" height="16" width="16"></span>
-<textarea id="holdtext56" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext56">070B: set_actor <span class="general1-variable">$PLAYER_ACTOR</span> onbone_attached_object_operation <span class="general1-number">1</span> <span class="general1-comment">// drop or detaches object B automatically with object A</span>
-09A1: set_actor <span class="general1-variable">$PLAYER_ACTOR</span> onbone_attached_objectB_operation <span class="general1-number">0</span> <span class="general1-comment">// drop or detaches object B only</span></pre>
-</div>
-                <br>
-                <br>
-                070b detaches/drops object A and B if object B attached<br>
-                09a1 detaches/drops object B
-                <ul>
-                  <li class="Myli"><span class="general1-variable">$PLAYER_ACTOR</span> is
-                    still the actor handle (here it's you CJ)</li>
-                  <li class="Myli">the integer <span class="general1-number">1</span> or
-                    <span class="general1-number">0</span> tell if the object
-                    will be droped of just been detach.
-                    <ul>
-                      <li class="Myli"><span class="general1-number">1</span> drops the
-                        object</li>
-                      <li class="Myli"><span class="general1-number">0</span> detaches the
-                        object</li>
-                    </ul>
-                  </li>
-                </ul>
-                <b><br>
-                </b>
+Now that the models are available you can create your actors/vehicles/objects, and give weapons to the actors :
 
-                <center>
-                !!!!!!!!!!!!!!!!!!!!!!!!!!! watch out
-                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!<br>
-                Attach object A fisrt because otherwise object B won't
-                appear. When you hold object A you can't get in a car and
-                your weapon won't be visible. If you hold two objects, object
-                B will <u>drop</u> when you fall or shoot with a weapon. If
-                you die both objects will drop.</center>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                As I said there is many things to do with objects in San
-                Andreas but now you know the most important things you can
-                do. <br>
-                <br>
-                <br>
-<br>
-                <br>
-                <br>
-<br>
-                <br>
-                <br>
-                <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="8animpart"> 8. Animations and particules : </a></b></u></span>
-                 <br>
-                <br>
-                <br>
-                <br>
-                 <span style="font-size: 13pt; line-height: 100%;"><b><u>A.
-                Animations :</u></b></span>
-                 <br>
-                <br>
-                Lets get to something very important in GTA : The actors
-                animations !!!!!!!!!!!!!!<br>
-                The animations topic in SA in unending but as with objects we
-                will see most important things.<br>
-                <br>
-                First lets say what are animation sequences, they are
-                animations of an actor. Like when CJ is moving his arms while
-                talking, when Ryder is smoking, when CJ is using the keycard,
-                or when CJ is using the parachute...<br>
-                <img src="../../img/Part20II.files/dfghvjgn.gif" width="90" height="188">                <br>
-                More generally when an actor is making an action, when it's
-                been <i>animated</i> !!<br>
-                <br>
-                There is two types of animation sequences (AS), one which
-                does one precise animation and another which make the
-                animation you put as parameters in the opcode from the anims
-                files (*.ifp in the anim.img file in anim folder of game
-                directory). The second type need the animation to be loaded
-                with 04ed, and as usual you need to check if the animation is
-                loaded. <p></p>
-                <ol type="1">
-                  <b>                  </b></ol>
-                <ul>
-                  <li class="Myli"><b><span style="font-size: 12pt; line-height: 100%;">First
-                    type anims : one opcode does one animation</span></b></li>
-                </ul>
-                <b>                </b><br>
-                <br>
-                some examples :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard57();" height="16" width="16"></span>
-<textarea id="holdtext57" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext57" class="NON">05BA: AS_actor <span class="general1-variable">$actor00</span> chew_gum <span class="general1-number">10000</span> ms
-05BB: AS_actor <span class="general1-variable">$actor00</span> fall_down <span class="general1-number">0</span> time_on_ground <span class="general1-number">500</span>
-05BC: AS_actor <span class="general1-variable">$actor00</span> jump <span class="general1-number">1</span>
-05C5: AS_actor <span class="general1-variable">$actor00</span> cower <span class="general1-number">3000</span> ms
-05C7: AS_actor <span class="general1-variable">$actor00</span> use_atm
-05C8: AS_actor <span class="general1-variable">$actor00</span> look_around
-05C9: AS_actor <span class="general1-variable">$actor00</span> on_guard <span class="general1-number">2000</span> ms
-05CD: AS_actor <span class="general1-variable">$actor00</span> exit_car <span class="general1-variable">$car00</span>
-05D3: AS_actor <span class="general1-variable">$actor00</span> go_to <span class="general1-number">81.42 1474.63 51.56</span> speed <span class="general1-number">4 3000</span> ms
-05D4: AS_actor <span class="general1-variable">$actor00</span> rotate_angle <span class="general1-number">77.0</span>
-0639: AS_actor <span class="general1-variable">$actor00</span> rotate_to_actor <span class="general1-variable">$actor01</span>
-0672: AS_actor <span class="general1-variable">$actor00</span> attack_car <span class="general1-variable">$car00</span>
-0673: AS_actor <span class="general1-variable">$actor00</span> dive_to_offset <span class="general1-number">1.0 -3.0</span> time_on_ground <span class="general1-number">1000</span> ms
-0676: AS_actor <span class="general1-variable">$actor00</span> in_car <span class="general1-variable">$car00</span> move_from_passengerseat_to_driverseat
-0677: AS_actor <span class="general1-variable">$actor00</span> chat_with_actor <span class="general1-variable">$actor02</span> <span class="general1-number">1 1</span>
-06A9: AS_actor <span class="general1-variable">$actor00</span> look_at_point <span class="general1-number">681.81 -474.15 15.53 5000</span> ms
-06E3: AS_actor <span class="general1-variable">$actor00</span> roll_sideways <span class="general1-number">1</span></pre></div>
-                <br>
-                <br>
-                <br>
-                They are the easiest to use, just put the opcode, the right
-                parameters (the first is the actor which will do the
-                animation (<span class="general1-variable">$actor00</span> ),
-                then there are like said in the description either an angle
-                (<span class="general1-number">77.0</span> ), a 3D position
-                (<span class="general1-number">681.81 -474.15 15.53</span> ),
-                a car (<span class="general1-variable">$car00</span> ),
-                another actor (<span class="general1-variable">$actor01</span> ), the time the
-                animation will last (<span class="general1-number">5000</span> ) etc....<br>
-                They're easy simple and work very well don't hesitate to use
-                a lot of them !!!!!!<br>
-                <br>
-                <br>
-                <b>                </b>
-                <ul>
-                  <li class="Myli"><b><span style="font-size: 12pt; line-height: 100%;">Second
-                    type anims : one opcode does the anim you have put as
-                    parameters</span></b></li>
-                </ul>
-                <b>                </b><br>
-                <br>
-                <br>
-                some examples :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard58();" height="16" width="16"></span>
-<textarea id="holdtext58" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext58">0829: actor <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"CRCKDETH3"</span> IFP_file <span class="general1-string">"CRACK"</span> <span class="general1-number">4.0</span> time <span class="general1-number">0</span> and_dies
-0605: actor <span class="general1-variable">$actor00</span> perform_animation_sequence <span class="general1-string">"PASS_RIFLE_PED"</span> IFP_file <span class="general1-string">"MISC"</span> <span class="general1-number">4.0</span> loop <span class="general1-number">0 0 0 0</span> time <span class="general1-number">-1</span> <span class="general1-comment">// versionA</span>
-0812: AS_actor <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"LRGIRL_IDLELOOP"</span> IFP_file <span class="general1-string">"LOWRIDER"</span> <span class="general1-number">4.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">0</span> time <span class="general1-number">-1</span> <span class="general1-comment">// versionB</span>
-0A1A: actor <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"HIKER_POSE_L"</span> IFP_file <span class="general1-string">"MISC"</span> <span class="general1-number">4.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">1 -1</span> ms <span class="general1-comment">// versionC</span>
-088A: actor <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"RAIL_FALL"</span> IFP_file <span class="general1-string">"SWAT"</span> <span class="general1-number">8.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">1</span> limT <span class="general1-number">-1</span> <span class="general1-reservedword">unknown</span> <span class="general1-number">0</span> <span class="general1-reservedword">unknown</span> <span class="general1-number">1</span>
-070A: AS_actor <span class="general1-variable">$actor00</span> attach_to_object <span class="general1-variable">$object00</span> offset <span class="general1-number">0.0 0.0 0.0</span> on_bone <span class="general1-number">6 16</span> perform_animation <span class="general1-string">"NULL"</span> IFP_file <span class="general1-string">"NULL"</span> time <span class="general1-number">1</span>
-09A0: actor <span class="general1-variable">$actor00</span> attach_object <span class="general1-variable">$object01</span> with_offset <span class="general1-number">0.0 0.0 0.0</span> on_bone <span class="general1-number">5 16</span> perform_animation <span class="general1-string">"NULL"</span> IFP_file <span class="general1-string">"NULL"</span> time <span class="general1-number">-1</span></pre>
-</div>
+**CODE**
+```sb3
+00A5: $car00 = create_car #CHEETAH at 2368.5601 -1666.84 13.38
+009A: $actor00 = create_actor 22 #WFYSEX at 2490.56 -1666.84 14.38
+009A: $actor01 = create_actor 22 #WFYSEX at 2495.56 -1666.84 14.38
+009A: $actor02 = create_actor 22 #WFYSEX at 2490.56 -1660.84 14.38
+009A: $actor03 = create_actor 22 #WFYSEX at 2495.56 -1660.84 14.38
+0107: $object00 = create_object #CR_AMMOBOX at 2502.5601 -1566.84 24.38
+01B2: give_actor $actor00 weapon 36 ammo 900 // Load the weapon model before using this
+01B2: give_actor $actor01 weapon 29 ammo 900 // Load the weapon model before using this
+01B2: give_actor $actor02 weapon 24 ammo 300 // Load the weapon model before using this
+01B2: give_actor $actor03 weapon 29 ammo 900 // Load the weapon model before using this
+```
+* For creating a car with `00a5`:
+  * `$car00` is the car handle.
+  * `#CHEETAH` is the model. Use editor completion to have a list of models (watch out there is ALL models, cars, actors, objects).
+  * `2490.56 -1666.84 14.38` are the coordinates.
+* Create actor with `009a`:
+  * `$actor00` is the actor handle.
+  * `#WFYSEX` is the model. Use editor completion to have a list of models.
+  * The integer 22 is the ped type. The ped type is the temper, the way the actor will act by default (without any order given). You can find a list of ped types in Sanny Builder help contents in SCM Documentation: GTA SA: PedTypes. Here they don't like cops and will defend themself if they're attacked, among other things.
+  * `2368.5601 -1666.84 13.38` are the coordinates.
+* 0107 will create an object : 
+  * `$object00` is the object handle 
+  * `#CR_AMMOBOX` is the model. Here you can use any objects defined in the map files (.ide files in GTA San Andreas\data\maps folder) as long as you defined the object in define object section in the scm. See [Part I: 1. Main.scm architecture](mcp1.md#1.-main.scm-architecture).
+    * `2502.5601 -1566.84 24.38` are the coordinates.
+    * Finally 01b2 gives an actor a weapon:
+  * `$actor00` is the actor handle 
+  * The first integer 36 , 29 or 24 after weapon is the Weapon number. You can find a list of weapons their numbers and the correponding model in Sanny Builder help contents in [SCM Documentation: GTA SA: Weapon numbers](../scm-documentation/sa/weapons.md).
+    * The second integer 300 or 900 after ammo is the number of ammunition given to the actor along with it's weapon. Here it's too much depends of how time the actor will live but I found that 150 is usualy far enough.
+- Even if you might think that this opcode don't need the weapon model to be loaded, but it DO NEEDS the model to be loaded. To ensure you can look at the comment (after //) which says : `"// Load the weapon model before using this"`.
 
-                <br>
-                <br>
-                Or with very good PLPynton's sascm.ini descriptions they look
-                like this : <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard59();" height="16" width="16"></span>
-<textarea id="holdtext59" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext59">0829: char <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"CRCKDETH3"</span> group <span class="general1-string">"CRACK"</span> <span class="general1-number">4.0</span> limT <span class="general1-number">0</span> and_dies
-0605: char <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"PASS_RIFLE_PED"</span> group <span class="general1-string">"MISC"</span> <span class="general1-number">4.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">0</span> limT <span class="general1-number">-1</span> <span class="general1-comment">//versionA</span>
-0812: char <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"EAT_VOMIT_P"</span> group <span class="general1-string">"FOOD"</span> <span class="general1-number">4.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">0</span> limT <span class="general1-number">-1</span> <span class="general1-comment">//versionB</span>
-0A1A: char <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"VEND_EAT1_P"</span> group <span class="general1-string">"VENDING"</span> <span class="general1-number">4.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">0</span> limT <span class="general1-number">-1</span> <span class="general1-comment">//versionC</span>
-088A: char <span class="general1-variable">$actor00</span> perform_animation <span class="general1-string">"RAIL_FALL"</span> group <span class="general1-string">"SWAT"</span> <span class="general1-number">8.0</span> loopA <span class="general1-number">0</span> lockX <span class="general1-number">0</span> lockY <span class="general1-number">0</span> lockF <span class="general1-number">1</span> limT <span class="general1-number">-1</span> <span class="general1-reservedword">unknown</span> <span class="general1-number">0</span> <span class="general1-reservedword">unknown</span> <span class="general1-number">1</span>
-070A: set_char <span class="general1-variable">$actor00</span> attach_objectA <span class="general1-variable">$object00</span> with_offset <span class="general1-number">0.0 0.0 0.0</span> on_bone <span class="general1-number">6 16</span> perform_animation <span class="general1-string">"NULL"</span> group <span class="general1-string">"NULL"</span> time <span class="general1-number">1</span> <span class="general1-comment">//object no 1</span>
-09A0: set_char <span class="general1-variable">$actor00</span> attach_objectB <span class="general1-variable">$object00</span> with_offset <span class="general1-number">0.0 0.0 0.0</span> on_bone <span class="general1-number">5 16</span> perform_animation <span class="general1-string">"NULL"</span> group <span class="general1-string">"NULL"</span> time <span class="general1-number">-1</span> <span class="general1-comment">//object no 2</span></pre>
-</div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                First for those you have to <u><b>load the animation</b></u>
-                file before using the animation opcode. It's aesy, it's just
-                like we requested car and actors models before :<br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard60();" height="16" width="16"></span>
-<textarea id="holdtext60" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext60" class="NON"><span class="general1-label">:ANIMLOAD</span>
-0001: <span class="general1-reservedword">wait</span> <span class="general1-number">0</span> ms
-04ED: load_animation <span class="general1-string">"FOOD"</span>
-00D6: <span class="general1-reservedword">if</span>
-04EE: animation <span class="general1-string">"FOOD"</span> loaded
-004D: jump_if_false <span class="general1-label">@ANIMLOAD</span></pre></div>
-                <br>
-                <br>
-                As you have probably noticed it's just a bit diferent than
-                with models, because here you directly load the anim, and
-                with models, you request (with 0247) and then load the models
-                (with 038b).<br>
-                <br>
-                Don't forget <u><b>after using it</b></u> to release the anim
-                with <br>
-<strong>CODE </strong><br><div class="imgcursor" align="right"><span class="kbd"><img src="../../img/ico_cb.gif" alt="Copy to Clipboard" onClick="ClipBoard61();" height="16" width="16"></span>
-<textarea id="holdtext61" style="display: none;"></textarea></div>
-<div class="mycode5">
-<pre id="copytext61" class="NON">04EF: release_animation <span class="general1-string">"LOWRIDER"</span></pre></div>
-                <br>
-                <br>
-                <br>
-                Here to explain opcodes parameters I will use the PLPynton's
-                sacsm.ini descriptions instead of using original Sanny
-                Builder sascm.ini descriptions like I usually do, because it
-                will be much easier for you to understand. But don't worry it
-                is the same parameters order.<br>
-                <br>
-                Parameters (thanks ceedj):
-                <ol type="1">
-                  <li class="Myli">The first word between quotation marks is the animation
-                    name (<span class="general1-string">"CRCKDETH3"</span> ,
-                    <span class="general1-string">"PASS_RIFLE_PED"</span> ,
-                    <span class="general1-string">"HIKER_POSE_L"</span> ,
-                    etc...)</li>
-                  <li class="Myli">The second is the library (animation file) where the
-                    anim is (<span class="general1-string">"CRACK"</span> ,
-                    <span class="general1-string">"SWAT"</span> , <span class="general1-string">"VENDING"</span> , <span class="general1-string">"FOOD"</span> , etc...).<br>
-                    In some cases, like for 09a0 and 070a <span class="general1-string">"NULL"</span> means that no
-                    animation will be done, they are both explained in
-                    chapter <i>7.Objects and moving them</i>.</li>
-                  <li class="Myli"><span class="general1-number">4.0</span> is playback
-                    rate. Default is <span class="general1-number">4.0</span>, less than this slows it down, more
-                    speeds it up and may skip animation frames with higher
-                    numbers.</li>
-                  <li class="Myli"><span class="general1-space">loopA</span> or <span class="general1-space">loop</span> It's the Loop flag, to
-                    make the animation start again once finished. <span class="general1-number">1</span> on/<span class="general1-number">0</span> off, BUT if on,
-                    Timelimit (parameter 8.) MUST be set to <span class="general1-number">-1</span> .</li>
-                  <li class="Myli"><span class="general1-space">lockX</span> unlocks or
-                    locks actor in position on X axis. If <span class="general1-number">1</span> and if the actor is
-                    moving on the X axis from actor's origin (left to right),
-                    he will stay at those new coords. If <span class="general1-number">0</span> , the actor will return
-                    to the start position coords.</li>
-                  <li class="Myli"><span class="general1-space">lockY</span> unlocks or
-                    locks actor in position on Y axis. If <span class="general1-number">1</span> and if the actor is
-                    moving on the Y axis from actor's origin (front to back),
-                    he will stay at those new coords. If <span class="general1-number">0</span> , the actor will return
-                    to the start position coords.</li>
-                  <li class="Myli"><span class="general1-space">lockF</span> lock the
-                    actor in final postion. If <span class="general1-number">1</span> it will play the
-                    animation through once, then lock the actor into the
-                    final frame of the animation. This can NOT be stopped
-                    with opcode 0687 (clear_actor_task), but proceeding to
-                    another animation will. </li>
-                  <li class="Myli"><span class="general1-space">limT</span> the Timelimit
-                    in milliseconds, is the time the actor will do the anim,
-                    set to <span class="general1-number">1000</span> ms for 1
-                    second, <span class="general1-number">6000</span> ms for
-                    6 seconds etc... If set to <span class="general1-number">-1</span> it will play the entire
-                    animation, once through. With the Loop flag on (<span class="general1-number">1</span> ), the animation will
-                    loop until interupted by either opcode 0687
-                    (clear_actor_task) or another animation.</li>
-                </ol>
-                <br>
-                <br>
-                To find anims name and in which anim file they are you can
-                look in the very good file wrtitten by ceedj : <a href="http://www.pawfectfilms.com/mods/SAAnims.txt" target="_blank">SAAnims.txt</a>, but you can as well think of
-                where this animation has been used in the original game, go
-                in the mission or the external script in original main.scm it
-                is used and search with Sanny Builder the anim you want in
-                the mission/external you've seen it.
-                 <br>
-                <br>
-                <br>
-                <br>
-                <span style="font-size: 13pt; line-height: 100%;"><b><u>B.Particules
-                :</u></b><br>
-                </span>
-                 create particule<br>
-                throw angle<br>
-                particules on/off<br>
-                <br>
+Now they're ready to shoot away but they'll have to wait a bit!!!!
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="9animveh"> 9. Animating vehicles and car mods : </a></b></u></span>
-                 <br>
-                driver behaviour<br>
-                follow path/road<br>
-                "put at" methode<br>
-                AS drving<br>
-                for plane/cars/boats<br>
-                carmods, request set, numbers<br>
-                carparts, open/close break/repair<br>
-                trailers attach<br>
-                Tyres inflate deflate<br>
+You might need to change the direction of the car (z angle), or its colors (there is up to four colors for cars):
+**CODE**
+```sb3
+0175: set_car $car00 z_angle_to 90.0
+0229: set_car $car00 color_to 11 0
+0A11: set_car $car00 tertiary_color_to 6 quaternary_color_to 12
+```
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="10firexpl"> 10. Fire, explosions and interiors : </a></b></u></span>
-                 <br>
-                fire extinguish, destroy all fires,<br>
-                explosion type <br>
-                interiors:<br>
-                player<br>
-                actor/car/object<br>
+It's pretty easy so I'll be fast:
+* for all of them `$car00` is the car handle as usual !!!! 
+* In 0175 the float `90.0` is the z angle from `-360.0` to `360.0` .
+* In 0229 the integers `11` is the primary color and `0` is the secondary color.
+* In 0a11 the integers `6` is the tertiary color and `12` is the quaternary color. Don't worry about the opcode description, by the time the sascm.ini used here (the one given with Sanny) was written the opcode wasn't known yet, but it will still work very well, and now that you know what the opcode does, there is nothing to stop you!!!
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="11cameras"> 11. Cameras and directering scm cutscenes : </a></b></u></span>
-                 <br>
-                you're the director !!!!!<br>
-                moving the camera<br>
-                cam on vehicle/on actor looking to vehicle<br>
-                in and out shot,<br>
-                use anims<br>
-                skip cutscenes<br>
+For infos, those were only "set" opcodes, but there is opposite opcodes for all thoses "get" opcodes. The "get" opcodes will get the color/angle of the car and stores it in variables:
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="12textpan"> 12. Texts and panels : </a></b></u></span>
-                 <br>
-                panels<br>
-                textboxes<br>
-                text draw<br>
-                gxt<br>
+**CODE**
+```sb3
+0174: $carangle = car $car00 z_angle
+03F3: get_car $car00 color $primcolor $scndcolor
+0A12: get_car $car00 tertiary_color_to $tertcolor quaternary_color_to $quatcolor
+```
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="13maths"> 13. Maths, stats and timers : </a></b></u></span>
-                 <br>
-                variables and int and floats where a float or int can be used
-                you can use a variable that contains the float or the int<br>
-                +/-<br>
-                * /<br>
-                ==<br>
-                stats<br>
-                internal timer 32@ 33@<br>
+Well, what can I say, it the same as before but the all way around, instead of saying the engine to put a color on the car or put the car in such direction, it finds what color the car is or what direction the car is and put the resulting integer in the variable.
+The variable names should speak form themselves.
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="14tbljmp"> 14. Randoming and table jumps : </a></b></u></span>
-                 <br>
-                Random<br>
-                table jumps<br>
+As much obvious as it is, you can't change the color of an actor !!!!!! But you can change the direction (s)he's looking at, and know where (s)he's looking :
+**CODE**
+```sb3
+0172: $actorangle = actor $actor00 z_angle
+0173: set_actor $actor00 z_angle_to 262.0
+```
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="15arrays"> 15. Arrays : </a></b></u></span>
-                 <br>
+Same for objects, here is just the angle, but there is more on objects just next :
+**CODE**
+```sb3
+0176: $objangle = object $object00 z_angle
+0177: set_object $object00 z_angle_to 180.0
+```
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="16mission"> 16. Missions and externals scripts : </a></b></u></span>
-                 <br>
-                starters mission/externals<br>
-                One mission at a time, many external at the same time<br>
-                locals range<br>
-                Mission cleanup<br>
+When you finished using those actor/vehicles/object you have two different ways to get rid of them : 
+First you can simply destroy them (they will just disappear straight away) :
+**CODE**
+```sb3
+00A6: destroy_car $car00
+0108: destroy_object $object00
+009B: destroy_actor_instantly $actor01
+034F: destroy_actor_with_fade $actor00 // The actor fades away like a ghost
+```
+034f as the comment says `"// The actor fades away like a ghost"`. Is usualy what you see happening in original game when an actor is dead, it slowly disappear.
 
-                 <span style="font-size: 14pt; line-height: 100%;"><u><b><a name="17conclu"> Conclusion </a></b></u></span>
-                 <br>
-                opcode search ****<br>
-                do experiments<br>
-                try easy for beginning<br>
-                Immitate existing code<br>
-                use you brain !!!<br>
-                multiply information sources<br>
-                use search google in domain gta forum, or gtaforum search
-                tool<br>
-                ask question there is plenty of good guys (hi you guys <img src="../../img/Part20II.files/wink.gif" width="21" height="18">
-                 ), I was like you a while ago, and someone helped me (thank
-                you again Dem), now I'm here writting a tutorial.<br>
-                CREDITS: cns (I wouldn't be here without him), Demarest
-                (idem), Seeman (he created Sanny Builder !!!!), PLPynton,
-                ceedj, Y_less, PatrickW, Gangsta Killa, Bigun, SteaVor but as
-                well as anyone who posted opcodes description (like Opius,
-                spaceeinstein, Craig Kostelecky, DexX...), and anyone who
-                helped me or will helped me for this, as well as people who
-                point out mistakes I've done in the bible, and maybe
-                <u><b>YOU</b></u> soon...<br>
-                <br>
-                Have fun <br>
-</p>
-<script src="../../js/partial/footer.js"></script>
+Secondly you can remove references from them, this will turn them into normal peds (just like every pedestrian/vehicle you see ingame). So the actor/vehicle/object will still be there but the handle `$car00`/`$actor00`/`$object00` won't hold the actor/vehicle/object anymore :
+**CODE**
+```sb3
+01C2: remove_references_to_actor $actor00 // Like turning an actor into a random pedestrian
+01C3: remove_references_to_car $car00 // Like turning a car into any random car
+01C4: remove_references_to_object $object00 //This object will now disappear when the player looks away
+```
+The comments (after //) explain what the opcodes do pretty well again.
+
+Now that the actors/vehicles/objects are destroyed the engine don't need the models any more. So to free some game memory ~~you can~~ release the models with 0249 :
+**CODE**
+```sb3
+0249: release_model #WFYSEX
+0249: release_model #CR_AMMOBOX
+0249: release_model #CHEETAH
+0249: release_model #DESERT_EAGLE
+0249: release_model #MP5LNG
+0249: release_model #HEATSEEK
+```
+
+##### About special actors
+Actors like Ryder, BigSmoke, Sweet, Tenpeny, Pulaski, Toreno, Ceasar, Jethro etc... are called special actors, they're not like the usual ped you find on the street. Then, in scm coding, they're handled in a special way, with special opcodes those so special actors !!!! 
+
+It goes like this:
+**CODE**
+```sb3
+023C: request_special_actor 'TENPEN' as 1
+023C: request_special_actor 'PULASKI' as 2
+023C: request_special_actor 'HERN' as 3
+023C: request_special_actor 'CESAR' as 4
+023C: request_special_actor 'JETHRO' as 5
+023C: request_special_actor 'MADDOGG' as 6
+```
+
+Here you have requested the models `'TENPEN'`, `'PULASKI'` and `'HERN'` and define them as special actor models integers `1`, `2` and `3`.
+You can find a special actor list in Sanny Builder help contents in SCM Documentation: GTA SA: Special actors. You can only define 9 special actor models at the same time (integers from 1 to 10 included).
+
+Then you have to check if the special actors are loaded and create them either on foot or in a car with the usual create_actor opcodes :
+**CODE**
+```sb3
+wait 0
+00D6: if and
+023D:  special_actor 1 loaded
+023D:  special_actor 2 loaded
+023D:  special_actor 3 loaded
+023D:  special_actor 4 loaded
+023D:  special_actor 5 loaded
+023D:  special_actor 6 loaded
+0248:  model #COPCARLA available                  
+004D: jump_if_false @check_1
+00A5: 0@ = create_car #COPCARLA at 2431.609 -1254.061 22.8303
+01C8: 1@ = create_actor 23 #SPECIAL01 in_car 0@ passenger_seat 0
+0129: 2@ = create_actor 23 #SPECIAL02 in_car 0@ driverseat
+01C8: 3@ = create_actor 23 #SPECIAL03 in_car 0@ passenger_seat 1
+009A: 4@ = create_actor 23 #SPECIAL04 at 2436.609 -1254.061 22.8303
+009A: 5@ = create_actor 23 #SPECIAL05 at 2437.609 -1254.061 22.8303
+009A: 6@ = create_actor 23 #SPECIAL06 at 2438.609 -1254.061 22.8303
+```
+
+When creating actors, see how the model is named `#SPECIAL01` and that it refers to the integer used in `023c: request_special_actor`. Then special actors models are named from `#SPECIAL01` to `#SPECIAL10`.
+
+If you need other special actors later (like in another mission) follow the same procedure with different models names but keeping `1`, `2` and `3` as special actor model integer, like :
+**CODE**
+```sb3
+023C: request_special_actor 'SMOKE' as 1
+023C: request_special_actor 'TORINO' as 2
+023C: request_special_actor 'SWEET' as 3
+023C: request_special_actor 'TRUTH' as 4
+023C: request_special_actor 'CESAR' as 5
+023C: request_special_actor 'MADDOGG' as 6
+023C: request_special_actor 'ZERO' as 4
+```
+
+To release the model simply use 0296 with the special actor integer model, and destroy the actor with usual 009b, 034f or 01c2 :
+**CODE**
+```sb3
+0296: unload_special_actor 1
+0296: unload_special_actor 2
+0296: unload_special_actor 3
+0296: unload_special_actor 4
+0296: unload_special_actor 5
+0296: unload_special_actor 6
+009B: destroy_actor_instantly 0@
+009B: destroy_actor_instantly 1@
+009B: destroy_actor_instantly 2@
+009B: destroy_actor_instantly 4@
+009B: destroy_actor_instantly 5@
+009B: destroy_actor_instantly 6@
+00A6: destroy_car 3@
+```
+
+### 7. Objects and moving them : 
+
+In Grand Theft Auto San Andreas there is many many things you can do with objects, but I won't (and I can't) tell you everything about it. I'll give you far enough to do nice and fun things with them.
+
+I won't repeat (even if I do repeat a lot of things) how to request and load models to create objects, it's told upper. I won't repeat neither how to destroy/remove references and release objects for the same reason.
+
+First some general (general because there is similar opcodes for vehicles and actors) things about coordinates and offsets. Sometime you need to know where the object is placed, and sometimes you need to know what are the coordinates just a bit away from the object (this is called an offset) :
+**CODE**
+```sb3
+01BB: store_object $object00 position_to $objpos_x $objpos_y $objpos_z
+0400: create_coordinate $objpos_x $objpos_y $objpos_z from_object $object00 offset 1.0 2.0 3.0
+```
+01bb will simply get the object `$object00` x y z coordinates and store them into `$objpos_x $objpos_y $objpos_z`.
+In 0400 it will store the coordinates at the offsets `1.0 2.0 3.0` of the object. It means that the coordinates that will be stored in `$objpos_x $objpos_y $objpos_z` will be `1.0` unit away from the object on the object's z axis, `2.0` unit away from the object on the object's y axis, and `3.0` unit away from the object on the object's z axis.
+
+As I said there is similar opcodes for cars and actors, the explaination is the same as before just replace object by car or actor : 
+For vehicles :
+**CODE**
+```sb3
+00AA: store_car $car00 position_to $carpos_x $carpos_y $carpos_z
+0407: create_coordinate $carpos_x $carpos_y $carpos_z from_car $car00 offset 1.0 2.0 3.0
+```
+For actors :
+**CODE**
+```sb3
+00A0: store_actor $actor00 position_to $actorpos_x $actorpos_y $actorpos_z
+04C4: create_coordinate $actorpos_x $actorpos_y $actorpos_z from_actor $actor00 offset 1.0 2.0 3.0
+```
+
+Once the object is created you can move the object to new coordinates:
+**CODE**
+```sb3
+01BC: put_object $object00 at 2368.5601 -1666.84 13.38
+```
+For info similar opcodes for actors and cars are : 00a1 for actors and 00ab for cars.
+
+You can use this to make the object move along, it's isn't the best way to do it but it's simple and works well. Here is an example :
+**CODE**
+```sb3
+:MOVE_10
+0001: wait 3 ms
+00D6: if
+0031:  0@ >= 200.0 // floating-point values
+004D: jump_if_false @MOVEND
+01BC: put_object $object00 at 0@ 1@ 2@
+000B: 0@ += 0.1 // floating-point values
+0002: jump @MOVE_10
+```
+You can see here that the object will move along x axis, as every 3ms the object will go `0.1` distance unit further on the x axis until `0@`(which is here the x axis unit) reaches `200.0`. DON'T FORGET THE WAIT!!!!!!
+
+The same way you can change the created object angles x y and z
+**CODE**
+```sb3
+0453: object $object00 set_rotation 0.0 0.0 180.0
+```
+Same as 01bc with a little loop you can make the object turn around. And as for 01bc there is better ways to do it, but this one is simple and works well. It also as the advantage of giving you the possibility to change any angle x y or z.
+
+But you can as well use 034d so it will move around x axis:
+**CODE**
+```sb3
+034D: object $object00 at_angle 0.0 then_rotate_by_angle 360.0 flag 0
+```
+This is how Rockstar open many garage doors (not all).
+
+But before using moving opcodes (like 034d or 0381) you need to give the object the ability to move (objects ain't able to move when you create them) :
+**CODE**
+```sb3
+0392: object $object00 toggle_in_moving_list 1
+```
+* 0 : unable to move
+* 1 : able to move
+You can aswell throw the object (just like throwing a ball) with 0381 :
+**CODE**
+```sb3
+0381: throw_object $object00 distance 20.0 10.0 5.0
+```
+* `20` is the distance on x axis
+* `10` the distance on y axis
+* `5` the distance on z axis
+You can attach object to cars, actors or other objects :
+**CODE**
+```sb3
+0681: attach_object $object00 to_car $car00 at_offset 0.5 0.3 0.3 rotation 0.0 0.0 0.0
+069B: attach_object $object00 to_actor $actor00 at_offset 0.0 0.5 -1.0 rotation 0.0 0.0 0.0
+069A: attach_object $object00 to_object $object01 at_offset 0.0 0.0 0.0 rotation 0.0 0.0 0.0
+```
+
+Those are pretty obvious, and as I already explained about offsets, so I'll just have to tell that the three floats after rotation are the x y and z angles that will be set, and that the object isn't solid whan attach to something else.
+
+If you don't want the object to be solid you can turn off the collision detection 
+**CODE**
+```sb3
+0382: set_object $object00 collision_detection 0
+```
+* `0` not solid 
+* `1` solid 
+You can make the object liftable like this:
+:::n
+![](mcp2/TRXCT.jpg)
+:::
+
+with 08e9:
+**CODE**
+```sb3
+08E9: set_object $object00 liftable 1
+```
+As usual
+* `1` : on
+* `0` : off
+
+This is a very very very cool thing (thanks to DexX and PLPynton):
+
+:::n
+![](mcp2/azerdfy.jpg)
+:::
+
+You can attach object to body parts of the actor, actually you can attach 2 object to the actor and make the actor do an animation !!!!!!!
+There will be more on animation later, but I'll explain those now:
+
+**CODE**
+```sb3
+070A: AS_actor $PLAYER_ACTOR attach_to_object $object00 offset 0.0 0.0 0.0 on_bone 6 16 perform_animation "NULL" IFP_file "NULL" time 0
+```
+attach the first object (object A):
+
+**CODE**
+```sb3
+09A0: actor $PLAYER_ACTOR attach_object $object01 with_offset 0.0 0.0 0.0 on_bone 5 16 perform_animation "NULL" IFP_file "NULL" time -1
+```
+attach the second object (object B):
+
+For both of them:
+* `$PLAYER_ACTOR` is the actor handle (here it's you CJ) 
+* the three floats `0.0 0.0 0.0` are the x y and z offsets from the normal bone coordinates 
+* the first integer `5` or `6` is the bone number (it's not the same as player body parts numbers for clothes)
+  * `0` - crashes the game 
+  * `1` - chest? 
+  * `2` - neck? 
+  * `3` - left shoulder 
+  * `4` - right shoulder 
+  * `5` - left hand 
+  * `6` - right hand 
+  * `7` - root? 
+  * `8` - ?? 
+  * `9` - left foot 
+  * `10` - right foot 
+  * `11` - right knee 
+  * `12` - ?? 
+  * `13` - left elbow 
+  * `14` - right elbow 
+  * `15` - left clavicle 
+  * `16` - right clavicle 
+  * `17` - back of neck 
+  * `18` - mouth or chin 
+  * `19` - crashes the game 
+* the second integer `16` is unknown and is always `16` 
+* the first long string `"NULL"` is the animation file (more on them later, and IT HAS TO BE LOADED like models) where the engine will get the animation. Here `"NULL"` means that no animation will be done.
+* the second long string `"NULL"` is the animation itself within the animation file. Here `"NULL"` again means that no animation will be done.
+* Last integer `0`, `1` or `-1` is unknown 
+To take theses objects off you have two opcodes:
+
+**CODE**
+```sb3
+070B: set_actor $PLAYER_ACTOR onbone_attached_object_operation 1 // drop or detaches object B automatically with object A 
+09A1: set_actor $PLAYER_ACTOR onbone_attached_objectB_operation 0 // drop or detaches object B only
+```
+
+070b detaches/drops object A and B if object B attached.
+09a1 detaches/drops object B.
+* `$PLAYER_ACTOR` is still the actor handle (here it's you CJ).
+* the integer `1` or `0` tell if the object will be droped of just been detach.
+  * `1` drops the object 
+  * `0` detaches the object 
+
+:::center
+!!!!!!!!!!!!!!!!!!!!!!!!!!! watch out !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Attach object A fisrt because otherwise object B won't appear. When you hold object A you can't get in a car and your weapon won't be visible. If you hold two objects, object B will drop when you fall or shoot with a weapon. If you die both objects will drop.
+:::
+\
+As I said there is many things to do with objects in San Andreas but now you know the most important things you can do.
+
+### 8. Animations and particules
+
+#### A. Animations
+
+Lets get to something very important in GTA : The actors animations !!!!!!!!!!!!!!
+The animations topic in SA in unending but as with objects we will see most important things.
+
+First lets say what are animation sequences, they are animations of an actor. Like when CJ is moving his arms while talking, when Ryder is smoking, when CJ is using the keycard, or when CJ is using the parachute...
+
+:::n
+![](mcp2/dfghvjgn.gif)
+:::
+
+More generally when an actor is making an action, when it's been animated !!
+
+There is two types of animation sequences (AS), one which does one precise animation and another which make the animation you put as parameters in the opcode from the anims files (*.ifp in the anim.img file in anim folder of game directory). The second type need the animation to be loaded with 04ed, and as usual you need to check if the animation is loaded.
+
+##### First type anims : one opcode does one animation
+
+some examples:
+**CODE**
+```sb3
+05BA: AS_actor $actor00 chew_gum 10000 ms
+05BB: AS_actor $actor00 fall_down 0 time_on_ground 500
+05BC: AS_actor $actor00 jump 1
+05C5: AS_actor $actor00 cower 3000 ms
+05C7: AS_actor $actor00 use_atm
+05C8: AS_actor $actor00 look_around
+05C9: AS_actor $actor00 on_guard 2000 ms
+05CD: AS_actor $actor00 exit_car $car00
+05D3: AS_actor $actor00 go_to 81.42 1474.63 51.56 speed 4 3000 ms
+05D4: AS_actor $actor00 rotate_angle 77.0
+0639: AS_actor $actor00 rotate_to_actor $actor01
+0672: AS_actor $actor00 attack_car $car00
+0673: AS_actor $actor00 dive_to_offset 1.0 -3.0 time_on_ground 1000 ms
+0676: AS_actor $actor00 in_car $car00 move_from_passengerseat_to_driverseat
+0677: AS_actor $actor00 chat_with_actor $actor02 1 1
+06A9: AS_actor $actor00 look_at_point 681.81 -474.15 15.53 5000 ms
+06E3: AS_actor $actor00 roll_sideways 1
+```
+
+They are the easiest to use, just put the opcode, the right parameters (the first is the actor which will do the animation (`$actor00`), then there are like said in the description either an angle (`77.0`), a 3D position (`681.81 -474.15 15.53`), a car (`$car00`), another actor (`$actor01`), the time the animation will last (`5000`) etc....
+They're easy simple and work very well don't hesitate to use a lot of them !!!!!!
+
+##### Second type anims : one opcode does the anim you have put as parameters.
+
+some examples:
+**CODE**
+```sb3
+0829: actor $actor00 perform_animation "CRCKDETH3" IFP_file "CRACK" 4.0 time 0 and_dies 
+0605: actor $actor00 perform_animation_sequence "PASS_RIFLE_PED" IFP_file "MISC" 4.0 loop 0 0 0 0 time -1 // versionA
+0812: AS_actor $actor00 perform_animation "LRGIRL_IDLELOOP" IFP_file "LOWRIDER" 4.0 loopA 0 lockX 0 lockY 0 lockF 0 time -1 // versionB
+0A1A: actor $actor00 perform_animation "HIKER_POSE_L" IFP_file "MISC" 4.0 loopA 0 lockX 0 lockY 0 lockF 1 -1 ms // versionC
+088A: actor $actor00 perform_animation "RAIL_FALL" IFP_file "SWAT" 8.0 loopA 0 lockX 0 lockY 0 lockF 1 limT -1 unknown 0 unknown 1 
+070A: AS_actor $actor00 attach_to_object $object00 offset 0.0 0.0 0.0 on_bone 6 16 perform_animation "NULL" IFP_file "NULL" time 1 
+09A0: actor $actor00 attach_object $object01 with_offset 0.0 0.0 0.0 on_bone 5 16 perform_animation "NULL" IFP_file "NULL" time -1
+```
+
+Or with very good PLPynton's sascm.ini descriptions they look like this:
+**CODE**
+```sb3
+0829: char $actor00 perform_animation "CRCKDETH3" group "CRACK" 4.0 limT 0 and_dies
+0605: char $actor00 perform_animation "PASS_RIFLE_PED" group "MISC" 4.0 loopA 0 lockX 0 lockY 0 lockF 0 limT -1 //versionA
+0812: char $actor00 perform_animation "EAT_VOMIT_P" group "FOOD" 4.0 loopA 0 lockX 0 lockY 0 lockF 0 limT -1 //versionB
+0A1A: char $actor00 perform_animation "VEND_EAT1_P" group "VENDING" 4.0 loopA 0 lockX 0 lockY 0 lockF 0 limT -1 //versionC
+088A: char $actor00 perform_animation "RAIL_FALL" group "SWAT" 8.0 loopA 0 lockX 0 lockY 0 lockF 1 limT -1 unknown 0 unknown 1
+070A: set_char $actor00 attach_objectA $object00 with_offset 0.0 0.0 0.0 on_bone 6 16 perform_animation "NULL" group "NULL" time 1 //object no 1
+09A0: set_char $actor00 attach_objectB $object00 with_offset 0.0 0.0 0.0 on_bone 5 16 perform_animation "NULL" group "NULL" time -1 //object no 2
+```
+
+First for those you have to **__load the animation__** file before using the animation opcode. It's aesy, it's just like we requested car and actors models before:
+**CODE**
+```sb3
+:ANIMLOAD
+0001: wait 0 ms
+04ED: load_animation "FOOD"
+00D6: if
+04EE: animation "FOOD" loaded
+004D: jump_if_false @ANIMLOAD
+```
+
+As you have probably noticed it's just a bit diferent than with models, because here you directly load the anim, and with models, you request (with 0247) and then load the models (with 038b).
+
+Don't forget **__after using it__** to release the anim with 
+**CODE**
+```sb3
+04EF: release_animation "LOWRIDER"
+```
+
+Here to explain opcodes parameters I will use the PLPynton's sacsm.ini descriptions instead of using original Sanny Builder sascm.ini descriptions like I usually do, because it will be much easier for you to understand. But don't worry it is the same parameters order.
+
+Parameters (thanks ceedj):
+1. The first word between quotation marks is the animation name (`"CRCKDETH3"`, `"PASS_RIFLE_PED"`, `"HIKER_POSE_L"`, etc...) 
+2. The second is the library (animation file) where the anim is (`"CRACK"`, `"SWAT"`, `"VENDING"`, `"FOOD"`, etc...).<br>In some cases, like for 09a0 and 070a `"NULL"` means that no animation will be done, they are both explained in chapter 7.Objects and moving them.
+3. `4.0` is playback rate. Default is `4.0`, less than this slows it down, more speeds it up and may skip animation frames with higher numbers.
+4. loopA or loop It's the Loop flag, to make the animation start again once finished. 1 on/0 off, BUT if on, Timelimit (parameter 8.) MUST be set to -1 .
+5. lockX unlocks or locks actor in position on X axis. If 1 and if the actor is moving on the X axis from actor's origin (left to right), he will stay at those new coords. If 0 , the actor will return to the start position coords.
+6. lockY unlocks or locks actor in position on Y axis. If 1 and if the actor is moving on the Y axis from actor's origin (front to back), he will stay at those new coords. If 0 , the actor will return to the start position coords.
+7. lockF lock the actor in final postion. If 1 it will play the animation through once, then lock the actor into the final frame of the animation. This can NOT be stopped with opcode 0687 (clear_actor_task), but proceeding to another animation will.
+8. limT the Timelimit in milliseconds, is the time the actor will do the anim, set to 1000 ms for 1 second, 6000 ms for 6 seconds etc... If set to -1 it will play the entire animation, once through. With the Loop flag on (1 ), the animation will loop until interupted by either opcode 0687 (clear_actor_task) or another animation.
+
+To find anims name and in which anim file they are you can look in the very good file wrtitten by ceedj : [SAAnims.txt](http://www.pawfectfilms.com/mods/SAAnims.txt), but you can as well think of where this animation has been used in the original game, go in the mission or the external script in original main.scm it is used and search with Sanny Builder the anim you want in the mission/external you've seen it.
+
+#### B.Particules
+
+create particule\
+throw angle\
+particules on/off
+
+### 9. Animating vehicles and car mods
+
+driver behaviour\
+follow path/road\
+"put at" methode\
+AS drving\
+for plane/cars/boats\
+carmods, request set, numbers\
+carparts, open/close break/repair\
+trailers attach\
+Tyres inflate deflate
+
+### 10. Fire, explosions and interiors
+
+fire extinguish, destroy all fires,\
+explosion type\
+interiors:\
+player\
+actor/car/object
+
+### 11. Cameras and directering scm cutscenes
+
+you're the director !!!!!\
+moving the camera\
+cam on vehicle/on actor looking to vehicle\
+in and out shot,\
+use anims\
+skip cutscenes
+
+### 12. Texts and panels
+
+panels\
+textboxes\
+text draw\
+gxt
+
+### 13. Maths, stats and timers
+
+variables and int and floats where a float or int can be used you can use a variable that contains the float or the int\
++/-\
+*/\
+==\
+stats\
+internal timer 32@ 33@
+
+### 14. Randoming and table jumps
+
+Random\
+table jumps
+
+### 15. Arrays
+
+### 16. Missions and externals scripts
+
+starters mission/externals\
+One mission at a time, many external at the same time\
+locals range\
+Mission cleanup
+
+### Conclusion
+
+opcode search ****\
+do experiments\
+try easy for beginning\
+Immitate existing code\
+use you brain !!!\
+multiply information sources\
+use search google in domain gta forum, or gtaforum search tool\
+ask question there is plenty of good guys (hi you guys 😉 ), I was like you a while ago, and someone helped me (thank you again Dem), now I'm here writting a tutorial.\
+CREDITS: cns (I wouldn't be here without him), Demarest (idem), Seeman (he created Sanny Builder !!!!), PLPynton, ceedj, Y_less, PatrickW, Gangsta Killa, Bigun, SteaVor but as well as anyone who posted opcodes description (like Opius, spaceeinstein, Craig Kostelecky, DexX...), and anyone who helped me or will helped me for this, as well as people who point out mistakes I've done in the bible, and maybe YOU soon...
+
+Have fun
+
+<script src="../../js/main.min.js"></script>
