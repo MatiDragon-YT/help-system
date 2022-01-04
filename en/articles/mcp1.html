@@ -43,7 +43,11 @@ Something very important, to get informations, the Sanny Builder's Help, it' ful
 Launch the executable follow usual installation process. Then go first to Tools\options (or press F10). In general tab check Show progress, Show report, Show warning, Quick game loading, Condition check, Ranges check, Writes opcodes, maybe Replace mission numbers, Insert Original mission names, Add extra info to SCM. I will explain later why we need those.
 
 Like this:
+
+:::l
 ![](mcp1/rdfgbh3.png)
+:::
+
 Close Sanny Builder and reopen it.
 
 There is many other good tutorials that should help you: [YeTi's SA Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=214055&view=findpost&%20%20p=3163789), [YeTi's SA Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=214321&view=findpost&%20%20p=3167813), [Y_less quick tuto](http://www.gtaforums.com/index.php?showtopic=232687&view=findpost&%20%20p=3498916), those are for San Andreas. Vice City tutorials can help you too: [Alex "Y_Less" Cole's n00b guide to coding](http://www.gtaforums.com/index.php?showtopic=169526&view=findpost&%20%20p=2352371), [littleguna's VC Coding Tutorial](http://www.gtaforums.com/index.php?showtopic=156033&view=findpost&%20%20p=2137684), [YeTi's VC Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=189876&view=findpost&%20%20p=2794115), [YeTi's VC Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=191001&view=findpost&%20%20p=2819222). The [GTAforums tutorial archive](http://www.gtaforums.com/index.php?showtopic=141222&view=findpost&%20%20p=1834859). You can find more in this forum here. 
@@ -235,7 +239,9 @@ What's most important for now is the main part.
 
 But still about main.scm architecture, you need to know that some things are limited in main.scm look, [here](http://www.gtaforums.com/index.php?showtopic=213017&view=findpost&%20%20p=3145932). As you can see the main size (the lenght of all 'main part' threads) is limited to 200 000 bytes. To know how long the 'main part' is compile and look the report it tells you "MAIN size : XXXXXX b." and then the biggest mission "Largest Mission : XXXX b." and the Largest external script :
 
+:::l
 ![](mcp1/retfyhj2.png)
+:::
 
 That's why we've set on the option "Show report".
 
@@ -311,7 +317,9 @@ end // var
 
 You probably noticed that there isn't a Define section (`DEFINE OBJECTS`, `DEFINE MISSIONS`...) there is nothing to worry here because there isn't anything that needs to be defined here. As said in the file if you need an header (define section) press `CTRL`+`J` and select headsa. Like on the pic:
 
+:::l
 ![](mcp1/jyfcgfhgcfgkk.png)
+:::
 
 Then you'll get what you're missing:\
 **CODE**
@@ -337,7 +345,9 @@ The opcode is the number of the command (action or operation) that the game engi
 
 Parameters (also called Params, or just P1, P2, or %p ) are the input (numbers, actors, vehicles, text strings or any type of variables) of the command. Sanny builder on bottom left tells you how much parameters an opcode needs:
 
+:::l
 ![](mcp1/yrrgrg.png)
+:::
 
 Here is two example:
 
@@ -479,7 +489,9 @@ A label is a little piece of thread like `:MAIN_4059`. Think now the thread as a
 
 I made an animated example for you to see how the game engine travels through the labels:
 
+:::l
 ![](mcp1/ASDFG2.gif)
+:::
 
 The red line represent the code (the engine is called sometimes simply the code, like the code reader) going through labels.
 

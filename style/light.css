@@ -173,7 +173,7 @@ a:hover {
 #navbar {
     background: #5a97f3;
     color: black;
-    font-weight: bold;
+    font-weight: 700;
     overflow: hidden;
 }
 #navbar h1{
@@ -261,9 +261,13 @@ input {
     .markdown { max-width: 1320px }
 }
 
+.center, .c { text-align: center }
+.right, .r {text-align: right}
+.left, .l {text-align: left}
+
 .light { font-weight: 300 }
-.center { text-align: center }
-.right {text-align: right}
+.bold { font-weight: 700 }
+
 .uppercase { text-transform: uppercase }
 .p-2 { padding: .5rem }
 .p-4 { padding: 1.5rem }

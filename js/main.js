@@ -264,7 +264,7 @@ apply($('.sb3'), function(e){
 	//Modelos
 	.replace(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
-	.replace(/\b([a-z]+)\.([a-z]+)/gmi, "<span class=classes>$1<\/span>.<span class=commands>$2</span>")
+	.replace(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
 	.replace(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
 	.replace(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
 	.replace(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
