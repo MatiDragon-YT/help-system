@@ -257,8 +257,18 @@ input {
 .directives,
 .directives * { color: #ffd54f }
 
+
+.cols-2 { columns: 2 auto}
+.cols-3 { columns: 3 auto}
+.cols-4 { columns: 4 auto}
+.cols-6 { columns: 6 auto}
+
 @media (min-width:576px) {
     .markdown { max-width: 540px }
+    .cols-sm-2 { columns: 2 auto}
+    .cols-sm-3 { columns: 3 auto}
+    .cols-sm-4 { columns: 4 auto}
+    .cols-sm-6 { columns: 6 auto}
 }
 @media (min-width:768px) {
     .markdown { max-width: 720px }
@@ -287,8 +297,6 @@ input {
 .uppercase { text-transform: uppercase }
 .p-2 { padding: .5rem }
 .p-4 { padding: 1.5rem }
-.cols-4 { columns: 4 auto}
-.cols-6 { columns: 6 auto}
 
 .w-100{width: 100%}
 .h-43 {height:43vh}
