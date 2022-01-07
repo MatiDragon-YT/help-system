@@ -159,6 +159,12 @@ code, .code {
     margin: 0 2px;
 }
 
+textarea{
+    font-size: 1rem;
+    padding: 0.5rem;
+    resize: unset;
+}
+
 img {
     max-height : 100%;
     max-width : 100%;
@@ -281,12 +287,30 @@ input {
 .p-2 { padding: .5rem }
 .p-4 { padding: 1.5rem }
 .cols-4 { columns: 4 auto}
+.cols-6 { columns: 6 auto}
+
+.w-100{width: 100%}
+.h-43 {height:43vh}
+.o-auto{overflow:auto}
+
 .pre {white-space: pre}
 
+.white{color:#c9d1d9}
+.bg-white{background:#c9d1d9}
+.black{color:#0d1117}
+.bg-black{background:#0d1117}
+
 .red { color:#ff5252 }
+.bg-red { background:#ff5252 }
 .orange { color:#ffab40 }
+.bg-orange { background:#ffab40 }
 .green { color:#00e676 }
-.yellow { color:#ffeb3b  }
+.bg-green { background:#00e676 }
+.yellow { color:#ffeb3b }
+.bg-yellow { background:#ffeb3b }
 .blue { color:#2196f3 }
-.purple { color:#e040fb  }
-.gray { color:#9e9e9e  }
+.bg-blue { background:#2196f3 }
+.purple { color:#e040fb }
+.bg-purple { background:#e040fb }
+.gray { color:#9e9e9e }
+.bg-gray { background:#9e9e9e }

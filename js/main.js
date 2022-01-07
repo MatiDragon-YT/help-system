@@ -60,6 +60,9 @@ String.prototype.toMarkdown = function(){
 
 	/******** LIST ********/
 
+	// ID
+	.replace(/\[([\w\d\-\x20]+)\]\[\]/gim, '<a id="$1"></a>')
+
 	// UL LI
 	.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
 	.replace(/^\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1</li></ul></ul>')
@@ -177,8 +180,8 @@ String.prototype.toMarkdown = function(){
 	.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 	// BR
-	.replace(/(\n^\.\n|(\.|:|\!|\))\n\n(\w|\d|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
-	.replace(/(\\\n|\\n\w|(\.|:|\!|\))\n(\w|\d|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
+	.replace(/(\n^\.\n|(\.|:|\!|\)|b>)\n\n(\w|\d|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
+	.replace(/(\\\n|\\n\w|(\.|:|\!|\)|b>)\n(\w|\d|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
 
 	// PRE
 	.replace(/```([\x09-\x5F\x61-\uFFFF]*)```/g, function(input){
@@ -222,9 +225,9 @@ $('body').innerHTML = '\
 	<span id="alinks"></span>\
 </div></div>'
 
+var htmlGenerated = $('#inputText').value.toMarkdown()
 
-
-$('.markdown .cont').innerHTML = $('#inputText').value.toMarkdown()
+$('.markdown .cont').innerHTML = htmlGenerated
 $('body').style['display'] = 'block'
 
 apply($('a'), function(e){

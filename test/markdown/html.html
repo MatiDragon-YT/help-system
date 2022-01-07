@@ -8,10 +8,12 @@
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
+:::h-43 o-auto
+
 Markdown - **By MatiDragon**
 ========================
 
-Lorem, __ipsum__ dolor :clap: sit amet **consectetur** adipisicing, elit.\
+[lorem][]Lorem, __ipsum__ dolor :clap: sit amet **consectetur** adipisicing, elit.\
 Nam ~~animi~~ *mollitia* nesciunt ***reprehenderit***, voluptate [error](#how-to-use-the-demo) similique saepe.
 
 Dolorem ++provident++ officia `magnam` rerum [red][laboriosam] quas id a [`excepturi`](#how-to-use-the-demo "read labo id qusa") perspiciatis ==exercitationem==. Esse.
@@ -93,8 +95,16 @@ Lorem, ipsum dolor sit
 Lorem, ipsum dolor sit
 ###### h6 title example
 Lorem, ipsum dolor sit
+:::p-2
+:::
+:::
+
+:::l
+<div class="w-100 h-43 p-2 o-auto bg-gray black" id="html" style="box-shadow: 0 0 1rem 1rem #0d1117;font-family: monospace;"></div>
+:::
 
 <script src="../../js/main.js"></script>
+
 <script>
 t = $('#d').style
 
@@ -106,14 +116,14 @@ t = $('.markdown').style
 t.width="49vw"
 t.float="left"
 t.overflow="auto"
-t.height="calc(100vh - 5rem)"
+t.height="calc(97vh - 5rem)"
 
 t = $('#inputText').style
 
 t.display="block"
 t.width="100%"
-t.height="calc(100vh - 5rem)"
-t.padding="1rem"
+t.height="calc(97vh - 5rem)"
 t.color="black"
-t["font-size"]="1rem"
+
+$('div #html').innerText = htmlGenerated
 </script>
