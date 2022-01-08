@@ -1,0 +1,757 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Mission Coding - Part I</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+:::center h3
+Grand Theft Auto\
+[orange][San Andreas]\
+\
+[red][Mission Coding with Sanny Builder Tutorial]\
+[gray][Part I]\
+[gray][Getting started]\
+\
+\
+:::
+
+## Introduction 
+
+Hi, since a long time I wanted to make a tutorial for newbies, it won't tell you what to do, it will helps you doing what you want to do. It can also be a good tutorial for Sanny builder. I tried to make a tutorial for anyone even if you don't know anything about programming. You might want jump straight to [part II](mcp2.html), if you think you know enough about coding to get started.
+
+With Mission coding (or Mission scripting) you can make your own missions, your own mods or modificate existing ones (you can find many in this [Mission Mods](http://www.gtaforums.com/index.php?showforum=65) and this [Mission Coding](http://www.gtaforums.com/index.php?showforum=49) (and is where you can ask questions about coding).
+
+Mission coding is done with the files main.scm and script.img in data\script folder of San Andreas. Main.scm is a compiled file, so it's made in a language that the computer can understand it easily. If you open main.scm with hexadecimal editor it looks like that inside:
+**CODE**
+
+```
+D6 00 04 00 19 01 02 45 0E 4D 00 01 FE 3D 87 02 A6 00 02 45 0E
+```
+
+So you need to uncompile it to have it in a human readable format, then we will be able to program in it. You don't need to do anything on the file script.img, the file is needed, so each main.scm will need his own script.img.
+
+So to decompile main.scm you need [Sanny Builder](https://sannybuilder.com/). There is many other decompiler but if you a beginer Sanny will be the best coding solution, because it's continuously update, has proper support, is fast, is colorfull 😏!!!!! And the tutorial is made with and for [Sanny Builder](https://sannybuilder.com/). 
+Sanny Builder is close to Barton Waterduck's San Andreas Mission builder but because the syntax is different I highly advise to use [Sanny Builder](https://sannybuilder.com/) but if you want to disobey, here it is : [Barton's Waterduck Mission Builder](http://www.kostelecky.com/craig/SAMB033.rar) -Craig's version, thanks to him.
+
+Something very important, to get informations, the Sanny Builder's Help, it' full of very useful information and always available (like offline).
+
+Launch the executable follow usual installation process. Then go first to Tools\options (or press F10). In general tab check Show progress, Show report, Show warning, Quick game loading, Condition check, Ranges check, Writes opcodes, maybe Replace mission numbers, Insert Original mission names, Add extra info to SCM. I will explain later why we need those.
+
+Like this:
+
+:::l
+![](mcp1/rdfgbh3.png)
+:::
+
+Close Sanny Builder and reopen it.
+
+There is many other good tutorials that should help you: [YeTi's SA Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=214055&view=findpost&%20%20p=3163789), [YeTi's SA Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=214321&view=findpost&%20%20p=3167813), [Y_less quick tuto](http://www.gtaforums.com/index.php?showtopic=232687&view=findpost&%20%20p=3498916), those are for San Andreas. Vice City tutorials can help you too: [Alex "Y_Less" Cole's n00b guide to coding](http://www.gtaforums.com/index.php?showtopic=169526&view=findpost&%20%20p=2352371), [littleguna's VC Coding Tutorial](http://www.gtaforums.com/index.php?showtopic=156033&view=findpost&%20%20p=2137684), [YeTi's VC Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=189876&view=findpost&%20%20p=2794115), [YeTi's VC Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=191001&view=findpost&%20%20p=2819222). The [GTAforums tutorial archive](http://www.gtaforums.com/index.php?showtopic=141222&view=findpost&%20%20p=1834859). You can find more in this forum here. 
+You can visit [GTAmodding.com](http://www.gtamodding.com/) and particulary [Mission scripting](http://www.gtamodding.com/index.php?title=Category:Mission_Scripti%20%20ng) category.
+
+### 1. Main.scm architecture
+
+So now copy original main.scm and script.img to a new coding working folder (or anywhere you want : desktop, My docs, recycle bin, your mum's docs 😁 ....) you've created and open it (make backups !!!!! like doing right away a new folder for original main.scm and script.img) by clicking open and selecting SCM File (*.scm). You can see the progress bar filling up (That's why we've truned on the option "Show progress"). 
+
+#### Define section:
+
+And you will get something like that:\
+**CODE**
+
+```sb3
+// This file was decompiled using sascm.ini published by Seemann (http://sannybuilder.com/files/SASCM.rar) on 13.10.2007
+DEFINE OBJECTS 389
+DEFINE OBJECT SANNY BUILDER 3.03     
+DEFINE OBJECT INFO                     // Object number -1
+DEFINE OBJECT KEYCARD                  // Object number -2
+DEFINE OBJECT AD_FLATDOOR              // Object number -3
+DEFINE OBJECT KB_BANDIT_U              // Object number -4
+etc...
+```
+
+As you can see it defines the objects that will be used in the main.scm, there is 389 of them like said on top (DEFINE OBJECTS 389). To add an object just go to to last one and add yours.
+
+Further down (much further down) you can find that:\
+**CODE**
+
+```sb3
+DEFINE MISSIONS 135
+DEFINE MISSION 0 AT @INITIAL
+DEFINE MISSION 1 AT @INITIL2
+DEFINE MISSION 2 AT @INTRO
+DEFINE MISSION 3 AT @NONE
+etc...
+```
+
+This defines the missions, there is 135 of them like said on top (`DEFINE MISSIONS 135`). If you use Xbox, Playstation 2, or [jarjar 2-player](http://www.gtaforums.com/index.php?showtopic=208450&view=findpost&%20%20p=3069233) mod files you can see that there is more missions which are 2 player console mission but that's another story...\
+\
+**CODE**
+```sb3
+DEFINE EXTERNAL_SCRIPTS 78 // Use -1 in order not to compile AAA script
+DEFINE SCRIPT PLAYER_PARACHUTE AT @PLCHUTE // 0
+DEFINE SCRIPT PARACHUTE AT @PARACH // 1
+DEFINE SCRIPT BCESAR2 AT @BCESAR2 // 2
+DEFINE SCRIPT BCESAR3 AT @COKEC // 3
+DEFINE SCRIPT SLOT_MACHINE AT @BANDIT // 4
+etc...
+```
+
+This defines the external scripts which are scripts (programs) that are triggered when needed, there is 78 of them like said on top. That's what handles the Parachute (player -`PLAYER_PARACHUTE`- and non-players -`PARACHUTE`-), Games at the casino (`ROULETTE`, `VIDPOK` -Video Poker-, `BLACKJ` -Black Jack-, `WHEELO` -Wheel Of Fortune-, etc...), Shops (`AMMU`, `TATTOO`, `BARBER`, `JUNKFUD`, `CARMOD`), and many other thing more or less weird (`DEBT`, `STRIPW`, `GF_SEX`, `HOME_BRAINS`...) More about those later on.
+
+Then you get to those 2 lines:\
+**CODE**
+```sb3
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+
+DEFINE UNKNOWN_THREADS_MEMORY 574
+```
+
+Which are undocumented and useless for me and you.
+
+#### Main section:
+
+Now you can see something like this:\
+**CODE**
+```sb3
+{$VERSION 3.1.0027}
+//-------------MAIN---------------
+03A4: name_thread 'MAIN' 
+016A: fade 0 time 0 
+042C: set_total_missions_to 147 
+030D: set_max_progress 187
+0997: set_total_respect_points_to 1339
+01F0: set_max_wanted_level_to 6
+0111: set_wasted_busted_check_to 0
+00C0: set_current_time_hours_to 8 current_time_minutes_to 0
+04E4: unknown_refresh_game_renderer_at 2488.562 -1666.864
+03CB: set_rendering_origin_at 2488.562 -1666.864 13.3757
+062A: change_stat 165 to 800.0 // floating-point values
+062A: change_stat 23 to 50.0 // floating-point values
+062A: change_stat 21 to 200.0 // floating-point values
+062A: change_stat 160 to 0.0 // floating-point values
+0629: change_stat 181 to 4 // integer values
+0629: change_stat 68 to 0 // integer values
+0053: $PLAYER_CHAR = create_player #NULL at 2488.562 -1666.864 12.8757
+etc...
+```
+
+Up to **before** there (use Sanny search tool and search "mission 0"):\
+**CODE** 
+```sb3
+//-------------Mission 0---------------
+// Originally: Initial 1
+:INITIAL
+03A4: name_thread 'INITIAL'
+06C8: enable_riot 0
+0004: $1515 = 0 
+0005: $1500 = 5.0
+etc...
+```
+
+It is called the main part or the main section (and sometimes with imprecision named the main thread). In this there is many little bit of scripts that for example create the red circles which start missions, the thing that handles the phone calls (`CELLFON` and other things), that handles grilfriends, from where everything is triggered (started), where many many mods are added, and that's where you will start coding. The main section is composed of many little threads, but it starts with the main thread. And the thread is (and is the only one) created by the engine itself, you don't have to use the opcode that create threads `004F` (**create_thread**) like everyother ones to ingnite it. Don't worry, a whole part will be dedicated to threads later.
+
+In the main part you can only use locals variables (`0@`, `1@`, `2@`, etc...) up to `31@` included, `32@` and `33@` are internals local timers (counts the amount of time elapsed, we'll see it later) that you can use too. But any over `33@` will not work in the main part. Sanny won't be happy and will tell you that the local var. is out of range (that's why we've turned "Range check" option on). You can use any globals you want but their number is limited to 16383, it should be far enough.
+
+#### Now Mission section:
+
+Then after:\
+**CODE**
+```sb3
+//-------------Mission 0---------------
+// Originally: Initial 1
+:INITIAL
+03A4: name_thread 'INITIAL'
+06C8: enable_riot 0
+0004: $1515 = 0 
+0005: $1500 = 5.0
+etc...
+```
+
+It's the first mission (which actually ain't a mission because it's done during the first milliseconds of a new game before the cutscene and doesn't give any mission points). This mission actually create parked cars, some weapons pick up and other thing.
+
+After will get to the mission 1 (search mission 1)\
+**CODE**
+```sb3
+//-------------Mission 1---------------
+// Originally: Initial 2
+:INITIL2
+03A4: name_thread 'INITIL2'
+0004: $3407 = 25 
+0004: $3408 = 100
+0004: $3409 = 250
+etc...
+```
+
+Same as mission 0 it's not a mission, it only set some variables equal to number value, parked some cars again, activate some doors and lifts.
+
+Then Mission 2\
+**CODE**
+
+```sb3
+//-------------Mission 2---------------
+// Originally: Intro
+:INTRO
+03A4: name_thread 'INTRO'
+0050: gosub @INTRO_47 
+00D6: if 
+0112:   wasted_or_busted // mission only
+004D: jump_if_false @INTRO_38 
+0050: gosub @INTRO_9715
+etc...
+```
+
+This one is part of the intro cutscene and the mission ends when you got to the red circle at CJ's home (Jonhson House in Ganton).
+
+After there is the arcades games (*originally: Video game: They crawled from uranus; originally: Video game: Duality; originally: Video game: Go Go Space Monkey; originally: Video game: Let's get ready to BUMBLE; originally: Video game: poker*) then other thing like pool (*originally: Pool*), dance (originally: Lowrider (bet and dance)) and Zero "hidden/bonus" mission (*originally: Beefy Baron*) and after those, the "Big smoke" Mission (mission 11) which is first mission of the game. 
+
+And then like that up to mission's 134 end.
+If you want to add a mission add after that and define it in define mission section. (more later on).
+
+#### External script section (last section)
+
+After the last mission you can see all the defined external script starting with the first one `PLAYER_PARACHUTE`:\
+**CODE**
+```sb3
+//-------------External script 0 (PLAYER_PARACHUTE)---------------
+:PLCHUTE
+03A4: name_thread 'PLCHUTE'
+0247: request_model #GUN_PARA
+:PLCHUTE_16
+etc...
+```
+and then **CODE**
+
+```sb3
+//-------------External script 1 (PARACHUTE)---------------
+:PARACH
+03A4: name_thread 'PARACH'
+0004: $8275 = 0 
+etc...
+```
+
+and so on till the 77th external scripts. Many things in external scripts, by looking at the name of the external, you can often figure out what it is used for.
+
+What's most important for now is the main part.
+
+But still about main.scm architecture, you need to know that some things are limited in main.scm look, [here](http://www.gtaforums.com/index.php?showtopic=213017&view=findpost&%20%20p=3145932). As you can see the main size (the lenght of all 'main part' threads) is limited to 200 000 bytes. To know how long the 'main part' is compile and look the report it tells you "MAIN size : XXXXXX b." and then the biggest mission "Largest Mission : XXXX b." and the Largest external script :
+
+:::l
+![](mcp1/retfyhj2.png)
+:::
+
+That's why we've set on the option "Show report".
+
+### 2. Stripped scm and Opcodes
+
+#### A. Stripped SCM
+
+For your first coding projects you need a main.scm that is small (orgininal one is just hudge), and doesn't have thing that is useless for scripting. You will gain time compiling and not having to wait for the first cutscene. And also because of the scm limits, read above. 
+
+So a stripped scm is a main.scm which don't contains any mission, any external script, any main threads. Contains almost nothing, it just creates the player. 
+
+You can find one in the folder \data\sa where you installed Sanny Builder under the name stripped.txt, it looks weird because it's written in Sanny Builder classes syntax, I won't tell much you about it, find more in Sanny Builder's Help. Not because it isn't good because I think it'll be easier to first learn with the "opcode method".
+
+You should have something like that:
+
+**CODE**
+```sb3
+{
+	use macro (Ctrl+J) "headsa"
+	to insert a file header      
+}
+{$VERSION 3.0.0000}
+var
+	$PLAYER_CHAR: Player
+end // var
+03A4: name_thread 'MAIN'
+01F0: set_max_wanted_level_to 6 
+0111: toggle_wasted_busted_check 0 
+00C0: set_current_time_hours_to 8 minutes_to 0 
+04E4: unknown_refresh_game_renderer_at 2488.56 -1666.84 
+03CB: set_rendering_origin_at 2488.56 -1666.84 13.38 
+0053: $PLAYER_CHAR = create_player #NULL at 2488.56 -1666.84 13.38 
+01F5: $PLAYER_ACTOR = create_player_actor $PLAYER_CHAR 
+07AF: $PLAYER_GROUP = player $PLAYER_CHAR group
+0373: set_camera_directly_behind_player
+01B6: set_weather 0 
+0001: wait 0 ms 
+087B: set_player $PLAYER_CHAR clothes_texture "PLAYER_FACE" model "HEAD" body_part 1 
+087B: set_player $PLAYER_CHAR clothes_texture "JEANSDENIM" model "JEANS" body_part 2 
+087B: set_player $PLAYER_CHAR clothes_texture "SNEAKERBINCBLK" model "SNEAKER" body_part 3 
+087B: set_player $PLAYER_CHAR clothes_texture "VEST" model "VEST" body_part 0 
+070D: rebuild_player $PLAYER_CHAR      
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+016A: fade 1 time 0 
+04BB: select_interior 0 
+0629: change_integer_stat 181 to 4 
+016C: restart_if_wasted_at 2027.77 -1420.52 15.99 angle 137.0 town_number 0 
+016D: restart_if_busted_at 1550.68 -1675.49 14.51 angle 90.0 town_number 0 
+0180: set_on_mission_flag_to $ONMISSION // Note: your missions have to use the variable defined here 
+0004: $DEFAULT_WAIT_TIME = 250
+03E6: remove_text_box 
+
+// put your create_thread commands here
+
+
+
+:MAIN_LOOP
+0001: wait $DEFAULT_WAIT_TIME ms
+00BF: $TIME_HOURS = current_time_hours, $TIME_MINS = current_time_minutes
+0002: jump @MAIN_LOOP 
+
+
+// put your mods (threads) here
+
+//-------------Mission 0---------------
+// put your missions here
+
+
+
+//-------------External script 0---------------
+// put your external scripts here
+```
+
+You probably noticed that there isn't a Define section (`DEFINE OBJECTS`, `DEFINE MISSIONS`...) there is nothing to worry here because there isn't anything that needs to be defined here. As said in the file if you need an header (define section) press `CTRL`+`J` and select headsa. Like on the pic:
+
+:::l
+![](mcp1/jyfcgfhgcfgkk.png)
+:::
+
+Then you'll get what you're missing:\
+**CODE**
+
+```sb3
+DEFINE MISSIONS 0
+//DEFINE MISSION {ID} 0 AT {LABEL} @
+DEFINE EXTERNAL_SCRIPTS 0 // Use -1 in order not to compile AAA script
+//DEFINE SCRIPT {NAME}  AT {LABEL} @
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+DEFINE UNKNOWN_THREADS_MEMORY 0
+```
+
+Now you can define your missions and external scripts.
+
+To put mods in this stripped scm you need to put your create threads command (like `004F: create_thread @MYTHREAD`) where it says : `// put your create_thread commands here`. And put your scripts after the `MAIN_LOOP` where it says `// put your mods (threads) here`.
+
+### B. Opcodes
+
+In begining of most lines there is a 4 digit number followed by two dots like 0001:, 087B:, 016A: or 004E: like this 0605: in Sanny Builder . Those are called opcodes !!!!!!! And that's why we've set on the "Write opcodes" option.
+
+The opcode is the number of the command (action or operation) that the game engine will do with the parameters given, all opcodes (expect for a few) has a fixed number of parameters.
+
+Parameters (also called Params, or just P1, P2, or %p ) are the input (numbers, actors, vehicles, text strings or any type of variables) of the command. Sanny builder on bottom left tells you how much parameters an opcode needs:
+
+:::l
+![](mcp1/yrrgrg.png)
+:::
+
+Here is two example:
+
+**simple**\
+**CODE**
+```sb3
+000A: 3@ += 1 // integer values
+```
+
+* `000A` : the opcode which does the operation add to integers.
+* `3@` and 1 : are the parameters, this opcode has 2 parameters.
+
+So this get the local variable (more later) `3@` and adds one to it, like if `3@` was equal to 1 now it will be equal to 2 !!!
+
+```sb3
+0605: actor $PLAYER_ACTOR perform_animation_sequence "ATM" from_file "PED" 4.0 loop 0 0 0 0 6000 ms
+```
+
+* `0605` : the opcode of the command 
+* `$PLAYER_ACTOR`, `"ATM"`, `"PED"`, `4.0`, `0`, `0`, `0`, `0`, `6000` : are the parameters, this opcode has 9 parameters. 
+
+This command make an existing actor (character) `$PLAYER_ACTOR` perform the animation `"ATM"` in the animation file `"PED"`, `4.0` is the playback rate of the animation, loop 0 mean it won't do the anim again once finish if the integer is set to 1 the actor will do the again again and again (loop) until it's told to do something else (or destroy, or "free" -changing it to any others ped you see in the game, opcode 01C2), then there is other parameters that we will talk later about them. The last one is the time for how long the animation will be executed by the engine, act like a wait and will make the engine stop executing the code until that time.
+
+Now to find the opcode you need you have many places:
+
+* Brilliant new "Opcode search tool" in Sanny Builder. In Tools menu, IDE tools, opcode search. Here just write what you're looking for and you'll get a chance to find it. There is a special section in Sanny Builder Help [here](../editor/opcode-search-tool.md) at It tells you the keys to copy opcodes to clipboard (selected opcode = Enter), to sort opcodes, etc... It uses the opcodes.txt that is created by Sanny and that you have to recrate manually if you change sacm.ini.
+* Original main.scm uncompiled (the more __trustable__ one most times -pretty good explanation and if used here it DOES work-) Thanks to R* for making the game !!!!! Thanks to Barton Waterduck, Sanny Builder authors, and many others who help decompiling the scm, they should recognize themselves (if they have time reading this). 
+* [GTA:SA Opcodes](http://www.gtaforums.com/index.php?showtopic=194990&view=findpost&%20%20p=2888074) @ [GTAforums](http://www.gtaforums.com/) the place for opcodes and is very good because it contains good description, explainations, and what the value of a parameter do.
+Thanks to everyone who posted in the topic and to opius for starting it.
+* [http://sa-db.webtools4you.net/](http://sa-db.webtools4you.net/) THE interactive database, the best way to use it is to search "nothing" (just clic go) you'll have all opcodes, and then search with your internet browser "find in the page".
+
+But the best way is to refer to all of them!!!\
+\
+The opcode descriptions come from a file called sascm.ini which is located in data\sa of Sanny builder installation folder. Updating this file will make new descriptions or/and change the opcode parameters. 
+
+* Original Sanny Builder sascm.ini is very good I advise you to keep it for the begining.
+* Unified opcode databse from PLPynton here, or the file here.. If you don't want to use the file you can still find some opcodes in the topic.
+- This opcode "database" has two big advantage, because it's very complete and keeps original parameters order, and a disadvantage is that it use a completly different syntax for description. 
+* Thanks to PLPynton for creating it.
+
+Spaceeinstein's sascm.ini here. Use the syntax which has always been used. Thanks to him. 
+To use the files sascm.ini that are given there you have to compile all the files you are working on close Sanny builder (if open) put the file in folder \data\sa in Sanny Builder installation folder (make backup), open Sanny and uncompile the files. Evrytime you change sascm.ini you have to do that.\
+\
+:::center
+!!!!!!!!!!!! Important !!!!!!!!!!!!\
+\
+About sascm.ini, don't mess too much with them, choose one and stick to it for a while. Everytime you change it you have to convert all your files, or compile and uncompile, but you have to watch out for opcode parameters, they get sometimes mess up in changing sascm.ini and you'll get crashes and bugs (and they'll be very hard to find).
+
+You will also have to recreate your opcodes.txt files otherwise completion with F1 or in the Opcode search. To do this go Tools and "Make opcodes.txt". My advise is to choose one of those, or keep the one that is given in Sanny Builder, and don't change it until you have a good reason to do so.\
+The tutorial is made with the sascm.ini given in Sanny Builder.
+:::
+
+### 3. Parameters and variables
+
+There is different types of parameters:
+
+* __Integer__ (or int), also called whole numbers like `1` or `-2` or `321` or any other.
+* __Floats__ or floating point values, any decimal number like `1.2` or `-2372.3845`. More on floating point numbers.
+* An __actor__ like CJ (YOU) which is store in the global variable `$PLAYER_ACTOR`, or Ryder ingame character in `$SA_RYDER`, or the soldier who watch the gate of the army base in Ryder's mission is store in the local variable `@102` . The variable gets called an handle when holding (keeping in memory) an actor (or a car), it will be the name of the object next, the handle form where you grab it.
+* __A "car"__ (in coding every vehicle -flying, floating, choppering- is a car), like often the car you're driving `$PLAYER_CAR`, well like the actors they're stored in local or global variables. Same as actors when stocking a car in a variable it's then called an handle.
+* __Model identifier__ like `#CHEETAH`, `#ARMY`, `#PARACHUTE`, the 3D model of a car, an actor, an object. It refers to the dff files that are store in gta3.img. And this model is needed to be loaded (put in memory) to create cars, actors or objects.
+* __Short text strings__ (8 bytes long) like `'STRAP_4'` or `'MTIME3'` which are lettred words that the engine "reads" when passing through and look for the file -or the line a the file- named. They're always 7 character maximum. It refers to file names such as gxt, animation files, IPL files (interiors garage etc...) or threads names, text entries (from gxt file), animations (the animation in the animation file), and many other things. Don't worry much it's just a format for the parameter.
+* __Long text strings__ (16 bytes or more long,) like `"ATM"` or `"JEANSDENIM"` . It's exactly the same as above it's just a format for the parameter, but this one can handle longer words (Sanny's ReadMe says up to 255 characters) and is used even if the word is shorter than 7 characters. You can find more explanations on strings (both short and long in this message from Seemann)
+* __Labels__ like `MAIN_4059` which are used only in jumps (and gosubs) because those opcodes (`0002: jump @`; `004D: jump_if_false @`; `0050: gosub @` ; or `004F: create_thread @` ) make the engine travels to (jump at) the label told. The label is represented with : before it.
+
+example:\
+**CODE**
+```sb3
+:label
+0001: wait 0 ms
+0002: jump @label
+```
+
+Variables are a little piece of memory where you store something in it. Once you've defined it the engine will remeber it until it's changed or cleared, even after saving the variable will still present (saving saves all the variable and reloads it when the game is loaded). Like when you create an actor you assign it a variable, which would be like it's name. In those you can put anything integer, floats, actors, vehicles, text strings (special format).
+
+Then there is two big family of variables:
+
+* Global variables : which are represented by starting with `$` . Globals can be use everywhere in the main.scm. If you set it to something in the main part in mission it will still be accessible and equal to something. Exemples : `$ONMISSION`, `$PLAYER_ACTOR`.
+
+* Local variables : Locals are represented by an `@` at the end like `1@`, `2@`. Each thread (created by `004F`) has his own set of locals, like `0@` in `:thread_A` isn't the same as `0@` in `:thread_B`. In main part you __cannot__ use over `33@` (which is a local timer see downer for more details). But in mission you can use up to `1024@`.
+
+Locals timers : `32@` and `33@`, are internal locals timers, they count the number of milliseconds that have elapsed. Like if you set it to 0 , wait 10 seconds and look how much `32@` or `33@` worth you'll find 10 000. if you set it to 1 000 and wait 5 second before looking it will then be equal to 6 000 ms.
+
+Short and long text strings : text strings are stored in special format of variables. Text string a highlighted in red in Sanny. There is 4 kind of text variables 2 for short (8 bytes, `'STRING'`) strings, 2 for long strings (16 bytes, `"LONGSTRING"`):
+
+#### For short strings
+
+- a global text string like : `s$1169` or `s$ACTOR_SPEECH_GXT_REFERENCE` which can always be accessible like other globals.
+- a local text string like : `170@s` or `5@s` which are accessible only in their own thread.
+
+#### For long strings
+
+- a global text string : `v$1225` or `v$MYLONGSTRING`, same as short string but for long ones...
+- a local long string : `28@v`, same as short ones...
+
+BUT watch out, for `exemple0@s` replace `0@` if existing and vice versa, it is the same variable but they're just in a different format.
+
+And I want to remind (or tell) you that a integer and a float are different to game engine ( 1 isn't the same as 1.0 !!!!!). If the opcode needs a float and you give it a int (and vice versa) the game WILL crash. 
+You can convert an integer to a float with opcode `008D`. And convert a float to an integer with `008C`.
+
+### 4. Threads and labels
+
+A thread is a "stand alone" (something that needs nothing but itself) piece of code. It's like a program by itself (like an opened window on your operating system -like Microsoft Windows-). So to use (play ingame with) your future mods (programs, windows) you'll need to create a new one. What you do with `004F` like:\
+**CODE**
+```sb3
+004F: create_thread @MYTHREAD
+```
+
+Threads are like fire in a world with matches (ligther, silex, well you cannot "make" fire you need to ingnite it from another fire -like the Olympic Flame never switched off between 2 olympic games). You must create a new one from an existing one. As I said before the main thread is created by the engine itself. The `'MAIN'` thread will lite your fire. So if it's the only existing thread (like in a stripped main.scm) you'll need to create your thread in the main thread BEFORE it gets switched off by (before this line):
+**CODE**
+```sb3
+004E: end_thread
+```
+
+If using a bigger file (like orignal main.scm) just create it where there is many others create_thread (`004F`) like this:
+
+```sb3
+004F: create_thread @ODDVEH
+004F: create_thread @R3
+004F: create_thread @GYM
+004F: create_thread @SHOOT
+004F: create_thread @BLOODR
+004F: create_thread @HOTR
+004F: create_thread @KICKS
+004F: create_thread @PSAVE1
+004F: create_thread @FLOW
+004F: create_thread @HELP
+004F: create_thread @COOLS
+004F: create_thread @CRANES
+004F: create_thread @BUY_PRO
+etc...
+```
+
+Don't worry about `00D7: create_thread_with_wasted_busted_check` because their real use is actually unknown yet. Use `004F`, there is better ways to check if player is wasted or busted (like conditional opcode `0112`). As Seeman tells us later in the topic `004f` creates a thread with 0 to 32 extra-parameters, and `00d7` creates a thread with 0 extra-parameters. So don't worry at all about `00d7` because `004f` does the same and as more functionalities. (Seemann's message).
+
+Like I said before in each single thread you've create you have for each thread it's very own set of locals from `0@` to `33@` (`32@` and `33@` being local timers). They're pretty usefull because not sucking up memory.
+
+A label is a little piece of thread like `:MAIN_4059`. Think now the thread as a book (no more fire 😧 ) and labels would be pages of this book. Then you can easily understand that a `jump` (or `jump_if_false`, or `gosub`) to a certain label would be like a report to a certain page.
+
+I made an animated example for you to see how the game engine travels through the labels:
+
+:::l
+![](mcp1/ASDFG2.gif)
+:::
+
+The red line represent the code (the engine is called sometimes simply the code, like the code reader) going through labels.
+
+As you can see the thread `label` is created from another thread. You can see the code "seperating" in two one going to just created thread `label` one keeps doing the thread it use to do, and it gets ended (but could be continuing to do things if you don't end it). 
+It goes through `:label` to `:label_100`. In `:label_100` you can see there is an "if" with a condition in it, followed by a jump_if_false, this means that if `$PLAYER_ACTOR` is near position in 3 dimension `2498.0 -1711.0 1015.0` the code can pass through and jump to `:label_200`.
+So the code keeps looping in `:label_100` until the condition is satisfied.
+Then jumps to `:label_200` without passing through `:label_150`, going straight to `:label_200`. Does what it needs to do in `:label_200` (which is to put the 3D coordinates of actor `$PLAYER_ACTOR` into variables `$X_COORD $Y_COORD $Z_COORD`). Then jumps to `:label_150`, waits 1minute and jump back :label_100 and check again if player's near the point. And will do all over again and again and again. You don't have to end a thread if you don't need to, it can just keep check something to start. Don't forget you got to do something with your thread, keep it running or end it but don't let it free.\ 
+\
+:::center
+!!!!!!! Notice the wait (`0001: wait 0 ms`), because it's compulsory !!!!!!!!!!!!!\
+When looping you have to add a wait so the engine doesn't get itself stucked in it, and it won't even crash then it will just simply freeze. The only way to recover from it is to force resolution change (sometimes just impossible to do, and some laptops have a combo key) and end GTA:SA with task manager.
+
+If you don't really know if you should add a wait or not just add "wait 0 ms", because most times you will not see the difference at all, and mostly anything under 500 ms you don't notice it.
+:::
+
+### 5. "If"s and conditional opcodes
+
+What's called an `if` is a code strucutre that checks if something is happening. Like:\
+if\
+I die\
+if not then --> I will finish my mods\
+--> you give all my unfinished mods to the GTA community
+
+In Sanny Builder it would look like 
+```sb3
+00D6: if
+    0118: actor $PLAYER_ACTOR dead
+004D: jump_if_false @finishmods
+0002: jump @givemods
+```
+
+The engine will travel straight through if the something checked happens but jump to another label if it doesn't happend (`004D: jump_if_false @`). The something (which could or not happend) of the if is called a condition, for them you use conditionals opcode !!!!!!! And you can put up to seven conditions in one if !!!!!!! (I know you're like "Yes I'm so happy, that's really change my life !!!!!!...." but...).
+
+Then there is two kind of multiple conditions ifs:
+
+When you have multiple conditions you might want to have __all__ conditions true (happens) or __at least one of them__ true. 
+
+<ul>
+<li>
+if __and__ is when you want all the conditons to be true for passing through like:
+```sb3
+00D6: if and
+    08AB: external_script 38 (BAR_STAFF) loaded
+    08AB: external_script 37 (CUSTOMER_PANIC) loaded
+    08AB: external_script 28 (BAR_AMBIENCE) loaded
+    08AB: external_script 35 (DABCE) loaded
+004D: jump_if_false @INTMAN_1080
+```
+So here you can see that if all those external scripts are loaded it goes through but then if any of them isn't it will jump to label `:INTMAN_1088`. You can think it as if this __and__ this __and__ this is OK then go throught if not jump because it's false.
+</li>
+<li>
+if or is when you only need one of those conditions to be go through like:
+```sb3
+00D6: if or
+    03B0: garage 38 'BODLAWN' door_open
+    03B0: garage 37 'MODLAST' door_open
+    03B0: garage 28 'MDSSFSE' door_open
+    03B0: garage 35 'VECMOD' door_open
+004D: jump_if_false @MAIN_4336
+```
+Here it's if any of these door is open keep going but if not jump to `:MAIN_4336`. You can think it as if this or this __or__ this __or__ happens go througt but if there isn't any that is true jump because it's false. 
+</li>
+</ul>
+
+__And__ and __or__ are called logic operators.
+
+Notice how it wouldn't make sens to add an or or an and in a single condition if. Only one condition, you just cannot use them, only one element !!!!! And sanny builder won't like it neither it will tell you "hey don't do that".
+
+On the other hand don't forget to put an or or an and to your multiples conditions ifs, becasue sanny won't say anything, the game might not crash, but I'm sure it won't work properly, either and or or, but you need to put something in multiple conditions ifs.
+
+You can negate all conditional opcodes. Negate is like adding a not in the conditons. If actor not dead, or if actor not driving. Then it means that to pass through it, the condition needs to return false (don't happend). You can negate conditional opcodes in mutlpiple conditions ifs too. To negate a conditional opcode you have to put a 8 at the first digit instead of 0, like :
+
+```sb3
+00D6: if
+    02E0: is_char $PLAYER_ACTOR aggressive
+003D: jump_if_false @labelX
+```
+not negated
+
+
+```sb3
+00D6: if
+    82E0: not is_char $PLAYER_ACTOR aggressive
+003D: jump_if_false @labelX
+```
+negated.
+
+You don't have to write `not` the compiler (sanny) will not look at it, and it will write it when re-uncompiling. But you still can write `not` if you want, it makes it clearer and easier to work with. But you really HAVE TO write the 8 in the opcode.
+
+When you negate all conditions a 'multiple conditions if', you have to change around the logic operator.
+
+```sb3
+00D6: if or
+    02E0: is_char $PLAYER_ACTOR aggressive
+    0457: is_player $PLAYER_CHAR aiming_at_actor 11@
+    0457: is_player $PLAYER_CHAR aiming_at_actor 14@
+    0457: is_player $PLAYER_CHAR aiming_at_actor 15@
+    0457: is_player $PLAYER_CHAR aiming_at_actor 16@
+    0457: is_player $PLAYER_CHAR aiming_at_actor 17@
+003D: jump_if_false @labelY
+0002: jump @labelZ
+```
+
+```sb3
+00D6: if and
+    82E0: not is_char $PLAYER_ACTOR aggressive
+    8457: not is_player $PLAYER_CHAR aiming_at_actor 11@
+    8457: not is_player $PLAYER_CHAR aiming_at_actor 14@
+    8457: not is_player $PLAYER_CHAR aiming_at_actor 15@
+    8457: not is_player $PLAYER_CHAR aiming_at_actor 16@
+    8457: not is_player $PLAYER_CHAR aiming_at_actor 17@
+003D: jump_if_false @labelZ
+0002: jump @labelY
+```
+
+Those two do the same:
+
+* the first one checks if player is agressive __or__ aiming at actor `14@` __or__ aiming at actor `15@` __or__ aiming at actor `16@` __or__ aiming at actor `17@` , if any of those is true the code passes through and jump to labelz. 
+* the second one check if player is not agressive __and__ not aiming at actor `14@` __and__ not aiming at actor `15@` __and__ not aiming at actor `16@` __and__ not aiming at actor 17@`, if any of those is false (if player do aims) the code will jump because it's false to labelz. 
+
+Sometimes when look for some nice mods you might find:\
+**CODE**
+```sb3
+00D6: if 0
+```
+or\
+**CODE**
+```sb3
+00D6: if 5
+```
+or\
+**CODE**
+```sb3
+00D6: if 21
+```
+or\
+**CODE**
+```sb3
+00D6: if 25
+```
+
+Don't worry it's the same, compile, then decompile it and you'll have the logic operator written. And that's why we've enable "Conditions check", so we can use and & or and Sanny writes them when decompiling. 
+
+if 0 = if 
+
+if x = if and 
+
+if 2x = if or 
+
+Read [Conditions in Sanny Builder's Help](../coding/conditions.md) or/and [here](http://www.gtaforums.com/index.php?showtopic=134970&view=findpost&%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p=2083394) (It's for Vice City but is the same, just ignore "?") for more explanations.
+
+You might want to do high-level conditions construction, read [Conditions in Sanny Builder's Help](../coding/conditions.md), it explains it pretty well. Low level contructions can be good for now, and you can make high level with low level anyway.
+
+:::center
+BUT remember well when doing "if"s, add waits where you know the code is going to loop back. And a wait 0 is never a problem because it actually wait for 0 milisecond which is pretty short !!!!!!! but it will let time to the engine doing other things. Relook at the animated exemple for labels to understand where you'll absolutly need wait.
+:::
+
+### 6. Request models, load them, create, then release them to free memory
+
+When creating actor (with opcode `009A`), car (with op `00A5`), object (with op `0107`), give weapon to an actor you have to request the dff model before and load it, and check that is it loaded for real !!!!!!
+
+Like:\
+**CODE** 
+```sb3
+:GSHAUTO_564 
+0001: wait 0 ms 
+0247: request_model #HFYBE
+0247: request_model #POLICE_BARRIER 
+0247: request_model #BMYBOUN 
+0247: request_model #WMYBOUN 
+0247: request_model #DESERT_EAGLE 
+0247: request_model #MP5LNG 0247: request_model #CHEETAH
+0247: request_model #TURISMO 
+038B: load_requested_models 
+00D6: if and
+    0248: model #HFYBE available
+    0248: model #BMYBOUN available
+    0248: model #WMYBOUN available
+    0248: model #DESERT_EAGLE available
+    0248: model #MP5LNG available
+004D: jump_if_false @GSHAUTO_564 
+00D6: if and
+    0248: model #POLICE_BARRIER available
+    0248: model #CHEETAH available
+    0248: model #TURISMO available
+004D: jump_if_false @GSHAUTO_564 
+009A: 11@ = create_actor 4 #WMYBOUN at 561.0 -1252.0 17.0 
+009A: 14@ = create_actor 4 #BMYBOUN at 552.0 -1257.0 17.0 
+009A: 15@ = create_actor 5 #HFYBE at 567.0 -1290.0 17.5 
+009A: 16@ = create_actor 4 #WMYBOUN at 561.0 -1255.0 17.0 
+009A: 17@ = create_actor 4 #BMYBOUN at 553.5 -1260.0 17.0 
+009A: 18@ = create_actor 4 #WMYBOUN at 569.0 -1292.0 17.5 
+009A: 19@ = create_actor 4 #BMYBOUN at 569.0 -1288.0 17.5 
+0107: 9@ = create_object #POLICE_BARRIER at 560.0 -1254.0 17.0 
+00A5: 0@ = create_car #TURISMO at 1793.4956 -1907.4233 12.3992 
+00A5: 1@ = create_car #CHEETAH at 1793.4956 -1907.4233 12.3992 
+01B2: give_actor 11@ weapon 29 ammo 900 // Load the weapon model before using this 
+01B2: give_actor 14@ weapon 29 ammo 900 // Load the weapon model before using this 
+01B2: give_actor 15@ weapon 24 ammo 300 // Load the weapon model before using this 
+01B2: give_actor 16@  weapon 29 ammo 900 // Load the weapon model before using this 
+01B2: give_actor 17@ weapon 29 ammo 900 // Load the weapon model before using this 
+01B2: give_actor 18@  weapon 29 ammo 900 // Load the weapon model before using this
+01B2: give_actor 19@ weapon 29 ammo 900 // Load the weapon model before using this
+```
+
+Look how I first request the models (with `0247: request_model`) then load them (with `038B: load_requested_models`). Then checks if all models requested are available to use (with `0248`). If any of them is load jumps back to top and re-request and reload them. If they all are then create the actor, the weapons and the object. You can see in the comment (after `//`) that `01B2` need the weapon model to be load before using it (for weapons numbers look in [help](../scm-documentation/sa/weapons.md) here or at very good [Generic SA SCM Documentaion](http://www.gtaforums.com/index.php?showtopic=205020&view=findpost&%20%20p=3013775).
+
+Once you've finished doing what you need to with thoses (they're all dead, player is too far away, don't want them here, etc...) transform them into usuals peds and cars (like all the peds and cars you see in-game) or destroy them (the object must be destroyed):
+
+**CODE**
+```sb3
+0108: destroy_object 9@ 
+01C3: remove_references_to_car 1@ // Like turning a car into any random car 
+01C3: remove_references_to_car 0@ // Like turning a car into any random car 
+01C2: remove_references_to_actor 11@ // Like turning an actor into a random pedestrian 
+01C2: remove_references_to_actor 14@ // Like turning an actor into a random pedestrian 
+01C2: remove_references_to_actor 15@ // Like turning an actor into a random pedestrian 
+01C2: remove_references_to_actor 16@ // Like turning an actor into a random pedestrian 
+01C2: remove_references_to_actor 17@ // Like turning an actor into a random pedestrian 
+01C2: remove_references_to_actor 18@ // Like turning an actor into a random pedestrian 
+01C2: remove_references_to_actor 19@ // Like turning an actor into a random pedestrian 
+```
+
+or **CODE**
+```sb3
+0108: destroy_object 9@ 
+00A6: destroy_car 0@ 
+00A6: destroy_car 1@ 
+009B: destroy_actor_instantly 11@ 
+009B: destroy_actor_instantly 14@ 
+009B: destroy_actor_instantly 15@ 
+009B: destroy_actor_instantly 16@
+009B: destroy_actor_instantly 17@
+009B: destroy_actor_instantly 18@ 
+009B: destroy_actor_instantly 19@
+```
+
+Don't apply those (01C2, 01C3, 0108, 00A6, 009B, etc...) to an actor, or a car that doesn't exist (or when the handle that should hold it -like 0@, $car, etc...- doesn't hold it), because the game will badly crash!!!!!! 
+
+Once you got rid of actors/cars/objects (So when you finished using them, and after you have delete them, and only after that), you can release the models you've used because you will no longer need them.
+
+**CODE**
+```sb3
+0249: release_model #WMYBOUN 
+0249: release_model #BMYBOUN 
+0249: release_model #HFYBE   
+0249: release_model #POLICE_BARRIER
+0249: release_model #DESERT_EAGLE
+0249: release_model #MP5LNG 
+0249: release_model #CHEETAH 
+0249: release_model #TURISMO
+```
+
+You actualy could have release those models earlier, you don't need them to be loaded **after** you have created the game object (object, actor or vehicle). But I advise you for a start to release the model only at the end of your script/mission when you sure won't need it anymore. It will prevent you from a few return to desktop.
+
+#### Conclusion
+
+Well, this part was mostly informations, there isn't much to do. But now you know that an opcode is a 4 digit number that do things in the game depending on the parameters you gave it. You know the different types of parameters, what's a local variable and what's a global one. Creating, naming and ending threads, and many other things that you need to know to keep going. Now we speak the same "language" we can get to real coding.
+Let's get to [part II](mcp2.md)...
+
+Have fun
+
+<script src="../../js/main.min.js"></script>

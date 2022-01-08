@@ -180,8 +180,8 @@ String.prototype.toMarkdown = function(){
 	.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 	// BR
-	.replace(/(\n^\.\n|(\.|:|\!|\)|b>)\n\n(\w|\d|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
-	.replace(/(\\\n|\\n\w|(\.|:|\!|\)|b>)\n(\w|\d|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
+	.replace(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
+	.replace(/(\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
 
 	// PRE
 	.replace(/```([\x09-\x5F\x61-\uFFFF]*)```/g, function(input){
@@ -220,7 +220,7 @@ $('body').innerHTML = '\
 	<div class="cont"></div>\
 	<hr>\
 	<p id="credits">\
-		CHM ' + LANG + ' ' + VERSION + ' - Mada with <3 by MatiDragon, Seemann & Yushae Raza.\
+		CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann & Yushae Raza.\
 	</p>\
 	<span id="alinks"></span>\
 </div></div>'

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Scripts</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+CLEO 3 allows adding new scripts needlessly to start a new game. Strictly speaking, the main.scm state does not matter for these scripts as CLEO-scripts are run and functioned separately from it.
+
+What does it give? You can add new script at any stage of the game or delete existing one. Even so, you do not need to edit the main.scm, so the need of starting a new game, the saves incompatibility, script limits – all these problems disappear right away.
+
+The CLEO-script is an ordinary script written using the opcodes in Sanny Builder. Each script should be made as a single file with an extension .cs (Custom Script). The dominant requirement of writing such scripts is they must be compiled as the external scripts.
+
+There are several ways of making of a CLEO-script being able to work correctly in the game. First: you add a new external script in the source file, compile it, and then extract that script from the file script.img. The extracted file will have the extension .scm, so you only need to change it on the .cs and copy to the folder ‘game\CLEO’.
+
+The second way is easier. Create a new file in Sanny Builder, write the [directive $E](..coding/directives.md#external) at the beginning of it, and compile. The compiled file will be the same as that one extracted from the script.img. You only need to change its extension on the .cs and copy to the ‘game\CLEO’.
+
+Finally, the easiest one. Create a new file in Sanny Builder, write the [directive $CLEO](..coding/directives.md#cleo) at the beginning of the file, and compile. The compiled file will be copied into the ‘game\CLEO’ directory and will have a file extension specified by the directive (.cs by default).
+
+The CLEO-scripts could be used as missions. The compiling process is the same, but the output file must have the extension .cm (Custom Mission). To start this mission, use the [opcode 0A94](opcode.md#0A94).
+
+The rules you must follow using CLEO 3:
+
+1. **One file - one thread**. Each CLEO-script must be made as a single thread compiled in a single file. If you need more threads for your script, use the opcodes 004F or [0A92](opcodes.md#0A92), depending of where is that additional thread located - in the main.scm or in a separate cs-file.
+2. **Never use the opcode 004E in the CLEO-threads**. They work separately from the common threads, so the using of this opcode will cause an error. Use the opcode 0A93, if you need to stop a CLEO-thread. Conversely, never use [the opcode 0A93](opcode.md#0A93) in the CLEO-missions, but instead use the 004E to cancel a mission.
+3. **Never use custom global variables in your CLEO-scripts ($car, $foo, $blahblah, etc)**, or your script will work incorrectly. You may use only a few global variables (read below).
+
+To install the CLEO script it’s only necessary to copy the file with an extension .cs to the folder ‘game\CLEO’. The file name does not matter, but it uses at the thread initialization to name it. For example, the CLEO thread located in the file showsavescreen.cs has the name SHOWSAV.
+
+To remove the script, just delete the proper file from the CLEO directory.
+
+The CLEO thread status may be saved and loaded along with the common threads. It does not saved by default. The saves themselves are located in the folder CLEO\cleo_saves. The is an own save for each save slot. The save file stores only the CLEO threads having the saving flag enabled ([0A95 opcode](opcode.md#0A95)). The save file stores not only the active threads, but also the ones being forced to end ([0A93 opcode](opcode.md#0A93)), to prevent their rerun at loading. If at the loading one of saved thread is not found, there is no error. If you add a new script that is not present in the current save file, it will be loaded along with the others and to work from the very beginning.
+
+The CLEO thread is the ordinary thread on the whole. It has 32 local variables and 2 timers incrementing constantly. You can pass up to 34 parameters at creation of that thread or a CLEO mission (by analogy with the opcode 004F).
+
+An important thing concerns with data communication between a CLEO script and the main.scm. To use the SCM code, its variables, threads you have to compile the CLEO script as an external one (first way). But this method is not recommended, as such a script becomes very sensible to the any main.scm change. *Implicitly, a CLEO script should be sufficient for itself and use minimum of the SCM data*. However, you can freely use global variables names from the CustomVaribles.ini (for example, `$PLAYER_CHAR`, `$PLAYER_ACTOR`, `$ONMISSION`, etc).
+Also, for the data communicate between the main.scm and CLEO, or between the CLEO scripts you may use the CLEO variables (see opcodes 0AB3, 0AB4).
+
+The CLEO complete set includes the examples of simple scripts with sources.
+
+
+<script src="../../js/main.min.js"></script>

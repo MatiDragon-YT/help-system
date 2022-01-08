@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotkeys</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+Sanny Builder supports many common shortcuts for the file and text operations (`Ctrl+N`, `Ctrl+Z`, etc) as well as some custom ones.  Hotkeys marked with `*` are [customizable](options/hotkeys.md).
+
+<table>
+<thead>
+<tr>
+<th>Key/Combo</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> **Main Menu**</td>
+<td></td>
+</tr>
+<tr>
+<td> `F5` *</td>
+<td>open a file as a script and disassemble</td>
+</tr>
+<tr>
+<td> `F6` *</td>
+<td>compile the editor content to a script file</td>
+</tr>
+<tr>
+<td> `F7` *</td>
+<td>compile the editor content to a script file and copy it to the game&#39;s scripts directory</td>
+</tr>
+<tr>
+<td> `F8` *</td>
+<td>run the game for the current [edit mode](../edit-modes/)</td>
+</tr>
+<tr>
+<td> `F10`</td>
+<td>open the [options](options/README.md) window</td>
+</tr>
+<tr>
+<td> `F12`</td>
+<td>open the documentation</td>
+</tr>
+<tr>
+<td> **Text**</td>
+<td></td>
+</tr>
+<tr>
+<td> `TAB`, `Shift`+`TAB`</td>
+<td>indent the selected text to the left / right (tab)</td>
+</tr>
+<tr>
+<td><p>`Ctrl`+`Alt`+`A`</p><p>`Ctrl`+`Alt`+`D`</p></td>
+<td>indent the selected text to the left / right (by one character)</td>
+</tr>
+<tr>
+<td><p>`Ctrl`+`Alt`+`B`</p><p>`Ctrl`+`Alt`+`N`</p><p>`Ctrl`+`Alt`+`M`</p></td>
+<td>toggle different modes of the text selection: Normal, Columnar (same as selection with pressed `Alt`), Lines</td>
+</tr>
+<tr>
+<td><p>`Ctrl`+`Shift`+`U`</p><p>`Ctrl`+`Shift`+`L`</p></td>
+<td>convert the word to uppercase / lowercase</td>
+</tr>
+<tr>
+<td> `Ctrl`+`+`</td>
+<td>increase the text size (zoom in)</td>
+</tr>
+<tr>
+<td> `Ctrl`+`-`</td>
+<td>decrease the text size (zoom out)</td>
+</tr>
+<tr>
+<td> `Ctrl`+`T`</td>
+<td>delete the word under the cursor</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Y`</td>
+<td>delete the line</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Shift`+`Y`</td>
+<td>clear the line</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Q` *</td>
+<td>[comment / uncomment](../coding/comments.md) the line</td>
+</tr>
+<tr>
+<td> **Navigation**</td>
+<td></td>
+</tr>
+<tr>
+<td> `Ctrl`+`Shift`+`B`</td>
+<td>jump between brackets: `{}`, `()`, `&lt;&gt;`, `[]`</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Up/Down`</td>
+<td>scroll the page one line up / down</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Mouse Wheel Up/Down`</td>
+<td>page up / down</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Shift`+`0..9`</td>
+<td>toggle a <a href="features.md#bookmarks-quick-jump">bookmark</a> on the line</td>
+</tr>
+<tr>
+<td> `Ctrl`+`0..9`</td>
+<td>navigate to line with the <a href="features.md#bookmarks-quick-jump">bookmark</a></td>
+</tr>
+<tr>
+<td> `Ctrl`+`G` *</td>
+<td>go to the line</td>
+</tr>
+<tr>
+<td> `Alt`+`Right` *</td>
+<td><a href="features.md#navigate-to-symbol">navigate to symbol</a> under the cursor (a label, mission or function)</td>
+</tr>
+<tr>
+<td> `Alt`+`Left` *</td>
+<td>navigate back to the previous position (where <a href="features.md#navigate-to-symbol">Navigate to Symbol</a> was called)</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Enter`</td>
+<td>open a file which name is under the cursor (see also <a href="../coding/directives.md#usdinclude">relative path priorities</a>)</td>
+</tr>
+<tr>
+<td> **Code**</td>
+<td></td>
+</tr>
+<tr>
+<td> `Ctrl`+`Space`</td>
+<td>show the list of classes / class members / models / labels / variables / missions</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Shift`+`Space`</td>
+<td>show the list of parameters for the current class command</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Shift`+`C` *</td>
+<td>insert the <a href="features.md#player-coordinates-management">player&#39;s coordinates</a></td>
+</tr>
+<tr>
+<td> `Ctrl`+`Shift`+`E` *</td>
+<td>insert the <a href="features.md#player-coordinates-management">player&#39;s z_angle</a></td>
+</tr>
+<tr>
+<td> `F1`</td>
+<td>find an opcode with the word under the cursor (with ignoring of `_` and `.`)</td>
+</tr>
+<tr>
+<td> `Ctrl`+`F1`</td>
+<td>find an opcode with the word under the cursor (without ignoring of `_` and `.`)</td>
+</tr>
+<tr>
+<td> `F2`</td>
+<td>use the word under the cursor to expand to the <a href="../edit-modes/code-templates.md">code template</a> with the same name</td>
+</tr>
+<tr>
+<td> `Ctrl`+`J`</td>
+<td>show the list of <a href="../edit-modes/code-templates.md">code templates</a></td>
+</tr>
+<tr>
+<td> `Ctrl`+`M`</td>
+<td>start/stop recording of a <a href="features.md#keypress-recording-macro">macro </a>(keystroke pressings sequence)</td>
+</tr>
+<tr>
+<td> `Ctrl`+`P`</td>
+<td>replay <a href="features.md#keypress-recording-macro">macro</a>/pause while processing</td>
+</tr>
+<tr>
+<td> `Ctrl`+`H` *</td>
+<td>convert the number under the cursor from decimal to hexadecimal and vice versa</td>
+</tr>
+<tr>
+<td> `Ctrl`+`Alt`+`H` *</td>
+<td>convert the model name under the cursor to its numeric ID and vice versa</td>
+</tr>
+<tr>
+<td> **Misc**</td>
+<td></td>
+</tr>
+<tr>
+<td> `Ctrl`+`~`</td>
+<td>open <a href="console.md">console</a></td>
+</tr>
+<tr>
+<td> `Alt`+`S`</td>
+<td>(when the list of models is active) re-sort the list</td>
+</tr>
+</tbody>
+</table>
+
+
+<script src="../../js/main.min.js"></script>
