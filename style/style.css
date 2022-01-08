@@ -62,7 +62,6 @@ table {
     border: 1px solid #30363d;
     border-radius: 4px;
     display: block;
-    overflow: auto;
 }
 
 th, td {
