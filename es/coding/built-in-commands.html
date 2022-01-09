@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-  <title>Built-in Commands</title>
+  <title>Comandos Integrados</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,11 +9,11 @@
 </head>
 <body>
 
-The following commands are built directly into the compiler and serve mostly as [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar).
+Los siguientes comandos están integrados directamente en el compilador y sirven principalmente como [azúcar sintáctico](https://en.wikipedia.org/wiki/Syntactic_sugar).
 
 ## INC
 
-Increments the first parameter by the second one. The first parameter is a [variable](variables.md).
+Incrementa el primer parametro por el segundo. Elprimer parametro es una [variable](variables.md).
 
 ```sb3
 Inc($IntVariable, $Value)
@@ -21,7 +21,7 @@ Inc($IntVariable, $Value)
 $IntVariable += $Value
 ```
 
-The second parameter is equal to `1` if isn't specified.
+El segundo parametro es igual a `1` si no se especifica.
 
 ```sb3
 Inc(1@)
@@ -29,7 +29,7 @@ Inc(1@)
 1@ += 1
 ```
 
-Since the version 3.06 it's possible to use the `++` operator that can be applied to variables and increments their value by one.
+Desde la versión 3.06 es posible utilizar el operador `++` que se puede aplicar a las variables e incrementa su valor en uno.
 
 ```sb3
 $var++
@@ -39,7 +39,7 @@ $var += 1
 
 ## DEC
 
-Decrements the first parameter by the second one. The first parameter is a variable.
+Disminuye el primer parametro por el segundo. El primer parametro es una variable.
 
 ```sb3
 Dec($IntVariable, $Value)
@@ -47,7 +47,7 @@ Dec($IntVariable, $Value)
 $IntVariable -= $Value
 ```
 
-The second parameter is equal to `1` if isn't specified.
+El segundo parametro es igual a `1` si no se especifica.
 
 ```sb3
 Dec(1@)
@@ -55,7 +55,7 @@ Dec(1@)
 1@ -= 1
 ```
 
-Since the version 3.06 it's possible to use the `--` operator that can be applied to variables and decrements their value by one.
+Desde la versión 3.06 es posible utilizar el operador `--` que se puede aplicar a las variables y reduce su valor en uno.
 
 ```sb3
 $var--
@@ -65,7 +65,7 @@ $var -= 1
 
 ## MUL
 
-Multiplies the first parameter by the second one. The first parameter is a variable.
+Multiplica el primer parámetro por el segundo. El primer parámetro es una variable.
 
 ```sb3
 Mul($IntVariable, $Value)
@@ -73,7 +73,7 @@ Mul($IntVariable, $Value)
 $IntVariable = $IntVariable * $Value
 ```
 
-The second parameter is equal to `2` if isn't specified.
+El segundo parámetro es igual a `2` si no se especifica.
 
 ```sb3
 Mul(1@)
@@ -83,7 +83,7 @@ Mul(1@)
 
 ## DIV
 
-Divides the first parameter by the second one. The first parameter is a variable.
+Divide el primer parámetro por el segundo. El primer parámetro es una variable.
 
 ```sb3
 Div($IntVariable, $Value)
@@ -91,7 +91,7 @@ Div($IntVariable, $Value)
 $IntVariable = $IntVariable / $Value
 ```
 
-The second parameter is equal to `2` if isn't specified.
+El segundo parámetro es igual a `2` si no se especifica.
 
 ```sb3
 Div(1@)
@@ -101,23 +101,23 @@ Div(1@)
 
 ## ALLOC 
 
-This function sets the offset of a [global variable](variables.md#global-variables) at the global variable space that exists in the beginning of the `main.scm` header.
+Esta función establece el desplazamiento de una variable global en el espacio de la [variable global](variables.md#global-variables) que existe al principio del encabezado `main.scm`
 
-It's only meaningful for custom variables (e.g. `$text`) not defined in the `CustomVariables.ini`. [`DMA`-variables](variables.md#global-variables) always get their offset based on the number in their names, e.g the variable `$40` always occupies four bytes at the offset `160` (40\*4).
+Esto solo es significativo para las variables personalizadas (p.ej. `$text`) no definidas en `CustomVariables.ini`. Las variables DMA siempre obtienen su desplazamiento en función del número en sus nombres, p.ej la variable `$40` siempre ocupa cuatro bytes en el desplazamiento `160` (40*4).
 
-The first parameter must be a global variable, the second parameter must be a positive integer number or zero.
+El primer parámetro debe ser una variable global, el segundo parámetro debe ser un número entero positivo o cero.
 
 ```sb3
-Alloc($MyVar, 40) - the variable $MyVar will be compiled as $40
+Alloc($MyVar, 40) - la variable $MyVar pasa a compilarse como $40
 ```
 
 {% hint style="info" %}
-See also `help\examples\alloc.txt`
+Vea también `help\examples\alloc.txt`
 {% endhint %}
 
 ## SQR
 
-Multiplies the variable by itself.
+Multiplica la variable por sí misma.
 
 ```sb3
 sqr($var) 
@@ -126,17 +126,17 @@ $var *= $var
 ```
 
 {% hint style="info" %}
-The variable type has to be [declared](variables.md#var-end-construct).
+El tipo de variable debe ser [declarado](variables.md#var-end-construct).
 {% endhint %}
 
 ## RANDOM
 
-This function generates a random number within the specified range.
+Esta funcion genera un numero aleatorio dentro del rango especificado.
 
 ```sb3
 $rnd = random(1, $high)
 ```
 
-This function can be used for both integer and floating-point variables. The opcode is selected based on the type of the result variable (`$rnd` in this example).
+Esta función se puede utilizar para variables enteras y decimales. El opcode es seleccionado según el tipo de la variable resultada (`$rnd` en este ejemplo).
 
 <script src="../../js/main.min.js"></script>

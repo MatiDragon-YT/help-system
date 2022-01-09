@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-  <title>Arrays</title>
+  <title>Arreglos</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,9 +9,9 @@
 </head>
 <body>
 
-An **array** represents an indexed collection of elements of the same type (called the base type). You can work with any element directly via its index. An index numeration begins with a zero. Arrays are supported in San Andreas, LCS and VCS.
+Un **arreglo** representa una colección indexada de elementos del mismo tipo (llamada en el tipo de base). Puede trabajar con cualquier elemento directamente a través de su índice. Enumerada desde el 0. Las mismas solo estan soportadas en San Andreas, LCS y VCS.
 
-## General Syntax
+## Sintaxis General
 
 San Andreas:\
 `<array name>(<index var name>,<size><type>)`
@@ -21,17 +21,17 @@ $index = 0
 $array($index,10i) = 1
 ```
 
-`<array name>`: local or global [variable](variables.md)\
-`<index var name>`: any variable containing an index of the element to read or write\
-`<size>`: any value greater than 0\
-`<type>`: one of characters `i` `f` `s` `v`:
+`<array name>`: [variable](variables.md) local o global\
+`<index var name>`: cualquier variable que contenga un índice del elemento para leer o escribir\
+`<size>`: cualquier valor mayor que 0\
+`<type>`: uno de los caracteres `i` `f` `s` `v`:
 
 <table>
 <thead>
 <tr>
-<th>Letter</th>
-<th>Item Type</th>
-<th>Item Size (bytes)</th>
+<th>Letra</th>
+<th>Tipo de elemento</th>
+<th>Tamaño del elemento (bytes)</th>
 </tr>
 </thead>
 <tbody>
@@ -57,13 +57,13 @@ $array($index,10i) = 1
 </tr>
 </tbody>
 </table>
-
+\
 
 Liberty City Stories, Vice City Stories:\
 `<array name>(<index var name>,<size>)`
 
 {% hint style="info" %}
-In LCS, VCS, array elements are only 4 bytes in length. Therefore, there is no need in type declaration.
+En LCS, VCS, los elementos de un arreglo tienen solo 4 bytes de longitud. Por lo tanto, no es necesaria una declaración de tipo.
 {% endhint %}
 
 ```sb3
@@ -71,9 +71,9 @@ $index = 0
 $array($index,10) = 1
 ```
 
-## Array Declaration
+## Declaración de Arreglo
 
-Arrays can be declared using the [`VAR..END`](variables.md#var-end-construct) construct:\
+Los arreglos se pueden declarar utilizando el constructor [`VAR..END`](variables.md#var-end-construct):\
 `var`\
 `   <array name>: array <size> of <type>`\
 `end`
@@ -84,9 +84,9 @@ var
 end
 ```
 
-### Accessing array elements after declaration
+### Accediendo a los elementos del arreglo después de la declaración
 
-After declaring an array you can work access its elements using square brackets:
+Después de declarar un arreglo, puede acceder a sus elementos utilizando corchetes:
 
 ```sb3
 var
@@ -96,9 +96,9 @@ $index = 1
 $FloatArray[$index] += 100.0
 ```
 
-### Using constant indexes
+### Usando índices constantes
 
-You can use positive integer numbers and zero to access a particular array element:
+Puedes usar números enteros positivos y cero para acceder a un elemento del arreglo en particular:
 
 ```sb3
 var
@@ -107,7 +107,7 @@ end
 $FloatArray[1] += 100.0
 ```
 
-Elements of an array containing [string literals](data-types.md#string-literals) can be accessed with [string variables](data-types.md#string-variables):
+Se puede acceder a los elementos de un arreglo que contiene [cadenas literarias](data-types.md#string-literals) con [variables de cadena](data-types.md#string-variables):
 
 ```sb3
 // initializing first three elements of the $strings array
@@ -116,7 +116,7 @@ s$strings[1] = 'str2'
 s$strings[2] = 'str3'
 ```
 
-An array can be declared as a collection of [class instances](classes.md#class-instances):
+Un arreglo se puede declarar como una colección de [instancias de clase](classes.md#class-instances):
 
 ```sb3
 var
@@ -126,7 +126,8 @@ $players[0].Build
 ```
 
 {% hint style="info" %}
-By default in the `GTA SA` [edit mode](../edit-modes/), the disassembler prints array elements with the numbers as indexes. The same feature is available in LCS and VCS but is disabled by default. You can turn this feature on and off using the [debug option](../editor/console.md#constant_indexes) `CONSTANT_INDEXES`. 
+
+Por predeterminado, en el [modo de edición](../edit-modes/) de `GTA SA`, el desensamblador imprime los elementos del arreglo con los números como índices. La misma función está en LCS y VCS, pero desactivada de forma predeterminada. Puede activar y desactivar esta función mediante la opción de depuración `CONSTANT_INDEXES`.
 {% endhint %}
 
 <script src="../../js/main.min.js"></script>
