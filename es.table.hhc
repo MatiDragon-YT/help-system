@@ -12,23 +12,23 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Introduction">
+		<param name="Name" value="Introducci&oacute;n">
 		<param name="Local" value="es\README.html">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Credits">
+		<param name="Name" value="Creditos">
 		<param name="Local" value="es\credits.html">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Version History">
+		<param name="Name" value="Historial de Versiones">
 		<param name="Local" value="es\version-history.html">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="SYNTAX">
+		<param name="Name" value="SINTAXIS">
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Data Types">
+			<param name="Name" value="Tipos de Datos">
 			<param name="Local" value="es\coding\data-types.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -36,31 +36,31 @@
 			<param name="Local" value="es\coding\variables.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Constants">
+			<param name="Name" value="Constantes">
 			<param name="Local" value="es\coding\constants.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Arrays">
+			<param name="Name" value="Arreglos">
 			<param name="Local" value="es\coding\arrays.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Conditions">
+			<param name="Name" value="Condiciones">
 			<param name="Local" value="es\coding\conditions.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Loops">
+			<param name="Name" value="Bucles">
 			<param name="Local" value="es\coding\loops.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Classes">
+			<param name="Name" value="Clases">
 			<param name="Local" value="es\coding\classes.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Keywords">
+			<param name="Name" value="Palabras Claves">
 			<param name="Local" value="es\coding\keywords.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Built-in Commands">
+			<param name="Name" value="Comandos integrados">
 			<param name="Local" value="es\coding\built-in-commands.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -68,11 +68,11 @@
 			<param name="Local" value="es\coding\hex..end.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Directives">
+			<param name="Name" value="Directivas">
 			<param name="Local" value="es\coding\directives.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Comments">
+			<param name="Name" value="Comentarios">
 			<param name="Local" value="es\coding\comments.html">
 			</OBJECT>
 	</UL>
@@ -81,11 +81,11 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Features">
+			<param name="Name" value="Caracteristicas">
 			<param name="Local" value="es\editor\features.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Options">
+			<param name="Name" value="Opciones">
 			<param name="Local" value="es\editor\options\README.html">
 			</OBJECT>
 		<UL>
@@ -94,7 +94,7 @@
 				<param name="Local" value="es\editor\options\general.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Formats">
+				<param name="Name" value="Formatos">
 				<param name="Local" value="es\editor\options\formats.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
@@ -102,36 +102,36 @@
 				<param name="Local" value="es\editor\options\editor.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Theme Editor">
+				<param name="Name" value="Editor de Temas">
 				<param name="Local" value="es\editor\options\theme-editor.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Hotkeys">
+				<param name="Name" value="Teclas de Combinadas">
 				<param name="Local" value="es\editor\options\hotkeys.html">
 				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Console">
+			<param name="Name" value="Consola">
 			<param name="Local" value="es\editor\console.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Hotkeys">
+			<param name="Name" value="Teclas de Combinadas">
 			<param name="Local" value="es\editor\hotkeys.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Opcode Search Tool">
+			<param name="Name" value="Buscador de Opcodes">
 			<param name="Local" value="es\editor\opcode-search-tool.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Command Line Interface">
+			<param name="Name" value="Interfaz de la liea de comandos">
 			<param name="Local" value="es\editor\cli.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Language Service">
+			<param name="Name" value="Servicio de Lenguaje">
 			<param name="Local" value="es\editor\language-service.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Edit Modes">
+			<param name="Name" value="Modos de edicion">
 			<param name="Local" value="es\editor\edit-modes\README.html">
 			</OBJECT>
 		<UL>
