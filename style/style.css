@@ -153,6 +153,7 @@ pre {
 }
 
 code, .code {
+    white-space: pre;
     padding: 2px 5px;
     border-radius: 3px;
     margin: 0 2px;

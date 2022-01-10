@@ -14,17 +14,17 @@ Un **arreglo** representa una colección indexada de elementos del mismo tipo (l
 ## Sintaxis General
 
 San Andreas:\
-`<array name>(<index var name>,<size><type>)`
+`<nombre>(<indice>,<tamaño><tipo>)`
 
 ```sb3
 $index = 0
 $array($index,10i) = 1
 ```
 
-`<array name>`: [variable](variables.md) local o global\
-`<index var name>`: cualquier variable que contenga un índice del elemento para leer o escribir\
-`<size>`: cualquier valor mayor que 0\
-`<type>`: uno de los caracteres `i` `f` `s` `v`:
+`<nombre>`: [variable](variables.md) local o global\
+`<indice>`: cualquier variable que contenga un índice del elemento para leer o escribir\
+`<tamaño>`: cualquier valor mayor que 0\
+`<tipo>`: uno de los caracteres `i` `f` `s` `v`:
 
 <table>
 <thead>
@@ -37,22 +37,22 @@ $array($index,10i) = 1
 <tbody>
 <tr>
 <td>i</td>
-<td>integer</td>
+<td>número entero</td>
 <td>4</td>
 </tr>
 <tr>
 <td>f</td>
-<td>float</td>
+<td>número decimal</td>
 <td>4</td>
 </tr>
 <tr>
 <td>s</td>
-<td>string</td>
+<td>cadena corta</td>
 <td>8</td>
 </tr>
 <tr>
 <td>v</td>
-<td>string</td>
+<td>cadena larga</td>
 <td>16</td>
 </tr>
 </tbody>
@@ -60,7 +60,7 @@ $array($index,10i) = 1
 \
 
 Liberty City Stories, Vice City Stories:\
-`<array name>(<index var name>,<size>)`
+`<nombre>(<indice>,<tamaño>)`
 
 {% hint style="info" %}
 En LCS, VCS, los elementos de un arreglo tienen solo 4 bytes de longitud. Por lo tanto, no es necesaria una declaración de tipo.
@@ -75,7 +75,7 @@ $array($index,10) = 1
 
 Los arreglos se pueden declarar utilizando el constructor [`VAR..END`](variables.md#var-end-construct):\
 `var`\
-`   <array name>: array <size> of <type>`\
+`   <nombre>: array <tamaño> of <tipo>`\
 `end`
 
 ```sb3

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <title>Constants</title>
+  <title>Constantes</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,22 +9,21 @@
 </head>
 <body>
 
-A **constant** is an identifier with a predefined value. Contrary to a variable the value of the constant can not be changed in run-time. In compile-time the constant gets replaced with the value associated with it. The value of the constant can be numeric (numbers, [model names](data-types.md#model-names) or [labels](data-types.md#labels)) and string (string literals), and contain an expression.
+Una **constante** es un identificador con un valor predefinido. A diferencia de una variable, el valor de la constante no se puede cambiar en tiempo de ejecución. En tiempo de compilación, la constante se reemplaza por el valor asociado a ella. El valor de la constante puede ser numérico (números, [nombres de modelo](data-types.md#model-names) o [etiquetas](data-types.md#labels)) y una cadena (literales de cadena), y contener un expresión.
 
-Constants are declared either statically or dynamically. Each [edit mode](../edit-modes/) can load static constant definitions from a file using the `&lt;constants&gt;` parameter in the `modes.xml`. Dynamic declarations get created in the script code with the syntax outlined below.
+Las constantes se declaran estática o dinámicamente. Cada [modo de edición](../editor/edit-modes/README.md) uede cargar definiciones de constantes estáticas desde un archivo usando el parámetro `<constants>` en el `modes.xml`. Las declaraciones dinámicas se crean en el código del script con la sintaxis que se describe a continuación.
 
-## Syntax
+## Sintaxis
 
-To declare a new constant in the code use the `CONST..END` construct:
+Para declarar una nueva constante en el código, use la construcción `CONST..END`:\
+\
+`CONST`\
+`    <constant name> = <constant value>`\
+`END`\
+\
+Un nombre constante es cualquier identificador permitido (una combinación de letras, números y `_`). Hay nombres reservados por el compilador que no se pueden usar, como `Continue`, `Break`, `And`, etc. (mire `compiler.ini`).
 
-```
-CONST
-    &lt;constant name&gt; = &lt;constant value&gt;
-END```
-
-A constant name is any allowed identifier (a combination of letters, numbers and `_`). There are names reserved by the compiler that can not be used, such as `Continue`, `Break`, `And`, etc (see `compiler.ini`).
-
-A constant value might be a number (also a [model identifier](data-types.md#model-names) or a [label](data-types.md#labels)); a [string literal](data-types.md#string-literals); a [variable](variables.md) (also a [class property](classes.md#properties)); another constant.
+Un valor constante puede ser un número (también un [identificador de modelo](data-types.md#model-names) o una [etiqueta](data-types.md#labels)); a [string literal](data-types.md#string-literals); una [variable](variables.md) (también una [propiedad de clase] (classes.md#properties)); otra constante.
 
 ```sb3
 var
@@ -43,13 +42,13 @@ then
 end
 ```
 
-During compilation the constant `MoneyRequired` gets replaced with the number `30 `and `PlayerMoney `with `$PLAYER_CHAR.Money`
+Durante la compilación, la constante `MoneyRequired` se sustituye por el número `30` y `PlayerMoney` con `$PLAYER_CHAR.Money`.
 
-When the [Language service](../editor/language-service.md) is enabled, a list of constants gets displayed after pressing `Ctrl+Space`.
+Cuando el [servicio de idioma](../editor/language-service.md) está habilitado, se muestra una lista de constantes después de presionar`Ctrl+Space`.
 
-## Limitations
+## Limitaciones
 
-You can use constants anywhere except the case:
+Puede utilizar constantes en cualquier lugar excepto en el caso:
 
 ```sb3
 const
@@ -59,12 +58,12 @@ end
 VarName[IndexName] = 0
 ```
 
-To compile such expression, you must write the opcode, for example:
+Para compilar dicha expresión, debe escribir el opcode correspondiente, por ejemplo:
 
 ```sb3
 0004: VarName[IndexName] = 0
 ```
 
-Also there are some limitations with using an expression as the constant value.
+También hay algunas limitaciones con el uso de una expresión como valor constante.
 
 <script src="../../js/main.min.js"></script>
