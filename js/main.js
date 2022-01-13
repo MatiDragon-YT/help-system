@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.9";
+const VERSION = "1.10";
 
 function log(value){
 	console.log(value)
@@ -273,7 +273,7 @@ apply($('.sb3'), function(e){
 	.replace(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
 	.replace(/\.([0-9A-Z_a-z]+)\n/gm, ".<span class=commands>$1</span>\n")
 	//Directivas
-	.replace(/(\{\$)(CLEO|OPCODE|NOSOURCE)(\s\w+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
+	.replace(/(\{\$)(CLEO|OPCODE|NOSOURCE|INCLUDE|USE)(\s[^\}]+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
 	//Variables  
 	.replace(/\b(timera|timerb)\b/gmi, "<span class=variables>$1<\/span>")
 	.replace(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
