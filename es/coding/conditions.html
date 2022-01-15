@@ -14,10 +14,10 @@ El operador `IF` evalúa una o más condiciones y crea una nueva rama de código
 ## Declaraciones IF de Bajo Nivel
 
 `00d6: if <N>`\
-`  <condicion 1>`\
-`  <condicion 2>`\
+`  <condición 1>`\
+`  <condición 2>`\
 `...`\
-`  <condicion N+1>`\
+`  <condición N+1>`\
 `004D: jump_if_false <etiqueta>`\
 \
 `N` significa el número total de condiciones dentro de la declaración IF y la forma en que ocurre la evaluación de las condiciones. 
@@ -34,7 +34,7 @@ El operador `IF` evalúa una o más condiciones y crea una nueva rama de código
 <tr>
 <td>0</td>
 <td>1</td>
-<td>la declaración IF es verdadera (`true`) sí la condicion es verdadera</td>
+<td>la declaración IF es verdadera (`true`) sí la condición es verdadera</td>
 </tr>
 <tr>
 <td>1..7</td>
@@ -79,19 +79,19 @@ El compilador escribe el número `1` en lugar de `and`.\
 
 Para facilitar las condiciones de escritura, existen construcciones de alto nivel que no requieren etiquetas adicionales:\
 `IF <N>/AND/OR`\
-`  <condicion 1>`\
-`  <condicion 2>`\
+`  <condición 1>`\
+`  <condición 2>`\
 `  ...`\
-`  <condicion N+1>`\
+`  <condición N+1>`\
 `THEN`\
 `  <comandos sí la declaracion es verdadera>`\
 `END`
 <br><br>
 `IF <N>/AND/OR`\
-`  <condicion 1>`\
-`  <condicion 2>`\
+`  <condición 1>`\
+`  <condición 2>`\
 `  ...`\
-`  <condicion N+1>`\
+`  <condición N+1>`\
 `THEN`\
 `  <comandos sí la declaracion es verdadera>`\
 `ELSE`\

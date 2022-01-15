@@ -9,16 +9,16 @@
 </head>
 <body>
 
-Sanny Builder supports writing a raw content in an output file. All values within this construct are written in an output file without any checks.
+Sanny Builder admite la escritura de contenido sin formato en un archivo de salida. Todos los valores dentro de esta construcción se escriben en un archivo de salida sin controles.
 
 {% hint style="warning" %}
-Use this feature only if you know what you're doing. Any mistakes will corrupt the script file making it unreadable by the game or a script editor.
+Use esta función solo si sabe lo que está haciendo. Cualquier error corromperá el archivo del script y lo hará ilegible para el juego o un editor de scripts.
 {% endhint %}
 
-## Syntax
+## Sintaxis
 
 `HEX`\
-`    <any hexadecimal numbers>`\
+`    <cualquier número hexadecimal>`\
 `END`
 
 ```sb3
@@ -27,11 +27,11 @@ hex
 end
 ```
 
-This sequence of bytes is the compiled version of the opcode `0004: $2 = 1`, so the game will correctly read it and set the value of the variable `$2` to `1`.
+Esta secuencia de bytes es la versión compilada del opcode `0004: $2 = 1`, por lo que el juego lo leerá correctamente y establecerá el valor de la variable `$2` en `1`.
 
-You must specify each byte you're going to write with two digits. All spaces are ignored. The compiler treats any two digits with a space between them as a single byte value. A single digit (`0..F`) is prefixed with `0`. So, for example, a sequence of three letters`A B C` will be compiled as the number `0xAB0C`.
+Debe especificar cada byte que va a escribir con dos dígitos. Todos los espacios son ignorados. El compilador trata cualquier par de dígitos con un espacio entre ellos como un valor de un solo byte. Un solo dígito (`0..F`) tiene el prefijo `0`. Entonces, por ejemplo, una secuencia de tres letras `A B C` se compilará como el número `0xAB0C`.
 
-The `HEX..END` construct also accepts [string literals](data-types.md#string-literals), [labels](data-types.md#labels), [global variables](variables.md#global-variables), [model names](data-types.md#model-names). They are compiled without a preceding data type byte.
+El constructor `HEX..END` tambien acepta [cadenas literarias](data-types.md#string-literals), [etiquetas](data-types.md#labels), [variables globales](variables.md#global-variables), [nombres de modelos](data-types.md#model-names). Se compilan sin un byte del tipo de datos que los preceda. 
 
 ```sb3
 :get_offset
@@ -40,31 +40,31 @@ hex
 end
 ```
 
-This is the exact copy of the opcode `0004: $PLAYER_CHAR = @get_offset`
+Esta es la copia exacta del opcode `0004: $PLAYER_CHAR = @get_offset`
 
-A string literal enclosed in double quotes is compiled as a sequence of characters.
+Una cadena literal encerrada entre comillas dobles se compila como una secuencia de caracteres.
 
 ```sb3
 hex
-    "This is a string"
+    "Esto es una cadena"
 end
 ```
 
-## Escape Sequences
+## Secuencias de Escape
 
-The following escape sequences are supported within a string literal:
+Las siguientes secuencias de escape son compatibles con un literal de cadena:
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Escape Sequence</th>
-<th>Byte Form</th>
+<th>Nombre</th>
+<th>Secuencias de Escape</th>
+<th>Forma de byte</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Null</td>
+<td>Nulo</td>
 <td>\0</td>
 <td>00</td>
 </tr>
@@ -74,29 +74,29 @@ The following escape sequences are supported within a string literal:
 <td>08</td>
 </tr>
 <tr>
-<td>Tab</td>
+<td>Tabulador</td>
 <td>\t</td>
 <td>09</td>
 </tr>
 <tr>
-<td>Line Feed</td>
+<td>Salto de línea</td>
 <td>\n</td>
 <td>0A</td>
 </tr>
 <tr>
-<td>Carriage Return</td>
+<td>Retorno de carril</td>
 <td>\r</td>
 <td>0D</td>
 </tr>
 <tr>
-<td>Numeric escape sequence</td>
-<td>\x<code>nn</code></td>
-<td><code>nn</code></td>
+<td>Escape de número</td>
+<td>\x`nn`</td>
+<td>`nn`</td>
 </tr>
 <tr>
-<td>Escape char</td>
-<td>\<code>char</code></td>
-<td><code>char</code></td>
+<td>Escape de carácter</td>
+<td>\`char`</td>
+<td>`char`</td>
 </tr>
 </tbody>
 </table>
@@ -107,13 +107,13 @@ hex
 end
 ```
 
-It produces the following sequence of bytes: `00 08 09 0A 0D DD`.
+Produce la siguiente secuencia de bytes: `00 08 09 0A 0D DD`.
 
-Currently multiple spaces in a string literal are converted into a single one. Thus a line `"This    is  a     string"` is converted into `"This is a string"`. Use the backward slash character `\` to add multiple spaces in a string literal: `"This \ \ \ is \ a \ \ \ \ string"`.
+Actualmente, varios espacios en un literal de cadena se convierten en uno solo. Así, una línea `"Esto    es  una     cadena"` se convierte en `"Esto es una cadena"`. Use el carácter de barra invertida `\` para agregar múltiples espacios en un literal de cadena: `"Esta \ \ \ es \ una \ \ \ \ cadena"`.
 
-## Using aDMA Numbers
+## Uso de Números de aDMA
 
-Also you can use the [aDMA](data-types.md#variables) data type to write a numeric constant in an output file. The number after the `&` sign can be both positive or negative, decimal or hexadecimal.
+También puede usar el tipo de datos [aDMA](data-types.md#variables) para escribir una constante numérica en un archivo de salida. El número después del signo `&` puede ser positivo o negativo, decimal o hexadecimal.
 
 ```sb3
 hex
@@ -121,6 +121,6 @@ hex
 end
 ```
 
-This example produces the following sequence of bytes: `E8 03 00 CB 5C FF`.
+Este ejemplo produce la siguiente secuencia de bytes: `E8 03 00 CB 5C FF`.
 
 <script src="../../js/main.min.js"></script>

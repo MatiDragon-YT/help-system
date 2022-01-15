@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <title>Classes</title>
+  <title>Clases</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,8 +79,7 @@ Player($PLAYER_CHAR).Money > 461@ // check the amount
 4@ = Player($PLAYER_CHAR).Money // read the amount and store in variable
 ```
 
-
-<div class="warning">
+:::warning
 Actualmente, el compilador ignora los espacios en blanco en las [cadena literarias](data-types.md#string-literals) utilizadas en los parámetros de propiedad:
 
 ```sb3
@@ -92,7 +91,8 @@ se compilará como:
 ```sb3
 0@ = File.Open("filename","wb")
 ```
-</div>
+:::
+
 ## Instancias de clase
 
 Casi todos los miembros de la clase toman una variable como el primer parámetro. Esta variable tiene un identificador de la instancia de clase, que es una entidad concreta del juego a la que se aplica el comando:
@@ -127,7 +127,7 @@ if
 jf @anywhere
 ```
 
-<div class="warning">
+:::warning
 Si una variable sustituye al nombre de una clase, el compilador también lo convierte en el primer parámetro, por lo que no es necesario volver a usarlo en la lista de parámetros:
 
 ```sb3
@@ -139,7 +139,7 @@ Es equivalente a:
 ```sb3
 Player.SetClothes($PLAYER_CHAR, "PLAYER_FACE", "HEAD", Head)
 ```
-</div>
+:::
 
 Las variables declaradas como instancias de una clase se pueden volver a declarar con otro tipo.
 

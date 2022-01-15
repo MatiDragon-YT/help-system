@@ -9,28 +9,38 @@
 </head>
 <body>
 
-A **variable (var)** is a named storage location that contains a value and can be read/rewrite many times. There are two types of variables.
+Una **variable (var)** es una ubicación de almacenamiento con nombre que contiene un valor y se puede leer/reescribir muchas veces. Hay dos tipos de variables.
 
-## Global variables
+## Variables Globales
 
-A global variable starts with `$` followed by an identifier (name).\
-The global variable name is any combination of letters, digits and `_`:\
-\
-`$variable1 $100 $____`
+Una variable global comienza con `$` seguida de un identificador (nombre).\
+El nombre puede conformarse por cualquier combinación de letras, dígitos y `_`:
+
+```sb3
+$variable1
+$100
+$____
+```
 
 {% hint style="info" %}
-A global variable with the name that only consists of digits is called a `DMA`-variable (**D**irect **M**emory **A**ddress). See also [Alloc](built-in-commands.md#alloc).
+Una variable que conste en su nombre de dígitos se denomina variable `DMA` (**D**irect **M**emory **A**ddress). Mire los [Alloc](built-in-commands.md#alloc).
 {% endhint %}
 
-Their values are available from any place of the code.
+Sus valores están disponibles desde cualquier lugar del código.
 
-### **Saved Variables**
+### **Variables Guardables**
 
-A saved variable is a special global variable available only in `LCS `and `VCS `modes. Its name is prefixed with `$_`, e.g. `$_var`. The value of this variable persists across saved games. Global variables denoted by `$` only (e.g. `$var`) are not saved and they get blank values when the LCS or VCS game loads.
+Una variable guardada es una variable global especial disponible solo en los modos `LCS` y `VCS`. Su nombre tiene el prefijo `$_`, p. `$_var`. El valor de esta variable persiste en los juegos guardados. Las variables globales indicadas solo con `$` (por ejemplo, `$var`) no se guardan y obtienen valores en blanco cuando se carga el juego LCS o VCS.
+:::info
+Desde salida de [CLEO 3](../cleo-3/opcodes.md#0A95), puede habilitase para `SA`:
+```sb3
+0A95: enable_thread_saving
+```
+:::
 
-## Local variables
+## Variables Locales
 
-A local variable name may only be a number followed by `@`.
+Un nombre de variable local solo puede ser un número seguido de `@`.
 
 ```sb3
 0@ 
@@ -38,32 +48,32 @@ A local variable name may only be a number followed by `@`.
 56@
 ```
 
-Their values are available only within the current script or the mission.
+Sus valores están disponibles solo dentro del script actual o la misión.
 
 {% hint style="warning" %}
-The number of local variables per script is strictly [limited](../scm-documentation/gta-limits.md).
+El número de variables locales por script es estrictamente [limitado](../scm-documentation/gta-limits.md).
 {% endhint %}
 
-### **Timer Variables**
+### **Variables Temporizadoras**
 
-Each script or a mission have 2 special local variables called `TIMERA `and `TIMERB`. The value of a timer variable is increased automatically when the game clock advances, so they are commonly used to measure time elapsed since the timer reset:
+Cada script o misión tiene 2 variables locales especiales llamadas 'TIMERA' y 'TIMERB'. El valor de una variable de temporizador aumenta automáticamente cuando avanza el reloj del juego, por lo que se usan comúnmente para medir el tiempo transcurrido desde que se reinicia el temporizador:
 
 ```sb3
-0006: TIMERA = 0 // reset the timer
+0006: TIMERA = 0 // restablecer el temporizador
 
 :WAIT_2S
 0001: wait 0 ms
 00D6: if
-0019:   TIMERA > 2000 // if the timer value is > 2000, i.e. 2 seconds has passed
+0019:   TIMERA > 2000 // si el valor del temporizador es > 2000, es decir, han pasado 2 segundos
 004D: jump_if_false @WAIT_2S
-0662: printstring "2 seconds has passed" // display the message
+0662: printstring "han pasado 2 segundos" // mostrara el mensaje
 ```
 
 {% hint style="info" %}
-`TIMERA `and `TIMERB `names are only available starting with Sanny Builder v3.3.0. In older scripts the timers are known as `16@`, `17@` (GTA3, VC) or `32@`, `33@` (SA).
+Tenga en cuenta que los nombres `TIMERA` y `TIMERB` solo están disponibles a partir de Sanny Builder v3.3.0. Los scripts más antiguos tienen estos temporizadores como variables numéricas `16@`, `17@` (GTA3, VC) o `32@`, `33@` (SA).
 {% endhint %}
 
-## VAR..END construct
+## Constructor VAR..END
 
 Variables are commonly used in the expressions. If the right operand is a number constant, the opcode can be omitted:
 
@@ -72,31 +82,31 @@ $var = 0
 $myarray($index, 10i) >= 150
 ```
 
-If both operands in the expression are variables, the compiler can not determine the correct opcode, because the types of the variables are unknown.
+Si ambas expreciones son variables, el compilador no puede detectar el opcode, debido al tipo desconocido de las variables. 
 
-For example, there are two opcodes to increment a variable value: `0058 `for integer values and `0059 `for floating-point values.
+Por ejemplo, hay dos opcodes para incrementar el valor de una variable: `0058` para los valores enteros y `0059` para los valores flotantes (decimales).
 
 ```sb3
 0058: $Var1 += $Var2 // (int)
 0059: $Var1 += $Var2 // (float)
 ```
 
-Assuming there is no opcode, which one to use?
+Suponiendo que no haya un opcode, ¿cuál usar?
 
 ```sb3
 $Var1 += $Var2 // ??
 ```
 
-To communicate the compiler a variable type use the `VAR..END` construct.
+Para comunicar al compilador un tipo de variable utiliza el constructor `VAR..END`.
 
-`VAR..END` construct allows to declare variables and their types for the advanced use.
+Que permite declarar variables y sus tipos para su uso avanzados.
 
-Syntax:\
+Sintaxis:\
 `var`\
-`<variable>: <type>`\
-`end`
-.
-For example, if both variables are declared, the compiler is able to process the expression without opcodes:
+`<variable>: <tipo>`\
+`end`\
+\
+Por ejemplo, si se declaran ambas variables, el compilador puede procesar la expresión sin opcodes:
 
 ```sb3
 var
@@ -106,19 +116,19 @@ end
 $Var1 += $Var2 // opcode 0058
 ```
 
-The following types of variables are supported:
+Se admiten los siguientes tipos de variables:
 
-* `Integer`, `Int `- integer values
-* `Float `- floating-points values
-* `String`, `ShortString `- a variable containing a string literal with the fixed length (only for the arrays, use `s$`, `@s` for variables)
-* `LongString `- a variable containing a string literal with the variable length (only for the arrays, use `v$`, `@v` for variables)
-* `<Class name>` - any available [class name](classes.md)
+* `Integer`, `Int` - valores enteros
+* `Float `- valores decimales
+* `String`, `ShortString` - una variable que contiene una cadena de texto con la  longitud fija (solo para los arreglos, use `s$`, `@s` para variables))
+* `LongString `- una variable que contiene una cadena de texto con la longitud fija (solo para los arreglos, use `v$`, `@v` para variables)
+* `<Nombre de la clase>` - el nombre de [cualquier clase](classes.md) disponible any available 
 
-The types of the local variables can be declared too.
+Los tipos de las variables locales tambien se pueden decl.
 
 {% hint style="info" %}
-Once the type of the variable is declared it is used for all the code following the declaration.\
-You can re-declare variables to set the new type:
+Una vez declarado el tipo de la variable, se utiliza para todo el código que sigue a la declaración.\
+Puede volver a declarar variables para establecer el nuevo tipo:
 
 ```sb3
 script_name 'Food'
@@ -140,23 +150,23 @@ $var = 1
 end_thread
 ```
 
-In the `'Food'` script `10@` is the floating-point variable. In the `'Loop'` script `10@` is the integer variable.
+En el script `'Food'` está la variable `10@` como flotante. Y en `'Loop'` esta `10@` como entero.
 
-You can re-declare variables as many times as you need.
+Puede redeclarar variables tantas veces como lo necesite.
 {% endhint %}
 
-## Shorter Form of Declaration
+## Forma de Dclaración más Corta
 
-Since v3.2.0 it's possible to declare a variable of a built-in type (`Int`, `Float`, `String`, `LongString`) using only the type name.
+Desde v3.2.0 es posible declarar una variable de un tipo integrado (`Int`, `Float`, `String`, `LongString`) utilizando sólo el nombre de tipo.
 
-Syntax:\
-`<type> <variable name>`
+Sintaxis:\
+`<tipo> <nombre de la variable>`
 
 ```sb3
-int 0@ // 0@ declared as an integer variable.
+int 0@ // 0@ es declarada como una variable entera
 ```
 
-Starting from v3.4.0 it is possible to declare variables with custom names:
+A partir de v3.4.0 es posible declarar variables con nombres personalizados:
 
 ```sb3
 int a
@@ -168,7 +178,7 @@ distance = 15.5
 name = 'CJ'
 ```
 
-An initial value can follow the variable name to reduce the number of the lines of code:
+Un valor inicial puede seguir el nombre de la variable para reducir el número de líneas de código:
 
 ```sb3
 int a = 1
@@ -176,7 +186,7 @@ float distance = 15.5
 string name = 'CJ'
 ```
 
-The compiler binds a new local variable to each name. In the example above one may expect a resulting code to look like:
+El compilador enlaza una nueva variable local a cada nombre. En el ejemplo anterior se puede esperar que un código resultante tenga el aspecto de:
 
 ```sb3
 0006: 0@ = 1 
@@ -185,12 +195,12 @@ The compiler binds a new local variable to each name. In the example above one m
 ```
 
 {% hint style="info" %}
-Due to [design limitations](https://github.com/sannybuilder/dev/issues/32) this feature is only available in CLEO scripts.
+Debido a [limitaciones de diseño](https://github.com/sannybuilder/dev/issues/32) esta característica solo está disponible en CLEO scripts.
 {% endhint %}
 
-## Variable Initialization
+## Inicialización de Variable
 
-You can specify an initial value for the variable when declaring it. Write `=` and then the value:
+Puede especificar un valor inicial para la variable al declararla. Escribe `=` y luego el valor:
 
 ```sb3
 var
@@ -198,18 +208,18 @@ var
 end
 ```
 
-or
+ó
 
 ```sb3
 float $fVar = 1.0
 ```
 
-The variable `$fVar` is now declared as `Float` and the compiler adds the opcode `0005` in the script:
+La variable `$fVar` ahora se declara como `Float` y el compilador agrega el código de operación `0005` en el script:
 
 ```sb3
 0005: $fVar = 1.0
 ```
 
-Initialization is allowed for variables, but not for arrays.
+La inicialización está permitida para variables, pero no para arreglos.
 
 <script src="../../js/main.min.js"></script>

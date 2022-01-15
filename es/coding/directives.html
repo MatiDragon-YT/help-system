@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Directives</title>
+  <title>Directivas</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,145 +9,147 @@
 </head>
 <body>
 
-Preprocessing **directives **are the special words that make the compiler function in different ways. They starts with `$` and enclosed between the curly brackets `{}`.
+Las **directivas** de preprocesamiento son las palabras especiales que hacenque el compilador funcione de diferentes maneras. Se denotan con elsimbolo `$` y se ubican entre corchetes `{}`.
 
 ## $VERSION
 
 {% hint style="warning" %}
-This directive is deprecated since v3.1.0
+Esta directiva esta en desuso desde v3.1.0
 {% endhint %}
 
-Sets what version of [opcodes](../edit-modes/opcodes-list-scm.ini.md) to use during compilation.
+Esta directiva establece que version de [opcodes](../edit-modes/opcodes-list-scm.ini.md) se debeutilizar durante la compilacion.
 
-Syntax:\
+Sintaxis:\
 `{$VERSION x.y.zzzz}`
 
-* `X`- [edit mode](../edit-modes/) ID
-* `y` - parameters order
+* `X`- ID del [modo de edición](../edit-modes/)
+* `y` - orden de los parametros
   * `0` - original: 0, 1, 2, etc
-  * `1` - custom order, some parameters reordered
-* `zzzz` - opcodes version
+  * `1` - personalizado: 7, 1, 2, etc
+* `zzzz` - version de opcodes
 
-By default the compiler uses the version `current_edit_mode.1.0000`.
+Por defecto, el compilador usa la vercion `current_edit_mode.1.0000`.
 
 ## $VERSION_RESTORE
 
 {% hint style="warning" %}
-This directive is deprecated since v3.1.0
+Esta directiva esta en desuso desde v3.1.0
 {% endhint %}
 
-Restores the version to the value prior to using `$VERSION`.
+Esta directiva establece laversion a su valor anterior antes de usar `$VERSION`.
 
-Syntax:\
+Sintaxis:\
 `{$VERSION_RESTORE}`
 
 ## $INCLUDE
 
-Allows to insert the content of an external text file in the current file. If the compiler finds this directive it opens the file at the location provided as the parameter and proceeds from the code written in the included file. When it reaches the end of the included file it returns back to the previous file.
+Esta directiva permite insertar el contenido de un archivo de texto externoen el archivo actual. Si el compilador encuentra esta directiva,abre el archivo por la ruta que pasa como parametro de la directiva y continua el proceso de compilacion desde elcodigo escrito en el archivo incluido.Cuando llega al final del archivo, vuelve al archivo anterior.
 
-Syntax:\
-`{$INCLUDE path\to\file}`
+Sintaxis:\
+`{$INCLUDE <directorio\hacia\archivo>}`
 
 ```sb3
 {$INCLUDE loadwav.txt}
 {$INCLUDE C:\dev\getarrayindex.txt}
 ```
 
-If the file path is relative, the compiler scans directories in the following order to find the file:
+Si la ruta del archivo es relativa, el compilador busca el archivo en elsiguiente orden:
 
-1. directory of the file with the directive
-2. `data` folder for the current edit mode
-3. Sanny Builder root directory
-4. the game directory
+1. directorio del archivo con la directiva
+2. carpeta `data` para el modo de edición actual
+3. directorio raiz de Sanny Builder
+4. directorio del juego
 
-If none of these directories contains a requested file the compiler throws an exception. 
+Si ninguno de estos directorios contiene un archivo necesario, elcompilador arroja una excepcion. 
 
-You may use this directive unlimited number of times. The included files may contain this directive too.
+Puede usar esta directiva un numeroilimitado de veces. Los archivos incluidospueden contener esta directiva tambien.
 
 {% hint style="info" %}
-A shorter form of this directive is `$I`.
+Una forma más corta de esta directiva es `$I`.
 {% endhint %}
 
 ## $EXTERNAL
 
-Makes the compiler to treat the file as an external script. Meaning, the resulting output file will be header-less and with relative [label](data-types.md#labels) offsets, as an `.scm` file from the `script.img`. Using this directive requires that the file contains only one script or a single mission.
+Esta directiva hace que el compilador procese el archivo como un script externo. Es decir, el archivode salida no tendra encabezado y condesviaciones de [etiqueta](data-types.md#labels) locales, por lo que sera el mismo que el archivo `.scm`del `script.img`. El uso de esta directiva requiere que el archivo contenga solo un hilo (tambien sin misiones y otros scripts).
 
-An alternative way to get such file is the debug [option](../editor/console.md#skip_scm_header) `SKIP_SCM_HEADER`. This option could be enabled in the console or from the dropdown list on the main toolbar.
+La forma alternativa de obtener dicho archivo es una [opcion](../editor/console.md#skip_scm_header) de depuracion `SKIP_SCM_HEADER`. Esta opcionpodria habilitarse en la consola o desdela lista en el panel principal.
 
-Syntax:\
+Sintaxis:\
 `{$EXTERNAL}`
 
 {% hint style="info" %}
-A shorter form of this directive is `$E`.
+Una forma más corta de esta directiva es `$E`.
 {% endhint %}
 
 ## $CLEO
 
-An analogue of the `$E` one, but the compiler automatically copies an output file to the `game\CLEO` directory. The file also gets an extension provided as the directive parameter.
+Un análogo del `$E`, pero el compilador copia automáticamente un archivo de salida en el directorio `game\CLEO`. El archivo también obtiene una extensión proporcionada como parámetro de la directiva.
 
-Syntax:\
-`{$CLEO &lt;extension&gt;}`
+Sintaxis:\
+`{$CLEO <extención>}`
 
-`extension` is an optional parameter specifying the file extension of the output file. It starts with the period character `.`. If no extension is present, the compiler uses the default value `.cs`
+`extención` es un parámetro opcional que especifica la extensión del archivo de salida. Comienza con el carácter de punto `.`. Si no hay una extensión presente, el compilador usa el valor predeterminado `.cs`
 
 ```sb3
-{$CLEO .cm} // the file gets the extension .cm
-{$CLEO} // the file gets the default extension .cs
+{$CLEO .cm} // el archivo adquiere la extensión .cm
+{$CLEO} // el archivo obtiene la extensión predeterminada .cs
 ```
 
-So this directive is the perfect solution to make a CLEO script.
+Entonces esta directiva es la solución perfecta para hacer un CLEO script.
 
 {% hint style="info" %}
-`{$CLEO}` also implies `{$USE CLEO}`
+`{$CLEO}` también implica `{$USE CLEO}`
 {% endhint %}
 
 ## $NOSOURCE
 
-Prohibits the compiler from including a source code of the script. 
+Esta directiva prohibe al compilador incluir un codigo fuente del script.
 
-Without this directive when either the directive `$EXTERNAL` or `$CLEO` is present and the [option](../editor/options/general.md#add-extra-info-to-scm)` Add extra info to SCM` is enabled, Sanny Builder adds the source code into an output file.
+Sin esta directiva, cuando la directiva `$EXTERNAL` o `$CLEO` está presente y la [opción](../editor/options/general.md#add-extra-info-to-scm) `Añador información extra al SCM` está habilitada, Sanny Builder agrega el código fuente al archivo de salida.
 
-Syntax:\
+Sintaxis:\
 `{$NOSOURCE}`
 
 ## $OPCODE
 
-Registers a custom opcode via the script. 
+Registra un opcode personalizado a través del script.
 
-All the opcodes definitions are contained in a [special file](../edit-modes/opcodes-list-scm.ini.md), one for each supported game. But sometimes it's necessary to add a custom opcode to use in the current script. `$OPCODE` makes it possible without touching the INI file.
+Todas las definiciones de opcodes están contenidas en un [archivo especial](../edit-modes/opcodes-list-scm.ini.md), uno para cada juego compatible. Pero a veces es necesario agregar un opcode personalizado para usar en el script actual. `$OPCODE` lo hace posible sin tocar el archivo INI.
 
-Syntax:\
-`{$OPCODE &lt;opcode definition&gt;}`\
- or\
-`{$OPCODE &lt;path\to\file&gt;}`\
- or\
-`{$OPCODE}`
+Sintaxis:\
+`{$OPCODE <definición del opcode>}`\
+ó\
+`{$OPCODE <directorio\hacia\archivo>}`\
+ó\
+`{$OPCODE}`\
+\
+`definición del opcode>`: acepta una definición en el mismo [formato](../edit-modes/opcodes-list-scm.ini.md#opcode-definition) que el archivo INI.
 
-`opcode definition` - it accepts an definition in the same [format](../edit-modes/opcodes-list-scm.ini.md#opcode-definition) as the INI file.
 
 ```sb3
 {$OPCODE 0CCC=1,my_new_opcode %1d%}
 ```
 
-`path\to\file` - this directive also accepts a file name as its parameter. This file must contain only opcodes definitions to be loaded. If a relative path is provided, the compiler scans directories using the same rules as for [$INCLUDE](directives.md#usdinclude).
+`path\to\file`: esta directiva también acepta un nombre de archivo como su parámetro. Este archivo debe contener solo definiciones de opcodes para ser cargado. Si se proporciona una ruta relativa, el compilador escanea los directorios usando las mismas reglas que para [`$INCLUDE`](directives.md#usdinclude).
+
 
 ```sb3
 {$OPCODE additional_opcodes.ini}
 ```
 
-When used without any parameter, this directive reloads the original opcodes definitions file and reverts all changes made.
+Cuando se usa sin ningún parámetro, esta directiva vuelve a cargar el archivo de definiciones de opcodes original y revierte todos los cambios realizados..
 
 ```sb3
 {$OPCODE}
 ```
 
 {% hint style="info" %}
-A shorter form of this directive is `$O`.
+Una forma más corta de esta directiva es `$O`.
 {% endhint %}
 
 ## $USE
 
-Enables custom instructions set to the compiler. See [Extensions](../edit-modes/extensions.md) for more information.
+Habilita instrucciones personalizadas establecidas para el compilador. Consulte [Extensiones](../edit-modes/extensions.md) para obtener más información.
 
 ```sb3
 {$USE CLEO+}
