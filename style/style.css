@@ -162,7 +162,6 @@ code, .code {
 textarea{
     font-size: 1rem;
     padding: 0.5rem;
-    resize: unset;
 }
 
 img {
@@ -295,8 +294,17 @@ input {
 .bold { font-weight: 700 }
 
 .uppercase { text-transform: uppercase }
+.p-0 { padding: 0 }
+.p-1 { padding: .25rem }
 .p-2 { padding: .5rem }
+.p-3 { padding: 1rem }
 .p-4 { padding: 1.5rem }
+.p-5 { padding: 3rem }
+
+.d-none {display: none}
+.d-block {display: block}
+.d-inline-block {display: inline-block}
+
 
 .w-100{width: 100%}
 .h-43 {height:43vh}
@@ -308,6 +316,7 @@ input {
 .bg-white{background:#c9d1d9}
 .black{color:#0d1117}
 .bg-black{background:#0d1117}
+.bg-black-2{background:#000;}
 
 .red { color:#ff5252 }
 .bg-red { background:#ff5252 }

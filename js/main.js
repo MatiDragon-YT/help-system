@@ -61,7 +61,7 @@ String.prototype.toMarkdown = function(){
 	/******** LIST ********/
 
 	// ID
-	.replace(/\[([\w\d\-\x20]+)\]\[\]/gim, '<a id="$1"></a>')
+	.replace(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
 
 	// UL LI
 	.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
@@ -83,20 +83,22 @@ String.prototype.toMarkdown = function(){
 	// DL DD
 	.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
 	.replace(/^\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1</dd></dl></dl>')
+	.replace(/^\x20{4}\-\s(.+)/gim, '<dl><dl><dl><dd>$1</dd></dl></dl></dl>')
 	.replace(/<\/dl>(\s+)<dl>/g, '')
+	.replace(/<\/dl><\/dl><dl><dl>/g, '')
 	.replace(/<\/dl><dl>/g, '')
 
 	/*** FORMAT ***/
-	.replace(/(\s|\(|>)\*\*\*([\x20-\x29\x2B-\uFFFF]+)\*\*\*/g, '$1<b><i>$2</i></b>')
-	.replace(/(\s|\(|>)\*\*([\x20-\x29\x2B-\uFFFF]+)\*\*/g, '$1<b>$2</b>')
-	.replace(/(\s|\(|>)\*([\x20-\x29\x2B-\uFFFF]+)\*/g, '$1<i>$2</i>')
-	.replace(/(\s|\(|>)~~([\x20-\x7D\xA0-\uFFFF]+)~~/g, '$1<s>$2</s>')
-	.replace(/(\s|\(|>)__([\x20-\x5E\x60-\uFFFF]+)__/g, '$1<u>$2</u>')
-	.replace(/(\s|\(|>)==([\x20-\x3C\x3E-\uFFFF]+)==/g, '$1<mark>$2</mark>')
-	.replace(/(\s|\(|>)\+\+([\x20-\x2A\x2C-\uFFFF]+)\+\+/g, '$1<ins>$2</ins>')
+	.replace(/\*\*\*([^\*\n]+)\*\*\*/g, '<b><i>$1</i></b>')
+	.replace(/\*\*([^\*\n]+)\*\*/g, '<b>$1</b>')
+	.replace(/\*([^\*\n]+)\*/g, '<i>$1</i>')
+	.replace(/~~([^~\n]+)~~/g, '<s>$1</s>')
+	.replace(/__([^_\n]+)__/g, '<u>$1</u>')
+	.replace(/==([^=\n]+)==/g, '<mark>$1</mark>')
+	.replace(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
 
 	// EMOJIS
-	.replace(/(\B|\s+):([\x21-\x39\x3B-\uFFFF]+):(\B)/g, function(input){
+	.replace(/(\B|\s+):([^:\s]+):(\B)/g, function(input){
 
 		input = input.split(':')
 
@@ -148,11 +150,11 @@ String.prototype.toMarkdown = function(){
 	})
 
 	// IMG
-	.replace(/\!\[([\x20-\x5A\x5C\x5E-\uFFFF]+)?\]\(([\x20-\x27\x2A-\uFFFF]+)(\s"[\w\d\s].+")?\)/g, '<img src="$2" alt="$1" title="$3">')
+	.replace(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, '<img src="$2" alt="$1" title="$3">')
 
 	// A
 	.replace(
-		/\[([\x20-\x5A\x5C\x5E-\uFFFF]+)\]\(([\x21-\x27\x2A-\uFFFF]+)(\x20"[\w\d\s]+")?\)/g, function(input){
+		/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
 			
 		var display = input.match(/\[(.+)\]/)[1]
 		var href   =   ' href="' + input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '') + '"'
@@ -180,14 +182,14 @@ String.prototype.toMarkdown = function(){
 	.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 	// BR
-	.replace(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
-	.replace(/(\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
+	.replace(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
+	.replace(/(\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
 
 	// PRE
-	.replace(/```([\x09-\x5F\x61-\uFFFF]*)```/g, function(input){
+	.replace(/```([^`]*)```/g, function(input){
 
 		var display = input
-			.replace(/```(\w+)?\n([\x09-\x5F\x61-\uFFFF]*)```/, '$2').parseHTML()
+			.replace(/```(\w+)?\n([^`]*)```/, '$2').parseHTML()
 
 		function getLang(){
 			if(/```(\w+)\n/.test(input)){
@@ -200,13 +202,13 @@ String.prototype.toMarkdown = function(){
 	})
 
 	// CODE
-	.replace(/`([\x20-\x5F\x61-\uFFFF]+)`/g, function(input){
-		input = input.replace(/`([\x20-\x5F\x61-\uFFFF]+)`/, '$1').parseHTML()
+	.replace(/`([^\n`]+)`/g, function(input){
+		input = input.replace(/`([^\n`]+)`/, '$1').parseHTML()
 
 		return '<code>' + input + '</code>'
 	})
 	// SPAN
-	.replace(/\[([\w\d\-\x20]+)\]\[([\x20-\x57\x59\x6B-\uFFFF]+)\]/gim, '<span class="$1">$2</span>')
+	.replace(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
 }
 
 $('body').innerHTML = '\

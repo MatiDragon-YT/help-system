@@ -12,63 +12,63 @@
 :::right
 [h2][CLEO 3]
 :::light gray p-2
-What is CLEO 3? -------
+Qué es CLEO 3? -------
 :::
 :::
 
-CLEO 3 is the next step in the CLEO project development that extends coding possibilities in San Andreas. After installing CLEO 3, you get everything that CLEO 2 can, plus some new features.
+CLEO 3 es el siguiente paso en el desarrollo del proyecto CLEO que amplia las posibilidades de codificacion en San Andreas. Despues de instalar CLEO 3, obtienes todo lo que CLEO 2 puede, mas algunas caracteristicas nuevas.
 
-1. [New opcodes](opcodes.md).<br>CLEO 3 has 40 useful opcodes in store, such as file management, game memory handling, ability to call exe functions and much more. The third version [adds such opcodes](opcodes.md) as a call of a SCM function, creating a thread or starting a mission from an external file and more.
-2. [Plugins](#plugins).<br>Read more about them below.
-3. [Custom scripts](scripts.md).<br>CLEO 3 allows adding the custom scripts to the game written in Sanny Builder without need for starting of a new game. All you need is to write a script, place it in the CLEO folder and run the game (new or saved). 
+1. [Nuevos opcodes](opcodes.md).<br>CLEO 3 tiene 40 opcodes útiles almacenados, como administración de archivos, manejo de memoria de juegos, capacidad para llamar a funciones exe y mucho más. La tercera versión [agrega tales opcodes](opcodes.md) como una llamada de una función SCM, creando un hilo o iniciando una misión desde un archivo externo y más.
+2. [Plugins](#plugins "(complementos)").<br>Lea más acerca de ellos a continuación.
+3. [Scripts personalizados](scripts.md "(guiones)").<br>CLEO 3 permite agregar los scripts personalizados al juego escritos en Sanny Builder sin necesidad de iniciar un nuevo juego. Todo lo que necesita es escribir un script, colocarlo en la carpeta CLEO y ejecutar el juego (nuevo o guardado).
 
 :::right light gray p-2
-What game versions are supported? -------
+¿Qué versiones de juegos son compatibles? -------
 :::
 
-CLEO 3 supports SA versions 1.0 and 1.01. It was tested with the US 1.0 and EUR 1.01 versions. If you have another version, please, let me know if CLEO 3 works or does not for you.
+CLEO 3 es compatible con las versiones 1.0 y 1.01 de SA. Se probó con las versiones US 1.0 y EUR 1.01. Si tiene otra versión, hágame saber si CLEO 3 funciona o no para usted.
 
 :::right light gray p-2
-How to install CLEO 3? -------
+¿Cómo instalar CLEO 3? -------
 :::
 
-To install CLEO 3 run Sanny Builder 3. You will see word CLEO in the status bar outlined in red. Click it, read the license agreement and press the button ‘Install’.
-Physically, CLEO 3 uses 3 files in work: vorbisFile.dll, vorbishooked.dll, cleo.asi. You always can find latest versions of these files on the website [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
+Para instalar CLEO 3, ejecute Sanny Builder 3. Verá la palabra CLEO en la barra de estado resaltada en rojo. Haga clic en él, lea el acuerdo de licencia y presione el botón 'Instalar'.
+Físicamente, CLEO 3 usa 3 archivos en el trabajo: vorbisFile.dll, vorbishooked.dll, cleo.asi. Siempre puede encontrar las últimas versiones de estos archivos en el sitio web [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
 
-If you used CLEO 2 or CLEO 1, delete it manually to avoid conflicts with new version. If you used the cleo.asi of version 2, replace it with the new one. If you used the cleo.dll running from the main.scm, you must delete the cleo.dll and remove its loading code from the main.scm.
+Si usó CLEO 2 o CLEO 1, elimínelo manualmente para evitar conflictos con la nueva versión. Si usó el cleo.asi de la versión 2, reemplácelo con el nuevo. Si usó cleo.dll ejecutándose desde main.scm, debe eliminar cleo.dll y eliminar su código de carga de main.scm.
 
-The libraries CLEO 2 and CLEO 3 are fully compatible. All mods/plugins written for CLEO 2 should work with the new version.
+Las librerias CLEO 2 y CLEO 3 son totalmente compatibles. Todas los mods/plugins escritos para CLEO 2 deberían funcionar con la nueva versión.
 
 :::right light gray p-2
-Should I change my SASCM.INI? -------
+¿Debo cambiar mi SASCM.INI? -------
 :::
 
-Sanny Builder 3 has the files SASCM.INI and OPCODES.TXT already up to date. Future updates of the CLEO library may require some changes of these files. You will get all instructions along with the updates on [cleo.sannybuilder.com](http://cleo.sannybuilder.com/). 
+Sanny Builder 3 tiene los archivos SASCM.INI y OPCODES.TXT ya actualizados. Las actualizaciones futuras de la biblioteca CLEO pueden requerir algunos cambios de estos archivos. Recibirá todas las instrucciones junto con las actualizaciones en [cleo.sannybuilder.com](http://cleo.sannybuilder.com/). 
 
 :::right light gray p-2
-What about plugins? ------- <a id="plugins"></a>
+¿Qué pasa con los plugins? ------- [plugins][]
 :::
 
-The plugins are the DLL files having an extension .CLEO. At startup, the CLEO library scans the folder GTASA\CLEO for the files with that extension and tries to load them. If successful, the plugin begins to work and complete the functions it was made for.
+Los plugins son los archivos DLL con extensión .CLEO. Al inicio, la biblioteca CLEO busca en la carpeta GTASA\CLEO los archivos con esa extensión e intenta cargarlos. Si tiene éxito, el plugin comienza a funcionar y completa las funciones para las que fue creado.
 
-The plugin installation is very simple: just copy the plugin file to the folder GTASA\CLEO. TO cancel the plugin usage, delete proper file.
+La instalación del plugin es muy simple: simplemente copie el archivo del plugin en la carpeta GTASA\CLEO. PARA cancelar el uso del plugin, elimine el archivo adecuado.
 
-You may find the list of available plugins on [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
+Puede encontrar la lista de plugins disponibles en [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
 
 :::right light gray p-2
-Is CLEO 3 redistributable? -------
+¿CLEO 3 es redistribuible? -------
 :::
 
-If you wrote a script using the CLEO library and (or) its plugins, you may distribute needed files along with that script. You also may direct the script users on [cleo.sannybuilder.com](http://cleo.sannybuilder.com/) to inform them how to use CLEO.
+Si escribió un script utilizando la biblioteca CLEO y (o) sus complementos, puede distribuir los archivos necesarios junto con ese script. También puede dirigir a los usuarios del script en [cleo.sannybuilder.com](http://cleo.sannybuilder.com/) para informarles cómo usar CLEO.
 
 :::right light gray p-2
-Credits? -------
+¿Créditos? -------
 :::
 
-The author of the CLEO library is [Seemann](http://www.gtaforums.com/index.php?showuser=49411). The author has no liability for any negative consequences caused by using this product. Use it at your own risk.
+El autor de la biblioteca CLEO es [Seemann](http://www.gtaforums.com/index.php?showuser=49411). El autor no se hace responsable de las consecuencias negativas causadas por el uso de este producto. Úselo bajo su propio riesgo.
 
-If you want to help in developing of the library or its plugins, contact me by forum or e-mail.
+Si desea ayudar en el desarrollo de la biblioteca o sus complementos, contácteme por foro o correo electrónico.
 
-Also thanks to [Stanislav Golovin (aka listener)](http://www.gtaforums.com/index.php?showuser=236130) for his support and useful information.
+También gracias a [Stanislav Golovin](http://www.gtaforums.com/index.php?showuser=236130 "(aka listener)") por su apoyo e información útil.
 
-<script src="../../js/main.min.js"></script>
+<script src="../../js/main.js"></script>

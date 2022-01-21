@@ -71,130 +71,131 @@ CLEO 2 Opcodes
 ```sb3
 0A8C: write_memory 0xC0BC15 size 1 value 1 virtual_protect 0
 ```
-<span id=0A8C>0A8C</span> writes a value to the game memory.
+[0A8C][]**0A8C** writes a value to the game memory.
 
 **Parameters:**
-- 1 – memory address (any integer value) 
-- 2 – number of bytes to write: 1, 2 or 4 bytes
-- 3 – value to write (any number)
-- 4 – Virtual Protect: use 1 to write to the read-only address, 0 – if the address is rewritable.
+1. memory address (any integer value) 
+2. number of bytes to write: 1, 2 or 4 bytes
+3. value to write (any number)
+4. Virtual Protect: use 1 to write to the read-only address, 0 – if the address is rewritable.
 
 ---
 
 ```sb3
 0A8D: $result = read_memory 1@ size 4 virtual_protect 0
 ```
-<span id=0A8D>0A8D</span> reads the game memory and stores the result to a variable.
+[0A8D][]**0A8D** reads the game memory and stores the result to a variable.
 
 **Parameters:**
-- 1 – variable to store read result (any variable or array item)
-- 2 – memory addressа to read (any integer value)
-- 3 – number of bytes to read: 1, 2 or 4 bytes
-- 4 – Virtual Protect: use 1 if the address is unreadable, 0 – if address is readable.
+1. variable to store read result (any variable or array item)
+2. memory addressа to read (any integer value)
+3. number of bytes to read: 1, 2 or 4 bytes
+4. Virtual Protect: use 1 if the address is unreadable, 0 – if address is readable.
 
 ---
 
 ```sb3
 0A8E: 4@ = 5@ + 6@ // int 
 ```
-<span id=0A8E>0A8E</span> sums up two values and stores the result to a variable.
+[0A8E][]**0A8E** sums up two values and stores the result to a variable.
 
 **Parameters:**
-- 1 – variable to store sum (any variable or array item)
-- 2 – first item (any integer value)
-- 3 – second item (any integer value)
+1. variable to store sum (any variable or array item)
+2. first item (any integer value)
+3. second item (any integer value)
 
 ---
 
 ```sb3
 0A8F: $var = 0@(1@,2i) - 1 // int 
 ```
-<span id=0A8F>0A8F</span> subtracts one integer value from another and stores the result to a variable.
+[0A8F][]**0A8F** subtracts one integer value from another and stores the result to a variable.
 
 **Parameters:**
-- 1 – variable to store difference (any variable or array item)
-- 2 – minuend (any integer value)
-- 3 – subtrahend (any integer value)
+1. variable to store difference (any variable or array item)
+2. minuend (any integer value)
+3. subtrahend (any integer value)
 
 ---
 
 ```sb3
 0A90: $var(0@,10i) = 100 * 1@ // int 
 ```
-<span id=0A90>0A90</span> multiplies one integer number by another and stores the result to a variable.
+[0A90][]**0A90** multiplies one integer number by another and stores the result to a variable.
 
 **Parameters:**
-- 1 – variable to store product (any variable or array item)
-- 2 – multiplier (any integer value)
-- 3 – multiplier (any integer value)
+1. variable to store product (any variable or array item)
+2. multiplier (any integer value)
+3. multiplier (any integer value)
 
 ---
 
 ```sb3
 0A91: $div = 1 / 5 // int
 ```
-<span id=0A91>0A91</span> divides one integer number by another and stores the result to a variable without the remainder.
+[0A91][]**0A91** divides one integer number by another and stores the result to a variable without the remainder.
 
 **Parameters:**
-- 1 – variable to store result (any variable or array item)
-- 2 – dividend (any integer value)
-- 3 – divisor (any integer value)
+1. variable to store result (any variable or array item)
+2. dividend (any integer value)
+3. divisor (any integer value)
 
 ---
 
 ```sb3
 0A96: $ActorStruct = actor $PLAYER_ACTOR struct
 ```
-<span id=0A96>0A96</span> stores the pointer to the actor’s structure in the game memory. The structure is a set of different values such as health, coords, etc. Knowing the struct address it’s possible to read/rewrite these values using 0A8D/0A8C.
+[0A96][]**0A96** stores the pointer to the actor’s structure in the game memory. The structure is a set of different values such as health, coords, etc. Knowing the struct address it’s possible to read/rewrite these values using 0A8D/0A8C.
 
 **Parameters:**
-- 1 – variable to store the struct address 
-- 2 – actor handle obtained by the constructor opcode (009A and similar) 
+1. variable to store the struct address 
+2. actor handle obtained by the constructor opcode (009A and similar) 
 
 ---
 
 ```sb3
 0A97: $CarStruct = car $MyCar struct
 ```
-<span id=0A97>0A97</span> stores the pointer to the vehicle’s structure in the game memory.
+[0A97][]**0A97** stores the pointer to the vehicle’s structure in the game memory.
 
 **Parameters:**
-- 1 – variable to store the struct address 
-- 2 – vehicle handle obtained by the constructor opcode (00A5 and similar)
+1. variable to store the struct address 
+2. vehicle handle obtained by the constructor opcode (00A5 and similar)
 
 ---
 
 ```sb3
 0A98: $ObjectStruct = object 0@ struct
 ```
-<span id=0A98>0A98</span> stores the pointer to the object’s structure in the game memory.
+[0A98][]**0A98** stores the pointer to the object’s structure in the game memory.
 
 **Parameters:**
-- 1 – variable to store the struct address 
-- 2 – object handle obtained by the constructor opcode (0107 and similar)
+1. variable to store the struct address 
+2. object handle obtained by the constructor opcode (0107 and similar)
 
 ---
 
 ```sb3
 0A99: chdir 0
 ```
-<span id=0A99>0A99</span> sets the current directory making it default.
+[0A99][]**0A99** sets the current directory making it default.
 
 Parameter:
-- 0 – the game root folder becomes the default directory
-- 1 – the user files folder becomes the default directory
+1. folder
+  - `0`: the game root folder becomes the default directory
+  - `1`: the user files folder becomes the default directory
 
 ---
 
 ```sb3
 0A9A: $hFILE = openfile "settings.ini" mode 0x72  // IF and SET
 ```
-<span id=0A9A>0A9A</span> opens the file for reading and writing. This opcode can be used as a condition: if the file is was not open, it returns False, otherwise True.
+[0A9A][]**0A9A** opens the file for reading and writing. This opcode can be used as a condition: if the file is was not open, it returns False, otherwise True.
 
 **Parameters:**
-- 1 – variable to store the file handle
-- 2 – file name. If the path is relative, the file is open in accordance with the current directory ([opcode 0A99](../editor/options/formats.md)).
-- 3 – file open mode: 
+1. variable to store the file handle
+2. file name. If the path is relative, the file is open in accordance with the current directory ([opcode 0A99](../editor/options/formats.md)).
+3. file open mode: 
   - `0x6272` – opens binary file for reading
   - `0x72` – opens text file for reading
   - `0x6277` – opens binary file for writing
@@ -205,7 +206,7 @@ Parameter:
 ```sb3
 0A9B: closefile $hFILE
 ```
-<span id=0A9B>0A9B</span> closes the file and frees the memory.
+[0A9B][]**0A9B** closes the file and frees the memory.
 
 Parameter: a handle to the file 
 
@@ -214,49 +215,49 @@ Parameter: a handle to the file
 ```sb3
 0A9C: 0@ = file $hFILE size 
 ```
-<span id=0A9C>0A9C</span> stores the file size in bytes to a variable.
+[0A9C][]**0A9C** stores the file size in bytes to a variable.
 
 **Parameters:**
-- 1 – variable to store the result
-- 2 – file handle
+1. variable to store the result
+2. file handle
 
 ---
 
 ```sb3
 0A9D: readfile $hFILE size 2 to $150
 ```
-<span id=0A9D>0A9D</span> reads the specified number of bytes from the opened file and writes them to the memory region starting from the address where the variable is.
+[0A9D][]**0A9D** reads the specified number of bytes from the opened file and writes them to the memory region starting from the address where the variable is.
 
 **Parameters:**
-- 1 – file handle
-- 2 – number of bytes to read from the file 
-- 3 – variable to store the result. If the number of delivered bytes is more than four, the remainder will be written to the next variable ($151 in this case), and so on.
+1. file handle
+2. number of bytes to read from the file 
+3. variable to store the result. If the number of delivered bytes is more than four, the remainder will be written to the next variable ($151 in this case), and so on.
 
 ---
 
 ```sb3
 0A9E: writefile $hFILE size 128 from 0@
 ```
-<span id=0A9E>0A9E</span> copies data starting from the address, where the variable (last parameter) is, to the file.
+[0A9E][]**0A9E** copies data starting from the address, where the variable (last parameter) is, to the file.
 
 **Parameters:**
-- 1 – file handle 
-- 2 – number of bytes to copy 
-- 3 – variable indicated the starting position of writing data. If the data size is more than 4 bytes, next variable’s value will be read and written to the file. In this example, the file will keep the dump of all local variables of a thread (32 variables with 4 bytes in length for each = 128 bytes to copy).
+1. file handle 
+2. number of bytes to copy 
+3. variable indicated the starting position of writing data. If the data size is more than 4 bytes, next variable’s value will be read and written to the file. In this example, the file will keep the dump of all local variables of a thread (32 variables with 4 bytes in length for each = 128 bytes to copy).
 
 ---
 
 ```sb3
 0A9F: 0@ = current_thread_pointer
 ```
-<span id=0A9F>0A9F</span> stores the current thread pointer to a variable. Knowing this pointer it’s possible to work directly with any thread fields such as thread name, its local variables, base IP, etc.
+[0A9F][]**0A9F** stores the current thread pointer to a variable. Knowing this pointer it’s possible to work directly with any thread fields such as thread name, its local variables, base IP, etc.
 
 ---
 
 ```sb3
 0AA0: gosub_if_false @CREATE_NEW_ACTOR
 ```
-<span id=0AA0>0AA0</span> executes a gosub command if the condition result is false. Except this difference, this opcode is the same as 004D: jump_if_false and can be used instead of it.
+[0AA0][]**0AA0** executes a gosub command if the condition result is false. Except this difference, this opcode is the same as 004D: jump_if_false and can be used instead of it.
 
 Parameter: label where the thread is transfered
 
@@ -265,25 +266,25 @@ Parameter: label where the thread is transfered
 ```sb3
 0AA1: return_if_false
 ```
-<span id=0AA1>0AA1</span> executes a return if the condition result is false. This one is similar to the 004D and can be used instead of.
+[0AA1][]**0AA1** executes a return if the condition result is false. This one is similar to the 004D and can be used instead of.
 
 ---
 
 ```sb3
 0AA2: $hLIB = load_library "CLEO\version.dll" // IF and SET
 ```
-<span id=0AA2>0AA2</span> loads a DLL library and stores the handle to it to a varaible. This opcode can be used as a condition: if the library does not loaded, it returns False, otherwise it’s True.
+[0AA2][]**0AA2** loads a DLL library and stores the handle to it to a varaible. This opcode can be used as a condition: if the library does not loaded, it returns False, otherwise it’s True.
 
 **Parameters:**
-- 1 – variable to store the handle to a library (any variable or array item)
-- 2 – a library name. If the path is relative (without specifying of a disk name), the DLL file is searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)). If the file extension is not specified, the default extension will be used (.DLL).
+1. variable to store the handle to a library (any variable or array item)
+2. a library name. If the path is relative (without specifying of a disk name), the DLL file is searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)). If the file extension is not specified, the default extension will be used (.DLL).
 
 ---
 
 ```sb3
 0AA3: free_library $hLIB
 ```
-<span id=0AA3>0AA3</span> unloads the library and frees the memory.
+[0AA3][]**0AA3** unloads the library and frees the memory.
 
 Parameter: handle to the library
 
@@ -292,62 +293,62 @@ Parameter: handle to the library
 ```sb3
 0AA4: $hPROC = get_proc_address "GetVersion" library $hLIB // IF and SET
 ```
-<span id=0AA4>0AA4</span> returns the address of the specified exported DLL function. This address can be used in the opcodes of the call type. This opcode can be used as a condition: if the function is not found it return False, otherwise it’s True.
+[0AA4][]**0AA4** returns the address of the specified exported DLL function. This address can be used in the opcodes of the call type. This opcode can be used as a condition: if the function is not found it return False, otherwise it’s True.
 
 **Parameters:**
-- 1 – variable to store the function address.
-- 2 – function name (a string or a string variable). Pay attention that the get_proc_address is sensitive to the letter case.  If the function is exported having the name GetVersion, it means that, for example, get_proc_address “getversion” will not find such a function. You must specify exact name. Also remember that Sanny Builder compiles all strings in uppercase by default. It means that this example will be compiled as “GETVERSION”, so the function GetVersion won’t be found again. To avoid that, [select the "As is" letter case](../editor/options/formats.md) in the program options.
-- 3 – loaded library handle (0AA2)
+1. variable to store the function address.
+2. function name (a string or a string variable). Pay attention that the get_proc_address is sensitive to the letter case.  If the function is exported having the name GetVersion, it means that, for example, get_proc_address “getversion” will not find such a function. You must specify exact name. Also remember that Sanny Builder compiles all strings in uppercase by default. It means that this example will be compiled as “GETVERSION”, so the function GetVersion won’t be found again. To avoid that, [select the "As is" letter case](../editor/options/formats.md) in the program options.
+3. loaded library handle (0AA2)
 
 ---
 
 ```sb3
 0AA5: call $hPROC num_params 1 pop 1 $param
 ```
-<span id=0AA5>0AA5</span> and similar opcodes have variable number of parameters. This opcode has at least 3 parameters, and also additional ones (passed to the called proc), number and values of which depend on the called procedure. Total number of additional parameters must equal to the parameter num_params. Each passed parameter must be numerical (constant or variable fit), but not string.
+[0AA5][]**0AA5** and similar opcodes have variable number of parameters. This opcode has at least 3 parameters, and also additional ones (passed to the called proc), number and values of which depend on the called procedure. Total number of additional parameters must equal to the parameter num_params. Each passed parameter must be numerical (constant or variable fit), but not string.
 
 **Parameters:**
-- 1 – address of called proc. It may be the address inside the gta_sa.exe or inside a loaded dll.
-- 2 – number of parameters to pass to the proc.
-- 3 – number of parameters that must be removed from the stack after the proc execution. This value has to be within an interval from zero to num_params. The exact value depends on the calling convention of the procedure. Usually, the exe procedures do not clean the stack themselves, so the pop parameter mostly equals to the num_params (all passed parameters are removed from the stack after the proc execution).
+1. address of called proc. It may be the address inside the gta_sa.exe or inside a loaded dll.
+2. number of parameters to pass to the proc.
+3. number of parameters that must be removed from the stack after the proc execution. This value has to be within an interval from zero to num_params. The exact value depends on the calling convention of the procedure. Usually, the exe procedures do not clean the stack themselves, so the pop parameter mostly equals to the num_params (all passed parameters are removed from the stack after the proc execution).
 
 ---
 
 ```sb3
 0AA6: call_method $Destroy struct $CarStruct params 0 pop 0
 ```
-<span id=0AA6>0AA6</span> calls the proc for the class. Each class has a set of procedures called methods to operate with the class data (like SB classes for reference). We call the Destroy method of the CVehicle class in this example. With a proviso it’s possible to say that this example is the same as the Car.Destroy() command.
+[0AA6][]**0AA6** calls the proc for the class. Each class has a set of procedures called methods to operate with the class data (like SB classes for reference). We call the Destroy method of the CVehicle class in this example. With a proviso it’s possible to say that this example is the same as the Car.Destroy() command.
 
 **Parameters:**
-- 1 – address of called proc. It may be the address inside the gta_sa.exe or inside a loaded dll.
-- 2 – pointer to the class structure (can be obtained by the opcodes 0A96 - 0A98).
-- 3 – number of parameters to pass 
-- 4 – number of parameters to be removed from the stack after the method execution. Commonly, the methods clean the stack themselves, so the pop parameter must equal to 0.
+1. address of called proc. It may be the address inside the gta_sa.exe or inside a loaded dll.
+2. pointer to the class structure (can be obtained by the opcodes 0A96 - 0A98).
+3. number of parameters to pass 
+4. number of parameters to be removed from the stack after the method execution. Commonly, the methods clean the stack themselves, so the pop parameter must equal to 0.
 
 ---
 
 ```sb3
 0AA7: call_function 0x569660 num_params 2 pop 2  $COORD_X $COORD_Y $GROUND
 ```
-<span id=0AA7>0AA7</span> work similar to the 0AA5 except that additionally there is a variable to keep the result of called function. It means that the last parameter here is always a variable. Thus the num_params does not include this one. We call the function at address 0x569660 and pass two parameters X and Y to it in this example. The function result will be stored to the $GROUND.
+[0AA7][]**0AA7** work similar to the 0AA5 except that additionally there is a variable to keep the result of called function. It means that the last parameter here is always a variable. Thus the num_params does not include this one. We call the function at address 0x569660 and pass two parameters X and Y to it in this example. The function result will be stored to the $GROUND.
 
 **Parameters:**
-- 1 – address of called function. It may be the address inside the gta_sa.exe or inside a loaded dll.
-- 2 – number of parameters to pass to the function
-- 3 – number of parameters that must be removed from the stack after the function execution. See the 0AA5 for explanation.
+1. address of called function. It may be the address inside the gta_sa.exe or inside a loaded dll.
+2. number of parameters to pass to the function
+3. number of parameters that must be removed from the stack after the function execution. See the 0AA5 for explanation.
 
 ---
 
 ```sb3
 0AA8: call_function_method 0x4048E0 struct 0xB74494  num_params 1 pop 0 $MyCar 0@
 ```
-<span id=0AA8>0AA8</span> calls a function from the class and stores the result to a variable which is always the last parameter. The principle of operation is similar to the opcodes 0AA6 and 0AA7. We call the function at address 0x4048E0 and pass the vehicle handle as a parameter to it in this example. Struct 0xB74494 is a collection of all in-game vehicles. 0x4048E0 is a function that converts the vehicle handle to its struct pointer (analogue of opcode 0A97). This pointer will be stored to the variable 0@.
+[0AA8][]**0AA8** calls a function from the class and stores the result to a variable which is always the last parameter. The principle of operation is similar to the opcodes 0AA6 and 0AA7. We call the function at address 0x4048E0 and pass the vehicle handle as a parameter to it in this example. Struct 0xB74494 is a collection of all in-game vehicles. 0x4048E0 is a function that converts the vehicle handle to its struct pointer (analogue of opcode 0A97). This pointer will be stored to the variable 0@.
 
 **Parameters:**
-- 1 – address of called function. It may be the address inside the gta_sa.exe or inside a loaded dll.
-- 2 – pointer to the class structure (can be obtained by the opcodes 0A96 - 0A98).
-- 3 – number of parameters to pass
-- 4 – number of parameters to be removed from the stack after the method execution. Commonly, the methods clean the stack themselves, so the pop parameter must equal to 0.
+1. address of called function. It may be the address inside the gta_sa.exe or inside a loaded dll.
+2. pointer to the class structure (can be obtained by the opcodes 0A96 - 0A98).
+3. number of parameters to pass
+4. number of parameters to be removed from the stack after the method execution. Commonly, the methods clean the stack themselves, so the pop parameter must equal to 0.
 
 ---
 
@@ -361,7 +362,7 @@ This opcode is used as a condition. If you work with the original SA version 1.0
 ```sb3
 0AAB:  file_exists "CLEO\version.dll"
 ```
-<span id=0AAB>0AAB</span> tests if a specified file exists. This check is a part of opcodes 0A9A and 0AA2, so there is no need to duplicate it for them.
+[0AAB][]**0AAB** tests if a specified file exists. This check is a part of opcodes 0A9A and 0AA2, so there is no need to duplicate it for them.
 
 Parameter: file name. If the path is relative (without specifying of a disk name), it’s searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)).
 
@@ -370,11 +371,11 @@ Parameter: file name. If the path is relative (without specifying of a disk name
 ```sb3
 0AAC: $hMP3 = load_mp3 "CLEO\playlist\01.mp3"
 ```
-<span id=0AAC>0AAC</span> loads a mp3 file and stores a handle to it to a variable.
+[0AAC][]**0AAC** loads a mp3 file and stores a handle to it to a variable.
 
 **Parameters:**
-- 1 – variable to store the mp3 handle
-- 2 – mp3 file name. If the path is relative (without specifying of a disk name), it’s searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)).
+1. variable to store the mp3 handle
+2. mp3 file name. If the path is relative (without specifying of a disk name), it’s searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)).
 
 ---
 
@@ -384,8 +385,8 @@ Parameter: file name. If the path is relative (without specifying of a disk name
 This opcode performs the pre-defined action with the loaded mp3.
 
 **Parameters:**
-- 1 – mp3 handle obtained by 0AAC 
-- 2 – a number to specify an action:
+1. mp3 handle obtained by 0AAC 
+2. a number to specify an action:
   - `0`: stop
   - `1`: play
   - `2`: pause
@@ -396,7 +397,7 @@ This opcode performs the pre-defined action with the loaded mp3.
 ```sb3
 0AAE: release_mp3 $hMP3
 ```
-<span id=0AAE>0AAE</span> releases the mp3 file and frees the memory.
+[0AAE][]**0AAE** releases the mp3 file and frees the memory.
 
 Parameter: mp3 handle obtained by 0AAC.
 
@@ -408,8 +409,8 @@ Parameter: mp3 handle obtained by 0AAC.
 This opcode stores the track length in seconds of the loaded mp3 to a variable.
 
 **Parameters:**
-- 1 – variable to store the result
-- 2 – mp3 handle 
+1. variable to store the result
+2. mp3 handle 
 
 ---
 
@@ -430,7 +431,7 @@ CLEO 3 Opcodes
 ```sb3
 0A92: create_custom_thread "ShowTextBox.s"
 ```
-<span id=0A92>0A92</span> creates a new thread from the file. If the file has an extension .cs the thread from it is created automatically at game startup. At creating a custom thread, you can pass up to 34 parameters to it, like in opcode 004F.
+[0A92][]**0A92** creates a new thread from the file. If the file has an extension .cs the thread from it is created automatically at game startup. At creating a custom thread, you can pass up to 34 parameters to it, like in opcode 004F.
 
 Parameter: file name. The name must be specified with an extension if it has one. The file is retrieved relatively of the directory ‘game\CLEO’ which is default path for any CLEO files.
 
@@ -439,7 +440,7 @@ Parameter: file name. The name must be specified with an extension if it has one
 ```sb3
 0A93: end_custom_thread
 ```
-<span id=0A93>0A93</span> ends the custom CLEO thread. This opcode must be used only in the CLEO threads (nor in CLEO-missions, nor in the main.scm). On the whole this opcode is an analogue of the 004E.
+[0A93][]**0A93** ends the custom CLEO thread. This opcode must be used only in the CLEO threads (nor in CLEO-missions, nor in the main.scm). On the whole this opcode is an analogue of the 004E.
 To stop a CLEO-mission, use opcode 004E.
 
 ---
@@ -447,7 +448,7 @@ To stop a CLEO-mission, use opcode 004E.
 ```sb3
 0A94: start_custom_mission "missions\CustomMission1"
 ```
-<span id=0A94>0A94</span> begins a CLEO mission from the specified file as the 0147 does. Look that the file extension is not needed to specify. In fact the opcode will search for the file with the extension .cm (Custom Mission). The mission starts from the file CLEO\missions\CustomMission1.cm in this example.
+[0A94][]**0A94** begins a CLEO mission from the specified file as the 0147 does. Look that the file extension is not needed to specify. In fact the opcode will search for the file with the extension .cm (Custom Mission). The mission starts from the file CLEO\missions\CustomMission1.cm in this example.
 
 Parameter: file name without an extension. The file is retrieved relatively of the directory ‘game\CLEO’.
 
@@ -456,7 +457,7 @@ Parameter: file name without an extension. The file is retrieved relatively of t
 ```sb3
 0A95: enable_thread_saving
 ```
-<span id=0A95>0A95</span> enables the saving flag for the current thread. By default the CLEO threads status are not saved, and they execute from the very beginning each time the game started. To save the thread status, its local variables and such, add this opcode to the script.
+[0A95][]**0A95** enables the saving flag for the current thread. By default the CLEO threads status are not saved, and they execute from the very beginning each time the game started. To save the thread status, its local variables and such, add this opcode to the script.
 
 ---
 
@@ -476,8 +477,8 @@ This opcode tests if a thread with given name is active. If so, opcode will stor
 ```
 This opcode calls a SCM function, passes the parameters to it and stores the result to a variable(s). The passed parameters values are copied to the local variables in series, then the thread execution is transferred to the label, it executes code there and returns after the opcode 0AB2.
 **Parameters:**
-- 1 – label (SCM function beginning)
-- 2 – number of parameters to pass
+1. label (SCM function beginning)
+2. number of parameters to pass
 
 Then there are the passed parameters, a number of 10 in our case. After that, there should be the variables to store the result of a SCM function ([see 0AB2](#0AB2)).
 
@@ -486,10 +487,10 @@ Then there are the passed parameters, a number of 10 in our case. After that, th
 ```sb3
 0AB2: ret 1 0@
 ```
-<span id=0AB2>0AB2</span> This opcode transfers the thread execution back to the 0AB1 opcode and stores the returned values in its variables. **Total number of returned values must equals to the number of variables storing the result in the 0AB1**. In this example the 0AB2 returns one value, which is the value of the variable `0@`, this value will be copied to the variable $result (see 0AB1 example). If the 0AB2 opcode does not return any values, it must have a `0` as the only parameter, and proper 0AB1 that calls such a function should have no variables to store.
+[0AB2][]**0AB2** This opcode transfers the thread execution back to the 0AB1 opcode and stores the returned values in its variables. **Total number of returned values must equals to the number of variables storing the result in the 0AB1**. In this example the 0AB2 returns one value, which is the value of the variable `0@`, this value will be copied to the variable $result (see 0AB1 example). If the 0AB2 opcode does not return any values, it must have a `0` as the only parameter, and proper 0AB1 that calls such a function should have no variables to store.
 
 **Parameters:**
-- 1 – number of values to return
+1. number of values to return
 After that there are the returned values.
 
 ---
@@ -518,23 +519,23 @@ Also pay attention that the local variables are stayed unchanged after the funct
 ```sb3
 0AB3: var 0 = 10
 ```
-<span id=0AB3>0AB3</span> sets a new value of the global CLEO variable. These variables can be used to data communication between CLEO threads, or between CLEO and the main.scm. The total number of such variables is 100. Their values are saved in the CLEO save.
+[0AB3][]**0AB3** sets a new value of the global CLEO variable. These variables can be used to data communication between CLEO threads, or between CLEO and the main.scm. The total number of such variables is 100. Their values are saved in the CLEO save.
 This variables can be used in the main.scm as alternative to the common global variables.
 
 **Parameters:**
-- 1 – global variable ID. Should be in a range of 0..999
-- 2 – new value for the variable. (any number).
+1. global variable ID. Should be in a range of 0..999
+2. new value for the variable. (any number).
 
 ---
 
 ```sb3
 0AB4: 0@ = var 0
 ```
-<span id=0AB4>0AB4</span> stores to a variable the value of the global CLEO variable. In this example, the 0@ will be equal to 10 (see 0AB3).
+[0AB4][]**0AB4** stores to a variable the value of the global CLEO variable. In this example, the 0@ will be equal to 10 (see 0AB3).
 
  **Parameters:** 
-- 1 – variable to store the global CLEO variable value
-- 2 – global CLEO variable ID. Should be in range of 0..999.
+1. variable to store the global CLEO variable value
+2. global CLEO variable ID. Should be in range of 0..999.
 
 ---
 
@@ -544,9 +545,9 @@ This variables can be used in the main.scm as alternative to the common global v
 This opcode stores to the variables handles of a vehicle and ped being closest to the actor. If there’s no any vehicle or ped close to him, the proper variable will contain value of -1.
 
 **Parameters:**
-- 1 – actor handle
-- 2 – variable to store a vehicle being closest to him
-- 3 – variable to store a ped being closest to him
+1. actor handle
+2. variable to store a vehicle being closest to him
+3. variable to store a ped being closest to him
 
 ---
 
@@ -566,8 +567,8 @@ This opcode stores to the variables coordinates of the place marked with red tar
 Opcode 0AB7 stores to a variable total number of gears for specified vehicle. This number equals to the parameter TransmissionData.nNumberOfGears in the file handling.cfg.
 
 **Parameters:**
-- 1 – a vehicle handle
-- 2 – variable to store number of gears
+1. a vehicle handle
+2. variable to store number of gears
 
 ---
 
@@ -577,8 +578,8 @@ Opcode 0AB7 stores to a variable total number of gears for specified vehicle. Th
 This opcode stores to a variable number of current gear for specified vehicle.
 
 **Parameters:**
-- 1 – a vehicle handle
-- 2 – variable to store current gear
+1. a vehicle handle
+2. variable to store current gear
 
 ---
 
@@ -588,8 +589,8 @@ This opcode stores to a variable number of current gear for specified vehicle.
 This opcode stores to a variable a state of a MP3 file.
 
 **Parameters:**
-- 1 – handle of a loaded mp3-file ([opcode 0AAC](#0AAC))
-- 2 – variable to store mp3 file state:
+1. handle of a loaded mp3-file ([opcode 0AAC](#0AAC))
+2. variable to store mp3 file state:
   - `1` – file is playing
   - `2` – file paused
   - `-1` – file is stopped
@@ -599,7 +600,7 @@ This opcode stores to a variable a state of a MP3 file.
 ```sb3
 0ABA: end_custom_thread_named 'BENZIN'
 ```
-<span id=0ABA>0ABA</span> ends a CLEO-thread with given name. A thread gets its name with the opcode 03A4. If the thread wasn't named with 03A4, the thread gets its name by first 7 letters of the file name. For example, the thread from the file test.cs will have name 'test.cs'; from the file myscript.cs - 'myscrip'. The opcode 0ABA immediately finishes the execution of a thread with given name. This opcode is the same as 0459, but is made for the CLEO scripts.
+[0ABA][]**0ABA** ends a CLEO-thread with given name. A thread gets its name with the opcode 03A4. If the thread wasn't named with 03A4, the thread gets its name by first 7 letters of the file name. For example, the thread from the file test.cs will have name 'test.cs'; from the file myscript.cs - 'myscrip'. The opcode 0ABA immediately finishes the execution of a thread with given name. This opcode is the same as 0459, but is made for the CLEO scripts.
 
 **Parameters:**
 - 1 - name of the thread to end.
@@ -609,7 +610,7 @@ This opcode stores to a variable a state of a MP3 file.
 ```sb3
 0ABD: vehicle 0@ siren_on
 ```
-<span id=0ABD>0ABD</span> checks if the siren of the vehicle `0@` is on. If so, the condition will be true.
+[0ABD][]**0ABD** checks if the siren of the vehicle `0@` is on. If so, the condition will be true.
 
 **Parameters:**
 - 1 - handle of the vehicle
@@ -619,7 +620,7 @@ This opcode stores to a variable a state of a MP3 file.
 ```sb3
 0ABE: vehicle 0@ engine_on
 ```
-<span id=0ABE>0ABE</span> checks if the engine of the vehicle `0@` is on. If so, the condition will be true.
+[0ABE][]**0ABE** checks if the engine of the vehicle `0@` is on. If so, the condition will be true.
 
 **Parameters:**
 - 1 - handle of the vehicle
@@ -629,7 +630,7 @@ This opcode stores to a variable a state of a MP3 file.
 ```sb3
 0ABF: set_vehicle 0@ engine_state_to 0
 ```
-<span id=0ABF>0ABF</span> enables or disables the vehicle's engine.
+[0ABF][]**0ABF** enables or disables the vehicle's engine.
 
 **Parameters:**
 - 1 - handle of the vehicle 
@@ -640,5 +641,5 @@ This opcode stores to a variable a state of a MP3 file.
 
 
 
-
+\[([0-9a-fA-F]{4})\]\[\]([0-9a-fA-F]{4})
 <script src="../../js/main.min.js"></script>

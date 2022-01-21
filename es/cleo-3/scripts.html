@@ -9,38 +9,38 @@
 </head>
 <body>
 
-CLEO 3 allows adding new scripts needlessly to start a new game. Strictly speaking, the main.scm state does not matter for these scripts as CLEO-scripts are run and functioned separately from it.
+CLEO 3 permite agregar nuevos scripts innecesariamente para comenzar un nuevo juego. Estrictamente hablando, el estado de main.scm no importa para estos scripts, ya que los scripts CLEO se ejecutan y funcionan por separado.
 
-What does it give? You can add new script at any stage of the game or delete existing one. Even so, you do not need to edit the main.scm, so the need of starting a new game, the saves incompatibility, script limits – all these problems disappear right away.
+¿Qué da? Puedes agregar un nuevo script en cualquier etapa del juego o eliminar uno existente. Aun así, no necesita editar main.scm, por lo que la necesidad de comenzar un nuevo juego, la incompatibilidad de guardados, los límites de scripts: todos estos problemas desaparecen de inmediato.
 
-The CLEO-script is an ordinary script written using the opcodes in Sanny Builder. Each script should be made as a single file with an extension .cs (Custom Script). The dominant requirement of writing such scripts is they must be compiled as the external scripts.
+El CLEO-script es un script ordinario escrito usando los opcodes en Sanny Builder. Cada script debe hacerse como un solo archivo con una extensión .cs (script personalizada). El requisito dominante para escribir dichos scripts es que deben compilarse como scripts externos.
 
-There are several ways of making of a CLEO-script being able to work correctly in the game. First: you add a new external script in the source file, compile it, and then extract that script from the file script.img. The extracted file will have the extension .scm, so you only need to change it on the .cs and copy to the folder ‘game\CLEO’.
+Hay varias formas de hacer que un CLEO-script funcione correctamente en el juego. Primero: agrega un nuevo script externo en el archivo fuente, lo compila y luego extrae ese script del archivo script.img. El archivo extraído tendrá la extensión .scm, por lo que solo necesita cambiarlo en .cs y copiarlo en la carpeta 'game\CLEO'.
 
-The second way is easier. Create a new file in Sanny Builder, write the [directive $E](..coding/directives.md#external) at the beginning of it, and compile. The compiled file will be the same as that one extracted from the script.img. You only need to change its extension on the .cs and copy to the ‘game\CLEO’.
+La segunda forma es más fácil. Cree un nuevo archivo en Sanny Builder, escriba la [directiva $E](../coding/directives.md#external) al principio y compílelo. El archivo compilado será el mismo que el extraído del script.img. Solo necesita cambiar su extensión en .cs y copiar en el 'juego\CLEO'.
 
-Finally, the easiest one. Create a new file in Sanny Builder, write the [directive $CLEO](..coding/directives.md#cleo) at the beginning of the file, and compile. The compiled file will be copied into the ‘game\CLEO’ directory and will have a file extension specified by the directive (.cs by default).
+Por último, el más fácil. Cree un nuevo archivo en Sanny Builder, escriba la [directiva $CLEO](../coding/directives.md#cleo) al principio del archivo y compile. El archivo compilado se copiará en el directorio 'game\CLEO' y tendrá una extensión de archivo especificada por la directiva (.cs por defecto).
 
-The CLEO-scripts could be used as missions. The compiling process is the same, but the output file must have the extension .cm (Custom Mission). To start this mission, use the [opcode 0A94](opcode.md#0A94).
+Los CLEO-scripts podrían usarse como misiones. El proceso de compilación es el mismo, pero el archivo de salida debe tener la extensión .cm (Custom Mission). Para iniciar esta misión, use el [opcode 0A94](opcodes.md#0A94).
 
-The rules you must follow using CLEO 3:
+Las reglas que debes seguir al utilizar CLEO 3:
 
-1. **One file - one thread**. Each CLEO-script must be made as a single thread compiled in a single file. If you need more threads for your script, use the opcodes 004F or [0A92](opcodes.md#0A92), depending of where is that additional thread located - in the main.scm or in a separate cs-file.
-2. **Never use the opcode 004E in the CLEO-threads**. They work separately from the common threads, so the using of this opcode will cause an error. Use the opcode 0A93, if you need to stop a CLEO-thread. Conversely, never use [the opcode 0A93](opcode.md#0A93) in the CLEO-missions, but instead use the 004E to cancel a mission.
-3. **Never use custom global variables in your CLEO-scripts ($car, $foo, $blahblah, etc)**, or your script will work incorrectly. You may use only a few global variables (read below).
+1. **Un archivo - un hilo**. Cada CLEO-script debe hacerse como un solo hilo compilado en un solo archivo. Si necesita más hilos para su script, use los opcodes 004F o [0A92](opcodes.md#0A92), dependiendo de dónde se encuentre ese subproceso adicional: en main.scm o en un archivo cs separado.
+2. **Nunca use el opcode 004E en los hilos CLEO**. Funcionan por separado de los hilos comunes, por lo que el uso de este opcode provocará un error. Use el opcode 0A93, si necesita detener un hilo CLEO. Por el contrario, nunca use [el opcode 0A93](opcodes.md#0A93) en las misiones CLEO, sino que use el 004E para cancelar una misión.
+3. **Nunca use variables globales personalizadas en sus CLEO-scripts ($car, $foo, $blahblah, etc.)**, o su script funcionará incorrectamente. Puede usar solo unas pocas variables globales (lea a continuación).
 
-To install the CLEO script it’s only necessary to copy the file with an extension .cs to the folder ‘game\CLEO’. The file name does not matter, but it uses at the thread initialization to name it. For example, the CLEO thread located in the file showsavescreen.cs has the name SHOWSAV.
+Para instalar el script CLEO solo es necesario copiar el archivo con extensión .cs a la carpeta ‘game\CLEO’. El nombre del archivo no importa, pero se utiliza en la inicialización del hilo para nombrarlo. Por ejemplo, el hilo CLEO que se encuentra en el archivo showsavescreen.cs tiene el nombre SHOWSAV.
 
-To remove the script, just delete the proper file from the CLEO directory.
+Para eliminar el script, simplemente elimine el archivo adecuado del directorio CLEO.
 
-The CLEO thread status may be saved and loaded along with the common threads. It does not saved by default. The saves themselves are located in the folder CLEO\cleo_saves. The is an own save for each save slot. The save file stores only the CLEO threads having the saving flag enabled ([0A95 opcode](opcode.md#0A95)). The save file stores not only the active threads, but also the ones being forced to end ([0A93 opcode](opcode.md#0A93)), to prevent their rerun at loading. If at the loading one of saved thread is not found, there is no error. If you add a new script that is not present in the current save file, it will be loaded along with the others and to work from the very beginning.
+El estado del hilo CLEO se puede guardar y cargar junto con los hilos comunes. No se guarda por defecto. Los archivos guardados se encuentran en la carpeta CLEO\cleo_saves. Es un guardado propio para cada ranura de guardado. El archivo guardado almacena solo los hilos CLEO que tienen el indicador de guardado habilitado ([opcode 0A95](opcodes.md#0A95)). El archivo guardado almacena no solo los hilos activos, sino también los que se ven obligados a finalizar ([opcode 0A93](opcodes.md#0A93)), para evitar que se vuelvan a ejecutar al cargar. Si al cargar uno de los hilos guardados no se encuentra, no hay error. Si agrega un nuevo script que no está presente en el archivo guardado actual, se cargará junto con los demás y funcionará desde el principio.
 
-The CLEO thread is the ordinary thread on the whole. It has 32 local variables and 2 timers incrementing constantly. You can pass up to 34 parameters at creation of that thread or a CLEO mission (by analogy with the opcode 004F).
+El hilo CLEO es el hilo ordinario en general. Tiene 32 variables locales y 2 temporizadores que se incrementan constantemente. Puede pasar hasta 34 parámetros en la creación de ese hilo o una misión CLEO (por analogía con el opcode 004F).
 
-An important thing concerns with data communication between a CLEO script and the main.scm. To use the SCM code, its variables, threads you have to compile the CLEO script as an external one (first way). But this method is not recommended, as such a script becomes very sensible to the any main.scm change. *Implicitly, a CLEO script should be sufficient for itself and use minimum of the SCM data*. However, you can freely use global variables names from the CustomVaribles.ini (for example, `$PLAYER_CHAR`, `$PLAYER_ACTOR`, `$ONMISSION`, etc).
-Also, for the data communicate between the main.scm and CLEO, or between the CLEO scripts you may use the CLEO variables (see opcodes 0AB3, 0AB4).
+Una cosa importante se refiere a la comunicación de datos entre un script CLEO y main.scm. Para usar el código SCM, sus variables, hilos, debe compilar el script CLEO como uno externo (primera forma). Pero no se recomienda este método, ya que dicho script se vuelve muy sensible a cualquier cambio de main.scm. *Implícitamente, un script CLEO debería ser suficiente por sí mismo y usar un mínimo de datos SCM*. Sin embargo, puede usar libremente nombres de variables globales de CustomVaribles.ini (por ejemplo, `$PLAYER_CHAR`, `$PLAYER_ACTOR`, `$ONMISSION`, etc.).
+Además, para la comunicación de datos entre main.scm y CLEO, o entre los scripts de CLEO, puede usar las variables CLEO (consulte los opcodes 0AB3, 0AB4).
 
-The CLEO complete set includes the examples of simple scripts with sources.
+El conjunto completo de CLEO incluye ejemplos de scripts simples con fuentes.
 
 
 <script src="../../js/main.min.js"></script>
