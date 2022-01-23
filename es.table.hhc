@@ -132,28 +132,28 @@
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Modos de edicion">
-			<param name="Local" value="es\editor\edit-modes\README.html">
+			<param name="Local" value="es\edit-modes\README.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="CustomLabels.ini">
-				<param name="Local" value="es\editor\edit-modes\customlabels.ini.html">
+				<param name="Local" value="es\edit-modes\customlabels.ini.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Code Templates">
-				<param name="Local" value="es\editor\edit-modes\code-templates.html">
+				<param name="Local" value="es\edit-modes\code-templates.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Enums.ini">
-				<param name="Local" value="es\editor\edit-modes\enums.txt.html">
+				<param name="Local" value="es\edit-modes\enums.txt.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Extensions">
-				<param name="Local" value="es\editor\edit-modes\extensions.html">
+				<param name="Local" value="es\edit-modes\extensions.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Opcodes List (SCM.INI)">
-				<param name="Local" value="es\editor\edit-modes\opcodes-list-scm.ini.html">
+				<param name="Local" value="es\edit-modes\opcodes-list-scm.ini.html">
 				</OBJECT>
 		</UL>
 	</UL>
