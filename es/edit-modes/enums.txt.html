@@ -9,27 +9,27 @@
 </head>
 <body>
 
-An **enumerated type** or **enum** is a finite set of constants (called _enum fields_) under a common prefix (_enum name_).
+Un **tipo enumerado** o **enum** es un conjunto finito de constantes (llamados _campos de enumeración_) bajo un prefijo común (_nombre de enumeración_).
 
-Enumerated types have a few advantages over ordinary constants. They don't pollute the global namespace and are the first-class citizens in the type system. Parameters with an enumerated type are limited on allowed values range which in turn helps to avoid errors caused by an invalid id usage.
+Los tipos enumerados tienen algunas ventajas sobre las constantes ordinarias. No contaminan el espacio de nombres global y son ciudadanos de primera clase en el sistema de tipos. Los parámetros con un tipo enumerado están limitados en el rango de valores permitidos, lo que a su vez ayuda a evitar errores causados por un uso de ID no válido.
 
-**Enums.txt** is a text file that defines a list of the enumerated types available in the [edit mode](./).
+**Enums.txt** es un archivo de texto que define una lista de los tipos enumerados disponibles en el [modo de edición](README.md).
 
-## File Format
+## Formato del archivo
 
-Each enumerated type is defined with the following syntax:
+Cada tipo enumerado se define con la siguiente sintaxis:
 ```
-enum &lt;enum name&gt;
-    &lt;enum fields&gt;
+enum &lt;nombre>
+    &lt;campos>
 end```
 
-`enum name` -  any combination of letters, digits and `_` \
-`enum fields` - one or many lines with the format:
+`nombre` -  cualquier combinación de letras, dígitos y `_` \
+`campos` - una o varias líneas con el formato:
 
-- `&lt;enum field name&gt; [= &lt;enum field value&gt;]`
-- where
-- `enum field name` - any combination of letters, digits and `_`
-- `enum field value` - a number or a [string literal](../coding/data-types.md#string-literals) enclosed in double quotes. if not present, the compiler assigns a [new value](enums.txt.md#enum-values) automatically.
+- `&lt;nombre del campo> [= &lt;enum field value>]`
+- donde
+- `nombre del campo` - cualquier combinación de letras, dígitos y `_`
+- `valor del campo` - un número o una [cadena literaria](../coding/data-types.md#string-literals) entre comillas dobles. si no está presente, el compilador asigna un [nuevo valor](enums.txt.md#enum-values) automáticamente.
 
 ```
 enum Town
@@ -39,7 +39,7 @@ enum Town
 end
 ```
 
-Enum fields can be separated with line breaks (see the example above) or with a comma:
+Los campos de enumeración se pueden separar con saltos de línea (consulte el ejemplo anterior) o con una coma:
 
 ```
 enum Town
@@ -47,15 +47,15 @@ enum Town
 end
 ```
 
-It is possible to define many enumerated types in one file. Each enum must have an unique name.
+Es posible definir muchos tipos enumerados en un archivo. Cada enumeración debe tener un nombre único.
 
-<div class="warning">
-No comments or any extra syntax are allowed in the enums file.
-</div>
+:::warning
+No se permiten comentarios ni ninguna sintaxis adicional en el archivo de enumeraciones.
+:::
 
-### Enum fields
+### Campos de Enumeración
 
-Each enum field gets a value either implicitly or explicitly. Explicit values are getting assigned when a combination of the equal sign and the value follows the field name. Sanny Builder allows integer numbers and string literals to be used as enum values:
+Cada campo de enumeración obtiene un valor implícita o explícitamente. Se asignan valores explícitos cuando una combinación del signo igual y el valor sigue al nombre del campo. Sanny Builder permite utilizar números enteros y cadenas literales como valores de enumeración:
 
 ```
 enum Town
@@ -65,7 +65,7 @@ enum Town
 end
 ```
 
-`Town.LS` is equal to `0`, `Town.SF` is equal to `1` and `Town.LV` is equal to `2`.
+`Town.LS` es igual a `0`, `Town.SF` es igual a `1` y `Town.LV` es igual a `2`.
 
 ```
 enum TicTacToe
@@ -74,9 +74,9 @@ enum TicTacToe
 end
 ```
 
-`TicTacToe.Player1` is equal to `X` and `TicTacToe.Player2` is equal to `O`.
+`TicTacToe.Player1` es igual a `X` y `TicTacToe.Player2` es igual a `O`.
 
-Implicit values are getting assigned automatically starting from `0` for the first field, `1` for the second field, `2` for the third and so on:
+Los valores implícitos se asignan automáticamente a partir de `0` para el primer campo, `1` para el segundo campo, `2` para el tercero y así sucesivamente:
 
 ```
 enum Town
@@ -86,11 +86,11 @@ enum Town
 end
 ```
 
-`Town.LS` is equal to `0`, `Town.SF` is equal to `1` and `Town.LV` is equal to `2`.
+`Town.LS` es igual a `0`, `Town.SF` es igual a `1` y `Town.LV` es igual a `2`.
 
-For a mix of implicit and explicit values the following rules take place:
+Para una combinación de valores implícitos y explícitos, se aplican las siguientes reglas:
 
-* a field following an explicit value gets assigned to that value incremented by `1`
+* un campo que sigue a un valor explícito se asigna a ese valor incrementado en `1`
 
 ```
 enum E
@@ -104,7 +104,7 @@ end
 
 `E.A` = `10`, `E.B` = `11`, `E.C` = `100`, `E.D` = `101`, `E.E` = `102`
 
-*  a field following an explicit string value gets its value after the field name:
+* un campo que sigue a un valor de cadena explícito obtiene su valor después del nombre del campo:
 
 ```
 enum Month
@@ -118,8 +118,8 @@ end
 `Month.Feb` = `"February`, \
 `Month.March` = `"March"`
 
-<div class="warning">
-An enum can't have a mix of both integer and string values.  The first explicit value takes control of what type of values this enum gets:
+:::warning
+Una enumeración no puede tener una combinación de valores enteros y de cadena. El primer valor explícito toma el control de qué tipo de valores obtiene esta enumeración:
 
 ```
 enum Int
@@ -130,6 +130,6 @@ enum String
   X, Y = "Y" // X = "X", Y = "Y"
 end
 ```
-</div>
+:::
 
 <script src="../../js/main.min.js"></script>

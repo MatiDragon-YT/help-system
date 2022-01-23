@@ -13,7 +13,7 @@
 Opcodes documentation can be found in [Sanny Builder Library](https://library.sannybuilder.com).
 {% endhint %}
 
-`SCM.INI` is the file containing information about opcodes used during disassembling and compiling script files. Sanny Builder ships a list of opcodes for each [edit mode](./#opcodes).
+`SCM.INI` is the file containing information about opcodes used during disassembling and compiling script files. Sanny Builder ships a list of opcodes for each [edit mode](README.md#opcodes).
 
 <table>
 <thead>
@@ -68,19 +68,19 @@ Lines starting with `;` are ignored.
 
 ### Metadata
 
-Special INI parameters provide metadata information about the opcodes list.
-
-`VERSION` – defines the version of this file. See the [$VERSION](../coding/directives.md#usdversion) directive\
-`PUBLISHER` – who authored this version \
-`DATE` – the update date. \
+Special INI parameters provide metadata information about the opcodes list.\
 \
+`VERSION` – defines the version of this file. See the [$VERSION](../coding/directives.md#usdversion) directive\
+`PUBLISHER` – who authored this version\
+`DATE` – the update date.
+
 The disassembler prints the metadata in the first line of the output file.
 
 ### Opcode Definition
 
-Each line has the following syntax:
-
-`xxxx=N, yyyy` \
+Each line has the following syntax:\
+\
+`xxxx=N, yyyy`\
 `XXXX` – the opcode number\
 `N` – the number of parameters\
 `yyyy` – the opcode description.
@@ -128,7 +128,7 @@ Changing parameters order in the INI file should be avoided by any means as it m
 {% endhint %}
 
 {% hint style="info" %}
-Parameters order may vary from mode to mode. See the comparison table in [Edit modes](./#available-modes) to find out which mode uses which type.
+Parameters order may vary from mode to mode. See the comparison table in [Edit modes](README.md#available-modes) to find out which mode uses which type.
 {% endhint %}
 
 #### Parameter Types
@@ -139,7 +139,7 @@ A letter following the index number indicates the parameter type.
 `p` - a [label](../coding/data-types.md#labels) reference\
 `o` - any [model](../coding/data-types.md#model-names) id (including objects)\
 `m` - an `.ide` model id (no objects)\
-`g` - a key from the [`.gxt`](./#text) file\
+`g` - a key from the [`.gxt`](README.md#text) file\
 `x` - an external script ID\
 `k` - a fixed-size null-terminated string literal (128 bytes)
 

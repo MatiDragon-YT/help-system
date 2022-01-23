@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Opcodes List (SCM.INI)</title>
+  <title>Lista de Opcodes (SCM.INI)</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,17 +10,17 @@
 <body>
 
 {% hint style="success" %}
-Opcodes documentation can be found in [Sanny Builder Library](https://library.sannybuilder.com).
+Puede encontrar una documentación de los opcodes en [Sanny Builder Library](https://library.sannybuilder.com).
 {% endhint %}
 
-`SCM.INI` is the file containing information about opcodes used during disassembling and compiling script files. Sanny Builder ships a list of opcodes for each [edit mode](./#opcodes).
+`SCM.INI` es el archivo que contiene información sobre los opcodes utilizados durante el desensamblado y la compilación de archivos de Scripts. Sanny Builder envía una lista de opcodes para cada [modo de edición](README.md#opcodes).
 
 <table>
 <thead>
 <tr>
-<th>Game</th>
-<th>File Name</th>
-<th>Location</th>
+<th>Juego</th>
+<th>Nombre del Archivo</th>
+<th>Localización</th>
 </tr>
 </thead>
 <tbody>
@@ -62,89 +62,88 @@ Opcodes documentation can be found in [Sanny Builder Library](https://library.sa
 </tbody>
 </table>
 
-## File Format
+## Formato del Archivo
 
-Lines starting with `;` are ignored.
+Las líneas que comienzan con `;` se ignoran.
 
-### Metadata
+### Metadatos
 
-Special INI parameters provide metadata information about the opcodes list.
-
-`VERSION` – defines the version of this file. See the [$VERSION](../coding/directives.md#usdversion) directive\
-`PUBLISHER` – who authored this version \
-`DATE` – the update date. \
+Los parámetros INI especiales proporcionan información de metadatos sobre la lista de opcodes.\
 \
-The disassembler prints the metadata in the first line of the output file.
+`VERSION` – define la versión de este archivo. Vea la directiva [$VERSION](../coding/directives.md#usdversion)\
+`PUBLISHER` – quién es el autor de esta versión\
+`DATE` – la fecha de actualización.
 
-### Opcode Definition
+El desensamblador imprime los metadatos en la primera línea del archivo de salida.
 
-Each line has the following syntax:
+### Definición del Opcode
 
+Cada línea tiene la siguiente sintaxis:\
+\
 `xxxx=N, yyyy` \
-`XXXX` – the opcode number\
-`N` – the number of parameters\
-`yyyy` – the opcode description.
+`XXXX` – el número de \
+`N` – la cantidad de parámetros\
+`yyyy` – la descripción del opcode.
 
-The opcode number and the number of parameters are final and can't be changed. The description is open to modifications.
+El número de opcode y el número de parámetros son definitivos y no se pueden cambiar. La descripción está abierta a modificaciones.
 
-If the INI file contains multiple definitions for the same opcode, the latter controls.
+Si el archivo INI contiene múltiples definiciones para el mismo opcode, este último controla.
 
-By convention a description for a conditional opcode starts with two spaces.
+Por convención, una descripción de un opcode condicional comienza con dos espacios.
 
-### Opcode Parameters
+### Parámetros del Opcode
 
-A parameter is a dynamic part of the opcode. They start and end with `%` 
+Un parámetro es una parte dinámica del opcode. Empiezan y terminan con `%`
 
 ```
 0001=1,wait %1d% ms
 ```
 
-This line is the definition of the opcode `0001`. When the disassembler finds `0001` in a script it prints the words`wait` and `ms` with the parameter value in-between to the output file.
+Esta línea es la definición del opcode `0001`. Cuando el desensamblador encuentra `0001` en un script, imprime las palabras `wait` y `ms` con el valor del parámetro en el medio del archivo de salida.
 
-A parameter consists of two parts: a `number` and a `type`.
+Un parámetro consta de dos partes: un 'número' y un 'tipo'.
 
-#### Parameters Order
+#### Orden de los Parámetros
 
-The number in parameter `%1d%` is its index. The idea is that some opcodes have their parameters rearranged to make source code more readable.
+El número en el parámetro `%1d%` es su índice. La idea es que algunos opcodes tengan sus parámetros reorganizados para hacer que el código fuente sea más legible.
 
 ```
 0053=5,%5d% = create_player %1o% at %2d% %3d% %4d%
 ```
 
-The disassembler writes the 5th opcode parameter before any others.
+El desensamblador escribe el quinto parámetro del opcode antes que cualquier otro.
 
 ```sb3
 0053: $PLAYER_CHAR = create_player #NULL at 2488.562 -1666.865 12.8757
 ```
 
-If the parameters will follow their original order, the opcode `0053` would look like:
+Si los parámetros siguen su orden original, el opcode `0053` se vería así:
 
 ```sb3
 0053: create_player #NULL at 2488.562 -1666.865 12.8757 $PLAYER_CHAR
 ```
 
 {% hint style="warning" %}
-Changing parameters order in the INI file should be avoided by any means as it makes the source code incompatible with the default opcode definitions or earlier scripts.
+Debe evitarse por todos los medios cambiar el orden de los parámetros en el archivo INI, ya que hace que el código fuente sea incompatible con las definiciones de opcode predeterminadas o scripts anteriores.
 {% endhint %}
 
 {% hint style="info" %}
-Parameters order may vary from mode to mode. See the comparison table in [Edit modes](./#available-modes) to find out which mode uses which type.
+El orden de los parámetros puede variar de un modo a otro. Consulte la tabla de comparación en [Editar modos](README.md#available-modes) para averiguar qué modo usa qué tipo.
 {% endhint %}
 
-#### Parameter Types
+#### Tipos de Parámetros
 
-A letter following the index number indicates the parameter type.
-
-`d` - any value\
-`p` - a [label](../coding/data-types.md#labels) reference\
-`o` - any [model](../coding/data-types.md#model-names) id (including objects)\
-`m` - an `.ide` model id (no objects)\
-`g` - a key from the [`.gxt`](./#text) file\
-`x` - an external script ID\
-`k` - a fixed-size null-terminated string literal (128 bytes)
+Una letra después del número de índice indica el tipo de parámetro.\
+\
+`d` - cualquier valor\
+`p` - referencia a una [etiqueta](../coding/data-types.md#etiquetas)\
+`o` - cualquier id de [modelo](../coding/data-types.md#nombres-de-modelos) (incluyendo objectos)\
+`m` - el id de un modelo en `.ide` (no objectos)\
+`g` - una clave del archivo [`.gxt`](README.md#text)\
+`x` - un ID de script externo\
+`k` - una cadena literaria de tamaño fijo con terminal nula (128 bytes)
 
 {% hint style="info" %}
-You can freely change parameters types, if needed.
-{% endhint %}
+Puede cambiar libremente los tipos de parámetros, si es necesario.{% endhint %}
 
 <script src="../../js/main.min.js"></script>

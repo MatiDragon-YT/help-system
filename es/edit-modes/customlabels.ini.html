@@ -9,14 +9,14 @@
 </head>
 <body>
 
-You can give labels custom names that do not depend on the disassembler [configuration](../editor/options/formats.md#label-name-format). Those names are defined in the file `CustomLabels.ini` (one for each [edit mode](./#labels)).
+Puede asignar nombres personalizados a las etiquetas que no dependan de la [configuración](../editor/options/formats.md#label-name-format) del desensamblador. Esos nombres están definidos en el archivo `CustomLabels.ini` (uno para cada [modo de edición](README.md#labels)).
 
-## File Syntax
+## Sintaxis del archivo
 
 `&lt;label offset>=&lt;custom name>`
 
-If the disassembler finds a label at the specified offset, this label gets the custom name.
+Si el desensamblador encuentra una etiqueta en el desplazamiento especificado, esta etiqueta obtiene el nombre personalizado.
 
-To find out offset values enable the `CODE_OFFSETS` debug [option](../editor/console.md#code_offsets). After disassembling, a number in front of the script instruction is the offset value.
+Para averiguar los valores de compensación, habilite la [opción](../editor/console.md#code_offsets) de depuración `CODE_OFFSETS`. Después de desensamblar, un número delante de la instrucción del script es el valor de compensación.
 
 <script src="../../js/main.min.js"></script>

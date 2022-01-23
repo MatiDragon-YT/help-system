@@ -94,6 +94,7 @@ String.prototype.toMarkdown = function(){
 	.replace(/\*([^\*\n]+)\*/g, '<i>$1</i>')
 	.replace(/~~([^~\n]+)~~/g, '<s>$1</s>')
 	.replace(/__([^_\n]+)__/g, '<u>$1</u>')
+	.replace(/\b_([^_\n]+)_\b/g, '<i>$1</i>')
 	.replace(/==([^=\n]+)==/g, '<mark>$1</mark>')
 	.replace(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
 

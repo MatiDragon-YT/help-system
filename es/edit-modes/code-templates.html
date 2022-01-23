@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Code Templates</title>
+  <title>Plantillas de código</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,9 +9,9 @@
 </head>
 <body>
 
-You can insert a predefined piece of code called a code template by typing the template name and pressing `F2`. To display the list of available templates, press `Ctrl+J`. 
+Puede insertar un fragmento de código predefinido llamado plantilla de código escribiendo el nombre de la plantilla y presionando `F2`. Para mostrar la lista de plantillas disponibles, presione `Ctrl+J`. 
 
-For example, if you type `for` and press `F2` the editor adds:
+Por ejemplo, si escribe `for` y presiona `F2`, el editor agrega:
 
 ```sb3
 for  =  to  // step 1
@@ -19,39 +19,39 @@ for  =  to  // step 1
 end // for
 ```
 
-## Types of Templates
+## Tipos de Plantillas
 
-There are two types of templates: _shared_ and _exclusive_. Shared templates are available across all [edit modes](README.md). They are contained in the file `data\templates.txt`. Exclusive templates are designed specifically for the current edit mode. A path to the exclusive template file can be customized with the [`template`](README.md/#templates) key in the `modes.xml`:
+Hay dos tipos de plantillas: *compartidas* y *exclusivas*. Las plantillas compartidas están disponibles en todos los [modos de edición](README.md). Estos están contenidos en el archivo `data\templates.txt`. Las plantillas exclusivas están diseñadas específicamente para el modo de edición actual. Se puede personalizar una ruta al archivo de plantilla exclusivo con la tecla [`template`](README.md/#templates) en `modes.xml`:
 
 ```
 &lt;templates type="default">@sb:\data\gta3\templates.txt&lt;/templates>
 ```
 
-The editor merges the content of shared and exclusive templates in a single list. Exclusive templates have priority over the shared with the same name.
+El editor fusiona el contenido de las plantillas exclusivas y compartidas en una sola lista. Las plantillas exclusivas tienen prioridad sobre las compartidas con el mismo nombre.
 
-## File Syntax
+## Sintaxis del Archivo
 
-Each template file has the following syntax:\
-A template name is written in a separate line. The equal sign `=` follows the name. After the equal sign you can also add a short hint. The template code starts at the next line, each line begins with the equals sign. The cursor position is marked with the `|` character.
+Cada archivo de plantilla tiene la siguiente sintaxis:\
+El nombre de una plantilla se escribe en una línea separada. El signo igual `=` sigue al nombre. Después del signo igual, también puede agregar una breve pista. El código de la plantilla comienza en la siguiente línea, cada línea comienza con el signo igual. La posición del cursor está marcada con el carácter `|`.
 
-## Adding a New Template
+## Añadir una Nueva Plantilla
 
-It's also possible to add a new template from the editor. Select the code and click the `Service->Add template` menu. 
+También es posible agregar una nueva plantilla desde el editor. Seleccione el código y haga clic secundario en el menú `Añadir nueva plantilla`.
 
 :::center
 ![](../../../img/assets/ide-add-template-en.png)
 :::
 
-Enter a name of the template, a description (optionally) in the dialog window, choose the type of the template, and press the `OK` button. The template is ready to use. 
+Ingrese un nombre de la plantilla, una descripción (opcional) en la ventana de diálogo, elija el tipo de plantilla y presione el botón `OK`. La plantilla está lista para usar.
 
-Custom templates are saved in either `data\templates.custom.txt` (_custom shared templates_) or in `data\&lt;edit mode>\templates.custom.txt`(_custom exclusive templates_). The latter can be customized in the [modes configuration](./#templates).
+Las plantillas personalizadas se guardan en `data\templates.custom.txt` (*plantillas personalizadas compartidas*) o en `data\&lt;modo de edición>\templates.custom.txt`(*plantillas exclusivas personalizadas*). Este último se puede personalizar en la [configuración de modos](README.md#templates).
 
 {% hint style="info" %}
-The option to save a template only for current mode becomes available if `modes.xml` has a file path defined in `&lt;template type="custom">`tag.
+La opción de guardar una plantilla solo para el modo actual está disponible si `modes.xml` tiene una ruta de archivo definida en la etiqueta `&lt;template type="custom">`.
 {% endhint %}
 
 {% hint style="info" %}
-A template with the name `CLEO` unlocks the "New CLEO Script..." item in the main menu. The editor uses this template as the content for a newly created file.
+Una plantilla con el nombre `CLEO` desbloquea el elemento "Nuevo CLEO Script..." en el menú principal. El editor utiliza esta plantilla como contenido para un archivo recién creado.
 {% endhint %}
 
 <script src="../../js/main.min.js"></script>

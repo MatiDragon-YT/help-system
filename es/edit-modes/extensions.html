@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Extensions</title>
+  <title>Extensiones</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,59 +9,58 @@
 </head>
 <body>
 
-An **extension** is a set of new instructions added to the vanilla game. The [CLEO library](https://cleo.li) and its plugins is the most known way of adding those.
+Una **extensión** es un conjunto de nuevas instrucciones añadidas al juego básico. La [librería CLEO](https://cleo.li) y sus complementos son la forma más conocida de agregarlos.
 
-To make Sanny Builder aware of the custom instructions and explicitly signal their intentional usage, a script must have `{$USE}` [directive](../coding/directives.md#usduse). The `{$USE}` directive enables a particular set of instructions (see below the [list of extensions](extensions.md#extensions-list)).
-
+Para que Sanny Builder conozca las instrucciones personalizadas y señale explícitamente su uso intencional, el script debe tener la [directiva](../coding/directives.md#$use) `{$USE}`. La directiva `{$USE}` habilita un conjunto particular de instrucciones (consulte a continuación la [lista de extensiones](extensions.md#extensions-list)).
 ```
 {$USE CLEO}
 {$USE ini}
 {$USE CLEO+}
 ```
 
-Each opcode included in Sanny Builder's [INI files](opcodes-list-scm.ini.md) has been categorized to belong to some extension. Currently it is done via the file `extensions.txt`.
+Cada opcode incluido en los [archivos INI] de Sanny Builder (opcodes-list-scm.ini.md) ha sido categorizado para pertenecer a alguna extensión. Actualmente se hace a través del archivo `extensions.txt`.
 
 {% hint style="info" %}
-See [#74](https://github.com/sannybuilder/dev/issues/74) for more information on how this feature is expected to function in the future.
+Vea [#74](https://github.com/sannybuilder/dev/issues/74) para obtener más información sobre cómo se espera que funcione esta característica en el futuro.
 {% endhint %}
 
-## Implicit Extensions
+## Extensiones Implícitas
 
-Standard game opcodes have been included in the `default` extension that is implicitly available in any script. `{$USE default}` is possible but redundant.
+Los opcodes estándar del juego se han incluido en la extensión "default" que está implícitamente disponible en cualquier secuencia de comandos. `{$USE default}` es posible pero redundante.
 
-Using `{$CLEO}` [directive](../coding/directives.md#usdcleo) also implies `{$USE CLEO}` so standard CLEO opcodes are available to the compiler already.
+Usar la [directiva](../coding/directives.md#$cleo) `{$CLEO}` implica `{$USE CLEO}`, por lo que los opcodes estándar de CLEO estarán disponibles para el compilador.
 
-## Extensions List
+## Lista de Extensiones
 
-Sanny Builder ships some common and recognized extensions for different edit modes:
+Sanny Builder incluye algunas extensiones comunes y reconocidas para diferentes modos de edición:
 
 <table>
 <thead>
 <tr>
-<th>Extension Name</th>
-<th>Source</th>
-<th>Edit Modes where available</th>
+<th>Nombre de la Extensión</th>
+<th>Fuente</th>
+<th>Modos de Edición donde estén disponibles</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td> **CLEO**  `{$USE CLEO}`</td>
-<td>CLEO for GTA III<br>CLEO for Vice City  CLEO 4.4  CLEO Android</td>
+<td>CLEO para GTA III<br>CLEO para Vice City  CLEO 4.4  CLEO Android</td>
 <td>GTA III  Vice City  GTA SA v1.0, v2.0, (v1.0 - SCR)  SA Mobile  VC Mobile</td>
 </tr>
 <tr>
 <td> **ini**  `{$USE ini}`</td>
-<td>IniFiles.cleo plugin<br>(ships with CLEO)</td>
+<td>IniFiles.cleo plugin<br>(enviado en CLEO)</td>
 <td>GTA III<br>Vice City  GTA SA v1.0, v2.0, (v1.0 - SCR)</td>
 </tr>
 <tr>
 <td> **file**  `{$USE file}`</td>
-<td>FileSystemOperations plugin<br>(ships with CLEO)</td>
+<td>FileSystemOperations plugin<br>(enviado en CLEO)</td>
 <td>GTA III<br>Vice City  GTA SA v1.0, v2.0, (v1.0 - SCR)</td>
 </tr>
 <tr>
 <td> **bitwise**  `{$USE bitwise}`</td>
-<td>IntOperations plugin<br>(ships with CLEO4)</td>
+<td>IntOperations plugin<br>(enviado en CLEO4)</td>
 <td>GTA III<br>Vice City  GTA SA v1.0, v2.0, (v1.0 - SCR)</td>
 </tr>
 <tr>
@@ -90,9 +89,9 @@ Sanny Builder ships some common and recognized extensions for different edit mod
 <td>Vice City</td>
 </tr>
 </tbody>
-</table>
+</table>\
 
 
-Using opcodes from the third-party libraries not listed there is possible, the compiler will not require the `{$USE}` directive.
+Es posible usar opcodes de las bibliotecas de terceros que no aparecen en la lista, el compilador no requerirá la directiva `{$USE}`.
 
 <script src="../../js/main.min.js"></script>
