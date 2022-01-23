@@ -17,7 +17,7 @@ Edit modes supply Sanny Builder with the following information:
 * paths to files with the game data
 * paths to files with supporting information ([labels](customlabels.ini.md), [variables](README.md#variables), [constants](README.md#constants), etc)
 
-By default Sanny Builder reads the modes configuration from the file `&lt;SB&gt;\data\modes.xml`. This path can be customized via the `-x` CLI [option](../editor/cli.md#x).
+By default Sanny Builder reads the modes configuration from the file `&lt;SB>\data\modes.xml`. This path can be customized via the `-x` CLI [option](../editor/cli.md#-x).
 
 The file `modes.xml` is open for modification and extension, and users can create their own modes by changing it.
 
@@ -25,9 +25,9 @@ The file `modes.xml` is open for modification and extension, and users can creat
 
 `modes.xml` is a file in the XML format and can be changed in any text editor. It defines the available modes.
 
-The root node is `&lt;modes&gt;` and it has no attributes. The file can only have one root node. 
+The root node is `&lt;modes>` and it has no attributes. The file can only have one root node. 
 
-Each edit mode is a child node of `&lt;modes&gt;` beginning with the opening tag `&lt;mode&gt;` and ending with the closing tag `&lt;/mode&gt;`. The `&lt;mode&gt;` element has both mandatory and optional attributes as outlined below. The content of the `&lt;mode&gt;` is a set of specific tags (properties) defining paths to directories or files.
+Each edit mode is a child node of `&lt;modes>` beginning with the opening tag `&lt;mode>` and ending with the closing tag `&lt;/mode>`. The `&lt;mode>` element has both mandatory and optional attributes as outlined below. The content of the `&lt;mode>` is a set of specific tags (properties) defining paths to directories or files.
 
 ### Mode Attributes
 
@@ -114,12 +114,12 @@ path to either an `.ide` or `.dat` file:\
 `ide` element may have an optional `base` attribute to specify a folder that is used to resolve relative paths in the `.dat` file.
 
 ```
-&lt;ide base="@game:\"&gt;default.dat&lt;/ide&gt;
+&lt;ide base="@game:\">default.dat&lt;/ide>
 ```
 
 Without `base` all relative paths are resolved starting from the location of the `.dat` file.
 
-A mode may have multiple `&lt;ide&gt;` elements.
+A mode may have multiple `&lt;ide>` elements.
 
 #### keywords
 
@@ -149,7 +149,7 @@ Has a required attribute `type`:\
 
 path to a `.gxt` file
 
-`&lt;text&gt;` has one required attribute: `format`. The supported values are:
+`&lt;text>` has one required attribute: `format`. The supported values are:
 
 `gta3`: `.gxt` has one table, plain keys, ANSI encoding\
 `vc`: `.gxt` has multiple tables, plain keys, ANSI encoding\

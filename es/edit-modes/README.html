@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Edit Modes</title>
+  <title>Modos de edición</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,27 +9,27 @@
 </head>
 <body>
 
-Sanny Builder supports many games and platforms and so there is a predefined configuration for each supported game called an **edit mode**. 
+Sanny Builder es compatible con muchos juegos y plataformas, por lo que existe una configuración predefinida para cada juego compatible denominada **modo de edición**.
 
-Edit modes supply Sanny Builder with the following information:
+Los modos de edición proporcionan a Sanny Builder la siguiente información:
 
-* a target game
-* paths to files with the game data
-* paths to files with supporting information ([labels](customlabels.ini.md), [variables](README.md#variables), [constants](README.md#constants), etc)
+* un juego objetivo
+* rutas a archivos con los datos del juego
+* rutas a archivos con información de apoyo ([etiquetas](customlabels.ini.md), [variables](README.md#variables), [constantes](README.md#constantes), etc.)
 
-By default Sanny Builder reads the modes configuration from the file `&lt;SB&gt;\data\modes.xml`. This path can be customized via the `-x` CLI [option](../editor/cli.md#x).
+Por defecto, Sanny Builder lee la configuración de modos del archivo `&lt;SB>\data\modes.xml`. Esta ruta se puede personalizar a través de la [opción](../editor/cli.md#-x) CLI `-x`.
 
-The file `modes.xml` is open for modification and extension, and users can create their own modes by changing it.
+El archivo `modes.xml` está abierto para modificación y extensión, y los usuarios pueden crear sus propios modos cambiándolo.
 
-## File Format
+## Formato del Archivo
 
-`modes.xml` is a file in the XML format and can be changed in any text editor. It defines the available modes.
+`modes.xml` es un archivo en formato XML y se puede cambiar en cualquier editor de texto. Define los modos disponibles.
 
-The root node is `&lt;modes&gt;` and it has no attributes. The file can only have one root node. 
+El nodo raíz es `&lt;modes>` y no tiene atributos. El archivo solo puede tener un nodo raíz.
 
-Each edit mode is a child node of `&lt;modes&gt;` beginning with the opening tag `&lt;mode&gt;` and ending with the closing tag `&lt;/mode&gt;`. The `&lt;mode&gt;` element has both mandatory and optional attributes as outlined below. The content of the `&lt;mode&gt;` is a set of specific tags (properties) defining paths to directories or files.
+Cada modo de edición es un nodo secundario de `&lt;modes>` que comienza con la etiqueta de apertura `&lt;mode>` y termina con la etiqueta de cierre `&lt;/mode>`. El elemento `&lt;mode>` tiene atributos tanto obligatorios como opcionales, como se describe a continuación. El contenido del `&lt;modo>` es un conjunto de etiquetas específicas (propiedades) que definen rutas a directorios o archivos.
 
-### Mode Attributes
+### Atributos del Modo
 
 #### id
 
@@ -114,12 +114,12 @@ path to either an `.ide` or `.dat` file:\
 `ide` element may have an optional `base` attribute to specify a folder that is used to resolve relative paths in the `.dat` file.
 
 ```
-&lt;ide base="@game:\"&gt;default.dat&lt;/ide&gt;
+&lt;ide base="@game:\">default.dat&lt;/ide>
 ```
 
 Without `base` all relative paths are resolved starting from the location of the `.dat` file.
 
-A mode may have multiple `&lt;ide&gt;` elements.
+A mode may have multiple `&lt;ide>` elements.
 
 #### keywords
 
@@ -149,7 +149,7 @@ Has a required attribute `type`:\
 
 path to a `.gxt` file
 
-`&lt;text&gt;` has one required attribute: `format`. The supported values are:
+`&lt;text>` has one required attribute: `format`. The supported values are:
 
 `gta3`: `.gxt` has one table, plain keys, ANSI encoding\
 `vc`: `.gxt` has multiple tables, plain keys, ANSI encoding\
