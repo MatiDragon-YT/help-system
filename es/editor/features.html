@@ -1,82 +1,82 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
 <head>
   <title>Features</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
 
-Sanny Builder provides the end-user the following features:
+Sanny Builder proporciona al usuario final las siguientes funciones:
 
-## Integration with Sanny Builder Library
+## Integración con la biblioteca de Sanny Builder
 
-Sanny Builder Library is a community-driven portal aiming to document all known scripting commands used in GTA III, Vice City and San Andreas. You can find it here: [library.sannybuilder.com](https://library.sannybuilder.com)
+Sanny Builder Library es un portal impulsado por la comunidad que tiene como objetivo documentar todos los comandos de secuencias de comandos conocidos utilizados en GTA III, Vice City y San Andreas. Puede encontrarlo aquí: [library.sannybuilder.com](https://library.sannybuilder.com)
 
-Starting with v3.8.0 Sanny Builder uses library's files to provide brief descriptions to all opcodes directly in the IDE complimentary to the [Show opcode info](#Displaying Information about Opcode) feature. Those files are controlled with the new `&lt;library&gt;` parameter in the [edit mode configuration](../../edit-modes/README.md#library).
+A partir de la versión 3.8.0, Sanny Builder utiliza archivos de la biblioteca para proporcionar breves descripciones de todos los códigos de operación directamente en el IDE como complemento de la función [Mostrar información del opcode](#mostrar-información-sobre-el-opcode). Esos archivos se controlan con el nuevo parámetro `&lt;library>` en la [configuración del modo de edición](../../edit-modes/README.md#library).
 
-Double-clicking the opcode description in the status bar opens the library's page with this opcode's full description in the browser.
+Al hacer doble clic en la descripción del opcode en la barra de estado, se abre la página de la biblioteca con la descripción completa de este opcode en el navegador.
 
-If the current edit mode uses the library documentation there is a text in the status bar telling the version of the documentation, e.g. `SBL v0.119`. The version may vary from mode to mode.
+Si el modo de edición actual utiliza la documentación de la biblioteca, hay un texto en la barra de estado que indica la versión de la documentación, p. `SBL v0.119`. La versión puede variar de un modo a otro.
 
 :::center
 ![](../img/sbl-update-popup-en.png)
 :::
 
-Clicking the library version text in the status bar brings up a popup menu from which you can check if there are newer versions and download them. If you enable `Automatic updates` option Sanny Builder will check the updates and download them on startup.
+Al hacer clic en el texto de la versión de la biblioteca en la barra de estado, aparece un menú emergente desde el que puede verificar si hay versiones más nuevas y descargarlas. Si habilita la opción 'Actualizaciones automáticas', Sanny Builder verificará las actualizaciones y las descargará al inicio.
 
-## Color Themes
+## Temas de Colores
 
-Sanny Builder's look and feel can be customized with themes. They define colors and style of the interface and code elements for easier reading. The active color theme can be changed in the [options](options/editor.md#color-theme). 
+La apariencia de Sanny Builder se puede personalizar con temas. Definen los colores y el estilo de la interfaz y los elementos del código para facilitar la lectura. El tema de color activo se puede cambiar en las [opciones](options/editor.md#color-theme).
 
-<div class="info">
-If you launch Sanny Builder v3.8.0 with `settings.ini` from a prior version, your syntax highlighting configuration will be converted to a custom user theme (stored in`themes\custom.ini`).
-</div>
+:::info
+Si inicia Sanny Builder v3.8.0 con `settings.ini` de una versión anterior, su configuración de resaltado de sintaxis se convertirá en un tema de usuario personalizado (almacenado en `themes\custom.ini`).
+:::
 
-Also Sanny Builder has a built-in [theme editor](options/theme-editor.md) for quick customization of the existing themes.
+Además, Sanny Builder tiene un [editor de temas](options/theme-editor.md) incorporado para una rápida personalización de los temas existentes.
 
-## Bookmarks / Quick jump
+## Marcadores / Salto rápido
 
-You can bookmark a line by pressing `Ctrl+Shift+0..9` and then get back to it by pressing `Ctrl+0..9`. To delete all bookmarks, use the menu option `Edit->Clear All Bookmarks`. 
+Puede marcar una línea presionando `Ctrl+Shift+0..9` y luego volver a ella presionando `Ctrl+0..9`. Para eliminar todos los marcadores, utilice la opción de menú `Editar->Borrar todos los marcadores`. 
 
-Alternatively you can go to a particular line using the `Go To Line` feature. Press `Ctrl+G`, enter the line number and the editor will move the cursor to it.
+Alternativamente, puede ir a una línea en particular usando la función `Ir a la línea`. Presione `Ctrl+G`, ingrese el número de línea y el editor moverá el cursor hacia él.
 
-## Navigate to Symbol
+## Navegar por Símbolo
 
-The IDE allows to quickly navigate to some points of interest in the code without using the `Find` dialog box.
+El IDE permite navegar rápidamente a algunos puntos de interés en el código sin utilizar el cuadro de diálogo `Buscar`.
 
-To go to the line marked with a label (e.g, `:MyLabel`), put the cursor on the label reference (`@MyLabel`) and press `Alt+Right`. If the label exists, the cursor position will change.
+Para ir a la línea marcada con una etiqueta (por ejemplo, `:MiEtiqueta`), coloque el cursor en la referencia de la etiqueta (`@MiEtiqueta`) y presione `Alt+Derecha`. Si la etiqueta existe, la posición del cursor cambiará.
 
-Similarly, to navigate to the start of a function or mission, use `Alt+Right` on the function or mission name.
+De manera similar, para navegar hasta el inicio de una función o misión, use `Alt+Derecha` en el nombre de la función o misión.
 
-To return back to the previous position, press `Alt+Left`. Keep pressing if you had more than one navigation.
+Para volver a la posición anterior, presione `Alt+Izquierda`. Sigue presionando si tenías más de una navegación.
 
-These shortcuts can be redefined in the [options](options/hotkeys.md).
+Estos atajos se pueden redefinir en las [opciones](options/hotkeys.md).
 
-## Displaying Information about Opcode
+## Mostrar Información Sobre el Opcode
 
-When the [option](options/editor.md#editor-configuration) `Show opcode info` is enabled the bottom bar displays:
+Cuando la [opción](options/editor.md#editor-configuration) `Mostrar información de opcode` está habilitada, la barra inferior muestra:
 
-* a number of parameters for the current opcode;
-* a model ID when the cursor is on the [model name](../coding/data-types.md#model-names) and `IDE` files for the current [edit mode](../../edit-modes/README.md#ide) have been loaded;
-* a constant value when the cursor is on the constant name and the [language service](language-service.md) is enabled.
-* a brief description what this command does (from [Sanny Builder Library](features.md#integration-with-sanny-builder-library))
+* una serie de parámetros para el código de operación actual;
+* una ID de modelo cuando el cursor está en el [nombre del modelo](../coding/data-types.md#nombres-de-modelos) y los archivos `IDE` para el [modo de edición](../../edit-modes/README.md#ide) actual se han cargado;
+* un valor constante cuando el cursor está en el nombre de la constante y el [servicio de idioma](language-service.md) está habilitado.
+* una breve descripción de lo que hace este comando (de [Sanny Builder Library](features.md#integration-with-sanny-builder-library))
 
-## Opcode Search
+## Opcode Search Tool
 
-Use the built-in [Opcode Search tool](opcode-search-tool.md) to find an opcode you need.
+Utilice el [Opcode Search tool](opcode-search-tool.md) integrado para encontrar el opcode que necesite.
 
 ## Player Coordinates Management
 
-Press `Ctrl+Alt+1` when GTA San Andreas is running and the Coords Manager window will appear. You can read the player's coordinates from the game memory and modify them there. 
+Presiona `Ctrl+Alt+1` cuando GTA San Andreas se esté ejecutando y aparecerá la ventana Administrador de coordenadas. Puedes leer las coordenadas del jugador desde la memoria del juego y modificarlas allí.
 
-In the top edit line you can enter the XYZ coordinates, delimited by the space character or the comma character `,`. Additionally, you can insert the player's coordinates in the script source by pressing `Ctrl+Shift+C`. To insert the player's z-angle, press `Ctrl+Shift+E`.
+En la línea de edición superior puede ingresar las coordenadas XYZ, delimitadas por el carácter de espacio o el carácter de coma `,`. Además, puede insertar las coordenadas del jugador en la fuente del script presionando `Ctrl+Shift+C`. Para insertar el ángulo z del jugador, presione `Ctrl+Shift+E`.
 
-## Keypress Recording (Macro)
+## Grabación de Teclas (Macro)
 
-You can record a key pressing sequence (macro) and playback it later. Consider the following code:
+Puede grabar una secuencia de pulsación de tecla (macro) y reproducirla más tarde. Considere el siguiente código:
 
 ```sb3
 $Actor = Actor.Create(CivMale, #MALE01, 100.0, 100.0, 10.0)
@@ -87,73 +87,73 @@ $Killer = Actor.Create(CivMale, #MALE01, 140.0, 100.0, 50.0)
 $ActorWithoutGun = Actor.Create(CivMale, #MALE01, 150.0, 100.0, 60.0) 
 ```
 
-Say, you need to exchange the actor's handles in each pair (i.e have `$ActorWithGun` instead of `$Actor`, and vice versa).
+Digamos que necesita intercambiar los identificadores del actor en cada par (es decir, tener `$ActorWithGun` en lugar de `$Actor`, y viceversa).
 
-Place the cursor in the first line before `$Actor` and press `Ctrl+M`. The editor immediately begins recording all keys - so be careful!
+Coloque el cursor en la primera línea antes de `$Actor` y presione `Ctrl+M`. El editor inmediatamente comienza a grabar todas las claves, ¡así que tenga cuidado!
 
-1. Press and hold `Ctrl` and press the `Right Arrow` button once 
-2. Press `Shift+Home` and `Ctrl+Ins`.
-3. Press the `Down Arrow` button. The cursor must be on the second line with the global variable in the clipboard
-4. Press `Ctrl+Right Arrow` and `Shift+Ins`.
-5. Press `Ctrl+Left Arrow`, `Shift+Home`, `Ctrl+Ins` and `Delete`
-6. Press the `Up Arrow` button
-7. Press `Ctrl+Shift+Right Arrow` and `Shift+Ins`
-8. Press the `Home` button.
+1. Mantenga presionado `Ctrl` y presione el botón `Flecha derecha` una vez
+2. Presione `Shift+Inicio` y `Ctrl+Ins`.
+3. Pulse el botón `Flecha hacia abajo`. El cursor debe estar en la segunda línea con la variable global en el portapapeles
+4. Presione `Ctrl+Flecha derecha` y `Shift+Ins`.
+5. Pulse `Ctrl+Flecha izquierda`, `Shift+Inicio`, `Ctrl+Ins` y `Eliminar`
+6. Pulse el botón `Flecha arriba`
+7. Presione `Ctrl+Shift+Flecha derecha` y `Shift+Ins`
+8. Pulse el botón `Inicio`.
 
-Now the first two lines should look like these:
+Ahora las dos primeras líneas deberían verse así:
 
 ```sb3
 $ActorWithGun = Actor.Create(CivMale, 100.0, 100.0, 10.0)
 $Actor = Actor.Create(CivMale, 110.0, 100.0, 20.0)
 ```
 
-with the cursor being in the beginning of the first line. Now press `Ctrl+M` to stop recording.
+con el cursor al principio de la primera línea. Ahora presione `Ctrl+M` para detener la grabación.
 
-You can playback the recorded sequence by pressing `Ctrl+P`. Place the cursor in the beginning of the third line, press `Ctrl+P` and the actor handles will be swapped.
+Puede reproducir la secuencia grabada presionando `Ctrl+P`. Coloque el cursor al comienzo de la tercera línea, presione `Ctrl+P` y se intercambiarán los identificadores de actor.
 
-During recording, you can pause/unpause it by pressing `Ctrl+P`.
+Durante la grabación, puede pausarla/reanudarla presionando `Ctrl+P`.
 
-## Replacing Mission Numbers with their Names
+## Reemplazo de números de misión con sus nombres
 
-Sanny Builder allows using a mission name in the opcode `start_mission`. The mission name is the label defined with a `DEFINE MISSION` command. Say, you have:
+Sanny Builder permite usar un nombre de misión en el opcode `start_mission`. El nombre de la misión es la etiqueta definida con un comando `DEFINE MISSION`. digamos que tienes:
 
 ```sb3
 DEFINE MISSION 10 AT @MYMISSION
 ```
 
-Instead of `start_mission 10` you can write`start_mission MYMISSION`.
+En lugar de `start_mission 10` puedes escribir `start_mission MYMISSION`.
 
-There is also the [Replace Mission Numbers](options/general.md#replace-mission-numbers) option. When it's enabled, the decompiler automatically replaces all mission numbers with their names.
+También existe la opción [Reemplazar números de misión](options/general.md#replace-mission-numbers). Cuando está habilitado, el descompilador reemplaza automáticamente todos los números de misión con sus nombres.
 
-To call the mission names list, press `Ctrl+Space`. The cursor has to be directly after the `start_mission` command.
+Para acceder a la lista de nombres de misiones, presione `Ctrl+Espacio`. El cursor tiene que estar directamente después del comando `start_mission`.
 
-Additionally, you can use [navigate](features.md#navigate-to-symbol) to the mission code when the cursor is under the mission name.
+Además, puede usar [navegar](#navegar-por-símbolo) para el código de la misión cuando el cursor está debajo del nombre de la misión.
 
-## Custom Mission Titles
+## Títulos de Misión Personalizados
 
-Since v3.2.0 Sanny supports custom mission titles for each available [edit mode](../../edit-modes/README.md#missions). They are stored in the `missions.txt` file. This file is used by the disassembler to add the title as a comment on line with mission define (`DEFINE MISSION`) or start (`mission_start`) command. 
+Desde v3.2.0, Sanny admite títulos de misión personalizados para cada [modo de edición] disponible (../../edit-modes/README.md#misiones). Se almacenan en el archivo `missions.txt`. El desensamblador usa este archivo para agregar el título como un comentario en línea con el comando de definición de misión (`DEFINE MISSION`) o inicio (`mission_start`).
 
-If a `SCM` file contains custom-made missions you may edit the `missions.txt` to have the correct titles after disassembling.
+Si un archivo `SCM` contiene misiones personalizadas, puede editar `missions.txt` para tener los títulos correctos después de desmontarlo.
 
-## Multilingual Interface
+## Interfaz Multilingüe
 
-Sanny Builder has fully multilingual interface translated into 15 languages. You can switch the languages in the [options](options/general.md#interface-language) (`F10`). Refer to [sannybuilder/translations](https://github.com/sannybuilder/translations) for more information on how to create or update a translation.
+Sanny Builder tiene una interfaz totalmente multilingüe traducida a 17 idiomas. Puede cambiar los idiomas en las [opciones](options/general.md#interface-language) (`F10`). Consulte [sannybuilder/translations](https://github.com/sannybuilder/translations) para obtener más información sobre cómo crear o actualizar una traducción.
 
-## External Tools Menu
+## Menú de Herramientas Externas
 
-You can configure up to `9` apps to run when you need them. Each app has its own hotkey for your convenience. You may also pass the parameters to your app if needed. To pass the name of the currently opened file use the special word `$SB_FileName`.
+Puede configurar hasta `9` aplicaciones para que se ejecuten cuando las necesite. Cada aplicación tiene su propia tecla de acceso directo para su comodidad. También puede pasar los parámetros a su aplicación si es necesario. Para pasar el nombre del archivo actualmente abierto, use la palabra especial `$SB_FileName`.
 
-Since v3.7.0 it's also possible to pass the variables `@sb:` and `@game:` that represent Sanny Builder directory and current game directory respectively into the command-line parameters of the external app:
+Desde v3.7.0 también es posible pasar las variables `@sb:` y `@game:` que representan el directorio de Sanny Builder y el directorio del juego actual, respectivamente, a los parámetros de la línea de comandos de la aplicación externa:
 
 ```
 Parameters:
 --cwd=@sb: --game-dir=@game:
 ```
 
-## Checking for updates
+## Buscar Actualizaciones
 
-Sanny Builder is able to check if a new version is available. To use this feature go to menu `Help->Check for update...`. The editor will connect to a remote server and if a newer version is available it prompts the download and install.
+Sanny Builder puede verificar si hay una nueva versión disponible. Para utilizar esta función, vaya al menú `Ayuda->Buscar actualizaciones...`. El editor se conectará a un servidor remoto y, si hay una versión más nueva disponible, solicita la descarga e instalación.
 
-The editor can also check for an update during startup if you enable this option in the updater window.
+El editor también puede buscar una actualización durante el inicio si activa esta opción en la ventana del actualizador.
 
 <script src="../../js/main.min.js"></script>

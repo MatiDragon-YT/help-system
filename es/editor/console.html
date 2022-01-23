@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Console</title>
+  <title>Consola</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,53 +9,53 @@
 </head>
 <body>
 
-The **console** offers an ability to switch debug options of Sanny Builder. Mostly they relate to the disassembler features and you can see the changes when disassemble a file. The console window is open after pressing `Ctrl+~`. You may enter the commands in the input line. After typing a command press  `Enter` to proceed. The console will display a result.
+La **consola** ofrece la posibilidad de cambiar las opciones de depuración de Sanny Builder. En su mayoría, se relacionan con las funciones del desensamblador y puede ver los cambios al desensamblar un archivo. La ventana de la consola se abre después de presionar `Ctrl+Ñ`. Puede ingresar los comandos en la línea de entrada. Después de escribir un comando, presione `Enter` para continuar. La consola mostrará un resultado.
 
 :::l
 ![](../img/console.png)
 :::
 
-## Available commands 
+## Comandos Disponibles 
 
-All commands are case-insensitive.
+Los comandos tiene tipografía  insensible.
 
-`help` – shows the help information about the console\
-`clear` – clears the console\
-`list` – shows in the console the list of all commands\
-`list options` – lists all available debug options\
-`toggle [on/off]` – enable or disable [debug options](console.md#debug-options)
+`help` – muestra la información de ayuda sobre la consola\
+`clear` – limpia la consola\
+`list` – muestra en la consola la lista de todos los comandos\
+`list options` – enumera todas las opciones de depuración disponibles\
+`toggle [on/off]` – habilitar o deshabilitar [opciones de depuración](console.md#debug-options)
 
 The input command ends either with the word `ON` (the option will be enabled) or `OFF` (the option will be disabled), or nothing (the option will be toggled from `ON` to `OFF` or from `OFF` to `ON`).
 
 {% hint style="info" %}
-Before enabling the following options turn on the debug mode with the command `toggle debug_mode ON`
+Antes de habilitar las siguientes opciones, active el modo de depuración con el comando `toggle debug_mode ON`
 {% endhint %}
 
-## Debug Options
+## Opciones de Depuración
 
 ### CODE_OFFSETS
 
-The disassembler prints the offset of each command.
+El desensamblador imprime el desplazamiento de cada comando.
 
 ### VAR_COUNTER
 
-After compiling the console contains the list of the [global variables](../coding/variables.md#global-variables) used only once in the code (i.e. can be removed or replaced with [local variables](../coding/variables.md#local-variables)).
+Después de compilar, la consola contiene la lista de las [variables globales](../coding/variables.md#variables-global) utilizadas solo una vez en el código (es decir, se pueden eliminar o reemplazar con [variables locales](../coding/variables.md#variables-locales)).
 
 ### IGNORE_UNKNOWN
 
-The disassembler ignores unknown opcodes, incorrect parameters and so on. It helps to open almost any file that used to be protected or compiled incorrectly.
+El desensamblador ignora los códigos de operación desconocidos, los parámetros incorrectos, etc. Ayuda a abrir casi cualquier archivo que solía estar protegido o compilado incorrectamente.
 
 ### CONSTANT_INDEXES
 
-The disassembler prints array elements as global variables with indexes. It's available for `GTA SA`, `LCS`, `VCS` games.
+El desensamblador imprime los elementos de la Array como variables globales con índices. Está disponible para juegos `GTA SA`, `LCS`, `VCS`.
 
-E.g. given an array of three elements starting at `$10` this option affects the way the variables look like after disassembling:
+P.ej. dada una Array de tres elementos que comienzan en `$10`, esta opción afecta la forma en que se ven las variables después del desmontaje:
 
 <table>
 <thead>
 <tr>
-<th>Without <code>CONSTANT_INDEXES</code></th>
-<th>With <code>CONSTANT_INDEXES</code></th>
+<th>Sin `CONSTANT_INDEXES`</th>
+<th>Con `CONSTANT_INDEXES`</th>
 </tr>
 </thead>
 <tbody>
@@ -76,27 +76,27 @@ E.g. given an array of three elements starting at `$10` this option affects the 
 
 ### SKIP_SCM_HEADER
 
-Disassembler skips the header of the input file. It allows to open headless scripts (e.g. the ones from `script.img` or CLEO scripts). 
+Desensamblador omite el encabezado del archivo de entrada. Permite abrir scripts sin cabeza (por ejemplo, los de `script.img` o CLEO scripts).
 
-With this option the compiler makes `.scm` files without the header (similar to `{$EXTERNAL}` [directive](../coding/directives.md#usdexternal)).
+Con esta opción, el compilador crea archivos `.scm` sin el encabezado (similar a la [directiva](../coding/directives.md#$external)`{$EXTERNAL}`).
 
 ### SKIP_EXTRA_INFO
 
-The disassembler ignores the [extra info](options/general.md#add-extra-info-to-scm) section attached to the input file. It also treats this section as a set of regular SCM instructions, so enabling `IGNORE_UNKNOWN` option is recommended.
+El desensamblador ignora la sección [información adicional](options/general.md#add-extra-info-to-scm) adjunta al archivo de entrada. También trata esta sección como un conjunto de instrucciones regulares de SCM, por lo que se recomienda habilitar la opción `IGNORE_UNKNOWN`.
 
-## Alternate ways
+## Formas alternativas
 
-Sanny Builder offers a few other ways to toggling debug options outside of the console that might be useful in some cases.
+Sanny Builder ofrece algunas otras formas de alternar las opciones de depuración fuera de la consola que pueden ser útiles en algunos casos.
 
-### Running with --debug
+### Corriendo con --debug
 
-The `--debug` [option](cli.md#debug) provides an alternate way of switching the debug options. Run Sanny with the parameter `--debug X`, where `X` is a series of `0` and `1`.  Each digit in the series corresponds to a particular debug option:
+La [opción](cli.md#debug) `--debug` proporciona una forma alternativa de cambiar las opciones de depuración. Ejecute Sanny con el parámetro `--debug X`, donde `X` es una serie de `0` y `1`. Cada dígito de la serie corresponde a una opción de depuración particular:
 
 <table>
 <thead>
 <tr>
-<th>Index</th>
-<th>Debug Option</th>
+<th>Indice</th>
+<th>Opción de Depuración</th>
 </tr>
 </thead>
 <tbody>
@@ -131,16 +131,16 @@ The `--debug` [option](cli.md#debug) provides an alternate way of switching the 
 sanny.exe --debug 110000
 ```
 
-The first `1` enables the `CODE_OFFSETS` option, the second `1` enables the `IGNORE_UNKNOWN` mode. The remaining options are disabled.
+El primer `1` habilita la opción `CODE_OFFSETS`, el segundo `1` habilita el modo `IGNORE_UNKNOWN`. Las opciones restantes están deshabilitadas.
 
-### Using GUI
+### Usando la GUI
 
-Clicking the right-most button in the main toolbar shows a drop-down menu with the list of debug options.
+Al hacer clic en el botón más a la derecha en la barra de herramientas principal, se muestra un menú desplegable con la lista de opciones de depuración.
 
 :::center
 ![](../img/sb-debug-options-dropdown.png)
 :::
 
-Each menu item toggles a particular debug option. The change comes into effect immediately.
+Cada elemento del menú alterna una opción de depuración particular. El cambio entra en vigor inmediatamente.
 
 <script src="../../js/main.min.js"></script>

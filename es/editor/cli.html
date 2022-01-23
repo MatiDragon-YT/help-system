@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Command Line Interface</title>
+  <title>Interfaz de Línea de Comandos</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,25 +11,25 @@
 
 ## --compile
 
-`--compile &lt;input file path&gt; [output file path]` - compiles the file and exits
+`--compile &lt;ruta de entrada> [ruta de salida]` - compila un archivo y se cierra
 
 ```
 sanny.exe --compile C:\myscm.txt C:\myscm.scm
 ```
 
 {% hint style="info" %}
-The `output file path`_ _parameter is optional. If there is no output path parameter, the compiler uses the [format rules](options/formats.md#file-name-format) to compute the output file name. 
+El parámetro `ruta de salida` es opcional. Si no hay un parámetro de ruta de salida, el compilador usa las [reglas de formato](options/formats.md#file-name-format) para calcular el nombre del archivo de salida.
 {% endhint %}
 
 {% hint style="info" %}
-The input file must have no errors. If there are errors found during compilation, they will be logged in the file `compile.log`. When compilation ends, the program shuts down.
+El archivo de entrada no debe tener errores. Si se encuentran errores durante la compilación, se registrarán en el archivo `compile.log`. Cuando finaliza la compilación, el programa se cierra.
 {% endhint %}
 
-Shortcut: `-c`
+Atajo: `-c`
 
 ## --debug
 
-`--debug` - toggles [debug options](console.md#running-with-debug)
+`--debug` - alterna [opciones de depuración](console.md#running-with-debug)
 
 ```
 sanny.exe --debug 110000
@@ -37,7 +37,7 @@ sanny.exe --debug 110000
 
 ## --game
 
-`--game &lt;game&gt;` - selects the [default mode](../../edit-modes/README.md#type) for the given game. Known `game` values are:
+`--game &lt;game>` - selecciona el [modo predeterminado](../../edit-modes/README.md#type) para el juego dado. Los valores conocidos de `game` son:
 
 * `gta3`
 * `vc`
@@ -47,7 +47,7 @@ sanny.exe --debug 110000
 * `vc_mobile`
 * `sa_mobile`
 
-Shortcut: `-g`
+Atajo: `-g`
 
 ```
 sanny.exe --game sa
@@ -55,9 +55,9 @@ sanny.exe --game sa
 
 ## --mode
 
-`--mode &lt;id&gt;` - selects the mode by `id`. [Modes](../../edit-modes/README.html) and their ids are defined in the `modes.xml` file.
+`--mode &lt;id>` - selecciona el modo por `id`. Los [modos](../../edit-modes/README.md) y sus ID están definidos en el archivo `modes.xml`.
 
-Shortcut: `-m`
+Atajo: `-m`
 
 ```
 sanny.exe --mode vcs_psp
@@ -65,7 +65,7 @@ sanny.exe --mode vcs_psp
 
 ## --no-splash
 
-`--no-splash` - runs Sanny Builder without the splash screen
+`--no-splash` - ejecuta Sanny Builder sin la pantalla de inicio
 
 ```
 sanny.exe --no-splash
@@ -73,7 +73,7 @@ sanny.exe --no-splash
 
 ## -x
 
-`-x &lt;file path&gt;` - sets the path to the file with the [edit modes](../../edit-modes/README.md) configuration
+`-x &lt;file path>` - Establece la ruta al archivo con la configuración del [modo de edición](../../edit-modes/README.md)
 
 ```
 sanny.exe -x ..\my-modes.xml
@@ -82,25 +82,26 @@ sanny.exe -x ..\my-modes.xml
 ## --option
 
 {% hint style="info" %}
-Available since v3.8.0
+Disponible desde v3.8.0
 {% endhint %}
 
-`-o &lt;option name&gt; &lt;value&gt;` - sets the value of the specified [option](options/). To set multiple options, list each of them individually:
+`-o &lt;nombre de la opción> &lt;valor>` - establece el valor de la [opción](options/README.md) especificada. Para establecer varias opciones, enumere cada una de ellas individualmente:
 
-`-o &lt;option1 name&gt; &lt;option1 value&gt; -o &lt;option2 name&gt; &lt;option2 value&gt; ... -o &lt;optionN name&gt; &lt;optionN value&gt;` 
+```
+-o &lt;nombre de la opción1> &lt;valor de la opción1> -o &lt;nombre de la opción2> &lt;valor de la opción2> ... -o &lt;nombre de la opciónN> &lt;valor de la opciónN>``` 
 
-Option name can be one of the following:
+El nombre de la opción puede ser uno de los siguientes:
 
 {% hint style="warning" %}
-This list is not final and subject to change at any moment.
+Esta lista no es definitiva y está sujeta a cambios en cualquier momento.
 {% endhint %}
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Allowed Values</th>
-<th>Options Tab</th>
+<th>Nombre</th>
+<th>Valores permitidos</th>
+<th>Pestaña de opciones</th>
 </tr>
 </thead>
 <tbody>
@@ -192,12 +193,12 @@ This list is not final and subject to change at any moment.
 <tr>
 <td><a href="options/formats.md#label-name-format">Decompiler::HexadimalOffsets</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Formatos</td>
 </tr>
 <tr>
 <td><a href="options/formats.md#label-name-format">Decompiler::LabelsFormat</a></td>
 <td>0, 1, 2</td>
-<td>Formats</td>
+<td>Formatos</td>
 </tr>
 <tr>
 <td><a href="options/general.md#write-opcodes">Decompiler::AlwaysWriteOpcodes</a></td>
@@ -237,31 +238,31 @@ This list is not final and subject to change at any moment.
 <tr>
 <td><a href="options/formats.md#custom-names">CustomNames::UseCustomLabels</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Formatos</td>
 </tr>
 <tr>
 <td><a href="options/formats.md#custom-names">CustomNames::UseCustomVariables</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Formatos</td>
 </tr>
 <tr>
 <td><a href="options/formats.md#custom-names">CustomNames::UseCustomArrays</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Formatos</td>
 </tr>
 <tr>
 <td><a href="options/formats.md#case-converting">CustomNames::Format</a></td>
 <td>0, 1, 2</td>
-<td>Formats</td>
+<td>Formatos</td>
 </tr>
 </tbody>
 </table>
 
 {% hint style="info" %}
-Options set via CLI are not persistent and only applied to the current session. On the next launch Sanny Builder will use values stored in the `settings.ini`.
+Las opciones establecidas a través de CLI no son persistentes y solo se aplican a la sesión actual. En el próximo lanzamiento, Sanny Builder utilizará los valores almacenados en `settings.ini`.
 {% endhint %}
 
-Shortcut: `-o`
+Atajo: `-o`
 
 ```
 sanny.exe -o Compiler::CheckConditions 0 -o Editor::LanguageService 1
