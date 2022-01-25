@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.10";
+const VERSION = "1.11";
 
 function log(value){
 	console.log(value)
@@ -31,12 +31,37 @@ function $(element) {
 }
 const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
 
+/** Shotcun of String.replace()
+*/
+String.prototype.r = function(a, b){
+	return this.replace(a, b)
+}
+
+/** Polifill and shotcun of String.replaceAll()
+*/
+String.prototype.rA = function(xText, zText){
+	var temp = this
+
+	if(temp.indexOf(xText, 0) !== -1){
+		temp = temp
+		.r(xText, zText)
+		.rA(xText, zText)
+	}
+	
+	return temp
+}
+
 String.prototype.toLinkCase = function(){
-	return this.toLowerCase().replace(/<(\/)?[\!\w\d\s\.,-="]+>/g, '').replace(/\s/g, '-')
+	return this.toLowerCase()
+	.r(/<(\/)?[\!\w\d\s\.,-="]+>/g, '')
+	.rA('\s', '-')
 }
 
 String.prototype.parseHTML = function(){
-	return this.replace(/<br>/g, '\n').replace(/</g, '&lt;').replace(/=""/g, '')
+	return this
+	.rA('<br>', '\n')
+	.rA('<', '&lt;')
+	.rA('=""', '')
 }
 
 /** Apply a function to all elements of the DOM
@@ -61,45 +86,45 @@ String.prototype.toMarkdown = function(){
 	/******** LIST ********/
 
 	// ID
-	.replace(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
+	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
 
 	// UL LI
-	.replace(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
-	.replace(/^\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1</li></ul></ul>')
-	.replace(/^\x20{4}\*\s(.+)/gim, '<ul><ul><ul><li>$1</li></ul></ul></ul>')
-	.replace(/<\/ul>(\s+)<ul>/g, '')
-	.replace(/<\/ul><\/ul><ul><ul>/g, '')
-	.replace(/<\/ul><ul>/g, '')
+	.r(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
+	.r(/^\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1</li></ul></ul>')
+	.r(/^\x20{4}\*\s(.+)/gim, '<ul><ul><ul><li>$1</li></ul></ul></ul>')
+	.r(/<\/ul>(\s+)<ul>/g, '')
+	.rA('<\/ul><\/ul><ul><ul>', '')
+	.rA('<\/ul><ul>', '')
 
 	// OL LI
-	.replace(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
-	.replace(/^\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1</li></ol></ol>')
+	.r(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
+	.r(/^\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1</li></ol></ol>')
 
-	.replace(/<\/li><\/ol>\n<ul><ul><li>(.*)<\/ul><\/ul>/g, '<\/li><ul><li>$1</ul></ol>')
+	.r(/<\/li><\/ol>\n<ul><ul><li>(.*)<\/ul><\/ul>/g, '<\/li><ul><li>$1</ul></ol>')
 
-	.replace(/<\/ol>(\s+)<ol>/g, '')
-	.replace(/<\/ol><ol>/g, '')
+	.r(/<\/ol>(\s+)<ol>/g, '')
+	.rA('<\/ol><ol>', '')
 
 	// DL DD
-	.replace(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
-	.replace(/^\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1</dd></dl></dl>')
-	.replace(/^\x20{4}\-\s(.+)/gim, '<dl><dl><dl><dd>$1</dd></dl></dl></dl>')
-	.replace(/<\/dl>(\s+)<dl>/g, '')
-	.replace(/<\/dl><\/dl><dl><dl>/g, '')
-	.replace(/<\/dl><dl>/g, '')
+	.r(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
+	.r(/^\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1</dd></dl></dl>')
+	.r(/^\x20{4}\-\s(.+)/gim, '<dl><dl><dl><dd>$1</dd></dl></dl></dl>')
+	.r(/<\/dl>(\s+)<dl>/g, '')
+	.rA('<\/dl><\/dl><dl><dl>', '')
+	.rA('<\/dl><dl>', '')
 
 	/*** FORMAT ***/
-	.replace(/\*\*\*([^\*\n]+)\*\*\*/g, '<b><i>$1</i></b>')
-	.replace(/\*\*([^\*\n]+)\*\*/g, '<b>$1</b>')
-	.replace(/\*([^\*\n]+)\*/g, '<i>$1</i>')
-	.replace(/~~([^~\n]+)~~/g, '<s>$1</s>')
-	.replace(/__([^_\n]+)__/g, '<u>$1</u>')
-	.replace(/\b_([^_\n]+)_\b/g, '<i>$1</i>')
-	.replace(/==([^=\n]+)==/g, '<mark>$1</mark>')
-	.replace(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
+	.r(/\*\*\*([^\*\n]+)\*\*\*/g, '<b><i>$1</i></b>')
+	.r(/\*\*([^\*\n]+)\*\*/g, '<b>$1</b>')
+	.r(/\*([^\*\n]+)\*/g, '<i>$1</i>')
+	.r(/~~([^~\n]+)~~/g, '<s>$1</s>')
+	.r(/__([^_\n]+)__/g, '<u>$1</u>')
+	.r(/\b_([^_\n]+)_\b/g, '<i>$1</i>')
+	.r(/==([^=\n]+)==/g, '<mark>$1</mark>')
+	.r(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
 
 	// EMOJIS
-	.replace(/(\B|\s+):([^:\s]+):(\B)/g, function(input){
+	.r(/(\B|\s+):([^:\s]+):(\B)/g, function(input){
 
 		input = input.split(':')
 
@@ -107,26 +132,26 @@ String.prototype.toMarkdown = function(){
 	})
 
 	/*** DIVS ***/
-	.replace(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
-	.replace(/{% hint style="(\w+)" %}|:::([\w\d\x20-]+)\n/g, '<div class="$1$2">')
-	.replace(/{% endhint %}|:::\n/g, '</div>\n')
-	//.replace(/:::([\w\d\x20-]+)\n([\x09-\x39\x3B-\uFFFF]+):::/gim, '<div class=$1>$2</div>')
+	.r(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
+	.r(/{% hint style="(\w+)" %}|:::([\w\d\x20-]+)\n/g, '<div class="$1$2">')
+	.r(/{% endhint %}|:::\n/g, '</div>\n')
+	//.r(/:::([\w\d\x20-]+)\n([\x09-\x39\x3B-\uFFFF]+):::/gim, '<div class=$1>$2</div>')
 
 	/*** BLOCKQUOTE ***/
-	.replace(/^>\x20(.+)/gim, '<blockquote>$1</blockquote>')
-	.replace(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
+	.r(/^>\x20(.+)/gim, '<blockquote>$1</blockquote>')
+	.r(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
 	/*** TITLE ***/
 
-	.replace(/^(\w.+)\n==+=\n/gim, function(input){
-		input = input.trim().replace(/^(\w.+)\n==+=/gim, '$1')
+	.r(/^(\w.+)\n==+=\n/gim, function(input){
+		input = input.trim().r(/^(\w.+)\n==+=/gim, '$1')
 		return '<h1 id="'+ input.toLinkCase() +'">' + input + '</h1>'
 	})
-	.replace(/^(\w.+)\n--+-\n/gim, function(input){
-		input = input.trim().replace(/^(\w.+)\n--+-/gim, '$1')
+	.r(/^(\w.+)\n--+-\n/gim, function(input){
+		input = input.trim().r(/^(\w.+)\n--+-/gim, '$1')
 		return '<h2 id="'+ input.toLinkCase() +'">' + input + '</h2>'
 	})
-	.replace(/^#+\x20(.+)/gm, function(input) {
+	.r(/^#+\x20(.+)/gm, function(input) {
 		var number = 0
 		var output
 
@@ -134,14 +159,14 @@ String.prototype.toMarkdown = function(){
 
 			if(/^#+\x20/.test(text)){
 				number++
-				text = text.replace(/^#/, '')
+				text = text.r(/^#/, '')
 				index(text, number)
 			}else{
 				if (number == 0){
 					output = text
 					return;
 				}
-				const TITLE = text.replace(/^\x20/, '')
+				const TITLE = text.r(/^\x20/, '')
 				output = '<h'+number+' id="'+ TITLE.toLinkCase() +'">' + TITLE + '</h'+number+'>'
 			}
 		}
@@ -151,14 +176,14 @@ String.prototype.toMarkdown = function(){
 	})
 
 	// IMG
-	.replace(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, '<img src="$2" alt="$1" title="$3">')
+	.r(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, '<img src="$2" alt="$1" title="$3">')
 
 	// A
-	.replace(
+	.r(
 		/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
 			
 		var display = input.match(/\[(.+)\]/)[1]
-		var href   =   ' href="' + input.match(/\((.+)\)/)[1].replace(/\x20"(.+)"/, '') + '"'
+		var href   =   ' href="' + input.match(/\((.+)\)/)[1].r(/\x20"(.+)"/, '') + '"'
 		var title  =  ' title="' + getTitle() + '"'
 		var target = ' target="'
 
@@ -166,7 +191,7 @@ String.prototype.toMarkdown = function(){
 			target += '_blank"'
 		}else{
 			target += '_self"'
-			href = href.replace(/\.md/, '.html')
+			href = href.r(/\.md/, '.html')
 		}
 		
 		function getTitle(){
@@ -180,17 +205,17 @@ String.prototype.toMarkdown = function(){
 	})
 
 	// HR
-	.replace(/(\n|^)--+-\n/g, '$1<hr>\n')
+	.r(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 	// BR
-	.replace(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
-	.replace(/(\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
+	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
+	.r(/(\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
 
 	// PRE
-	.replace(/```([^`]*)```/g, function(input){
+	.r(/```([^`]*)```/g, function(input){
 
 		var display = input
-			.replace(/```(\w+)?\n([^`]*)```/, '$2').parseHTML()
+			.r(/```(\w+)?\n([^`]*)```/, '$2').parseHTML()
 
 		function getLang(){
 			if(/```(\w+)\n/.test(input)){
@@ -203,13 +228,13 @@ String.prototype.toMarkdown = function(){
 	})
 
 	// CODE
-	.replace(/`([^\n`]+)`/g, function(input){
-		input = input.replace(/`([^\n`]+)`/, '$1').parseHTML()
+	.r(/`([^\n`]+)`/g, function(input){
+		input = input.r(/`([^\n`]+)`/, '$1').parseHTML()
 
 		return '<code>' + input + '</code>'
 	})
 	// SPAN
-	.replace(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
+	.r(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
 }
 
 $('body').innerHTML = '\
@@ -231,7 +256,7 @@ $('body').innerHTML = '\
 var htmlGenerated = $('#inputText').value.toMarkdown()
 
 $('.markdown .cont').innerHTML = htmlGenerated
-$('body').style['display'] = 'block'
+$('body').style.display = 'block'
 
 apply($('a'), function(e){
 	e.onmouseover = function(){
@@ -248,39 +273,39 @@ apply($('.sb3'), function(e){
 	e.innerHTML = e.innerHTML
 
 	//Comentarios 
-	.replace(/(\/\/.+)/gm, "<span class=comments>$1<\/span>")
-	.replace(/(\/\*[\x09-.0-¦]*\*\/)/gmi, "<span class=comments>$1<\/span>")
-	.replace(/(\{[\x09-z\|~-¦]*\})/gmi, "<span class=comments>$1<\/span>")
+	.r(/(\/\/.+)/gm, "<span class=comments>$1<\/span>")
+	.r(/(\/\*[\x09-.0-¦]*\*\/)/gmi, "<span class=comments>$1<\/span>")
+	.r(/(\{[\x09-z\|~-¦]*\})/gmi, "<span class=comments>$1<\/span>")
 	//Cadenas de texto
-	.replace(/\"([\x09-\!#-¦]*)\"/gmi, "<span class=strings>\"$1\"<\/span>")
-	.replace(/\'([!-&(-¦]+)\'/gmi, "<span class=strings>\'$1\'<\/span>")
+	.r(/\"([\x09-\!#-¦]*)\"/gmi, "<span class=strings>\"$1\"<\/span>")
+	.r(/\'([!-&(-¦]+)\'/gmi, "<span class=strings>\'$1\'<\/span>")
 	//Palabras Reservadas
-	.replace(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
+	.r(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
 	//Etiquetas
-	.replace(/(^|\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
-	.replace(/(^|\s+)([A-Za-z0-9_]+\(\))/gm, "$1<span class=commands>$2<\/span>")
+	.r(/(^|\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
+	.r(/(^|\s+)([A-Za-z0-9_]+\(\))/gm, "$1<span class=commands>$2<\/span>")
 	//Arreglos
-	.replace(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
+	.r(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
 	//Opcodes
-	.replace(/([a-fA-F0-9]{4}\:)/gmi, "<span class='uppercase'>$1<\/span>")
+	.r(/([a-fA-F0-9]{4}\:)/gmi, "<span class='uppercase'>$1<\/span>")
 	//Numeros
-	.replace(/\b(\d+)(x|\.)(\w+)\b/gmi, "<span class=numbers>$1$2$3<\/span>")
-	.replace(/\b(true|false)\b/gmi, "<span class=numbers>$1<\/span>")
-	.replace(/(\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i)?\b/gmi, "$1<span class=numbers>$2$3<\/span>")
+	.r(/\b(\d+)(x|\.)(\w+)\b/gmi, "<span class=numbers>$1$2$3<\/span>")
+	.r(/\b(true|false)\b/gmi, "<span class=numbers>$1<\/span>")
+	.r(/(\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i)?\b/gmi, "$1<span class=numbers>$2$3<\/span>")
 	//Modelos
-	.replace(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
+	.r(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
-	.replace(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
-	.replace(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
-	.replace(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
-	.replace(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
-	.replace(/\.([0-9A-Z_a-z]+)\n/gm, ".<span class=commands>$1</span>\n")
+	.r(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
+	.r(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
+	.r(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
+	.r(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
+	.r(/\.([0-9A-Z_a-z]+)\n/gm, ".<span class=commands>$1</span>\n")
 	//Directivas
-	.replace(/(\{\$)(CLEO|OPCODE|NOSOURCE|INCLUDE|USE)(\s[^\}]+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
+	.r(/(\{\$)(CLEO|OPCODE|NOSOURCE|INCLUDE|USE)(\s[^\}]+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
 	//Variables  
-	.replace(/\b(timera|timerb)\b/gmi, "<span class=variables>$1<\/span>")
-	.replace(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
-	.replace(/(\&amp;\d+)/gim, "<span class=variables>$1<\/span>")
-	.replace(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
-	//.replace(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
+	.r(/\b(timera|timerb)\b/gmi, "<span class=variables>$1<\/span>")
+	.r(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
+	.r(/(\&amp;\d+)/gim, "<span class=variables>$1<\/span>")
+	.r(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
+	//.r(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })

@@ -11,6 +11,7 @@
 html {
     font-family: sans-serif;
     line-height: 1.15;
+    background: #0d1117;
 }
 
 body {
@@ -20,7 +21,6 @@ body {
     line-height: 1.5;
     text-align: left;
     display: none;
-    background: #0d1117;
     scrollbar-face-color: #262b32;
     scrollbar-track-color: #0a0d14;
     scrollbar-arrow-color: #363b42;
