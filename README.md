@@ -1,5 +1,6 @@
 # Sanny Builder Help
 [![Release](https://img.shields.io/github/v/release/MatiDragon-YT/help-system?style=for-the-badge)](https://github.com/MatiDragon-YT/help-system/releases)
+[![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://discord.gg/d5dZSfgBZr)
 
 Based on the original that brings the [`help.chm`](https://github.com/sannybuilder/help-system), GitBook and my own [`help3082.chm`](https://github.com/MatiDragon-YT/doc-chm).
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked together, to understand much of the GitBook site Markdown and highlight SB3 code easy and quickly.
