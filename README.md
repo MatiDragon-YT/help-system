@@ -18,10 +18,10 @@ This is the first offline version of [docs.sannybuilder.com](https://docs.sannyb
 ## Install
 Just download the chm corresponding to your language:
 
-| file | language | state |
+| language | file | state |
 | --- | --- | --- |
-| help | English | main |
-| help3082 | Español | before long |
+| English | help | ⭐ main |
+| Español | help3082 | incomplete |
 
 And optionally, move the file to directory.
 ```
