@@ -85,7 +85,7 @@
 			<param name="Local" value="es\editor\features.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Opciones">
+			<param name="Name" value="Preferencias">
 			<param name="Local" value="es\editor\options\README.html">
 			</OBJECT>
 		<UL>
@@ -106,7 +106,7 @@
 				<param name="Local" value="es\editor\options\theme-editor.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Teclas de Combinadas">
+				<param name="Name" value="Atajos Combinados">
 				<param name="Local" value="es\editor\options\hotkeys.html">
 				</OBJECT>
 		</UL>
@@ -140,7 +140,7 @@
 				<param name="Local" value="es\edit-modes\customlabels.ini.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Plantillas de Cc&oacute;digo">
+				<param name="Name" value="Plantillas de C&oacute;digo">
 				<param name="Local" value="es\edit-modes\code-templates.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
