@@ -20,8 +20,8 @@ Just download the chm corresponding to your language:
 
 | language | file | state |
 | --- | --- | --- |
-| English | help | ⭐ main |
-| Español | help3082 | incomplete |
+| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help.chm) | ⭐ main |
+| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help3082.chm) | incomplete |
 
 And optionally, move the file to directory.
 ```
