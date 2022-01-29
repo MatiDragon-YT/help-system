@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Formats</title>
+  <title>Formatos</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,78 +9,78 @@
 </head>
 <body>
 
-Here you can set up source file names, labels format, letter case for string literals, etc.
+Aquí puede configurar nombres de archivos de origen, formato de etiquetas, mayúsculas y minúsculas para cadenas literales, etc.
 
 :::l
 ![](../../img/options-format-en.png)
 :::
 
-## File Name Format
+## Formato del Nombre de la Fuente (source)
 
-Formats for files produced by the disassembler or the compiler.
+Formatos para archivos producidos por el desensamblador o el compilador.
 
 :::l
 ![](../../img/formats-files-en.png)
 :::
 
-The top field contains the full path and name of a text file created during disassembling. Two fields below contain the path and the name of binary files `SCM` and `IMG` (if the [edit mode](../../../edit-modes/README.md) is `GTA SA`) created during compilation. All fields share the same syntax. They also may use special words representing parts of the source file name:
+El campo superior contiene la ruta completa y el nombre de un archivo de texto creado durante el desmontaje. Dos campos a continuación contienen la ruta y el nombre de los archivos binarios `SCM` e `IMG` (si el [modo de edición](../../edit-modes/README.md) es `GTA SA`) creado durante la compilación . Todos los campos comparten la misma sintaxis. También pueden usar palabras especiales que representen partes del nombre del archivo de origen:\
+\
+`$dir` - la ruta del archivo\
+`$name` - el nombre del archivo\
+`$ext` - la extensión del archivo\
+\
+P.ej. si desensambla el archivo `C:\MyDir\main.scm`, entonces\
+\
+`$dir` es `C:\MiDir`\
+`$name` es `main`\
+`$ext` es `.scm`\
+\
+Si el formato es `$dir\$name.txt`, el archivo de salida se llama `C:\MyDir\main.txt`.
 
-`$dir` – the file path \
-`$name` – the file name \
-`$ext` – the file extension
+## Formato de las Etiquetas
 
-E.g. if you disassemble the file `C:\MyDir\main.scm`, then
-
-`$dir` is `C:\MyDir` \
-`$name` is `main` \
-`$ext` is `.scm` 
-
-If the format is `$dir\$name.txt`, the output file is named `C:\MyDir\main.txt`.
-
-## Label Name Format
-
-Formats for label names used during disassembling.
+Formatos para nombres de etiquetas usados durante el desensamblaje.
 
 :::l
 ![](../../img/formats-labels-en.png)
 :::
 
-### Global Offset
+### Posición Global
 
-A label name is numeric e.g. `@12345`. The number is the offset of the label from the beginning of the source file.
+El nombre de una etiqueta es numérico, p. `@12345`. El número es el desplazamiento de la etiqueta desde el principio del archivo de origen.
 
-### Script+Local Offset
+### N. del Bloque+Pos. Local
 
-A label name includes a name of the script where the label is located (as defined with the `script_name` command) and the offset from the beginning of the script, e.g. `@MAIN_12`.
+Un nombre de etiqueta incluye un nombre de la secuencia de comandos donde se encuentra la etiqueta (como se define con el comando `script_name`) y el desplazamiento desde el principio de la secuencia de comandos, p. `@MAIN_12`.
 
-### Script+Global Offset
+### N. del Bloque+Pos. Global
 
-A label name includes a name of the script where the label is located (as defined with the `name_thread` command) and the offset from the beginning of the source file, e.g. `@MAIN_12345`.
+Un nombre de etiqueta incluye un nombre de la secuencia de comandos donde se encuentra la etiqueta (como se define con el comando `name_thread`) y el desplazamiento desde el principio del archivo de origen, p. `@MAIN_12345`.
 
 {% hint style="info" %}
-If you want the offsets to be hexadecimal, select the checkbox at the bottom.
+Si desea que las compensaciones sean hexadecimales, seleccione la casilla de verificación en la parte inferior.
 {% endhint %}
 
-## Custom Names
+## Nombres Propios de...
 
-These options instruct the disassembler to use custom names defined by the user in the external files.
+Estas opciones indican al desensamblador que use nombres personalizados definidos por el usuario en los archivos externos.
 
 :::l
 ![](../../img/formats-custom-names-en.png)
 :::
 
-The file [`CustomLabels.ini`](../../../edit-modes/customlabels.ini.md) contains the list of label names and their offsets. If the disassembler finds a match between the label offset in the source file and the offset defined in the INI file it gives this label a name associated with this offset.
+El archivo [`CustomLabels.ini`](../../edit-modes/customlabels.ini.md) contiene la lista de nombres de etiquetas y sus compensaciones. Si el desensamblador encuentra una coincidencia entre el desplazamiento de la etiqueta en el archivo fuente y el desplazamiento definido en el archivo INI, le da a esta etiqueta un nombre asociado con este desplazamiento.
 
-The file `CustomVariables.ini` contains the list of [global variables](../../coding/variables.md#global-variables) addresses and their custom names. The disassembler uses this file to name global variables.
+El archivo `CustomVariables.ini` contiene la lista de direcciones de [variables globales](../../coding/variables.md#global-variables) y sus nombres personalizados. El desensamblador usa este archivo para nombrar variables globales.
 
-The file `CustomArrays.ini` contains names of the arrays in the following syntax: the first number is the global variable address which is the first element of the array, then the array size, then a custom name. It helps the disassembler to recognize [array elements](../../coding/arrays.md#using-constant-indexes).
+El archivo `CustomArrays.ini` contiene los nombres de las arreglos en la siguiente sintaxis: el primer número es la dirección de la variable global que es el primer elemento del arreglo, luego el tamaño del arreglo, luego un nombre personalizado. Ayuda al desensamblador a reconocer [elementos del arreglo](../../coding/arrays.md#using-constant-indexes).
 
-## Case Converting
+## Usar el Caso Tipográfico
 
 :::l
 ![](../../img/formats-case-en.png)
 :::
 
-This option serves a dual purpose. The disassembler names [global variables](../../coding/variables.md#global-variables), [labels](../../coding/data-types.md#labels), [arrays](../../coding/arrays.md) using the selected letter case. The compiler writes [string literals](../../coding/data-types.md#string-literals) using the selected case too.
+Esta opción tiene un doble propósito. El desensamblador nombra [variables globales](../../coding/variables.md#variables-globales), [etiquetas](../../coding/data-types.md#etiquetas), [arreglos]( ../../coding/arrays.md) utilizando las mayúsculas y minúsculas seleccionadas. El compilador escribe [literales de cadena](../../coding/data-types.md#string-literals) usando también el caso seleccionado.
 
 <script src="../../../js/main.min.js"></script>
