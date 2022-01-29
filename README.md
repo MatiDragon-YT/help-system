@@ -27,6 +27,7 @@ And optionally, move the file to directory.
 ```
 <sanny builder foldes>\help\<here>
 ```
+to be able to open it from sanny builder, or directly, opening it as if it were a common windows executable.
 > ### BUG: Blank views?
 > If when you open the file, it does not load the content. Only by unchecking the Windows security box when opening the file, you could have solved the problem.
 
