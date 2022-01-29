@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Массивы</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+**Массивы** представляют собой последовательный набор элементов одного типа (тип массива). К каждому элементу массива можно обратиться используя его индекс (порядковый номер элемента в массиве). Нумерация элементов начинается с нуля. Массивы доступны в San Andreas, LCS и VCS.
+
+## Общий синтаксис
+
+San Andreas:  
+`<имя массива>(<индекс>,<размер><тип>)`
+
+```text
+$index = 0
+$array($index,10i) = 1
+```
+
+`<имя массива>`: локальная или глобальная [переменная](variables.md)\
+`<индекс>`: локальная или глобальная переменная, содержащая индекс элемента, который нужно прочитать или изменить\
+`<размер>`: любое целое число больше 0\
+`<тип>`: одна из букв `i` `f` `s` `v`:
+
+<table>
+<thead>
+<tr>
+<th>Буква</th>
+<th>Тип элемента</th>
+<th>Размер элемента (в байтах)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>целое число</td>
+<td>4</td>
+</tr>
+<tr>
+<td>f</td>
+<td>дробное число</td>
+<td>4</td>
+</tr>
+<tr>
+<td>s</td>
+<td>строковый литерал</td>
+<td>8</td>
+</tr>
+<tr>
+<td>v</td>
+<td>строковый литерал</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+
+
+Liberty City Stories, Vice City Stories:  
+`<имя массива>(<индекс>,<размер>)`
+
+{% hint style="info" %}
+В LCS и VCS длина элементов массивов может быть только 4 байта. Поэтому нет необходимости указывать тип массива при обращении к его элементам.
+{% endhint %}
+
+```text
+$index = 0
+$array($index,10) = 1
+```
+
+## Объявление массивов
+
+Массивы могут быть объявлены через конструкцию [`VAR..END`](variables.md#konstrukciya-var-end):
+
+`var  
+   <имя массива>: array <размер> of <тип>  
+end`
+
+```text
+var
+    $FloatArray: array 10 of Float
+end
+```
+
+### Обращение к элементам массива после объявления
+
+После объявления можно обращаться к элементам массива, используя квадратные скобки и индексную переменную:
+
+```text
+var
+    $FloatArray: array 10 of Float
+end
+$index = 1
+$FloatArray[$index] += 100.0
+```
+
+### Использование целочисленных констант
+
+Для обращения к определенным элементам можно также использовать квадратные скобки и константу больше либо равную нулю:
+
+```text
+var
+    $FloatArray: array 10 of Float
+end
+$FloatArray[1] += 100.0
+```
+
+С массивами, содержащими [строковые литералы](data-types.md#strokovye-literaly), можно работать используя [строковые переменные](data-types.md#strokovye-peremennye):  
+
+```text
+// задаем значения для первых трех элементов массива $strings
+s$strings[0] = 'str1'
+s$strings[1] = 'str2'
+s$strings[2] = 'str3'
+```
+
+Массив может быть объявлен как коллекция [экземпляров класса](classes.md#ekzemplyary-klassa):
+
+```text
+var
+  $players: array 2 of Player
+end
+$players[0].Build 
+```
+
+{% hint style="info" %}
+По умолчанию в [режиме](../edit-modes/README.md) `GTA SA` дизассемблер выводит элементы массива с целочисленными константами. В LCS и VCS эта возможность присутствует, но по умолчанию выключена. [Отладочная опция](../editor/console.md#constant_indexes) `CONSTANT_INDEXES` позволяет включить или выключить эту возможность. 
+{% endhint %}
+
+
+<script src="../../js/main.min.js"></script>

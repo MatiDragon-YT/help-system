@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Константы</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+**Константа** представляет собой идентификатор, которому присваивается определенное значение. В отличие от переменных значение константы не может изменяться. При компиляции имя константы заменяется на то значение, которое ей было присвоено. Константы могут быть числовыми \(числа, [имена моделей](data-types.md#imena-modelei) или [метки](data-types.md#metki)\) или строковыми, а также содержать в себе выражение.
+
+Костанты объявляются статически или динамически. Каждый [режим редактирования](../edit-modes/README.md) может загрузить статические определения констант из внешнего файла при помощи параметра `<constants>` в `modes.xml`. Динамические определения создаются в скрипте при помощи синтаксиса, описанного ниже.
+
+## Объявление констант
+
+Для объявления константы используется конструкция `CONST..END`:
+
+`CONST  
+    <имя константы> = <значение>  
+END`
+
+Именем константы может быть любая комбинация букв, цифр и `_`, которая не повторяет зарезервированные компилятором имена, такие как `Continue`, `Break`, `And` \(см. файл `compiler.ini`\).   
+  
+Значением константы может быть число \(а также [имя модели](data-types.md#imena-modelei) или [метка](data-types.md#metki)\), [строковый литерал](data-types.md#strokovye-literaly), [переменная](variables.md) \(а также [свойство класса](classes.md#svoistva)\), другая константа.
+
+```text
+var
+   $PLAYER_CHAR: Player
+end
+
+const
+    MoneyRequired = 30
+    PlayerMoney = $PLAYER_CHAR.Money
+end
+
+if
+    PlayerMoney > MoneyRequired
+then
+    PlayerMoney += -1
+end
+```
+
+Во время компиляции константа `MoneyRequired` будет заменена на число `30` , а `PlayerMoney` на `$PLAYER_CHAR.Money`.
+
+Если [языковая служба](../editor/language-service.md) включена, список констант можно увидеть при нажатии `Ctrl+пробел`.
+
+## Ограничения
+
+Константы могут использоваться везде, кроме случая:
+
+```text
+const
+    VarName = $Var
+    IndexName = 25
+end
+VarName[IndexName] = 0
+```
+
+Чтобы скомпилировать такое выражение, нужно указать номер опкода:
+
+```text
+0004: VarName[IndexName] = 0
+```
+
+Также существуют ограничения на использование выражений в качестве константы.
+
+<script src="../../js/main.min.js"></script>
