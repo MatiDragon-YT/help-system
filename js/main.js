@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.11";
+const VERSION = "1.12";
 
 function log(value){
 	console.log(value)
@@ -93,6 +93,10 @@ SP.toMarkdown = function(){
 	return this
 
 	/******** LIST ********/
+
+	// SCAPE CHAR
+	.rA("\\(", "&lpar;")
+	.rA("\\)", "&rpar;")
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
@@ -222,8 +226,9 @@ SP.toMarkdown = function(){
 	.r(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 	// BR
-	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br><br>$3')
-	.r(/(\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\u00FF]|¿|<b|<(ul|ol)?!|\*|`(``)?!))/g, '$2<br>$3')
+	.r(/([^`])`\n\n`([^`])/, "$1`<br><br>`$2")
+	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`([^`])))/g, '$2<br><br>$3$5')
+	.r(/(\x20\x20\n|\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`([^`])))/g, '$2<br>$3$5')
 
 	// PRE
 	.r(/```([^`]*)```/g, function(input){
@@ -250,6 +255,7 @@ SP.toMarkdown = function(){
 
 		return '<code>' + input + '</code>'
 	})
+	
 	// SPAN
 	.r(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
 }

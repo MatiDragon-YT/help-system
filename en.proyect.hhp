@@ -2,17 +2,17 @@
 Binary Index=No
 Compatibility=1.1 or later
 Compiled file=help.chm
-Contents file=en.table.hhc
+Contents file=en\table.hhc
 Default Font=,11,0
 Default Window=MAIN
 Default topic=en\README.html
 Display compile progress=Yes
-Index file=en.index.hhk
+Index file=index.hhk
 Language=0x409 Inglés (Estados Unidos)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"en.table.hhc","en.index.hhk","en\README.html","en\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
+MAIN=,"en\table.hhc","index.hhk","en\README.html","en\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
 
 
 [FILES]
