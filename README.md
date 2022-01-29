@@ -2,7 +2,7 @@
 [![Release](https://img.shields.io/github/v/release/MatiDragon-YT/help-system?style=for-the-badge)](https://github.com/MatiDragon-YT/help-system/releases)
 [![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://discord.gg/d5dZSfgBZr)
 
-Based on the original that brings the [`help.chm`](https://github.com/sannybuilder/help-system), GitBook and my own [`help3082.chm`](https://github.com/MatiDragon-YT/doc-chm).
+Based on the original that brings the [`help.chm`](https://github.com/sannybuilder/help-system), GitBook and my own [`doc-chm`](https://github.com/MatiDragon-YT/doc-chm).
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked together, to understand much of the GitBook site Markdown and highlight SB3 code easy and quickly.
 
 ![image](https://user-images.githubusercontent.com/43966706/150444302-3e9b7bc4-f803-4d02-a83f-3464fc5ad259.png)
@@ -21,7 +21,8 @@ Just download the chm corresponding to your language:
 | language | file | state |
 | --- | --- | --- |
 | English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help.chm) | ⭐ main |
-| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help3082.chm) | in process |
+| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help3082.chm) | ⌛ in process |
+| Pусский | help1049 | ⌛ in process |
 
 And optionally, move the file to directory.
 ```
