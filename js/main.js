@@ -17,6 +17,8 @@ const EMOJIS = {
 }
 const D = document
 
+const SP = String.prototype
+
 /** Smart selector for elements of the DOM
  * @param {DOMString}
 */
@@ -33,13 +35,13 @@ const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
 
 /** Shotcun of String.replace()
 */
-String.prototype.r = function(a, b){
+SP.r = function(a, b){
 	return this.replace(a, b)
 }
 
 /** Polifill and shotcun of String.replaceAll()
 */
-String.prototype.rA = function(xText, zText){
+SP.rA = function(xText, zText){
 	var temp = this
 
 	if(temp.indexOf(xText, 0) !== -1){
@@ -51,13 +53,20 @@ String.prototype.rA = function(xText, zText){
 	return temp
 }
 
-String.prototype.toLinkCase = function(){
+SP.toLinkCase = function(){
 	return this.toLowerCase()
 	.r(/<(\/)?[\!\w\d\s\.,-="]+>/g, '')
 	.rA('\s', '-')
 }
-
-String.prototype.parseHTML = function(){
+/*
+SP.toCapitalCase = function(){
+	return this
+	.r(/((^|\s)\w)/g, function(input){
+		return input.toUpperCase()
+	})
+}
+*/
+SP.parseHTML = function(){
 	return this
 	.rA('<br>', '\n')
 	.rA('<', '&lt;')
@@ -80,7 +89,7 @@ function apply(element, callback){
 	}
 }
 
-String.prototype.toMarkdown = function(){
+SP.toMarkdown = function(){
 	return this
 
 	/******** LIST ********/
@@ -166,7 +175,12 @@ String.prototype.toMarkdown = function(){
 					output = text
 					return;
 				}
-				const TITLE = text.r(/^\x20/, '')
+				var TITLE = text.r(/^\x20/, '')
+				/* auto capitalize
+				if (number < 4){ // is H1, H2 or H3
+					TITLE = TITLE.toCapitalCase()
+				}
+				*/
 				output = '<h'+number+' id="'+ TITLE.toLinkCase() +'">' + TITLE + '</h'+number+'>'
 			}
 		}
@@ -229,7 +243,10 @@ String.prototype.toMarkdown = function(){
 
 	// CODE
 	.r(/`([^\n`]+)`/g, function(input){
-		input = input.r(/`([^\n`]+)`/, '$1').parseHTML()
+		input = input
+		.r(/`([^\n`]+)`/, '$1')
+		.r(/<(\/?)i>/g, "*")
+		.parseHTML()
 
 		return '<code>' + input + '</code>'
 	})
