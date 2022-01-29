@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Theme Editor</title>
+  <title>Editor de Tema</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-Theme Editor is a new built-in tool that replaces syntax highlighting options. It can be launched from the [Editor](editor.md#color-theme) tab.
+Editor de Tema es una nueva herramienta integrada que reemplaza las opciones de resaltado de sintaxis. Se puede iniciar desde la pestaña [Editor](editor.md#color-theme).
 
 :::l
 ![](../../img/theme-editor-en.png)
@@ -17,34 +17,37 @@ Theme Editor is a new built-in tool that replaces syntax highlighting options. I
 
 Theme configuration includes colors and style for interface and code elements.
 
-Each element has 3 properties: `Foreground`, `Background`, and `Style`. Some properties can be unavailable for certain elements.\
-Available `style` elements are: **B** – bold, **I** – italic, **U** – underlined.
+Cada elemento tiene 3 propiedades: `Carácter`, `Fondo` y `Estilo`. Algunas propiedades pueden no estar disponibles para ciertos elementos.\
+Los elementos de estilo disponibles son:
+- **B** – bold (negrita)
+- **I** – italic (cursiva)
+- **U** – underlined (trasado)
 
-### **Interface Elements**
+### **Elementos de la Interfaz**
 
-* **Editor** – text color and background of the main editing area
-* **Active Line** – a line where the cursor is
-* **Gutter** – area to the left of the editor
-* **Bottom Panel** – status bar at the bottom of the editor
-* **Bottom Panel Border** – color of section borders in the bottom panel
+* **Editor** – color del texto y fondo del área principal de edición
+* **Línea Activa** – una línea donde está el cursor
+* **Canalón** – área a la izquierda del edito
+* **Panel Inferior** – barra de estado en la parte inferior del editor
+* **Bordes del Panel Inferior** – color de los bordes de sección en el panel inferior
 
-### Code elements
+### Elementos del Código
 
-* [Comments](../../coding/comments.md) – a text after `//` or between `{}` or `/* */`
-* [Labels](../../coding/data-types.md) – identifiers starting with `@`
-* [Variables](../../coding/variables.md) – identifiers starting with `$` (global variables), or ending with `@` (local variables)\
-  Also the [aDMA](../../coding/data-types.md) type (starts with `&`) and [arrays](../../coding/arrays.md) are highlighted as variables.
-* [Keywords](../../coding/keywords.md) – the special words stored in the file `keywords.ini` (one for all [edit modes](../../../edit-modes/README.html)) and a file`keywords.txt` (one per edit mode)
-* Numbers – integer and floating-point numbers
-* Strings – a text between double quotes `" "` or single quotes `' '`
-* Models – identifiers starting with `#`
-* [Classes](../../coding/classes.md) – the part of a class command before the `.` character
-* [Commands](../../coding/classes.md) – the part of a class command after the `.` character, or a [subroutine](../../coding/data-types.md#labels)
-* [Directives ](../../coding/directives.md)– a command starting with `{$`
-* [Constants](../../coding/constants.md) – identifiers, declared within the `CONST..END` construct. See also [Semantic highlighting](editor.md#editor-configuration).
+* [Comentarios](../../coding/comments.md) – un texto después de `//` o entre `{}` o `/* */`
+* [Etiquetas](../../coding/data-types.md) – identificadores que comienzan con `@`
+* [Variables](../../coding/variables.md) – identificadores que comienzan con `$` (variables globales) o terminan con `@` (variables locales)\
+  También el tipo [aDMA](../../coding/data-types.md) (comienza con `&`) y [arrays](../../coding/arrays.md) se resaltan como variables.
+* [Palabras Claves](../../coding/keywords.md) – las palabras especiales almacenadas en el archivo `keywords.ini` (uno para todos los [modos de edición](../../edit-modes/README.html)) y un archivo `keywords.txt` (uno por modo de edición)
+* Números – números enteros y de punto flotante
+* Cadenas – un texto entre comillas dobles `" "` o comillas simples `' '`
+* Modelos: identificadores que comienzan con `#`
+* [Clases](../../coding/classes.md) – la parte de un comando de clase antes del carácter `.`
+* [Comandos](../../coding/classes.md) – la parte de un comando de clase después del carácter `.`, o una [subrutina](../../coding/data-types.md#etiquetas)
+* [Directivas ](../../coding/directives.md)– un comando que comienza con `{$`
+* [Constantes](../../coding/constants.md) – identificadores, declarados dentro de la construcción `CONST..END`. Ver también [Resaltado semántico](editor.md#editor-configuration).
 
-<div class="info">
-The highlighting configuration is also used when the code source is saved into the `RTF` or `HTML` formats.
-</div>
+:::info
+La configuración de resaltado también se usa cuando el código fuente se guarda en los formatos `RTF` o `HTML`.
+:::
 
 <script src="../../../js/main.min.js"></script>

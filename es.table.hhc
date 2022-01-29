@@ -106,7 +106,7 @@
 				<param name="Local" value="es\editor\options\theme-editor.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Atajos Combinados">
+				<param name="Name" value="Atajos del Teclado">
 				<param name="Local" value="es\editor\options\hotkeys.html">
 				</OBJECT>
 		</UL>
