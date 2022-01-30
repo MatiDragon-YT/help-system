@@ -22,7 +22,7 @@ Just download the chm corresponding to your language:
 | --- | --- | --- |
 | English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help.chm) | `[##########]` ⭐ complete |
 | Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help3082.chm) | `[#######...]` ⌛ in process |
-| Pусский | help1049 | `[##........]` ⌛ in process |
+| Pусский | help1049 | `[#######...]` ⌛ in process |
 
 And optionally, move the file to directory.
 ```
