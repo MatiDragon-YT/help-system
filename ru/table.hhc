@@ -28,35 +28,35 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Ograve;&egrave;&iuml;&ucirc; &auml;&agrave;&iacute;&iacute;&ucirc;&otilde;">
+			<param name="Name" value="Data Types">
 			<param name="Local" value="ru\coding\data-types.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Iuml;&aring;&eth;&aring;&igrave;&aring;&iacute;&iacute;&ucirc;&aring;">
+			<param name="Name" value="Variables">
 			<param name="Local" value="ru\coding\variables.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Ecirc;&icirc;&iacute;&ntilde;&ograve;&agrave;&iacute;&ograve;&ucirc;">
+			<param name="Name" value="Constants">
 			<param name="Local" value="ru\coding\constants.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Igrave;&agrave;&ntilde;&ntilde;&egrave;&acirc;&ucirc;">
+			<param name="Name" value="Arrays">
 			<param name="Local" value="ru\coding\arrays.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Oacute;&ntilde;&euml;&icirc;&acirc;&egrave;&yuml;">
+			<param name="Name" value="Conditions">
 			<param name="Local" value="ru\coding\conditions.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Ouml;&egrave;&ecirc;&euml;&ucirc;">
+			<param name="Name" value="Loops">
 			<param name="Local" value="ru\coding\loops.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Ecirc;&euml;&agrave;&ntilde;&ntilde;&ucirc;">
+			<param name="Name" value="Classes">
 			<param name="Local" value="ru\coding\classes.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Ecirc;&euml;&thorn;&divide;&aring;&acirc;&ucirc;&aring; &ntilde;&euml;&icirc;&acirc;&agrave;">
+			<param name="Name" value="Keywords">
 			<param name="Local" value="ru\coding\keywords.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -68,11 +68,11 @@
 			<param name="Local" value="ru\coding\hex..end.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Auml;&egrave;&eth;&aring;&ecirc;&ograve;&egrave;&acirc;&ucirc;">
+			<param name="Name" value="Directives">
 			<param name="Local" value="ru\coding\directives.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="&Kcy;&Ocy;">
+			<param name="Name" value="Comments">
 			<param name="Local" value="ru\coding\comments.html">
 			</OBJECT>
 	</UL>

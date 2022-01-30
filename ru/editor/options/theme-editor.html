@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Theme Editor</title>
+  <title>Редактор тем оформления</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,42 +9,40 @@
 </head>
 <body>
 
-Theme Editor is a new built-in tool that replaces syntax highlighting options. It can be launched from the [Editor](editor.md#color-theme) tab.
+**Редактор тем** - это встроенная утилита, которая заменяет вкладку настроек подсветки синтаксиса. Он может быть запущен из вкладки [Редактор](editor.md#tema-oformleniya).
 
-:::l
-![](../../img/theme-editor-en.png)
-:::
+![](../../.gitbook/assets/theme-editor-ru.png)
 
-Theme configuration includes colors and style for interface and code elements.
+Для кастомизации доступны цвета и стили некоторых элементов интерфейса и кода.
 
-Each element has 3 properties: `Foreground`, `Background`, and `Style`. Some properties can be unavailable for certain elements.\
-Available `style` elements are: **B** – bold, **I** – italic, **U** – underlined.
+У таких элементов можно изменить 3 свойства: `Цвет`, `Фон`, `Стиль`. Некоторые свойства могут быть недоступны для определенных элементов.
 
-### **Interface Elements**
+Для комбинирования между собой доступны 3 варианта `стиля`: **B** – полужирный, **I** – курсив, **U** – подчеркнутый.
 
-* **Editor** – text color and background of the main editing area
-* **Active Line** – a line where the cursor is
-* **Gutter** – area to the left of the editor
-* **Bottom Panel** – status bar at the bottom of the editor
-* **Bottom Panel Border** – color of section borders in the bottom panel
+### Элементы интерфейса <a id="interface-elements"></a>
 
-### Code elements
+* **Поле редактора** – цвет текста и фон основной области редактирования
+* **Активная строка** – фон строки, на которой находится курсор
+* **Отступ** – цвет текста и фон области слева от редактора
+* **Нижняя панель** – цвет текста и фон панели под редактором
+* **Граница нижней панели** – цвет границ отдельных секций в нижней панели
 
-* [Comments](../../coding/comments.md) – a text after `//` or between `{}` or `/* */`
-* [Labels](../../coding/data-types.md) – identifiers starting with `@`
-* [Variables](../../coding/variables.md) – identifiers starting with `$` (global variables), or ending with `@` (local variables)\
-  Also the [aDMA](../../coding/data-types.md) type (starts with `&`) and [arrays](../../coding/arrays.md) are highlighted as variables.
-* [Keywords](../../coding/keywords.md) – the special words stored in the file `keywords.ini` (one for all [edit modes](../../edit-modes/README.html)) and a file`keywords.txt` (one per edit mode)
-* Numbers – integer and floating-point numbers
-* Strings – a text between double quotes `" "` or single quotes `' '`
-* Models – identifiers starting with `#`
-* [Classes](../../coding/classes.md) – the part of a class command before the `.` character
-* [Commands](../../coding/classes.md) – the part of a class command after the `.` character, or a [subroutine](../../coding/data-types.md#labels)
-* [Directives ](../../coding/directives.md)– a command starting with `{$`
-* [Constants](../../coding/constants.md) – identifiers, declared within the `CONST..END` construct. See also [Semantic highlighting](editor.md#editor-configuration).
+### Элементы кода <a id="code-elements"></a>
 
-:::info
-The highlighting configuration is also used when the code source is saved into the `RTF` or `HTML` formats.
-:::
+* [Комментарии](../../coding/comments.md) – текст после `//`, а также между `{}` или `/* */`
+* [Метки](../../coding/data-types.md#metki) – идентификаторы, начинающиеся с `@`
+* [Переменные](../../coding/variables.md) – идентификаторы, начинающиеся с `$` \(глобальные переменные\), или заканчивающиеся на `@` \(локальные переменные\) Тип [aDMA](../../coding/data-types.md#peremennye) \(начинается с `&`\) и [массивы](../../coding/arrays.md) подсвечиваются как переменные.
+* [Ключевые слова](../../coding/keywords.md) – специальные слова, записанные в файле `keywords.ini` \(один для всех [режимов редактирования](../../edit-modes/)\) и `keywords.txt` \(свой для каждого режима\)
+* Числа – целые и дробные числа
+* Строковые литералы – текст между двойными `" "` или одинарными `' '` кавычками
+* Модели – идентификаторы, начинающиеся с `#`
+* [Классы](../../coding/classes.md) – имена классов \(идентификатор перед `.`\)
+* Команды – члены класса \(идентификатор после `.`\), а также [функции](../../coding/data-types.md#metki)
+* [Директивы ](../../coding/directives.md)– текст после комбинации символов `{$`
+* [Константы](../../coding/constants.md) - идентификаторы, объявленные внутри конструкции `CONST..END`. См. также [Семантическая подсветка](editor.md#nastroiki).
+
+{% hint style="info" %}
+Правила подсветки используются также при сохранении кода в формат `RTF` или `HTML`.
+{% endhint %}
 
 <script src="../../../js/main.min.js"></script>

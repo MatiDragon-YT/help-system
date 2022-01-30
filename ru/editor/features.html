@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ru">
 <head>
-  <title>Features</title>
+  <title>Возможности</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,76 +9,71 @@
 </head>
 <body>
 
-Sanny Builder provides the end-user the following features:
+Sanny Builder как среда программирования предоставляет пользователю следующие возможности.
 
-## Integration with Sanny Builder Library
+## Интеграция с Sanny Builder Library <a id="integration-with-sanny-builder-library"></a>
 
-Sanny Builder Library is a community-driven portal aiming to document all known scripting commands used in GTA III, Vice City and San Andreas. You can find it here: [library.sannybuilder.com](https://library.sannybuilder.com)
+Sanny Builder Library - это портал, наполняемый сообществом, который ставит перед собой задачу задокументировать все известные скриптовые команды, используемые в GTA III, Vice City и San Andreas. Вы можете найти его по адресу [https://library.sannybuilder.com/](https://library.sannybuilder.com/).
 
-Starting with v3.8.0 Sanny Builder uses library's files to provide brief descriptions to all opcodes directly in the IDE complimentary to the [Show opcode info](#Displaying Information about Opcode) feature. Those files are controlled with the new `&lt;library>` parameter in the [edit mode configuration](../../edit-modes/README.md#library).
+Начиная с версии 3.8.0 Sanny Builder использует файлы библиотеки, чтобы дополнить функцию [Показ различной информации об опкоде](features.md#pokaz-razlichnoi-informacii-o-tekushem-opkode) кратким описанием того, что делает этот опкод. Пути к файлам библиотеки контролируются новым параметром `<library>` в [конфигурации режима редактирования](../edit-modes/#library).
 
-Double-clicking the opcode description in the status bar opens the library's page with this opcode's full description in the browser.
+Если выбранный режим редактирования использует документацию из библиотеки, в нижней панели будет отображаться её версия , например `SBL v0.119`. Версия может отличаться в разных режимах.
 
-If the current edit mode uses the library documentation there is a text in the status bar telling the version of the documentation, e.g. `SBL v0.119`. The version may vary from mode to mode.
+![](../.gitbook/assets/sbl-update-popup-ru.png)
 
-:::center
-![](../img/sbl-update-popup-en.png)
-:::
+При клике по версии в нижней панели будет показано всплывающее меню, из которого можно проверить наличие новых обновлений и скачать их. Если включить опцию `Обновлять автоматически при запуске`, Sanny Builder будет проверять обновления и скачивать их автоматически при каждом запуске.
 
-Clicking the library version text in the status bar brings up a popup menu from which you can check if there are newer versions and download them. If you enable `Automatic updates` option Sanny Builder will check the updates and download them on startup.
+## Темы оформления <a id="color-themes"></a>
 
-## Color Themes
+Внешний вид Sanny Builder может быть изменен при помощи тем оформления. Они задают цвета и стиль элементов интерфейса и правила подсветки синтаксиса. Текущую тему можно сменить в [опциях](options/editor.md#tema-oformleniya) программы.
 
-Sanny Builder's look and feel can be customized with themes. They define colors and style of the interface and code elements for easier reading. The active color theme can be changed in the [options](options/editor.md#color-theme). 
+{% hint style="info" %}
+Если запустить Sanny Builder v3.8.0 с файлом `settings.ini` из предыдущей версии программы, настройки подсветки синтаксиса будут сконвертированы в пользовательскую тему оформления \(файл `themes\custom.ini`\).
+{% endhint %}
 
-:::info
-If you launch Sanny Builder v3.8.0 with `settings.ini` from a prior version, your syntax highlighting configuration will be converted to a custom user theme (stored in`themes\custom.ini`).
-:::
+Также в Sanny Builder имеется [встроенный редактор](options/theme-editor.md) для быстрой модификации существующих тем.
 
-Also Sanny Builder has a built-in [theme editor](options/theme-editor.md) for quick customization of the existing themes.
+## Быстрый переход по тексту <a id="bookmarks-quick-jump"></a>
 
-## Bookmarks / Quick jump
+Текущую строку можно запомнить, если поставить закладку нажатием `Ctrl+Shift+0..9`, а затем вернуться к ней нажатием `Ctrl+0..9`.   
+Удалить все закладки можно через меню `Правка -> Удалить закладки`.
 
-You can bookmark a line by pressing `Ctrl+Shift+0..9` and then get back to it by pressing `Ctrl+0..9`. To delete all bookmarks, use the menu option `Edit->Clear All Bookmarks`. 
+Также можно перейти к строке по ее номеру через опцию `Перейти...`. Она вызывается комбинацией `Ctrl+G`. Введите порядковый номер нужной строки, и редактор быстро переместит Вас к ней.
 
-Alternatively you can go to a particular line using the `Go To Line` feature. Press `Ctrl+G`, enter the line number and the editor will move the cursor to it.
+## Переход к определению <a id="navigate-to-symbol"></a>
 
-## Navigate to Symbol
+Редактор позволяет быстро переходить к определенным участкам кода без вызова диалога поиска.
 
-The IDE allows to quickly navigate to some points of interest in the code without using the `Find` dialog box.
+Чтобы перейти к строке, обозначенной меткой \(например, `:MyLabel`\), поместите курсор на ссылку на эту метку \(`@MyLabel`\) и нажмите `Alt+Вправо`. Если такая метка существует, редактор немедленно переместит на неё курсор.
 
-To go to the line marked with a label (e.g, `:MyLabel`), put the cursor on the label reference (`@MyLabel`) and press `Alt+Right`. If the label exists, the cursor position will change.
+Похожим образом можно перейти к началу функции или миссии, если нажать `Alt+Вправо` на имени функции или миссии.
 
-Similarly, to navigate to the start of a function or mission, use `Alt+Right` on the function or mission name.
+Чтобы вернуться обратно, нажмите `Alt+Влево`. Продолжайте нажимать, если переходов было несколько.
 
-To return back to the previous position, press `Alt+Left`. Keep pressing if you had more than one navigation.
+Сочетания клавиш для этой функции можно изменить в [настройках](options/hotkeys.md).
 
-These shortcuts can be redefined in the [options](options/hotkeys.md).
+## Показ различной информации о текущем опкоде
 
-## Displaying Information about Opcode
+При включенной [опции](options/editor.md#nastroiki) `Показывать информацию об опкодах` в нижней панели редактора выводится:
 
-When the [option](options/editor.md#editor-configuration) `Show opcode info` is enabled the bottom bar displays:
+* количество параметров для опкода;
+* ID модели, когда курсор находится над [ее именем](../coding/data-types.md#imena-modelei) и `IDE` файлы для текущего [режима редактирования](../edit-modes/#ide) загружены;
+* значение [константы](../coding/constants.md), когда курсор находится над именем константы и [языковая служба](language-service.md) включена;
+* краткое описание того, что делает эта команда \(из [Sanny Builder Library](features.md#integration-with-sanny-builder-library)\).
 
-* a number of parameters for the current opcode;
-* a model ID when the cursor is on the [model name](../coding/data-types.md#model-names) and `IDE` files for the current [edit mode](../../edit-modes/README.md#ide) have been loaded;
-* a constant value when the cursor is on the constant name and the [language service](language-service.md) is enabled.
-* a brief description what this command does (from [Sanny Builder Library](features.md#integration-with-sanny-builder-library))
+## Поиск нужного опкода
 
-## Opcode Search
+Используйте программу [поиска опкодов](opcode-search-tool.md), чтобы найти нужный опкод.
 
-Use the built-in [Opcode Search tool](opcode-search-tool.md) to find an opcode you need.
+## Изменение координат и угла разворота игрока
 
-## Player Coordinates Management
+Нажмите `Ctrl+Alt+1`, когда запущена игра, и появится окно менеджера. Здесь вы можете установить новые координаты и угол разворота игрока и скопировать текущие. В верхнем поле ввода вы можете указать сразу 3 координаты, разделив их пробелом или `,`. Также вы можете быстро вставить координаты игрока в редакторе комбинацией `Ctrl+Shift+C`. Вставка угла разворота \(`z_angle`\) в редакторе производится нажатием `Ctrl+Shift+E`.
 
-Press `Ctrl+Alt+1` when GTA San Andreas is running and the Coords Manager window will appear. You can read the player's coordinates from the game memory and modify them there. 
+## Запись и воспроизведение нажатий кнопок
 
-In the top edit line you can enter the XYZ coordinates, delimited by the space character or the comma character `,`. Additionally, you can insert the player's coordinates in the script source by pressing `Ctrl+Shift+C`. To insert the player's z-angle, press `Ctrl+Shift+E`.
+Можно записывать последовательность нажатия клавиш \(макрос\) и воспроизводить ее позднее. Например, есть следующий код:
 
-## Keypress Recording (Macro)
-
-You can record a key pressing sequence (macro) and playback it later. Consider the following code:
-
-```sb3
+```text
 $Actor = Actor.Create(CivMale, #MALE01, 100.0, 100.0, 10.0)
 $ActorWithGun = Actor.Create(CivMale, #MALE01, 110.0, 100.0, 20.0)
 $Gang01 = Actor.Create(CivMale, #MALE01, 120.0, 100.0, 30.0)
@@ -87,73 +82,75 @@ $Killer = Actor.Create(CivMale, #MALE01, 140.0, 100.0, 50.0)
 $ActorWithoutGun = Actor.Create(CivMale, #MALE01, 150.0, 100.0, 60.0) 
 ```
 
-Say, you need to exchange the actor's handles in each pair (i.e have `$ActorWithGun` instead of `$Actor`, and vice versa).
+Допустим, нужно обменять переменные в каждой паре строк \(поставить вместо `$Actor` `$ActorWithGun`, а вместо `$ActorWithGun` - `$Actor` и т.д.\).
 
-Place the cursor in the first line before `$Actor` and press `Ctrl+M`. The editor immediately begins recording all keys - so be careful!
+Поставьте курсор на первую строку и нажмите `Ctrl+M`. С этого момента редактор запоминает все нажатия клавиш, так что будьте осторожны.
 
-1. Press and hold `Ctrl` and press the `Right Arrow` button once 
-2. Press `Shift+Home` and `Ctrl+Ins`.
-3. Press the `Down Arrow` button. The cursor must be on the second line with the global variable in the clipboard
-4. Press `Ctrl+Right Arrow` and `Shift+Ins`.
-5. Press `Ctrl+Left Arrow`, `Shift+Home`, `Ctrl+Ins` and `Delete`
-6. Press the `Up Arrow` button
-7. Press `Ctrl+Shift+Right Arrow` and `Shift+Ins`
-8. Press the `Home` button.
+1. Зажмите `Ctrl` и нажмите один раз `стрелку вправо`. `Ctrl` нужен так как строки разной длины. 
+2. Теперь нажмите `Shift+Home` и `Ctrl+Ins`. 
+3. Нажмите `стрелку вниз`. Курсор должен оказаться на второй строке, при этом глобальная переменная будет в буфере обмена. 
+4. Нажмите `Ctrl+стрелка вправо` и `Shift+Ins`.
+5. Нажмите `Ctrl+стрелка влево`, `Shift+Home`, `Ctrl+Ins` и кнопку `Delete`
+6. Нажмите `стрелку вверх`
+7. Нажмите `Ctrl+Shift+стрелка вправо` и `Shift+Ins`
+8. Нажмите кнопку `Home`.
 
-Now the first two lines should look like these:
+Теперь первые две строки выглядят так:
 
-```sb3
+```text
 $ActorWithGun = Actor.Create(CivMale, 100.0, 100.0, 10.0)
 $Actor = Actor.Create(CivMale, 110.0, 100.0, 20.0)
 ```
 
-with the cursor being in the beginning of the first line. Now press `Ctrl+M` to stop recording.
+и курсор стоит в начале первой строки. Теперь нажмите `Ctrl+M`. Макрос записан. Теперь можно воспроизводить записанную последовательность комбинацией `Ctrl+P`. Установите курсор на третью строку, нажмите `Ctrl+P`, и переменные `$Gang01` и `$Gang02` поменяются местами.
 
-You can playback the recorded sequence by pressing `Ctrl+P`. Place the cursor in the beginning of the third line, press `Ctrl+P` and the actor handles will be swapped.
+Во время записи макроса можно поставить/снять запись на паузу нажатием `Ctrl+P`.
 
-During recording, you can pause/unpause it by pressing `Ctrl+P`.
+## Замена номеров миссий на их названия
 
-## Replacing Mission Numbers with their Names
+Sanny Builder допускает использовать имя миссии в команде `start_mission`. Именем миссии явлется ее метка, которая определена в блоке `DEFINE MISSION`.
 
-Sanny Builder allows using a mission name in the opcode `start_mission`. The mission name is the label defined with a `DEFINE MISSION` command. Say, you have:
+Например, у вас есть 
 
-```sb3
+```text
 DEFINE MISSION 10 AT @MYMISSION
 ```
 
-Instead of `start_mission 10` you can write`start_mission MYMISSION`.
+Вы можете использовать вместо `start_mission 10` команду `start_mission MYMISSION`.
 
-There is also the [Replace Mission Numbers](options/general.md#replace-mission-numbers) option. When it's enabled, the decompiler automatically replaces all mission numbers with their names.
+Также существует [опция](options/general.md#zamenyat-nomera-missii) `Заменять номера миссий`. Когда она включена, дизассемблер автоматически заменяет все номера миссий в коде на их имена. Эта опция дает возможность безболезненно удалять миссии, не заботясь о переименовывании номеров в коде.
 
-To call the mission names list, press `Ctrl+Space`. The cursor has to be directly after the `start_mission` command.
+Для дополнительного удобства после команды `start_mission` можно вызвать список имен миссий нажатием `Ctrl+пробел`.
 
-Additionally, you can use [navigate](features.md#navigate-to-symbol) to the mission code when the cursor is under the mission name.
+См. также [Быстрый переход к миссии](features.md#navigate-to-symbol).
 
-## Custom Mission Titles
+## Использование оригинальных имен миссий
 
-Since v3.2.0 Sanny supports custom mission titles for each available [edit mode](../../edit-modes/README.md#missions). They are stored in the `missions.txt` file. This file is used by the disassembler to add the title as a comment on line with mission define (`DEFINE MISSION`) or start (`mission_start`) command. 
+Начиная с версии 3.2.0 Sanny Builder поддерживает оригинальные названия миссий для каждого [режима редактирования](../edit-modes/). Названия содержатся в файле `missions.txt`. Этот файл используется при дизассемблировании, чтобы добавить название миссии как комментарий рядом командой определения \(`DEFINE MISSION`\) или вызова миссии \(`start_mission`\). 
 
-If a `SCM` file contains custom-made missions you may edit the `missions.txt` to have the correct titles after disassembling.
+При дизассемблировании `main.scm` с измененными миссиями, отредактируйте соответствующий файл `missions.txt`, чтобы названий миссий соответствовали скрипту.
 
-## Multilingual Interface
+## Многоязычный интерфейс
 
-Sanny Builder has fully multilingual interface translated into 17 languages. You can switch the languages in the [options](options/general.md#interface-language) (`F10`). Refer to [sannybuilder/translations](https://github.com/sannybuilder/translations) for more information on how to create or update a translation.
+Sanny Builder обладает интерфейсом, переведенным на 15 языков. Переключить язык можно в [опциях](options/general.md#yazyk-interfeisa) \(`F10`\). Информацию по созданию или изменению переводов можно найти на [sannybuilder/translations](https://github.com/sannybuilder/translations).
 
-## External Tools Menu
+## Меню внешних приложений
 
-You can configure up to `9` apps to run when you need them. Each app has its own hotkey for your convenience. You may also pass the parameters to your app if needed. To pass the name of the currently opened file use the special word `$SB_FileName`.
+Вы можете добавить в меню `Инструменты` до `9` внешних приложений и запускать по мере необходимости. Каждому приложению можно присвоить комбинацию горячих клавиш и параметры, необходимые для запуска.
 
-Since v3.7.0 it's also possible to pass the variables `@sb:` and `@game:` that represent Sanny Builder directory and current game directory respectively into the command-line parameters of the external app:
+Для передачи в запускаемое приложение пути к открытому в редакторе файлу используйте специальное слово: `$SB_FileName`.
 
-```
-Parameters:
+Начиная с версии 3.7.0 также можно использовать переменные `@sb:` и `@game:`, которые представляют директорию Sanny Builder и директорию текущей игры соответственно, в параметрах вызываемого приложения:
+
+```text
+Параметры:
 --cwd=@sb: --game-dir=@game:
 ```
 
-## Checking for updates
+## Проверка обновлений
 
-Sanny Builder is able to check if a new version is available. To use this feature go to menu `Help->Check for update...`. The editor will connect to a remote server and if a newer version is available it prompts the download and install.
+Sanny Builder может проверить, доступна ли новая версия программы. Чтобы использовать эту возможность, пройдите в меню `Справка->Проверить обновления...`. Программа подключится к серверу обновлений и предложит скачать и установить обновление, если оно найдено. 
 
-The editor can also check for an update during startup if you enable this option in the updater window.
+Sanny Builder может автоматически проверять наличие обновления при запуске, если вы включите соответствующую опцию в окне меню обновлений.
 
 <script src="../../js/main.min.js"></script>

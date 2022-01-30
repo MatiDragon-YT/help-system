@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Editor</title>
+  <title>Редактор</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,52 +9,42 @@
 </head>
 <body>
 
-Here you can change the IDE settings.
+На данной вкладке вы можете изменить настройки IDE.
 
-:::l
-![](../../img/options-editor-en.png)
-:::
+![](../../.gitbook/assets/options-editor-ru.png)
 
-## Color Theme
+## Тема оформления
 
-:::l
-![](../../img/sb-options-color-theme.png)
-:::
+![](../../.gitbook/assets/options-theme-select-ru.png)
 
-This picker allows to choose one of the pre-defined themes to customize interface colors and syntax highlighting. The Edit button launches [Theme Editor](theme-editor.md).
+Здесь вы можете выбрать одну из готовых тем оформления, изменяющих внешний вид программы и правила подсветки синтаксиса. Кнопка Изменить запускает [Редактор тем](theme-editor.md).
 
-## Code Scan Distance
+## Глубина просмотра кода
 
-:::l
-![](../../img/editor-code-scan-en.png)
-:::
+![](../../.gitbook/assets/editor02.gif)
 
-The code scanning range is used when you press `Ctrl+Space` to find [constants](../../coding/constants.md), labels and [variables](../../coding/variables.md). The value tells the editor how many lines to scan up and down starting from the active line. If you set a number of `0`, the editor scans the whole source file.
+Значение глубины просмотра используется при построении списка [констант](../../coding/constants.md), [меток](../../coding/data-types.md#metki) и [переменных](../../coding/variables.md) после нажатия комбинации `Ctrl+пробел`. Это значение говорит редактору, как много строк кода нужно просмотреть в обе стороны от текущей строки. Если указано значение `0`, программа будет искать указанные элементы по всему файлу.
 
-If the `Auto list` option is checked, the list of available labels, models and variables appears automatically as you type `@`, `$`, `#`.
+Если галочка внизу поставлена, список меток, моделей и переменных будет появляться автоматически после набора  `@`, `$`, `#`.
 
-## Font
+## Шрифт
 
-:::l
-![](../../img/editor-font-en.png)
-:::
+![](../../.gitbook/assets/editor04.gif)
 
-Here you can choose the font and configure its display. Sanny Builder supports only [monospaced fonts](https://en.wikipedia.org/wiki/Monospaced_font). `AaBbCcDd` reflects selected configuration.
+Здесь вы можете выбрать шрифт и его настройки для редактора. Sanny Builder поддерживает только [моноширинные шрифты](https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%BE%D1%88%D0%B8%D1%80%D0%B8%D0%BD%D0%BD%D1%8B%D0%B9_%D1%88%D1%80%D0%B8%D1%84%D1%82). Строка `AaBbCcDd` отражает текущие настройки.
 
-## Editor Configuration
+## Настройки
 
-:::l
-![](../../img/sb-editor-configuration.png)
-:::
+![](../../.gitbook/assets/options-editor-settings.ru.png)
 
-`Show main panel` – toggle the top toolbar\
-`Show opcode info` – make the editor display [different information](../features.md#displaying-information-about-opcode) in the bottom bar\
-`Line numbers` – display line numbers in the left padding area\
-`Show gutter border` – display the border line on the right side of the left padding area. Uncheck this option to increase the available space visually\
-`Load last closed file at startup` – open the last closed file at startup\
-`Load all closed files` – open all closed files at startup. This option is only available when the Load last closed file at startup is checked\
-`Confirm when exit` – confirm exit to prevent occasional program termination\
-`Enable language service` - toggle the [language service](../language-service.md). Disabling this service also makes the semantinc contants highlighting unavailable. Does not affect a document that is already opened in the editor\
-`Semantic highlighting` - apply the same rules to constants as to their values. The color theme's rules for constant highlighting will be ignored.
+`Показывать главную панель` – показать/спрятать панель с кнопками в главном окне редактора  
+`Показывать информацию об опкодах` – отображать [различную информацию](../features.md#pokaz-razlichnoi-informacii-o-tekushem-opkode) в статусной строке внизу экрана   
+`Показывать номера строк` – отображать номера строк в отступе в левой части редактора   
+`Показывать границу отступа` – показать границу для отступа в левой части редактора. Отключите данную опцию, чтобы визуально увеличить пространство редактора  
+`Открывать при запуске последний файл` – открывать при запуске программы последний закрытый файл, если таковой существует  
+`Открывать все закрытые файлы` – открывать разом все закрытые файлы при запуске. Данная опция может быть выбрана только вместе с `Открывать при запуске последний файл`  
+`Подтверждать выход` – включить подтверждение для закрытия программы. Полезно для предотвращения случайного выхода  
+`Включить языковую службу` – управление [языковой службой](../language-service.md). При выключенной службе становится недоступной опция подсветки констант. Выключение службы не влияет на уже открытый файл.  
+`Семантическая подсветка` – применять к константам такие же правила подсветки, как к их значениям. Правило для подсветки констант, заданное в [теме оформления](theme-editor.md#code-elements), будет проигнорировано.
 
 <script src="../../../js/main.min.js"></script>

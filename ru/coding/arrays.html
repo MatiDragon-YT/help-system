@@ -16,7 +16,7 @@
 San Andreas:  
 `<имя массива>(<индекс>,<размер><тип>)`
 
-```text
+```sb3
 $index = 0
 $array($index,10i) = 1
 ```
@@ -66,7 +66,7 @@ Liberty City Stories, Vice City Stories:
 В LCS и VCS длина элементов массивов может быть только 4 байта. Поэтому нет необходимости указывать тип массива при обращении к его элементам.
 {% endhint %}
 
-```text
+```sb3
 $index = 0
 $array($index,10) = 1
 ```
@@ -79,7 +79,7 @@ $array($index,10) = 1
    <имя массива>: array <размер> of <тип>  
 end`
 
-```text
+```sb3
 var
     $FloatArray: array 10 of Float
 end
@@ -89,7 +89,7 @@ end
 
 После объявления можно обращаться к элементам массива, используя квадратные скобки и индексную переменную:
 
-```text
+```sb3
 var
     $FloatArray: array 10 of Float
 end
@@ -101,7 +101,7 @@ $FloatArray[$index] += 100.0
 
 Для обращения к определенным элементам можно также использовать квадратные скобки и константу больше либо равную нулю:
 
-```text
+```sb3
 var
     $FloatArray: array 10 of Float
 end
@@ -110,7 +110,7 @@ $FloatArray[1] += 100.0
 
 С массивами, содержащими [строковые литералы](data-types.md#strokovye-literaly), можно работать используя [строковые переменные](data-types.md#strokovye-peremennye):  
 
-```text
+```sb3
 // задаем значения для первых трех элементов массива $strings
 s$strings[0] = 'str1'
 s$strings[1] = 'str2'
@@ -119,7 +119,7 @@ s$strings[2] = 'str3'
 
 Массив может быть объявлен как коллекция [экземпляров класса](classes.md#ekzemplyary-klassa):
 
-```text
+```sb3
 var
   $players: array 2 of Player
 end

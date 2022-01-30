@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Command Line Interface</title>
+  <title>Интерфейс командной строки</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,33 +11,33 @@
 
 ## --compile
 
-`--compile &lt;input file path&gt; [output file path]` - compiles the file and exits
+`--compile <путь к исходному файлу> [путь к конечному файлу]` - скомпилировать `исходный файл` и закрыть программу
 
-```
+```text
 sanny.exe --compile C:\myscm.txt C:\myscm.scm
 ```
 
 {% hint style="info" %}
-The `output file path` parameter is optional. If there is no output path parameter, the compiler uses the [format rules](options/formats.md#file-name-format) to compute the output file name. 
+Если `путь к конечному файлу` пропущен, компилятор использует [настройки форматирования](options/formats.md#imena-failov). 
 {% endhint %}
 
 {% hint style="info" %}
-The input file must have no errors. If there are errors found during compilation, they will be logged in the file `compile.log`. When compilation ends, the program shuts down.
+Ошибки, возникшие во время компиляции, записываются в файл `compile.log`.
 {% endhint %}
 
-Shortcut: `-c`
+Краткая форма: `-c`
 
 ## --debug
 
-`--debug` - toggles [debug options](console.md#running-with-debug)
+`--debug` - переключает [отладочные опции](console.md#otladochnye-opcii)
 
-```
+```text
 sanny.exe --debug 110000
 ```
 
 ## --game
 
-`--game &lt;game&gt;` - selects the [default mode](../../edit-modes/README.md#type) for the given game. Known `game` values are:
+`--game <game>` - выбирает [режим редактирования по умолчанию](../edit-modes/#type) для выбранной игры. Допустимые значения `game`:
 
 * `gta3`
 * `vc`
@@ -47,224 +47,226 @@ sanny.exe --debug 110000
 * `vc_mobile`
 * `sa_mobile`
 
-Shortcut: `-g`
+Краткая форма: `-g`
 
-```
+```text
 sanny.exe --game sa
 ```
 
 ## --mode
 
-`--mode &lt;id&gt;` - selects the mode by `id`. [Modes](../../edit-modes/README.md) and their ids are defined in the `modes.xml` file.
+`--mode <id>` - выбирает режим редактирования с заданным [`id`](../edit-modes/#id). Режимы и их `id` определяются в файле `modes.xml`.
 
-Shortcut: `-m`
+Краткая форма: `-m`
 
-```
+```text
 sanny.exe --mode vcs_psp
 ```
 
 ## --no-splash
 
-`--no-splash` - runs Sanny Builder without the splash screen
+`--no-splash` - запускает Sanny Builder без загрузочного экрана
 
-```
+```text
 sanny.exe --no-splash
 ```
 
 ## -x
 
-`-x &lt;file path&gt;` - sets the path to the file with the [edit modes](../../edit-modes/README.md) configuration
+`-x <file path>` - устанавливает путь к файлу с [режимами редактирования](../edit-modes/)
 
-```
+```text
 sanny.exe -x ..\my-modes.xml
 ```
 
 ## --option
 
 {% hint style="info" %}
-Available since v3.8.0
+Доступно, начиная с v3.8.0
 {% endhint %}
 
-`-o &lt;option name&gt; &lt;value&gt;` - sets the value of the specified [option](options//README.md). To set multiple options, list each of them individually:
+`--option <имя опции> <значение>` - устанавливает значение определенной [опции](options/). Чтобы установить несколько опций сразу, перечислите их друг за другом:
 
-`-o &lt;option1 name&gt; &lt;option1 value&gt; -o &lt;option2 name&gt; &lt;option2 value&gt; ... -o &lt;optionN name&gt; &lt;optionN value&gt;` 
+`--option <имя 1й опции> <значение 1й опции> --option <имя 2й опции> <значение 2й опции> ... --option <имя N опции> <значение N опции>` 
 
-Option name can be one of the following:
+Имя опции может принимать одно из следующих значений:
 
 {% hint style="warning" %}
-This list is not final and subject to change at any moment.
+Данный список не окончательный и может меняться.
 {% endhint %}
 
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Allowed Values</th>
-<th>Options Tab</th>
+<th>Имя</th>
+<th>Допустимые значения</th>
+<th>Вкладка в настройках</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::ShowPanel</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::ShowPanel</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::ShowOpcodeInfo</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::ShowOpcodeInfo</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::ShowLineNumbers</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::ShowLineNumbers</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::ShowGutterBorder</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::ShowGutterBorder</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::OpenLastFile</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::OpenLastFile</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::OpenAllClosedFiles</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::OpenAllClosedFiles</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::ConfirmExit</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::ConfirmExit</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::LanguageService</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::LanguageService</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#editor-configuration">Editor::SemanticConstHighlighting</a></td>
+<td><a href="options/editor.md#nastroiki">Editor::SemanticConstHighlighting</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#code-scan-distance">Editor::IdentifiersListAuto</a></td>
+<td><a href="options/editor.md#glubina-prosmotra-koda">Editor::IdentifiersListAuto</a></td>
 <td>0, 1</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/editor.md#code-scan-distance">Editor::ScanDistance</a></td>
+<td><a href="options/editor.md#glubina-prosmotra-koda">Editor::ScanDistance</a></td>
 <td>0..65535</td>
-<td>Editor</td>
+<td>Редактор</td>
 </tr>
 <tr>
-<td><a href="options/general.md#interface-language">Editor::Lang</a></td>
-<td>known locale id</td>
-<td>General</td>
+<td><a href="options/general.md#yazyk-interfeisa">Editor::Lang</a></td>
+<td>номер локали</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#quick-game-loading">Editor::QuickGameLoading</a></td>
+<td><a href="options/general.md#bystraya-zagruzka-igry">Editor::QuickGameLoading</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#show-progress">Editor::ShowProgress</a></td>
+<td><a href="options/general.md#pokazyvat-progress">Editor::ShowProgress</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#show-report">Editor::ShowReport</a></td>
+<td><a href="options/general.md#pokazyvat-otchet">Editor::ShowReport</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#always-overwrite-output-file">Decompiler::OverwriteOutputFile</a></td>
+<td><a href="options/general.md#perezapis-vykhodnogo-faila">Decompiler::OverwriteOutputFile</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#manual-img-opening">Decompiler::ManualIMGOpening</a></td>
+<td><a href="options/general.md#ruchnoi-vybor-img-faila">Decompiler::ManualIMGOpening</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/formats.md#label-name-format">Decompiler::HexadimalOffsets</a></td>
+<td><a href="options/formats.md#imena-metok">Decompiler::HexadimalOffsets</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/formats.md#label-name-format">Decompiler::LabelsFormat</a></td>
+<td><a href="options/formats.md#imena-metok">Decompiler::LabelsFormat</a></td>
 <td>0, 1, 2</td>
-<td>Formats</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#write-opcodes">Decompiler::AlwaysWriteOpcodes</a></td>
+<td><a href="options/general.md#ispolzovat-opkody">Decompiler::AlwaysWriteOpcodes</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#replace-mission-numbers">Decompiler::ReplaceMissionNumbers</a></td>
+<td><a href="options/general.md#zamenyat-nomera-missii">Decompiler::ReplaceMissionNumbers</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#insert-original-mission-names">Decompiler::InsertOriginalMissionNames</a></td>
+<td><a href="options/general.md#vstavlyat-originalnye-imena-missii">Decompiler::InsertOriginalMissionNames</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#show-warning">Compiler::ShowIMGWarning</a></td>
+<td><a href="options/general.md#pokazyvat-preduprezhdenie">Compiler::ShowIMGWarning</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#check-conditions">Compiler::CheckConditions</a></td>
+<td><a href="options/general.md#proverka-uslovii">Compiler::CheckConditions</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#ranges-check">Compiler::CheckLocalVariables</a></td>
+<td><a href="options/general.md#proverka-peremennykh">Compiler::CheckLocalVariables</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/general.md#add-extra-info-to-scm">Compiler::AddExtraInfo</a></td>
+<td><a href="options/general.md#dobavlyat-dopolnitelnuyu-informaciyu-v-scm">Compiler::AddExtraInfo</a></td>
 <td>0, 1</td>
-<td>General</td>
+<td>Общие</td>
 </tr>
 <tr>
-<td><a href="options/formats.md#custom-names">CustomNames::UseCustomLabels</a></td>
+<td><a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomLabels</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Форматирование</td>
 </tr>
 <tr>
-<td><a href="options/formats.md#custom-names">CustomNames::UseCustomVariables</a></td>
+<td><a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomVariables</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Форматирование</td>
 </tr>
 <tr>
-<td><a href="options/formats.md#custom-names">CustomNames::UseCustomArrays</a></td>
+<td><a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomArrays</a></td>
 <td>0, 1</td>
-<td>Formats</td>
+<td>Форматирование</td>
 </tr>
 <tr>
-<td><a href="options/formats.md#case-converting">CustomNames::Format</a></td>
+<td><a href="options/formats.md#registr-bukv">CustomNames::Format</a></td>
 <td>0, 1, 2</td>
-<td>Formats</td>
+<td>Форматирование</td>
 </tr>
 </tbody>
 </table>
 
+
 {% hint style="info" %}
-Options set via CLI are not persistent and only applied to the current session. On the next launch Sanny Builder will use values stored in the `settings.ini`.
+Опции, измененные через командную строку, не являются постоянными и применяются только в текущей сессии. После перезапуска Sanny Builder будет использовать значения из файла `settings.ini`.
 {% endhint %}
 
-Shortcut: `-o`
+Краткая форма: `-o`
 
-```
+```text
 sanny.exe -o Compiler::CheckConditions 0 -o Editor::LanguageService 1
 ```
+
 
 <script src="../../js/main.min.js"></script>

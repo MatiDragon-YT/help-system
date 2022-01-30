@@ -9,9 +9,9 @@
 </head>
 <body>
 
-You can insert a predefined piece of code called a code template by typing the template name and pressing `F2`. To display the list of available templates, press `Ctrl+J`. 
+Шаблоны - это заранее подготовленный код, которой вставляется в редактор, после ввода имени шаблона и нажатия `F2`. Вызвать список шаблонов можно комбинацией `Ctrl+J`.
 
-For example, if you type `for` and press `F2` the editor adds:
+Например, напишите`for` и нажмите `F2`. Редактор вставит следующий код:
 
 ```sb3
 for  =  to  // step 1
@@ -19,39 +19,37 @@ for  =  to  // step 1
 end // for
 ```
 
-## Types of Templates
+## Типы шаблонов
 
-There are two types of templates: *shared* and *exclusive*. Shared templates are available across all [edit modes](README.md). They are contained in the file `data\templates.txt`. Exclusive templates are designed specifically for the current edit mode. A path to the exclusive template file can be customized with the [`template`](README.md/#templates) key in the `modes.xml`:
+Существует два типа шаблонов: _общие_ и _эксклюзивные_. Общие доступны во всех [режимах редактирования](README.md). Они содержатся в файле `data\templates.txt`. Эксклюзивные шаблоны разработаны под конкретный режим. Путь к файлу с эксклюзивными шаблонами задается через ключ [`template`](README.md#templates) в файле `modes.xml`:
 
+```xml
+<templates type="default">@sb:\data\gta3\templates.txt</templates>
 ```
-&lt;templates type="default">@sb:\data\gta3\templates.txt&lt;/templates>
-```
 
-The editor merges the content of shared and exclusive templates in a single list. Exclusive templates have priority over the shared with the same name.
+Редактор объединяет общие и эксклюзивные шаблоны в один список. Эксклюзивный шаблон имеет приоритет над общим шаблоном с такими же именем.
 
-## File Syntax
+## Синтаксис файла
 
-Each template file has the following syntax:\
-A template name is written in a separate line. The equal sign `=` follows the name. After the equal sign you can also add a short hint. The template code starts at the next line, each line begins with the equals sign. The cursor position is marked with the `|` character.
+Каждый файл шаблонов имеет следующий синтаксис:  
+Имя шаблона пишется отдельной строкой. После имени должен стоять знак `=`. После `=` можно добавить краткое описание шаблона. Поддерживаются только однострочные описания. После строки с именем записывается содержимое шаблона, каждая строка начинается знаком `=`. Место, куда должен быть помещен курсор после вставки, обозначается символом `|`.
 
-## Adding a New Template
+## Добавление новых шаблонов <a id="adding-a-new-template"></a>
 
-It's also possible to add a new template from the editor. Select the code and click the `Service->Add template` menu. 
+Можно сохранить новый шаблон прямо из редактора. Для этого нужно выделить нужный кусок текста и выбрать меню `Сервис->Добавить шаблон`. 
 
-:::center
-![](../img/ide-add-template-en.png)
-:::
+![](../.gitbook/assets/add-templates-ru.png)
 
-Enter a name of the template, a description (optionally) in the dialog window, choose the type of the template, and press the `OK` button. The template is ready to use. 
+Введите имя шаблона, описание \(необязательно\), выберите тип шаблона и нажмите кнопку `OK`. Новый шаблон будет сразу же готов к использованию.
 
-Custom templates are saved in either `data\templates.custom.txt` (*custom shared templates*) or in `data\&lt;edit mode>\templates.custom.txt`(*custom exclusive templates*). The latter can be customized in the [modes configuration](README.md#templates).
+Пользовательские шаблоны сохраняются либо в файл `data\templates.custom.txt` \(_общие пользовательские шаблоны_\) либо в файл `data\<режим редактирования>\templates.custom.txt`\(_эксклюзивные пользовательские шаблоны_\). Путь к файлу с эксклюзивными пользовательскими шаблонами может быть изменен в [настройках](README.md/#templates) режима редактирования.
 
 {% hint style="info" %}
-The option to save a template only for current mode becomes available if `modes.xml` has a file path defined in `&lt;template type="custom">`tag.
+Сохранение шаблона только для текущего режима возможно, если файл `modes.xml`содержит тэг `<template type="custom">` с именем файла.
 {% endhint %}
 
 {% hint style="info" %}
-A template with the name `CLEO` unlocks the "New CLEO Script..." item in the main menu. The editor uses this template as the content for a newly created file.
+Наличие шаблона с именем `CLEO` разблокирует пункт в главном меню "Новый CLEO скрипт...". Редактор использует этот шаблон для формирования содержимого нового файла.
 {% endhint %}
 
 <script src="../../js/main.min.js"></script>

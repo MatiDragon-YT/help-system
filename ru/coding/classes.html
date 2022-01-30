@@ -20,7 +20,7 @@
 `Член класса` - одна из команд, входящих в класс  
 `Параметры` - 0 и более [параметров](data-types.md), разделенных запятой
 
-```text
+```sb3
 Player.SetMinWantedLevel($PLAYER_CHAR, 2)
 ```
 
@@ -38,7 +38,7 @@ Player.SetMinWantedLevel($PLAYER_CHAR, 2)
 
 Условные команды в списке, вызываемом нажатием `Ctrl+пробел`, обозначаются словом `Check`. Они используются в [условных выражениях](conditions.md):
 
-```text
+```sb3
 if
     Player.Defined($PLAYER_CHAR)
 jf @anywhere
@@ -48,7 +48,7 @@ jf @anywhere
 
 Команды, которые используются для выполнения одиночного действия над экземплярами класса, называются методами. Например, перемещение объекта, взрыв машины и т.п.:
 
-```text
+```sb3
 Object.PutAt($crate, 10.0, -25.5, 12.2)
 Car.Destroy($car)
 ```
@@ -59,11 +59,11 @@ Car.Destroy($car)
 
 Sanny Builder допускает два эквивалентных друг другу варианта написать конструктор:
 
-```text
+```sb3
 Player.Create($PLAYER_CHAR, #NULL, 2488.5601, -1666.84, 13.38)
 ```
 
-```text
+```sb3
 $PLAYER_CHAR = Player.Create(#NULL, 2488.5601, -1666.84, 13.38)
 ```
 
@@ -73,7 +73,7 @@ $PLAYER_CHAR = Player.Create(#NULL, 2488.5601, -1666.84, 13.38)
 
 Например, свойство `.Money` класса `Player` позволяет работать с количеством денег у игрока:
 
-```text
+```sb3
 Player($PLAYER_CHAR).Money += 1000000 // добавить деньги
 Player($PLAYER_CHAR).Money > 461@ // проверить счет игрока
 4@ = Player($PLAYER_CHAR).Money // записать текущую сумму денег в переменную
@@ -82,13 +82,13 @@ Player($PLAYER_CHAR).Money > 461@ // проверить счет игрока
 {% hint style="warning" %}
 В текущей версии существует ограничение на использование пробелов в [строковых литералах](data-types.md#strokovye-literaly) в параметрах свойств. Компилятор игнорирует такие пробелы:
 
-```text
+```sb3
 0@ = File.Open("file name","wb")
 ```
 
 будет скомпилировано как:
 
-```text
+```sb3
 0@ = File.Open("filename","wb")
 ```
 {% endhint %}
@@ -97,7 +97,7 @@ Player($PLAYER_CHAR).Money > 461@ // проверить счет игрока
 
 Большинство классов в качестве первого параметра принимают переменную, которая хранит указатель на экземпляр класса - ту сущность в игре, над которой выполняется эта команда:
 
-```text
+```sb3
 Player.Build($PLAYER_CHAR)
 ```
 
@@ -105,7 +105,7 @@ Player.Build($PLAYER_CHAR)
 
 При этом некоторые внутриигровые элементы существуют в единственном экземпляре. Например, камера, которая определяет поле зрения игрока. Члены классов для таких сущностей не требуют экземпляра класса:
 
-```text
+```sb3
 Camera.SetBehindPlayer()
 ```
 
@@ -113,7 +113,7 @@ Camera.SetBehindPlayer()
 
 Переменные можно [объявлять](variables.md#konstrukciya-var-end) с типом - именем класса:
 
-```text
+```sb3
 var
     $PLAYER_CHAR: Player
 end
@@ -121,7 +121,7 @@ end
 
 Это указывает компилятору на то, что переменная `$PLAYER_CHAR` является экземпляром класса `Player`. Такую переменную можно использовать вместо имени класса:
 
-```text
+```sb3
 if
     $PLAYER_CHAR.Defined
 jf @anywhere
@@ -130,13 +130,13 @@ jf @anywhere
 {% hint style="warning" %}
 Если переменная используется вместо имени класса, она также компилируется как первый параметр, поэтому дублировать её в списке параметров не нужно:
 
-```text
+```sb3
 $PLAYER_CHAR.SetClothes("PLAYER_FACE", "HEAD", Head)
 ```
 
 эквивалентно:
 
-```text
+```sb3
 Player.SetClothes($PLAYER_CHAR, "PLAYER_FACE", "HEAD", Head)
 ```
 {% endhint %}
@@ -147,7 +147,7 @@ Player.SetClothes($PLAYER_CHAR, "PLAYER_FACE", "HEAD", Head)
 
 [Имена моделей](data-types.md#imena-modelei) являются экземплярами класса `Model`:
 
-```text
+```sb3
 #AK47.Load
   
 :loop
@@ -159,7 +159,7 @@ jf @loop
 
 эквивалентно:
 
-```text
+```sb3
 Model.Load(#AK47)
 
 :loop
@@ -173,7 +173,7 @@ jf @loop
 
 Некоторые параметры в членах классов могут задаваться в виде [перечисляемого типа](../edit-modes/enums.txt.md) (или перечисления). Это делает код более читаемым:
 
-```text
+```sb3
 Player.SetClothes($PLAYER_CHAR, "VEST", "VEST", BodyPart.Torso)
 ```
 

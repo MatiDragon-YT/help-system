@@ -25,7 +25,7 @@ END`
   
 Значением константы может быть число \(а также [имя модели](data-types.md#imena-modelei) или [метка](data-types.md#metki)\), [строковый литерал](data-types.md#strokovye-literaly), [переменная](variables.md) \(а также [свойство класса](classes.md#svoistva)\), другая константа.
 
-```text
+```sb3
 var
    $PLAYER_CHAR: Player
 end
@@ -50,7 +50,7 @@ end
 
 Константы могут использоваться везде, кроме случая:
 
-```text
+```sb3
 const
     VarName = $Var
     IndexName = 25
@@ -60,7 +60,7 @@ VarName[IndexName] = 0
 
 Чтобы скомпилировать такое выражение, нужно указать номер опкода:
 
-```text
+```sb3
 0004: VarName[IndexName] = 0
 ```
 
