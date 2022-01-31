@@ -23,12 +23,15 @@ const SP = String.prototype
  * @param {DOMString}
 */
 function $(element) {
-	if (element.charAt(0) === '#' && !/\s/.test(element) || D.querySelectorAll(element).length === 1) { 
+	const xElements = D.querySelectorAll(element)
+	const length = xElements.length
+
+	if (element.charAt(0) === '#' && !/\s/.test(element) || length === 1) { 
 		return D.querySelector(element);
 	}
 	else {
-		if(D.querySelectorAll(element).length === 0){return undefined}
-		return D.querySelectorAll(element);
+		if(length === 0){return undefined}
+		return xElements;
 	}
 }
 const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
@@ -292,16 +295,33 @@ apply($('a'), function(e){
 	}
 })
 
-apply($('.sb3'), function(e){
-	e.innerHTML = e.innerHTML
+apply($('.sb3'), function(element){
+	const span = {
+		start : "<span class=",
+		end : ">$1<\/span>"
+	}
+
+	const enter = {
+		comments  : span.start + "comments" + span.end,
+		numbers   : span.start + "numbers" + span.end,
+		variables : span.start + "variables" + span.end,
+		opcodes   : span.start + "uppercase" + span.end,
+		directives: span.start + "directives" + span.end,
+		commands  : span.start + "commands" + span.end,
+		classes  : span.start + "classes" + span.end,
+	}
+
+	element.innerHTML = element.innerHTML
 
 	//Comentarios 
-	.r(/(\/\/.+)/gm, "<span class=comments>$1<\/span>")
-	.r(/(\/\*[\x09-.0-¦]*\*\/)/gmi, "<span class=comments>$1<\/span>")
-	.r(/(\{[\x09-z\|~-¦]*\})/gmi, "<span class=comments>$1<\/span>")
+	.r(/(\/\/.+)/gm, enter.comments)
+	.r(/(\/\*[^\/]*\*\/)/gmi, enter.comments)
+	.r(/(\{[^\$][^\{\}]*\})/gmi, enter.comments)
+	//Directivas
+	.r(/(\{\$[^{}\n]+\})/gmi, enter.directives)
 	//Cadenas de texto
-	.r(/\"([\x09-\!#-¦]*)\"/gmi, "<span class=strings>\"$1\"<\/span>")
-	.r(/\'([!-&(-¦]+)\'/gmi, "<span class=strings>\'$1\'<\/span>")
+	.r(/\"([^\n"]+)\"/gmi, '<span class=strings>"$1"<\/span>')
+	.r(/\'([^\n']+)\'/gmi, "<span class=strings>'$1'<\/span>")
 	//Palabras Reservadas
 	.r(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
 	//Etiquetas
@@ -310,25 +330,24 @@ apply($('.sb3'), function(e){
 	//Arreglos
 	.r(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
 	//Opcodes
-	.r(/([a-fA-F0-9]{4}\:)/gmi, "<span class='uppercase'>$1<\/span>")
+	.r(/([a-fA-F0-9]{4}\:)/gmi, enter.opcodes)
 	//Numeros
-	.r(/\b(\d+)(x|\.)(\w+)\b/gmi, "<span class=numbers>$1$2$3<\/span>")
-	.r(/\b(true|false)\b/gmi, "<span class=numbers>$1<\/span>")
-	.r(/(\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i)?\b/gmi, "$1<span class=numbers>$2$3<\/span>")
+	.r(/\b(\d+(x|\.)\w+)\b/gmi, enter.numbers)
+	.r(/\b(true|false)\b/gmi, enter.numbers)
+	.r(/((\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i|f|s|v)?)\b/gmi, enter.numbers)
 	//Modelos
 	.r(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
 	.r(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
 	.r(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
 	.r(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
-	.r(/: (\w+)\n/gm, ": <span class=classes>$1</span>\n")
-	.r(/\.([0-9A-Z_a-z]+)\n/gm, ".<span class=commands>$1</span>\n")
-	//Directivas
-	.r(/(\{\$)(CLEO|OPCODE|NOSOURCE|INCLUDE|USE)(\s[^\}]+\}|\})/gmi, "<span class=directives>$1$2$3<\/span>")
+	.r(/: (\w+)\n/gm,          ": "+ enter.classes  +"\n")
+	.r(/\.([0-9A-Z_a-z]+)\n/gm,"." + enter.commands +"\n")
 	//Variables  
-	.r(/\b(timera|timerb)\b/gmi, "<span class=variables>$1<\/span>")
-	.r(/(\d+)(\@s|\@v|\@)(\:|\s|\n|\]|\.|\,||\))/gm, "<span class=variables>$1$2<\/span>$3")
-	.r(/(\&amp;\d+)/gim, "<span class=variables>$1<\/span>")
-	.r(/(\x{00}|s|v)(\$[0-9A-Z_a-z]+)/gm, "<span class=variables>$1$2<\/span>")
+	.r(/\b(timer(a|b))\b/gmi, enter.variables)
+	.r(/(\d+\@(s|v|\B)[^\w\d])/gm, enter.variables)
+	.r(/(\&amp;\d+)/gim, enter.variables)
+	.r(/((\x{00}|s|v)(\$[0-9A-Z_a-z]+))/gm, enter.variables)
+	// Operadores
 	//.r(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })
