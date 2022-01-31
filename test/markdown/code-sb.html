@@ -10,15 +10,17 @@
 <body>
 ```sb3
 {$CLEO}
+{$OPCODE 7862=2, author %1d% version %2d%}
 nop
-while true
-  if
+while true 20@ 783@s 34@v
+  if and
+    0x92AFB0 == 10i 7f 20s 8v
     Player.isDefined($PLAYER_CHAR)
   then
     0@ = Actor.Create(TYPE.GANG1, 0.0, 0.0, 0.0)
-    break
+    break @NoSeQuePoner
   end
-  jojo() // hiahhhhhhhhhhhhhhhh ssss aaaaaaaaaaa s
+  jojo() TIMERA && timerb // Example
   jump @main
   wait 0
 end
