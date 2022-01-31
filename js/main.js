@@ -351,3 +351,14 @@ apply($('.sb3'), function(element){
 	// Operadores
 	//.r(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })
+
+
+apply($('.ini'), function(element){
+	element.innerHTML = element.innerHTML
+	// variable
+	.r(/(^[^=]+)=/g, "<span class=strings>$1<\/span>=")
+	// Number
+	.r(/=(\d+(\.\d+)?)/g, "=<span class=strings>$1<\/span>")
+	// Type parameter
+	.r(/%(\d\w)%/g, "<span class=strings>%$1%<\/span>")
+})
