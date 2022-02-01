@@ -69,4 +69,4 @@ Just create a [ticket](https://github.com/MatiDragon-YT/help-system/issues/new) 
 | [Yushae Raza](https://github.com/yushaer)<br>(darksavage) | v1.4 : Aggrege to SA the Vehicle ID List<br>v1.6 : fix weapons GXT |
 
 ## Compiling CHM files
-Use HTML Help Workshop v4.
+Use [HTML Help Workshop v4](https://cdn.discordapp.com/attachments/805823828571586624/937861627309592686/htmlhelp.zip).
