@@ -5,17 +5,18 @@ Compiled file=help3082.chm
 Contents file=es\table.hhc
 Default Font=,11,0
 Default Window=MAIN
-Default topic=es\README.html
+Default topic=es\index.html
 Display compile progress=Yes
 Index file=index.hhk
 Language=0x2c0a Español (Argentina)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
+MAIN=,"es\table.hhc","index.hhk","es\index.html","es\index.html",,,,,0x42120,,0x0,[267,99,951,666],,,,,,,0
 
 
 [FILES]
+es\index.html
 es\README.html
 es\credits.html
 es\version-history.html
@@ -111,7 +112,6 @@ es\articles\mcp2\xdfgsdrgs.png
 es\cleo-3\code-library.html
 es\cleo-3\opcodes.html
 es\cleo-3\scripts.html
-
 es\img\console.png
 es\img\edit_modes.png
 es\img\sbl-update-popup-en.png
@@ -136,7 +136,6 @@ es\img\main_opt.png
 es\img\theme-editor-en.png
 es\img\options-hotkeys-en.png
 es\img\ost.png
-
 img\gta3\radar\dot.png
 img\gta3\radar\asuka.png
 img\gta3\radar\bomb.png

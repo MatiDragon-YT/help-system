@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+<body style="flex-wrap: wrap;overflow: hidden;" class="d-flex white">
+
+<div id="navbar" class="col-12">
+	<h1><i>=</i> <font id="title">Introducción</font></h1>
+</div>
+
+<textarea>
+|Introducción|README
+|Creditos|credits
+|Historial de Versiones|version-history
+
+|||SINTAXIS
+|Tipos de Datos|coding\data-types
+|Variables|coding\variables
+|Constantes|coding\constants
+|Arreglos|coding\arrays
+|Condiciones|coding\conditions
+|Bucles|coding\loops
+|Clases|coding\classes
+|Palabras Claves|coding\keywords
+|Comandos integrados|coding\built-in-commands
+|HEX..END|coding\hex..end
+|Directivas|coding\directives
+|Comentarios|coding\comments
+|||
+
+|||EDITOR
+|Caracteristicas|editor\features
+|Preferencias|editor\options\README
+|General|editor\options\general
+|Formatos|editor\options\formats
+|Editor|editor\options\editor
+|Editor de Temas|editor\options\theme-editor
+|Atajos del Teclado|editor\options\hotkeys
+|Consola|editor\console
+|Teclas de Combinadas|editor\hotkeys
+|Buscador de Opcodes|editor\opcode-search-tool
+|Interfaz de la Línea de Comandos|editor\cli
+|Servicio de Lenguaje|editor\language-service
+|Modos de Edición|edit-modes\README
+|CustomLabels.ini|edit-modes\customlabels.ini
+|Plantillas de Código|edit-modes\code-templates
+|Enums.ini|edit-modes\enums.txt
+|Extensiones|edit-modes\extensions
+|Lista de Opcodes (SCM.INI)|edit-modes\opcodes-list-scm.ini
+|||
+
+|||DOCUMENTACIÓN SCM
+|Limites de GTA|scm-documentation\gta-limits
+|Códigos de Caracteres ASCII|scm-documentation\ascii-character-codes
+|Códigos de Teclas Virtuales|scm-documentation\virtual-key-codes
+
+	|||GTA III
+	|Tipos de Actores|scm-documentation\gta3\pedtypes
+	|Iconos del Radar|scm-documentation\gta3\radar-icons
+	|||
+
+	|||Vice City
+
+	|Botones|scm-documentation\vc\buttons
+	|Pandillas|scm-documentation\vc\gangs
+	|Garajes|scm-documentation\vc\garages
+	|Interiores|scm-documentation\vc\interiors
+	|Tipos de Actores|scm-documentation\vc\pedtypes
+	|Iconos del Radar|scm-documentation\vc\radar-icons
+	|Armas|scm-documentation\vc\weapons
+	|||
+
+	|||San Andreas
+	|Botones|scm-documentation\sa\buttons
+	|Pandillas|scm-documentation\sa\gangs
+	|Garajes|scm-documentation\sa\garages
+	|Peinados|scm-documentation\sa\haircuts
+	|Interiores|scm-documentation\sa\interiors
+	|Partículas|scm-documentation\sa\particles
+	|Tipos de Actores|scm-documentation\sa\pedtypes
+	|Ropa del Jugador|scm-documentation\sa\clothes
+	|Partes del Cuerpo del Jugador|scm-documentation\sa\player-body-parts
+	|Iconos del Radar|scm-documentation\sa\radar-icons
+	|Actores Especiales|scm-documentation\sa\special-actors
+	|Estadisticas|scm-documentation\sa\stats
+	|Tatuajes|scm-documentation\sa\tattoos
+	|Tipos de Trenes|scm-documentation\sa\trains
+	|Vehículos|scm-documentation\sa\vehicles
+	|Variaciones de Vehículos|scm-documentation\sa\vehicle-variations
+	|Armas|scm-documentation\sa\weapons
+	|Tiempos|scm-documentation\sa\weather
+	|Zonas|scm-documentation\sa\zones
+	|||
+
+	|||Liberty City Stories
+	|Pandillas|scm-documentation\lcs\gangs
+	|Acores|scm-documentation\lcs\models
+	|Ropa del Jugador|scm-documentation\lcs\clothes
+	|Actores Especiales|scm-documentation\lcs\special-actors
+	|Armas|scm-documentation\lcs\weapons
+	|Tiempos|scm-documentation\lcs\weather
+	|||
+
+	|||Vice City Stories
+	|Pandillas|scm-documentation\vcs\gangs
+	|Ropa del Jugador|scm-documentation\vcs\clothes
+	|Tiempos|scm-documentation\vcs\weather
+	|||
+|||
+
+|||ARTÍCULOS
+|Biblia De Codificación I|articles\mcp1
+|Biblia De Codificación II|articles\mcp2
+|||
+
+|||CLEO 3
+|Code Library|cleo-3\code-library
+|Opcodes|cleo-3\opcodes
+|Scripts|cleo-3\scripts
+|||
+</textarea>
+
+<div class="col-4 col-md-3 col-xl-2 h-100-auto" id=bar-menu><div id="menu"></div></div>
+<div class="col-8 col-md-9 col-xl-10">
+	<iframe src="README.html" class="w-100 h-100-auto"></iframe>
+</div>
+
+
+<script>
+function $(element) {
+	const D = document
+	const xElements = D.querySelectorAll(element)
+	const length = xElements.length
+
+	if (element.charAt(0) === '#' && !/\s/.test(element) || length === 1) { 
+		return D.querySelector(element);
+	}
+	else {
+		if(length === 0){return undefined}
+		return xElements;
+	}
+}
+function apply(element, callback){
+	if(element){ 
+		if('' + element == '[object NodeList]'){ 
+			for (var i = 0; i < element.length; i++) {
+				callback(element[i])
+			}
+		}else{  
+			callback(element)
+		}
+	}
+}
+
+$("#menu").innerHTML = $("textarea").value
+.replace(/\|([^\|]+)\|([^\|]+)\n/g, "<span link='$2'><img src='xd.png'> $1</span><br>")
+.replace(/\|{3}(.+)/g, "<div class='w-100'><div class='section'><img src='xd.png'> $1</div>")
+.replace(/\|\|\|/g, "</div>")
+
+
+console.log($("span"))
+apply($("span"), function(e){
+	e.onclick = function(){
+		$("iframe").setAttribute("src", e.getAttribute("link") + ".html" )
+		$("#title").innerText = e.innerText
+	}
+})
+</script>
+<style>
+body {display: block;}
+iframe {border: none;}
+#navbar h1 {padding: 9px 21px}
+#bar-menu {font-size: 1rem;border-right: 1px solid #30363d;
+    padding: 11px;overflow: auto;}
+#menu {width: max-content;}
+#menu div {padding-left: 1.5rem;}
+#menu div .section {margin-left: -3rem}
+[link]{cursor: pointer;white-space: pre}
+[link]:hover{color: #fff}
+textarea{display: none}
+</style>
+</body>
+</html>

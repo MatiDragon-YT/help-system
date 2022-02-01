@@ -30,11 +30,20 @@ body {
 ::-webkit-scrollbar { width: 1rem;}
 ::-webkit-scrollbar-track { background: #0a0d14 }
 ::-webkit-scrollbar-thumb { background: #262b32; border: 1px #0a0d14 solid; }
-
+::-webkit-scrollbar-corner {background: #0a0d14}
+/*
+::-webkit-scrollbar             
+::-webkit-scrollbar-button      
+::-webkit-scrollbar-track       
+::-webkit-scrollbar-track-piece 
+::-webkit-scrollbar-thumb       
+::-webkit-scrollbar-corner      
+::-webkit-resizer               
+*/
 #navbar {
     background: #161b22;
     color: #fff;
-    font-weight: font-weight: 700;
+    font-weight: 700;
     overflow: hidden;
 }
 #navbar h1{
@@ -257,6 +266,9 @@ input {
 .directives,
 .directives * { color: #ffd54f }
 
+.col-4 { flex: 0 0 auto; width: 33.33333333% }
+.col-8 { flex: 0 0 auto; width: 66.66666667% }
+.col-12 { flex: 0 0 auto; width: 100% }
 
 .cols-2 { columns: 2 auto}
 .cols-3 { columns: 3 auto}
@@ -271,7 +283,8 @@ input {
     .cols-sm-6 { columns: 6 auto}
 }
 @media (min-width:768px) {
-    .markdown { max-width: 720px }
+    .col-md-3 { flex: 0 0 auto; width: 25% }
+    .col-md-9 { flex: 0 0 auto; width: 75% }
 }
 @media (min-width:992px) {
     .markdown { max-width: 960px }
@@ -282,6 +295,8 @@ input {
     h2 { font-size: 2rem }
     h3 { font-size: 1.75rem }
     h4 { font-size: 1.5rem }
+    .col-xl-2 { flex: 0 0 auto; width: 16.66666667% }
+    .col-xl-10 { flex: 0 0 auto; width: 83.33333333% }
 }
 @media (min-width:1400px) {
     .markdown { max-width: 1320px }
@@ -304,11 +319,14 @@ input {
 
 .d-none {display: none}
 .d-block {display: block}
+.d-flex {display: flex}
 .d-inline-block {display: inline-block}
 
 
 .w-100{width: 100%}
 .h-43 {height:43vh}
+.h-100 {height:100vh}
+.h-100-auto {height: calc(100vh - 3.375rem - 1.5vw - 4px)}
 .o-auto{overflow:auto}
 
 .pre {white-space: pre}
