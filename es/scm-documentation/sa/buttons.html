@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <title>Botones</title>
   <meta charset="utf-8">
@@ -10,142 +10,56 @@
 <body>
 
 ```sb3
-00E1: key_pressed 0 &lt;botón&gt;
+00E1:   player 0 key_pressed &lt;botón&gt;
 ```
 
 <table>
 <thead>
 <tr>
-<th>Botón</th>
-<th>Enum</th>
 <th>De pie</th>
-<th>En vehículo</th>
+<th class=left>En vehículo</th>
+<th class=left>Enum</th>
+<th>Botón</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>0</td>
-<td>LEFTSTICKX</td>
-<td>Izquierda / Derecha</td>
-<td>Girar a la Izquierda / Derecha</td>
-</tr>
-<tr>
-<td>1</td>
-<td>LEFTSTICKY</td>
-<td>Avansar / Retroceder</td>
-<td>Dirigir hacia Adelante / Atrás</td>
-</tr>
-<tr>
-<td>2</td>
-<td>RIGHTSTICKX</td>
-<td>Rodar a la Izquierda / Derecha</td>
-<td>Torreta Izquierda / Derecha</td>
-</tr>
-<tr>
-<td>3</td>
-<td>RIGHTSTICKY</td>
-<td>Special Ctrl Up / Down</td>
-<td>Turret Up / Down, Lean Up / Down</td>
-</tr>
-<tr>
-<td>4</td>
-<td>LEFTSHOULDER1</td>
-<td>Action</td>
-<td>Secondary Fire</td>
-</tr>
-<tr>
-<td>5</td>
-<td>LEFTSHOULDER2</td>
-<td>Previous Weapon</td>
-<td>Look Left</td>
-</tr>
-<tr>
-<td>6</td>
-<td>RIGHTSHOULDER1</td>
-<td>Aim</td>
-<td>Handbrake</td>
-</tr>
-<tr>
-<td>7</td>
-<td>RIGHTSHOULDER2</td>
-<td>Next Weapon</td>
-<td>Look Right</td>
-</tr>
-<tr>
-<td>8</td>
-<td>DPADUP</td>
-<td>Group Ctrl Back</td>
-<td>Next Radio Station</td>
-</tr>
-<tr>
-<td>9</td>
-<td>DPADDOWN</td>
-<td>Group Ctrl Forward</td>
-<td>Previous Radio Station</td>
-</tr>
-<tr>
-<td>10</td>
-<td>DPADLEFT</td>
-<td>Conversation - No</td>
-<td>No</td>
-</tr>
-<tr>
-<td>11</td>
-<td>DPADRIGHT</td>
-<td>Conversation - Yes</td>
-<td>Yes, Trip Skip</td>
-</tr>
-<tr>
-<td>12</td>
-<td>START</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>13</td>
-<td>SELECT</td>
-<td>Change Camera</td>
-<td>Change Camera</td>
-</tr>
-<tr>
-<td>14</td>
-<td>SQUARE</td>
-<td>Jump / Zoom In</td>
-<td>Brake / Reverse</td>
-</tr>
-<tr>
-<td>15</td>
-<td>TRIANGLE</td>
-<td>Enter vehicle</td>
-<td>Exit vehicle</td>
-</tr>
-<tr>
-<td>16</td>
-<td>CROSS</td>
-<td>Sprint / Zoom Out</td>
-<td>Accelerate</td>
-</tr>
-<tr>
-<td>17</td>
-<td>CIRCLE</td>
-<td>Attack</td>
-<td>Shoot</td>
-</tr>
-<tr>
-<td>18</td>
-<td>LEFTSHOCK</td>
-<td>Crouch</td>
-<td>Horn</td>
-</tr>
-<tr>
-<td>19</td>
-<td>RIGHTSHOCK</td>
-<td>Look Behind</td>
-<td>Sub-mission</td>
-</tr>
 </tbody>
 </table>
 
 [https://gtamods.com/wiki/00E1](https://gtamods.com/wiki/00E1)
 
 <script src="../../../js/main.min.js"></script>
+
+<script>
+const keys=[
+["IZQUIERDA / DERECHA","IZQUIERDA / DERECHA","LEFTSTICKX",0],
+["ADELANTE / ATRÁS","ACELERAR / RETROCEDER","LEFTSTICKY",1],
+["CTRL ESPECIAL IZQUIERDA / DERECHA","CTRL ESPECIAL IZQUIERDA / DERECHA","RIGHTSTICKX",2],
+["CTRL ESPECIAL ARRIBA / ABAJO","CTRL ESPECIAL ARRIBA / ABAJO","RIGHTSTICKY",3],
+["ACCIÓN","DISPARO SECUNDARIO","LEFTSHOULDER1",4],
+["ARMA ANTERIOR u OBJETIVO","MIRAR A LA IZQUIERDA","LEFTSHOULDER2",5],
+["APUNTAR CON ARMA","FRENO DE MANO","RIGHTSHOULDER1",6],
+["ARMA SIGUIENTE u OBJETIVO","MIRAR A LA DERECHA","RIGHTSHOULDER2",7],
+["GROPO CTRL ATRAS","EMISORA SIGUIENTE","DPADUP",8],
+["GROPO CTRL ADELANTE","EMISORA ANTERIOR","DPADDOWN",9],
+["CONVERSACIÓN: NO","NO","DPADLEFT",10],
+["CONVERSACIÓN: SI","SI / SALTARSE EL VIAJE","DPADRIGHT",11],
+["MENÚ DE PAUSA","MENÚ DE PAUSA","START",12],
+["CAMBIAR CÁMARA","CAMBIAR CÁMARA","SELECT",13],
+["SALTAR / ZOOM -","FRENO / MARCHA ATRÁS","SQUARE",14],
+["ENTRAR u SALIR","ENTRAR u SALIR","TRIANGLE",15],
+["ESPRINTAR / ZOOM +","ACELERAR","CROSS",16],
+["DISPARAR","DISPARAR","CIRCLE",17],
+["AGACHARSE","CLAXON","LEFTSHOCK",18],
+["MIRAR ATRÁS","SUBMISIÓN","RIGHTSHOCK",19]
+].forEach(function(key, i){
+t+=
+"<tr>\
+<td>"+key[0]+"</td>\
+<td class=left>"+key[1]+"</td>\
+<td class=left>"+key[2]+"</td>\
+<td>"+key[3]+"</td>\
+</tr>"
+})
+$('tbody').innerHTML+=t
+</script>
