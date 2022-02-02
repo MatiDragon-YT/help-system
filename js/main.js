@@ -264,6 +264,9 @@ SP.toMarkdown = function(){
 }
 
 $('body').innerHTML = '\
+<div id="navbar">\
+	<h1>'+ D.title +'</h1>\
+</div>\
 <div id="c"><div id="d"><textarea id="inputText" style="display:none;" disabled>'
 + $('body').innerHTML +
 '</textarea></div>\

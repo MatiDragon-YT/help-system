@@ -5,14 +5,14 @@ Compiled file=help3082.chm
 Contents file=es\table.hhc
 Default Font=,11,0
 Default Window=MAIN
-Default topic=es\index.html
+Default topic=es\README.html
 Display compile progress=Yes
 Index file=index.hhk
 Language=0x2c0a Español (Argentina)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"es\table.hhc","index.hhk","es\index.html","es\index.html",,,,,0x42120,,0x0,[267,99,951,666],,,,,,,0
+MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
 
 
 [FILES]
