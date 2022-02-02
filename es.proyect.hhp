@@ -16,6 +16,9 @@ MAIN=,"es\table.hhc","index.hhk","es\index.html","es\index.html",,,,,0x42120,,0x
 
 
 [FILES]
+img\page.png
+img\folder.png
+img\topic.png
 es\index.html
 es\README.html
 es\credits.html

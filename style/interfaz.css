@@ -1,0 +1,54 @@
+body {display: block;flex-wrap: wrap;overflow: hidden;}
+iframe {border: none;}
+#navbar h1 {padding: 9px 21px}
+#bar-menu {font-size: 1rem;border-right: 1px solid #30363d;
+    padding: 11px;overflow: auto;}
+#menu {width: max-content;}
+#menu div {padding-left: 1.5rem;}
+
+#menu div .folder {margin-left: -1.3rem;}
+
+#menu div .folder,
+#menu div .topic,
+[link] {
+	position: relative;
+	white-space: pre;
+}
+
+#menu div .folder:before,
+#menu div .topic:before,
+[link]:before {
+    content: "";
+    height: 20px;
+    position: absolute;
+    width: 20px;
+}
+#menu div .folder:before{
+    background: url(../img/folder.png) no-repeat;
+    margin-left: -1.6em;
+}
+
+#menu div .topic:before{
+    background: url(../img/topic.png) no-repeat;
+    margin-left: -1.5em;
+}
+
+[link] {
+	cursor: pointer;
+	margin-left: 26px
+}
+.topic[link] {
+	margin-left: -22px
+}
+
+[link]:before {
+    background: url(../img/page.png) no-repeat;
+    margin-left: -3.2em;
+}
+
+[link]:hover,
+#menu div .topic:hover {
+	color: #fff
+}
+
+textarea{display: none}
