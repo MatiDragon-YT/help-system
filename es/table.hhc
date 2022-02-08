@@ -12,10 +12,6 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Index">
-		<param name="Local" value="es\index.html">
-		</OBJECT>
-	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Introducci&oacute;n">
 		<param name="Local" value="es\README.html">
 		</OBJECT>

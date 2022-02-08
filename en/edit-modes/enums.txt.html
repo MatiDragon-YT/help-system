@@ -49,9 +49,9 @@ end
 
 It is possible to define many enumerated types in one file. Each enum must have an unique name.
 
-<div class="warning">
+:::warning
 No comments or any extra syntax are allowed in the enums file.
-</div>
+:::
 
 ### Enum fields
 
@@ -118,7 +118,7 @@ end
 `Month.Feb` = `"February`, \
 `Month.March` = `"March"`
 
-<div class="warning">
+:::warning
 An enum can't have a mix of both integer and string values.  The first explicit value takes control of what type of values this enum gets:
 
 ```
@@ -130,6 +130,6 @@ enum String
   X, Y = "Y" // X = "X", Y = "Y"
 end
 ```
-</div>
+:::
 
 <script src="../../js/main.min.js"></script>

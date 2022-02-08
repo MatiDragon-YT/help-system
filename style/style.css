@@ -12,6 +12,7 @@ html {
     font-family: sans-serif;
     line-height: 1.15;
     background: #0d1117;
+    color: #c9d1d9;
 }
 
 body {
@@ -25,6 +26,11 @@ body {
     scrollbar-track-color: #0a0d14;
     scrollbar-arrow-color: #363b42;
     scrollbar-shadow-color: #0a0d14;
+}
+
+.light-mode {
+    background: #fff;
+    color: #0d1117;
 }
 
 ::-webkit-scrollbar { width: 1rem;}
@@ -59,7 +65,6 @@ body {
     color:#8b949e;
 }
 .markdown {
-    color: #c9d1d9;
     font-size: 1rem;
     padding: 1rem 15px;
     margin: 0 auto;
@@ -74,14 +79,17 @@ table {
     display: block;
 }
 
-th, td {
-    padding: .6rem;
-    border-left: #30363d 1px solid;
-    width: 1%;
-    text-align: center;
+thead {
+    font-weight: bold;
 }
 
-th:first-child,
+td {
+    padding: .6rem;
+    border-left: #30363d 1px solid;
+    text-align: center;
+    width: 1%;
+}
+
 td:first-child {
     position: relative;
     border-left: none;
@@ -283,6 +291,7 @@ input {
     .cols-sm-6 { columns: 6 auto}
 }
 @media (min-width:768px) {
+    .markdown { max-width: 720px }
     .col-md-3 { flex: 0 0 auto; width: 25% }
     .col-md-9 { flex: 0 0 auto; width: 75% }
 }

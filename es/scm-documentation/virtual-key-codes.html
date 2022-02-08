@@ -11,134 +11,116 @@
 ```
 0AB0:	key_pressed &lt;id&gt;
 ```
-<table>
-<thead>
-<tr>
-<th>Tecla</th>
-<th>ID</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
+
+|Tecla|ID|
+|-|
+|Botón Izquierdo del Ratón|1|
+|Botón Derecho del Ratón|2|
+|Botón central del Ratón|4|
+|Retroceso|8|
+|Tabulador|9|
+|Enter|13|
+|Shift (ambos)|16|
+|Ctrl (ambos)|17|
+|Pausa|19|
+|Bloq. Mayús|20|
+|Escape|27|
+|Barra de Espacio|32|
+|Re. Pág|33|
+|Av. Pág|34|
+|Fin|35|
+|Inicio|36|
+|Izquierda (flecha)|37|
+|Arriba (flecha)|38|
+|Derecha (flecha)|39|
+|Abajo (flecha)|40|
+|Insert|45|
+|Supr|46|
+|0|48|
+|1|49|
+|2|50|
+|3|51|
+|4|52|
+|5|53|
+|6|54|
+|7|55|
+|8|56|
+|9|57|
+|A|65|
+|B|66|
+|C|67|
+|D|68|
+|E|69|
+|F|70|
+|G|71|
+|H|72|
+|I|73|
+|J|74|
+|K|75|
+|L|76|
+|M|77|
+|N|78|
+|O|79|
+|P|80|
+|Q|81|
+|R|82|
+|S|83|
+|T|84|
+|U|85|
+|V|86|
+|W|87|
+|X|88|
+|Y|89|
+|Z|90|
+|Botón de Windows Izquierdo|91|
+|Botón de Windows Derecho|92|
+|Botón de Menú de Aplicacion|93|
+|0 (teclado numérico)|96|
+|1 (teclado numérico)|97|
+|2 (teclado numérico)|98|
+|3 (teclado numérico)|99|
+|4 (teclado numérico)|100|
+|5 (teclado numérico)|101|
+|6 (teclado numérico)|102|
+|7 (teclado numérico)|103|
+|8 (teclado numérico)|104|
+|9 (teclado numérico)|105|
+|* (teclado numérico)|106|
+|+ (teclado numérico)|107|
+|- (teclado numérico)|109|
+|. (teclado numérico)|110|
+|/ (teclado numérico)|111|
+|F1|112|
+|F2|113|
+|F3|114|
+|F4|115|
+|F5|116|
+|F6|117|
+|F7|118|
+|F8|119|
+|F9|120|
+|F10|121|
+|F11|122|
+|F12|123|
+|Bloq. Num|144|
+|Bloq. Despl|145|
+|Shift Izquierdo|160|
+|Shift Derecho|161|
+|Ctrl Izquierdo|162|
+|Ctrl Derecho|163|
+|Menu Izquierdo|164|
+|Menu Derecho|165|
+|´|186|
+|+|187|
+|,|188|
+|\-|189|
+|.|190|
+|}|191|
+|Ñ|192|
+|'|219|
+|\||220|
+|¿|221|
+|{|222|
+|<|226|
 
 <script src="../../js/main.min.js"></script>
-
-<script>
-const keys=[
-["Botón Izquierdo del Ratón",1],
-["Botón Derecho del Ratón",2],
-["Botón central del Ratón",4],
-["Retroceso",8],
-["Tabulador",9],
-["Enter",13],
-["Shift (ambos)",16],
-["Ctrl (ambos)",17],
-["Pausa",19],
-["Bloq. Mayús",20],
-["Escape",27],
-["Barra de Espacio",32],
-["Re. Pág",33],
-["Av. Pág",34],
-["Fin",35],
-["Inicio",36],
-["Izquierda (flecha)",37],
-["Arriba (flecha)",38],
-["Derecha (flecha)",39],
-["Abajo (flecha)",40],
-["Insert",45],
-["Supr",46],
-["0",48],
-["1",49],
-["2",50],
-["3",51],
-["4",52],
-["5",53],
-["6",54],
-["7",55],
-["8",56],
-["9",57],
-["A",65],
-["B",66],
-["C",67],
-["D",68],
-["E",69],
-["F",70],
-["G",71],
-["H",72],
-["I",73],
-["J",74],
-["K",75],
-["L",76],
-["M",77],
-["N",78],
-["O",79],
-["P",80],
-["Q",81],
-["R",82],
-["S",83],
-["T",84],
-["U",85],
-["V",86],
-["W",87],
-["X",88],
-["Y",89],
-["Z",90],
-["Botón de Windows Izquierdo",91],
-["Botón de Windows Derecho",92],
-["Botón de Menú de Aplicacion",93],
-["0 (teclado numérico)",96],
-["1 (teclado numérico)",97],
-["2 (teclado numérico)",98],
-["3 (teclado numérico)",99],
-["4 (teclado numérico)",100],
-["5 (teclado numérico)",101],
-["6 (teclado numérico)",102],
-["7 (teclado numérico)",103],
-["8 (teclado numérico)",104],
-["9 (teclado numérico)",105],
-["* (teclado numérico)",106],
-["+ (teclado numérico)",107],
-["- (teclado numérico)",109],
-[". (teclado numérico)",110],
-["/ (teclado numérico)",111],
-["F1",112],
-["F2",113],
-["F3",114],
-["F4",115],
-["F5",116],
-["F6",117],
-["F7",118],
-["F8",119],
-["F9",120],
-["F10",121],
-["F11",122],
-["F12",123],
-["Bloq. Num",144],
-["Bloq. Despl",145],
-["Shift Izquierdo",160],
-["Shift Derecho",161],
-["Ctrl Izquierdo",162],
-["Ctrl Derecho",163],
-["Menu Izquierdo",164],
-["Menu Derecho",165],
-["´",186],
-["+",187],
-[",",188],
-["-",189],
-[".",190],
-["}",191],
-["Ñ",192],
-["'",219],
-["|",220],
-["¿",221],
-["{",222],
-["<",226]
-].forEach(function(key){
-t+=
-"<tr>"+
-"<td>"+key[0]+"</td>"+
-"<td>"+key[1]+"</td>"+
-"</tr>"
-})
-$('tbody').innerHTML+=t
-</script>

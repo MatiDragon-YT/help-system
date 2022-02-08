@@ -8,7 +8,6 @@
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-
 The **console** offers an ability to switch debug options of Sanny Builder. Mostly they relate to the disassembler features and you can see the changes when disassemble a file. The console window is open after pressing `Ctrl+~`. You may enter the commands in the input line. After typing a command press  `Enter` to proceed. The console will display a result.
 
 :::l
@@ -51,28 +50,11 @@ The disassembler prints array elements as global variables with indexes. It's av
 
 E.g. given an array of three elements starting at `$10` this option affects the way the variables look like after disassembling:
 
-<table>
-<thead>
-<tr>
-<th>Without <code>CONSTANT_INDEXES</code></th>
-<th>With <code>CONSTANT_INDEXES</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$10</td>
-<td>$10[0]</td>
-</tr>
-<tr>
-<td>$11</td>
-<td>$10[1]</td>
-</tr>
-<tr>
-<td>$12</td>
-<td>$10[2]</td>
-</tr>
-</tbody>
-</table>
+|Without `CONSTANT_INDEXES`|With `CONSTANT_INDEXES`|
+|-|
+|$10|$10[0]|
+|$11|$10[1]|
+|$12|$10[2]|
 
 ### SKIP_SCM_HEADER
 
@@ -92,40 +74,14 @@ Sanny Builder offers a few other ways to toggling debug options outside of the c
 
 The `--debug` [option](cli.md#debug) provides an alternate way of switching the debug options. Run Sanny with the parameter `--debug X`, where `X` is a series of `0` and `1`.  Each digit in the series corresponds to a particular debug option:
 
-<table>
-<thead>
-<tr>
-<th>Index</th>
-<th>Debug Option</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>CODE_OFFSETS</td>
-</tr>
-<tr>
-<td>2</td>
-<td>IGNORE_UNKNOWN</td>
-</tr>
-<tr>
-<td>3</td>
-<td>VAR_COUNTER</td>
-</tr>
-<tr>
-<td>4</td>
-<td>CONSTANT_INDEXES</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SKIP_SCM_HEADER</td>
-</tr>
-<tr>
-<td>6</td>
-<td>SKIP_EXTRA_INFO</td>
-</tr>
-</tbody>
-</table>
+|Index|Debug Option|
+|-|
+|1|CODE_OFFSETS|
+|2|IGNORE_UNKNOWN|
+|3|VAR_COUNTER|
+|4|CONSTANT_INDEXES|
+|5|SKIP_SCM_HEADER|
+|6|SKIP_EXTRA_INFO|
 
 ```
 sanny.exe --debug 110000

@@ -11,51 +11,31 @@
 ```sb3
 01b6: set_weather &lt;id&gt;
 ```
-<table>
-<thead>
-<tr>
-<th>Описание</th>
-<th>ID</th>
-<th>GXT</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+|Описание|ID|GXT|
+|-|
+|LA: Extra Sunny|0|WEATH0|
+|LA: Sunny|1|WEATH1|
+|LA: Extra Sunny Smog|2|WEATH2|
+|LA: Sunny Smog|3|WEATH3|
+|LA: Cloudy|4|WEATH4|
+|SF: Sunny|5|WEATH5|
+|SF: Extra Sunny|6|WEATH6|
+|SF: Cloudy|7|WEATH7|
+|SF: Rainy|8|WEATH8|
+|SF: Foggy|9|WEATH9|
+|LV: Sunny|10|WEATH10|
+|LV: Extra Sunny|11|WEATH11|
+|LV: Cloudy|12|WEATH12|
+|C: Extra Sunny|13|WEATH13|
+|C: Sunny|14|WEATH14|
+|C: Cloudy|15|WEATH15|
+|C: Rainy|16|WEATH16|
+|D: Extra Sunny|17|WEATH17|
+|D: Sunny|18|WEATH18|
+|D: Sandstorm|19|WEATH19|
+|S: Underwater|20|WEATH20|
+|S: Extracolours 1|21|WEATH21|
+|S: Extracolours 2|22|WEATH22|
+
 > **L**os **S**antos, **S**an **F**ierro, **L**as **V**enturas, **C**ountryside, **D**esert, **S**pecial
 <script src="../../../js/main.min.js"></script>
-<script>
-const keys=[
-["LA: Extra Sunny",0,"WEATH0"],
-["LA: Sunny",1,"WEATH1"],
-["LA: Extra Sunny Smog",2,"WEATH2"],
-["LA: Sunny Smog",3,"WEATH3"],
-["LA: Cloudy",4,"WEATH4"],
-["SF: Sunny",5,"WEATH5"],
-["SF: Extra Sunny",6,"WEATH6"],
-["SF: Cloudy",7,"WEATH7"],
-["SF: Rainy",8,"WEATH8"],
-["SF: Foggy",9,"WEATH9"],
-["LV: Sunny",10,"WEATH10"],
-["LV: Extra Sunny",11,"WEATH11"],
-["LV: Cloudy",12,"WEATH12"],
-["C: Extra Sunny",13,"WEATH13"],
-["C: Sunny",14,"WEATH14"],
-["C: Cloudy",15,"WEATH15"],
-["C: Rainy",16,"WEATH16"],
-["D: Extra Sunny",17,"WEATH17"],
-["D: Sunny",18,"WEATH18"],
-["D: Sandstorm",19,"WEATH19"],
-["S: Underwater",20,"WEATH20"],
-["S: Extracolours 1",21,"WEATH21"],
-["S: Extracolours 2",22,"WEATH22"]
-].forEach(function(key){
-t+=
-"<tr>\
-<td>"+key[0]+"</td>\
-<td>"+key[1]+"</td>\
-<td>"+key[2]+"</td>\
-</tr>"
-})
-$('tbody').innerHTML+=t
-</script>

@@ -11,196 +11,51 @@
 
 Sanny Builder soporta muchos atajos comunes para las operaciones de archivo y texto (`Ctrl+N`, `Ctrl+Z`, etc.), así como algunos personalizados. Las teclas de acceso rápido marcadas con `*` son [personalizables](options/hotkeys.md).
 
-<table>
-<thead>
-<tr>
-<th>Tecla/Combinación</th>
-<th>Operación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**Menú Principal**</td>
-<td></td>
-</tr>
-<tr>
-<td>`F5` *</td>
-<td>abrir un archivo como un script y desensamblar</td>
-</tr>
-<tr>
-<td>`F6` *</td>
-<td>compilar el contenido del editor en un archivo de script</td>
-</tr>
-<tr>
-<td>`F7` *</td>
-<td>compila el contenido del editor en un archivo de script y cópialo en el directorio de scripts del juego</td>
-</tr>
-<tr>
-<td>`F8` *</td>
-<td>ejecutar el juego para el [modo de edición](../edit-modes/README.md) actual</td>
-</tr>
-<tr>
-<td>`F10`</td>
-<td>abrir la ventana de [opciones](options/README.md)</td>
-</tr>
-<tr>
-<td>`F12`</td>
-<td>abrir la documentación</td>
-</tr>
-<tr>
-<td>**Texto**</td>
-<td></td>
-</tr>
-<tr>
-<td>`TAB`, `Shift` + `TAB`</td>
-<td>sangrar el texto seleccionado a la izquierda/derecha (tabulador)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Alt` + `A`\
-`Ctrl` + `Alt` + `D`</td>
-<td>Sangrar el texto seleccionado a la izquierda/derecha (por un carácter)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Alt` + `B`\
-`Ctrl` + `Alt` + `N`\
-`Ctrl` + `Alt` + `M`</td>
-<td>alternar diferentes modos de selección de texto: Normal, Columnar (igual que la selección con `Alt` presionado), Líneas</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `U`\
-`Ctrl` + `Shift` + `L`</td>
-<td>convertir la palabra a mayúsculas/minúsculas</td>
-</tr>
-<tr>
-<td>`Ctrl` + `+`</td>
-<td>aumentar el tamaño del texto (acercar)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `-`</td>
-<td>disminuir el tamaño del texto (alejar)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `T`</td>
-<td>eliminar la palabra debajo del cursor</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Y`</td>
-<td>eliminar la línea</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `Y`</td>
-<td>limpiar la línea</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Q` *</td>
-<td>[comentar/descomentar](../coding/comments.md) la línea</td>
-</tr>
-<tr>
-<td>**Navegación**</td>
-<td></td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `B`</td>
-<td>saltar entre paréntesis: `{}`, `()`, `&lt;>`, `[]`</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Up/Down`</td>
-<td>desplazar la página una línea hacia Arriba/Bajo</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Rueda del Ratón Arriba/Bajo`</td>
-<td>pagina Arriba/Bajo</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `0..9`</td>
-<td>alternar un [marcador](features.md#bookmarks-quick-jump) en la línea</td>
-</tr>
-<tr>
-<td>`Ctrl` + `0..9`</td>
-<td>navegar hasta la línea con el [marcador](features.md#bookmarks-quick-jump)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `G` *</td>
-<td>ir a la línea</td>
-</tr>
-<tr>
-<td>`Alt` + `Right` *</td>
-<td>[navegar al símbolo](features.md#navigate-to-symbol) debajo del cursor (una etiqueta, misión o función)</td>
-</tr>
-<tr>
-<td>`Alt` + `Left` *</td>
-<td>navegar de regreso a la posición anterior (donde se llamó a [Navegar a símbolo](features.md#navigate-to-symbol))</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Enter`</td>
-<td>abra un archivo cuyo nombre esté bajo el cursor (vea también [prioridades relativas de la ruta](../coding/directives.md#$include))</td>
-</tr>
-<tr>
-<td>**Código**</td>
-<td></td>
-</tr>
-<tr>
-<td>`Ctrl` + `Space`</td>
-<td>mostrar la lista de clases, miembros, modelos, etiquetas, variables y misiones</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `Space`</td>
-<td>mostrar la lista de parámetros para el comando de clase actual</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `C` *</td>
-<td>inserta las [coordenadas del jugador](features.md#player-coordinates-management)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Shift` + `E` *</td>
-<td>inserta el [angulo Z del jugador](features.md#player-coordinates-management)</td>
-</tr>
-<tr>
-<td>`F1`</td>
-<td>encuentre un opcode con la palabra debajo del cursor (ignorando `_` y `.`)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `F1`</td>
-<td>encuentre un opcode con la palabra debajo del cursor (sin ignorar `_` y `.`)</td>
-</tr>
-<tr>
-<td>`F2`</td>
-<td>use la palabra debajo del cursor para expandirse a la [plantilla de código] (../edit-modes/code-templates.md) con el mismo nombre</td>
-</tr>
-<tr>
-<td>`Ctrl` + `J`</td>
-<td>mostrar la lista de [plantillas de código](../edit-modes/code-templates.md)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `M`</td>
-<td>iniciar/detener la grabación de una [macro](features.md#keypress-recording-macro)(secuencia de pulsaciones de teclas)</td>
-</tr>
-<tr>
-<td>`Ctrl` + `P`</td>
-<td>reproducir/pausar [macro](features.md#keypress-recording-macro) mientras se procesa</td>
-</tr>
-<tr>
-<td>`Ctrl` + `H` *</td>
-<td>convertir el número debajo del cursor de decimal a hexadecimal y viceversa</td>
-</tr>
-<tr>
-<td>`Ctrl` + `Alt` + `H` *</td>
-<td>convertir el nombre del modelo bajo el cursor a su ID numérico y viceversa</td>
-</tr>
-<tr>
-<td>**Varios**</td>
-<td></td>
-</tr>
-<tr>
-<td>`Ctrl` + `Ñ`</td>
-<td>abrir la [consola](console.md)</td>
-</tr>
-<tr>
-<td>`Alt` + `S`</td>
-<td>(cuando la lista de modelos está activa) reordenar la lista</td>
-</tr>
-</tbody>
-</table>
-
+|Tecla/Combinación|Operación|
+|-|
+|**Menú Principal**|\s|
+|`F5` *|abrir un archivo como un script y desensamblar|
+|`F6` *|compilar el contenido del editor en un archivo de script|
+|`F7` *|compila el contenido del editor en un archivo de script y cópialo en el directorio de scripts del juego|
+|`F8` *|ejecutar el juego para el [modo de edición](../edit-modes/README.md) actual|
+|`F10`|abrir la ventana de [opciones](options/README.md)|
+|`F12`|abrir la documentación|
+|**Texto**|\s|
+|`TAB`, `Shift` + `TAB`|sangrar el texto seleccionado a la izquierda/derecha (tabulador)|
+|`Ctrl` + `Alt` + `A`<br>`Ctrl` + `Alt` + `D`|Sangrar el texto seleccionado a la izquierda/derecha (por un carácter)|
+|`Ctrl` + `Alt` + `B`<br>`Ctrl` + `Alt` + `N`<br>`Ctrl` + `Alt` + `M`|alternar diferentes modos de selección de texto: Normal, Columnar (igual que la selección con `Alt` presionado), Líneas|
+|`Ctrl` + `Shift` + `U`<br>`Ctrl` + `Shift` + `L`|convertir la palabra a mayúsculas/minúsculas|
+|`Ctrl` + `+`|aumentar el tamaño del texto (acercar)|
+|`Ctrl` + `-`|disminuir el tamaño del texto (alejar)|
+|`Ctrl` + `T`|eliminar la palabra debajo del cursor|
+|`Ctrl` + `Y`|eliminar la línea|
+|`Ctrl` + `Shift` + `Y`|limpiar la línea|
+|`Ctrl` + `Q` *|[comentar/descomentar](../coding/comments.md) la línea|
+|**Navegación**|\s|
+|`Ctrl` + `Shift` + `B`|saltar entre paréntesis: `{}`, `()`, `&lt;>`, `[]`|
+|`Ctrl` + `Up/Down`|desplazar la página una línea hacia Arriba/Bajo|
+|`Ctrl` + `Rueda del Ratón Arriba/Bajo`|pagina Arriba/Bajo|
+|`Ctrl` + `Shift` + `0..9`|alternar un [marcador](features.md#bookmarks-quick-jump) en la línea|
+|`Ctrl` + `0..9`|navegar hasta la línea con el [marcador](features.md#bookmarks-quick-jump)|
+|`Ctrl` + `G` *|ir a la línea|
+|`Alt` + `Right` *|[navegar al símbolo](features.md#navigate-to-symbol) debajo del cursor (una etiqueta, misión o función)|
+|`Alt` + `Left` *|navegar de regreso a la posición anterior (donde se llamó a [Navegar a símbolo](features.md#navigate-to-symbol))|
+|`Ctrl` + `Enter`|abra un archivo cuyo nombre esté bajo el cursor (vea también [prioridades relativas de la ruta](../coding/directives.md#$include))|
+|**Código**|\s|
+|`Ctrl` + `Space`|mostrar la lista de clases, miembros, modelos, etiquetas, variables y misiones|
+|`Ctrl` + `Shift` + `Space`|mostrar la lista de parámetros para el comando de clase actual|
+|`Ctrl` + `Shift` + `C` *|inserta las [coordenadas del jugador](features.md#player-coordinates-management)|
+|`Ctrl` + `Shift` + `E` *|inserta el [angulo Z del jugador](features.md#player-coordinates-management)|
+|`F1`|encuentre un opcode con la palabra debajo del cursor (ignorando `_` y `.`)|
+|`Ctrl` + `F1`|encuentre un opcode con la palabra debajo del cursor (sin ignorar `_` y `.`)|
+|`F2`|use la palabra debajo del cursor para expandirse a la [plantilla de código] (../edit-modes/code-templates.md) con el mismo nombre|
+|`Ctrl` + `J`|mostrar la lista de [plantillas de código](../edit-modes/code-templates.md)|
+|`Ctrl` + `M`|iniciar/detener la grabación de una [macro](features.md#keypress-recording-macro)(secuencia de pulsaciones de teclas)|
+|`Ctrl` + `P`|reproducir/pausar [macro](features.md#keypress-recording-macro) mientras se procesa|
+|`Ctrl` + `H` *|convertir el número debajo del cursor de decimal a hexadecimal y viceversa|
+|`Ctrl` + `Alt` + `H` *|convertir el nombre del modelo bajo el cursor a su ID numérico y viceversa|
+|**Varios**|\s|
+|`Ctrl` + `Ñ`|abrir la [consola](console.md)|
+|`Alt` + `S`|(cuando la lista de modelos está activa) reordenar la lista|
 
 <script src="../../js/main.min.js"></script>

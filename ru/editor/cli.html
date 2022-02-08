@@ -95,168 +95,38 @@ sanny.exe -x ..\my-modes.xml
 Данный список не окончательный и может меняться.
 {% endhint %}
 
-<table>
-<thead>
-<tr>
-<th>Имя</th>
-<th>Допустимые значения</th>
-<th>Вкладка в настройках</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::ShowPanel</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::ShowOpcodeInfo</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::ShowLineNumbers</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::ShowGutterBorder</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::OpenLastFile</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::OpenAllClosedFiles</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::ConfirmExit</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::LanguageService</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#nastroiki">Editor::SemanticConstHighlighting</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#glubina-prosmotra-koda">Editor::IdentifiersListAuto</a></td>
-<td>0, 1</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/editor.md#glubina-prosmotra-koda">Editor::ScanDistance</a></td>
-<td>0..65535</td>
-<td>Редактор</td>
-</tr>
-<tr>
-<td><a href="options/general.md#yazyk-interfeisa">Editor::Lang</a></td>
-<td>номер локали</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#bystraya-zagruzka-igry">Editor::QuickGameLoading</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#pokazyvat-progress">Editor::ShowProgress</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#pokazyvat-otchet">Editor::ShowReport</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#perezapis-vykhodnogo-faila">Decompiler::OverwriteOutputFile</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#ruchnoi-vybor-img-faila">Decompiler::ManualIMGOpening</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/formats.md#imena-metok">Decompiler::HexadimalOffsets</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/formats.md#imena-metok">Decompiler::LabelsFormat</a></td>
-<td>0, 1, 2</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#ispolzovat-opkody">Decompiler::AlwaysWriteOpcodes</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#zamenyat-nomera-missii">Decompiler::ReplaceMissionNumbers</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#vstavlyat-originalnye-imena-missii">Decompiler::InsertOriginalMissionNames</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#pokazyvat-preduprezhdenie">Compiler::ShowIMGWarning</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#proverka-uslovii">Compiler::CheckConditions</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#proverka-peremennykh">Compiler::CheckLocalVariables</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/general.md#dobavlyat-dopolnitelnuyu-informaciyu-v-scm">Compiler::AddExtraInfo</a></td>
-<td>0, 1</td>
-<td>Общие</td>
-</tr>
-<tr>
-<td><a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomLabels</a></td>
-<td>0, 1</td>
-<td>Форматирование</td>
-</tr>
-<tr>
-<td><a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomVariables</a></td>
-<td>0, 1</td>
-<td>Форматирование</td>
-</tr>
-<tr>
-<td><a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomArrays</a></td>
-<td>0, 1</td>
-<td>Форматирование</td>
-</tr>
-<tr>
-<td><a href="options/formats.md#registr-bukv">CustomNames::Format</a></td>
-<td>0, 1, 2</td>
-<td>Форматирование</td>
-</tr>
-</tbody>
-</table>
-
+|Имя|Допустимые значения|Вкладка в настройках|
+|-|
+|<a href="options/editor.md#nastroiki">Editor::ShowPanel</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::ShowOpcodeInfo</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::ShowLineNumbers</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::ShowGutterBorder</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::OpenLastFile</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::OpenAllClosedFiles</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::ConfirmExit</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::LanguageService</a>|0, 1|Редактор|
+|<a href="options/editor.md#nastroiki">Editor::SemanticConstHighlighting</a>|0, 1|Редактор|
+|<a href="options/editor.md#glubina-prosmotra-koda">Editor::IdentifiersListAuto</a>|0, 1|Редактор|
+|<a href="options/editor.md#glubina-prosmotra-koda">Editor::ScanDistance</a>|0..65535|Редактор|
+|<a href="options/general.md#yazyk-interfeisa">Editor::Lang</a>|номер локали|Общие|
+|<a href="options/general.md#bystraya-zagruzka-igry">Editor::QuickGameLoading</a>|0, 1|Общие|
+|<a href="options/general.md#pokazyvat-progress">Editor::ShowProgress</a>|0, 1|Общие|
+|<a href="options/general.md#pokazyvat-otchet">Editor::ShowReport</a>|0, 1|Общие|
+|<a href="options/general.md#perezapis-vykhodnogo-faila">Decompiler::OverwriteOutputFile</a>|0, 1|Общие|
+|<a href="options/general.md#ruchnoi-vybor-img-faila">Decompiler::ManualIMGOpening</a>|0, 1|Общие|
+|<a href="options/formats.md#imena-metok">Decompiler::HexadimalOffsets</a>|0, 1|Общие|
+|<a href="options/formats.md#imena-metok">Decompiler::LabelsFormat</a>|0, 1, 2|Общие|
+|<a href="options/general.md#ispolzovat-opkody">Decompiler::AlwaysWriteOpcodes</a>|0, 1|Общие|
+|<a href="options/general.md#zamenyat-nomera-missii">Decompiler::ReplaceMissionNumbers</a>|0, 1|Общие|
+|<a href="options/general.md#vstavlyat-originalnye-imena-missii">Decompiler::InsertOriginalMissionNames</a>|0, 1|Общие|
+|<a href="options/general.md#pokazyvat-preduprezhdenie">Compiler::ShowIMGWarning</a>|0, 1|Общие|
+|<a href="options/general.md#proverka-uslovii">Compiler::CheckConditions</a>|0, 1|Общие|
+|<a href="options/general.md#proverka-peremennykh">Compiler::CheckLocalVariables</a>|0, 1|Общие|
+|<a href="options/general.md#dobavlyat-dopolnitelnuyu-informaciyu-v-scm">Compiler::AddExtraInfo</a>|0, 1|Общие|
+|<a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomLabels</a>|0, 1|Форматирование|
+|<a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomVariables</a>|0, 1|Форматирование|
+|<a href="options/formats.md#sobstvennye-imena">CustomNames::UseCustomArrays</a>|0, 1|Форматирование|
+|<a href="options/formats.md#registr-bukv">CustomNames::Format</a>|0, 1, 2|Форматирование|
 
 {% hint style="info" %}
 Опции, измененные через командную строку, не являются постоянными и применяются только в текущей сессии. После перезапуска Sanny Builder будет использовать значения из файла `settings.ini`.
@@ -267,6 +137,5 @@ sanny.exe -x ..\my-modes.xml
 ```text
 sanny.exe -o Compiler::CheckConditions 0 -o Editor::LanguageService 1
 ```
-
 
 <script src="../../js/main.min.js"></script>

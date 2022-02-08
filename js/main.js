@@ -6,7 +6,6 @@ function log(value){
 }
 
 // GLOBAL VARS
-var t="";
 const EMOJIS = {
 	'clap': '👏',
 	'wave' : '👋',
@@ -35,6 +34,7 @@ function $(element) {
 	}
 }
 const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
+const ROOT = $('head').innerHTML.match(/"([\/\.]+)\/style\/style\.css"/)[1] + "/"
 
 /** Shotcun of String.replace()
 */
@@ -100,6 +100,11 @@ SP.toMarkdown = function(){
 	// SCAPE CHAR
 	.rA("\\(", "&lpar;")
 	.rA("\\)", "&rpar;")
+	.rA("\\-", "&#45;")
+	.rA("\\\\", "&div;")
+	.rA("\\|", "&vert;")
+	.rA("\\s", "&nbsp;")
+	.rA("\\n", "<br/>")
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
@@ -197,7 +202,31 @@ SP.toMarkdown = function(){
 	})
 
 	// IMG
-	.r(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, '<img src="$2" alt="$1" title="$3">')
+	.r(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
+		input = input.match(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/)
+
+		const img  = ROOT + "img/",
+
+			sa   = img+"sa/",
+			vc   = img+"vc/",
+			gta3 = img+"gta3/",
+
+			weapon = "weapon/",
+			radar  = "radar/",
+
+			alt   = input[1] || "",
+			src   = input[2]
+					.r(/^%g\//m, ROOT)
+					.r(/^%sa-w\//m,   sa   + weapon)
+					.r(/^%vc-w\//m,   vc   + weapon)
+					.r(/^%sa-r\//m,   sa   + radar)
+					.r(/^%vc-r\//m,   vc   + radar)
+					.r(/^%gta3-r\//m, gta3 + radar)
+					.r(/^%sa-t\//m,   sa   + "tatoo/"),
+			title = input[3] || ""
+
+		return '<img src="'+ src +'" alt="'+ alt +'" title="'+ title +'">'
+	})
 
 	// A
 	.r(
@@ -261,6 +290,25 @@ SP.toMarkdown = function(){
 	
 	// SPAN
 	.r(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
+
+	// TABLE
+	.r(/\|[\|\-\x20:]+\|/g, "</thead><tbody>")
+	.r(/\|[^\n]+\|/g, function (input) {
+		input = input.split('|')
+
+		let newTable = ""
+
+		input.forEach( function (element, count) {
+			if (count == 0) newTable += "<tr>";
+			if (count == input.length - 1) newTable += "</tr>";
+
+			if (element !== "") newTable += "<td>" + element.trim() + "</td>";
+		})
+
+		return newTable
+	})
+	.r(/<(\/tr|tbody)>\n<(tr|\/thead)>/g, "<$1><$2>")
+	.r(/^(<tr>(.+)<\/tr>)/gm, "<table><thead>$1</tbody></table>")
 }
 
 $('body').innerHTML = '\
@@ -362,3 +410,18 @@ apply($('.ini'), function(element){
 	// Type parameter
 	.r(/%(\d\w)%/g, "<span class=strings>%$1%<\/span>")
 })
+
+var modeLight = 0
+
+window.onkeydown = function(event){
+	if (event.keyCode == 226){ // [<]
+		if (modeLight) {
+			modeLight--
+			$("html").classList.remove("light-mode")
+		}
+		else{
+			modeLight++
+			$("html").classList.add("light-mode")
+		}
+	}
+}

@@ -11,106 +11,88 @@
 ```sb3
 064B: 0@ = create_particle &lt;эффект&gt; at X Y Z type 1
 ```
-<table>
-<thead>
-<tr>
-<th>Описание</th>
-<th>Эффект</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+
+|Описание|Эффект|
+|-|
+|Кровавый взрыв|blood_heli|
+|прибой|boat_prop|
+|Маленькая вспышка|camflash|
+|Пар, как на автомойке.|carwashspray|
+|цемент|cement|
+|Летающие облака|cloudfast|
+|Затяжка коксом|coke_puff|
+|Выливающаяся вода|coke_trail|
+|Дым от сигареты|cigarette_smoke|
+|Взрыв и осколки ящика|explosion_barrel|
+|Взрыв и осколки большого ящика|explosion_crate|
+|Дым с искрами|explosion_door|
+|Маленький дым|exhale|
+|Взрыв, как от машины|explosion_fuel_car|
+|Большой взрыв|explosion_large|
+|Средний взрыв|explosion_medium|
+|Взрыв, как от коктейля Молотова|explosion_molotov|
+|Небольшой взрыв|explosion_small|
+|Маленький взрыв|explosion_tiny|
+|Пена огнетушителя|extinguisher|
+|Небольшой огонек|flame|
+|огонь|fire|
+|Средний огонь|fire_med|
+|Большой огонь|fire_large|
+|Огонь огнемета|flamethrower|
+|Огонь, как от горящего мотоцикла|fire_bike|
+|Огонь, как от горящей машины|fire_car|
+|Как вылетает пуля из ствола|gunflash|
+|Дым от вылетевшей пули|gunsmoke|
+|насекомые|insects|
+|Пыль, как от вертолета|heli_dust|
+|Огонь, как из сопел джетпака|jetpack|
+|Огонь из глушителя машины, как во время использования азота|jetthrust|
+|нитро|nitro|
+|Огонь от коктейля Молотова|molotov_flame|
+|Дымящаяся машина|overheat_car|
+|Поврежденная электро-машина|overheat_car_electric|
+|пена|prt_boatsplash|
+|Осколки от коробки|prt_cardebris|
+|Плотный белый дым|prt_collisionsmoke|
+|Разбивающееся стекло|prt_glass|
+|Гильзы|prt_gunshell|
+|Песок, который рассыпался|prt_sand|
+|Немного меньше песка чем в предыдущей анимации|prt_sand2|
+|Серый дым|prt_smokeII_3_expand|
+|Много серого дыма|prt_smoke_huge|
+|Искры|prt_spark|
+|Большие искры|prt_spark_2|
+|Всплеск|prt_splash|
+|Волна|prt_wake|
+|Брызги|prt_watersplash|
+|Брызги из под колес машины|prt_wheeldirt|
+|Струя, как писание|petrolcan|
+|Рыгачка \(блевотина\)|puke|
+|Много дыма|riot_smoke|
+|Спрей зеленой краски|spraycan|
+|Дым|smoke30lit|
+|Густой дым|smoke30m|
+|Еще более густой дым|smoke50lit|
+|Фейерверк|shootlight|
+|Тоже фейерверк|smoke_flare|
+|Огонь от выстрела из танка|tank_fire|
+|Газ, как от дымовой гранаты|teargas|
+|Газ, как от малой дымовой гранаты|teargasAD|
+|Падение листьев|tree_hit_fir|
+|Падение пары больших листьев|tree_hit_palm|
+|Медленно рассеивающийся дым|vent|
+|Практически тоже самое|vent2|
+|Большой поток воды|water_hydrant|
+|Круги на воде|water_ripples|
+|Большие брызги от воды|water_speed|
+|Маленькие брызги от воды|water_splash|
+|Средние брызги|water_splash_big|
+|Брызги, только их почти не видно|water_splsh_sml|
+|Маленькие брызги при плавании|water_swim|
+|Много пара|waterfall_end|
+|Большой поток воды|water_fnt_tme|
+|Вода фонтана|water_fountain|
+|Исчезающая куча пара|wallbust|
+|Дым как от труб|WS_factorysmoke|
 
 <script src="../../../js/main.min.js"></script>
-<script>
-const keys=[
-["Кровавый взрыв","blood_heli"],
-["прибой","boat_prop"],
-["Маленькая вспышка","camflash"],
-["Пар, как на автомойке.","carwashspray"],
-["цемент","cement"],
-["Летающие облака","cloudfast"],
-["Затяжка коксом","coke_puff"],
-["Выливающаяся вода","coke_trail"],
-["Дым от сигареты","cigarette_smoke"],
-["Взрыв и осколки ящика","explosion_barrel"],
-["Взрыв и осколки большого ящика","explosion_crate"],
-["Дым с искрами","explosion_door"],
-["Маленький дым","exhale"],
-["Взрыв, как от машины","explosion_fuel_car"],
-["Большой взрыв","explosion_large"],
-["Средний взрыв","explosion_medium"],
-["Взрыв, как от коктейля Молотова","explosion_molotov"],
-["Небольшой взрыв","explosion_small"],
-["Маленький взрыв","explosion_tiny"],
-["Пена огнетушителя","extinguisher"],
-["Небольшой огонек","flame"],
-["огонь","fire"],
-["Средний огонь","fire_med"],
-["Большой огонь","fire_large"],
-["Огонь огнемета","flamethrower"],
-["Огонь, как от горящего мотоцикла","fire_bike"],
-["Огонь, как от горящей машины","fire_car"],
-["Как вылетает пуля из ствола","gunflash"],
-["Дым от вылетевшей пули","gunsmoke"],
-["насекомые","insects"],
-["Пыль, как от вертолета","heli_dust"],
-["Огонь, как из сопел джетпака","jetpack"],
-["Огонь из глушителя машины, как во время использования азота","jetthrust"],
-["нитро","nitro"],
-["Огонь от коктейля Молотова","molotov_flame"],
-["Дымящаяся машина","overheat_car"],
-["Поврежденная электро-машина","overheat_car_electric"],
-["пена","prt_boatsplash"],
-["Осколки от коробки","prt_cardebris"],
-["Плотный белый дым","prt_collisionsmoke"],
-["Разбивающееся стекло","prt_glass"],
-["Гильзы","prt_gunshell"],
-["Песок, который рассыпался","prt_sand"],
-["Немного меньше песка чем в предыдущей анимации","prt_sand2"],
-["Серый дым","prt_smokeII_3_expand"],
-["Много серого дыма","prt_smoke_huge"],
-["Искры","prt_spark"],
-["Большие искры","prt_spark_2"],
-["Всплеск","prt_splash"],
-["Волна","prt_wake"],
-["Брызги","prt_watersplash"],
-["Брызги из под колес машины","prt_wheeldirt"],
-["Струя, как писание","petrolcan"],
-["Рыгачка \(блевотина\)","puke"],
-["Много дыма","riot_smoke"],
-["Спрей зеленой краски","spraycan"],
-["Дым","smoke30lit"],
-["Густой дым","smoke30m"],
-["Еще более густой дым","smoke50lit"],
-["Фейерверк","shootlight"],
-["Тоже фейерверк","smoke_flare"],
-["Огонь от выстрела из танка","tank_fire"],
-["Газ, как от дымовой гранаты","teargas"],
-["Газ, как от малой дымовой гранаты","teargasAD"],
-["Падение листьев","tree_hit_fir"],
-["Падение пары больших листьев","tree_hit_palm"],
-["Медленно рассеивающийся дым","vent"],
-["Практически тоже самое","vent2"],
-["Большой поток воды","water_hydrant"],
-["Круги на воде","water_ripples"],
-["Большие брызги от воды","water_speed"],
-["Маленькие брызги от воды","water_splash"],
-["Средние брызги","water_splash_big"],
-["Брызги, только их почти не видно","water_splsh_sml"],
-["Маленькие брызги при плавании","water_swim"],
-["Много пара","waterfall_end"],
-["Большой поток воды","water_fnt_tme"],
-["Вода фонтана","water_fountain"],
-["Исчезающая куча пара","wallbust"],
-["Дым как от труб","WS_factorysmoke"]
-].forEach(function(key, i){
-t+=
-"<tr>\
-<td>"+key[0]+"</td>\
-<td>"+key[1]+"</td>\
-</tr>"
-})
-$('tbody').innerHTML+=t
-</script>

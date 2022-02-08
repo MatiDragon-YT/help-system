@@ -8,146 +8,29 @@
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>**GTA III**</th>
-<th>**Vice City**</th>
-<th>**San Andreas**</th>
-<th>**LCS**</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**размер main.scm (без миссий, в байтах)**</td>
-<td>131072</td>
-<td>225512</td>
-<td>200000</td>
-<td></td>
-</tr>
-<tr>
-<td>**размер одной миссии (в байтах)**</td>
-<td>32768</td>
-<td>35000</td>
-<td>69000</td>
-<td></td>
-</tr>
-<tr>
-<td>**всего миссий**</td>
-<td>120</td>
-<td>120</td>
-<td>200</td>
-<td></td>
-</tr>
-<tr>
-<td>**mission cleanup list**</td>
-<td>50</td>
-<td>50</td>
-<td>75</td>
-<td></td>
-</tr>
-<tr>
-<td>**модели во 2-м сегменте main.scm**</td>
-<td>200</td>
-<td>220</td>
-<td>395</td>
-<td></td>
-</tr>
-<tr>
-<td>**запущенные скрипты**</td>
-<td>128</td>
-<td>128</td>
-<td>96</td>
-<td></td>
-</tr>
-<tr>
-<td>**локальные переменные**</td>
-<td>16+2 [таймера](../coding/variables.md#peremennye-taimery)</td>
-<td>16+2 [таймера](../coding/variables.md#peremennye-taimery)</td>
-<td><p>32+2 <a href="../coding/variables.md#peremennye-taimery">таймера</a></p><p>1024 в миссии</p></td>
-<td>96+2 <a href="../coding/variables.md#peremennye-taimery">таймера</a></td>
-</tr>
-<tr>
-<td>**макс. уровень вложенности gosub**</td>
-<td>4</td>
-<td>6</td>
-<td>8</td>
-<td></td>
-</tr>
-<tr>
-<td>**text draw**</td>
-<td>2</td>
-<td>48</td>
-<td>96</td>
-<td>96</td>
-</tr>
-<tr>
-<td>**метки в jump table**</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>75</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>**внешние скрипты**</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>82</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>**external script attachments**</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>70</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>**парковки**</td>
-<td>160</td>
-<td>185</td>
-<td>500</td>
-<td></td>
-</tr>
-<tr>
-<td>**метки на радаре**</td>
-<td>32</td>
-<td>75</td>
-<td>175</td>
-<td></td>
-</tr>
-<tr>
-<td>**пикапы**</td>
-<td>336</td>
-<td>336</td>
-<td>620</td>
-<td></td>
-</tr>
-<tr>
-<td>**макс. опкод**</td>
-<td>0481</td>
-<td>05a8</td>
-<td>0a4e</td>
-<td></td>
-</tr>
-<tr>
-<td>**сферы**</td>
-<td>16</td>
-<td>16</td>
-<td>16</td>
-<td></td>
-</tr>
-<tr>
-<td>**типы гаражей, сохраняющих машины**</td>
-<td>16..18</td>
-<td>16..18, 24..32</td>
-<td>16..18, 24..32, 39..45</td>
-</tr>
-</tbody>
-</table>
-<p>{% hint style=&quot;info&quot; %}
+|\s|**GTA III**|**Vice City**|**San Andreas**|**LCS**|
+|-|
+|**размер main.scm (без миссий, в байтах)**|131072|225512|200000|\s|
+|**размер одной миссии (в байтах)**|32768|35000|69000|\s|
+|**всего миссий**|120|120|200|\s|
+|**mission cleanup list**|50|50|75|\s|
+|**модели во 2-м сегменте main.scm**|200|220|395|\s|
+|**запущенные скрипты**|128|128|96|\s|
+|**локальные переменные**|16+2 [таймера](../coding/variables.md#peremennye-taimery)|16+2 [таймера](../coding/variables.md#peremennye-taimery)|<p>32+2 <a href="../coding/variables.md#peremennye-taimery">таймера</a></p><p>1024 в миссии</p>|96+2 <a href="../coding/variables.md#peremennye-taimery">таймера</a>|
+|**макс. уровень вложенности gosub**|4|6|8|\s|
+|**text draw**|2|48|96|96|
+|**метки в jump table**|N/A|N/A|75|N/A|
+|**внешние скрипты**|N/A|N/A|82|N/A|
+|**external script attachments**|N/A|N/A|70|N/A|
+|**парковки**|160|185|500|\s|
+|**метки на радаре**|32|75|175|\s|
+|**пикапы**|336|336|620|\s|
+|**макс. опкод**|0481|05a8|0a4e|\s|
+|**сферы**|16|16|16|\s|
+|**типы гаражей, сохраняющих машины**|16..18|16..18, 24..32|16..18, 24..32, 39..45|
+
+{% hint style=&quot;info&quot; %}
 Частично заимствовано из сообщения CyQ на <a href="http://www.gtaforums.com/index.php?showtopic=213017\&amp;view=findpost\&amp;p=3145932">GTAForums.com</a>
-{% endhint %}</p>
+{% endhint %}
 
 <script src="../../js/main.min.js"></script>

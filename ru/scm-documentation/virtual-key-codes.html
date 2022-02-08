@@ -11,133 +11,115 @@
 ```
 0AB0:	key_pressed &lt;id&gt;
 ```
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>id</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
+
+|Key|id|
+|-|
+|Left mouse button|1|
+|Right mouse button|2|
+|Middle mouse button|4|
+|Backspace|8|
+|Tab|9|
+|Enter|13|
+|Shift (both)|16|
+|Ctrl (both)|17|
+|Pause|19|
+|Caps Lock|20|
+|Esc|27|
+|Spacebar|32|
+|Page Up|33|
+|Page Down|34|
+|End|35|
+|Home|36|
+|(left arrow)|37|
+|(up arrow)|38|
+|(right arrow)|39|
+|(down arrow)|40|
+|Insert|45|
+|Delete|46|
+|0|48|
+|1|49|
+|2|50|
+|3|51|
+|4|52|
+|5|53|
+|6|54|
+|7|55|
+|8|56|
+|9|57|
+|A or a|65|
+|B or b|66|
+|C or c|67|
+|D or d|68|
+|E or e|69|
+|F or f|70|
+|G or g|71|
+|H or h|72|
+|I or i|73|
+|J or j|74|
+|K or k|75|
+|L or l|76|
+|M or m|77|
+|N or n|78|
+|O or o|79|
+|P or p|80|
+|Q or q|81|
+|R or r|82|
+|S or s|83|
+|T or t|84|
+|U or u|85|
+|V or v|86|
+|W or w|87|
+|X or x|88|
+|Y or y|89|
+|Z or z|90|
+|(left Windows key)|91|
+|(right Windows key)|92|
+|(application key - located between\nthe right Windows and Ctrl keys\non most keyboards)|93|
+|0 (numpad with Num Lock on)|96|
+|1 (numpad with Num Lock on)|97|
+|2 (numpad with Num Lock on)|98|
+|3 (numpad with Num Lock on)|99|
+|4 (numpad with Num Lock on)|100|
+|5 (numpad with Num Lock on)|101|
+|6 (numpad with Num Lock on)|102|
+|7 (numpad with Num Lock on)|103|
+|8 (numpad with Num Lock on)|104|
+|9 (numpad with Num Lock on)|105|
+|* (numpad)|106|
+|+ (numpad)|107|
+|- (numpad)|109|
+|. (numpad)|110|
+|/ (numpad)|111|
+|F1|112|
+|F2|113|
+|F3|114|
+|F4|115|
+|F5|116|
+|F6|117|
+|F7|118|
+|F8|119|
+|F9|120|
+|F10|121|
+|F11|122|
+|F12|123|
+|Num Lock|144|
+|Scroll Lock|145|
+|Left Shift|160|
+|Right Shift|161|
+|Left Ctrl|162|
+|Right Ctrl|163|
+|Left Menu|164|
+|Right Menu|165|
+|;|186|
+|=|187|
+|,|188|
+|\-|189|
+|.|190|
+|/|191|
+|`|192|
+|[|219|
+|\\|220|
+|]|221|
+|'|222|
 
 <script src="../../js/main.min.js"></script>
-
-<script>
-const keys=[
-["Left mouse button",1],
-["Right mouse button",2],
-["Middle mouse button",4],
-["Backspace",8],
-["Tab",9],
-["Enter",13],
-["Shift (both)",16],
-["Ctrl (both)",17],
-["Pause",19],
-["Caps Lock",20],
-["Esc",27],
-["Spacebar",32],
-["Page Up",33],
-["Page Down",34],
-["End",35],
-["Home",36],
-["(left arrow)",37],
-["(up arrow)",38],
-["(right arrow)",39],
-["(down arrow)",40],
-["Insert",45],
-["Delete",46],
-["0",48],
-["1",49],
-["2",50],
-["3",51],
-["4",52],
-["5",53],
-["6",54],
-["7",55],
-["8",56],
-["9",57],
-["A or a",65],
-["B or b",66],
-["C or c",67],
-["D or d",68],
-["E or e",69],
-["F or f",70],
-["G or g",71],
-["H or h",72],
-["I or i",73],
-["J or j",74],
-["K or k",75],
-["L or l",76],
-["M or m",77],
-["N or n",78],
-["O or o",79],
-["P or p",80],
-["Q or q",81],
-["R or r",82],
-["S or s",83],
-["T or t",84],
-["U or u",85],
-["V or v",86],
-["W or w",87],
-["X or x",88],
-["Y or y",89],
-["Z or z",90],
-["(left Windows key)",91],
-["(right Windows key)",92],
-["(application key - located between<BR>the right Windows and Ctrl keys<BR>on most keyboards)",93],
-["0 (numpad with Num Lock on)",96],
-["1 (numpad with Num Lock on)",97],
-["2 (numpad with Num Lock on)",98],
-["3 (numpad with Num Lock on)",99],
-["4 (numpad with Num Lock on)",100],
-["5 (numpad with Num Lock on)",101],
-["6 (numpad with Num Lock on)",102],
-["7 (numpad with Num Lock on)",103],
-["8 (numpad with Num Lock on)",104],
-["9 (numpad with Num Lock on)",105],
-["* (numpad)",106],
-["+ (numpad)",107],
-["- (numpad)",109],
-[". (numpad)",110],
-["/ (numpad)",111],
-["F1",112],
-["F2",113],
-["F3",114],
-["F4",115],
-["F5",116],
-["F6",117],
-["F7",118],
-["F8",119],
-["F9",120],
-["F10",121],
-["F11",122],
-["F12",123],
-["Num Lock",144],
-["Scroll Lock",145],
-["Left Shift",160],
-["Right Shift",161],
-["Left Ctrl",162],
-["Right Ctrl",163],
-["Left Menu",164],
-["Right Menu",165],
-[";",186],
-["=",187],
-[",",188],
-["-",189],
-[".",190],
-["/",191],
-["`",192],
-["[",219],
-["\\",220],
-["]",221],
-["'",222]
-].forEach(function(key){
-t+=
-"<tr>"+
-"<td>"+key[0]+"</td>"+
-"<td>"+key[1]+"</td>"+
-"</tr>"
-})
-$('tbody').innerHTML+=t
-</script>

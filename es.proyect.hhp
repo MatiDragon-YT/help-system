@@ -16,10 +16,6 @@ MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42120,,
 
 
 [FILES]
-img\page.png
-img\folder.png
-img\topic.png
-es\index.html
 es\README.html
 es\credits.html
 es\version-history.html

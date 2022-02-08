@@ -8,7 +8,6 @@
   <link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-
 **Консоль** служит инструментом для переключения отладочных опций Sanny Builder. Многие из них относятся к возможностям дизассемблера и влияют на его работу. 
 
 Окно консоли открывается нажатием `Ctrl+~`. Для запуска команды введите ее в верхнем поле и нажмите `Enter`. Консоль покажет результат.
@@ -53,28 +52,11 @@
 
 Например, если в исходном файл был массив из трех элементов, начинающийся с `$10`, то при переключении этой опции переменные в дизассемблированном файле будут выглядеть следующим образом:
 
-<table>
-<thead>
-<tr>
-<th>`Без CONSTANT_INDEXES`</th>
-<th>С `CONSTANT_INDEXES`</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$10</td>
-<td>$10[0]</td>
-</tr>
-<tr>
-<td>$11</td>
-<td>$10[1]</td>
-</tr>
-<tr>
-<td>$12</td>
-<td>$10[2]</td>
-</tr>
-</tbody>
-</table>
+|`Без CONSTANT_INDEXES`|С `CONSTANT_INDEXES`|
+|-|
+|$10|$10[0]|
+|$11|$10[1]|
+|$12|$10[2]|
 
 
 ### SKIP_SCM_HEADER
@@ -95,40 +77,14 @@ Sanny Builder предлагает несколько способов для п
 
 Запуск программы через командную строку с [параметром](cli.md#debug) `--debug` является способом одновременно переключить несколько опций. Запустите `sanny.exe` с параметром `--debug X`, где `X` это последовательность `0` и `1`.  Каждая цифра в последовательности означает определенную опцию:
 
-<table>
-<thead>
-<tr>
-<th>Индекс</th>
-<th>Отладочная опция</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>CODE_OFFSETS</td>
-</tr>
-<tr>
-<td>2</td>
-<td>IGNORE_UNKNOWN</td>
-</tr>
-<tr>
-<td>3</td>
-<td>VAR_COUNTER</td>
-</tr>
-<tr>
-<td>4</td>
-<td>CONSTANT_INDEXES</td>
-</tr>
-<tr>
-<td>5</td>
-<td>SKIP_SCM_HEADER</td>
-</tr>
-<tr>
-<td>6</td>
-<td>SKIP_EXTRA_INFO</td>
-</tr>
-</tbody>
-</table>
+|Индекс|Отладочная опция|
+|-|
+|1|CODE_OFFSETS|
+|2|IGNORE_UNKNOWN|
+|3|VAR_COUNTER|
+|4|CONSTANT_INDEXES|
+|5|SKIP_SCM_HEADER|
+|6|SKIP_EXTRA_INFO|
 
 ```text
 sanny.exe --debug 110000
