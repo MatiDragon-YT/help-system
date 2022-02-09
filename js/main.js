@@ -241,7 +241,9 @@ SP.toMarkdown = function(){
 			target += '_blank"'
 		}else{
 			target += '_self"'
-			href = href.r(/\.md/, '.html')
+			href = href
+				   .r(/^%g\//m, ROOT)
+				   .r(/\.md/, '.html')
 		}
 		
 		function getTitle(){
