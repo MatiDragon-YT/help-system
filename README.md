@@ -20,9 +20,9 @@ Just download the chm corresponding to your language:
 
 | language | file | state |
 | --- | --- | --- |
-| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help.chm) | `[##########]` ⭐ complete |
-| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.11/help3082.chm) | `[#######...]` ⌛ in process |
-| Pусский | help1049 | `[#######...]` ⌛ in process |
+| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help.chm) | `[##########]` ⭐ complete |
+| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help3082.chm) | `[########..]` ⌛ in process |
+| Pусский | [help1049](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help1049.chm) | `[#######...]` ⌛ in process |
 
 And optionally, move the file to directory.
 ```
@@ -57,6 +57,10 @@ This is a template
 
 <script src="../../../js/main.min.js"></script>
 ```
+From here, just define the title that the page will display, at the `<title>` tags and replace `This is a template` with whatever content you want. You can use HTML or Markdown, which the engine we use here already has the ability to work with tables, lists, stylized text (bold, italic, strikethrough, highlighted, underlined, inserts), links, images, citations, spans, divs and spoilers.
+
+> You can see an example of how to generate certain things quickly, by going into a test file `test/markdown/html.html`.
+
 After, create your pull request and ready.
 
 ### Reporting issues
