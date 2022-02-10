@@ -57,7 +57,7 @@ This is a template
 
 <script src="../../../js/main.min.js"></script>
 ```
-From here, just define the title that the page will display, at the `<title>` tags and replace `This is a template` with whatever content you want. You can use HTML or Markdown, which the engine we use here already has the ability to work with tables, lists, stylized text (bold, italic, strikethrough, highlighted, underlined, inserts), links, images, citations, spans, divs and spoilers.
+From here, just define the title that the page will display, at the `<title>` tags and replace `This is a template` with whatever content you want. You can use HTML or Markdown, which the engine we use here already has the ability to work with tables, lists, stylized text (bold, italic, strikethrough, highlighted, underlined, inserts), links, images, citations, spans and divs.
 
 > You can see an example of how to generate certain things quickly, by going into a test file `test/markdown/html.html`.
 
