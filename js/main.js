@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.12";
+const VERSION = "1.13";
 
 function log(value){
 	console.log(value)
@@ -20,13 +20,16 @@ const SP = String.prototype
 
 /** Smart selector for elements of the DOM
  * @param {DOMString}
+ * @param {Element} optional
+ * @return {Element}
 */
-function $(element) {
-	const xElements = D.querySelectorAll(element)
+function $(element, _parent) {
+	_parent = _parent || D
+	const xElements = _parent.querySelectorAll(element)
 	const length = xElements.length
 
 	if (element.charAt(0) === '#' && !/\s/.test(element) || length === 1) { 
-		return D.querySelector(element);
+		return _parent.querySelector(element);
 	}
 	else {
 		if(length === 0){return undefined}
@@ -35,6 +38,20 @@ function $(element) {
 }
 const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
 const ROOT = $('head').innerHTML.match(/"([\/\.]+)\/style\/style\.css"/)[1] + "/"
+
+var modeLight = 0
+function ModeLight(){
+	if (modeLight) {
+		modeLight--
+		$("html").classList.remove("light-mode")
+		return false
+	}
+	else{
+		modeLight++
+		$("html").classList.add("light-mode")
+		return true
+	}
+}
 
 /** Shotcun of String.replace()
 */
@@ -101,7 +118,7 @@ SP.toMarkdown = function(){
 	.rA("\\(", "&lpar;")
 	.rA("\\)", "&rpar;")
 	.rA("\\-", "&#45;")
-	.rA("\\\\", "&div;")
+	.rA("\\\\", "&#x5C;")
 	.rA("\\|", "&vert;")
 	.rA("\\s", "&nbsp;")
 	.rA("\\n", "<br/>")
@@ -315,7 +332,7 @@ SP.toMarkdown = function(){
 
 $('body').innerHTML = '\
 <div id="navbar">\
-	<h1>'+ D.title +'</h1>\
+	<h1>' + D.title +'<button id="CHANGE"><img src="'+ ROOT +'img/dm-baseline.png"></button></h1>\
 </div>\
 <div id="c"><div id="d"><textarea id="inputText" style="display:none;" disabled>'
 + $('body').innerHTML +
@@ -352,17 +369,18 @@ apply($('.sb3'), function(element){
 	}
 
 	const enter = {
-		comments  : span.start + "comments" + span.end,
-		numbers   : span.start + "numbers" + span.end,
-		variables : span.start + "variables" + span.end,
-		opcodes   : span.start + "uppercase" + span.end,
+		comments  : span.start + "comments"   + span.end,
+		numbers   : span.start + "numbers"    + span.end,
+		variables : span.start + "variables"  + span.end,
+		opcodes   : span.start + "uppercase"  + span.end,
 		directives: span.start + "directives" + span.end,
-		commands  : span.start + "commands" + span.end,
-		classes  : span.start + "classes" + span.end,
+		commands  : span.start + "commands"   + span.end,
+		classes   : span.start + "classes"    + span.end
 	}
 
 	element.innerHTML = element.innerHTML
 
+	.rA('&lt;br/&gt;', "\\n")
 	//Comentarios 
 	.r(/(\/\/.+)/gm, enter.comments)
 	.r(/(\/\*[^\/]*\*\/)/gmi, enter.comments)
@@ -372,6 +390,8 @@ apply($('.sb3'), function(element){
 	//Cadenas de texto
 	.r(/\"([^\n"]+)\"/gmi, '<span class=strings>"$1"<\/span>')
 	.r(/\'([^\n']+)\'/gmi, "<span class=strings>'$1'<\/span>")
+	.rA('\\"</span>', '\\"')
+	.rA('\\"<span>', '\\"')
 	//Palabras Reservadas
 	.r(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
 	//Etiquetas
@@ -413,17 +433,19 @@ apply($('.ini'), function(element){
 	.r(/%(\d\w)%/g, "<span class=strings>%$1%<\/span>")
 })
 
-var modeLight = 0
-
 window.onkeydown = function(event){
-	if (event.keyCode == 226){ // [<]
-		if (modeLight) {
-			modeLight--
-			$("html").classList.remove("light-mode")
-		}
-		else{
-			modeLight++
-			$("html").classList.add("light-mode")
-		}
+	if (event.keyCode == 226){ // ENGLISH:[\]    ESPAÑOL:[<]
+		ModeLight()
 	}
+}
+
+$("#CHANGE").onclick = function(){
+	var change = this
+	function IMAGE(X){
+		$("img", change).setAttribute("src", ROOT +'img/dm-'+ X +'line.png')
+	} 
+
+	ModeLight()
+		? IMAGE('out')
+		: IMAGE('base')
 }

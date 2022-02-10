@@ -16,6 +16,8 @@ MAIN=,"ru\table.hhc","index.hhk","ru\README.html","ru\README.html",,,,,0x42120,,
 
 
 [FILES]
+img\dm-outline.png
+img\dm-baseline.png
 ru\README.html
 ru\credits.html
 ru\version-history.html
