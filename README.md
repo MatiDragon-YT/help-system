@@ -5,8 +5,8 @@
 Based on the original that brings the [`help.chm`](https://github.com/sannybuilder/help-system), GitBook and my own [`doc-chm`](https://github.com/MatiDragon-YT/doc-chm).
 This is the first offline version of [docs.sannybuilder.com](https://docs.sannybuilder.com/), worked together, to understand much of the GitBook site Markdown and highlight SB3 code easy and quickly.
 
-![image](https://user-images.githubusercontent.com/43966706/150444302-3e9b7bc4-f803-4d02-a83f-3464fc5ad259.png)
- 
+![image](https://user-images.githubusercontent.com/43966706/153781888-6c426463-fede-4ba7-8439-8927f778554e.png)
+
 ##### Table of content
 * [Install](#install)
 * [Collaborations](#collaborations)
@@ -20,9 +20,9 @@ Just download the chm corresponding to your language:
 
 | language | file | state |
 | --- | --- | --- |
-| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help.chm) | `[##########]` ⭐ complete |
-| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help3082.chm) | `[########..]` ⌛ in process |
-| Pусский | [help1049](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help1049.chm) | `[#######...]` ⌛ in process |
+| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help.chm) | `[##########]` ⭐ complete |
+| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help3082.chm) | `[########..]` ⌛ in process |
+| Pусский | [help1049](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help1049.chm) | `[#######...]` ⌛ in process |
 
 And optionally, move the file to directory.
 ```
