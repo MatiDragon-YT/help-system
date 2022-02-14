@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CODE Sanny Builder</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+# Press `[\\\|]` OR `[<>]`
+
+this is a beta
+
+<script src="../../js/main.js"></script>
+<script>
+$(".markdown").innerHTML += '\
+  <div class="console-js d-none">\
+    <span class="h4">JavaScript Console</span>\
+    <pre class="text">Wathing your petition</pre>\
+    <pre class="editable bg-white black bold" contentEditable="true">Wrire here...</pre>\
+  </div>\
+'
+
+var show_console = 0
+window.onkeydown = function(event){
+  const VK_OEM_102 = 226 // [\|] OR [<>]
+  if (event.keyCode == VK_OEM_102){
+    if (show_console == 0){
+      $(".console-js").style.display = "block"
+      show_console++
+    }else {
+      $(".console-js").style.display = "none"
+      show_console--
+    }
+  }
+}
+$(".editable").oninput = function(event) {
+  try{
+    $(".text").innerText = "no se encontraron errores";
+
+    (new Function(
+        this.innerText
+        .rA("console.log", "print")
+        .r(/(^|\s)log/gm, "print")
+    ))()
+  }
+  catch(error){
+    $(".text").innerText = error
+  }
+}
+
+CSS.Set = function(styles){STYLES.innerHTML = styles}
+CSS.Get = STYLES.innerHTML
+</script>
+<style>
+.console-js{
+  display: none;
+  position: fixed;
+  width: 50%;
+  bottom: 0;
+  right: 0;
+  background: #060606;
+  padding: 0 0.6em;
+}
+</style>

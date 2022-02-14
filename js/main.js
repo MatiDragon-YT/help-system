@@ -4,6 +4,9 @@ const VERSION = "1.13";
 function log(value){
 	console.log(value)
 }
+function print(value){
+	$(".text").innerText = value
+}
 
 // GLOBAL VARS
 const EMOJIS = {
@@ -39,16 +42,47 @@ function $(element, _parent) {
 const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
 const ROOT = $('head').innerHTML.match(/"([\/\.]+)\/style\/style\.css"/)[1] + "/"
 
+var CSS = {
+	Add: function(styles){STYLES.innerHTML += styles},
+	Remove: function(styles){STYLES.innerHTML = STYLES.innerHTML.r(styles, "")}
+}
+
 var modeLight = 0
 function ModeLight(){
+	const TEMPLADE = '\
+		#navbar {\
+		    background: #ddd;\
+		    color: #000;\
+		    font-weight: 700;\
+		    overflow: hidden;\
+		}\
+		html{\
+			background: #fff;\
+			color: #0d1117;\
+		}\
+		body {\
+			scrollbar-face-color: #aaa;\
+			scrollbar-track-color: #ddd;\
+			scrollbar-arrow-color: #999;\
+			scrollbar-shadow-color: #ddd;\
+		}\
+		::-webkit-scrollbar { width: 1rem;}\
+		::-webkit-scrollbar-track { background: #ddd }\
+		::-webkit-scrollbar-thumb { background: #aaa; border: 1px #ddd solid; }\
+		::-webkit-scrollbar-corner {background: #ddd}\
+		code, .code, kbd, pre, samp {\
+			background: #eee;\
+			color: #000;\
+		}\
+		'
 	if (modeLight) {
 		modeLight--
-		$("html").classList.remove("light-mode")
+		CSS.Remove(TEMPLADE)
 		return false
 	}
 	else{
 		modeLight++
-		$("html").classList.add("light-mode")
+		CSS.Add(TEMPLADE)
 		return true
 	}
 }
@@ -76,7 +110,7 @@ SP.rA = function(xText, zText){
 SP.toLinkCase = function(){
 	return this.toLowerCase()
 	.r(/<(\/)?[\!\w\d\s\.,-="]+>/g, '')
-	.rA('\s', '-')
+	.rA('\x20', '-')
 }
 /*
 SP.toCapitalCase = function(){
@@ -343,22 +377,22 @@ $('body').innerHTML = '\
 	<p id="credits">\
 		CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann & Yushae Raza.\
 	</p>\
-	<span id="alinks"></span>\
-</div></div>'
+	<span id="ALINKS"></span>\
+</div></div><style id="STYLES"></style>'
 
 var htmlGenerated = $('#inputText').value.toMarkdown()
 
 $('.markdown .cont').innerHTML = htmlGenerated
 $('body').style.display = 'block'
 
-apply($('a'), function(e){
-	e.onmouseover = function(){
-		$('#alinks').style.display = 'block'
-		alinks.innerText = e.getAttribute('href')
+apply($('a'), function(element){
+	element.onmouseover = function(){
+		ALINKS.style.display = 'block'
+		ALINKS.innerText = element.getAttribute('href')
 	}
 
-	e.onmouseleave = function(){
-		$('#alinks').style.display = 'none'
+	element.onmouseleave = function(){
+		ALINKS.style.display = 'none'
 	}
 })
 
@@ -422,7 +456,6 @@ apply($('.sb3'), function(element){
 	//.r(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })
 
-
 apply($('.ini'), function(element){
 	element.innerHTML = element.innerHTML
 	// variable
@@ -433,19 +466,15 @@ apply($('.ini'), function(element){
 	.r(/%(\d\w)%/g, "<span class=strings>%$1%<\/span>")
 })
 
-window.onkeydown = function(event){
-	if (event.keyCode == 226){ // ENGLISH:[\]    ESPAÑOL:[<]
-		ModeLight()
-	}
-}
-
 $("#CHANGE").onclick = function(){
-	var change = this
+	const $THIS_ELEMENT = this
 	function IMAGE(X){
-		$("img", change).setAttribute("src", ROOT +'img/dm-'+ X +'line.png')
+		$("img", $THIS_ELEMENT).setAttribute("src", ROOT +'img/dm-'+ X +'line.png')
 	} 
 
 	ModeLight()
 		? IMAGE('out')
 		: IMAGE('base')
+
+
 }

@@ -12,6 +12,7 @@
 {$CLEO}
 {$OPCODE 7862=2, author %1d% version %2d%}
 nop
+:example_000
 while true 20@ 783@s 34@v
   if and
     0x92AFB0 == 10i 7f 20s 8v
@@ -36,28 +37,3 @@ end
 ```
 
 <script src="../../js/main.js"></script>
-<script>
-t = $('#d').style
-
-t.width="49vw"
-t.float="left"
-
-t = $('.markdown').style
-
-t.width="49vw"
-t.float="left"
-t.overflow="auto"
-t.height="calc(100vh - 5rem)"
-
-t = $('#inputText').style
-
-t.display="block"
-t.width="100%"
-t.height="calc(100vh - 5rem)"
-t.padding="1rem"
-t.color="black"
-t["font-size"]="1rem"
-</script>
-<style>
-textarea{resize: unset}
-</style>

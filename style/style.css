@@ -29,11 +29,6 @@ body {
 	scrollbar-shadow-color: #0a0d14;
 }
 
-.light-mode {
-	background: #fff;
-	color: #0d1117;
-}
-
 ::-webkit-scrollbar { width: 1rem;}
 ::-webkit-scrollbar-track { background: #0a0d14 }
 ::-webkit-scrollbar-thumb { background: #262b32; border: 1px #0a0d14 solid; }
@@ -209,7 +204,7 @@ a:hover {
 	text-decoration: underline
 }
 
-#alinks {
+#ALINKS {
 	display: none;
 	text-decoration: none!important;
 	position: fixed;
