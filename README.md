@@ -69,7 +69,7 @@ Just create a [ticket](https://github.com/MatiDragon-YT/help-system/issues/new) 
 ## Thanks
 | Contributor | by |
 | --- | --- |
-| [Seemann](https://github.com/x87)<br>(x87) | v0.1 - v1.3 : Critics and error reports from early stages<br>v1.8 : Fix Version History at 0.7 |
+| [Seemann](https://github.com/x87)<br>(x87) | v0.1 - v1.3 : Critics and error reports from early stages<br>v1.8 : Fix Version History at 0.7<br>v1.12 - 1.13 : Give the idea of a light color theme and how to improve it |
 | [Yushae Raza](https://github.com/yushaer)<br>(darksavage) | v1.4 : Aggrege to SA the Vehicle ID List<br>v1.6 : fix weapons GXT |
 
 ## Compiling CHM files
