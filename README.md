@@ -20,9 +20,9 @@ Just download the chm corresponding to your language:
 
 | language | file | state |
 | --- | --- | --- |
-| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help.chm) | `[##########]` ⭐ complete |
-| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help3082.chm) | `[########..]` ⌛ in process |
-| Pусский | [help1049](https://github.com/MatiDragon-YT/help-system/releases/download/1.12/help1049.chm) | `[#######...]` ⌛ in process |
+| English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help.chm) | `[##########]` ⭐ complete |
+| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help3082.chm) | `[########..]` ⌛ in process |
+| Pусский | [help1049](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help1049.chm) | `[#######...]` ⌛ in process |
 
 And optionally, move the file to directory.
 ```
