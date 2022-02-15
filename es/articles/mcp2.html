@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <title>Mission Coding - Part II</title>
+  <title>Biblia de Codificación - Parte II</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,50 +13,47 @@
 Grand Theft Auto\
 [orange][San Andreas]\
 \
-[red][Mission Coding with Sanny Builder Tutorial]\
-[gray][Part II]\
-[gray][Getting started]\
+[red][Tutorial de Codificación de Misiones con Sanny Builder]\
+[gray][Parte II]\
+[gray][Cómo empezar]\
 \
 \
 :::
 
-## Introduction
+## Introducción
 
-Hi, in Part II we will get some basics of coding, create spheres, actors, cars, markers, texts, panels etc....
+Hola, en la Parte II vamos a obtener algunos fundamentos de la codificación, crear esferas, actores, coches, marcadores, textos, paneles etc....
 
-If you need to look at Part I it's [here](mcp1.md).
+Si necesitas mirar la Parte I está [aquí](mcp1.md).
 
-As in [Part I](mcp1.md), I recommend you to print the topic using Printable Version of Topic, by clicking print this topic on top right of the first message.
+Al igual que en la [Parte I](mcp1.md), te recomiendo que imprimas el tema utilizando la versión imprimible del tema, haciendo clic en imprimir este tema en la parte superior derecha del primer mensaje.
 
-A lot of examples here use globals (variables that start with a `$` like : `$markerxx`, `$car00`, `$actor00`, `$myweaps00`) but it doesn't mean you cannot use locals (varaiables that end with a `@` like : `0@`, `1@`, `28@`, `1004@`). I use gobals so I can name them for easier understading. But when you'll be coding you should use locals, for many reasons they are better. You only need to use gloabls when you need the varaible in two (or more) different threads (it's pretty rare, and it isn't usually much more than a few varaible).
+Muchos de los ejemplos aquí utilizados son globales (variables que comienzan con un `$` como : `$markerxx`, `$car00`, `$actor00`, `$myweaps00`) pero esto no significa que no puedas usar locales (variables que terminan con `@` como : `0@`, `1@`, `28@`, `1004@`). Yo utilizo gobales para poder nombrarlos y que se entiendan mejor. Pero cuando vayas a codificar deberías usar locales, por muchas razones son mejores. Solo necesitas usar gloabls cuando necesitas el varaible en dos (o más) hilos diferentes (es bastante raro, y no suele ser mucho más que un varaible).
 
-Often I will give a four digit hexadecimal number (like `0103`, `02a8`, `00ec`, `032b`, etc...) they're opcodes, to have a description write the four digit number on a new line in Sanny Builder and press `F1`.
+A menudo daré un número hexadecimal de cuatro dígitos (como `0103`, `02a8`, `00ec`, `032b`, etc...) son opcodes, para tener una descripción escriba el número de cuatro dígitos en una nueva línea en Sanny Builder y pulse `F1`.
 
-Most examples are given in a CODE tag like this:
-**CODE** 
+La mayoría de los ejemplos se dan en una etiqueta CODE como esta:
 ```
 CODE tag
 ```
 
-So you can copy and past it in Sanny, I recommand you to do so often, it will help you understanding. And you won't have to write the opcode number and press `F1` everytime.
+Así que puedes copiar y pegar en Sanny, te recomiendo que lo hagas a menudo, te ayudará a entender. Y no tendrás que escribir el número de opcode y pulsar `F1` cada vez.
 
-### 1. Using Sanny
+### 1. Usando Sanny
 
-This part is most repeat parts of Sanny's Help but sometimes explained differently. But you can still report to the Hotkeys page for more details.
+Esta parte es la más repetida de la Ayuda de Sanny, pero a veces se explica de manera diferente. Pero aún así puedes informarte en la página de Hotkeys para más detalles.
 
-#### Hotkeys
+#### Atajos de teclado
 
 ##### F1
-The magic hotkey !!!!! write an opcode like `004F` and press `F1` and ho magic appears:
+El atajo mágico !!!!! ponga un opcode como `004F` y presione `F1` y ahí aparece la magia:
 
-**CODE**
 ```sb3
 004F: create_thread @ODDVE
 ```
 
-or write thread and press it and press it again, Sanny will suggest you all those different lines:
+o escriba "thread" y púlselo y vuelva a pulsarlo, Sanny le sugerirá todas esas líneas diferentes:
 
-**CODE**
 ```sb3
 004E: end_thread
 
@@ -71,132 +68,131 @@ or write thread and press it and press it again, Sanny will suggest you all thos
 004F: create_thread @ODDVEH
 ```
 
-`F1` will be the key you'll use a lot, just think about what you want (car, actor, checkpoint, markers, weapon, money, paintjob, etc...) write it and press `F1`. It won't do what you want everytime but it will get you going.\
-`F1` is kind of google for Sanny!!!!!!!
+`F1` será la tecla que usarás mucho, sólo piensa en lo que quieres (coche, actor, punto de control, marcadores, arma, dinero, pintura, etc...) escríbelo y presiona `F1`. No va a hacer lo que quieres cada vez, pero te pondrá en marcha.
+¡¡¡¡¡¡¡`F1` es una especie de google para Sanny!!!!!!!
 
-But notice that it only works for one and only one word.
+Pero fíjate que sólo funciona para una y sólo una palabra.
 
-Remember (or learn if you didn't know) that `F1` gets it's suggestions from opcodes.txt so make sure you did what it's in part II __introduction__.
+Recuerda (o aprende si no lo sabías) que `F1` obtiene sus sugerencias de opcodes.txt así que asegúrate de haber hecho lo que dice la parte II __introducción__.
 
 ##### Ctrl + Shift + <0..9>
-make bookmark, at the line you are like:
+hacer marcador, en la línea que está como:
 
 :::center
 ![](mcp2/tyhtyhety.gif)
 :::
 
-They should be save when you save the file.
+Deberían guardarse al guardar el archivo.
 
 ##### Ctrl + <0..9>
-Go to bookmark number <0..9>, put you at the line of the bookmark (if it exist)
+Ir al marcador número <0..9>, te pone en la línea del marcador (si existe)
 
 ##### Ctrl + Num2/Num8
-When you place your cusor (the blinky |) on a jump (or `gosub` or `jf`-jump_if_false-)and press it the editor will bring you the the label. Look animation to see that I've place on `@PSAVE1_1498` and it bring me to the label it self `:PSAVE1_1498`
+Cuando coloques el cusor (el blinky |) sobre un salto (o `gosub` o `jf`-jump_if_false-)y lo pulses el editor te traerá la etiqueta. Mira la animación para ver que he colocado en `@PSAVE1_1498` y me lleva a la etiqueta en sí `:PSAVE1_1498`
 
 :::center
 ![](mcp2/azdzefqerf.gif)
 :::
 
 ##### F3
-Find Next 
+Buscar siguiente 
 
 ##### Ctrl + F3
-Find previous
+Buscar anterior
 
 ##### Ctrl + Alt 
-Holded, Rectangular selection
+Mantenida, selección rectangular
 
 :::center
 ![](mcp2/fgywdfwgwd.gif)
 :::
 
 ##### Ctrl + Alt + 1
-Coords Manager (game must be running)
+Gestor de Coords (el juego debe estar en marcha)
 
 :::center
 ![](mcp2/erferfertgyyhze2.png)
 :::
 
 ##### Ctrl + Alt + C
-Insert player coordinates where you cursor is
+Insertar las coordenadas del jugador donde está el cursor
 
 ##### Ctrl + Alt + E
-Insert z angle value where you cursor is
+Insertar el valor del ángulo z donde está el cursor
 
 ##### Ctrl + T
-delete word, remember things like end_thread will be considered as one word
+Borrar palabra, recuerda que cosas como end_thread serán consideradas como una palabra
 
 ##### Ctrl + Y
-delete line
+borrar línea
 
 ##### Ctrl + Shift + Y
-clear line, leave the line but delete what's written in it
+borrar línea, deja la línea pero borra lo que está escrito en ella
 
-##### Ctrl + Scroll Up/Down
-page up/down
+##### Ctrl + Desplazamiento arriba/abajo
+subir/bajar página
 
 ##### Ctrl + Shift + U/L
-make word UPPERCASE/lowercase
+hacer que la palabra sea MAYÚSCULA / minúscula
 
 ##### Ctrl + Q
-comment out the line your cursor is (adds // at begining of the line), so the line will be ignored when compiling
+comentar la línea en la que se encuentra el cursor (añade // al principio de la línea), para que la línea sea ignorada al compilar
 
 ##### Ctrl + G
-go to line
+ir a la línea
 
 ##### Ctrl + R
-replace
+reemplazar
 
 ##### Ctrl + C
-copy 
+copiar 
 
 ##### Ctrl + V
-paste
+pegar
 
 ##### F7
-compile and copy to GTA SA folder main.scm and script.img
+compilar y copiar en la carpeta de GTA SA main.scm y script.img
 
-#### Editor completion
-Sanny can complete some thing for you like global variables, labels, model IDs, to use it just write first character ($, @, or #) and get what you need. Look the animation I think it explains well:
+#### Completar el editor
+Sanny puede completar algunas cosas por ti como variables globales, etiquetas, IDs de modelos, para usarlo solo escribe el primer caracter ($, @, o #) y obtienes lo que necesitas. Mira la animación creo que lo explica bien:
 
 :::center
 ![](mcp2/ertyydjyj.gif)
 :::
 
-Those are the most used exemples, but you might find many use for this tool.
+Estos son los ejemplos más utilizados, pero puede encontrar muchos usos para esta herramienta.
 
-Notice that with models, the nudel number is shown, so it's a pretty easy way to find what number a model is.
+Fíjate en que con los modelos se muestra el número de nudel, por lo que es una forma bastante fácil de encontrar qué número tiene un modelo.
 
 :::center
 ![](mcp2/xdfgsdrgs.png)
 :::
 
-#### Coords Manager
+#### Gestor de Coords
 
-Very usefull tool here which get the 3D position of the player. Of course the game muste be running....
+Herramienta muy útil para obtener la posición 3D del jugador. Por supuesto, el juego debe estar funcionando ....
 
-The 3 dimension position is the value of each axis (x, y, z). The San Andreas map goes from `-3000.0` to `3000.0` on x and y axis. The altitude (z) max of planes is about `800.0` units. Axis x is oriented west east, the x value increases when going east. Axis y is oriented south north, the y value increases when going north. Center of the map is located at `0.0 0.0 0.0`.
-Well it looks like that:
+La posición en 3 dimensiones es el valor de cada eje (x, y, z). El mapa de San Andreas va de `-3000.0` a `3000.0` en los ejes x e y. La altitud (z) máxima de los planos es de unas `800,0` unidades. El eje x está orientado al oeste este, el valor de x aumenta al ir al este. El eje y está orientado al sur-norte, el valor de y aumenta al ir al norte. El centro del mapa se encuentra en `0,0 0,0 0,0`.
+Pues así parece:
 
 :::center
 ![](mcp2/SDVDF.gif)
 :::
 
-This screenshot is from old Sanny Builder new coord manager is slightly different.
-- **Copy** will copy into clipboard the 3d pos like `747.756 -1809.0986 13.0234`.
-- **Read** will refresh the position of the player ingame.
-- **Set** will put player at the position you've written in the three dimensions.
+Esta captura de pantalla es del antiguo Sanny Builder, el nuevo gestor de coordenadas es ligeramente diferente.
+- **Copy** copiará en el portapapeles la posición 3d como `747.756 -1809.0986 13.0234`.
+- **Read** actualizará la posición del jugador en el juego.
+- **Set** pondrá al jugador en la posición que has escrito en las tres dimensiones.
 
-In new Sanny Builder you get the Z angle value. This is the value of the angle around z axis which means what direction the player (CJ) is looking at. `0.0` is north, `180.0` is south, `90.0` is east, `270.0` is west.
+En el nuevo Sanny Builder se obtiene el valor del ángulo Z. Este es el valor del ángulo alrededor del eje z que significa en qué dirección está mirando el jugador (CJ). `0.0` es norte, `180.0` es sur, `90.0` es este, `270.0` es oeste.
 
-### 2. Adding mission mods
+### 2. Añadir mods de misión
 
-This isn't really coding but it is usefull for everyone to look/test/use/imitate parts of other's mods.
+Esto no es realmente codificación, pero es útil para que todo el mundo mire/pruebe/utilice/imite partes de los mods de otros.
 
-First thing to know when adding mods : FOLLOW INSTRUCTIONS !!!!!!!!!!!!!!!!!!!! Every mods is different so when adding a mod first follow the author instructions to add it, they're the best instructions. But sometimes there isn't much instruction.
+Lo primero que hay que saber al añadir mods : ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡SEGUIR LAS INSTRUCCIONES !!!!!!!!!!!!!!!!!!!! Cada mods es diferente, así que cuando añadas un mod primero sigue las instrucciones del autor para añadirlo, son las mejores instrucciones. Pero a veces no hay muchas instrucciones.
 
-Then, most of mods are main part (look part I, 1.Main.scm architecture) mods. So they're activated (create_thread) and executed in the main part. You probably want to add mods to original main.scm (or modded `main.scm`), then you'll will use `004F: create_thread` here:
-**CODE**
+Entonces, la mayoría de los mods son parte principal (mira la parte I, 1. Arquitectura de main.scm) mods. Así que se activan (create_thread) y se ejecutan en la parte principal. Probablemente quieras añadir mods al main.scm original (o al modded `main.scm`), entonces usarás `004F: create_thread` aquí:
 ```sb3
 004F: create_thread @ODDVEH
 004F: create_thread @R3
@@ -214,69 +210,65 @@ Then, most of mods are main part (look part I, 1.Main.scm architecture) mods. So
 004F: create_thread @VALET_L
 004F: create_thread @ADPLANE
 ```
-Between any of those lines you'll add:
-**CODE**
+Entre cualquiera de esas líneas añadirás:
 ```sb3
 004F: create_thread @modlabel
 ```
-- where it will be of course the mod's first label name instead of `modlabel`.
+- donde será por supuesto el nombre de la primera etiqueta del mod en lugar de `modlabel`.
 
-Then you've got the mod itself, you have to add it anywhere in main part. BUT it isn't really anywhere, it's more like anywhere after it's been created/activated, and not inside another thread. to simplify just put it at the very end of main part, so before:
+Luego tienes el mod en sí, tienes que añadirlo en cualquier lugar de la parte principal. PERO no es realmente en cualquier lugar, es más como en cualquier lugar después de que se ha creado / activado, y no dentro de otro hilo. para simplificar sólo lo puso en el final de la parte principal, por lo que antes:
 
-**CODE**
-```
+```sb3
 //-------------Mission 0---------------
 // Originally: Initial 1
 ```
 
-Then compile and copy to San Andreas data\script (F7), launch the game, start a new game and...
+Luego compila y copia en San Andreas/data/script (F7), lanza el juego, comienza una nueva partida y...
 
-have fun...
+diviértete...
 
-Hang on, if it really did work, you're like really very very lucky (and you did a good job apparently) !!!! Most of time first try simply doesn't work. So watch what you've done, look how the author of the mod did it, watch global variables (if only numbers you should change it to a custom name), the try again, and if you really can't get it working, ask the author how he did (do that after several tries and checks, don't disturb the author for a mistake you've done).
+¡¡¡¡Espera, si realmente ha funcionado, eres como muy muy afortunado (y has hecho un buen trabajo aparentemente) !!!! La mayoría de las veces el primer intento simplemente no funciona. Así que mira lo que has hecho, mira cómo lo ha hecho el autor del mod, mira las variables globales (si sólo son números deberías cambiarlos por un nombre personalizado), el intento de nuevo, y si realmente no puedes conseguir que funcione, pregunta al autor cómo lo ha hecho (hazlo después de varios intentos y comprobaciones, no molestes al autor por un error que hayas cometido).
 
-### 3. Weapon pickups and parked cars
-opportunity to explain how it works.
+### 3. Recogidas de armas y coches aparcados
+oportunidad de explicar cómo funciona.
 
-Pickups and parked car are spaecial opcode because it telle the engine to create such car or such weapon if player is close enough to the point.
+Recogidas y coches aparcados son opcode spaecial porque le dice al motor para crear tal coche o tal arma si el jugador está lo suficientemente cerca del punto.
 
-Well I'll take exemple to the cars/vehicles that you always find in one place (the skimmer near the dam, the AT400 at Vegas airport, the cropduster in the desert, these are the only one I can think of right now) everytime (actually not everytime) you come back it's here. Same for weapons (the heatseek rockets at the abandonned village, the gun behind Sweet's house...), life (red heart in gang wars), and armor.
+Bueno, voy a poner como ejemplo los coches/vehículos que siempre encuentras en un lugar (el skimmer cerca de la presa, el AT400 en el aeropuerto de Las Vegas, el cropduster en el desierto, estos son los únicos que se me ocurren ahora mismo) cada vez (en realidad no cada vez) que vuelves está aquí. Lo mismo para las armas (los cohetes heatseek en el pueblo abandonado, la pistola detrás de la casa de Sweet...), la vida (el corazón rojo en las guerras de bandas) y las armaduras.
 
-#### Parked cars
-**CODE**
+#### Coches aparcados
 ```sb3
 014B: $mycarx00 = init_parked_car_generator #CHEETAH 15 15 1 alarm 0 door_lock 0 0 0 at -1253.1 -348.0 13.9 angle 0.0
 014C: set_parked_car_generator $mycarx00 cars_to_generate_to 101
 ```
 
-* This will create a cheetah (`#CHEETAH`).
-* at the 3d coordinate `-1253.1 -348.0 13.9`.
-* the car will be headed the z_angle `219.0` (z_angle is the angle around the axis z, `0.0` and `360.0` is north, `180`.0 is south, `90.0` is east, `270.0` is west), so this car is directed to south-west.
-* with color one number `15` (you can notice sometimes `-1` which mean any).
-* with color two number `15` (you can notice sometimes `-1` which mean any).
-* Car belongs to the player (the cops don't think you've stole it) becasue next parameters is set to `1` . If would set on 0 cops will give you a wanted level when you enter it.
-* Without alarm, because it's `0` . It's actaully percentage of chances of getting alarm. So if you want the alarm to go off everytime set it to `100` , if you want it once out of two time then `50` etc.
-* Doors won't be lock. As you can read door_lock is set to `0`. If 1 doors will be lock. The two others parameters are unknown.
-* This car generation (not the car itself) is set as handle `$mycarx00`.
+* Esto creará un guepardo (`#CHEETAH`).
+* en la coordenada 3d `-1253.1 -348.0 13.9`.
+* el coche se dirigirá el z_angle `219.0` (z_angle es el ángulo alrededor del eje z, `0.0` y `360.0` es el norte, `180`.0 es el sur, `90.0` es el este, `270.0` es el oeste), por lo que este coche se dirige al sur-oeste.
+* Con el número de color uno "15" (se puede notar a veces "1" que significa cualquier).
+* Con el color dos número "15" (se puede notar a veces "1" que significa cualquier).
+* El coche pertenece al jugador (la policía no piensa que lo has robado) porque el siguiente parámetro es "1". Si se establece en 0 los policías le dará un nivel de búsqueda cuando usted entra en él.
+* Sin alarma, porque es "0". Es en realidad un porcentaje de posibilidades de obtener una alarma. Asi que si quieres que la alarma suene cada vez ponlo a "100", si quieres que suene una de cada dos veces entonces "50", etc.
+* Las puertas no se bloquearán. Como se puede leer door_lock se establece en `0`. Si 1 puertas serán bloqueadas. Los otros dos parámetros son desconocidos.
+* Esta generación de coches (no el coche en sí) se establece como mango `$mycarx00`.
 
-And you should be wondering how do I know all that (beside simply reading and thinking) ???????
-Well go check [http://sa-db.webtools4you.net/](http://sa-db.webtools4you.net/), clic go without writting anything, and with your internet browser (if you don't know what it is then it's Internet Explorer) go Edition\Find in the page, and search for 014B.
+Y te estarás preguntando cómo sé todo eso (además de simplemente leer y pensar) ???????
+Pues bien, vaya a comprobar [http://sa-db.webtools4you.net/](http://sa-db.webtools4you.net/), haga clic en ir sin escribir nada, y con su navegador de Internet (si no sabe lo que es entonces es Internet Explorer) vaya a Edition\Find en la página, y busque 014B.
 
-You'll then get [`014B` description](http://sa-db.webtools4you.net/?show=all&mark=014b#014b). Wait till your internet browser brings you to 014 description 4 or 5 seconds), and it will be at top of th page highlighted in yellow.
+Entonces te saldrá [`014B` descripción](http://sa-db.webtools4you.net/?show=all&mark=014b#014b). Espere hasta que su navegador de Internet le lleve a la descripción 014 4 o 5 segundos), y será en la parte superior de la página th resaltado en amarillo.
 
-The line after `014C` just activates or unactivate the parked car generator for this car generation handle : 101 makes it spawn and 0 doesn't. It is needed don't forget one for each car generation, but they don't have to be together you can separate them.
+La línea después de `014C` sólo activa o desactiva el generador de coches aparcados para este tirador de generación de coches: 101 hace que aparezca y 0 no. Es necesario no olvidar uno para cada generación de coches, pero no tienen que estar juntos puedes separarlos.
 
-There is other types of parked cars they're very close to this one and they ain't much usefull.
+Hay otros tipos de coches aparcados que son muy parecidos a este y no son muy útiles.
 
-#### Weapon pickups
+#### Recogidas de armas
 
-There is two types of weapons pickups, one for weapons which doesn't need ammunitions (like dildos, katana, golf club, shovel, parachute....), and is actualy just a normal pickup.
+Hay dos tipos de recogidas de armas, una para armas que no necesitan munición (como dildos, katanas, palos de golf, palas, paracaídas....), y es en realidad una recogida normal.
 
-Those both pickup opcodes like with parked cars opcode don't need to request and load the model before using.
+Estos dos opcodes de recogida como con los coches aparcados opcode no necesitan solicitar y cargar el modelo antes de usar.
 
-##### Melee (and gift) weapons
+##### Armas cuerpo a cuerpo (y de regalo)
 
-**CODE**
 ```sb3
 0213: $myweaps00 = create_pickup #CHNSAW       type 15 at -2083.0 298.0 42.0
 0213: $myweaps01 = create_pickup #BAT          type 15 at -2306.0  93.0 35.0
@@ -286,24 +278,22 @@ Those both pickup opcodes like with parked cars opcode don't need to request and
 0213: $myweaps05 = create_pickup #BRASSKNUCKLE type 15 at -2206.0 961.0 80.0
 ```
 
-You can use this opcode for other pickups like the keycard (what you get with the croupier girl- model : `#KEYCARD`), armour (model : `#BODYARMOUR`), life (model : `#HEALTH`), bribe (model : `#BRIBE`), save disks (only the pickup not the saving routine ! - model : `#PICKUPSAVE`), briefcase (model : `#BRIEFCASE`) etc...
+Puedes usar este opcode para otras recogidas como la tarjeta llave (lo que obtienes con la chica croupier- modelo : `#KEYCARD`), armadura (modelo : `#BODYARMOUR`), vida (modelo : `#HEALTH`), soborno (modelo : `#BRIBE`), discos de guardado (¡sólo la recogida no la rutina de guardado! - modelo : `#PICKUPSAVE`), maletín (modelo : `#BRIEFCASE`) etc...
 
-All the melee weapons (including parachute -`#PARA_PACK` - but not the goggles), and health, armour, bribes, are hardcoded that mean you don't have to check if the player picks up the so-called pickup, just go to the pickup and it automaticly gives the weapon/bribe/armour/health etc....
+Todas las armas de cuerpo a cuerpo (incluyendo el paracaídas -`#PARA_PACK` - pero no las gafas), y la salud, la armadura, los sobornos, son hardcoded que significa que usted no tiene que comprobar si el jugador recoge el llamado pickup, sólo tiene que ir a la recogida y automáticamente da el arma/soborno/armadura/salud, etc ....
 
-For keycard, save disk, briefcase, but as well as all define objects models (if there ain't too big of course) because they can be use as a pickup, you have to check if the pickup has been pickup or not. You don't have to destroy it once it's been picked, because as soon as the player is on it it will automaticly disappear.
-For this you must use something like this:
+Para la tarjeta de acceso, el disco de guardado, el maletín, así como todos los modelos de objetos definidos (si no son demasiado grandes, por supuesto), ya que pueden ser utilizados como un pickup, tienes que comprobar si el pickup ha sido recogido o no. No tienes que destruirlo una vez que ha sido recogido, porque en cuanto el jugador esté sobre él desaparecerá automáticamente.
+Para esto debes usar algo como esto:
 
-**CODE**
 ```sb3
 00D6: if
 0214: pickup $pickupvar picked_up
 004D: jump_if_false @
 ```
 
-##### Firearms (and all others)
-But for weapons which have ammunition, with an exeption for the night and infrared goggles, (models : `#NVGOGGLES`, and `#IRGOGGLES`) you'll need to use the pickups which give ammunition with the weapon (doesn't it sound obvious ?):
+##### Armas de fuego (y todas las demás)
+Pero para las armas que tienen munición, a excepción de las gafas nocturnas e infrarrojas, (modelos: `#NVGOGGLES`, y `#IRGOGGLES`) tendrás que usar los captadores que dan munición con el arma (¿no parece obvio?):
 
-**CODE**
 ```sb3
 032B: $myweaps06 = create_weapon_pickup #NVGOGGLES 15 ammo 1   at   299.5   -31.7 1001.0
 032B: $myweaps07 = create_weapon_pickup #IRGOGGLES 15 ammo 1   at   299.6   -41.3 1001.0
@@ -322,80 +312,72 @@ But for weapons which have ammunition, with an exeption for the night and infrar
 032B: $myweaps22 = create_weapon_pickup #COLT45    15 ammo 100 at  -365.4 -1422.4   25.5
 032B: $myweaps23 = create_weapon_pickup #FLAME     15 ammo 200 at  -366.0 -1418.6   25.5
 ```
-Well for those ones, the number after ammo is the number of ammunition you'll have when you pick the weapon up.
+Para esos, el número que aparece después de la munición es el número de municiones que tendrás cuando recojas el arma.
 
-For all pickups (both `0213` and `032B`)
+Para todos los recogedores (tanto el `0213` como el `032B`)
 
-- type 1 disables the pickup (you can't pick it up)
-- type 3 make the pickup pickable only one time 
-- type 15 make the pickup re-grows up everytime after you picked it up (probably what you want)
+- el tipo 1 desactiva la recogida (no puedes recogerla)
+- el tipo 3 hace que el recogido se pueda recoger sólo una vez 
+- el tipo 15 hace que el pickup vuelva a crecer cada vez que lo recoges (probablemente lo que quieres)
 
-the three floats are the coordinates of the pickup like those: `-366.0 -1418.6 25.5`.
+los tres flotadores son las coordenadas del pickup como estos: `-366.0 -1418.6 25.5`.
 
-`$myweapsxx` is the handle of the pickup, the variable that contains it.
+`$myweapsxx` es el mango del pickup, la variable que lo contiene.
 
-and `#GRENADE` is the model.
+y `#GRENADE` es el modelo.
 
-One last thing is that you can find a weapon list right here.
+Una última cosa es que usted puede encontrar una lista de armas aquí.
 
-There is some weapons like the jetpack, or the parachute where you can use either `0213` or `032B` with ammo `1` it has the same result.
+Hay algunas armas como el jetpack, o el paracaídas donde puedes usar tanto `0213` como `032B` con munición `1` tiene el mismo resultado.
 
-You can destroy pickups before it's been pickup, with `0215`:
+Puedes destruir las camionetas antes de que sean recogidas, con el `0215`:
 
-**CODE**
 ```sb3
 0215: destroy_pickup $myweaps01
 ```
 
-### 4. Threads
-There isn't much to say more than what's been told in [Part I: 4. Threads and labels](mcp1.md#4.-threads-and-labels).
+### 4. Hilos
+No hay mucho más que decir que lo que se ha contado en [Parte I: 4. Hilos y etiquetas](mcp1.md#4.-hilos-y-etiquetas).
 
-Just that you create them with `004F` like that :
-**CODE** 
-
+Sólo que se crean con `004F` así :
 ```sb3
 004F: create_thread @name_of_your_thread
 ```
 
-You name it with `03A4`:
-**CODE**
+Lo nombras con `03A4`:
 ```sb3
 03A4: name_thread 'NAME'
 ```
-No more than 7 letter.
+No más de 7 letras.
 
-You can end it with `004E` from the thread itself:
-**CODE**
+Se puede terminar con `004E` del propio hilo:
 ```sb3
 004E: end_thread
 ```
 
-Or from anywhere else with `0459`:
-**CODE**
+O desde cualquier otro lugar con `0459`:
 ```sb3
 0459: end_thread_named 'NAME'
 ```
 
-Sometime you can find weird `004F` like:
-**CODE**
+A veces puedes encontrar extraños `004F` como:
 ```sb3
 004F: create_thread @AUDIOL $ACTOR_RYDER 0 0 2 1
 ```
 
-Don't worry it's just how you can set local variable for the thread you create. Like on the example `$ACTOR_RYDER` will be `0@`, 0 (first one) will be `1@`, `0` (second one) will be `2@`, 2 will be `3@`, 1 will be `4@` in the thread `:AUDIOL`.
+No te preocupes, es sólo la forma de establecer la variable local para el hilo que se crea. Como en el ejemplo `$ACTOR_RYDER` será `0@`, 0 (primero) será `1@`, `0` (segundo) será `2@`, 2 será `3@`, 1 será `4@` en el hilo `:AUDIOL`.
 
-Like Sanny tells you you can set up to 32 locals there for the thread you create from `0@` to `31@` . It can be very usefull but if you don't really understend it doesn't really matter, it's just so you know about it.
+Como te dice Sanny puedes poner hasta 32 locales allí para el hilo que crees desde `0@` hasta `31@` . Puede ser muy útil pero si no lo entiendes realmente no importa, es sólo para que lo sepas.
 
-### 5. Spheres and markers
-#### Spheres
-A sphere (also called POI cylinder) is the red round thingy that you walk in when you start a mission.
+### 5. Esferas y marcadores
+#### Esferas
+Una esfera (también llamada cilindro de PDI) es la cosa redonda roja en la que caminas cuando comienzas una misión.
 
-Even if you don't actually see the red circle, the game (and you while modding) uses many sphere all the time. Just to check if actor x is near a given coordinate within a certain radius.
+Aunque no veas realmente el círculo rojo, el juego (y tú mientras haces modding) utiliza muchas esferas todo el tiempo. Sólo para comprobar si el actor x está cerca de una coordenada dada dentro de un determinado radio.
 
-To create thoses special spheres that checks if actor is near it you need a special type of opcodes that have a command and are conditional !!!! There rare but so usefull since GTA III. They are conditional because they check if the actor is near it and in the meanwhile they display the red sphere ingame.
+¡¡¡¡Para crear esas esferas especiales que comprueban si el actor está cerca de ellas se necesita un tipo especial de opcodes que tienen un comando y son condicionales !!!! Son raros pero muy útiles desde GTA III. Son condicionales porque comprueban si el actor está cerca y mientras tanto muestran la esfera roja dentro del juego.
 
-2d opcodes from [00ec](http://sa-db.webtools4you.net/?show=all&mark=00ec#00ec) to [00f4](http://sa-db.webtools4you.net/?show=all&mark=00f4#00ec).
-**CODE**
+opcodes 2d desde [00ec](http://sa-db.webtools4you.net/?show=all&mark=00ec#00ec) hasta [00f4](http://sa-db.webtools4you.net/?show=all&mark=00f4#00ec).
 ```sb3
 00EC: actor $PLAYER_ACTOR 0 near_point 1812.369 -1929.9215 radius 80.0 80.0
 00ED: actor $PLAYER_ACTOR 0 near_point_on_foot 2043.6801 -1635.73 radius 4.0 4.0
@@ -407,10 +389,9 @@ To create thoses special spheres that checks if actor is near it you need a spec
 00F3: actor $PLAYER_ACTOR near_actor_on_foot 15@ radius 2.0 2.0 0
 00F4: actor 34@ near_actor_in_car $PLAYER_ACTOR radius 6.0 6.0 0
 ```
-Those opcodes shouldn't be used because they can lead to many bugs particulary in interiors.
+Esos opcodes no deberían ser usados porque pueden llevar a muchos bugs particularmente en interiores.
 
-3d opcodes from [00fe](http://sa-db.webtools4you.net/?show=all&mark=00fe#00fe) to [0106](http://sa-db.webtools4you.net/?show=all&mark=0106#00fe).
-**CODE**
+opcodes 3d desde [00fe](http://sa-db.webtools4you.net/?show=all&mark=00fe#00fe) hasta [016](http://sa-db.webtools4you.net/?show=all&mark=0106#00fe).
 ```sb3
 00FE: actor $PLAYER_ACTOR 0 near_point_3d 658.0068 -1866.3127 4.4537 radius 15.0 15.0 15.0
 00FF: actor $PLAYER_ACTOR 0 near_point_3d_on_foot $X_JOHNSON_HOUSE $Y_JOHNSON_HOUSE $Z_JOHNSON_HOUSE radius 1.0 1.0 2.0
@@ -421,19 +402,18 @@ Those opcodes shouldn't be used because they can lead to many bugs particulary i
 0105: actor $PLAYER_ACTOR near_actor_3d_on_foot 102@(42@,9i) radius 5.0 5.0 2.0 sphere 0
 0106: actor $PLAYER_ACTOR near_actor_3d_in_car 71@ radius 15.0 15.0 15.0 0
 ```
-These opcodes are good use them!!!
-For all of them opcodes:
+¡¡¡Estos opcodes son buenos utilízalos!!!
+Para todos estos opcodes:
 
-Where ever it is placed the integer `0` or `1` tells the engine to show the red circle (1=show;0=don't show).
+Donde sea que se coloque el entero `0` o `1` le dice al motor que muestre el círculo rojo (1=mostrar; 0=no mostrar).
 
-The first 2 or 3 (2 for 2D, 3 for 3D) floats like `-366.066 -1418.683 25.5` are the position.
+Los primeros 2 o 3 (2 para 2D, 3 para 3D) flotantes como `-366.066 -1418.683 25.5` son la posición.
 
-The second 2 or 3 (2 for 2D, 3 for 3D) floats like `4.0 4.0 6.0` are the radius of the sphere.
+Los segundos 2 o 3 (2 para 2D, 3 para 3D) flotadores como `4.0 4.0 6.0` son el radio de la esfera.
 
-`$PLAYER_ACTOR` or `71@` , are the actor variables.
+Las variables `$PLAYER_ACTOR` o `71@` , son las variables del actor.
 
-To have the sphere working (and then appearing) you need to place it in a loop:
-**CODE**
+Para que la esfera funcione (y aparezca) hay que colocarla en un bucle:
 ```sb3
 :SPHERE_LOOP
 0001: wait 0 ms
@@ -441,127 +421,116 @@ To have the sphere working (and then appearing) you need to place it in a loop:
 00EC: actor $PLAYER_ACTOR 0 near_point 1812.369 -1929.9215 radius 80.0 80.0
 004D: jump_if_false @SPHERE_LOOP
 ```
-The thread must be running on the loop for the condition to checked, and for the red circle to appear. The wait is needed don't make it too long otherwise it will be flickering, keep to 0 ms to have it nice.
+El hilo debe estar corriendo en el bucle para que la condición se compruebe, y para que el círculo rojo aparezca. La espera es necesaria, no la hagas demasiado larga, de lo contrario parpadeará, mantenla a 0 ms para que sea agradable.
 
-#### Markers
-##### Marker icons
-Markers icons are the radar assets you go to to do a mission. Like ![](../../img/sa/radar/icon6.gif), ![](../../img/sa/radar/icon11.gif), or ![](../../img/sa/radar/icon16.gif), etc...
+#### Marcadores
+##### Iconos de marcadores
+Los iconos de los marcadores son los activos del radar a los que vas para hacer una misión. Como ![](%sa-r/icon6.gif), ![](%sa-r/icon11.gif), o ![](%sa-r/icon16.gif), etc.
 
-Thanks to LazioFreak for finding them. You can find a list of the icons and the numbers to use them on this page [SA: radar icons](http://www.lzfdownloads.de/index2.php?page=46&action=text) or in Sanny Builder's Help contents in [SCM Documentation: GTA SA: radar icons](../scm-documentation/sa/radar-icons.md).
+Gracias a LazioFreak por encontrarlos. Puedes encontrar una lista de los iconos y los números para usarlos en esta página [SA: iconos de radar](http://www.lzfdownloads.de/index2.php?page=46&action=text) o en los contenidos de ayuda de Sanny Builder en [Documentación SCM: GTA SA: iconos de radar](../scm-documentation/sa/radar-icons.md).
 
-There is four opcodes to create them:
+Hay cuatro opcodes para crearlos:
 
-Three without sphere (like it's said in the opcode description) 04ce and `0570`:
-**CODE**
+Tres sin esfera (como se dice en la descripción del opcode) 04ce y `0570`:
 ```sb3
 04CE: $marker01 = create_icon_marker_without_sphere 12 at 2447.3643 -1974.4963 12.5469
 0570: $marker02 = create_asset_radar_marker_with_icon 36 at 1837.3643 -1974.4963 12.5469
 02A8: $marker03 = create_marker 23 at 658.0068 -1866.3127 4.4537
 ```
-`02a8` will ALWAYS be visible on the radar.
+El `02a8` será visible SIEMPRE en el radar.
 
-One with a sphere 02a7:
-**CODE**
+Otro con una esfera 02a7:
 ```sb3
 02A7: $marker00 = create_icon_marker_and_sphere 33 at 2514.5601 -1666.84 13.38
 ```
-Like `02a8`, this one is pretty cool because it will be ALWAYS visible on the radar, where ever you go you'll see it.
-But watch out it's only a sphere (just the red circle) it doesn't check if the player is near it, just the radar marker and the sphere. To check if the player is near it use opcodes told upper in spheres.
+Al igual que el `02a8`, este es bastante chulo porque estará SIEMPRE visible en el radar, vayas donde vayas lo verás.
+Pero ojo, es sólo una esfera (sólo el círculo rojo) no comprueba si el jugador está cerca, sólo el marcador del radar y la esfera. Para comprobar si el jugador está cerca usa los opcodes que se dicen arriba en las esferas.
 
-All of them are 5 parameters opcodes:
-* `$markerxx` is the handle of the marker.
-* The integer like `12`, `36`, or `23` are the marker icons number you can find on [SCM Documentation: GTA SA: radar icons](../scm-documentation/sa/radar-icons.md).
-* The three floats are the x y z coordinates.
+Todos ellos son opcodes de 5 parámetros:
+* `$markerxx` es el handle del marcador.
+* Los enteros como `12`, `36`, o `23` son el número de iconos del marcador que puedes encontrar en [Documentación SCM: GTA SA: iconos de radar](../scm-documentation/sa/radar-icons.md).
+* Los tres flotantes son las coordenadas x y z.
 
-##### Color markers
-The color markers are that:
+##### Marcadores de color
+Los marcadores de color son eso:
 :::center
 ![](mcp2/rtgerterh.jpg)
 :::
 
-And on the radar they are represented by a colored square like that:
+Y en el radar están representados por un cuadrado de color como este:
 
 :::center
 ![](mcp2/rthrtyjty.jpg)
 :::
 
-To create them on vehicle/actor/object/pickup:
-**CODE**
+Para crearlos en el vehículo/actor/objeto/recogida:
 ```sb3
 0186: $marker04 = create_marker_above_car $car00
 0187: $marker05 = create_marker_above_actor $actor00
 0188: $marker06 = create_marker_above_object $object00
 03DC: $marker07 = create_marker_above_pickup $myweaps00
 ```
-Watch out the vehicle/actor/object/pickup must be existing and store in the hanlde otherwise you'll crash the game.
-With `03dc`, the marker over the pickup will always be green what ever you do with it.
-- `$markerxx` is the handle of the marker 
-- `$car00`, `$actor00`, `$object00`, `$myweaps00` are the handles of vehicle/actor/object/pickup 
-You can change the color of the marker with:
-**CODE**
+Cuidado, el vehículo/actor/objeto/recogida debe existir y guardarse en el hanlde, de lo contrario se colgará el juego.
+Con el `03dc`, el marcador sobre el pickup siempre será verde hagas lo que hagas con él.
+- `$marcadorxx` es el mango del marcador 
+- `$car00`, `$actor00`, `$object00`, `$myweaps00` son las asas del vehículo/actor/objeto/recogida 
+Puedes cambiar el color del marcador con:
 ```sb3
 0165: set_marker $marker05 color_to 1
 ```
-- 0 : red
-- 1 : green
-- 2 : light blue
-- 3 : white
-- 4 : light yelow
-With 0168 you can change the size of the marker (unlike the description says):
-**CODE**
+- 0 : rojo
+- 1 : verde
+- 2 : azul claro
+- 3 : blanco
+- 4 : amarillo claro
+Con 0168 puedes cambiar el tamaño del marcador (a diferencia de lo que dice la descripción):
 ```sb3
 0168: show_on_radar $marker04 1
 ```
-- < 3 : smaller the default size
-- = 3 : default size
-- > 3 : bigger
-You can set to enemy or friendly color (it only change the color):
-**CODE**
+- < 3 : menor el tamaño por defecto
+- = 3 : tamaño por defecto
+- > 3 : más grande
+Se puede establecer el color del enemigo o del amigo (sólo cambia el color):
 ```sb3
 07E0: set_marker $marker02 type_to 1
 ```
-- 0 : enemy red
-- 1 : friendly blue
+- 0 : rojo enemigo
+- 1 : azul amistoso
 
-To hide and show them (both icons and colored markers) :
-**CODE**
+Para ocultar y mostrar (tanto los iconos como los marcadores de color) :
 ```sb3
 018B: show_on_radar $marker04 1
 ```
-- 0 : hide
-- 1 : hide
-- 2 : show
-- 3 : show
-- 4 : hide
-- 5 : hide
+- 0 : ocultar
+- 1 : ocultar
+- 2 : mostrar
+- 3 : mostrar
+- 4 : ocultar
+- 5 : ocultar
 
-To destroy them (both icons an colored markers):
-**CODE**
+Para destruirlos (tanto los iconos como los marcadores de color):
 ```
 0164: disable_marker $markerxx
 ```
-Where of course `$markerxx` is the handle of the marker.
+Donde, por supuesto, `$marcadorxx` es el mango del marcador.
 
-### 6. Actors, weapons and vehicles
-Now let's create some things to destroy them!!!!
+### 6. Actores, armas y vehículos
+¡¡¡¡Ahora vamos a crear algunas cosas para destruirlas!!!!
 
-First when you create actors, vehicles, objects, or give weapons to an actor, you have to load the models and check they are loaded before creating them.
+Primero cuando creas actores, vehículos, objetos, o das armas a un actor, tienes que cargar los modelos y comprobar que están cargados antes de crearlos.
 
-So you need to request the models with 0247:
-**CODE**
+Así que tienes que solicitar los modelos con 0247:
 ```sb3
 0247: request_model #CHEETAH
 0247: request_model #DESERT_EAGLE
 ```
 
-then load requested models with 038b:
-**CODE**
+y luego cargar los modelos solicitados con 038b:
 ```sb3
 038B: load_requested_models
 ```
 
-After you need a check to confirm that the models are really loaded (available for the engine to use):
-**CODE**
+Después se necesita una comprobación para confirmar que los modelos están realmente cargados (disponibles para que el motor los utilice):
 ```sb3
 00D6: if and
 0248: model #HEATSEEK available
@@ -573,10 +542,9 @@ After you need a check to confirm that the models are really loaded (available f
 004D: jump_if_false @LOOP_RQ_10
 ```
 
-The jump if false jumps to `:LOOP_RQ_10` where the model will be requested again loaded again.
+El salto si es falso salta a `:LOOP_RQ_10` donde el modelo será solicitado de nuevo cargado.
 
-All in one it look like that :
-**CODE**
+Todo en uno se ve así :
 ```sb3
 :LOOP_RQ_10
 0001: wait 0
@@ -597,12 +565,11 @@ All in one it look like that :
 004D: jump_if_false @LOOP_RQ_10
 ```
 
-Notice the wait because it's very important here you do a loop, you make the engine comes back to where it was before. You need this wait, wait 0 ms is far enough, you don't need more, but you DO need it.
+Fíjate en la espera porque es muy importante aquí haces un bucle, haces que el motor vuelva a donde estaba antes. Necesitas esta espera, esperar 0 ms es suficiente, no necesitas más, pero SÍ la necesitas.
 
 
-Now that the models are available you can create your actors/vehicles/objects, and give weapons to the actors :
+Ahora que los modelos están disponibles puedes crear tus actores/vehículos/objetos, y dar armas a los actores :
 
-**CODE**
 ```sb3
 00A5: $car00 = create_car #CHEETAH at 2368.5601 -1666.84 13.38
 009A: $actor00 = create_actor 22 #WFYSEX at 2490.56 -1666.84 14.38
@@ -615,89 +582,83 @@ Now that the models are available you can create your actors/vehicles/objects, a
 01B2: give_actor $actor02 weapon 24 ammo 300 // Load the weapon model before using this
 01B2: give_actor $actor03 weapon 29 ammo 900 // Load the weapon model before using this
 ```
-* For creating a car with `00a5`:
-  * `$car00` is the car handle.
-  * `#CHEETAH` is the model. Use editor completion to have a list of models (watch out there is ALL models, cars, actors, objects).
-  * `2490.56 -1666.84 14.38` are the coordinates.
-* Create actor with `009a`:
-  * `$actor00` is the actor handle.
-  * `#WFYSEX` is the model. Use editor completion to have a list of models.
-  * The integer 22 is the ped type. The ped type is the temper, the way the actor will act by default (without any order given). You can find a list of ped types in Sanny Builder help contents in SCM Documentation: GTA SA: PedTypes. Here they don't like cops and will defend themself if they're attacked, among other things.
-  * `2368.5601 -1666.84 13.38` are the coordinates.
-* 0107 will create an object : 
-  * `$object00` is the object handle 
-  * `#CR_AMMOBOX` is the model. Here you can use any objects defined in the map files (.ide files in GTA San Andreas\data\maps folder) as long as you defined the object in define object section in the scm. See [Part I: 1. Main.scm architecture](mcp1.md#1.-main.scm-architecture).
-    * `2502.5601 -1566.84 24.38` are the coordinates.
-    * Finally 01b2 gives an actor a weapon:
-  * `$actor00` is the actor handle 
-  * The first integer 36 , 29 or 24 after weapon is the Weapon number. You can find a list of weapons their numbers and the correponding model in Sanny Builder help contents in [SCM Documentation: GTA SA: Weapon numbers](../scm-documentation/sa/weapons.md).
-    * The second integer 300 or 900 after ammo is the number of ammunition given to the actor along with it's weapon. Here it's too much depends of how time the actor will live but I found that 150 is usualy far enough.
-- Even if you might think that this opcode don't need the weapon model to be loaded, but it DO NEEDS the model to be loaded. To ensure you can look at the comment (after //) which says : `"// Load the weapon model before using this"`.
+* Para crear un coche con `00a5`:
+  * `$car00` es el mango del coche.
+  * `#CHEETAH` es el modelo. Utiliza el editor de finalización para tener una lista de modelos (cuidado que hay TODOS los modelos, coches, actores, objetos).
+  * `2490.56 -1666.84 14.38` son las coordenadas.
+* Crear actor con `009a`:
+  * `$actor00` es el handle del actor.
+  * `#WFYSEX` es el modelo. Usa el editor para tener una lista de modelos.
+  * El entero 22 es el tipo de ped. El tipo ped es el temperamento, la forma en que el actor actuará por defecto (sin ningún orden dado). Puedes encontrar una lista de tipos de ped en los contenidos de ayuda de Sanny Builder en la documentación de SCM: GTA SA: PedTypes. Aquí no les gustan los policías y se defenderán si son atacados, entre otras cosas.
+  * `2368.5601 -1666.84 13.38` son las coordenadas.
+* 0107 creará un objeto : 
+  * `$object00` es el handle del objeto 
+  * `#CR_AMMOBOX` es el modelo. Aquí puedes usar cualquier objeto definido en los archivos de mapa (archivos .ide en la carpeta GTA San Andreas\data\maps) siempre que hayas definido el objeto en la sección definir objeto en el scm. Ver [Parte I: 1. Arquitectura main.scm](mcp1.md#1.-main.scm-architecture).
+    * `2502.5601 -1566.84 24.38` son las coordenadas.
+    * Finalmente 01b2 da a un actor un arma:
+  * `$actor00` es el mango del actor 
+  * El primer número entero 36, 29 o 24 después de arma es el número de arma. Puedes encontrar una lista de armas, sus números y el modelo correspondiente en los contenidos de ayuda de Sanny Builder en [SCM Documentation: GTA SA: Weapon numbers](../scm-documentation/sa/weapons.md).
+    * El segundo entero 300 o 900 después de la munición es el número de municiones que se le da al actor junto con su arma. Aquí depende mucho del tiempo de vida del actor, pero he encontrado que 150 es normalmente suficiente.
+- Aunque se pueda pensar que este opcode no necesita que se cargue el modelo del arma, pero SI NECESITA que se cargue el modelo. Para asegurarte puedes mirar el comentario (después de //) que dice: `"// Cargar el modelo del arma antes de usar esto"`.
 
-Now they're ready to shoot away but they'll have to wait a bit!!!!
+¡¡¡¡Ahora están listos para disparar pero tendrán que esperar un poco!!!!
 
-You might need to change the direction of the car (z angle), or its colors (there is up to four colors for cars):
-**CODE**
+Puede que necesites cambiar la dirección del coche (ángulo z), o sus colores (hay hasta cuatro colores para los coches):
+
 ```sb3
 0175: set_car $car00 z_angle_to 90.0
 0229: set_car $car00 color_to 11 0
 0A11: set_car $car00 tertiary_color_to 6 quaternary_color_to 12
 ```
 
-It's pretty easy so I'll be fast:
-* for all of them `$car00` is the car handle as usual !!!! 
-* In 0175 the float `90.0` is the z angle from `-360.0` to `360.0` .
-* In 0229 the integers `11` is the primary color and `0` is the secondary color.
-* In 0a11 the integers `6` is the tertiary color and `12` is the quaternary color. Don't worry about the opcode description, by the time the sascm.ini used here (the one given with Sanny) was written the opcode wasn't known yet, but it will still work very well, and now that you know what the opcode does, there is nothing to stop you!!!
+Es bastante fácil así que voy a ser rápido:
+¡¡¡¡* para todos ellos `$car00` es el mango del coche como siempre !!!! 
+* En 0175 el float `90.0` es el ángulo z de `-360.0` a `360.0` .
+* En 0229 los enteros `11` es el color primario y `0` es el color secundario.
+* En 0a11 los enteros `6` es el color terciario y `12` es el color cuaternario. No te preocupes por la descripción del opcode, en el momento en que se escribió el sascm.ini utilizado aquí (el que se dio con Sanny) aún no se conocía el opcode, pero aún así funcionará muy bien, y ahora que sabes lo que hace el opcode, ¡¡¡no hay nada que te detenga!!!
 
-For infos, those were only "set" opcodes, but there is opposite opcodes for all thoses "get" opcodes. The "get" opcodes will get the color/angle of the car and stores it in variables:
+Para información, esos eran solo opcodes "set", pero hay opcodes opuestos para todos esos opcodes "get". Los opcodes "get" obtienen el color/ángulo del coche y lo almacenan en variables:
 
-**CODE**
 ```sb3
 0174: $carangle = car $car00 z_angle
 03F3: get_car $car00 color $primcolor $scndcolor
 0A12: get_car $car00 tertiary_color_to $tertcolor quaternary_color_to $quatcolor
 ```
 
-Well, what can I say, it the same as before but the all way around, instead of saying the engine to put a color on the car or put the car in such direction, it finds what color the car is or what direction the car is and put the resulting integer in the variable.
-The variable names should speak form themselves.
+Bueno, qué puedo decir, es lo mismo que antes pero al revés, en lugar de decirle al motor que ponga un color en el coche o que ponga el coche en tal dirección, encuentra de qué color es el coche o en qué dirección está el coche y pone el entero resultante en la variable.
+Los nombres de las variables deberían hablar por sí mismos.
 
-As much obvious as it is, you can't change the color of an actor !!!!!! But you can change the direction (s)he's looking at, and know where (s)he's looking :
-**CODE**
+¡¡¡¡¡¡Por muy obvio que sea, no se puede cambiar el color de un actor !!!!!! Pero puedes cambiar la dirección a la que mira, y saber hacia dónde mira:
 ```sb3
 0172: $actorangle = actor $actor00 z_angle
 0173: set_actor $actor00 z_angle_to 262.0
 ```
 
-Same for objects, here is just the angle, but there is more on objects just next :
-**CODE**
+Lo mismo para los objetos, aquí es sólo el ángulo, pero hay más en los objetos justo a continuación :
 ```sb3
 0176: $objangle = object $object00 z_angle
 0177: set_object $object00 z_angle_to 180.0
 ```
 
-When you finished using those actor/vehicles/object you have two different ways to get rid of them : 
-First you can simply destroy them (they will just disappear straight away) :
-**CODE**
+Cuando termines de usar esos actores/vehículos/objetos tienes dos formas diferentes de deshacerte de ellos: 
+En primer lugar, puedes simplemente destruirlos (desaparecerán de inmediato):
 ```sb3
 00A6: destroy_car $car00
 0108: destroy_object $object00
 009B: destroy_actor_instantly $actor01
 034F: destroy_actor_with_fade $actor00 // The actor fades away like a ghost
 ```
-034f as the comment says `"// The actor fades away like a ghost"`. Is usualy what you see happening in original game when an actor is dead, it slowly disappear.
+034f como dice el comentario `"// El actor se desvanece como un fantasma"`. Es lo que suele ocurrir en el juego original cuando un actor está muerto, desaparece lentamente.
 
-Secondly you can remove references from them, this will turn them into normal peds (just like every pedestrian/vehicle you see ingame). So the actor/vehicle/object will still be there but the handle `$car00`/`$actor00`/`$object00` won't hold the actor/vehicle/object anymore :
-**CODE**
+En segundo lugar puedes eliminar las referencias de ellos, esto los convertirá en peatones normales (como cualquier peatón/vehículo que veas en el juego). Así que el actor/vehículo/objeto seguirá estando ahí pero el handle `$car00`/`$actor00`/`$object00` ya no contendrá al actor/vehículo/objeto:
 ```sb3
 01C2: remove_references_to_actor $actor00 // Like turning an actor into a random pedestrian
 01C3: remove_references_to_car $car00 // Like turning a car into any random car
 01C4: remove_references_to_object $object00 //This object will now disappear when the player looks away
 ```
-The comments (after //) explain what the opcodes do pretty well again.
+Los comentarios (después de //) explican bastante bien lo que hacen los opcodes.
 
-Now that the actors/vehicles/objects are destroyed the engine don't need the models any more. So to free some game memory ~~you can~~ release the models with 0249 :
-**CODE**
+Ahora que los actores/vehículos/objetos son destruidos el motor ya no necesita los modelos. Así que para liberar algo de memoria del juego ~~puedes~~ liberar los modelos con 0249 :
 ```sb3
 0249: release_model #WFYSEX
 0249: release_model #CR_AMMOBOX
@@ -707,11 +668,10 @@ Now that the actors/vehicles/objects are destroyed the engine don't need the mod
 0249: release_model #HEATSEEK
 ```
 
-##### About special actors
-Actors like Ryder, BigSmoke, Sweet, Tenpeny, Pulaski, Toreno, Ceasar, Jethro etc... are called special actors, they're not like the usual ped you find on the street. Then, in scm coding, they're handled in a special way, with special opcodes those so special actors !!!! 
+##### Sobre los actores especiales
+Actores como Ryder, BigSmoke, Sweet, Tenpeny, Pulaski, Toreno, Ceasar, Jethro etc... son llamados actores especiales, no son como los ped habituales que encuentras en la calle. ¡¡¡¡Entonces, en la codificación scm, se manejan de una manera especial, con opcodes especiales esos actores tan especiales !!!! 
 
-It goes like this:
-**CODE**
+Es así:
 ```sb3
 023C: request_special_actor 'TENPEN' as 1
 023C: request_special_actor 'PULASKI' as 2
@@ -721,11 +681,10 @@ It goes like this:
 023C: request_special_actor 'MADDOGG' as 6
 ```
 
-Here you have requested the models `'TENPEN'`, `'PULASKI'` and `'HERN'` and define them as special actor models integers `1`, `2` and `3`.
-You can find a special actor list in Sanny Builder help contents in SCM Documentation: GTA SA: Special actors. You can only define 9 special actor models at the same time (integers from 1 to 10 included).
+Aquí ha solicitado los modelos `'TENPEN'`, `'PULASKI'` y `'HERN'` y los ha definido como modelos de actores especiales enteros `1`, `2` y `3`.
+Puedes encontrar una lista de actores especiales en los contenidos de ayuda de Sanny Builder en la documentación de SCM: GTA SA: Actores especiales. Sólo puedes definir 9 modelos de actores especiales al mismo tiempo (enteros del 1 al 10 incluidos).
 
-Then you have to check if the special actors are loaded and create them either on foot or in a car with the usual create_actor opcodes :
-**CODE**
+Entonces tienes que comprobar si los actores especiales están cargados y crearlos a pie o en coche con los opcodes habituales de create_actor :
 ```sb3
 wait 0
 00D6: if and
@@ -746,10 +705,9 @@ wait 0
 009A: 6@ = create_actor 23 #SPECIAL06 at 2438.609 -1254.061 22.8303
 ```
 
-When creating actors, see how the model is named `#SPECIAL01` and that it refers to the integer used in `023c: request_special_actor`. Then special actors models are named from `#SPECIAL01` to `#SPECIAL10`.
+Cuando se crean los actores, se ve cómo el modelo se llama `#SPECIAL01` y que hace referencia al entero utilizado en `023c: request_special_actor`. Luego los modelos de actores especiales se nombran desde `#SPECIAL01` hasta `#SPECIAL10`.
 
-If you need other special actors later (like in another mission) follow the same procedure with different models names but keeping `1`, `2` and `3` as special actor model integer, like :
-**CODE**
+Si necesitas otros actores especiales más tarde (como en otra misión) sigue el mismo procedimiento con diferentes nombres de modelos pero manteniendo `1`, `2` y `3` como modelo de actor especial entero, como :
 ```sb3
 023C: request_special_actor 'SMOKE' as 1
 023C: request_special_actor 'TORINO' as 2
@@ -760,8 +718,7 @@ If you need other special actors later (like in another mission) follow the same
 023C: request_special_actor 'ZERO' as 4
 ```
 
-To release the model simply use 0296 with the special actor integer model, and destroy the actor with usual 009b, 034f or 01c2 :
-**CODE**
+Para liberar el modelo basta con utilizar 0296 con el modelo especial de actor entero, y destruir el actor con los habituales 009b, 034f o 01c2 :
 ```sb3
 0296: unload_special_actor 1
 0296: unload_special_actor 2
@@ -778,44 +735,39 @@ To release the model simply use 0296 with the special actor integer model, and d
 00A6: destroy_car 3@
 ```
 
-### 7. Objects and moving them : 
+### 7. Objetos y moverlos : 
 
-In Grand Theft Auto San Andreas there is many many things you can do with objects, but I won't (and I can't) tell you everything about it. I'll give you far enough to do nice and fun things with them.
+En Grand Theft Auto San Andreas hay muchas cosas que puedes hacer con los objetos, pero no te lo voy a contar todo (ni puedo). Te daré lo suficiente para hacer cosas bonitas y divertidas con ellos.
 
-I won't repeat (even if I do repeat a lot of things) how to request and load models to create objects, it's told upper. I won't repeat neither how to destroy/remove references and release objects for the same reason.
+No voy a repetir (aunque repita muchas cosas) cómo solicitar y cargar modelos para crear objetos, está dicho arriba. Tampoco repetiré cómo destruir/quitar referencias y liberar objetos por la misma razón.
 
-First some general (general because there is similar opcodes for vehicles and actors) things about coordinates and offsets. Sometime you need to know where the object is placed, and sometimes you need to know what are the coordinates just a bit away from the object (this is called an offset) :
-**CODE**
+Primero algunas cosas generales (generales porque hay opcodes similares para vehículos y actores) sobre coordenadas y offsets. A veces se necesita saber dónde está colocado el objeto, y a veces se necesita saber cuáles son las coordenadas a un poco de distancia del objeto (esto se llama un offset) :
 ```sb3
 01BB: store_object $object00 position_to $objpos_x $objpos_y $objpos_z
 0400: create_coordinate $objpos_x $objpos_y $objpos_z from_object $object00 offset 1.0 2.0 3.0
 ```
-01bb will simply get the object `$object00` x y z coordinates and store them into `$objpos_x $objpos_y $objpos_z`.
-In 0400 it will store the coordinates at the offsets `1.0 2.0 3.0` of the object. It means that the coordinates that will be stored in `$objpos_x $objpos_y $objpos_z` will be `1.0` unit away from the object on the object's z axis, `2.0` unit away from the object on the object's y axis, and `3.0` unit away from the object on the object's z axis.
+01bb simplemente obtendrá las coordenadas x y z del objeto `$objeto00` y las almacenará en `$objpos_x $objpos_y $objpos_z`.
+En 0400 almacenará las coordenadas en los desplazamientos `1.0 2.0 3.0` del objeto. Significa que las coordenadas que se almacenarán en `$objpos_x $objpos_y $objpos_z` estarán a `1.0` unidad del objeto en el eje z del objeto, `2.0` unidad del objeto en el eje y del objeto, y `3.0` unidad del objeto en el eje z del objeto.
 
-As I said there is similar opcodes for cars and actors, the explaination is the same as before just replace object by car or actor : 
-For vehicles :
-**CODE**
+Como he dicho hay opcodes similares para coches y actores, la explicación es la misma que antes solo hay que sustituir objeto por coche o actor : 
+Para los vehículos :
 ```sb3
 00AA: store_car $car00 position_to $carpos_x $carpos_y $carpos_z
 0407: create_coordinate $carpos_x $carpos_y $carpos_z from_car $car00 offset 1.0 2.0 3.0
 ```
-For actors :
-**CODE**
+Para los actores :
 ```sb3
 00A0: store_actor $actor00 position_to $actorpos_x $actorpos_y $actorpos_z
 04C4: create_coordinate $actorpos_x $actorpos_y $actorpos_z from_actor $actor00 offset 1.0 2.0 3.0
 ```
 
-Once the object is created you can move the object to new coordinates:
-**CODE**
+Una vez creado el objeto, puede moverlo a nuevas coordenadas:
 ```sb3
 01BC: put_object $object00 at 2368.5601 -1666.84 13.38
 ```
-For info similar opcodes for actors and cars are : 00a1 for actors and 00ab for cars.
+Para información los opcodes similares para actores y coches son : 00a1 para los actores y 00ab para los coches.
 
-You can use this to make the object move along, it's isn't the best way to do it but it's simple and works well. Here is an example :
-**CODE**
+Puedes usar esto para hacer que el objeto se mueva, no es la mejor manera de hacerlo pero es simple y funciona bien. Aquí hay un ejemplo :
 ```sb3
 :MOVE_10
 0001: wait 3 ms
@@ -826,160 +778,149 @@ You can use this to make the object move along, it's isn't the best way to do it
 000B: 0@ += 0.1 // floating-point values
 0002: jump @MOVE_10
 ```
-You can see here that the object will move along x axis, as every 3ms the object will go `0.1` distance unit further on the x axis until `0@`(which is here the x axis unit) reaches `200.0`. DON'T FORGET THE WAIT!!!!!!
+Puedes ver aquí que el objeto se moverá a lo largo del eje x, ya que cada 3ms el objeto irá `0.1` unidad de distancia más allá en el eje x hasta que `0@` (que es aquí la unidad del eje x) alcance `200.0`. ¡¡¡¡¡¡NO OLVIDES EL WAIT!!!!!!
 
-The same way you can change the created object angles x y and z
-**CODE**
+De la misma manera puedes cambiar los ángulos x y y z del objeto creado
 ```sb3
 0453: object $object00 set_rotation 0.0 0.0 180.0
 ```
-Same as 01bc with a little loop you can make the object turn around. And as for 01bc there is better ways to do it, but this one is simple and works well. It also as the advantage of giving you the possibility to change any angle x y or z.
+Igual que 01bc con un pequeño bucle puedes hacer que el objeto gire. Y como para 01bc hay mejores maneras de hacerlo, pero esta es simple y funciona bien. Además tiene la ventaja de que te da la posibilidad de cambiar cualquier ángulo x y o z.
 
-But you can as well use 034d so it will move around x axis:
-**CODE**
+Pero también puedes usar 034d para que se mueva alrededor del eje x:
 ```sb3
 034D: object $object00 at_angle 0.0 then_rotate_by_angle 360.0 flag 0
 ```
-This is how Rockstar open many garage doors (not all).
+Así es como Rockstar abre muchas puertas de garaje (no todas).
 
-But before using moving opcodes (like 034d or 0381) you need to give the object the ability to move (objects ain't able to move when you create them) :
-**CODE**
+Pero antes de usar los opcodes de movimiento (como 034d o 0381) necesitas darle al objeto la capacidad de moverse (los objetos no son capaces de moverse cuando los creas):
 ```sb3
 0392: object $object00 toggle_in_moving_list 1
 ```
-* 0 : unable to move
-* 1 : able to move
-You can aswell throw the object (just like throwing a ball) with 0381 :
-**CODE**
+* 0 : incapaz de moverse
+* 1 : capaz de moverse
+También puede lanzar el objeto (como si lanzara una pelota) con 0381 :
 ```sb3
 0381: throw_object $object00 distance 20.0 10.0 5.0
 ```
-* `20` is the distance on x axis
-* `10` the distance on y axis
-* `5` the distance on z axis
-You can attach object to cars, actors or other objects :
-**CODE**
+* 20 es la distancia en el eje X
+* 10 es la distancia en el eje Y
+* 5 es la distancia en el eje Z
+Puedes unir el objeto a los coches, actores u otros objetos:
 ```sb3
 0681: attach_object $object00 to_car $car00 at_offset 0.5 0.3 0.3 rotation 0.0 0.0 0.0
 069B: attach_object $object00 to_actor $actor00 at_offset 0.0 0.5 -1.0 rotation 0.0 0.0 0.0
 069A: attach_object $object00 to_object $object01 at_offset 0.0 0.0 0.0 rotation 0.0 0.0 0.0
 ```
 
-Those are pretty obvious, and as I already explained about offsets, so I'll just have to tell that the three floats after rotation are the x y and z angles that will be set, and that the object isn't solid whan attach to something else.
+Estos son bastante obvios, y como ya expliqué lo de los offsets, sólo tengo que decir que los tres flotadores después de la rotación son los ángulos x y z que se establecerán, y que el objeto no es sólido cuando se une a otra cosa.
 
-If you don't want the object to be solid you can turn off the collision detection 
-**CODE**
+Si no quieres que el objeto sea sólido puedes desactivar la detección de colisiones 
 ```sb3
 0382: set_object $object00 collision_detection 0
 ```
-* `0` not solid 
-* `1` solid 
-You can make the object liftable like this:
+* `0` no sólido 
+* `1` sólido 
+Puedes hacer que el objeto sea elevable de esta manera:
 :::n
 ![](mcp2/TRXCT.jpg)
 :::
 
-with 08e9:
-**CODE**
+con 08e9:
 ```sb3
 08E9: set_object $object00 liftable 1
 ```
-As usual
-* `1` : on
-* `0` : off
+Como siempre
+* `1` : encendido
+* `0` : apagado
 
-This is a very very very cool thing (thanks to DexX and PLPynton):
+Esto es una cosa muy muy chula (gracias a DexX y PLPynton):
 
 :::n
 ![](mcp2/azerdfy.jpg)
 :::
 
-You can attach object to body parts of the actor, actually you can attach 2 object to the actor and make the actor do an animation !!!!!!!
-There will be more on animation later, but I'll explain those now:
+¡¡¡¡¡¡¡Puedes adjuntar objetos a partes del cuerpo del actor, de hecho puedes adjuntar 2 objetos al actor y hacer que el actor haga una animación !!!!!!!
+Habrá más sobre la animación más tarde, pero voy a explicar estos ahora:
 
-**CODE**
 ```sb3
 070A: AS_actor $PLAYER_ACTOR attach_to_object $object00 offset 0.0 0.0 0.0 on_bone 6 16 perform_animation "NULL" IFP_file "NULL" time 0
 ```
-attach the first object (object A):
+adjuntar el primer objeto (objeto A):
 
-**CODE**
 ```sb3
 09A0: actor $PLAYER_ACTOR attach_object $object01 with_offset 0.0 0.0 0.0 on_bone 5 16 perform_animation "NULL" IFP_file "NULL" time -1
 ```
-attach the second object (object B):
+adjuntar el segundo objeto (objeto B):
 
-For both of them:
-* `$PLAYER_ACTOR` is the actor handle (here it's you CJ) 
-* the three floats `0.0 0.0 0.0` are the x y and z offsets from the normal bone coordinates 
-* the first integer `5` or `6` is the bone number (it's not the same as player body parts numbers for clothes)
-  * `0` - crashes the game 
-  * `1` - chest? 
-  * `2` - neck? 
-  * `3` - left shoulder 
-  * `4` - right shoulder 
-  * `5` - left hand 
-  * `6` - right hand 
-  * `7` - root? 
+Para ambos:
+* `$PLAYER_ACTOR` es el handle del actor (aquí eres tú CJ) 
+* los tres flotantes `0.0 0.0 0.0` son los desplazamientos x y z de las coordenadas normales del hueso 
+* El primer entero `5` o `6` es el número de hueso (no es el mismo que el número de las partes del cuerpo del jugador para la ropa).
+  * 0" - se bloquea el juego. 
+  * `1` - ¿pecho? 
+  * `2` - ¿cuello? 
+  * `3` - hombro izquierdo 
+  * 4 - hombro derecho 
+  * 5. Mano izquierda 
+  * 6. Mano derecha 
+  * 7. ¿Raíz? 
   * `8` - ?? 
-  * `9` - left foot 
-  * `10` - right foot 
-  * `11` - right knee 
+  * `9` - pie izquierdo 
+  * 10 - pie derecho 
+  * 11 - rodilla derecha 
   * `12` - ?? 
-  * `13` - left elbow 
-  * `14` - right elbow 
-  * `15` - left clavicle 
-  * `16` - right clavicle 
-  * `17` - back of neck 
-  * `18` - mouth or chin 
-  * `19` - crashes the game 
-* the second integer `16` is unknown and is always `16` 
-* the first long string `"NULL"` is the animation file (more on them later, and IT HAS TO BE LOADED like models) where the engine will get the animation. Here `"NULL"` means that no animation will be done.
-* the second long string `"NULL"` is the animation itself within the animation file. Here `"NULL"` again means that no animation will be done.
-* Last integer `0`, `1` or `-1` is unknown 
-To take theses objects off you have two opcodes:
+  * 13 - codo izquierdo 
+  * 14 - codo derecho 
+  * 15 - clavícula izquierda 
+  * 16 - clavícula derecha 
+  * 17 - parte posterior del cuello 
+  * 18 - boca o barbilla 
+  * `19` - se bloquea el juego 
+* El segundo entero "16" es desconocido y siempre es "16". 
+* La primera cadena larga `"NULL"` es el archivo de animación (más adelante, y tiene que ser cargado como los modelos) donde el motor obtendrá la animación. Aquí `"NULL"` significa que no se hará ninguna animación.
+* La segunda cadena larga "NULL" es la animación en sí misma dentro del archivo de animación. Aquí `"NULL"` significa de nuevo que no se hará ninguna animación.
+* El último entero `0`, `1` o `-1` es desconocido 
+Para quitar estos objetos tienes dos opcodes:
 
-**CODE**
 ```sb3
 070B: set_actor $PLAYER_ACTOR onbone_attached_object_operation 1 // drop or detaches object B automatically with object A 
 09A1: set_actor $PLAYER_ACTOR onbone_attached_objectB_operation 0 // drop or detaches object B only
 ```
 
-070b detaches/drops object A and B if object B attached.
-09a1 detaches/drops object B.
-* `$PLAYER_ACTOR` is still the actor handle (here it's you CJ).
-* the integer `1` or `0` tell if the object will be droped of just been detach.
-  * `1` drops the object 
-  * `0` detaches the object 
+070b separa/suelta el objeto A y B si el objeto B está unido.
+09a1 separa/suelta el objeto B.
+* `$PLAYER_ACTOR` sigue siendo el handle del actor (aquí eres tú CJ).
+* El número entero "1" o "0" indica si el objeto será eliminado o si sólo se ha eliminado.
+  * 1` suelta el objeto 
+  * `0` desprende el objeto 
 
 :::center
-!!!!!!!!!!!!!!!!!!!!!!!!!!! watch out !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Attach object A fisrt because otherwise object B won't appear. When you hold object A you can't get in a car and your weapon won't be visible. If you hold two objects, object B will drop when you fall or shoot with a weapon. If you die both objects will drop.
+!!!!!!!!!!!!!!!!!!!!!!!!!!! cuidado !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Agarra el objeto A primero porque si no el objeto B no aparecerá. Cuando sujetes el objeto A no podrás subirte a un coche y tu arma no será visible. Si sostienes dos objetos, el objeto B caerá cuando te caigas o dispares con un arma. Si mueres, ambos objetos caerán.
 :::
 \
-As I said there is many things to do with objects in San Andreas but now you know the most important things you can do.
+Como he dicho hay muchas cosas que hacer con los objetos en San Andreas pero ahora ya sabes las más importantes que puedes hacer.
 
-### 8. Animations and particules
+### 8. Animaciones y partículas
 
-#### A. Animations
+#### A. Animaciones
 
-Lets get to something very important in GTA : The actors animations !!!!!!!!!!!!!!
-The animations topic in SA in unending but as with objects we will see most important things.
+¡¡¡¡¡¡¡¡¡¡¡¡¡¡Vamos a llegar a algo muy importante en GTA: Las animaciones de los actores !!!!!!!!!!!!!!
+El tema de las animaciones en GTA es interminable pero al igual que con los objetos veremos las cosas más importantes.
 
-First lets say what are animation sequences, they are animations of an actor. Like when CJ is moving his arms while talking, when Ryder is smoking, when CJ is using the keycard, or when CJ is using the parachute...
+Primero digamos que son las secuencias de animación, son animaciones de un actor. Como cuando CJ mueve los brazos mientras habla, cuando Ryder está fumando, cuando CJ está usando la llave-tarjeta, o cuando CJ está usando el paracaídas...
 
 :::n
 ![](mcp2/dfghvjgn.gif)
 :::
 
-More generally when an actor is making an action, when it's been animated !!
+Más generalmente, cuando un actor está haciendo una acción, ¡cuando ha sido animado!
 
-There is two types of animation sequences (AS), one which does one precise animation and another which make the animation you put as parameters in the opcode from the anims files (*.ifp in the anim.img file in anim folder of game directory). The second type need the animation to be loaded with 04ed, and as usual you need to check if the animation is loaded.
+Hay dos tipos de secuencias de animación (AS), una que hace una animación precisa y otra que hace la animación que pones como parámetros en el opcode desde los archivos anims (*.ifp en el archivo anim.img en la carpeta anim del directorio del juego). El segundo tipo necesita que la animación se cargue con 04ed, y como siempre hay que comprobar si la animación está cargada.
 
-##### First type anims : one opcode does one animation
+##### Primer tipo de animaciones: un opcode hace una animación
 
-some examples:
-**CODE**
+algunos ejemplos:
 ```sb3
 05BA: AS_actor $actor00 chew_gum 10000 ms
 05BB: AS_actor $actor00 fall_down 0 time_on_ground 500
@@ -1000,13 +941,12 @@ some examples:
 06E3: AS_actor $actor00 roll_sideways 1
 ```
 
-They are the easiest to use, just put the opcode, the right parameters (the first is the actor which will do the animation (`$actor00`), then there are like said in the description either an angle (`77.0`), a 3D position (`681.81 -474.15 15.53`), a car (`$car00`), another actor (`$actor01`), the time the animation will last (`5000`) etc....
-They're easy simple and work very well don't hesitate to use a lot of them !!!!!!
+Son los más fáciles de usar, sólo hay que poner el opcode, los parámetros adecuados (el primero es el actor que hará la animación (`$actor00`), luego hay como se dice en la descripción o un ángulo (`77.0`), una posición 3D (`681.81 -474.15 15.53`), un coche (`$car00`), otro actor (`$actor01`), el tiempo que durará la animación (`5000`) etc....
+¡¡¡¡¡¡Son fáciles, sencillos y funcionan muy bien, no dudes en usar muchos de ellos !!!!!!
 
-##### Second type anims : one opcode does the anim you have put as parameters.
+##### Animaciones de segundo tipo: un opcode hace la animación que has puesto como parámetros.
 
-some examples:
-**CODE**
+algunos ejemplos:
 ```sb3
 0829: actor $actor00 perform_animation "CRCKDETH3" IFP_file "CRACK" 4.0 time 0 and_dies 
 0605: actor $actor00 perform_animation_sequence "PASS_RIFLE_PED" IFP_file "MISC" 4.0 loop 0 0 0 0 time -1 // versionA
@@ -1017,8 +957,7 @@ some examples:
 09A0: actor $actor00 attach_object $object01 with_offset 0.0 0.0 0.0 on_bone 5 16 perform_animation "NULL" IFP_file "NULL" time -1
 ```
 
-Or with very good PLPynton's sascm.ini descriptions they look like this:
-**CODE**
+O con las descripciones de sascm.ini de PLPynton muy buenas se ven así:
 ```sb3
 0829: char $actor00 perform_animation "CRCKDETH3" group "CRACK" 4.0 limT 0 and_dies
 0605: char $actor00 perform_animation "PASS_RIFLE_PED" group "MISC" 4.0 loopA 0 lockX 0 lockY 0 lockF 0 limT -1 //versionA
@@ -1029,8 +968,7 @@ Or with very good PLPynton's sascm.ini descriptions they look like this:
 09A0: set_char $actor00 attach_objectB $object00 with_offset 0.0 0.0 0.0 on_bone 5 16 perform_animation "NULL" group "NULL" time -1 //object no 2
 ```
 
-First for those you have to **__load the animation__** file before using the animation opcode. It's aesy, it's just like we requested car and actors models before:
-**CODE**
+En primer lugar para aquellos que tienen que **__cargar el archivo de animación__** antes de usar el opcode de animación. Es aesy, es igual que lo que pedimos antes los modelos de coches y actores:
 ```sb3
 :ANIMLOAD
 0001: wait 0 ms
@@ -1040,105 +978,104 @@ First for those you have to **__load the animation__** file before using the ani
 004D: jump_if_false @ANIMLOAD
 ```
 
-As you have probably noticed it's just a bit diferent than with models, because here you directly load the anim, and with models, you request (with 0247) and then load the models (with 038b).
+Como habrás notado es un poco diferente que con los modelos, porque aquí cargas directamente el anim, y con los modelos, solicitas (con 0247) y luego cargas los modelos (con 038b).
 
-Don't forget **__after using it__** to release the anim with 
-**CODE**
+No olvides **__después de usarlo__** liberar el anim con 
 ```sb3
 04EF: release_animation "LOWRIDER"
 ```
 
-Here to explain opcodes parameters I will use the PLPynton's sacsm.ini descriptions instead of using original Sanny Builder sascm.ini descriptions like I usually do, because it will be much easier for you to understand. But don't worry it is the same parameters order.
+Aquí para explicar los parámetros de los opcodes usaré las descripciones de sacsm.ini de PLPynton en lugar de usar las descripciones originales de Sanny Builder sascm.ini como suelo hacer, porque será mucho más fácil de entender. Pero no os preocupéis que es el mismo orden de los parámetros.
 
-Parameters (thanks ceedj):
-1. The first word between quotation marks is the animation name (`"CRCKDETH3"`, `"PASS_RIFLE_PED"`, `"HIKER_POSE_L"`, etc...) 
-2. The second is the library (animation file) where the anim is (`"CRACK"`, `"SWAT"`, `"VENDING"`, `"FOOD"`, etc...).<br>In some cases, like for 09a0 and 070a `"NULL"` means that no animation will be done, they are both explained in chapter 7.Objects and moving them.
-3. `4.0` is playback rate. Default is `4.0`, less than this slows it down, more speeds it up and may skip animation frames with higher numbers.
-4. loopA or loop It's the Loop flag, to make the animation start again once finished. 1 on/0 off, BUT if on, Timelimit (parameter 8.) MUST be set to -1 .
-5. lockX unlocks or locks actor in position on X axis. If 1 and if the actor is moving on the X axis from actor's origin (left to right), he will stay at those new coords. If 0 , the actor will return to the start position coords.
-6. lockY unlocks or locks actor in position on Y axis. If 1 and if the actor is moving on the Y axis from actor's origin (front to back), he will stay at those new coords. If 0 , the actor will return to the start position coords.
-7. lockF lock the actor in final postion. If 1 it will play the animation through once, then lock the actor into the final frame of the animation. This can NOT be stopped with opcode 0687 (clear_actor_task), but proceeding to another animation will.
-8. limT the Timelimit in milliseconds, is the time the actor will do the anim, set to 1000 ms for 1 second, 6000 ms for 6 seconds etc... If set to -1 it will play the entire animation, once through. With the Loop flag on (1 ), the animation will loop until interupted by either opcode 0687 (clear_actor_task) or another animation.
+Parámetros (gracias ceedj):
+1. La primera palabra entre comillas es el nombre de la animación (`"CRCKDETH3"`, `"PASS_RIFLE_PED"`, `"HIKER_POSE_L"`, etc...) 
+2. El segundo es la librería (archivo de animación) donde está la animación (`"CRACK"`, `"SWAT"`, `"VENDING"`, `"FOOD"`, etc...).\NEn algunos casos, como para 09a0 y 070a `"NULL"` significa que no se hará ninguna animación, ambos se explican en el capítulo 7.Objetos y su desplazamiento.
+3. `4.0` es la velocidad de reproducción. Por defecto es `4.0`, menos de esto lo ralentiza, más lo acelera y puede saltarse cuadros de animación con números más altos.
+4. loopA o bucle Es la bandera de bucle, para hacer que la animación comience de nuevo una vez terminada. 1 on/0 off, PERO si está on, Timelimit (parámetro 8.) DEBE ser puesto a -1 .
+5. lockX Desbloquea o bloquea al actor en su posición en el eje X. Si es 1 y si el actor se está moviendo en el eje X desde el origen del actor (de izquierda a derecha), se quedará en esas nuevas coordenadas. Si es 0, el actor volverá a las coordenadas de la posición inicial.
+6. lockY desbloquea o bloquea al actor en su posición en el eje Y. Si es 1 y el actor se mueve en el eje Y desde el origen del actor (de adelante hacia atrás), se mantendrá en esas nuevas coordenadas. Si es 0, el actor volverá a las coordenadas de la posición inicial.
+7. lockF bloquea el actor en la posición final. Si es 1, se reproducirá la animación una vez, y luego se bloqueará al actor en el último cuadro de la animación. Esto NO puede ser detenido con el opcode 0687 (clear_actor_task), pero si se puede proceder a otra animación.
+8. limT el Timelimit en milisegundos, es el tiempo que el actor hará la animación, ajustado a 1000 ms para 1 segundo, 6000 ms para 6 segundos etc... Si se establece en -1 se reproducirá toda la animación, una vez. Con la bandera de bucle activada (1 ), la animación se repetirá hasta que sea interrumpida por el opcode 0687 (clear_actor_task) o por otra animación.
 
-To find anims name and in which anim file they are you can look in the very good file wrtitten by ceedj : [SAAnims.txt](http://www.pawfectfilms.com/mods/SAAnims.txt), but you can as well think of where this animation has been used in the original game, go in the mission or the external script in original main.scm it is used and search with Sanny Builder the anim you want in the mission/external you've seen it.
+Para encontrar el nombre de las animaciones y en que archivo de animación se encuentran puedes buscar en el muy buen archivo escrito por ceedj : [SAAnims.txt](http://www.pawfectfilms.com/mods/SAAnims.txt), pero también puedes pensar en donde se ha usado esta animación en el juego original, ir a la misión o al script externo en el main.scm original que se usa y buscar con Sanny Builder el anim que quieres en la misión/externo que lo has visto.
 
-#### B.Particules
+#### B. Partículas
 
-create particule\
-throw angle\
-particules on/off
+crear partícula\
+lanzar ángulos\
+activar/desactivar partículas
 
-### 9. Animating vehicles and car mods
+### 9. Animación de vehículos y mods de coches
 
-driver behaviour\
-follow path/road\
-"put at" methode\
-AS drving\
-for plane/cars/boats\
+comportamiento del conductor\
+seguir camino/carretera\
+metodo de "poner en"\
+como el comportamiento del conductor\
+para avión/coches/barcos\
 carmods, request set, numbers\
-carparts, open/close break/repair\
-trailers attach\
-Tyres inflate deflate
+carparts, abrir/cerrar romper/reparar\
+remolques enganchar\
+neumáticos, inflar/desinflar
 
-### 10. Fire, explosions and interiors
+### 10. Fuego, explosiones e interiores
 
-fire extinguish, destroy all fires,\
-explosion type\
-interiors:\
-player\
-actor/car/object
+fuego extinguir, destruir todos los fuegos\
+tipo de explosión\
+interiores:\
+jugador\
+actor/coche/objeto
 
-### 11. Cameras and directering scm cutscenes
+### 11. Cámaras y dirección de las escenas de la película
 
-you're the director !!!!!\
-moving the camera\
-cam on vehicle/on actor looking to vehicle\
-in and out shot,\
-use anims\
-skip cutscenes
+¡¡¡¡¡tú eres el director !!!!!\
+Moviendo la cámara\
+cámara sobre el vehículo/sobre el actor mirando al vehículo\
+entrada y salida de la toma de la cámara\
+usar animaciones\
+omitir escenas de corte
 
-### 12. Texts and panels
+### 12. Textos y paneles
 
-panels\
-textboxes\
-text draw\
+paneles\
+cuadros de texto\
+cajones de texto\
 gxt
 
-### 13. Maths, stats and timers
+### 13. Matemáticas, estadísticas y temporizadores
 
-variables and int and floats where a float or int can be used you can use a variable that contains the float or the int\
+variables e int y floats donde se puede utilizar un float o un int se puede utilizar una variable que contenga el float o el int\
 +/-\
 */\
 ==\
-stats\
-internal timer 32@ 33@
+estadísticas\
+temporizador internos 32@ y 33@
 
-### 14. Randoming and table jumps
+### 14. Aleatoriedad y tabla de saltos
 
 Random\
-table jumps
+tabla de saltos
 
-### 15. Arrays
+### 15. Arreglos
 
-### 16. Missions and externals scripts
+### 16. Misiones y scripts externos
 
-starters mission/externals\
-One mission at a time, many external at the same time\
-locals range\
-Mission cleanup
+misión de inicio/externa\
+Una misión a la vez, muchas externas al mismo tiempo\
+rango local\
+Limpieza de la misión
 
-### Conclusion
+### Conclusión
 
 opcode search ****\
-do experiments\
-try easy for beginning\
-Immitate existing code\
-use you brain !!!\
-multiply information sources\
-use search google in domain gta forum, or gtaforum search tool\
-ask question there is plenty of good guys (hi you guys 😉 ), I was like you a while ago, and someone helped me (thank you again Dem), now I'm here writting a tutorial.\
-CREDITS: cns (I wouldn't be here without him), Demarest (idem), Seeman (he created Sanny Builder !!!!), PLPynton, ceedj, Y_less, PatrickW, Gangsta Killa, Bigun, SteaVor but as well as anyone who posted opcodes description (like Opius, spaceeinstein, Craig Kostelecky, DexX...), and anyone who helped me or will helped me for this, as well as people who point out mistakes I've done in the bible, and maybe YOU soon...
+hacer experimentos\
+prueba fácil para principiantes\
+Implantar el código existente\
+usa tu cerebro !!!\
+multiplicar las fuentes de información\
+utilizar la búsqueda de google en el foro gta dominio, o gtaforum herramienta de búsqueda.
+preguntar hay un montón de buenos chicos (hola chicos 😉 ), yo estaba como tú hace un tiempo, y alguien me ayudó (gracias de nuevo Dem), ahora estoy aquí escribiendo un tutorial.
+CRÉDITOS: cns (no estaría aquí sin él), Demarest (ídem), Seeman (creó Sanny Builder !!!!), PLPynton, ceedj, Y_less, PatrickW, Gangsta Killa, Bigun, SteaVor pero también cualquiera que haya publicado la descripción de los opcodes (como Opius, spaceeinstein, Craig Kostelecky, DexX. ..), y cualquier persona que me ayudó o me ayudará para esto, así como las personas que señalan los errores que he hecho en la biblia, y tal vez usted pronto ...
 
-Have fun
+Que se diviertan
 
 <script src="../../js/main.min.js"></script>

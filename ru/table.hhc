@@ -359,6 +359,10 @@
 			<param name="Name" value="Coding Bible II">
 			<param name="Local" value="ru\articles\mcp2.html">
 			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Mission Pack">
+			<param name="Local" value="ru\articles\mpack.html">
+			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="CLEO 3">

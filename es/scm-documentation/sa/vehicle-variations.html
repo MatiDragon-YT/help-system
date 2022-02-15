@@ -8,16 +8,15 @@
   <link rel="stylesheet" type="text/css" href="../../../style/style.css">
 </head>
 <body>
-
 ```sb3
 0506: set_vehicle_model #PONY next_variation &lt;varianteA&gt; &lt;varianteB&gt;
 ```
 
-For most vehicles, only one extra can be added so both the second and third parameters should be set to the same wanted variant to avoid confusion. However, some vehicles can have 2 different extras active.
+Para la mayoría de los vehículos, sólo se puede añadir un extra, por lo que tanto el segundo como el tercer parámetro deben ajustarse a la misma variante deseada para evitar confusiones. Sin embargo, algunos vehículos pueden tener 2 extras diferentes activos.
 
-Variant `-1` is the default model with no extras. Variants `0` through `5` are possible extra variants which will fall back to the default if the model does not have that many extras, and variants greater than `5` will crash the game.
+La variante `-1` es el modelo por defecto sin extras. Las variantes del `0` al `5` son posibles variantes extras que volverán al valor por defecto si el modelo no tiene tantos extras, y las variantes superiores a `5` bloquearán el juego.
 
-|Model name|Model ID|Variant|
+|Nombre del modelo|ID del modelo|Variante|
 |-|
 |#ambulan|416|**Numbers:**\n**0:** 64\n**1: **16\n**2:** 47|
 |#artict1|435|**Side Ads:**\n**0: **Cok-o-Pops\n**1:** Munky Juice\n**2:** Hinterland\n**3:** Zip\n**4:** RS Haul\n**5:** Ranch|

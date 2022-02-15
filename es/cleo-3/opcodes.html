@@ -425,11 +425,11 @@ Opcodes de CLEO 2
 ```sb3
 0AAF: 0@ = get_mp3_length $hMP3
 ```
-[0AAF][]**0AAF** stores the track length in seconds of the loaded mp3 to a variable.
+[0AAF][]**0AAF** almacena la duración de la pista en segundos del mp3 cargado en una variable.
 
 **Parámetros:**
-1. variable to store the result
-2. mp3 handle 
+1. variable para almacenar el resultado
+2. controlador del mp3 
 
 ---
 
@@ -437,9 +437,9 @@ Opcodes de CLEO 2
 0AB0:  key_pressed 0x73
 ```
 
-[0AB0][]**0AB0** is used as a condition. This opcode tests if the key is pressed on keyboard. If the key with specified code is pressed, it returns True, otherwise False.
+[0AB0][]**0AB0** se utiliza como condición. Este opcode comprueba si la tecla está pulsada en el teclado. Si la tecla con el código especificado está presionada, devuelve True, de lo contrario False.
 
-**Parámetro:** virtual key code. See [here](../scm-documentation/virtual-key-codes.md) the list of them.
+**Parámetro:** código de la tecla virtual. Ver [aquí](../scm-documentation/virtual-key-codes.md) la lista de ellos.
 
 ---
 
@@ -450,71 +450,72 @@ CLEO 3 Opcodes
 ```sb3
 0A92: create_custom_thread "ShowTextBox.s"
 ```
-[0A92][]**0A92** creates a new thread from the file. If the file has an extension .cs the thread from it is created automatically at game startup. At creating a custom thread, you can pass up to 34 parameters to it, like in opcode 004F.
+[0A92][]**0A92** crea un nuevo hilo desde el archivo. Si el archivo tiene una extensión .cs, el hilo se crea automáticamente al iniciar el juego. Al crear un hilo personalizado, puedes pasarle hasta 34 parámetros, como en el opcode 004F.
 
-**Parámetro:** file name. The name must be specified with an extension if it has one. The file is retrieved relatively of the directory ‘game\CLEO’ which is default path for any CLEO files.
+**Parámetro:** nombre del archivo. El nombre debe ser especificado con una extensión si la tiene. El archivo se recupera relativamente del directorio 'game\CLEO' que es la ruta por defecto para cualquier archivo CLEO.
 
 ---
 
 ```sb3
 0A93: end_custom_thread
 ```
-[0A93][]**0A93** ends the custom CLEO thread. This opcode must be used only in the CLEO threads (nor in CLEO-missions, nor in the main.scm). On the whole this opcode is an analogue of the 004E.
-To stop a CLEO-mission, use opcode 004E.
+[0A93][]**0A93** finaliza el hilo CLEO personalizado. Este opcode sólo debe utilizarse en los hilos de CLEO (ni en las misiones de CLEO, ni en el main.scm). En general, este opcode es un análogo del 004E.
+Para detener una misión CLEO, utilice el opcode 004E.
 
 ---
 
 ```sb3
 0A94: start_custom_mission "missions\CustomMission1"
 ```
-[0A94][]**0A94** begins a CLEO mission from the specified file as the 0147 does. Look that the file extension is not needed to specify. In fact the opcode will search for the file with the extension .cm (Custom Mission). The mission starts from the file CLEO\missions\CustomMission1.cm in this example.
+[0A94][]**0A94** inicia una misión CLEO desde el archivo especificado como lo hace el 0147. Observe que no es necesario especificar la extensión del archivo. De hecho, el opcode buscará el archivo con la extensión .cm (Custom Mission). La misión se inicia desde el archivo CLEO\missions\CustomMission1.cm en este ejemplo.
 
-**Parámetro:** file name without an extension. The file is retrieved relatively of the directory ‘game\CLEO’.
+**Parámetro:** nombre de archivo sin extensión. El archivo se recupera relativamente del directorio 'game\CLEO'.
 
 ---
 
 ```sb3
 0A95: enable_thread_saving
 ```
-[0A95][]**0A95** enables the saving flag for the current thread. By default the CLEO threads status are not saved, and they execute from the very beginning each time the game started. To save the thread status, its local variables and such, add this opcode to the script.
+[0A95][]**0A95** habilita la bandera de guardado para el hilo actual. Por defecto el estado de los hilos de CLEO no se guarda, y se ejecutan desde el principio cada vez que se inicia el juego. Para guardar el estado del hilo, sus variables locales y demás, añade este opcode al script.
 
 ---
 
 ```sb3
 0AAA: 0@ = thread 'OTB' pointer
 ```
-[0AAA][]**0AAA** tests if a thread with given name is active. If so, opcode will store the address  of this thread to a variable. If a thread with given name is not found in the game memory, the  variable's value will be 0.
+[0AAA][]**0AAA** comprueba si un hilo con el nombre dado está activo. Si es así, opcode almacenará la dirección de este hilo en una variable. Si no se encuentra un hilo con el nombre dado en la memoria del juego, el valor de la variable será 0.
 
 **Parámetros:**
-1 - a variable to store search result 
-2 - a thread name to search
+1 - una variable para almacenar el resultado de la búsqueda 
+2 - un nombre de hilo a buscar
 
 ---
 
 ```sb3
 0AB1: call_scm_func @GetSQR 1  10 $result
 ```
-[0AB1][]**0AB1** calls a SCM function, passes the parameters to it and stores the result to a variable(s). The passed parameters values are copied to the local variables in series, then the thread execution is transferred to the label, it executes code there and returns after the opcode 0AB2.
-**Parámetros:**
-1. label (SCM function beginning)
-2. number of parameters to pass
+[0AB1][]**0AB1** llama a una función SCM, le pasa los parámetros y almacena el resultado en una(s) variable(s). Los valores de los parámetros pasados se copian a las variables locales en serie, luego la ejecución del hilo se transfiere a la etiqueta, ejecuta código allí y retorna después del opcode 0AB2.
 
-Then there are the passed parameters, a number of 10 in our case. After that, there should be the variables to store the result of a SCM function ([see 0AB2](#0AB2)).
+**Parámetros:**
+1. etiqueta (inicio de la función SCM)
+2. número de parámetros a pasar
+
+Luego están los parámetros pasados, un número de 10 en nuestro caso. Después deben estar las variables para almacenar el resultado de la función SCM ([ver 0AB2](#0AB2)).
 
 ---
 
 ```sb3
 0AB2: ret 1 0@
 ```
-[0AB2][]**0AB2** This opcode transfers the thread execution back to the 0AB1 opcode and stores the returned values in its variables. **Total number of returned values must equals to the number of variables storing the result in the 0AB1**. In this example the 0AB2 returns one value, which is the value of the variable `0@`, this value will be copied to the variable $result (see 0AB1 example). If the 0AB2 opcode does not return any values, it must have a `0` as the only parameter, and proper 0AB1 that calls such a function should have no variables to store.
+[0AB2][]**0AB2** Este opcode transfiere la ejecución del hilo de vuelta al opcode 0AB1 y almacena los valores devueltos en sus variables. **El número total de valores devueltos debe ser igual al número de variables que almacenan el resultado en el 0AB1**. En este ejemplo el 0AB2 devuelve un valor, que es el valor de la variable `0@`, este valor se copiará a la variable $resultado (ver ejemplo 0AB1). Si el opcode 0AB2 no devuelve ningún valor, debe tener un `0` como único parámetro, y el propio 0AB1 que llama a dicha función no debe tener variables que almacenar.
 
 **Parámetros:**
-1. number of values to return
-After that there are the returned values.
+1. número de valores a devolver
+Después están los valores devueltos.
 
 ---
 
-This is a simple example of SCM function calculating the square number.
+Este es un ejemplo sencillo de la función SCM calculando el número cuadrado.
 
 ```sb3
 0@ = 5
@@ -528,133 +529,133 @@ end_thread
 0AB2: ret 1 0@
 ```
 <span id=0AB1></span>
-How it works. First of all, the game comes to the opcode 0AB1. The game reads the number of parameters to pass (1) and its values (10). The variable 0@ of the current thread equates to 10 (if there would more parameters to pass, the next one will be copied to the 1@, then 2@ and so on). After that the thread jumps to the label @GetSQR. Here the square number is calculated (of a value in the 0@). Again, if there would be more parameters, the values of 1@, 2@ etc may be taken in to account, if needed. After the calculation, the game comes to the opcode 0AB2. The value of 0@ equals to 10*10 = 100 at this moment. Then the following happens: the returned value(s) (0@) is copied to the variable(s) that is written in the opcode 0AB1 which called this function. In our example such variable is $result. After storing of the result, the thread returns back to the 0AB1 and comes to the command end_thread. The value of the $result equals to the 100 (which is square of 10) at this moment.
-Finally say that 0AB2 could return not only the variables values, but also the number constants. For example, `0AB2: ret 1 1` will forever stores 1 to the result.
+Cómo funciona. En primer lugar, el juego llega al opcode 0AB1. El juego lee el número de parámetros a pasar (1) y sus valores (10). La variable 0@ del hilo actual equivale a 10 (si hubiera más parámetros a pasar, el siguiente se copiará al 1@, luego al 2@ y así sucesivamente). Después el hilo salta a la etiqueta @GetSQR. Aquí se calcula el número cuadrado (de un valor en el 0@). De nuevo, si hubiera más parámetros, se pueden tener en cuenta los valores de 1@, 2@, etc., si fuera necesario. Después del cálculo, el juego llega al opcode 0AB2. El valor de 0@ es igual a 10*10 = 100 en este momento. Entonces sucede lo siguiente: el valor(es) devuelto(s) (0@) es copiado a la(s) variable(s) que está(n) escrita(s) en el opcode 0AB1 que llamó a esta función. En nuestro ejemplo dicha variable es $resultado. Después de almacenar el resultado, el hilo vuelve al 0AB1 y llega al comando end_thread. El valor de $resultado es igual a 100 (que es el cuadrado de 10) en este momento.
+Finalmente decir que 0AB2 podría devolver no sólo los valores de las variables, sino también las constantes numéricas. Por ejemplo, `0AB2: ret 1 1` almacenará siempre 1 en el resultado.
 
-Also pay attention that the local variables are stayed unchanged after the function calling. In this example, the variable 0@ contains a value of 5 before 0AB1. Despite the fact that this variable was used in the function, after the calling it still equals to 5. This covers on all 32 local variables, so you can freely work with them within a function without fear to lose data.
+También hay que prestar atención a que las variables locales permanezcan sin cambios después de la llamada a la función. En este ejemplo, la variable 0@ contiene un valor de 5 antes de 0AB1. A pesar de que esta variable fue utilizada en la función, después de la llamada sigue siendo igual a 5. Esto se aplica a las 32 variables locales, por lo que puede trabajar libremente con ellas dentro de una función sin temor a perder datos.
 
 ---
 
 ```sb3
 0AB3: var 0 = 10
 ```
-[0AB3][]**0AB3** sets a new value of the global CLEO variable. These variables can be used to data communication between CLEO threads, or between CLEO and the main.scm. The total number of such variables is 100. Their values are saved in the CLEO save.
-This variables can be used in the main.scm as alternative to the common global variables.
+[0AB3][]**0AB3** establece un nuevo valor de la variable global de CLEO. Estas variables pueden utilizarse para la comunicación de datos entre los hilos de CLEO, o entre CLEO y el main.scm. El número total de estas variables es de 100. Sus valores se guardan en la memoria de CLEO.
+Estas variables pueden utilizarse en el main.scm como alternativa a las variables globales comunes.
 
 **Parámetros:**
-1. global variable ID. Should be in a range of 0..999
-2. new value for the variable. (any number).
+1. ID de la variable global. Debe estar en un rango de 0..999
+2. nuevo valor de la variable. (cualquier número).
 
 ---
 
 ```sb3
 0AB4: 0@ = var 0
 ```
-[0AB4][]**0AB4** stores to a variable the value of the global CLEO variable. In this example, the 0@ will be equal to 10 (see 0AB3).
+[0AB4][]**0AB4** almacena en una variable el valor de la variable global CLEO. En este ejemplo, el 0@ será igual a 10 (ver 0AB3).
 
 **Parámetros:** 
-1. variable to store the global CLEO variable value
-2. global CLEO variable ID. Should be in range of 0..999.
+1. variable para almacenar el valor de la variable global CLEO
+2. ID de la variable CLEO global. Debe estar en el rango de 0..999.
 
 ---
 
 ```sb3
 0AB5: store_actor $PLAYER_ACTOR closest_vehicle_to 0@ closest_ped_to 1@
 ```
-[0AB5][]**0AB5** stores to the variables handles of a vehicle and ped being closest to the actor. If there’s no any vehicle or ped close to him, the proper variable will contain value of -1.
+[0AB5][]**0AB5** almacena en las variables los controladores de un vehículo y un ped que estén más cerca del actor. Si no hay ningún vehículo o ped cerca de él, la variable propia contendrá el valor de -1.
 
 **Parámetros:**
-1. actor handle
-2. variable to store a vehicle being closest to him
-3. variable to store a ped being closest to him
+1. handle del actor
+2. variable para almacenar el vehículo más cercano a él
+3. variable para almacenar un ped que esté más cerca de él
 
 ---
 
 ```sb3
 0AB6: store_target_marker_coords_to 0@ 1@ 2@ // IF and SET
 ```
-[0AB6][]**0AB6** stores to the variables coordinates of the place marked with red target point on the map (right-click on the map). If the target point does not exist, the variables do not change their values.
+[0AB6][]**0AB6** almacena en las variables las coordenadas del lugar marcado con el punto de destino rojo en el mapa (clic derecho en el mapa). Si el punto objetivo no existe, las variables no cambian sus valores.
 
 **Parámetros:**
-- 1,2,3 – variables to store XYZ coords
+- 1,2,3 - variables para almacenar las coordenadas XYZ
 
 ---
 
 ```sb3
 0AB7: get_vehicle $CAR number_of_gears_to 10@
 ```
-[0AB7][]**0AB7** stores to a variable total number of gears for specified vehicle. This number equals to the parameter TransmissionData.nNumberOfGears in the file handling.cfg.
+[0AB7][]**0AB7** almacena en una variable el número total de marchas para el vehículo especificado. Este número es igual al parámetro TransmissionData.nNumberOfGears en el archivo handling.cfg.
 
 **Parámetros:**
-1. a vehicle handle
-2. variable to store number of gears
+1. controlador del vehículo
+2. variable para almacenar el número de marchas
 
 ---
 
 ```sb3
 0AB8: get_vehicle $CAR current_gear_to 11@
 ```
-[0AB8][]**0AB8** stores to a variable number of current gear for specified vehicle.
+[0AB8][]**0AB8** almacena a un número variable de la marcha actual para el vehículo especificado.
 
 **Parámetros:**
-1. a vehicle handle
-2. variable to store current gear
+1. controlador del vehículo
+2. variable para almacenar la marcha actual
 
 ---
 
 ```sb3
 0AB9: get_mp3 $hMP3 state_to 7@
 ```
-[0AB9][]**0AB9** stores to a variable a state of a MP3 file.
+[0AB9][]**0AB9** almacena en una variable el estado de un archivo MP3.
 
 **Parámetros:**
-1. handle of a loaded mp3-file ([opcode 0AAC](#0AAC))
-2. variable to store mp3 file state:
-  - `1`: file is playing
-  - `2`: file paused
-  - `-1`: file is stopped
+1. handle de un archivo mp3 cargado ([opcode 0AAC](#0AAC))
+2. variable para almacenar el estado del archivo mp3:
+  - `1`: archivo en reproducción
+  - `2`: archivo en pausa
+  - `-1`: archivo detenido
 
 ---
 
 ```sb3
 0ABA: end_custom_thread_named 'BENZIN'
 ```
-[0ABA][]**0ABA** ends a CLEO-thread with given name. A thread gets its name with the opcode 03A4. If the thread wasn't named with 03A4, the thread gets its name by first 7 letters of the file name. For example, the thread from the file test.cs will have name 'test.cs'; from the file myscript.cs - 'myscrip'. The opcode 0ABA immediately finishes the execution of a thread with given name. This opcode is the same as 0459, but is made for the CLEO scripts.
+[0ABA][]**0ABA** termina un hilo CLEO con un nombre determinado. Un hilo obtiene su nombre con el opcode 03A4. Si el hilo no fue nombrado con 03A4, el hilo obtiene su nombre por las primeras 7 letras del nombre del archivo. Por ejemplo, el hilo del archivo test.cs tendrá el nombre 'test.cs'; del archivo myscript.cs - 'myscrip'. El opcode 0ABA termina inmediatamente la ejecución de un hilo con nombre dado. Este opcode es el mismo que el 0459, pero está hecho para los scripts de CLEO.
 
 **Parámetros:**
-1. name of the thread to end.
+1. nombre del hilo a terminar.
 
 ---
 
 ```sb3
 0ABD: vehicle 0@ siren_on
 ```
-[0ABD][]**0ABD** checks if the siren of the vehicle `0@` is on. If so, the condition will be true.
+[0ABD][]**0ABD** comprueba si la sirena del vehículo `0@` está encendida. Si es así, la condición será verdadera.
 
 **Parámetros:**
-1. handle of the vehicle
+1. controlador del vehículo
 
 ---
 
 ```sb3
 0ABE: vehicle 0@ engine_on
 ```
-[0ABE][]**0ABE** checks if the engine of the vehicle `0@` is on. If so, the condition will be true.
+[0ABE][]**0ABE** comprueba si el motor del vehículo `0@` está encendido. Si es así, la condición será verdadera.
 
 **Parámetros:**
-1. handle of the vehicle
+1. controlador del vehículo
 
 ---
 
 ```sb3
 0ABF: set_vehicle 0@ engine_state_to 0
 ```
-[0ABF][]**0ABF** enables or disables the vehicle's engine.
+[0ABF][]**0ABF** Activa o desactiva el motor del vehículo.
 
 **Parámetros:**
-1. handle of the vehicle 
-2. engine's new state: 
-  - `0`: off 
-  - `1`: on
+1. controlador del vehículo 
+2. nuevo estado del motor: 
+  - `0`: apagado 
+  - `1`: encendido
 
 <script src="../../js/main.min.js"></script>

@@ -21,12 +21,12 @@ Just download the chm corresponding to your language:
 | language | file | state |
 | --- | --- | --- |
 | English | [help](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help.chm) | `[##########]` ⭐ complete |
-| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help3082.chm) | `[########..]` ⌛ in process |
+| Español | [help3082](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help3082.chm) | `[#########.]` ⌛ in process |
 | Pусский | [help1049](https://github.com/MatiDragon-YT/help-system/releases/download/1.13/help1049.chm) | `[#######...]` ⌛ in process |
 
 And optionally, move the file to directory.
 ```
-<sanny builder foldes>\help\<here>
+<sanny builder foldes>/help/<here>
 ```
 to be able to open it from sanny builder, or directly, opening it as if it were a common windows executable.
 > ### BUG: Blank views?
@@ -39,7 +39,7 @@ Providing information, bug reports or optimizing the main script, which brings M
 
 ### Creating pages
 After create a fork (cloning or downloading) of the repository. Just go to the folder that contains the section you want to collaborate on.\
-For example to `help-system\<lang>\scm-documentation\sa\` and create any file with the extension `.HTML` with the following inside.
+For example to `help-system/<lang>/scm-documentation/sa/` and create any file with the extension `.HTML` with the following inside.
 
 ```html
 <!DOCTYPE html>

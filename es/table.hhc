@@ -352,12 +352,16 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Biblia De Codificaci&oacute;n I">
+			<param name="Name" value="Biblia de Codificaci&oacute;n I">
 			<param name="Local" value="es\articles\mcp1.html">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Biblia De Codificaci&oacute;n II">
+			<param name="Name" value="Biblia de Codificaci&oacute;n II">
 			<param name="Local" value="es\articles\mcp2.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Paquete de Misiones">
+			<param name="Local" value="es\articles\mpack.html">
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">

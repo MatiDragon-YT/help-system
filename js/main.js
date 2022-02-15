@@ -1,11 +1,8 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.13";
+const VERSION = "1.14";
 
 function log(value){
 	console.log(value)
-}
-function print(value){
-	$(".text").innerText = value
 }
 
 // GLOBAL VARS
@@ -156,6 +153,7 @@ SP.toMarkdown = function(){
 	.rA("\\|", "&vert;")
 	.rA("\\s", "&nbsp;")
 	.rA("\\n", "<br/>")
+	.rA("\\*", "&#x2A;")
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
@@ -387,12 +385,12 @@ $('body').style.display = 'block'
 
 apply($('a'), function(element){
 	element.onmouseover = function(){
-		ALINKS.style.display = 'block'
+		CSS.Add("#ALINKS{display:block}")
 		ALINKS.innerText = element.getAttribute('href')
 	}
 
 	element.onmouseleave = function(){
-		ALINKS.style.display = 'none'
+		CSS.Remove("#ALINKS{display:block}")
 	}
 })
 
@@ -475,6 +473,4 @@ $("#CHANGE").onclick = function(){
 	ModeLight()
 		? IMAGE('out')
 		: IMAGE('base')
-
-
 }
