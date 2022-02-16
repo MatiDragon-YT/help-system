@@ -364,3 +364,38 @@ input {
 	cursor: pointer;
     max-height: 48px;
 }
+
+body {flex-wrap: wrap;overflow: none;}
+#bar-menu {
+	font-size: 1rem;
+	border-right: 1px solid #30363d;
+    padding: .7em;
+    overflow: auto;
+}
+#menu {
+    color: #c9d1d9;
+}
+#menu .folder,
+#menu .topic,
+#menu .page {
+	white-space: nowrap;
+}
+
+#menu .topic,
+#menu .page,
+#menu .section{
+	display: none;
+}
+
+li.folder.expan + ul li.page,
+li.folder.expan + ul li.topic,
+li.folder.expan + ul.section {
+	display: block!important;
+}
+#menu > .page {
+	display: block;
+}
+
+.section {
+    margin: 0 1.35rem;
+}

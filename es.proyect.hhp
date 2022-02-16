@@ -12,7 +12,7 @@ Language=0x2c0a Español (Argentina)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
+MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42100,,0x0,[271,372,593,566],,,,,,,0
 
 
 [FILES]

@@ -47,31 +47,34 @@ var CSS = {
 var modeLight = 0
 function ModeLight(){
 	const TEMPLADE = '\
-		#navbar {\
-		    background: #ddd;\
-		    color: #000;\
-		    font-weight: 700;\
-		    overflow: hidden;\
-		}\
-		html{\
-			background: #fff;\
-			color: #0d1117;\
-		}\
-		body {\
-			scrollbar-face-color: #aaa;\
-			scrollbar-track-color: #ddd;\
-			scrollbar-arrow-color: #999;\
-			scrollbar-shadow-color: #ddd;\
-		}\
-		::-webkit-scrollbar { width: 1rem;}\
-		::-webkit-scrollbar-track { background: #ddd }\
-		::-webkit-scrollbar-thumb { background: #aaa; border: 1px #ddd solid; }\
-		::-webkit-scrollbar-corner {background: #ddd}\
-		code, .code, kbd, pre, samp {\
-			background: #eee;\
-			color: #000;\
-		}\
-		'
+	#navbar {\
+		background: #ddd;\
+		color: #000;\
+		font-weight: 700;\
+		overflow: hidden;\
+	}\
+	html{\
+		background: #fff;\
+		color: #0d1117;\
+	}\
+	body {\
+		scrollbar-face-color: #aaa;\
+		scrollbar-track-color: #ddd;\
+		scrollbar-arrow-color: #999;\
+		scrollbar-shadow-color: #ddd;\
+	}\
+	::-webkit-scrollbar { width: 1rem;}\
+	::-webkit-scrollbar-track { background: #ddd }\
+	::-webkit-scrollbar-thumb { background: #aaa; border: 1px #ddd solid; }\
+	::-webkit-scrollbar-corner {background: #ddd}\
+	code, .code, kbd, pre, samp {\
+		background: #eee;\
+		color: #000;\
+	}\
+	#menu {\
+		color: #000;\
+	}\
+	'
 	if (modeLight) {
 		modeLight--
 		CSS.Remove(TEMPLADE)
@@ -362,6 +365,42 @@ SP.toMarkdown = function(){
 	.r(/^(<tr>(.+)<\/tr>)/gm, "<table><thead>$1</tbody></table>")
 }
 
+/*********/
+
+
+
+document.write()
+
+$('body').innerHTML = '\
+<div class="col-4 col-md-3 col-xl-2 h-100 white" id=bar-menu>\
+<textarea id="generate-menu" style="display:none;" disabled></textarea>\
+<ul id="menu">'+ MENU
+.r(/\|\|\|([^\!]+)\!/g, "<li class='folder'>$1</li><ul class='section'>")
+.r(/\|\|([^\!]+)\|([^\!]+)\!/g, "<li class='topic'><a href="+ROOT + LANG.toLowerCase() +"'/$2.html'>$1</a></li><ul>")
+.r(/\|([^\!]+)\|([^\!]+)\!/g,"<li class='page'><a href='"+ROOT + LANG.toLowerCase() +"/$2.html'>$1</a></li>")
+.rA("|||!", "</ul>")
+ +'</ul>\
+</div>\
+<div class="col-8 col-md-9 col-xl-10 h-100 o-auto" style="position: fixed;top: 0;right: 0;">\
+<div id="main">\
+<div id="navbar">\
+	<h1>' + D.title +'<button id="CHANGE"><img src="'+ ROOT +'img/dm-baseline.png"></button></h1>\
+</div>\
+<textarea id="inputText" style="display:none;" disabled>'
++ $('body').innerHTML +
+'</textarea><div class="markdown">\
+  <div class="cont"></div>\
+  <hr>\
+  <p id="credits">\
+	CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann & Yushae Raza.\
+  </p>\
+  <span id="ALINKS"></span>\
+'
+
+$('html').innerHTML += '<style id="STYLES"></style>'
+
+/*********
+
 $('body').innerHTML = '\
 <div id="navbar">\
 	<h1>' + D.title +'<button id="CHANGE"><img src="'+ ROOT +'img/dm-baseline.png"></button></h1>\
@@ -377,7 +416,7 @@ $('body').innerHTML = '\
 	</p>\
 	<span id="ALINKS"></span>\
 </div></div><style id="STYLES"></style>'
-
+*/
 var htmlGenerated = $('#inputText').value.toMarkdown()
 
 $('.markdown .cont').innerHTML = htmlGenerated
@@ -474,3 +513,9 @@ $("#CHANGE").onclick = function(){
 		? IMAGE('out')
 		: IMAGE('base')
 }
+
+apply($(".folder"), function(element){
+	element.onclick = function(){
+		this.classList.toggle("expan")
+	}
+})
