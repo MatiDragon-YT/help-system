@@ -37,9 +37,9 @@ $array($index,10i) = 1
 Liberty City Stories, Vice City Stories:\
 `<nombre>(<indice>,<tamaño>)`
 
-{% hint style="info" %}
+:::info
 En LCS, VCS, los elementos de un arreglo tienen solo 4 bytes de longitud. Por lo tanto, no es necesaria una declaración de tipo.
-{% endhint %}
+:::
 
 ```sb3
 $index = 0
@@ -82,10 +82,10 @@ end
 $FloatArray[1] += 100.0
 ```
 
-Se puede acceder a los elementos de un arreglo que contiene [cadenas literarias](data-types.md#cadenas-literarias) con [variables de cadena](data-types.md#variables-de-cadenas):
+Se puede acceder a los elementos de un arreglo que contiene [cadenas](data-types.md#cadenas-literarias) con [variables de cadenas](data-types.md#variables-de-cadenas):
 
 ```sb3
-// initializing first three elements of the $strings array
+// inicialización de los tres primeros elementos de s$strings
 s$strings[0] = 'str1'
 s$strings[1] = 'str2'
 s$strings[2] = 'str3'
@@ -100,9 +100,9 @@ end
 $players[0].Build
 ```
 
-{% hint style="info" %}
+:::info
 
 Por predeterminado, en el [modo de edición](../edit-modes/README.md) de `GTA SA`, el desensamblador imprime los elementos del arreglo con los números como índices. La misma función está en LCS y VCS, pero desactivada de forma predeterminada. Puede activar y desactivar esta función mediante la opción de depuración `CONSTANT_INDEXES`.
-{% endhint %}
+:::
 
 <script src="../../js/main.min.js"></script>

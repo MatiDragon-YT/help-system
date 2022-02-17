@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Inicio rápido. Parte I</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Para empezar, si al principio no estás acostumbrado a las innovaciones de Sanny, sólo tienes que activar la opción Escribir opcodes en los ajustes y utilizarlo de la misma manera que SAMB (y ajustando los otros ajustes, puedes hacer que los dos editores sean casi iguales). Al mismo tiempo, seguirás teniendo a tu disposición un montón de funciones y comodidades del programa, así como una gran velocidad de trabajo.
+
+También descubrirá un montón de cosas útiles leyendo cuidadosamente el readme.txt del paquete Sanny Builder. Allí están absolutamente todas las diferencias e innovaciones de Sanny en comparación con el editor Mission Builder. Desafortunadamente, el readme por el momento no cubre realmente los fundamentos del scripting (creación de hilos, misiones, etc.). Sin embargo, los fundamentos son comunes a ambos programas, y si tienes problemas, puedes consultar este libro de preguntas de Mission Builder. La mayor parte de lo que está escrito allí es válido para SB también.
+SB puede utilizarse para editar los scripts de toda la línea de GTA3 (GTA3, VC, SA).
+
+Una breve lista de diferencias importantes entre los programas:
+
+a) Las transiciones en SB utilizan el símbolo @ en lugar del ilegible símbolo de la libra inglesa (JJ) en muchos foros: `jump @Label`, `gosub @Label`.
+Lo importante es que las etiquetas, independientemente de su posición en el código, se escriben igual. En SAMB habría que escribir las etiquetas con un signo J en las misiones y JJ en los hilos con dos.
+Las variables locales, por tanto, se escriben con el número de la variable al principio (no al final como en SAMB). Por ejemplo:
+
+```sb3
+@1, @2, @3 - formato en SAMB 
+1@, 2@, 3@ - formato en SB 
+```
+
+b) Muchos comandos de script simples pueden ser escritos SIN opcodes, como wait, end_thread, jump, etc. Estas palabras se denominan palabras clave y sustituyen a los opcodes de uso frecuente. Por ejemplo:
+
+`wait 0` - es análogo de `0001: wait 0 ms`\
+`if` es análogo de `00D6: if 0`\
+`if and` - es análogo de `00D6: if 1-7`\
+`if or` - es análogo de `00D6: if 21-27`\
+`jf @Label` - es análogo de `004D: jump_if_false @Label`\
+\
+y muchas otras. La lista de posibles palabras clave se puede llamar en el editor pulsando Ctrl+Espacio.
+
+c) Trabajar con números. Todas las operaciones aritméticas pueden (y deben) escribirse también sin opcode, por ejemplo, así:
+
+```sb3
+$Var = 1
+$Var = 45.5
+$Var += 5
+$Var *= 0.01
+```
+
+Esta función libera completamente al compilador de la tarea de seleccionar el opcode adecuado para una expresión. Sólo tiene que especificar los signos de acción (+, -, >, ==, etc.), y los opcodes se eligen tanto para las variables locales como para las globales. Sanny Builder soporta TODOS los tipos de signos matemáticos, incluyendo <=, <>, <. Estos últimos son convenientes para usar en condiciones negativas (con la palabra not). Por ejemplo en lugar de:
+
+```sb3
+if
+not $Var == 1
+jf @label
+```
+
+puedes escribir
+
+```sb3
+if
+$Var <> 1
+jf @label
+```
+
+En el caso de que los dos parámetros de una expresión sean variables, el compilador no puede determinar inmediatamente si son de tipo entero o fraccionario. En este caso, utilice la construcción VAR...END, es decir, así: 
+
+```sb3
+var 
+1@: Int 
+// indicar al compilador que la variable 1@ contendrá enteros
+$Var2: Float 
+// y la variable $Var2 contendrá números fraccionarios (punto flotante)
+end 
+
+$Var2 = 45.5 
+if 
+$Var = 1@ 
+jf @Label2
+```
+
+Además, hay funciones útiles como Inc (análogo de $Var = $Var + 1), Random (genera números aleatorios, reemplaza dos opcodes a la vez), y otros, más sobre ellos está escrito en el README.
+
+d) Comentarios. En SB se puede comentar una línea con el carácter de doble barra //,\
+por ejemplo:
+
+```sb3
+01F0: set_max_wanted_level_to 6 
+// todo lo que se encuentra desde aquí hasta el final de la línea es ignorado por el compilador
+```
+
+así como bloques { }, con los que puede comentar varias líneas o parte de una línea a la vez. 
+
+```sb3
+01F0: set_max_wanted_level_to {esta parte se ignora} 6 
+```
+
+e) No tiene que molestarse en escribir la lista de DEFINE OBJECTS en absoluto, porque el compilador cuenta los objetos utilizados por sí mismo.
+
+Puedes ver las capacidades del propio editor (IDE) [aquí](../editor/features.md).
+
+Una vez que haya experimentado seriamente con Sanny, encontrará que trabajar con sus muchas características es realmente fácil, porque le ahorran mucho trabajo rutinario.
+
+<script src="../../js/main.min.js"></script>

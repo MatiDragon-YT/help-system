@@ -21,7 +21,7 @@ Sintaxis:\
 `END`\
 \
 `<contador>` - una [variable](variables.md) utilizada para el conteo de iteraciones\
-`<inicial>` - un valor de la variable de bucle antes de la primera iteración (cualquier valor inclusive el [ID de un modelo](data-types.md#model-names))\
+`<inicial>` - un valor de la variable de bucle antes de la primera iteración (cualquier valor inclusive el [ID de un modelo](data-types.md#nombres-de-modelos))\
 `TO` ó `DOWNTO` - incrementar o disminuir la variable de bucle entre iteraciones\
 `<final>` - un valor de la variable de bucle después de la última iteración (cualquier valor inclusive el ID de un modelo)\
 `<paso>` - un valor opcional con el que se aumentará o disminuirá la variable de bucle entre iteraciones. Por defecto es igual a `1`.
@@ -37,7 +37,7 @@ FOR $MyCounter = 1 to $final step 2
 end
 ```
 
-Si el `contador` no se [declara](variables.md#var-end-construct) con ningún tipo antes del bucle, obtiene el tipo `Integer`. Si el `valor inicial`, el `valor final` o el `paso` son variables, obtienen el mismo tipo que la variable de bucle. Para usar números de punto flotante para los valores inicial y final, declare la variable de bucle con el tipo `Float`.
+Si el `contador` no se [declara](variables.md#constructor-var..end) con ningún tipo antes del bucle, obtiene el tipo `Integer`. Si el `valor inicial`, el `valor final` o el `paso` son variables, obtienen el mismo tipo que la variable de bucle. Para usar números de punto flotante para los valores inicial y final, declare la variable de bucle con el tipo `Float`.
 
 ```sb3
 var
@@ -98,7 +98,7 @@ end
 
 El compilador ignora este bucle ya que la condición nunca se cumple.
 
-{% hint style="info" %}
+:::info
 Actualmente, el compilador acepta solo un opcode en la condición del bucle, pero puede verificar más condiciones antes del cuerpo del bucle y usar los comandos `Break` y `Continue`.
 
 ```sb3
@@ -114,7 +114,7 @@ while true
     <cuerpo>
 end
 ```
-{% endhint %}
+:::
 
 ## REPEAT..UNTIL
 
@@ -144,7 +144,7 @@ repeat
 until false
 ```
 
-{% hint style="info" %}
+:::info
 Actualmente, el compilador acepta solo un opcode en la condición del bucle, pero puede verificar más condiciones antes del cuerpo del bucle y usar los comandos `Break` y `Continue`.
 
 ```sb3
@@ -159,7 +159,7 @@ repeat
   // el bucle se ejecuta mientras $var está en el rango [0...100]
 until false
 ```
-{% endhint %}
+:::
 
 ## Continue y Break
 

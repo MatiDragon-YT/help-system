@@ -68,9 +68,23 @@ function ModeLight(){
 		::-webkit-scrollbar-thumb { background: #aaa; border: 1px #ddd solid; }\
 		::-webkit-scrollbar-corner {background: #ddd}\
 		code, .code, kbd, pre, samp {\
-			background: #eee;\
-			color: #000;\
+			background: #eceff1;\
+			color: #212121;\
 		}\
+		.labels { color: #009688 }\
+		.keywords { color: #ff5722 }\
+		.models { color: #607d8b }\
+		.classes { color: #d32f2f }\
+		.commands { color: #0288d1 }\
+		.numbers,\
+		.numbers * { color: #7e57c2 }\
+		.variables { color: #607d8b }\
+		.strings,\
+		.strings * { color: #009688 }\
+		.comments,\
+		.comments * { color: #0288d1 }\
+		.directives,\
+		.directives * { color: #607d8b }\
 		'
 	if (modeLight) {
 		modeLight--
@@ -208,7 +222,7 @@ SP.toMarkdown = function(){
 	//.r(/:::([\w\d\x20-]+)\n([\x09-\x39\x3B-\uFFFF]+):::/gim, '<div class=$1>$2</div>')
 
 	/*** BLOCKQUOTE ***/
-	.r(/^>\x20(.+)/gim, '<blockquote>$1</blockquote>')
+	.r(/^>\x20(.+)/gm, '<blockquote>\n$1</blockquote>')
 	.r(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
 	/*** TITLE ***/
@@ -304,14 +318,14 @@ SP.toMarkdown = function(){
 
 		return '<a'+ href + title + target + '>' + display + '</a>'
 	})
-
+	
 	// HR
 	.r(/(\n|^)--+-\n/g, '$1<hr>\n')
 
 	// BR
 	.r(/([^`])`\n\n`([^`])/, "$1`<br><br>`$2")
-	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`([^`])))/g, '$2<br><br>$3$5')
-	.r(/(\x20\x20\n|\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`([^`])))/g, '$2<br>$3$5')
+	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br><br>$3')
+	.r(/(\x20\x20\n|\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br>$3')
 
 	// PRE
 	.r(/```([^`]*)```/g, function(input){
@@ -421,9 +435,11 @@ apply($('.sb3'), function(element){
 	.r(/(\{\$[^{}\n]+\})/gmi, enter.directives)
 	//Cadenas de texto
 	.r(/\"([^\n"]+)\"/gmi, '<span class=strings>"$1"<\/span>')
-	.r(/\'([^\n']+)\'/gmi, "<span class=strings>'$1'<\/span>")
 	.rA('\\"</span>', '\\"')
 	.rA('\\"<span>', '\\"')
+	.r(/\'([^\n']+)\'/gmi, "<span class=strings>'$1'<\/span>")
+	.rA("\\'</span>", "\\'")
+	.rA("\\'<span>", "\\'")
 	//Palabras Reservadas
 	.r(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
 	//Etiquetas

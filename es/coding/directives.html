@@ -22,7 +22,7 @@ Esta directiva establece que version de [opcodes](../edit-modes/opcodes-list-scm
 Sintaxis:\
 `{$VERSION x.y.zzzz}`
 
-* `X`- ID del [modo de edición](../edit-modes/)
+* `X`- ID del [modo de edición](../edit-modes/README.md)
 * `y` - orden de los parametros
   * `0` - original: 0, 1, 2, etc
   * `1` - personalizado: 7, 1, 2, etc
@@ -70,7 +70,7 @@ Una forma más corta de esta directiva es `$I`.
 
 ## $EXTERNAL
 
-Esta directiva hace que el compilador procese el archivo como un script externo. Es decir, el archivode salida no tendra encabezado y condesviaciones de [etiqueta](data-types.md#labels) locales, por lo que sera el mismo que el archivo `.scm`del `script.img`. El uso de esta directiva requiere que el archivo contenga solo un hilo (tambien sin misiones y otros scripts).
+Esta directiva hace que el compilador procese el archivo como un script externo. Es decir, el archivode salida no tendra encabezado y condesviaciones de [etiqueta](data-types.md#etiquetas) locales, por lo que sera el mismo que el archivo `.scm`del `script.img`. El uso de esta directiva requiere que el archivo contenga solo un hilo (tambien sin misiones y otros scripts).
 
 La forma alternativa de obtener dicho archivo es una [opcion](../editor/console.md#skip_scm_header) de depuracion `SKIP_SCM_HEADER`. Esta opcionpodria habilitarse en la consola o desdela lista en el panel principal.
 
@@ -105,7 +105,7 @@ Entonces esta directiva es la solución perfecta para hacer un CLEO script.
 
 Esta directiva prohibe al compilador incluir un codigo fuente del script.
 
-Sin esta directiva, cuando la directiva `$EXTERNAL` o `$CLEO` está presente y la [opción](../editor/options/general.md#add-extra-info-to-scm) `Añador información extra al SCM` está habilitada, Sanny Builder agrega el código fuente al archivo de salida.
+Sin esta directiva, cuando la directiva `$EXTERNAL` o `$CLEO` está presente y la [opción](../editor/options/general.md#agregar-información-adicional-a-scm) `Añador información extra al SCM` está habilitada, Sanny Builder agrega el código fuente al archivo de salida.
 
 Sintaxis:\
 `{$NOSOURCE}`
@@ -123,14 +123,14 @@ Sintaxis:\
 ó\
 `{$OPCODE}`\
 \
-`definición del opcode>`: acepta una definición en el mismo [formato](../edit-modes/opcodes-list-scm.ini.md#opcode-definition) que el archivo INI.
+`definición del opcode>`: acepta una definición en el mismo [formato](../edit-modes/opcodes-list-scm.ini.md#definición-del-opcode) que el archivo INI.
 
 
 ```sb3
 {$OPCODE 0CCC=1,my_new_opcode %1d%}
 ```
 
-`path\to\file`: esta directiva también acepta un nombre de archivo como su parámetro. Este archivo debe contener solo definiciones de opcodes para ser cargado. Si se proporciona una ruta relativa, el compilador escanea los directorios usando las mismas reglas que para [`$INCLUDE`](directives.md#usdinclude).
+`path\to\file`: esta directiva también acepta un nombre de archivo como su parámetro. Este archivo debe contener solo definiciones de opcodes para ser cargado. Si se proporciona una ruta relativa, el compilador escanea los directorios usando las mismas reglas que para [`$INCLUDE`](directives.md#$include).
 
 
 ```sb3

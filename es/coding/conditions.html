@@ -37,10 +37,10 @@ Sanny Builder permite omitir el `0` despues del IF.\
 `IF 0` y  `IF`  son equivalentes.
 {% endhint %}
 
-- `<etiqueta>`-  el nombre de la [etiqueta](data-types.md#labels) donde el script saltara si la declaración IF es falsa (`false`).
+- `<etiqueta>`-  el nombre de la [etiqueta](data-types.md#etiquetas) donde el script saltara si la declaración IF es falsa (`false`).
 - `<condicion>` - cualquier opcode condicional que evalúe como `true` o `false` 
 
-Si usted tiene las  `Chequeo de condiciones` habilitado en las [opciones](../editor/options/general.md#check-conditions), se puede sustituir el número si con las palabras clave `AND` y `OR`. El compilador calcula el valor correcto por sí mismo.
+Si usted tiene las  `Chequeo de condiciones` habilitado en las [opciones](../editor/options/general.md#chequeo-de-condiciones), se puede sustituir el número si con las palabras clave `AND` y `OR`. El compilador calcula el valor correcto por sí mismo.
 
 ```sb3
 if and 
@@ -77,7 +77,7 @@ Para facilitar las condiciones de escritura, existen construcciones de alto nive
 `  <comandos sí la declaracion es falsa>`\
 `END`\
 \
-Una condición es creada con las reglas descritas de las [condiciones de bajo nivel](conditions.md#low-level-if-statements). Después de `THEN` debe especificar los comandos que se ejecutarán si se cumple la condición. Después de `ELSE` debe especificar los comandos que se ejecutan si no se cumple la condición.
+Una condición es creada con las reglas descritas de las [condiciones de bajo nivel](#declaraciones-if-de-bajo-nivel). Después de `THEN` debe especificar los comandos que se ejecutarán si se cumple la condición. Después de `ELSE` debe especificar los comandos que se ejecutan si no se cumple la condición.
 
 La declaración `IF` se cierra con la palabra` END`.
 
@@ -91,7 +91,7 @@ end
 ```
 
 :::info
-La opción de [`Chequeo de condiciones`](../editor/options/general.md#check-conditions) debe estar habilitada.
+La opción de [`Chequeo de condiciones`](../editor/options/general.md#chequeo-de-condiciones) debe estar habilitada.
 :::
 
 :::info
@@ -107,6 +107,6 @@ Se admiten declaraciones IF anidadas.
 * A **`<=`** B - A es menor o igual a B
 * A **`<>`** B - A es desigual a B
 
-`A` y` B` son operandos. El compilador puede averiguar un opcode si uno de los operandos es un número o una [cadena literaria](data-types.md#string-literals), o ambos [tipo de variables](variables.md#var-end-construct) son conocidas.
+`A` y` B` son operandos. El compilador puede averiguar un opcode si uno de los operandos es un número o una [cadena](data-types.md#cadenas-literarias), o ambos [tipo de variables](variables.md#constructor-var..end) son conocidas.
 
 <script src="../../js/main.min.js"></script>

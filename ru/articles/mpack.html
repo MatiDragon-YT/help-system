@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ru">
 <head>
-  <title>Mission Pack</title>
+  <title>Пакет миссий</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,43 +9,43 @@
 </head>
 <body>
 
-One way to load `main.scm` without modifying the original is in MPACK.\
-That gives us the opportunity to select the desired mode when starting a new game, from the available list.
+Один из способов загрузить `main.scm`, не изменяя оригинал, находится в MPACK.\
+Это дает нам возможность выбрать нужный режим при начале новой игры, из доступного списка.
 
 ---
 
-We just need to create a folder called `MPACK` in the directory "My Documents\GTA San Andreas User Files". Now the game will understand that the player needs to choose a `main`.
+Нам просто нужно создать папку `MPACK` в директории "Мои документы\GTA San Andreas User Files". Теперь игра поймет, что игроку нужно выбрать `main`.
 
-To do this, we must first create another folder as follows, with which we configure the order of the list:
+Для этого мы должны сначала создать еще одну папку следующим образом, с помощью которой мы настроим порядок списка:
 
-> MPACK + Sequence number, from 1 to 24.
+> MPACK + Номер последовательности, от 1 до 24.
 
 :::info
-Note that there should not be identical numbers.
+Обратите внимание, что не должно быть одинаковых чисел.
 :::
 
-For example, we are going to create a folder called `MPACK1`.
+Например, мы собираемся создать папку под названием `MPACK1`.
 
-Now inside the folder do the following:
+Теперь внутри папки выполните следующие действия:
 
-1. Create a `mpack.dat` file with a normal notepad.\nOpen it and add the following entry: `1#Testeo MD v1.0#`. <blockquote>`1` - the sequence number of the mission set.\n`Testeo MD v1.0` - the name of the set, will be displayed when selected. It must be written in Latin letters, as the game does not always recognize the encoding.</blockquote>
-2. Add files: `american.gxt` from the `GTASA\text` folder and `main.scm` from the `GTASA\data\script` folder.
-3. Rename `main.scm` to `scr.scm` and `american.gxt` to `text.gxt`
+1. Создайте файл `mpack.dat` с помощью обычного блокнота.\nОткройте его и добавьте следующую запись: `1#Testeo MD v1.0#`. <blockquote>`1` - порядковый номер набора задач.\n`Testeo MD v1.0` - название набора, отображается при выборе. Оно должно быть написано латинскими буквами, так как игра не всегда распознает кодировку.</blockquote>
+2. Добавьте файлы: `american.gxt` из папки `GTASA\text` и `main.scm` из папки `GTASA\data\script`.
+3. Переименуйте `main.scm` в `scr.scm` и `american.gxt` в `text.gxt`.
 
-Now our package is ready. When we launch a new game, this we will see:
+Теперь наш пакет готов. Когда мы запустим новую игру, мы увидим следующее:
 
 :::l
 ![](mpack/preview.jpg)
 :::
 
-The standard game is the main one found in the `GTASA\data\script` folder.\
-The other will launch our `main` customed.
+Стандартная игра - это основная игра, которая находится в папке `GTASA\data\script`.\
+Другая запускает нашу `главную` пользовательскую.
 
 :::warning
-* All CLEO scripts will work when running any MPACK, so if they do interact with the `main` in any way, you should take this into account.
-* You can only add up to a maximum of 24 packages.
-* In mission packs, external scripts cannot be downloaded (plugins required)
-* If you installed the mission pack incorrectly, you will see the following:
+* Все CLEO-скрипты будут работать при запуске любого MPACK, поэтому если они каким-либо образом взаимодействуют с `main`, вам следует принять это во внимание.
+* Вы можете добавить не более 24 пакетов.
+* В пакетах миссий нельзя загружать внешние скрипты (требуются плагины).
+* Если вы неправильно установили пакет миссии, вы увидите следующее:
 
 :::c bg-black-2 white p-5 h6 d-inline-block
 Load failed!

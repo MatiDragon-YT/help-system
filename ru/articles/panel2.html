@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Панель, или список товаров. Часть II</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+[продолжение. [начало читайте здесь](panel1.md)]\
+\
+В первой части мы рассмотрели простой вариант панели, теперь добавим зависимость от количества денег у игрока. Ну и соответственно всегда интересно знать, сколько товар стоит, для этого добавим второй столбец.
+Воспользуемся опкодом:
+
+```sb3
+08D6: set_panel $Panel column 1 alignment 2
+```
+
+Но этим опкодом мы добавили только столбец, теперь необходимо добавить строки.
+
+```sb3
+08EE: set_panel $Panel column 1 row 0 text_1number GXT 'DOLLAR' number 2@  // $~1~
+08EE: set_panel $Panel column 1 row 1 text_1number GXT 'DOLLAR' number 3@  // x ~1~
+08EE: set_panel $Panel column 1 row 2 text_1number GXT 'DOLLAR' number 4@  // $~1~
+```
+
+Переделаем наш скрипт так, чтобы сама панель появлялась не с начала игры, а при условии, что игрок находится в определенном месте и у игрока достаточно наличных. 
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+if and
+0038:   $ONMISSION == 0 
+0256:   player $PLAYER_CHAR defined 
+0102: actor $PLAYER_ACTOR near_point 2486.2712 -1650.4073 13.4805 radius 1.0 1.0 1.0 sphere 1
+jf @PANEL_1 
+if
+010A:   player $PLAYER_CHAR money > 100 
+//Проверяем, есть ли у игрока нужное количество денег
+jf @PANEL_5
+2@ = 100 // стоимость товара
+3@ = 120 // стоимость товара
+4@ = 150 // стоимость товара
+5@ = 200 // стоимость товара
+6@ = 220 // стоимость товара
+7@ = 250 // стоимость товара
+8@ = 270 // стоимость товара
+01B4: toggle_player $PLAYER_CHAR can_move 0 
+0512: show_permanent_text_box 'AMMU_H'  
+0581: toggle_radar 0 
+08D4: $PANEL = create_panel_with_title 'AMMUN' position 29.0 170.0 width 300.0 columns 2 interactive 1 background 1 alignment 1  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'HOTKNIF' 'KATANA' 'BASEBAT' 'CHAINSA' 'GA_12' 'GUN8' 'GUN5' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+08D6: set_panel $PANEL column 1 alignment 1 
+08EE: set_panel $Panel column 1 row 0 text_1number GXT 'DOLLAR' number 2@  // $~1~
+08EE: set_panel $Panel column 1 row 1 text_1number GXT 'DOLLAR' number 3@  // x ~1~
+08EE: set_panel $Panel column 1 row 2 text_1number GXT 'DOLLAR' number 4@  // $~1~
+08EE: set_panel $Panel column 1 row 3 text_1number GXT 'DOLLAR' number 5@  // $~1~
+08EE: set_panel $Panel column 1 row 4 text_1number GXT 'DOLLAR' number 6@  // x ~1~
+08EE: set_panel $Panel column 1 row 5 text_1number GXT 'DOLLAR' number 7@  // $~1~
+08EE: set_panel $Panel column 1 row 6 text_1number GXT 'DOLLAR' number 8@  // $~1~
+
+:PANEL_3
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_2
+0581: toggle_radar 1 
+03E6: remove_text_box 
+08DA: remove_panel $PANEL 
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+wait 1000 
+jump @PANEL_1
+
+:PANEL_5
+03D6: remove_styled_text 'NOMONEY'  
+00BC: text_highpriority 'NOMONEY'  3000 ms  1 
+0002: jump @PANEL_1
+```
+
+Теперь у нас есть перечень товаров и их стоимость. Все хорошо, но сама панель выглядит ужасно.
+
+Это происходит, потому что мы не указали размер столбцов и поэтому первый и второй столбец создаются с шириной равной ширине панели. Поправим это.
+`09DB: set_panel $Panel column 0 width 230` – установим для первого столбца ширину 230.
+`09DB: set_panel $Panel column 1 width 70` – соответственно для второго – 70.
+
+Теперь нам осталось добавить результат выбора строки, то есть то, что будет происходить при выборе одной из строк в нашей панели. Воспользуемся вариантом, рассмотренным в первой статье. Очень удобно применять для этих целей таблицу переходов, но для простоты эксперимента не будем отвлекаться на сложные материи.
+Вот что у нас получилось:
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+if and
+0038:   $ONMISSION == 0 
+0256:   player $PLAYER_CHAR defined 
+0102: actor $PLAYER_ACTOR near_point 2486.2712 -1650.4073 13.4805 radius 1.0 1.0 1.0 sphere 1
+jf @PANEL_1 
+if
+010A:   player $PLAYER_CHAR money > 100 
+//Проверяем, есть ли у игрока нужное количество денег
+jf @PANEL_5
+2@ = 100 // стоимость товара
+3@ = 120 // стоимость товара
+4@ = 150 // стоимость товара
+5@ = 200 // стоимость товара
+6@ = 220 // стоимость товара
+7@ = 250 // стоимость товара
+8@ = 270 // стоимость товара
+01B4: toggle_player $PLAYER_CHAR can_move 0 
+0512: show_permanent_text_box 'AMMU_H'  
+0581: toggle_radar 0 
+08D4: $PANEL = create_panel_with_title 'AMMUN' position 29.0 170.0 width 300.0 columns 2 interactive 1 background 1 alignment 1  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'HOTKNIF' 'KATANA' 'BASEBAT' 'CHAINSA' 'GA_12' 'GUN8' 'GUN5' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+08D6: set_panel $PANEL column 1 alignment 1 
+08EE: set_panel $Panel column 1 row 0 text_1number GXT 'DOLLAR' number 2@  // $~1~
+08EE: set_panel $Panel column 1 row 1 text_1number GXT 'DOLLAR' number 3@  // x ~1~
+08EE: set_panel $Panel column 1 row 2 text_1number GXT 'DOLLAR' number 4@  // $~1~
+08EE: set_panel $Panel column 1 row 3 text_1number GXT 'DOLLAR' number 5@  // $~1~
+08EE: set_panel $Panel column 1 row 4 text_1number GXT 'DOLLAR' number 6@  // x ~1~
+08EE: set_panel $Panel column 1 row 5 text_1number GXT 'DOLLAR' number 7@  // $~1~
+08EE: set_panel $Panel column 1 row 6 text_1number GXT 'DOLLAR' number 8@  // $~1~
+09DB: set_panel $Panel column 0 width 230 
+09DB: set_panel $Panel column 1 width 70
+
+:PANEL_2
+wait 0
+if 
+00E1: player 0 pressed_key 16 // если нажата клавиша «ПРОБЕЛ»
+jf @PANEL_3
+08D7: 0@ = panel $Panel active_row // записываем номер строки
+gosub @PANEL_RESULT // переходим на метку PANEL_RESULT
+
+:PANEL_3
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_2
+0581: toggle_radar 1 
+03E6: remove_text_box 
+08DA: remove_panel $PANEL 
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+wait 1000 
+jump @PANEL_1
+
+:PANEL_5
+03D6: remove_styled_text 'NOMONEY'  
+00BC: text_highpriority 'NOMONEY'  3000 ms  1 
+0002: jump @PANEL_1
+
+:PANEL_RESULT 
+010B: 14@ = player $PLAYER_CHAR money // записываем в переменную количество денег игрока
+if
+ 0@ == 0 //если выбрана первая строка
+jf @PANEL_RESULT_2
+if
+002D: 14@ >= 2@ //количество денег у игрока больше или равно стоимости товара
+jf @PANEL_RESULT_8 
+//если нет, то выводим надпись о том, что у игрока не достаточно денег
+00BE: text_clear_all //убираем весь текст
+00BA: show_text_styled GXT 'MTG02F' time 3000 style 5
+1@ = 0 // вводим переменную
+0062: 1@ -= 2@ //отнимаем стоимость товара
+0109: player $PLAYER_CHAR money += 1@ 
+//устанавливаем игроку общее количество денег с учетом покупки товара 
+jump @PANEL_RESULT_9 // переходим на метку выхода
+
+:PANEL_RESULT_2
+if
+ 0@ == 1
+jf @PANEL_RESULT_3
+if
+002D: 14@ >= 3@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME1' time 3000 style 5
+1@ = 0
+0062: 1@ -= 3@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_3
+if
+ 0@ == 2
+jf @PANEL_RESULT_4
+if
+002D: 14@ >= 4@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME2' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 4@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_4
+if
+ 0@ == 3
+jf @PANEL_RESULT_5
+if
+002D: 14@ >= 5@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME3' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 5@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_5
+if
+ 0@ == 4
+jf @PANEL_RESULT_6
+if
+002D: 14@ >= 6@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME4' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 6@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_6
+if
+ 0@ == 5
+jf @PANEL_RESULT_7 
+if
+002D: 14@ >= 7@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME5' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 7@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_7
+if
+ 0@ == 6
+jf @PANEL_RESULT_9
+if
+002D: 14@ >= 8@ 
+jf @PANEL_RESULT_8 
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME6' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 8@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_8 // сообщаем о нехватке наличных
+03D6: remove_styled_text 'NOMONEY'  
+00BC: text_highpriority 'NOMONEY'  3000 ms  1 
+
+:PANEL_RESULT_9 // метка выхода
+return // возвращаемся на следующую после gosub @PANEL_RESULT строку.
+```
+
+Вот собственно и все что нужно знать о панелях.
+
+<script src="../../js/main.min.js"></script>

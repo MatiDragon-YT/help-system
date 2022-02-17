@@ -13,6 +13,7 @@ html {
 	line-height: 1.15;
 	background: #0d1117;
 	color: #c9d1d9;
+	scroll-behavior: smooth;
 	/*transition: background .2s;*/
 }
 
@@ -323,6 +324,12 @@ input {
 .p-3 { padding: 1rem }
 .p-4 { padding: 1.5rem }
 .p-5 { padding: 3rem }
+.plr-0 { padding: 0 0 }
+.plr-1 { padding: 0 .25rem }
+.plr-2 { padding: 0 .5rem }
+.plr-3 { padding: 0 1rem }
+.plr-4 { padding: 0 1.5rem }
+.plr-5 { padding: 0 3rem }
 
 .d-none {display: none}
 .d-block {display: block}

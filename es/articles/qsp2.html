@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Inicio rápido. Parte II</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Echemos un vistazo a las innovaciones adicionales del lenguaje de scripting.
+
+En el [artículo anterior](qsp1.md), dijimos que todas las expresiones matemáticas y aritméticas pueden escribirse sin opcodes. Esto es mucho más cómodo y rápido. Sin embargo, el compilador Sanny tiene comandos incorporados que permiten acortar incluso expresiones simples.
+
+1) El comando **Inc**. Este comando es una alternativa a la suma habitual. Es la alternativa a la suma normal. Se trata del valor del primer parámetro, multiplicado por el número pasado en el segundo parámetro. El primer parámetro puede ser una variable (de tipo Integer o Float) o una propiedad de la clase
+
+```sb3
+$Var += 10
+Inc($Var, 10)
+```
+
+La variable `$Var` tendrá 10 añadido en ambas variantes. 
+Recuerde que si el segundo número es un Integer y la variable es Float, el compilador lo convierte automáticamente en un número fraccionario.
+Este comando es conveniente para usar si sólo quiere añadir 1 a la variable, porque el segundo parámetro es 1 por defecto
+
+```sb3
+$Var += 1 
+Inc($Var)
+```
+Ambas opciones son equivalentes.
+El primer parámetro puede ser una propiedad de la clase. Hablaremos de ellas en detalle en otro artículo, por ahora sólo te daré un ejemplo:
+
+```sb3
+0109: player $PLAYER_CHAR money += 1 
+Player.Money($PLAYER_CHAR) += 1 
+Inc(Player.Money($PLAYER_CHAR)) 
+```
+
+Las tres opciones tienen el mismo valor: la cantidad de dinero del jugador se incrementará en uno.
+
+2) Comando **Dec**. Es un sustituto de la operación de sustracción:
+
+```sb3
+$Var -= 3 
+Dec($Var, 3) 
+```
+
+Todo lo anterior se aplica a ella, excepto el ejemplo de la propiedad. La cuestión es que la propiedad Dinero del jugador sólo puede aumentar (opcode 0109). No hay opcode para restar dinero. Por lo tanto, una expresión como `Player.Money($PLAYER_CHAR) -= 1` no funcionará. Esta limitación será superada en las próximas versiones de SB.
+
+3) Comando **Mul**. Operación de multiplicación. Todo es igual, excepto que por defecto el segundo parámetro es 2:
+
+```sb3
+$Var *= 2 
+Mul($Var) 
+```
+4) La última operación aritmética es la división. Existe un comando **Div** para ello, que divide una variable en dos sin un segundo parámetro:
+
+```sb3
+$Var /= 2 
+Div($Var) 
+```
+En los cuatro casos el segundo parámetro puede ser una variable. Pero entonces los tipos de ambas variables deben definirse en el bloque var..end.
+
+5) El procedimiento **SQR** calcula el cuadrado de la variable. Es decir, es un sustituto de la operación de multiplicación de la variable por sí misma:
+
+```sb3
+$Var *= $Var 
+Sqr($Var) 
+```
+El tipo de la variable, como espero que te hayas dado cuenta, debe ser conocido por el compilador.
+
+6) La función **Random** devuelve un número aleatorio en el intervalo entre los números pasados como parámetros. Es una sustitución de dos opcodes a la vez:
+
+```sb3
+0208: $Var = random_float 10.0 100.0 
+0209: $Var = random_int 10 100 
+```
+
+Ambas opciones pueden representarse como
+
+```sb3
+$Var = Random(10, 100) 
+```
+
+Como puede ver, el propio compilador elige un opcode en función del tipo de variable en el que se escribe el resultado de la función (`$Var`). Si su tipo es desconocido, o no es un Integer o Float, el compilador informará de un error. 
+Las variables pueden utilizarse como parámetros, por supuesto. Sin embargo, su tipo no se comprueba.
+El siguiente comando probablemente será difícil de entender. Para ello necesitas saber cómo se almacenan las variables en main.scm y qué es el DMA. Esto está fuera del alcance de este artículo, aunque probablemente se explicará más adelante. Entonces, el comando **Alloc**. Esto establece la dirección de memoria de una variable con un nombre de carácter:
+
+```sb3
+Alloc($PLAYER_CHAR, 10) 
+```
+
+La variable `$PLAYER_CHAR` se compilará entonces como `$10`.
+Puedes utilizar el comando **Alloc** para alinear un grupo de variables, convirtiéndolas así en elementos de un array:
+
+```sb3
+Alloc($Array, 40) 
+Alloc($Value2, 41) 
+Alloc($Value3, 42) 
+Alloc($Value4, 43) 
+```
+
+Estas variables son ahora un array. Ahora puedes usar código como este:
+
+```sb3
+Alloc($Array, 40) 
+Alloc($Value2, 41) 
+Alloc($Value3, 42) 
+Alloc($Value4, 43)
+var 
+$Array: array 4 of Integer 
+$Result: Int 
+end 
+
+$Value3 = 100 // escribir 100 en el tercer elemento de la matriz
+
+$Index = 2 
+// desplazamiento desde el principio del array -> $Valor3, no olvides contar desde cero
+
+$Result = $Array[$Index]
+// leerá la tercera celda, empezando por el primer elemento
+
+Player.Money($PLAYER_CHAR) += $Result // + 100 
+```
+
+Por supuesto, aquí se podría utilizar DMA "puro", es decir, nombres de variables numéricas (`$40`, `$41`, `$42`, etc.), pero es más agradable trabajar con nombres de caracteres.
+La última característica para hoy es la sustitución del número de misión. Cualquier misión se inicia con el comando start_mission. Este número se define en el bloque DEFINE MISSION:
+
+```sb3
+DEFINE MISSIONS 135 
+DEFINE MISSION 0 AT @INITIAL 
+DEFINE MISSION 1 AT @INITIL2 
+DEFINE MISSION 2 AT @INTRO 
+```
+
+Sin embargo, recordar estos números no siempre es conveniente. Por ello, la JE ha añadido la posibilidad de sustituir el número de la misión por su nombre. El nombre en este caso es el nombre de la etiqueta escrita en el mismo bloque. Así, para iniciar la 2ª misión basta con escribir 
+
+```sb3
+start_mission intro 
+```
+
+Para mayor comodidad, se incorporaron dos características más en la SB:
+1) [reemplazar todos los números por nombres durante la descompilación](../editor/options/general.md#replace-mission-numbers).
+2) se puede llamar a la lista de nombres pulsando **Ctrl+Espacio**. El cursor debe colocarse después del comando start_mission.
+
+<script src="../../js/main.min.js"></script>

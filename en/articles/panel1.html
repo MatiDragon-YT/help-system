@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Panels of elements. Part I</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+When buying clothes, weapons, or exporting vehicles, we are offered a list of items and services, as well as their cost. By selecting one of the items, we have the opportunity to purchase this product. How is this option implemented?
+
+GTA San Andreas uses a couple of opcodes for this purpose:
+```sb3
+08D4: $Panel = create_panel_with_title 'IE09' position 29.0 170.0 width 180.0 columns 1 interactive 1 background 1 alignment 0 
+08DB: set_panel $Panel column 0 header 'DUMMY' data 'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'
+```
+
+Opcode 08D4: Create a panel named 'IE09'\
+at 29.0 170.0, these are the coordinates of the upper left corner of the panel\
+panel width - 180.0,\
+number of columns – 1\
+interactive – 1 can be selected from the list, 0 - no choice\
+background – 1 will be black background, 0 - transparent\
+alignment 0 text alignment, 0 - center , 1 - left edge, 2 - right edge.
+
+Opcode 08DB: set in the `$Panel` for the first column the name of this column `'DUMMY'` and row names `'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY'`.
+The maximum number of rows in a column is 12. If only 7 are to be used, as in our case, the remaining unused rows are written with the name `'DUMMY'`.
+`'DUMMY'` – untitled.
+`'IE09'`-`'IE15'` – GXT text from the GXT table `'MAIN'`\
+For example, let's create a panel
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+01B4: toggle_player $PLAYER_CHAR can_move 0 // immobilize the player 
+0512: show_permanent_text_box 'IE20' // output text_box
+0581: toggle_radar 0 // remove the radar
+08D4: $PANEL = create_panel_with_title 'IE09' position 29.0 170.0 width 180.0 columns 1 interactive 1 background 1 alignment 0  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+ 
+:PANEL_3
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_3
+0581: toggle_radar 1 // returning the radar
+03E6: remove_text_box // remove text_box
+08DA: remove_panel $PANEL // remove the panel
+01B4: toggle_player $PLAYER_CHAR can_move 1 // Returning control to the player
+end_thread
+```
+Now it shows only the output of the panel and by pressing the F or ENTER button we remove the panel. Now it is necessary to make the possibility of selection. The numbering of rows and columns starts from 0.
+In order to determine which row is selected the opcode\
+`08D7: 0@ = panel $Panel active_row`\
+i.e. we write the string number to the variable `0@`.
+We need to define what will happen when you select a line.
+When one of the menu items is selected, let's make a text output
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+01B4: toggle_player $PLAYER_CHAR can_move 0 // immobilize the player 
+0512: show_permanent_text_box 'IE20' // output text_box
+0581: toggle_radar 0 // remove the radar
+08D4: $PANEL = create_panel_with_title 'IE09' position 29.0 170.0 width 180.0 columns 1 interactive 1 background 1 alignment 0
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'
+
+
+:PANEL_2
+wait 0
+if 
+00E1: player 0 pressed_key 16 // if the "SPACE" key is pressed
+jf @PANEL_9 //If not, go to the PANEL_9 label
+08D7: 0@ = panel $Panel active_row  // get the line number
+if
+ 0@ == 0 // if the first line is selected
+jf @PANEL_3 // If not, go to the PANEL_3 label
+00BE: text_clear_all // remove all text
+00BA: show_text_styled GXT 'MTG02F' time 3000 style 5
+// display the text on the screen
+jump @PANEL_9 // Go to the PANEL_9 label
+
+:PANEL_3
+if
+ 0@ == 1 // if the second line is selected
+jf @PANEL_4
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME1' time 3000 style 5
+jump @PANEL_9
+
+:PANEL_4
+if
+ 0@ == 2
+jf @PANEL_5
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME2' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_5
+if
+ 0@ == 3
+jf @PANEL_6
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME3' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_6
+if
+ 0@ == 4
+jf @PANEL_7
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME4' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_7
+if
+ 0@ == 5
+jf @PANEL_8 
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME5' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_8
+if
+ 0@ == 6  // if the seventh line is selected
+jf @PANEL_9 
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME6' time 3000 style 5 
+ 
+:PANEL_9
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_2 // if F or ENTER is not pressed 
+0581: toggle_radar 1 // returning the radar
+03E6: remove_text_box // remove text_box
+08DA: remove_panel $PANEL // remove the panel
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+// Returning control to the player
+end_thread
+```
+
+In this example, the panel will be on the screen until the F or ENTER key is pressed and if it is pressed, we return control to the player and end the flow.
+
+:::warning
+If you have finished reading this article, I want to share with you another important requirement for panels, namely:
+GTA San Andreas has a limit for panels. You can only display two panels at a time, if you try to display more, the game crashes.
+:::
+<script src="../../js/main.min.js"></script>

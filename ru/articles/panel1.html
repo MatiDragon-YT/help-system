@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Панель, или  список товаров. Часть I</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+При покупке одежды, оружия, экспорте транспорта нам предлагается список товаров и услуг, а также их стоимость. Выбрав один из пунктов, мы имеем возможность приобрести этот товар. Как же реализована эта возможность?
+
+В GTA San Andreas для этих целей применяется пара опкодов:
+```sb3
+08D4: $Panel = create_panel_with_title 'IE09' position 29.0 170.0 width 180.0 columns 1 interactive 1 background 1 alignment 0
+08DB: set_panel $Panel column 0 header 'DUMMY' data 'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'
+```
+
+Опкодом 08D4: создаем панель с названием 'IE09'\
+в координатах 29.0 170.0, это координаты левого верхнего угла панели\
+ширина панели - 180.0,\
+количество столбцов – 1\
+interactive – 1 можно выбирать из списка, 0 – нет выбора\
+background – 1 будет черный фон, 0 - прозрачно\
+alignment 0 выравнивание текста, 0 - по центру , 1 - по левому краю, 2 - по правому.
+
+Опкодом 08DB: устанавливаем в панели `$Panel` для первого столбца название этого столбца `'DUMMY'` и названия строк `'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'`.
+Максимальное количество строк в столбце – 12, если необходимо использовать только 7, как в нашем случае, то остальные неиспользуемые записываются с названием `'DUMMY'`.
+`'DUMMY'` – без названия.
+`'IE09'`-`'IE15'` – GXT текст из GXT таблицы `'MAIN'`\
+Для примера, создадим панель
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+01B4: toggle_player $PLAYER_CHAR can_move 0 // обездвиживаем игрока 
+0512: show_permanent_text_box 'IE20' //выводим text_box
+0581: toggle_radar 0 // убираем радар
+08D4: $PANEL = create_panel_with_title 'IE09' position 29.0 170.0 width 180.0 columns 1 interactive 1 background 1 alignment 0  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+ 
+:PANEL_3
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_3
+0581: toggle_radar 1 //возвращаем радар
+03E6: remove_text_box // убираем text_box
+08DA: remove_panel $PANEL //удаляем панель
+01B4: toggle_player $PLAYER_CHAR can_move 1 // возвращаем управление игроком  
+end_thread
+```
+Сейчас он демонстрирует только вывод панели и при нажатии на кнопку F или ENTER убираем панель. Теперь необходимо сделать возможность выбора. Нумерация строк и столбцов начинается с 0.
+Для того, чтобы определить, какая строка выбрана применяется опкод\
+`08D7: 0@ = panel $Panel active_row`\
+т.е. записываем в переменную `0@` номер строки.
+Нам необходимо определиться, что будет происходить при выборе строки.
+Сделаем при выборе одного из пунктов меню вывод текста
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+01B4: toggle_player $PLAYER_CHAR can_move 0 // обездвиживаем игрока 
+0512: show_permanent_text_box 'IE20' //выводим text_box
+0581: toggle_radar 0 // убираем радар
+08D4: $PANEL = create_panel_with_title 'IE09' position 29.0 170.0 width 180.0 columns 1 interactive 1 background 1 alignment 0  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'IE16' 'IE10' 'IE11' 'IE12' 'IE13' 'IE14' 'IE15' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+
+
+:PANEL_2
+wait 0
+if 
+00E1: player 0 pressed_key 16 // если нажата клавиша «ПРОБЕЛ» 
+jf @PANEL_9 //если нет, то переходим на метку PANEL_9
+08D7: 0@ = panel $Panel active_row  // получаем номер строки
+if
+ 0@ == 0 //если выбрана первая строка
+jf @PANEL_3 // если нет, то переходим на метку PANEL_3
+00BE: text_clear_all // убираем весь текст
+00BA: show_text_styled GXT 'MTG02F' time 3000 style 5
+// выводим текс на экран
+jump @PANEL_9 // переходим на метку PANEL_9
+
+:PANEL_3
+if
+ 0@ == 1 // если выбрана вторая строка
+jf @PANEL_4
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME1' time 3000 style 5
+jump @PANEL_9
+
+:PANEL_4
+if
+ 0@ == 2
+jf @PANEL_5
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME2' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_5
+if
+ 0@ == 3
+jf @PANEL_6
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME3' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_6
+if
+ 0@ == 4
+jf @PANEL_7
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME4' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_7
+if
+ 0@ == 5
+jf @PANEL_8 
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME5' time 3000 style 5 
+jump @PANEL_9
+
+:PANEL_8
+if
+ 0@ == 6  // если выбрана седьмая строка
+jf @PANEL_9 
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME6' time 3000 style 5 
+ 
+:PANEL_9
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_2 //если не нажата клавиша F или ENTER 
+0581: toggle_radar 1 // возвращаем радар
+03E6: remove_text_box // убираем text_box
+08DA: remove_panel $PANEL // удаляем панель
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+// возвращаем управление игроком 
+end_thread
+```
+
+В этом примере панель будет на экране до тех пор, пока не будет нажата клавиша F или ENTER и если она будет нажата, то возвращаем игроку управление, и завершаем поток.
+
+:::warning
+Если вы дочитали это статью, то хочу с вами поделиться еще одним немаловажным требованиям к панелям, а именно:
+В GTA San Andreas существует ограничение для панелей. Одновременно на экран можно выводить только две панели, если пытаться вывести больше игра вылетает
+:::
+<script src="../../js/main.min.js"></script>

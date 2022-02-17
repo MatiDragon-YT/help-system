@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Panels of elements. Part II</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+[continuing. [start read here](panel1.md)].
+
+In the first part we looked at a simple variant of the panel, now we will add a dependence on the amount of money the player has. And, accordingly, it is always interesting to know how much the product is worth, for this we will add a second column.
+Let's use the opcode:
+
+```sb3
+08D6: set_panel $Panel column 1 alignment 2
+```
+
+But with this opcode we only added a column, now we need to add rows.
+
+```sb3
+08EE: set_panel $Panel column 1 row 0 text_1number GXT 'DOLLAR' number 2@  // $~1~
+08EE: set_panel $Panel column 1 row 1 text_1number GXT 'DOLLAR' number 3@  // x ~1~
+08EE: set_panel $Panel column 1 row 2 text_1number GXT 'DOLLAR' number 4@  // $~1~
+```
+
+Let's redo our script so that the panel itself does not appear from the beginning of the game, but if the player is in a certain place and has enough cash. 
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+if and
+0038:   $ONMISSION == 0 
+0256:   player $PLAYER_CHAR defined 
+0102: actor $PLAYER_ACTOR near_point 2486.2712 -1650.4073 13.4805 radius 1.0 1.0 1.0 sphere 1
+jf @PANEL_1 
+if
+010A:   player $PLAYER_CHAR money > 100 
+// Check if the player has the right amount of money
+jf @PANEL_5
+2@ = 100 // value of the product
+3@ = 120 // value of the product
+4@ = 150 // value of the product
+5@ = 200 // value of the product
+6@ = 220 // value of the product
+7@ = 250 // value of the product
+8@ = 270 // value of the product
+01B4: toggle_player $PLAYER_CHAR can_move 0 
+0512: show_permanent_text_box 'AMMU_H'  
+0581: toggle_radar 0 
+08D4: $PANEL = create_panel_with_title 'AMMUN' position 29.0 170.0 width 300.0 columns 2 interactive 1 background 1 alignment 1  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'HOTKNIF' 'KATANA' 'BASEBAT' 'CHAINSA' 'GA_12' 'GUN8' 'GUN5' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+08D6: set_panel $PANEL column 1 alignment 1 
+08EE: set_panel $Panel column 1 row 0 text_1number GXT 'DOLLAR' number 2@  // $~1~
+08EE: set_panel $Panel column 1 row 1 text_1number GXT 'DOLLAR' number 3@  // x ~1~
+08EE: set_panel $Panel column 1 row 2 text_1number GXT 'DOLLAR' number 4@  // $~1~
+08EE: set_panel $Panel column 1 row 3 text_1number GXT 'DOLLAR' number 5@  // $~1~
+08EE: set_panel $Panel column 1 row 4 text_1number GXT 'DOLLAR' number 6@  // x ~1~
+08EE: set_panel $Panel column 1 row 5 text_1number GXT 'DOLLAR' number 7@  // $~1~
+08EE: set_panel $Panel column 1 row 6 text_1number GXT 'DOLLAR' number 8@  // $~1~
+
+:PANEL_3
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_2
+0581: toggle_radar 1 
+03E6: remove_text_box 
+08DA: remove_panel $PANEL 
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+wait 1000 
+jump @PANEL_1
+
+:PANEL_5
+03D6: remove_styled_text 'NOMONEY'  
+00BC: text_highpriority 'NOMONEY'  3000 ms  1 
+0002: jump @PANEL_1
+```
+
+Now we have a list of items and their prices. Everything is fine, but the panel itself looks terrible.
+
+This happens because we didn't specify a column size and so the first and second columns are created with the same width as the panel. Let's fix this.
+`09DB: set_panel $Panel column 0 width 230` – set the width of the first column to 230.
+`09DB: set_panel $Panel column 1 width 70` – respectively for the second - 70.
+
+Now we have to add the result of selecting a line, that is, what will happen when you select one of the lines in our panel. Let's use the variant discussed in the first article. It's very convenient to use a transition table for this purpose, but for the simplicity of the experiment we won't be distracted by complicated matters.
+This is what we got:
+
+```sb3
+:PANEL
+thread 'PANEL'
+
+:PANEL_1
+wait 0
+if and
+0038:   $ONMISSION == 0 
+0256:   player $PLAYER_CHAR defined 
+0102: actor $PLAYER_ACTOR near_point 2486.2712 -1650.4073 13.4805 radius 1.0 1.0 1.0 sphere 1
+jf @PANEL_1 
+if
+010A:   player $PLAYER_CHAR money > 100 
+// Check if the player has the right amount of money
+jf @PANEL_5
+2@ = 100 // value of the product
+3@ = 120 // value of the product
+4@ = 150 // value of the product
+5@ = 200 // value of the product
+6@ = 220 // value of the product
+7@ = 250 // value of the product
+8@ = 270 // value of the product
+01B4: toggle_player $PLAYER_CHAR can_move 0 
+0512: show_permanent_text_box 'AMMU_H'  
+0581: toggle_radar 0 
+08D4: $PANEL = create_panel_with_title 'AMMUN' position 29.0 170.0 width 300.0 columns 2 interactive 1 background 1 alignment 1  
+08DB: set_panel $PANEL column 0 header 'DUMMY' data 'HOTKNIF' 'KATANA' 'BASEBAT' 'CHAINSA' 'GA_12' 'GUN8' 'GUN5' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY' 'DUMMY'  
+08D6: set_panel $PANEL column 1 alignment 1 
+08EE: set_panel $Panel column 1 row 0 text_1number GXT 'DOLLAR' number 2@  // $~1~
+08EE: set_panel $Panel column 1 row 1 text_1number GXT 'DOLLAR' number 3@  // x ~1~
+08EE: set_panel $Panel column 1 row 2 text_1number GXT 'DOLLAR' number 4@  // $~1~
+08EE: set_panel $Panel column 1 row 3 text_1number GXT 'DOLLAR' number 5@  // $~1~
+08EE: set_panel $Panel column 1 row 4 text_1number GXT 'DOLLAR' number 6@  // x ~1~
+08EE: set_panel $Panel column 1 row 5 text_1number GXT 'DOLLAR' number 7@  // $~1~
+08EE: set_panel $Panel column 1 row 6 text_1number GXT 'DOLLAR' number 8@  // $~1~
+09DB: set_panel $Panel column 0 width 230 
+09DB: set_panel $Panel column 1 width 70
+
+:PANEL_2
+wait 0
+if 
+00E1: player 0 pressed_key 16 // if the "SPACE" key is pressed
+jf @PANEL_3
+08D7: 0@ = panel $Panel active_row // we record the line number
+gosub @PANEL_RESULT // go to the PANEL_RESULT label
+
+:PANEL_3
+wait 0
+if
+00E1:   player 0 pressed_key 15
+jf @PANEL_2
+0581: toggle_radar 1 
+03E6: remove_text_box 
+08DA: remove_panel $PANEL 
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+wait 1000 
+jump @PANEL_1
+
+:PANEL_5
+03D6: remove_styled_text 'NOMONEY'  
+00BC: text_highpriority 'NOMONEY'  3000 ms  1 
+0002: jump @PANEL_1
+
+:PANEL_RESULT 
+010B: 14@ = player $PLAYER_CHAR money // write in a variable the amount of money of the player
+if
+ 0@ == 0 // if the first line is selected
+jf @PANEL_RESULT_2
+if
+002D: 14@ >= 2@ // the amount of money a player has is greater than or equal to the value of the item
+jf @PANEL_RESULT_8 
+// If not, then display the inscription that the player does not have enough money
+00BE: text_clear_all // remove all text
+00BA: show_text_styled GXT 'MTG02F' time 3000 style 5
+1@ = 0 // enter a variable
+0062: 1@ -= 2@ // subtract the value of the product
+0109: player $PLAYER_CHAR money += 1@ 
+// set the total amount of money for the player, taking into account the purchase of goods 
+jump @PANEL_RESULT_9 // Go to the exit marker
+
+:PANEL_RESULT_2
+if
+ 0@ == 1
+jf @PANEL_RESULT_3
+if
+002D: 14@ >= 3@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME1' time 3000 style 5
+1@ = 0
+0062: 1@ -= 3@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_3
+if
+ 0@ == 2
+jf @PANEL_RESULT_4
+if
+002D: 14@ >= 4@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME2' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 4@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_4
+if
+ 0@ == 3
+jf @PANEL_RESULT_5
+if
+002D: 14@ >= 5@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME3' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 5@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_5
+if
+ 0@ == 4
+jf @PANEL_RESULT_6
+if
+002D: 14@ >= 6@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME4' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 6@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_6
+if
+ 0@ == 5
+jf @PANEL_RESULT_7 
+if
+002D: 14@ >= 7@ 
+jf @PANEL_RESULT_8
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME5' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 7@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_7
+if
+ 0@ == 6
+jf @PANEL_RESULT_9
+if
+002D: 14@ >= 8@ 
+jf @PANEL_RESULT_8 
+00BE: text_clear_all 
+00BA: show_text_styled GXT 'MTIME6' time 3000 style 5 
+1@ = 0
+0062: 1@ -= 8@
+0109: player $PLAYER_CHAR money += 1@ 
+jump @PANEL_RESULT_9
+
+:PANEL_RESULT_8 // reporting a cash shortage
+03D6: remove_styled_text 'NOMONEY'  
+00BC: text_highpriority 'NOMONEY'  3000 ms  1 
+
+:PANEL_RESULT_9 // exit mark
+return // back to the next line after gosub @PANEL_RESULT.
+```
+
+That's actually all there is to know about the panels.
+
+<script src="../../js/main.min.js"></script>

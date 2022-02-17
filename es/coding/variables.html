@@ -22,9 +22,9 @@ $100
 $____
 ```
 
-{% hint style="info" %}
+:::info
 Una variable que conste en su nombre de dígitos se denomina variable `DMA` (**D**irect **M**emory **A**ddress). Mire los [Alloc](built-in-commands.md#alloc).
-{% endhint %}
+:::
 
 Sus valores están disponibles desde cualquier lugar del código.
 
@@ -50,9 +50,9 @@ Un nombre de variable local solo puede ser un número seguido de `@`.
 
 Sus valores están disponibles solo dentro del script actual o la misión.
 
-{% hint style="warning" %}
+:::warning
 El número de variables locales por script es estrictamente [limitado](../scm-documentation/gta-limits.md).
-{% endhint %}
+:::
 
 ### **Variables Temporizadoras**
 
@@ -69,13 +69,13 @@ Cada script o misión tiene 2 variables locales especiales llamadas 'TIMERA' y '
 0662: printstring "han pasado 2 segundos" // mostrara el mensaje
 ```
 
-{% hint style="info" %}
+:::info
 Tenga en cuenta que los nombres `TIMERA` y `TIMERB` solo están disponibles a partir de Sanny Builder v3.3.0. Los scripts más antiguos tienen estos temporizadores como variables numéricas `16@`, `17@` (GTA3, VC) o `32@`, `33@` (SA).
-{% endhint %}
+:::
 
 ## Constructor VAR..END
 
-Variables are commonly used in the expressions. If the right operand is a number constant, the opcode can be omitted:
+Las variables se utilizan habitualmente en las expresiones. En el caso de que el operando derecho sea una constante numérica, se puede omitir el opcode:
 
 ```sb3
 $var = 0
@@ -126,7 +126,7 @@ Se admiten los siguientes tipos de variables:
 
 Los tipos de las variables locales tambien se pueden decl.
 
-{% hint style="info" %}
+:::info
 Una vez declarado el tipo de la variable, se utiliza para todo el código que sigue a la declaración.\
 Puede volver a declarar variables para establecer el nuevo tipo:
 
@@ -153,7 +153,7 @@ end_thread
 En el script `'Food'` está la variable `10@` como flotante. Y en `'Loop'` esta `10@` como entero.
 
 Puede redeclarar variables tantas veces como lo necesite.
-{% endhint %}
+:::
 
 ## Forma de Dclaración más Corta
 
@@ -194,9 +194,9 @@ El compilador enlaza una nueva variable local a cada nombre. En el ejemplo anter
 05AA: 2@ = 'CJ'
 ```
 
-{% hint style="info" %}
+:::info
 Debido a [limitaciones de diseño](https://github.com/sannybuilder/dev/issues/32) esta característica solo está disponible en scripts de CLEO.
-{% endhint %}
+:::
 
 ## Inicialización de Variable
 

@@ -11,9 +11,9 @@
 
 Sanny Builder admite la escritura de contenido sin formato en un archivo de salida. Todos los valores dentro de esta construcción se escriben en un archivo de salida sin controles.
 
-{% hint style="warning" %}
+:::warning
 Use esta función solo si sabe lo que está haciendo. Cualquier error corromperá el archivo del script y lo hará ilegible para el juego o un editor de scripts.
-{% endhint %}
+:::
 
 ## Sintaxis
 
@@ -31,7 +31,7 @@ Esta secuencia de bytes es la versión compilada del opcode `0004: $2 = 1`, por 
 
 Debe especificar cada byte que va a escribir con dos dígitos. Todos los espacios son ignorados. El compilador trata cualquier par de dígitos con un espacio entre ellos como un valor de un solo byte. Un solo dígito (`0..F`) tiene el prefijo `0`. Entonces, por ejemplo, una secuencia de tres letras `A B C` se compilará como el número `0xAB0C`.
 
-El constructor `HEX..END` tambien acepta [cadenas literarias](data-types.md#string-literals), [etiquetas](data-types.md#labels), [variables globales](variables.md#global-variables), [nombres de modelos](data-types.md#model-names). Se compilan sin un byte del tipo de datos que los preceda. 
+El constructor `HEX..END` tambien acepta [cadenas literarias](data-types.md#cadenas-literarias), [etiquetas](data-types.md#etiquetas), [variables globales](variables.md#variables-globales), [nombres de modelos](data-types.md#nombres-de-modelos). Se compilan sin un byte del tipo de datos que los preceda. 
 
 ```sb3
 :get_offset

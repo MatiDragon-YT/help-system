@@ -13,13 +13,13 @@ Ciertos elementos de código deben comenzar o terminar con caracteres específic
 
 ## Variables
 
-Una [variable global](variables.md#global-variables) comienza con `$` seguido de un identificador válido (cualquier combinación de letras, dígitos y `_`).
+Una [variable global](variables.md#variables-globales) comienza con `$` seguido de un identificador válido (cualquier combinación de letras, dígitos y `_`).
 
 ```sb3
 0004: $MyVar = 100
 ```
 
-Una [variable local](variables.md#local-variables) como nombre solo puede tener un número seguido de `@`. El número es el índice de variable local en la lista de variables locales [asignadas](../scm-documentation/gta-limits.md) a este script o una misión.
+Una [variable local](variables.md#variables-locales) como nombre solo puede tener un número seguido de `@`. El número es el índice de variable local en la lista de variables locales [asignadas](../scm-documentation/gta-limits.md) a este script o una misión.
 
 ```sb3
 0006: 100@ = 10
@@ -36,7 +36,7 @@ Las variables `ADMA` no afectan al tamaño del espacio de variables globales en 
 
 ## Etiquetas
 
-Las etiquetas se utilizan para hacer referencia a la ubicación del código desde incondicionales (opcode `0002`, `0050`) o saltos condicionales (opcode `004D`). Empiezan con `:` seguido de un identificador válido (un nombre de etiqueta).
+Las etiquetas (labels, en Ingles) se utilizan para hacer referencia a la ubicación del código desde incondicionales (opcode `0002`, `0050`) o saltos condicionales (opcode `004D`). Empiezan con `:` seguido de un identificador válido (un nombre de etiqueta).
 
 ```sb3
 :MyLabel
