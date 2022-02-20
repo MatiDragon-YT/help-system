@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Conditions</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Now I will tell you about transition operators. Transitions can be conditional or unconditional. There are two types of unconditional transitions: with and without return. For a transition with return there is the command gosub @"There must be a transition there" and for a transition without return there is the jump @"There must be a transition there". The difference between the return and irrevocable jump is that with a return jump the script will execute everything after the "there must be a jump" line until it encounters a return command, after which it skips to the line after gosub @"there must be a jump", while with a nonrefundable jump the jump @"there must be a jump" line will skip to the "there must be a jump" line and all commands after the jump will be ignored. Conditional jumps are always irrevocable. See also about jumps [here].(#).
+A conditional transition always occurs after a condition is met. All conditions consist of three parts:
+1 - declaration of the condition itself.
+2 - writing of subconditions.
+3 - what to do after (not) fulfillment or simply transition.
+Any condition starts with a line with the text "if", if you want all subconditions (they are also called checks) of your condition to be satisfied, you must put "and" after "if" (with a space between them), and if you want to check if at least one subcondition is satisfied, put "or" instead of "and".
+
+For example:
+
+1) Check with fulfillment of all subconditions:
+
+```sb3
+create_thread @Test1 
+  
+:Test1
+wait 0
+if and
+  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
+  8184: not actor $PLAYER_ACTOR health >= 99
+jf @Test1
+actor.health($PLAYER_ACTOR) = 100
+end_thread 
+```
+
+The principle is as follows:
+If the player (CJ) has stopped at the given coordinates `$X $Y $Z`, more precisely at the radius `$X_R $Y_R $Z_R` from these coordinates, and if his life is less than 100, then his life will again become 100. The parameter 0 at the end of the first subcondition indicates that the player does not stop in a sphere (red marker). If the parameter had been 1, we would have created a sphere first, but about spheres later. The opcode `jf @Test1` makes the jump to `Test1` if both of our conditions are not met.
+
+2) Check with fulfillment of at least one subcondition:
+
+```sb3
+create_thread @Test2
+
+:Test2
+wait 0
+if or
+  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
+  8184: not actor $PLAYER_ACTOR health >= 99
+jf @Test2
+actor.health($PLAYER_ACTOR) = 100
+end_thread
+```
+
+Here it is described that if the player stopped at a given radius from the point with coordinates `$X $Y $Z` or if the player's life became less than 100, then the life will become 100. Here, if at least one subcondition is met, our action will be executed, i.e. CJ's life will become 100.
+Life is an integer, but coordinates and radii are fractional. If you even want to use a radius of 10, you have to write 10.0.
+To make the thread not a one-time use it is necessary to put "jump to the beginning" instead of "end_thread" at the end, in this case it is `Jump @Test2`.
+Here is an example of the first (Test1) script, but with coordinates, radiuses... :
+
+```sb3
+create_thread @Example1 
+
+:Example1
+wait 0
+if and
+  0102: actor $PLAYER_ACTOR near_pt 2505.4812 -1687.4213 13.5543 radius 10.0 10.0 10.0 sphere 0
+  8184: not actor $PLAYER_ACTOR health >= 99
+jf @Example1
+actor.health($PLAYER_ACTOR) = 100
+jump @Example1
+```
+
+If a player's life is less than 100 and he is standing near CJ's garage, his life becomes 100. Note that this script is looped, it always works because there is a transition at its end to its beginning.
+From the beginning, insert "create_thread @Example1" after another "create_thread", the second can be found by searching. Then look for "----Mission 0----" and before it insert everything that goes in our script from ":Example1" to "jump @Example1" inclusive. Press "F7", and wait for compilation. When it's compiled press "F8". - start SA and start a new game.
+\n
+[red][Attention!] In the checks there is only ">", there is no "<", instead you can write the word "not" before the whole opcode, it will be the same as "<", this applies to commands without code words. In the affirmation checks (which have no "not") the opcode (code word) starts with "0" and in all denial checks the same opcode is used, but the number "8" is used instead of "0". So if you have a statement, you can change the first digit, i.e. "0" to "8", and put "not" after the ":" sign, and that will be a negative check, and vice versa.
+For example:
+Here I have a check "player swimming in water", it has the following form:
+
+```sb3
+:Label1
+wait 0 ms
+if // If we have only one subcondition or check, 
+// then there is no "or" or "and" to write.
+0965: actor $PLAYER_ACTOR swimming_in_water
+jf @Label1 // If the subcondition is not fulfilled, then go to the beginning.
+```
+
+Suppose my script should perform actions when the player is not in the water, but my check says that the script action will not proceed if the player is not in the water, hence the need to check "the player is not swimming". Let's replace the original check with a check with the opposite value. And here's what we got:
+```sb3
+8965: not actor $PLAYER_ACTOR swimming_in_water
+```
+What I did, I replaced the first digit of the opcode, i.e. "0" with "8" and put the word "not" after the colon.
+And if you have a rejection check and you need to make a confirmation check, then look for the first digit of the opcode (it must be 8), then change it to 0, remove the word "not" and get your confirmation check.
+You can do this with all checks that have code words.
+The maximum number of checks is 7, if you need more, break them up into several parts,
+for example:
+We have 10 models that we need to check for load, but the maximum number of checks is only 7, so split the checks into two parts, the first will be 7, and the second 3, and this is what you get:
+
+````sb3
+:Test
+wait 0
+if and
+  model.Available(#1)
+  model.Available(#2)
+  model.Available(#3)
+  model.Available(#4)
+  model.Available(#5)
+  model.Available(#6)
+  model.Available(#7)
+jf @Test
+if and
+  model.Available(#8)
+  model.Available(#9)
+  model.Available(#10)
+jf @Test
+```
+
+That's the kind of check that came out. If something is not clear, go to [https://gtamaps.net/forum](https://gtamaps.net/forum) .
+The player himself is also an actor, only when we work with opcodes (commands) that have the word "player" we should use `$PLAYER_CHAR`, and when we work with actors we should use `$PLAYER_ACTOR`.
+
+<script src="../../js/main.min.js"></script>

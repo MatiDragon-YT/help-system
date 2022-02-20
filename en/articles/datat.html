@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Data Types</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Here is a revised edition of the article, including all the latest information about data types in SB.
+
+Newbies often don't immediately understand what Integer values mean, what String is, etc. This article is dedicated to them. Conditionally, the Data Types used in SB can be divided into **numbers** and **strings**. The base type of data is numbers. They, as you know, are of two types: **integer** and **fractional**. Important note: the difference between them lies not so much in the meaning of the number itself, as in its notation. For example, number 5.0 is an integer from mathematical point of view. In the scripts, however, it will be referred to as a fractional or floating-point value. All numbers that have a dot in their spelling are fractional. Example:
+
+```sb3
+50.001
+-10.750
+0.0
+```
+
+For numbers between -1 and 1 you may not write 0 at the beginning. I.e. 0.0 equals .0\
+\
+Since the way a number is written does matter, there may be errors when the scriptwriter forgets to write a period. The compiler then treats the number as an integer. Without going into specific details, I will say that the value of this number will change slightly as a consequence. In the game after this you may have problems. So keep an eye on this circumstance.
+Some opcodes in the game require the use of fractional values. This refers to the speed of movement of certain objects, health, armor, etc. So try to know exactly what type you need to use.
+
+Sanny Builder can help you in this case: inside classes you can call a hint, about the types of parameters. The hint appears automatically when you put a parenthesis after a class member name:
+
+```sb3
+Car.PutAt(
+```
+
+You will see that the 2nd, 3rd, 4th parameters have type **Float**. Also the hint for this class member can be called at any time by pressing **Ctrl+Shift+Space**.
+
+```sb3
+Car.PutAt($Car, {press Ctrl+Shift+Space here} )
+```
+
+A similar data type is a **handle*. Strictly speaking, this is a simple number that is a pointer to some object in game memory. Again, omitting the details, I will say that the handle is the "name" of the object (machine, actor, etc.). By this name you can refer to the object and perform certain actions on it. Handles are contained in variables of integer type (Integer values). Their contents are filled after using special opcode - constructor. Almost every SB class has such constructor.
+These are opcode classes for dynamic objects that are created directly in the game. For example actor, player, object etc. Non-dynamic objects (garages) or certain types of objects that are not created during the game (models) do not have such a constructor. The constructor has the same name for all classes - Create. After it is triggered, the game creates a pointer to the new object in memory and writes it into a variable:
+
+```sb3
+$ActorHandle = Actor.Create(CivMale, #MALE01, 0.0, 0.0, 0.0)
+```
+
+Now the actor's handle is stored in the `$ActorHandle` variable, and you can use it to do whatever you want with it. You can get a handle not only by creating a new actor (or anything else). There are special opcodes in the game that allow you to "grab" a random passerby and turn him into an actor in this way. But that's a topic for a separate conversation.
+As already mentioned, the handle is an ordinary number. Its value can easily be found out and, in principle, any arithmetic and logical operations can be performed with a handle. That is why all mathematical opcodes involving integers are also valid for handles. This is sometimes stated in their comments:
+
+```sb3
+0084: $IntVar = $ActorHandle // integer values and handles
+```
+
+Finally, the final type is **string*. It has been used in all GTAs, but only in SA has it evolved.
+String is a string, i.e. a set of characters, each of which has its own numerical expression. There is a special table of codes (ASCII) that contains the values of all the characters. Two kinds of strings are used in SA scripts: fixed and variable length. The latter type is NOT supported in GTA3 and VC.
+Fixed-length strings **(fixed-length string)** can contain up to and including 15 characters. If the string is shorter than that, the remainder is left blank. These strings are enclosed in single quotes:
+
+```sb3
+05AA: s$MyString = 'MY_STR'
+```
+
+Note that a special kind of variables are used to work with strings. They are denoted by the letter s: s$GlobalVar, 1@s.
+This kind of strings can also be used as a handle. Note the command
+
+```sb3
+thread 'MAIN'
+```
+
+MAIN in this case is the name of the thread. Using it, you can terminate a thread from anywhere
+
+```sb3
+end_thread_named 'MAIN'
+```
+
+Or another example:
+
+```sb3
+07D3: 'HOUSE' = init_external_script_named_handle 23 (BURG_BRAINS)
+```
+
+'HOUSE' is the handle of the external script.
+
+Strings, other than the handles function, are used as identifiers of individual fields in the .GXT file.
+For example:
+
+```sb3
+00BA: text_styled 'STAD_01' 1000 ms 2
+```
+
+Another kind of strings are **variable-length strings**. They are denoted by double quotes and can contain more characters than the previous type. The exact number is determined by the opcode itself.
+This type can be used for the same purposes as the previous one. Most often it is used in the original scripts to specify animation names
+
+```sb3
+04ED: load_animation "LOWRIDER"
+```
+
+Variables containing such strings are denoted by the symbol v: v$GlobalVar, 1@v.
+
+There are no restrictions on using different kinds of strings. This means that you can use either the first or the second type in the opcode, at your discretion. However, keep in mind that the limit on the number of characters is set by the opcode itself. For example, you can use the code:
+
+```sb3
+03A4: name_thread 'LONGNAME'
+```
+
+However, this opcode only uses the first 7 characters of the string. This means that the stream after that will have the name LONGNAM, not LONGNAME as you wanted.
+
+All basic types of operations can be performed with strings: assignment, comparison, concatenation (string addition).
+
+**1. Assignment**
+
+```sb3
+05AA: s$Var = 'IE16' // the string IE16 is written in the variable
+06D1: v$Var = "NIL" // the string NIL is written to the variable
+```
+
+Note, not only a string but also a string variable can be on the right. For example,
+
+```sb3
+05AA: s$Var = s$Var2
+```
+
+**2. Comparison**
+
+```sb3
+05AD: s$Var == s$Var2 
+// the check works if the contents of the variables are the same
+08F9: v$Var == v$Var2 
+// the check works if the contents of the variables are the same
+```
+
+Note, not only a string variable, but also a string can be on the right. 
+For example,
+
+```sb3
+08F9: v$Var == "string"
+```
+
+The checks are case-sensitive, but since all strings are compiled in upper case by default, this fact will only matter if the letter case option "As is" is enabled.
+
+You can also check if a string is empty. There are as many as 4 identical opcodes for this:
+
+```sb3
+0844:   string s$Var empty
+0845:   string 0@s empty
+0846:   string v$Var empty
+0847:   string 0@v empty
+```
+
+All these checks work exactly the same way and work if the string does not contain characters. 
+
+**3. String addition**
+
+```sb3
+098B: s$result = s$var1 + s$var2
+098C: s$result = s$var1 + s$var2
+```
+
+Both of these opcodes are the same. All parameters must be string variables. The principle is as follows: The string from var1 is taken, added to the string from var2, and the result is written to the variable result.
+
+The data types listed above are also inherent to elements of arrays. That is, arrays can be of type Integer, Float, String. For more information about arrays, see. [here](../coding/arrays.md)
+
+22.02.2007
+
+<script src="../../js/main.min.js"></script>

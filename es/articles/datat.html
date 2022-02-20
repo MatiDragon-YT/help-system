@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Tipos de Datos</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Aquí hay una edición revisada del artículo, que incluye toda la información más reciente sobre los tipos de datos en SB.
+
+Los novatos a menudo no entienden inmediatamente lo que significan los valores Integer, lo que es String, etc. Este artículo está dedicado a ellos. Condicionalmente, los tipos de datos utilizados en SB se pueden dividir en **números** y **cadenas**. El tipo de datos base son los números. Estos, como sabes, son de dos tipos: **entero** y **fraccionario**. Nota importante: la diferencia entre ellos no radica tanto en el significado del número en sí, como en su notación. Por ejemplo, el número 5,0 es un número entero desde el punto de vista matemático. Sin embargo, en los guiones se le denominará valor fraccionario o de punto flotante. Todos los números que llevan un punto en su grafía son fraccionarios. Ejemplo:
+
+```sb3
+50.001
+-10.750
+0.0
+```
+
+Para los números entre -1 y 1 no se puede escribir el 0 al principio. Es decir, 0,0 es igual a .0\
+\
+Dado que la forma de escribir un número es importante, puede haber errores cuando el guionista se olvida de escribir un punto. El compilador trata entonces el número como un entero. Sin entrar en detalles específicos, diré que el valor de este número cambiará ligeramente como consecuencia. En el juego después de esto puede tener problemas. Así que mantén un ojo en esta circunstancia.
+Algunos opcodes del juego requieren el uso de valores fraccionarios. Esto se refiere a la velocidad de movimiento de ciertos objetos, salud, armadura, etc. Así que trata de saber exactamente qué tipo necesitas usar.
+
+Sanny Builder puede ayudarte en este caso: dentro de las clases puedes llamar a una pista, sobre los tipos de parámetros. La pista aparece automáticamente cuando se pone un paréntesis después de un nombre de miembro de la clase:
+
+```sb3
+Car.PutAt(
+```
+
+Verás que los parámetros 2, 3 y 4 tienen el tipo **Float**. Además, la sugerencia para este miembro de la clase puede ser llamada en cualquier momento presionando **Ctrl+Shift+Espacio**.
+
+```sb3
+Car.PutAt($Car, {pulse Ctrl+Shift+Espacio aquí} )
+```
+
+Un tipo de datos similar es un **handle*. Estrictamente hablando, se trata de un simple número que es un puntero a algún objeto en la memoria del juego. De nuevo, omitiendo los detalles, diré que el handle es el "nombre" del objeto (máquina, actor, etc.). Con este nombre puedes referirte al objeto y realizar ciertas acciones sobre él. Los "handles" están contenidos en variables de tipo entero (valores enteros). Su contenido se llena después de usar un opcode especial - constructor. Casi todas las clases SB tienen este constructor.
+Son clases opcode para objetos dinámicos que se crean directamente en el juego. Por ejemplo, actor, jugador, objeto, etc. Los objetos no dinámicos (garajes) o ciertos tipos de objetos que no se crean durante el juego (modelos) no tienen tal constructor. El constructor tiene el mismo nombre para todas las clases - Crear. Después de activarlo, el juego crea un puntero al nuevo objeto en la memoria y lo escribe en una variable:
+
+```sb3
+$ActorHandle = Actor.Create(CivMale, #MALE01, 0.0, 0.0, 0.0)
+```
+
+Ahora el handle del actor se almacena en la variable `$ActorHandle`, y puedes utilizarlo para hacer lo que quieras con él. Puedes obtener un handle no sólo creando un nuevo actor (o cualquier otra cosa). Hay opcodes especiales en el juego que te permiten "agarrar" a un transeúnte al azar y convertirlo en un actor de esta manera. Pero ese es un tema para una conversación aparte.
+Como ya se ha mencionado, el asa es un número ordinario. Su valor se puede averiguar fácilmente y, en principio, se puede realizar cualquier operación aritmética y lógica con un asa. Por eso, todos los opcodes matemáticos que implican números enteros son también válidos para los manejadores. Esto se indica a veces en sus comentarios:
+
+```sb3
+0084: $IntVar = $ActorHandle // valores enteros y handles
+```
+
+Por último, el último tipo es la **cadena*. Se ha utilizado en todos los GTA, pero sólo en SA ha evolucionado.
+String es una cadena, es decir, un conjunto de caracteres, cada uno de los cuales tiene su propia expresión numérica. Existe una tabla especial de códigos (ASCII) que contiene los valores de todos los caracteres. En los scripts SA se utilizan dos tipos de cadenas: de longitud fija y de longitud variable. Este último tipo NO está soportado en GTA3 y VC.
+Las cadenas de longitud fija **(fixed-length string)** pueden contener hasta 15 caracteres inclusive. Si la cadena es más corta, el resto se deja en blanco. Estas cadenas van entre comillas simples:
+
+```sb3
+05AA: s$MyString = 'MY_STR'
+```
+
+Tenga en cuenta que se utiliza un tipo especial de variables para trabajar con cadenas. Se denotan con la letra s: s$GlobalVar, 1@s.
+Este tipo de cadenas también se puede utilizar como asa. Tenga en cuenta el comando
+
+```sb3
+thread 'MAIN'
+```
+
+MAIN en este caso es el nombre del hilo. Usándolo, puedes terminar un hilo desde cualquier lugar
+
+```sb3
+end_thread_named 'MAIN'
+```
+
+U otro ejemplo:
+
+```sb3
+07D3: 'HOUSE' = init_external_script_named_handle 23 (BURG_BRAINS)
+```
+
+'HOUSE' es el handle del script externo.
+
+Las cadenas, aparte de la función handles, se utilizan como identificadores de campos individuales en el archivo .GXT.
+Por ejemplo:
+
+```sb3
+00BA: text_styled 'STAD_01' 1000 ms 2
+```
+
+Otro tipo de cadenas son las **cadenas de longitud variable**. Se indican con comillas dobles y pueden contener más caracteres que el tipo anterior. El número exacto viene determinado por el propio opcode.
+Este tipo puede utilizarse para los mismos fines que el anterior. La mayoría de las veces se utiliza en los scripts originales para especificar los nombres de las animaciones
+
+```sb3
+04ED: load_animation "LOWRIDER"
+```
+
+Las variables que contienen este tipo de cadenas se indican con el símbolo v: v$GlobalVar, 1@v.
+
+No hay restricciones para utilizar diferentes tipos de cadenas. Esto significa que puede utilizar el primer o el segundo tipo en el opcode, a su discreción. Sin embargo, tenga en cuenta que el límite del número de caracteres lo establece el propio opcode. Por ejemplo, puede utilizar el código
+
+```sb3
+03A4: name_thread 'LONGNAME'
+```
+
+Sin embargo, este opcode sólo utiliza los primeros 7 caracteres de la cadena. Esto significa que la cadena posterior tendrá el nombre LONGNAM, no LONGNAME como usted quería.
+
+Todos los tipos básicos de operaciones se pueden realizar con cadenas: asignación, comparación, concatenación (adición de cadenas).
+
+**1. Asignación**
+
+```sb3
+05AA: s$Var = 'IE16' // la cadena IE16 se escribe en la variable
+06D1: v$Var = "NIL" // la cadena NIL se escribe en la variable
+```
+
+Tenga en cuenta que no sólo una cadena sino también una variable de cadena puede estar a la derecha. Por ejemplo,
+
+```sb3
+05AA: s$Var = s$Var2
+```
+
+**2. Comparación**
+
+```sb3
+05AD: s$Var == s$Var2 
+// la comprobación funciona si el contenido de las variables es el mismo
+08F9: v$Var == v$Var2 
+// la comprobación funciona si el contenido de las variables es el mismo
+```
+
+Tenga en cuenta que no sólo una variable de cadena, sino también una cadena puede estar a la derecha. 
+Por ejemplo,
+
+```sb3
+08F9: v$Var == "string"
+```
+
+Las comprobaciones distinguen entre mayúsculas y minúsculas, pero como todas las cadenas se compilan por defecto en mayúsculas, este hecho sólo importará si la opción de mayúsculas y minúsculas "Tal cual" está activada.
+
+También puede comprobar si una cadena está vacía. Hay hasta 4 opcodes idénticos para esto:
+
+```sb3
+0844:   string s$Var empty
+0845:   string 0@s empty
+0846:   string v$Var empty
+0847:   string 0@v empty
+```
+
+Todas estas comprobaciones funcionan exactamente igual y funcionan si la cadena no contiene caracteres. 
+
+**3. Suma de cadenas**
+
+```sb3
+098B: s$result = s$var1 + s$var2
+098C: s$result = s$var1 + s$var2
+```
+
+Estos dos opcodes son iguales. Todos los parámetros deben ser variables de cadena. El principio es el siguiente: Se toma la cadena de var1, se añade a la cadena de var2, y el resultado se escribe en la variable result.
+
+Los tipos de datos mencionados anteriormente también son inherentes a los elementos de las matrices. Es decir, las matrices pueden ser de tipo Integer, Float, String. Para más información sobre arrays, ver. [aquí](../coding/arrays.md)
+
+22.02.2007
+
+<script src="../../js/main.min.js"></script>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Condiciones</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Ahora les hablaré de los operadores de transición. Las transiciones pueden ser condicionales o incondicionales. Hay dos tipos de transiciones incondicionales: con y sin retorno. Para una transición con retorno se utiliza el comando gosub @"Debe haber una transición allí" y para una transición sin retorno existe el salto @"Debe haber una transición allí". La diferencia entre un failback y un salto irreversible es que el script ejecutará todo lo que hay después de la línea "switch there" hasta que encuentre una orden de retorno, después de lo cual salta a la línea después de gosub @"switch there", mientras que un failback saltará a la línea "switch there" después de la línea de salto @"switch there" e ignorará cualquier orden después del salto. Los saltos condicionales son siempre irrevocables. Véase también [aquí] (#) para más información sobre los saltos.
+Los saltos condicionales siempre se producen después de que se cumpla cualquier condición. Hay tres tipos de condiciones:
+1 - declaración de la condición.
+2 - Redacción de subcondiciones.
+3 - qué hacer después de (no) la ejecución o sólo la transición.
+Cualquier condición comienza con una línea con el texto "si", si quieres que se cumplan todas las subcondiciones (también se llaman comprobaciones) de tu condición, debes poner "and" después de "si" (con un espacio entre ellas), y si quieres comprobar si se cumple al menos una subcondición, entonces en lugar de "and" pon "or".
+
+Por ejemplo:
+
+1) Comprobación con todas las condiciones secundarias cumplidas:
+
+```sb3
+create_thread @Test1 
+  
+:Test1
+wait 0
+if and
+  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
+  8184: not actor $PLAYER_ACTOR health >= 99
+jf @Test1
+actor.health($PLAYER_ACTOR) = 100
+end_thread 
+```
+
+El principio es el siguiente:
+Si el jugador(CJ) se ha detenido en las coordenadas dadas `$X $Y $Z`, más precisamente en un radio de `$X_R $Y_R $Z_R` desde estas coordenadas, y si su vida es menor de 100, entonces su vida volverá a ser 100. El parámetro 0 al final de la primera sub-condición indica que el jugador no está parado en una esfera (marcador rojo). Si el parámetro fuera 1, tendríamos que crear una esfera primero, pero sobre las esferas después. El opcode `jf @Test1` hace el salto a `Test1` si no se cumplen nuestras dos condiciones.
+
+2) Comprobación con al menos una subcondición cumplida:
+
+```sb3
+create_thread @Test2
+
+:Test2
+wait 0
+if or
+  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
+  8184: not actor $PLAYER_ACTOR health >= 99
+jf @Test2
+actor.health($PLAYER_ACTOR) = 100
+end_thread
+```
+
+Dice que si el jugador se detuvo dentro de un radio determinado de un punto con coordenadas `$X $Y $Z` o si la vida del jugador se convirtió en menos de 100, la vida se convertirá en 100. Aquí, si se cumple al menos una subcondición, nuestra acción se ejecutará, es decir, la vida de CJ se convierte en 100.
+La vida es un número entero, pero las coordenadas y los radios son fraccionarios. Si incluso necesitas usar un radio igual a 10, debes escribir 10.0.
+Para que el hilo no sea de un solo uso es necesario poner "saltar al principio" en lugar de "end_thread" al final, en este caso es `Jump @Test2`.
+He aquí un ejemplo del primer script (Test1), pero con coordenadas, radios... :
+
+```sb3
+create_thread @Example1 
+
+:Example1
+wait 0
+if and
+  0102: actor $PLAYER_ACTOR near_pt 2505.4812 -1687.4213 13.5543 radius 10.0 10.0 10.0 sphere 0
+  8184: not actor $PLAYER_ACTOR health >= 99
+jf @Example1
+actor.health($PLAYER_ACTOR) = 100
+jump @Example1
+```
+
+Si la vida de un jugador es inferior a 100 y está fuera del garaje de CJ, su vida se convierte en 100. Tenga en cuenta que esta secuencia de comandos es en bucle, siempre funciona porque hay una transición en su final a su principio.
+Desde el principio inserte "create_thread @Example1" después de otro "create_thread", el segundo se puede encontrar buscando. A continuación, busque "----Mission 0----" y antes de ella inserte todo lo que va en nuestro script desde ":Example1" hasta "jump @Example1" inclusive. Pulse "F7" y espere la compilación. Cuando esté compilado, presiona "F8" - iniciar SA y comenzar una nueva partida.
+\n
+[red][Atención]: En las comprobaciones sólo hay ">", no hay "<", en lugar de eso se puede escribir la palabra "not" antes de todo el opcode, es lo mismo que "<", esto se aplica a los comandos sin palabras de código. En las comprobaciones de afirmación (que no tienen "not") el opcode empieza por "0" y en todas las comprobaciones de denegación se utiliza el mismo opcode, pero en lugar de "0" se utiliza el número "8". Así, si tiene una declaración, puede cambiar el primer dígito, es decir, "0" por "8", y poner "not" después del signo ":", y esto será una comprobación de renuncia, y viceversa.
+Por ejemplo:
+Aquí tengo un cheque "jugador flotando en el agua", tiene la siguiente forma:
+
+```sb3
+:Label1
+wait 0 ms
+if // si sólo tenemos una subcondición o comprobación, 
+// no hay que escribir "or" o "and".
+0965: actor $PLAYER_ACTOR swimming_in_water
+jf @Label1 // si la subcondición no se cumple, pasa al principio.
+```
+
+Digamos que mi script debe realizar acciones cuando el jugador no está en el agua, pero mi comprobación dice que la acción del script no procederá si el jugador no está en el agua, así que necesito comprobar "el jugador no está nadando". Sustituya el cheque original por un cheque con el valor opuesto. Y esto es lo que tenemos:
+```sb3
+8965: not actor $PLAYER_ACTOR swimming_in_water
+```
+Lo que hice fue sustituir el primer dígito del opcode, es decir, "0" por "8" y poner la palabra "not" después de los dos puntos.
+Y si tiene una comprobación de rechazo y necesita hacer una comprobación de afirmación, busque el primer dígito del opcode (debe ser 8), luego cámbielo a 0, elimine la palabra "not" y obtenga su comprobación de afirmación.
+Esto se puede hacer con todos los cheques que tengan palabras clave.
+El número máximo de controles es de 7, si necesitas más, divídelo en varias partes,
+por ejemplo:
+Tenemos 10 modelos que tenemos que comprobar para la carga, pero el número máximo de comprobaciones es sólo 7, así que divide las comprobaciones en dos partes, la primera será 7 y la segunda 3, y esto es lo que obtenemos:
+
+````sb3
+:Test
+wait 0
+if and
+  model.Available(#1)
+  model.Available(#2)
+  model.Available(#3)
+  model.Available(#4)
+  model.Available(#5)
+  model.Available(#6)
+  model.Available(#7)
+jf @Test
+if and
+  model.Available(#8)
+  model.Available(#9)
+  model.Available(#10)
+jf @Test
+```
+
+Este es el cheque que salió. Si no entiende algo, vaya a [https://gtamaps.net/forum](https://gtamaps.net/forum) .
+El propio jugador también es un actor, sólo que cuando trabajemos con opcodes que tengan la palabra "player" deberemos usar `$PLAYER_CHAR`, y cuando trabajemos con actores deberemos usar `$PLAYER_ACTOR`.
+
+<script src="../../js/main.min.js"></script>

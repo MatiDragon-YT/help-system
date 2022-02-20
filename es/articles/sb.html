@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Scripting Básico</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+En este tutorial, yo (Alexander) te contaré todo lo que sé sobre los scripts en GTA San Andreas.
+
+¡¡¡Así que vamos !!!
+
+¡¡¡En el texto se puede cumplir con las palabras en comillas dobles, las comillas existen sólo para la comodidad de la lectura, escribirlos en el contexto del constructor no es necesario !!!
+Para el scripting en SA se utiliza el programa Sanny Builer, entonces sólo SB, también hay constructor de BW, pero sobre él no he escrito un tutorial todavía. Todo lo que vas a leer se refiere a la versión de SB no menos de 2,97. Si no lo has descargado todavía, ve a [https://www.sannybuilder.com](https://www.sannybuilder.com).
+Inicie SB, en el menú seleccione la categoría "Herramientas", encuentre la columna "Opciones", haga clic en ella. Aparecerá una ventana en la que tienes que buscar la opción "Directorio de GTA SA" e introducir la ruta de tu SA instalado. Pulse "F5" y elija dónde está el archivo de script principal - main.scm. Se encuentra en "directorio GTA SA/data/script", luego presione "Abrir".
+Aquí está y compilado, y verás un montón de números y palabras. Todo el script consiste en comandos. Todo el comando está escrito en una línea. Anteriormente, cada comando consistía en un opcode y parámetros.
+Por ejemplo:
+
+```sb3
+009A: $act = create_actor 4 #WMYCR at $x $y $z
+```
+
+`009A` - el opcode, muestra la acción que debe realizarse.
+`$act` - es un actor (o tan sólo un tipo).
+`4` - es uno los tipos descritos en el apartado ["Tipos de Actores"](../scm-documentation/sa/pedtypes.md).
+`#WMYCR` - es el modelo del actor.
+`$x $y $z` - son las coordenadas del actor en el mapa, deben ser siempre con un punto, es decir, deben ser redondeadas al menos a décimas.
+`009A: $act = 4 #WMYCR $x $y $z` - Podría haberlo escrito así, porque sólo los parámetros juegan un papel en un comando con un opcode, y no se puede hacer eso en un comando sin opcode (sobre ellos más adelante).
+Todo el main.scm compilado consiste en hilos, y misiones, que a su vez también son hilos. Escribir misiones es la parte más difícil del scripting. Los hilos también se llaman hilos. Todas las variables (nombres de actores, nombres de vehículos, coordenadas...) deben comenzar con un signo `$` (utilizable en todo el texto de su Main) o terminar con un signo `@` (utilizable sólo dentro de los hilos), como para los tipos de datos, ver el capítulo ["tipos de datos](../coding/data-types.md)
+Sanny ahora (08.2006) utiliza principalmente el nuevo tipo de opcode sin comandos. Aquí está el mismo opcode que describí antes, pero ahora bajo el actual SB:
+
+```sb3
+Actor.Create($act,4,#WMYCR,$x,$y,$z)
+```
+
+Verás, es casi lo mismo, sólo que mucho más cómodo, sólo tienes que escribir una palabra clave como actor, coche u objeto... y luego poner un punto y verás un pequeño menú con las acciones\
+que se puede hacer con este tipo de objeto.
+Los hilos están formados por etiquetas. Una etiqueta es una especie de parte autocontenida de un hilo, el contexto es el siguiente: está sola en una línea y siempre comienza con dos puntos; el nombre de cualquier hilo está definido por el nombre de su primera etiqueta.
+Para crear un flujo, necesita encontrar una línea con el texto create_thread, y después insertar `create_thread @"name of your thread"` en la siguiente línea, sin comillas. Luego necesitas encontrar la línea con el texto -Misión 0- y antes de ella escribir :
+1) El nombre del script que declaraste con el comando `create_thread @`.
+2) Asegúrate de escribir el comando wait 0, en lugar de cero puedes escribir cualquier tiempo (en milisegundos) después del cual se ejecutará tu hilo.
+3) Cada hilo debe terminar con una línea con el texto `end_thread`.
+Por ejemplo:
+Encontré líneas que tienen la expresión `create_thread @` como parte de ellas, después de ellas inserté la línea
+
+```sb3
+create_thread @Test 
+```
+
+Después, encontré la línea `-Mission 0-`.
+Encima escribí
+
+```sb3
+:Test
+wait 0
+
+//---------- Tienes que escribir lo que el hilo está haciendo. -------------
+
+end_thread
+```
+
+Para utilizar actores, máquinas y objetos en tu hilo, primero debes cargar sus modelos.
+Esto se hace con varios comandos:
+1) `model.load(#WMYCR)` , donde `#WMYCR` es el modelo de actor que quieres.
+2) `038B: load_requested_models` , este comando carga los modelos previamente declarados (en nuestro caso es el modelo `#WMYCR`).
+Puedes escribir todo lo que quieras `model.load(#requested_model)`, pero después de haber declarado los modelos deseados debes escribir siempre el comando `038B: load_requested_models`, de lo contrario el juego se bloqueará.
+Siempre debes escribir una comprobación para cargar los modelos, o si el modelo no está cargado todavía, y ya haces algo con él, el juego se bloqueará. Aquí hay un ejemplo del contenido del flujo estándar (comienzo, carga de modelos, comprobación de la carga, final):
+Como siempre, creamos un hilo (cómo hacer esto fue escrito antes), y ahora:
+
+```sb3
+:Test //el nombre del flujo o su primera etiqueta
+wait 0 //esperar 0 milisegundos (1 s. = 1000 ms.)
+model.load(#required model N° 1) 
+model.load(#required model N° 2) 
+model.load(#required model N° n) //anotar los modelos que necesitamos para el flujo
+038B: load_requested_models //Cargar los modelos que necesitamos para el flujo
+ :Test_2   // Esta es una nueva etiqueta
+wait 0 //espera durante 0 milisegundos.
+if and //El comando If and inicia una condición, todas las subcondiciones de la cual se satisfacen. 
+model.Available(#required model N° 1) // Condición 
+model.Available(#required model N° 2) // Condición 
+model.Available(#required model N° n) // Condición 
+jf @Test_2 // jf significa que si estos subconjuntos no se cumplen, entonces..
+// la ejecución del hilo va al principio de la comprobación
+   
+//-- Aquí es donde tienes que escribir lo que hace el hilo. --
+   
+Model.Destroy(#required model N° 1) // al final de cada hilo hay que 
+Model.Destroy(#required model N° 2) // descargar los modelos de la memoria, o bien 
+Model.Destroy(#required model N° n) // seguir allí y contaminarla 
+end_thread // Fin del flujo
+```
+
+En cuanto a las condiciones todo está escrito en el capítulo ["Condiciones"](../coding/conditions.md).
+Para aplicar todo lo que escribió es necesario presionar "F7" (compilación), luego iniciar SA presionando "F8", cada vez después de una nueva compilación es necesario iniciar un nuevo juego, si usted va a cargar su save, el juego al final de la carga simplemente dará un error y saldrá.
+Para determinar las coordenadas en el juego se utiliza Coords Manager, esto es parte de SB. Si SA está ejecutando entonces presionando "F4" cuando la ventana de SB está activa una ventana adicional aparecerá en la ventana de SB donde las coordenadas del jugador serán escritas, con el Administrador de Coords usted puede establecer las coordenadas del jugador, simplemente ingrese las coordenadas deseadas y presione "Set" y el jugador se moverá al punto especificado.
+<script src="../../js/main.min.js"></script>

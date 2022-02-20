@@ -352,33 +352,55 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paquete de Misiones">
-			<param name="Local" value="es\articles\mpack.html">
+			<param name="Name" value="Introducci&oacute;n al Scripting">
 			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Inicio R&aacute;pido. I">
+				<param name="Local" value="es\articles\qsp1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Inicio R&aacute;pido. II">
+				<param name="Local" value="es\articles\qsp2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Panel o Lista. I">
+				<param name="Local" value="es\articles\panel1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Panel o Lista. II">
+				<param name="Local" value="es\articles\panel2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Biblia del Coding I">
+				<param name="Local" value="es\articles\mcp1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Biblia del Coding II">
+				<param name="Local" value="es\articles\mcp2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Condiciones">
+				<param name="Local" value="es\articles\cond.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Tipos de Datos">
+				<param name="Local" value="es\articles\datat.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Scripting B&aacute;sico">
+				<param name="Local" value="es\articles\sb.html">
+				</OBJECT>
+		</UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Inicio r&aacute;pido. I">
-			<param name="Local" value="es\articles\qsp1.html">
+			<param name="Name" value="Usuarios Experimentados">
 			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Inicio r&aacute;pido. II">
-			<param name="Local" value="es\articles\qsp2.html">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Panel o Lista. I">
-			<param name="Local" value="es\articles\panel1.html">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Panel o Lista. II">
-			<param name="Local" value="es\articles\panel2.html">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Biblia del Coding I">
-			<param name="Local" value="es\articles\mcp1.html">
-			</OBJECT>
-		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Biblia del Coding II">
-			<param name="Local" value="es\articles\mcp2.html">
-			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Paquete de Misiones">
+				<param name="Local" value="es\articles\mpack.html">
+				</OBJECT>
+		</UL>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="CLEO 3">
