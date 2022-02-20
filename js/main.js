@@ -454,7 +454,7 @@ apply($('.sb3'), function(element){
 	.r(/\b(true|false)\b/gmi, enter.numbers)
 	.r(/((\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i|f|s|v)?)\b/gmi, enter.numbers)
 	//Modelos
-	.r(/(\#+\w+)/gm, "<span class='models uppercase'>$1<\/span>")
+	.r(/(\#[^\"\'\#\s]+)/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
 	.r(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
 	.r(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
