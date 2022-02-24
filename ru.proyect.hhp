@@ -16,8 +16,6 @@ MAIN=,"ru\table.hhc","index.hhk","ru\README.html","ru\README.html",,,,,0x42120,,
 
 
 [FILES]
-img\dm-outline.png
-img\dm-baseline.png
 ru\README.html
 ru\credits.html
 ru\version-history.html
@@ -119,6 +117,8 @@ ru\articles\panel2.html
 ru\articles\sb.html
 ru\articles\datat.html
 ru\articles\cond.html
+ru\articles\users.html
+ru\articles\intro.html
 ru\cleo-3\code-library.html
 ru\cleo-3\opcodes.html
 ru\cleo-3\scripts.html
