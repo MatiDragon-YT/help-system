@@ -1,0 +1,101 @@
+// This file was decompiled using SASCM.INI published by Seemann (http://sannybuilder.com/files/SASCM.rar) on 23.02.2007
+DEFINE OBJECTS 1
+DEFINE OBJECT SANNY BUILDER v. 2.99F  
+
+DEFINE MISSIONS 0
+
+DEFINE EXTERNAL_SCRIPTS 1 // Use -1 in order not to compile AAA script
+DEFINE SCRIPT MILITIA AT @MILITIA      // 0
+
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+
+DEFINE UNKNOWN_THREADS_MEMORY 0
+
+{$VERSION 3.1.0020}
+
+//-------------MAIN---------------
+03A4: name_thread 'MAIN' 
+01F0: set_max_wanted_level_to 6 
+0111: toggle_wasted_busted_check 0 
+00C0: set_current_time_hours_to 8 minutes_to 0 
+04E4: unknown_refresh_game_renderer_at 2488.56 -1666.84 
+03CB: set_rendering_origin_at 2488.56 -1666.84 13.38 
+0053: $PLAYER_CHAR = create_player #NULL at 2488.56 -1666.84 13.38 
+01F5: $PLAYER_ACTOR = create_player_actor $PLAYER_CHAR 
+07AF: $PLAYER_GROUP = player $PLAYER_CHAR group 
+0373: set_camera_directly_behind_player 
+01B6: set_weather 0 
+0001: wait 0 ms 
+087B: set_player $PLAYER_CHAR clothes_texture "PLAYER_FACE" model "HEAD" body_part 1 
+087B: set_player $PLAYER_CHAR clothes_texture "JEANSDENIM" model "JEANS" body_part 2 
+087B: set_player $PLAYER_CHAR clothes_texture "SNEAKERBINCBLK" model "SNEAKER" body_part 3 
+087B: set_player $PLAYER_CHAR clothes_texture "VEST" model "VEST" body_part 0 
+070D: rebuild_player $PLAYER_CHAR 
+01B4: toggle_player $PLAYER_CHAR can_move 1 
+016A: fade 1 time 0 
+04BB: select_interior 0 
+0629: change_integer_stat 181 to 4 
+016C: restart_if_wasted_at 2027.77 -1420.52 15.99 angle 137.0 town_number 0 
+016D: restart_if_busted_at 1550.68 -1675.49 14.51 angle 90.0 town_number 0 
+0180: set_on_mission_flag_to $ONMISSION // Note: your missions have to use the variable defined here 
+03E6: remove_text_box 
+004F: create_thread @STARTEX 
+004E: end_thread 
+
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if and
+0038:   $ONMISSION == 0 
+0256:   player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_173 
+0226: 10@ = actor $PLAYER_ACTOR health 
+00D6: if 
+8039:   not  10@ == 0 
+004D: jump_if_false @STARTEX_185 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038:   $Script_Status == 0 
+004D: jump_if_false @STARTEX_173 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB:   external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_173 
+0913: run_external_script 0 (MILITIA) 1 2482.72 -1658.665 13.3372  
+
+:STARTEX_173
+0001: wait 250 ms 
+0002: jump @STARTEX 
+
+:STARTEX_185
+090F: end_external_script 0 (MILITIA) 
+0001: wait 0 ms 
+0002: jump @STARTEX 
+
+//-------------External script 0 (MILITIA)---------------
+
+:MILITIA
+03A4: name_thread 'MILITIA' 
+0006: 5@ = 0 
+00D6: if 
+0039:   5@ == 1 
+004D: jump_if_false @MILITIA_36 
+
+:MILITIA_36
+009A: 4@ = create_actor_pedtype 4 model 0@ at 1@ 2@ 3@    //pedtype 0,1- âûëåòàåò
+
+:MILITIA_55
+0001: wait 0 ms 
+00D6: if 
+8118:   not actor 4@ dead 
+004D: jump_if_false @MILITIA_119 
+062E: unknown_get_actor 4@ task 1506 status_store_to 5@ // ret 7 if not found 
+00D6: if 
+04A4:   5@ == 7 // @ == any 
+004D: jump_if_false @MILITIA_55 
+05E2: AS_actor 4@ kill_actor $PLAYER_ACTOR 
+0002: jump @MILITIA_55 
+
+:MILITIA_119
+01C2: remove_references_to_actor 4@ // Like turning an actor into a random pedestrian 
+004E: end_thread 
+

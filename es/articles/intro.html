@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Introducción al Scripting</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Este artículo está dirigido a aquellos que son nuevos en el mundo de los scripts. La información que figura a continuación también será útil para quienes no quieran dedicar horas de su tiempo libre a añadir un nuevo script.
+
+Así, los scripts de GTA se almacenan en varios archivos. La mayor parte de la lógica del juego está contenida en el archivo ejecutable (.exe) y está inextricablemente ligada a la jugabilidad. Los guionistas trabajan con guiones almacenados en el archivo main.scm.
+
+Main.scm es un archivo binario que almacena los scripts compilados. Esto significa que no puede abrir este archivo con un editor de texto y empezar a editarlo. Para modificar estos guiones se necesita un programa especial. Uno de estos programas es Sanny Builder (SB). Permite traducir los scripts compilados a texto (este proceso se llama descompilación). El texto resultante (fuente) puede modificarse fácilmente. Pero para que los cambios surtan efecto, hay que volver a montar el código fuente en main.scm (este proceso se llama compilación). Así, el proceso de scripting puede representarse como el siguiente esquema:
+
+**main.scm -> descompilar -> cambiar fuente -> compilar -> main.scm**
+
+El proceso de descompilación y compilación es manejado por Sanny Builder. Para descompilar el archivo main.scm hay que abrirlo pulsando F5, para compilar el código fuente hay que pulsar F7. Scriptor sólo se encarga de la edición del código fuente.
+
+Suponga que necesita añadir un nuevo script al juego, que ha sido publicado en Internet como código fuente. Normalmente estos scripts están en un hilo separado. En este punto, no vamos a analizar lo que es un hilo. Me limitaré a describir la secuencia de pasos a seguir utilizando el mod ["Speed Limiter"](http://sannybuilder.com/forums/viewtopic.php?id=37) como ejemplo.
+
+Inicie el Sanny Builder. Vaya a la configuración pulsando el botón F10. Si no entiendes bien el inglés, puedes cambiar el idioma de la interfaz al ruso seleccionándolo en la lista. Como eres un principiante, puedes activar la opción 'Usar opcodes'. También debes especificar la carpeta en la que está instalado el juego.
+
+Pulsa el botón de los tres puntos y especifica la ruta de acceso al juego. A continuación, cierre la configuración pulsando OK.
+En este punto se recomienda reiniciar SB para que se carguen los archivos de juego necesarios.
+Una descripción más detallada de todos los ajustes puede leerse [aquí](../editor/options/general.md).
+
+Ahora descompila el main.scm que tienes. Esto se almacena en la carpeta de datos en el directorio del juego. Pulse F5 en la CCI y seleccione este archivo. En la parte inferior de la ventana verás el proceso de descompilación. Si tiene éxito, obtendrá un cuadro de informe frente a usted. Si no quiere que aparezca esta ventana, desactívela en los ajustes.
+Si obtiene un error durante la descompilación, intente seguir las instrucciones que aparecen en el mensaje de error. La mayoría de las veces los errores se producen si no se ha especificado la ruta del juego o si se ha seleccionado el [modo de edición](../editor/options/formats.md) equivocado. El archivo original main.scm debería descompilar sin ninguna dificultad.
+
+Por lo tanto, la descompilación es exitosa y usted tiene el archivo original. Se guardará automáticamente en la misma carpeta que main.scm. Puedes cambiar la dirección de guardado y el formato del nombre de origen en los ajustes del programa. No se asuste por el gran tamaño del archivo. Con el tiempo aprenderás a desenvolverte en él como en tu propio piso, si te interesa, claro. Puede leer una descripción detallada de la estructura del código fuente [aquí](#).
+
+Tenemos que añadir un script a este código fuente. Junto con el script debería haber un comentario del autor sobre los detalles de la instalación. Si no hay tal comentario o el comando `create_thread` está escrito al principio del script, entonces necesitas crear un nuevo hilo. Para ello abre una búsqueda (`Ctrl+F`) y busca `create_thread`. Si está trabajando con el archivo original, esta línea encontrada debería ser la 948 aproximadamente. También debería haber otras líneas, empezando por create_thread. Si no puede encontrar dicha línea (por ejemplo, si trabaja con un archivo modificado), intente encontrar la línea con el OP 0180.
+
+Después de la cadena encontrada añada una nueva con el comando create_thread `@thread_name`. El nombre del hilo se suele especificar al principio del script. Si no se especifica, el nombre del hilo será el nombre de la primera [etiqueta](#) (una línea que comienza con dos puntos). En nuestro ejemplo el nombre del hilo es @ogranichitel. Añade la línea create_thread @ogranichitel después de la encontrada.
+
+Ahora tienes que añadir el hilo (script) en sí. Para ello, encuentra la primera misión (misión 0). Debería haber un comentario `//-------------Misión 0---------------`. Añade todo el código del script (excepto el comando **create_thread**) antes de este comentario
+Si no encuentras la misión 0, intenta añadir el script al final del archivo.
+
+Así pues, la fuente tiene ahora el siguiente aspecto.
+
+```sb3
+// This file was decompiled ...
+DEFINE OBJECTS
+DEFINE OBJECT (noname)                
+...
+0363: create_object_at ...
+004F: create_thread @ODDVEH
+create_thread @ogranichitel
+004F: create_thread @R3
+...
+:MOB_GF_3609
+00BE: text_clear_all 
+0051: return 
+
+:ogranichitel
+wait 5000
+
+:ogranichitel_2 
+
+<el script> 
+
+jump @ogranichitel_2
+
+
+//-------------Mission 0---------------
+// Originally: Initial 1 
+
+...
+```
+
+Ahora sólo tienes que compilar el archivo. Para ello, pulse **F7**. Si se produce un error durante la compilación, siga las instrucciones.
+Después de una compilación exitosa, ejecute el juego pulsando **F8** y compruebe el script en el juego.
+
+Si necesitas añadir más de un script, no necesitas descompilar main.scm cada vez. Basta con añadir los scripts a un archivo fuente y compilarlo.
+
+<script src="../../js/main.min.js"></script>

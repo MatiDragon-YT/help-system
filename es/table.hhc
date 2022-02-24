@@ -353,24 +353,9 @@
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Introducci&oacute;n al Scripting">
+			<param name="Local" value="es\articles\intro.html">
 			</OBJECT>
 		<UL>
-			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Inicio R&aacute;pido. I">
-				<param name="Local" value="es\articles\qsp1.html">
-				</OBJECT>
-			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Inicio R&aacute;pido. II">
-				<param name="Local" value="es\articles\qsp2.html">
-				</OBJECT>
-			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Panel o Lista. I">
-				<param name="Local" value="es\articles\panel1.html">
-				</OBJECT>
-			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Panel o Lista. II">
-				<param name="Local" value="es\articles\panel2.html">
-				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Biblia del Coding I">
 				<param name="Local" value="es\articles\mcp1.html">
@@ -378,6 +363,22 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Biblia del Coding II">
 				<param name="Local" value="es\articles\mcp2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Inicio R&aacute;pido I">
+				<param name="Local" value="es\articles\qsp1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Inicio R&aacute;pido II">
+				<param name="Local" value="es\articles\qsp2.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Panel o Lista I">
+				<param name="Local" value="es\articles\panel1.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Panel o Lista II">
+				<param name="Local" value="es\articles\panel2.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Condiciones">
@@ -394,6 +395,7 @@
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Usuarios Experimentados">
+			<param name="Local" value="es\articles\users.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">

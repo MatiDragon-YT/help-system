@@ -1,70 +1,89 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Conditions</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+	<title>Conditions</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-Now I will tell you about transition operators. Transitions can be conditional or unconditional. There are two types of unconditional transitions: with and without return. For a transition with return there is the command gosub @"There must be a transition there" and for a transition without return there is the jump @"There must be a transition there". The difference between the return and irrevocable jump is that with a return jump the script will execute everything after the "there must be a jump" line until it encounters a return command, after which it skips to the line after gosub @"there must be a jump", while with a nonrefundable jump the jump @"there must be a jump" line will skip to the "there must be a jump" line and all commands after the jump will be ignored. Conditional jumps are always irrevocable. See also about jumps [here].(#).
-A conditional transition always occurs after a condition is met. All conditions consist of three parts:
-1 - declaration of the condition itself.
-2 - writing of subconditions.
-3 - what to do after (not) fulfillment or simply transition.
-Any condition starts with a line with the text "if", if you want all subconditions (they are also called checks) of your condition to be satisfied, you must put "and" after "if" (with a space between them), and if you want to check if at least one subcondition is satisfied, put "or" instead of "and".
+Did you know that conditions can be conditional or unconditional?
+That's right! and with 2 variants in the last one...
+With and without return, that is to say... with and without return to the point of origin where the jump was invoked or executed. This with `gosub @`, `return` and `jump @`.
 
-For example:
+You could better understand the difference between a Jump and Gosub with this example script :)
+```sb3
+	gosub @switch_there
+	jump @switch_there
+	:force_return
+end_thread
 
-1) Check with fulfillment of all subconditions:
+:switch_there // <-- both commands are directed to this point
+	wait 1000
+	return    // but only Gosub returns when encountering this command
+	wait 1000
+jump @force_return
+```
+This shows how `gosub` takes 1 second to terminate `switch_there` and return to the main block, while `jump` takes twice as long, because it does not understand `return` commands.
 
+These jumps can be conditional and returnable as long as they occur after some declared, expressed or negated condition is met.
+
+:::success
+You can read [here](#) to learn more about jumps.
+:::
+
+A **conditional jump**, would start with a line of text `if`, where if you want more than one condition to be fulfilled, you must put `and` after it, or `or` if you want at least one of the many to be fulfilled.
+
+For example, a:
+
+**Condition with all checks met:**.
 ```sb3
 create_thread @Test1 
-  
-:Test1
-wait 0
-if and
-  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
-  8184: not actor $PLAYER_ACTOR health >= 99
-jf @Test1
-actor.health($PLAYER_ACTOR) = 100
+	
+	Test1
+	wait 0
+	if and
+		0102: actor $PLAYER_ACTOR stopped_on_foot_at $X $Y $Z radius $X_R $Y_R $Z_R sphere 0 
+		8184: not actor $PLAYER_ACTOR health > 100
+	else_jump @Test1
+	Actor.Health($PLAYER_ACTOR) = 100
 end_thread 
 ```
 
-The principle is as follows:
-If the player (CJ) has stopped at the given coordinates `$X $Y $Z`, more precisely at the radius `$X_R $Y_R $Z_R` from these coordinates, and if his life is less than 100, then his life will again become 100. The parameter 0 at the end of the first subcondition indicates that the player does not stop in a sphere (red marker). If the parameter had been 1, we would have created a sphere first, but about spheres later. The opcode `jf @Test1` makes the jump to `Test1` if both of our conditions are not met.
+Here, if the player(CJ) has stopped on the `$X $Y $Z` coordinates, more precisely on a radius of `$X_R $Y_R $Z_R` from the origin of these, and his life is less than **100**, then his life will return to **100**.
+The `0` parameter at the end of the first check is if it is not standing on a sphere (red marker). If the parameter were 1, we would have to create a sphere first, and continue like that. The `else_jump @Test1` command does the jump to `:Test1` if the 2 conditions are not met.
 
-2) Check with fulfillment of at least one subcondition:
-
+**Condition with at least one checks met:**
 ```sb3
 create_thread @Test2
 
-:Test2
-wait 0
-if or
-  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
-  8184: not actor $PLAYER_ACTOR health >= 99
-jf @Test2
-actor.health($PLAYER_ACTOR) = 100
+	Test2
+	wait 0
+	if or
+		0102: actor $PLAYER_ACTOR stopped_on_foot_at $X $Y $Z radius $X_R $Y_R $Z_R $Z_R sphere 0
+		8184: not actor $PLAYER_ACTOR health > 100
+	else_jump @Test2
+	actor.health($PLAYER_ACTOR) = 100
 end_thread
 ```
+Here, if the player(CJ) has stopped in the coords. or his life is less than **100**, then his life will return to **100**.
 
-Here it is described that if the player stopped at a given radius from the point with coordinates `$X $Y $Z` or if the player's life became less than 100, then the life will become 100. Here, if at least one subcondition is met, our action will be executed, i.e. CJ's life will become 100.
-Life is an integer, but coordinates and radii are fractional. If you even want to use a radius of 10, you have to write 10.0.
-To make the thread not a one-time use it is necessary to put "jump to the beginning" instead of "end_thread" at the end, in this case it is `Jump @Test2`.
-Here is an example of the first (Test1) script, but with coordinates, radiuses... :
+Life is an integer, but coordinates and radii are fractional. If you even need to use a radius equal to 10, you should write 10.0.
+To make the thread not single use it is necessary to put a `jump at the beginning` instead of `end_thread` at the end, in this case it is `jump @Test2`.
+
+Here is an example of the first script (Test1), but with coordinates, radius... :
 
 ```sb3
 create_thread @Example1 
 
-:Example1
-wait 0
-if and
-  0102: actor $PLAYER_ACTOR near_pt 2505.4812 -1687.4213 13.5543 radius 10.0 10.0 10.0 sphere 0
-  8184: not actor $PLAYER_ACTOR health >= 99
-jf @Example1
-actor.health($PLAYER_ACTOR) = 100
+Example1
+	wait 0
+	if and
+		0102: actor $PLAYER_ACTOR near_pt 2505.4812 -1687.4213 13.5543 radius 10.0 10.0 10.0 10.0 sphere 0
+		8184: not actor $PLAYER_ACTOR health > 100
+	else_jump @Example1
+	actor.health($PLAYER_ACTOR) = 100
 jump @Example1
 ```
 
@@ -99,18 +118,18 @@ We have 10 models that we need to check for load, but the maximum number of chec
 :Test
 wait 0
 if and
-  model.Available(#1)
-  model.Available(#2)
-  model.Available(#3)
-  model.Available(#4)
-  model.Available(#5)
-  model.Available(#6)
-  model.Available(#7)
+	model.Available(#1)
+	model.Available(#2)
+	model.Available(#3)
+	model.Available(#4)
+	model.Available(#5)
+	model.Available(#6)
+	model.Available(#7)
 jf @Test
 if and
-  model.Available(#8)
-  model.Available(#9)
-  model.Available(#10)
+	model.Available(#8)
+	model.Available(#9)
+	model.Available(#10)
 jf @Test
 ```
 

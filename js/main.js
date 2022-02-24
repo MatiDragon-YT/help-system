@@ -38,6 +38,15 @@ function $(element, _parent) {
 }
 const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
 const ROOT = $('head').innerHTML.match(/"([\/\.]+)\/style\/style\.css"/)[1] + "/"
+function exROOT (){
+	const HREF = location.href,
+		X = HREF.search(/:/) == 2
+			? 14
+			: 7,
+		Y = HREF.lastIndexOf("\\") + 1
+
+	return 'file:///' + location.href.substring(X, Y) + "/files/"
+}
 
 var CSS = {
 	Add: function(styles){STYLES.innerHTML += styles},
@@ -71,6 +80,12 @@ function ModeLight(){
 			background: #eceff1;\
 			color: #212121;\
 		}\
+		h1, h2, h3, hr {border-bottom: #c9cfd5 1px solid}\
+		table {border: 1px solid #c9cfd5}\
+		td {\
+			border-left: #c9cfd5 1px solid;\
+			border-top: #c9cfd5 1px solid;\
+		}\
 		.labels { color: #009688 }\
 		.keywords { color: #ff5722 }\
 		.models { color: #607d8b }\
@@ -86,15 +101,37 @@ function ModeLight(){
 		.directives,\
 		.directives * { color: #607d8b }\
 		'
-	if (modeLight) {
+	if (!modeLight) {
+		modeLight++
+		CSS.Add(TEMPLADE)
+		return true
+	}
+	else{
 		modeLight--
 		CSS.Remove(TEMPLADE)
 		return false
 	}
-	else{
-		modeLight++
-		CSS.Add(TEMPLADE)
-		return true
+}
+
+var editMode = 0
+onkeydown = function(event) {
+	//log(event)
+	if(!event.ctrlKey && event.altKey && event.keyCode == 226){
+		const TEMPLADE = '* { outline: 1px solid cadetblue; }'
+
+		function editable(value){
+			event.target.setAttribute("contenteditable", value)
+		}
+
+		if (!editMode) {
+			editMode++
+			CSS.Add(TEMPLADE)
+			editable("true")
+		}else {
+			editMode--
+			CSS.Remove(TEMPLADE)
+			editable("false")
+		}
 	}
 }
 
@@ -118,11 +155,6 @@ SP.rA = function(xText, zText){
 	return temp
 }
 
-SP.toLinkCase = function(){
-	return this.toLowerCase()
-	.r(/<(\/)?[\!\w\d\s\.,-="]+>/g, '')
-	.rA('\x20', '-')
-}
 /*
 SP.toCapitalCase = function(){
 	return this
@@ -131,12 +163,6 @@ SP.toCapitalCase = function(){
 	})
 }
 */
-SP.parseHTML = function(){
-	return this
-	.rA('<br>', '\n')
-	.rA('<', '&lt;')
-	.rA('=""', '')
-}
 
 /** Apply a function to all elements of the DOM
  * @param {DocumentElement} 
@@ -155,6 +181,40 @@ function apply(element, callback){
 }
 
 SP.toMarkdown = function(){
+	SP.toLinkCase = function(){
+		return this.toLowerCase()
+		.r(/<(\/)?[\!\w\d\s\.,-="]+>/g, '')
+		.rA('\x20', '-')
+	}
+
+	SP.parseHTML = function(){
+		return this
+		.rA('<br>', '\n')
+		.rA('<', '&lt;')
+		.rA('=""', '')
+	}
+
+	SP.rLinks = function(){
+		const img   = exROOT() + "img/",
+			
+			sa   = img+"sa/",
+			vc   = img+"vc/",
+			gta3 = img+"gta3/",
+			
+			weapon = "weapon/",
+			radar  = "radar/"
+		
+		return this
+		.r(/^%sa-w\//m,   sa   + weapon)
+		.r(/^%vc-w\//m,   vc   + weapon)
+		.r(/^%sa-r\//m,   sa   + radar)
+		.r(/^%vc-r\//m,   vc   + radar)
+		.r(/^%gta3-r\//m, gta3 + radar)
+		.r(/^%sa-t\//m,   sa   + "tatoo/")
+		.r(/^%e\//m, exROOT())
+		.r(/^%g\//m, ROOT)
+	}
+
 	return this
 
 	/******** LIST ********/
@@ -204,7 +264,7 @@ SP.toMarkdown = function(){
 	.r(/~~([^~\n]+)~~/g, '<s>$1</s>')
 	.r(/__([^_\n]+)__/g, '<u>$1</u>')
 	.r(/\b_([^_\n]+)_\b/g, '<i>$1</i>')
-	.r(/==([^=\n]+)==/g, '<mark>$1</mark>')
+	.r(/==([^=\n\"\'\\\/]+)==/g, '<mark>$1</mark>')
 	.r(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
 
 	// EMOJIS
@@ -268,53 +328,35 @@ SP.toMarkdown = function(){
 	.r(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
 		input = input.match(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/)
 
-		const img  = ROOT + "img/",
+		const comilla = '"',
 
-			sa   = img+"sa/",
-			vc   = img+"vc/",
-			gta3 = img+"gta3/",
+			alt   = input[1] ?  ' alt="' + input[1] + comilla : "",
+			src   = input[2] ?  ' src="' + input[2]
+				 	.rLinks() + comilla : "",
+			title = input[3] ? ' title="' + input[3] + comilla : ""
 
-			weapon = "weapon/",
-			radar  = "radar/",
-
-			alt   = input[1] || "",
-			src   = input[2]
-					.r(/^%g\//m, ROOT)
-					.r(/^%sa-w\//m,   sa   + weapon)
-					.r(/^%vc-w\//m,   vc   + weapon)
-					.r(/^%sa-r\//m,   sa   + radar)
-					.r(/^%vc-r\//m,   vc   + radar)
-					.r(/^%gta3-r\//m, gta3 + radar)
-					.r(/^%sa-t\//m,   sa   + "tatoo/"),
-			title = input[3] || ""
-
-		return '<img src="'+ src +'" alt="'+ alt +'" title="'+ title +'">'
+		return '<img'+ src + alt + title +'>'
 	})
 
 	// A
-	.r(
-		/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
-			
-		var display = input.match(/\[(.+)\]/)[1]
-		var href   =   ' href="' + input.match(/\((.+)\)/)[1].r(/\x20"(.+)"/, '') + '"'
-		var title  =  ' title="' + getTitle() + '"'
-		var target = ' target="'
+	.r(/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
+		input = input.match(/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/)
 
-		if(/http/.test(href)){
-			target += '_blank"'
-		}else{
-			target += '_self"'
-			href = href
-				   .r(/^%g\//m, ROOT)
-				   .r(/\.md/, '.html')
-		}
-		
-		function getTitle(){
-			if(/"(.+)"/.test(input)){
-				return input.match(/"(.+)"/)[1]
-			}
-			return ''
-		}
+		var display = input[1],
+			comilla = '"',
+
+			href = ' href="' + input[2]
+				.rLinks()
+				.r('.md', '.html') + comilla,
+
+			title = input[3] ? ' title="' + input[3] + comilla : "",
+
+			target = function(){
+				var set = ' target="'
+				return /http/.test(href)
+					? set + '_blank"'
+					: set + '_self"'
+			}()
 
 		return '<a'+ href + title + target + '>' + display + '</a>'
 	})
@@ -378,7 +420,7 @@ SP.toMarkdown = function(){
 
 $('body').innerHTML = '\
 <div id="navbar">\
-	<h1>' + D.title +'<button id="CHANGE"><img src="'+ ROOT +'img/dm-baseline.png"></button></h1>\
+	<h1>' + D.title +'<button id="CHANGE"><img src="'+ exROOT() +'img/dm-baseline.png"></button></h1>\
 </div>\
 <div id="c"><div id="d"><textarea id="inputText" style="display:none;" disabled>'
 + $('body').innerHTML +
@@ -425,7 +467,7 @@ apply($('.sb3'), function(element){
 	}
 
 	element.innerHTML = element.innerHTML
-
+	.rA('\t', '    ')
 	.rA('&lt;br/&gt;', "\\n")
 	//Comentarios 
 	.r(/(\/\/.+)/gm, enter.comments)
@@ -483,7 +525,7 @@ apply($('.ini'), function(element){
 $("#CHANGE").onclick = function(){
 	const $THIS_ELEMENT = this
 	function IMAGE(X){
-		$("img", $THIS_ELEMENT).setAttribute("src", ROOT +'img/dm-'+ X +'line.png')
+		$("img", $THIS_ELEMENT).setAttribute("src", exROOT() +'img/dm-'+ X +'line.png')
 	} 
 
 	ModeLight()

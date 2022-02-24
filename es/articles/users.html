@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Usuarios Experimentados</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+**Script externo: ¿qué es y cómo se trabaja con él?**
+
+Script externo es un script externo que sólo se utiliza en GTA San Andreas. Está separado del main.scm, por eso se llama externo. El script externo es un archivo binario compilado con la extensión .scm. A diferencia de main.scm, el script front-end no tiene cabecera. Toda la información al respecto se encuentra en la cabecera main.scm.
+
+```sb3
+DEFINE EXTERNAL_SCRIPTS 0 // Use -1 in order not to compile AAA script
+//DEFINE SCRIPT {NAME}  AT {LABEL} @
+```
+
+Los scripts externos se encuentran en el archivo script.img de la carpeta de scripts (data/script). El número máximo de guiones externos es de 82. El número máximo de scripts externos que se pueden utilizar simultáneamente es de 70.
+
+Es necesario ejecutar un script externo, así como la misión, es decir, se necesita un iniciador de script externo. Utilizaremos stripped.txt main.scm por ejemplo. Se encuentra en la carpeta SannyBuilder\data\sa.
+
+Abra stripped.txt en SannyBuilder y sobre el comentario
+
+```sb3
+{
+use macro (Ctrl+J) "headsa"
+to insert a file header      
+}
+```
+
+o poner el cursor en su lugar y pulsar Ctrl+J. En la lista que aparece, seleccione "headsa" y pulse ENTER.  Con esta sencilla operación hemos añadido una cabecera a nuestro archivo (stripped.txt):
+
+```sb3
+DEFINE MISSIONS 0
+//DEFINE MISSION {ID} 0 AT {LABEL} @
+DEFINE EXTERNAL_SCRIPTS 0 // Use -1 in order not to compile AAA script
+//DEFINE SCRIPT {NAME}  AT {LABEL} @
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+DEFINE UNKNOWN_THREADS_MEMORY 0
+```
+
+La línea DEFINE `EXTERNAL_SCRIPTS` registra el número total de scripts externos. Cambia el 0 por el 1, es decir, dile al compilador que tendremos 1 script externo añadido.
+La siguiente línea será
+```sb3
+DEFINIR SCRIPT {NOMBRE} AT {ETIQUETA} @
+```
+donde NOMBRE es el nombre del script externo, llamémoslo por ejemplo MILITIA y nombrémoslo también @MILITIA para evitar confusiones con las etiquetas. Ahora tenemos la cabecera así:
+
+```sb3
+DEFINE MISSIONS 0
+//DEFINE MISSION {ID} 0 AT {LABEL} @
+
+DEFINE EXTERNAL_SCRIPTS 1 // Use -1 in order not to compile AAA script
+DEFINE SCRIPT MILITIA  AT  @MILITIA  // 0
+
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+DEFINE UNKNOWN_THREADS_MEMORY 0 
+```
+
+Ahora tenemos que añadir el propio script externo. Puede escribirlo usted mismo, pero para ahorrar tiempo utilizaremos el estándar. Este es el script de rebote ( Script externo 39 (BOUNCER)). He hecho algunos cambios en él y lo he renombrado como MILITIA.  Añádelo a nuestro archivo después de la línea 
+
+```sb3
+// put your external scripts here.
+```
+
+Guarda el archivo, compila y ejecuta el juego.
+
+Bueno, eso está medio hecho, ahora sólo tenemos que hacer que funcione.
+
+Aquí necesitamos un iniciador de script externo. Hay diferentes opciones para iniciar scripts externos. Considérelos todos. :)
+
+En primer lugar, es posible vincular una secuencia de comandos externa a un objeto que necesita. Para ello se utiliza el opcode:
+
+```sb3
+0929: init_external_script_trigger 7 (ARCADE) with_object_model #CJ_COIN_OP_3 priority 100 radius 4.0 type -1
+```
+
+Vincula un script de videojuego externo al objeto `#CJ_COIN_OP_3` (máquina tragaperras del mono espacial).
+O bien: 
+
+```sb3
+0929: init_external_script_trigger 10 (GATES_SCRIPT) with_object_model #GATE_AUTOL priority 100 radius 80.0 type -1
+```
+
+aquí, respectivamente, al objeto `#GATE_AUTOL` (rejilla izquierda) vinculan el script externo para abrir la Puerta del Aeropuerto.
+
+También se puede vincular el script externo al interior:
+
+```sb3
+07D3: 'HOUSE' = init_external_script_named_handle 23 (BURG_BRAINS)
+```
+
+o declarar el nombre de un script externo
+
+```sb3
+0884: 'DANCER' = init_external_script_named_handle 52 (DANCER)
+```
+
+Ten en cuenta que no sé cómo funcionan los opcodes 07D3 y 0884, y no sé si funcionan o no.
+
+Es posible vincular un script externo al modelo de un actor 
+
+```sb3
+0928: init_external_script_trigger 19 (DEALER) with_actor_model #BMYDRUG priority 100
+```
+
+En la mayna original, este opcode está emparejado con
+
+```sb3
+08E8: assign_external_script_handle 'DEALER' to_model #BMYDRUG
+```
+
+me parece que el opcode 08E8 vincula el modelo de actor `#BMYDRUG` a un hilo llamado `'DEALER'` (`03A4: name_thread 'DEALER'`).
+
+Bien, empecemos con el opcode 0928.
+Una vez más, ejecuta el juego. Acércate a la joven con una gorra clara y una camiseta oscura con el número 31. Dale un puñetazo en la mandíbula (gancho derecho :) ) y observa su reacción.
+
+Ahora vamos a añadir esta entrada a nuestro hilo principal `'MAIN'` por encima de la línea end_thread:
+
+```sb3
+0928: init_external_script_trigger 0 (MILITIA) with_actor_model #BFYST priority 100 
+08E8: assign_external_script_handle 'MILITIA' to_model #BFYST  
+```
+
+compilar y ejecutar el juego.
+Acércate a la señora con gorra clara y camiseta oscura con el número 31. Dale un puñetazo en la mandíbula (gancho de derecha :) ) y observa su reacción. Observa que su reacción ha cambiado. Así pues, nuestro script externo está en marcha. También puedes comprobarlo por la presencia del arma de esta señorita (modelo `#COLT45`). Pero vale la pena conseguir una estrella buscada, la señorita atacará al jugador. Y si el jugador empieza a disparar (en presencia de estrellas), la barbie atacará al jugador con el arma.
+Permítanme explicar un poco cómo funciona el opcode 0928.
+El juego genera actores aleatorios, con el opcode 0928 le decimos al juego que vincule nuestro script externo al modelo de actor `#BFYST`. Ahora cada vez que creemos un actor aleatorio con el modelo `#BFYST`, el juego aplicará un script externo a ese actor.
+Cuando esto sucede, el script externo siempre se ejecutará, independientemente de si el jugador está en una misión o no. Para nuestro caso esto no es fatal, porque tenemos uno. Pero hay un límite en el número de scripts externos que se ejecutan simultáneamente en la mayna original, y no se recomienda superarlo. [Ver ejemplo](%e/template/external_script[0].txt)
+
+Ahora es el momento de considerar la ejecución del script externo cuando se cumplan las condiciones. Para ello, vamos a escribir un script externo de inicio:
+
+```sb3
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 // no en una misión 
+0256: player $PLAYER_CHAR defined  
+004D:  jump_if_false @STARTEX_120 
+0226: 0@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  0@ == 0 
+// si la salud del jugador es 0, entonces pasa a la marca de finalización del script externo
+004D:  jump_if_false @STARTEX_131 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+// determinar si un script externo se está ejecutando o no
+00D6: if 
+0038: $Script_Status == 0 // en 0 ejecutamos un script externo 
+004D: jump_if_false @STARTEX_120 
+// si es $Estado_de_script = 1,
+// no es necesario ejecutar el script por segunda vez
+08A9:  load_external_script 0 (MILITIA)  // cargar un script externo 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded // comprobar si el script está cargado 
+004D:  jump_if_false @STARTEX_120 
+0913:  run_external_script 0 (MILITIA)  // ejecutar un script externo 
+  
+:STARTEX_120
+0001: wait 0 ms 
+0002: jump @STARTEX 
+  
+:STARTEX_131
+090F:  end_external_script 0 (MILITIA) // detener la ejecución del script 
+0001: wait 0 ms 
+0002: jump @STARTEX  
+```
+
+bueno, el script externo de inicio funciona, pero no funciona para nosotros, ya que nuestro script no crea un actor, y por lo tanto nuestro script externo no funciona completamente. [Ver ejemplo](%e/template/external_script[1].txt).
+
+Añadamos la creación de actores al inicio
+
+```sb3
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 
+0256: player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_120 
+0226: 0@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  0@ == 0 
+004D: jump_if_false @STARTEX_131
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038: $Script_Status == 0 
+004D: jump_if_false @STARTEX_120 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_120 
+04C4: store_coords_to 2@ 3@ 4@ from_actor $PLAYER_ACTOR with_offset 1.0 3.0 -0.9 
+009A: 1@ =  create_actor_pedtype 4  model #MALE01 at 2@ 3@ 4@  
+0913: run_external_script 0 (MILITIA) 1@
+
+:STARTEX_120
+0001: wait 0 ms 
+0002: jump @STARTEX 
+
+:STARTEX_131
+090F: end_external_script 0 (MILITIA) 
+0002: jump @STARTEX
+```
+
+Con el opcode 04C4: - escribir en las variables `2@ 3@ 4@` las coordenadas relativas al actor `$PLAYER_ACTOR` con el offset `1.0 3.0 -0.9`.
+Con el opcode 009A: - crear un actor con las coordenadas `2@ 3@ 4@`,  
+Los modelos `#MALE01` y `#NULL` no requieren precarga.
+`0913: run_external_script 0 (MILITIA) 1@` - ejecuta el script externo con el actor que hemos creado. Esto es ejecutar el script externo con los parámetros. [Ver ejemplo](%e/template/external_script[2].txt)
+
+```sb3
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 
+0256: player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_159 
+0226: 0@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  0@ == 0 
+004D: jump_if_false @STARTEX_170 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038:  $Script_Status == 0 
+004D: jump_if_false @STARTEX_159 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_159 
+0615: define_AS_pack_begin 5@ 
+05DE: AS_actor -1 walk_around_ped_path 
+0616: define_AS_pack_end 5@ 
+04C4: store_coords_to 2@ 3@ 4@ from_actor $PLAYER_ACTOR with_offset 1.0 3.0 -0.9 
+04C4: store_coords_to 7@ 8@ 9@ from_actor $PLAYER_ACTOR with_offset 1.0 -3.0 -0.9 
+061D: create_AS_origin_at 7@ 8@ 9@ Z_angle 60.0 unknown_angle 300.0 AS_pack 5@ handle_as 6@
+0621: create_actor_pedtype 6 model #NULL at_AS_origin 6@ task 1502 handle_as 10@ 
+009A: 1@ =  create_actor_pedtype 6 model #MALE01 at 2@ 3@ 4@ 
+0913: run_external_script 0 (MILITIA) 1@ 
+0913: run_external_script 0 (MILITIA) 10@   
+  
+:STARTEX_159
+0001: wait 0 ms 
+0002: jump @STARTEX 
+  
+:STARTEX_170
+090F: end_external_script 0 (MILITIA) 
+0001: wait 0 ms 
+0002: jump @STARTEX
+```
+
+Esta es su segunda opción. Con el opcode 061D: - escribir en la variable `6@` una secuencia de acciones 5@ en el punto `7@ 8@ 9@`. Con el opcode 0621: - escribir en la variable `10@` la creación de un actor de tipo 6 (policía), modelo `#NULL` con secuencia de acción 6@ [Ver ejemplo](%e/template/external_script[3].txt).
+
+Ahora considere la posibilidad de ejecutar un script externo con diferentes parámetros.
+Por ejemplo, para ejecutar GF_MEETING se utiliza la siguiente entrada
+```sb3
+0913: run_external_script 24 (GF_MEETING) $Girlfriend 10@ 11@ 12@ 13@
+```
+donde respectivamente:
+`$Girlfriend` – actor\
+`10@` - X\
+`11@` - Y\
+`12@` - Z\
+`13@` - ángulo\
+y para ejecutar GF_SEX:
+```sb3
+0913: run_external_script 26 (GF_SEX) $Girlfriend 1 3@ 10@ 11@ 12@ 13@
+```
+`10@`, `11@`, `12@`, `13@` - X, Y, Z, ángulo 
+`3@` - interior\
+`1` – todavía no está muy claro
+O así
+```sb3
+0913: run_external_script 26 (GF_SEX) 40@ 41@ 0 2037.651 2723.871 9.8352 0.0702
+```
+
+Me llevó mucho tiempo averiguar por qué el orden de los parámetros es diferente en los distintos scripts. Algunos tienen la variable actor primero
+```sb3
+0913: run_external_script 26 (GF_SEX) $Girlfriend 1 3@ 10@ 11@ 12@ 13@
+```
+y en otros, la variable actor puede estar en cualquier otro lugar
+```sb3
+0913: run_external_script 1 (PARACHUTE) -1 -10.0 10.0 -5.0 -2.0 10.0 12.0 1 70@
+```
+donde\
+`70@` es la variable del actor.
+Ahora puedo decirte que el orden de los parámetros se determina en un script externo,
+(GRACIAS **Seemann por su ayuda :)**)
+Veamos un ejemplo de paso de parámetros.
+Para ello, vamos a escribir un sencillo script externo
+
+````sb3
+:MILITIA
+03A4:  name_thread 'MILITIA' 
+  
+:MILITIA_1 
+009A: 4@ =  create_actor_pedtype 4 model 0@ at 1@ 2@ 3@ 
+  
+:MILITIA_2
+wait 0
+if
+ 8118: not  actor 4@ dead 
+jf @MILITIA_717
+062E:  unknown_get_actor 4@ task 1506 status_store_to 5@ // retorna 7 si no se encuentra 
+00D6: if 
+04A4: 5@ == 7 // @ == cualquier 
+004D:  jump_if_false @MILITIA_2
+05E2:  AS_actor 4@ kill_actor $PLAYER_ACTOR  
+jump @MILITIA_2
+
+:MILITIA_717
+01C2:  remove_references_to_actor 4@
+004E: end_thread
+```
+
+y un inicio de script externo
+
+```sb3
+:STARTEX
+03A4:  name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 
+0256: player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_159 
+0226: 10@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  10@ == 0 
+004D: jump_if_false @STARTEX_170 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038: $Script_Status == 0 
+004D: jump_if_false @STARTEX_159 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_159 
+04C4: store_coords_to 1@ 2@ 3@ from_actor $PLAYER_ACTOR with_offset 1.0 3.0 -0.9 
+0913: run_external_script 0 (MILITIA) #MALE01 2482.72 -1658.6648 13.3372 
+  
+:STARTEX_159
+0001: wait 250 ms 
+0002: jump @STARTEX 
+  
+:STARTEX_170
+090F: end_external_script 0 (MILITIA) 
+0001: wait 0 ms 
+0002: jump @STARTEX
+```
+
+El orden del pase depende del orden de las variables locales en el script externo.
+Ejecutamos el script externo con los parámetros
+```sb3
+0913: run_external_script 0 (MILITIA) #MALE01 2482.72 -1658.6648 13.3372
+```
+donde\
+`#MALE01` se pasa a la variable 0@ en el script externo,\
+`2482.72` - `1@`\
+`-1658.6648` - `2@`\
+`13.3372` - `3@`
+
+```sb3
+:MILITIA_1 
+009A: 4@ = create_actor_pedtype 4 model 0@ at 1@ 2@ 3@
+```
+
+[Ver ejemplo](%e/template/external_script[4].txt)
+
+Se pueden transferir hasta 34 parámetros de esta manera. 32 variables locales (`0@`...`31@`) + 2 temporizadores (`32@`,`33@`).
+
+El juego original cuenta actualmente con 78 guiones externos. 
+La lista de scripts externos está tomada de [GTAModding](https://www.gtamodding.com) 
+
+|ID|Nombre|Descripción|
+|-|
+|0|PLAYER_PARACHUTE|Controls the player's parachute|
+|1|PARACHUTE|Controls the AI's parachute|
+|2|BCESAR2|Smoke's money from Los Santos to San Fierro|
+|3|BCESAR3|Smoke's yay from San Fierro to Los Santos|
+|4|SLOT_MACHINE|Slot machine|
+|5|ROULETTE|Roulette|
+|6|OTB_SCRIPT|Off track betting machine|
+|7|ARCADE|Arcade game mission checker (not the game itself)|
+|8|VENDING_MACHINE|Vending machines (both food and drinks)|
+|9|FOOD_VENDOR|Food vendors|
+|10|GATES_SCRIPT|Airport gates|
+|11|GYMBIKE|Bike|
+|12|GYMBENCH|Bench|
+|13|GYMTREAD|Treadmill|
+|14|GYMDUMB|Dumbell|
+|15|BASKETB|Basketball|
+|16|VIDPOK|Video poker machine|
+|17|BLACKJ|Blackjack|
+|18|WHEELO|Wheel of Fortune|
+|19|DEALER|Drug dealer|
+|20|HOME_BRAINS|Hobo's AI|
+|21|POOL_SCRIPT|Pool|
+|22|LOWR_CONT|Lowrider contest|
+|23|BURG_BRAINS|Burgulary's ped AI|
+|24|GF_MEETING|Girlfriend meeting|
+|25|GF_DATE|Girlfriend date|
+|26|GF_SEX|Girlfriend sex|
+|27|CASINO_AMBIENCE|Casino ambience|
+|28|BAR_AMBIENCE|Bar ambience|
+|29|FOODBRAINS|Restaurant's ped AI|
+|30|OTB_AMBIENCE|Off track betting ambience|
+|31|STRIP_AMBIENCE|Strip club ambience|
+|32|PLANES|Airline traveling|
+|33|TRAINS|Being a passenger in the train|
+|34|ZERO_AMBIENCE|Zero's RC Shop ambience|
+|35|DANCE|DDR|
+|36|SHOPKEEPER|Restuarant shopkeeper AI|
+|37|CUSTOMER_PANIC|Ped's panic AI|
+|38|BAR_STAFF|Bartender AI|
+|39|BOUNCER|Bouncer AI|
+|40|OTB_STAFF|OTB staff AI|
+|41|PCHAIR|Restaurant ped in chair AI|
+|42|PCUSTOM|Restaurant ped not in chair AI|
+|43|OTBWTCH|OTB ped AI|
+|44|OTBSLP|Ped betting OTB AI|
+|45|OTBTILL|Ped walking around OTB AI|
+|46|FBOOTHR|Ped eating food AI|
+|47|FBOOTHL|Ped eating food AI|
+|48|BARGUY|Barman AI|
+|49|PEDROUL|Roulette gamer AI|
+|50|PEDCARD|Card gamer AI|
+|51|PEDSLOT|Slot-machine gamer AI|
+|52|DANCER|Club dancer AI|
+|53|STRIPW|Strip dancing female|
+|54|STRIPM|Strip dancing male|
+|55|BROWSE|Inside police HQ cop browsing folder or locker|
+|56|COPSIT|Inside police HQ cop sitting|
+|57|COPLOOK|Inside police HQ cop looking at posters|
+|58|TICKET|Train ticket machine AI|
+|59|SHOPPER|Ped Binco AI|
+|60|AMMU|Ammunation|
+|61|TATTOO|Tatto|
+|62|BARBER|Barber|
+|63|WARDROBE|Player's wardrobe|
+|64|CLOTHES|Clothes|
+|65|JUNKFUD|Food selection|
+|66|CARMOD1|Mod garage|
+|67|CRANE1|San Fierro and Las Venturas construction site cranes|
+|68|CRANE2|IE ship crane|
+|69|CRANE3|Quarry crane|
+|70|CARPARK1|Random car for carpark generators|
+|71|IMPOUND|Impound lots|
+|72|VALET|Valet|
+|73|PHOTO|Suicide photographer|
+|74|PRISONR|Prisoner AI|
+|75|CAMERA|Homie's camera holding AI|
+|76|DEBT|Casino debt|
+|77|HOTDOG|Hotdog van|
+
+<script src="../../js/main.min.js"></script>

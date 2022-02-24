@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Scripting Introduction</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+This article is intended for those who are new to scripting. The information below will also be useful for those who don't want to spend hours of free time just to add a new script.
+
+So, GTA scripts are stored in several files. Most of the game logic is embedded in the executable file (.exe) and is inextricably linked to the gameplay. Scriptors work with scripts stored in the main.scm file.
+
+Main.scm is a binary file that stores the compiled scripts. This means that you cannot open this file with a text editor and start editing it. You will need a special program to modify such scripts. One such program is Sanny Builder (SB). It allows you to translate compiled scripts into text (this process is called decompilation). The resulting text (source) can easily be changed. But for changes to take effect, the source must be assembled back into main.scm (this process is called compilation). Thus, the scripting process can be represented as the following scheme:
+
+**main.scm -> decompilation -> modification of source code -> compilation -> main.scm**.
+
+The decompilation and compilation process is handled by Sanny Builder. To decompile file main.scm you need to open it by pressing F5, to compile the source code you need to press F7. Scriptor only takes care of source code editing.
+
+Suppose you need to add a new script to the game that has been published on the Internet as a source code. Usually such scripts are in a separate thread. At this point, we won't go into what a flow is. I will simply describe what you need to do as an example of a mod ["Speed Limiter"](http://sannybuilder.com/forums/viewtopic.php?id=37).
+
+Start Sanny Builder. Go to Settings by pressing F10. If you do not understand English well, you can switch the interface language to Russian by selecting it in the list. Since you are a beginner, you can enable the 'Use opcodes' option. You will also need to specify the folder in which the game is installed.
+
+Press the three dot button and specify the path to the game. After that, close the Settings by clicking OK.
+At this point, it is recommended that you restart SB so that the necessary game files are loaded.
+You can read a more detailed description of all settings [here](../editor/options/general.md).
+
+Now decompile the main.scm you have. It is stored in the data folder in the game directory. Press F5 on the SB and select this file. At the bottom of the window you will see the decompilation process. If it's successful, you'll see a box with a report in front of you. If you do not want this window to appear - turn it off in the settings.
+If you get an error during the decompilation, try to follow the instructions that will be shown in the error message. Most often errors occur if you did not specify the path to the game, or selected the wrong mode [edit](../editor/options/formats.md). The original main.scm file should decompile without any difficulties.
+
+So, the decompilation went through and you got the original file. It will be automatically saved in the same folder where main.scm is located. You can change the save address and source name format in the program settings. Do not be frightened by the large size of the file. Over time you will learn to navigate in it no worse than in your own apartment. You can read a detailed description of the source code structure [here](#).
+
+We need to add the script to this source code. Along with the script, there should be a comment from the author about the specifics of the installation. If there is no such comment, or the command create_thread is written at the beginning of the script, then you need to create a new thread. To do this, open a search (`Ctrl+F`), and search for the word `create_thread`. If you are working with the original file, this line you found should be about 948. There should also be other lines starting with `create_thread`. If you did not find such a line (for example, if you work with a modified file), try to find the line with opcode 0180.
+
+After the line found, add a new one with the command `create_thread @thread_name`. The thread name is usually specified at the beginning of the script. If this is not specified, the thread name is the name of the first [tag](#) (a line starting with a colon). In our example, the thread name is @ogranichitel. Add the create_thread @ogranichitel line after the found one
+
+Now you need to add the thread (script) itself. To do this, find the very first mission (mission 0). The comment `//-------------Misión 0---------------` should be there. Add all (except the **create_thread** command) script code before this comment
+If you don't find mission 0, try adding the script to the end of the file.
+
+So, the source now looks something like this.
+
+```sb3
+// This file was decompiled ...
+DEFINE OBJECTS
+DEFINE OBJECT (noname)                
+...
+0363: create_object_at ...
+004F: create_thread @ODDVEH
+create_thread @ogranichitel
+004F: create_thread @R3
+...
+:MOB_GF_3609
+00BE: text_clear_all 
+0051: return 
+
+:ogranichitel
+wait 5000
+
+:ogranichitel_2 
+
+<the script> 
+
+jump @ogranichitel_2
+
+
+//-------------Mission 0---------------
+// Originally: Initial 1 
+
+...
+```
+
+Now you just have to compile the file. To do this, press F7. If an error occurs during compilation, follow the instructions.
+After a successful compilation, run the game by pressing F8 and check the script in the game.
+
+If you need to add more than one script, you don't need to decompile main.scm every time. Simply add the scripts to one source file and compile it.
+
+<script src="../../js/main.min.js"></script>

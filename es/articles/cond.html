@@ -1,74 +1,92 @@
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-  <title>Condiciones</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+	<title>Condiciones</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
 </head>
 <body>
-Ahora les hablaré de los operadores de transición. Las transiciones pueden ser condicionales o incondicionales. Hay dos tipos de transiciones incondicionales: con y sin retorno. Para una transición con retorno se utiliza el comando gosub @"Debe haber una transición allí" y para una transición sin retorno existe el salto @"Debe haber una transición allí". La diferencia entre un failback y un salto irreversible es que el script ejecutará todo lo que hay después de la línea "switch there" hasta que encuentre una orden de retorno, después de lo cual salta a la línea después de gosub @"switch there", mientras que un failback saltará a la línea "switch there" después de la línea de salto @"switch there" e ignorará cualquier orden después del salto. Los saltos condicionales son siempre irrevocables. Véase también [aquí] (#) para más información sobre los saltos.
-Los saltos condicionales siempre se producen después de que se cumpla cualquier condición. Hay tres tipos de condiciones:
-1 - declaración de la condición.
-2 - Redacción de subcondiciones.
-3 - qué hacer después de (no) la ejecución o sólo la transición.
-Cualquier condición comienza con una línea con el texto "si", si quieres que se cumplan todas las subcondiciones (también se llaman comprobaciones) de tu condición, debes poner "and" después de "si" (con un espacio entre ellas), y si quieres comprobar si se cumple al menos una subcondición, entonces en lugar de "and" pon "or".
+¿Sabias que las condiciones pueden ser condicionales o incondicionales?
+Así es! y con 2 variantes en la última...
+Con y sin retorno, es decir.. con y sin regreso al punto de origen en donde se invoco ú ejecuto el salto. Esto con `gosub @`, `return` y `jump @`.
 
-Por ejemplo:
+Podrías entender mejor la diferencia entre un Jump y Gosub con este script de ejemplo :)
+```sb3
+	gosub @switch_there
+	jump @switch_there
+	:force_return
+end_thread
 
-1) Comprobación con todas las condiciones secundarias cumplidas:
+:switch_there // <-- ambos comandos se dirigen a este punto
+	wait 1000
+	return    // pero solo Gosub se regresa al encontrar este comando
+	wait 1000
+jump @force_return
+```
+Esto muestra como `gosub` se toma 1 segundo en terminar con `switch_there` y regresar al bloque principal, mientras que `jump` se toma el doble de tiempo, por que no entienede las ordenes de regreso `return`.
 
+Estos saltos pueden ser condicionales y retornables mientras se produscan después de que se cumpla alguna condición declarada, expresada o negada.
+
+:::success
+Puedes leer [aquí](#) para informarte más sobre los saltos.
+:::
+
+Un **salto condicional**, daria comienzo con una linea de texto `if`, donde sí queres que se cumplan más de una condición, debes poner `and` después de la misma ovbiamente, u `or` si quieres que almenos una de las tantas se cumpla.
+
+Por ejemplo, una:
+
+**Condición con todos los checks cumplidos:**
 ```sb3
 create_thread @Test1 
-  
-:Test1
-wait 0
-if and
-  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
-  8184: not actor $PLAYER_ACTOR health >= 99
-jf @Test1
-actor.health($PLAYER_ACTOR) = 100
+	
+	:Test1
+	wait 0
+	if and
+		0102: actor $PLAYER_ACTOR stopped_on_foot_at $X $Y $Z radius $X_R $Y_R $Z_R sphere 0 
+		8184: not actor $PLAYER_ACTOR health > 100
+	else_jump @Test1
+	Actor.Health($PLAYER_ACTOR) = 100
 end_thread 
 ```
+Aquí, si el jugador(CJ) se ha detenido en las coords. `$X $Y $Z`, más precisamente en un radio de `$X_R $Y_R $Z_R` desde el origen de estas, y su vida es menor de **100**, entonces su vida volverá a ser **100**.
+El parámetro `0` al final del primer check es sí no está parado en una esfera (marcador rojo). Si el parámetro fuera 1, tendríamos que crear una esfera primero, y continuar así. El comando `else_jump @Test1` hace el salto a `:Test1` si no se cumplen las 2 condiciones.
 
-El principio es el siguiente:
-Si el jugador(CJ) se ha detenido en las coordenadas dadas `$X $Y $Z`, más precisamente en un radio de `$X_R $Y_R $Z_R` desde estas coordenadas, y si su vida es menor de 100, entonces su vida volverá a ser 100. El parámetro 0 al final de la primera sub-condición indica que el jugador no está parado en una esfera (marcador rojo). Si el parámetro fuera 1, tendríamos que crear una esfera primero, pero sobre las esferas después. El opcode `jf @Test1` hace el salto a `Test1` si no se cumplen nuestras dos condiciones.
-
-2) Comprobación con al menos una subcondición cumplida:
-
+**Condición con al menos un checks cumplidos:**
 ```sb3
 create_thread @Test2
 
-:Test2
-wait 0
-if or
-  0102: actor $PLAYER_ACTOR stopped_near_point_on_foot $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
-  8184: not actor $PLAYER_ACTOR health >= 99
-jf @Test2
-actor.health($PLAYER_ACTOR) = 100
+	:Test2
+	wait 0
+	if or
+		0102: actor $PLAYER_ACTOR stopped_on_foot_at $X $Y $Z radius $X_R $Y_R $Z_R sphere 0
+		8184: not actor $PLAYER_ACTOR health > 100
+	else_jump @Test2
+	actor.health($PLAYER_ACTOR) = 100
 end_thread
 ```
+Aquí, si el jugador(CJ) se ha detenido en las coords. ó su vida es menor de **100**, entonces su vida volverá a ser **100**.
 
-Dice que si el jugador se detuvo dentro de un radio determinado de un punto con coordenadas `$X $Y $Z` o si la vida del jugador se convirtió en menos de 100, la vida se convertirá en 100. Aquí, si se cumple al menos una subcondición, nuestra acción se ejecutará, es decir, la vida de CJ se convierte en 100.
 La vida es un número entero, pero las coordenadas y los radios son fraccionarios. Si incluso necesitas usar un radio igual a 10, debes escribir 10.0.
-Para que el hilo no sea de un solo uso es necesario poner "saltar al principio" en lugar de "end_thread" al final, en este caso es `Jump @Test2`.
+Para que el hilo no sea de un solo uso es necesario poner un "salto al principio" en lugar de `end_thread` al final, en este caso es `jump @Test2`.
+
 He aquí un ejemplo del primer script (Test1), pero con coordenadas, radios... :
 
 ```sb3
 create_thread @Example1 
 
 :Example1
-wait 0
-if and
-  0102: actor $PLAYER_ACTOR near_pt 2505.4812 -1687.4213 13.5543 radius 10.0 10.0 10.0 sphere 0
-  8184: not actor $PLAYER_ACTOR health >= 99
-jf @Example1
-actor.health($PLAYER_ACTOR) = 100
+	wait 0
+	if and
+		0102: actor $PLAYER_ACTOR near_pt 2505.4812 -1687.4213 13.5543 radius 10.0 10.0 10.0 sphere 0
+		8184: not actor $PLAYER_ACTOR health > 100
+	else_jump @Example1
+	actor.health($PLAYER_ACTOR) = 100
 jump @Example1
 ```
 
-Si la vida de un jugador es inferior a 100 y está fuera del garaje de CJ, su vida se convierte en 100. Tenga en cuenta que esta secuencia de comandos es en bucle, siempre funciona porque hay una transición en su final a su principio.
+Si la vida de un jugador es inferior a 100 y está fuera del garaje de CJ, su vida se convierte en 100. Tenga en cuenta que esta secuencia de comandos es en bucle, siempre funciona porque hay una condición en su final a su principio.
 Desde el principio inserte "create_thread @Example1" después de otro "create_thread", el segundo se puede encontrar buscando. A continuación, busque "----Mission 0----" y antes de ella inserte todo lo que va en nuestro script desde ":Example1" hasta "jump @Example1" inclusive. Pulse "F7" y espere la compilación. Cuando esté compilado, presiona "F8" - iniciar SA y comenzar una nueva partida.
 \n
 [red][Atención]: En las comprobaciones sólo hay ">", no hay "<", en lugar de eso se puede escribir la palabra "not" antes de todo el opcode, es lo mismo que "<", esto se aplica a los comandos sin palabras de código. En las comprobaciones de afirmación (que no tienen "not") el opcode empieza por "0" y en todas las comprobaciones de denegación se utiliza el mismo opcode, pero en lugar de "0" se utiliza el número "8". Así, si tiene una declaración, puede cambiar el primer dígito, es decir, "0" por "8", y poner "not" después del signo ":", y esto será una comprobación de renuncia, y viceversa.
@@ -79,9 +97,9 @@ Aquí tengo un cheque "jugador flotando en el agua", tiene la siguiente forma:
 :Label1
 wait 0 ms
 if // si sólo tenemos una subcondición o comprobación, 
-// no hay que escribir "or" o "and".
-0965: actor $PLAYER_ACTOR swimming_in_water
-jf @Label1 // si la subcondición no se cumple, pasa al principio.
+	// no hay que escribir "or" o "and".
+	0965: actor $PLAYER_ACTOR swimming_in_water
+else_jump @Label1 // si la subcondición no se cumple, pasa al principio.
 ```
 
 Digamos que mi script debe realizar acciones cuando el jugador no está en el agua, pero mi comprobación dice que la acción del script no procederá si el jugador no está en el agua, así que necesito comprobar "el jugador no está nadando". Sustituya el cheque original por un cheque con el valor opuesto. Y esto es lo que tenemos:
@@ -99,19 +117,19 @@ Tenemos 10 modelos que tenemos que comprobar para la carga, pero el número máx
 :Test
 wait 0
 if and
-  model.Available(#1)
-  model.Available(#2)
-  model.Available(#3)
-  model.Available(#4)
-  model.Available(#5)
-  model.Available(#6)
-  model.Available(#7)
-jf @Test
+	model.Available(#1)
+	model.Available(#2)
+	model.Available(#3)
+	model.Available(#4)
+	model.Available(#5)
+	model.Available(#6)
+	model.Available(#7)
+else_jump @Test
 if and
-  model.Available(#8)
-  model.Available(#9)
-  model.Available(#10)
-jf @Test
+	model.Available(#8)
+	model.Available(#9)
+	model.Available(#10)
+else_jump @Test
 ```
 
 Este es el cheque que salió. Si no entiende algo, vaya a [https://gtamaps.net/forum](https://gtamaps.net/forum) .

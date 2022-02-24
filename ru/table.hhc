@@ -353,30 +353,31 @@
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Scripting Introduction">
+			<param name="Local" value="ru\articles\intro.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Coding Bible. Part I">
+				<param name="Name" value="Coding Bible I">
 				<param name="Local" value="ru\articles\mcp1.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Coding Bible. Part II">
+				<param name="Name" value="Coding Bible II">
 				<param name="Local" value="ru\articles\mcp2.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Quick Start. Part I">
+				<param name="Name" value="Quick Start I">
 				<param name="Local" value="ru\articles\qsp1.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Quick Start. Part II">
+				<param name="Name" value="Quick Start II">
 				<param name="Local" value="ru\articles\qsp2.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Panel or List. Part I">
+				<param name="Name" value="Panel or List I">
 				<param name="Local" value="ru\articles\panel1.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Panel or List. Part II">
+				<param name="Name" value="Panel or List II">
 				<param name="Local" value="ru\articles\panel2.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
@@ -394,6 +395,7 @@
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Experienced Users">
+			<param name="Local" value="ru/articles/users.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">

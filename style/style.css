@@ -86,6 +86,7 @@ thead {
 td {
 	padding: .6rem;
 	border-left: #30363d 1px solid;
+	border-top: #30363d 1px solid;
 	text-align: center;
 	width: 1%;
 }
@@ -94,9 +95,6 @@ td:first-child {
 	position: relative;
 	border-left: none;
 	text-align: left;
-}
-td {
-	border-top: #30363d 1px solid;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -140,7 +138,7 @@ summary {
 
 hr {
 	border: 0;
-	border-top: solid #30363d 1px;
+	border-bottom: solid #30363d 1px;
 	margin: 15px 0;
 }
 
