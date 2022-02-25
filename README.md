@@ -20,7 +20,7 @@ Just download the chm corresponding to your language:
 
 | language | file | state |
 | --- | --- | --- |
-| English | help] | `[##########]` ⭐ complete |
+| English | help | `[##########]` ⭐ complete |
 | Español | help3082 | `[#########.]` ⌛ in process |
 | Pусский | help1049 | `[#######...]` ⌛ in process |
 
