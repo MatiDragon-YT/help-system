@@ -222,7 +222,8 @@ a:hover {
 blockquote {
 	padding: 5px 1rem;
 	margin: 5px 0;
-	border-left: #9e9e9e 4px solid;
+	border-left: #ff5252 4px solid;
+	color: #ff5252;
 }
 
 .warning {
@@ -238,6 +239,10 @@ blockquote {
 	border-left: #00c853 4px solid;
 	color: #009688;
 }
+pre[contenteditable="true"] {
+	outline: #009688 1px solid;
+	color: #009688;
+}
 
 div.success, div.warning, div.info {
 	padding: 5px 1rem;
@@ -245,7 +250,7 @@ div.success, div.warning, div.info {
 	display: block;
 }
 
-input {
+input[type='text'], input[type='number'] {
 	border: none;
 	outline: none;
 	font-size: 1rem;
@@ -255,6 +260,10 @@ input {
 	transform: translate(-0.6rem, 0rem);
 	transform: translate(-1rem, -1.5rem);
 	position: absolute;
+}
+input[type='checkbox']{
+	width: 1em;
+	padding: 0;
 }
 
 .labels { color: #009688 }
@@ -335,6 +344,7 @@ input {
 .d-inline-block {display: inline-block}
 
 .w-100{width: 100%}
+.h-33 {height:33vh}
 .h-43 {height:43vh}
 .h-100 {height:100vh}
 .h-100-auto {height: calc(100vh - 3.375rem - 1.5vw - 4px)}

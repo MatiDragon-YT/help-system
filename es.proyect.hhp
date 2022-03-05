@@ -12,12 +12,13 @@ Language=0x2c0a Español (Argentina)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
+MAIN=,"es\table.hhc","index.hhk","es\README.html","es\README.html",,,,,0x42120,,0x3006,[346,122,1039,668],,,,,,,0
 
 
 [FILES]
 es\README.html
 es\credits.html
+es\tools.html
 es\version-history.html
 es\coding\arrays.html
 es\coding\built-in-commands.html
@@ -79,6 +80,7 @@ es\scm-documentation\sa\vehicle-variations.html
 es\scm-documentation\sa\weapons.html
 es\scm-documentation\sa\weather.html
 es\scm-documentation\sa\zones.html
+es\scm-documentation\sa\scripts.html
 es\scm-documentation\vc\buttons.html
 es\scm-documentation\vc\gangs.html
 es\scm-documentation\vc\garages.html

@@ -12,12 +12,13 @@ Language=0x409 Inglés (Estados Unidos)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"en\table.hhc","index.hhk","en\README.html","en\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
+MAIN=,"en\table.hhc","index.hhk","en\README.html","en\README.html",,,,,0x42120,,0x3006,[346,122,1039,668],,,,,,,0
 
 
 [FILES]
 en\README.html
 en\credits.html
+en\tools.html
 en\version-history.html
 en\coding\arrays.html
 en\coding\built-in-commands.html
@@ -79,6 +80,7 @@ en\scm-documentation\sa\vehicle-variations.html
 en\scm-documentation\sa\weapons.html
 en\scm-documentation\sa\weather.html
 en\scm-documentation\sa\zones.html
+en\scm-documentation\sa\scripts.html
 en\scm-documentation\vc\buttons.html
 en\scm-documentation\vc\gangs.html
 en\scm-documentation\vc\garages.html

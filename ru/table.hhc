@@ -24,6 +24,10 @@
 		<param name="Local" value="ru\version-history.html">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Tools">
+		<param name="Local" value="ru\tools.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="SYNTAX">
 		</OBJECT>
 	<UL>
@@ -226,6 +230,10 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Buttons IDs">
 				<param name="Local" value="ru\scm-documentation\sa\buttons.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="External Scripts">
+				<param name="Local" value="ru\scm-documentation\sa\scripts.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Gang IDs">

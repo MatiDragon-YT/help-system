@@ -12,12 +12,13 @@ Language=0x419 Ruso (Rusia)
 Title=Sanny Builder Help
 
 [WINDOWS]
-MAIN=,"ru\table.hhc","index.hhk","ru\README.html","ru\README.html",,,,,0x42120,,0x3006,[271,372,593,566],,,,,,,0
+MAIN=,"ru\table.hhc","index.hhk","ru\README.html","ru\README.html",,,,,0x42120,,0x3006,[346,122,1039,668],,,,,,,0
 
 
 [FILES]
 ru\README.html
 ru\credits.html
+ru\tools.html
 ru\version-history.html
 ru\coding\arrays.html
 ru\coding\built-in-commands.html
@@ -79,6 +80,7 @@ ru\scm-documentation\sa\vehicle-variations.html
 ru\scm-documentation\sa\weapons.html
 ru\scm-documentation\sa\weather.html
 ru\scm-documentation\sa\zones.html
+ru\scm-documentation\sa\scripts.html
 ru\scm-documentation\vc\buttons.html
 ru\scm-documentation\vc\gangs.html
 ru\scm-documentation\vc\garages.html

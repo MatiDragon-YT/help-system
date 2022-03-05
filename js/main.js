@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.14";
+const VERSION = "1.15";
 
 function log(value){
 	console.log(value)
@@ -110,28 +110,6 @@ function ModeLight(){
 		modeLight--
 		CSS.Remove(TEMPLADE)
 		return false
-	}
-}
-
-var editMode = 0
-onkeydown = function(event) {
-	//log(event)
-	if(!event.ctrlKey && event.altKey && event.keyCode == 226){
-		const TEMPLADE = '* { outline: 1px solid cadetblue; }'
-
-		function editable(value){
-			event.target.setAttribute("contenteditable", value)
-		}
-
-		if (!editMode) {
-			editMode++
-			CSS.Add(TEMPLADE)
-			editable("true")
-		}else {
-			editMode--
-			CSS.Remove(TEMPLADE)
-			editable("false")
-		}
 	}
 }
 
@@ -323,6 +301,10 @@ SP.toMarkdown = function(){
 
 		return output
 	})
+
+	// CHECKBOX
+	.r(/^\[\]\x20(.+)/gm, "<input type='checkbox' disabled> $1<br>")
+	.r(/^\[x\]\x20(.+)/gim, "<input type='checkbox' disabled checked > $1<br>")
 
 	// IMG
 	.r(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
