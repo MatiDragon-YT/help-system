@@ -29,7 +29,7 @@ asd@q asd UYYGBJKGU
 $("#input").onkeyup = render
 
 function render(){
-  var input = $("#input").innerText
+  var input = $("#input").innerText + '\n'
 
   var tras = [
     ["Á", ""],
@@ -60,7 +60,7 @@ function render(){
 
   $("#output").innerHTML = input
   .rA("<p></p>", "\n")
-  .rA(" \n", "\n")
+  .r(/([^\s])\s+\n/g, "$1\n")
   .r(/\n+\n/g, "\n")
   .r(/^([\w\d@]+)\x20/gm, "<font class='red'>$1</font> ")
 }
