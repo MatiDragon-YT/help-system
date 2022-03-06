@@ -1,11 +1,74 @@
 <!doctype html>
 <html>
 <head>
+  <title>Tools</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 <body>
+#### Repair Errors in GXT
+Paste here text:
+
+<pre id="input" contenteditable="true" class="h-33">
+EJEMPLO aquí uno con errores         
+8767 á Á ñoquíz ó ú ñ ñ 
+asd@q asd UYYGBJKGU      
+JKSD 
+@LPG02 Hello Woppy
+</pre>
+
+<pre id="output" class="h-33"></pre>
+
 <script src="../js/main.min.js"></script>
-<script>location.href = exROOT() + "tools.html"</script>
+<script>
+$("#input").onkeyup = render
+
+function render(){
+  var input = $("#input").innerText + '\n'
+
+  var tras = [
+    ["Á", ""],
+    ["É", "‡"],
+    ["Í", "‹"],
+    ["Ó", ""],
+    ["Ú", "“"],
+    ["Ü", "•"],
+    ["Ñ", "­"],
+    ["á", "˜"],
+    ["é", "ž"],
+    ["è", ""],
+    ["í", "¢"],
+    ["ï", "¤"],
+    ["ó", "¦"],
+    ["ö", "¨"],
+    ["ú", "ª"],
+    ["ü", "¬"],
+    ["ñ", "®"],
+    ["¿", "¯"],
+    ["¡", "^"],
+    ["°", "|"],
+    ["&", "*"],
+    ["ç", "œ"]
+  ].forEach(function(e){
+    input = input.rA(e[0], e[1])
+  })
+
+  $("#output").innerHTML = input
+  .rA("<p></p>", "\n")
+  .r(/([^\s])\s+\n/g, "$1\n")
+  .r(/\n+\n/g, "\n")
+  .r(/^([\w\d@]{6}[^\s]+)\x20/gm, '<b class="bg-red black">$1</b> ')
+  .r(/^([\w\d@]+)\x20/gm, "<font class='blue'>$1</font> ")
+  .r(/^([\w\d@]+)(?!\x20)/gm, "<b class='bg-red black'>$1</b> ")
+}
+
+onload = function(){
+  render()
+}
+
+
+
+
+</script>
