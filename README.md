@@ -29,8 +29,14 @@ And optionally, move the file to directory.
 <sanny builder foldes>/help/<here>
 ```
 to be able to open it from sanny builder, or directly, opening it as if it were a common windows executable.
-> ### BUG: Blank views?
-> If when you open the file, it does not load the content. Only by unchecking the Windows security box when opening the file, you could have solved the problem.
+> #### BUGS:
+> **Blank views?**\
+> If when you open the file, it does not load the content. Only by unchecking the Windows security box when opening the file, you could have solved the problem.\
+> **No images?**\
+> Make sure you have the `files` folder in `<sanny>/help/`. This is where many of the images in the documentation are stored, to speed up the loading of the pages and the opening of CHM.\
+> **Syntax Error?**\
+> If it appears when you run CHM, it is because you do not have the latest version of IE (Internet Explorer) installed. Exactly v. 11.\
+> If it appears when entering any page, report it [here](https://github.com/MatiDragon-YT/help-system/issues/new) with a screenshot so we can bring it corrected in the next days.
 
 
 ## Collaborations
