@@ -1,0 +1,33 @@
+{$CLEO}
+
+// Hooks the OTB mission, setting new values of wager 
+
+10@ = 50
+11@ = 250
+12@ = 1000
+13@ = 5000
+14@ = 20000
+15@ = 50000
+16@ = 250000
+
+while true
+    wait 250
+    0AAA: 0@ = thread 'OTB' pointer
+    if
+        0@ > 0 // true if mission 'OTB' is running
+    then
+
+        0@ = 0x00A48960 // Mission Locals address v1
+        8AA9:    not is_game_version_original
+        jf @setloop        
+        0@ = 0x00A4AFE0 // Mission Locals address v1.1
+        
+        :setloop
+        inc(0@, 356) // TLS.89@     
+        for 1@ = 0 to 6
+            0A8C: write_memory 0@ size 4 value 10@(1@,8i) virtual_protect 0
+            inc(0@, 4)
+        end      
+    end
+end
+          

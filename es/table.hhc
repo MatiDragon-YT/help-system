@@ -410,6 +410,10 @@
 				<param name="Name" value="Paquete de Misiones">
 				<param name="Local" value="es\articles\mpack.html">
 				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Scripts Externos">
+				<param name="Local" value="es\articles\users.html">
+				</OBJECT>
 		</UL>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">

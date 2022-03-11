@@ -9,7 +9,7 @@
 </head>
 <body>
 
-The using of the following opcodes is only possible at the CLEO 3 library installed. At compiling Sanny Builder checks if the library is installed and if not, warns that it’s necessary. If you write a script using these opcodes, you have to include the library files as well to guarantee its functionality to the end user
+Пользование следующими опкодами возможно только при установленной библиотеке CLEO 3. При компиляции Sanny Builder проверяет, установлена ли CLEO 3 и при необходимости предупреждает о том, что следует провести ее установку. Если вы написали скрипт с использованием данных опкодов, не забудьте включить в комплект файлы библиотеки или иным способом обеспечить для конечного пользователя работоспособность такого скрипта
 
 :::cols-3 cols-sm-4 pre p-4 center
 [Opcode 0A8C](#0A8C)
@@ -71,13 +71,14 @@ CLEO 2 Opcodes
 ```sb3
 0A8C: write_memory 0xC0BC15 size 1 value 1 virtual_protect 0
 ```
-[0A8C][]**0A8C** writes a value to the game memory.
+[0A8C][]**0A8C** записывает значение по указанному адресу памяти игры.
 
-**Parameters:**
-1. memory address (any integer value) 
-2. number of bytes to write: 1, 2 or 4 bytes
-3. value to write (any number)
-4. Virtual Protect: use 1 to write to the read-only address, 0 – if the address is rewritable.
+**Параметры:**
+1. адрес памяти (любое целое число)
+2. размер записи: 1, 2, 4 байта
+3. значение (любое число)
+4. Virtual Protect: 1 – если нужно сделать адрес памяти записываемым, 0 – если запись идет в перезаписываемый адрес памяти.
+
 
 ---
 
@@ -86,7 +87,7 @@ CLEO 2 Opcodes
 ```
 [0A8D][]**0A8D** reads the game memory and stores the result to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store read result (any variable or array item)
 2. memory addressа to read (any integer value)
 3. number of bytes to read: 1, 2 or 4 bytes
@@ -99,7 +100,7 @@ CLEO 2 Opcodes
 ```
 [0A8E][]**0A8E** sums up two values and stores the result to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store sum (any variable or array item)
 2. first item (any integer value)
 3. second item (any integer value)
@@ -111,7 +112,7 @@ CLEO 2 Opcodes
 ```
 [0A8F][]**0A8F** subtracts one integer value from another and stores the result to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store difference (any variable or array item)
 2. minuend (any integer value)
 3. subtrahend (any integer value)
@@ -123,7 +124,7 @@ CLEO 2 Opcodes
 ```
 [0A90][]**0A90** multiplies one integer number by another and stores the result to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store product (any variable or array item)
 2. multiplier (any integer value)
 3. multiplier (any integer value)
@@ -135,7 +136,7 @@ CLEO 2 Opcodes
 ```
 [0A91][]**0A91** divides one integer number by another and stores the result to a variable without the remainder.
 
-**Parameters:**
+**Параметры:**
 1. variable to store result (any variable or array item)
 2. dividend (any integer value)
 3. divisor (any integer value)
@@ -147,7 +148,7 @@ CLEO 2 Opcodes
 ```
 [0A96][]**0A96** stores the pointer to the actor’s structure in the game memory. The structure is a set of different values such as health, coords, etc. Knowing the struct address it’s possible to read/rewrite these values using 0A8D/0A8C.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the struct address 
 2. actor handle obtained by the constructor opcode (009A and similar) 
 
@@ -158,7 +159,7 @@ CLEO 2 Opcodes
 ```
 [0A97][]**0A97** stores the pointer to the vehicle’s structure in the game memory.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the struct address 
 2. vehicle handle obtained by the constructor opcode (00A5 and similar)
 
@@ -169,7 +170,7 @@ CLEO 2 Opcodes
 ```
 [0A98][]**0A98** stores the pointer to the object’s structure in the game memory.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the struct address 
 2. object handle obtained by the constructor opcode (0107 and similar)
 
@@ -180,7 +181,7 @@ CLEO 2 Opcodes
 ```
 [0A99][]**0A99** sets the current directory making it default.
 
-Parameter:
+**Параметр:**\
 1. folder
   - `0`: the game root folder becomes the default directory
   - `1`: the user files folder becomes the default directory
@@ -192,7 +193,7 @@ Parameter:
 ```
 [0A9A][]**0A9A** opens the file for reading and writing. This opcode can be used as a condition: if the file is was not open, it returns False, otherwise True.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the file handle
 2. file name. If the path is relative, the file is open in accordance with the current directory ([opcode 0A99](../editor/options/formats.md)).
 3. file open mode: 
@@ -208,7 +209,8 @@ Parameter:
 ```
 [0A9B][]**0A9B** closes the file and frees the memory.
 
-Parameter: a handle to the file 
+**Параметр:**\
+a handle to the file 
 
 ---
 
@@ -217,7 +219,7 @@ Parameter: a handle to the file
 ```
 [0A9C][]**0A9C** stores the file size in bytes to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the result
 2. file handle
 
@@ -228,7 +230,7 @@ Parameter: a handle to the file
 ```
 [0A9D][]**0A9D** reads the specified number of bytes from the opened file and writes them to the memory region starting from the address where the variable is.
 
-**Parameters:**
+**Параметры:**
 1. file handle
 2. number of bytes to read from the file 
 3. variable to store the result. If the number of delivered bytes is more than four, the remainder will be written to the next variable ($151 in this case), and so on.
@@ -240,7 +242,7 @@ Parameter: a handle to the file
 ```
 [0A9E][]**0A9E** copies data starting from the address, where the variable (last parameter) is, to the file.
 
-**Parameters:**
+**Параметры:**
 1. file handle 
 2. number of bytes to copy 
 3. variable indicated the starting position of writing data. If the data size is more than 4 bytes, next variable’s value will be read and written to the file. In this example, the file will keep the dump of all local variables of a thread (32 variables with 4 bytes in length for each = 128 bytes to copy).
@@ -259,7 +261,8 @@ Parameter: a handle to the file
 ```
 [0AA0][]**0AA0** executes a gosub command if the condition result is false. Except this difference, this opcode is the same as 004D: jump_if_false and can be used instead of it.
 
-Parameter: label where the thread is transfered
+**Параметр:**\
+label where the thread is transfered
 
 ---
 
@@ -275,7 +278,7 @@ Parameter: label where the thread is transfered
 ```
 [0AA2][]**0AA2** loads a DLL library and stores the handle to it to a varaible. This opcode can be used as a condition: if the library does not loaded, it returns False, otherwise it’s True.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the handle to a library (any variable or array item)
 2. a library name. If the path is relative (without specifying of a disk name), the DLL file is searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)). If the file extension is not specified, the default extension will be used (.DLL).
 
@@ -286,7 +289,8 @@ Parameter: label where the thread is transfered
 ```
 [0AA3][]**0AA3** unloads the library and frees the memory.
 
-Parameter: handle to the library
+**Параметр:**\
+handle to the library
 
 ---
 
@@ -295,7 +299,7 @@ Parameter: handle to the library
 ```
 [0AA4][]**0AA4** returns the address of the specified exported DLL function. This address can be used in the opcodes of the call type. This opcode can be used as a condition: if the function is not found it return False, otherwise it’s True.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the function address.
 2. function name (a string or a string variable). Pay attention that the get_proc_address is sensitive to the letter case.  If the function is exported having the name GetVersion, it means that, for example, get_proc_address “getversion” will not find such a function. You must specify exact name. Also remember that Sanny Builder compiles all strings in uppercase by default. It means that this example will be compiled as “GETVERSION”, so the function GetVersion won’t be found again. To avoid that, [select the "As is" letter case](../editor/options/formats.md) in the program options.
 3. loaded library handle (0AA2)
@@ -307,7 +311,7 @@ Parameter: handle to the library
 ```
 [0AA5][]**0AA5** and similar opcodes have variable number of parameters. This opcode has at least 3 parameters, and also additional ones (passed to the called proc), number and values of which depend on the called procedure. Total number of additional parameters must equal to the parameter num_params. Each passed parameter must be numerical (constant or variable fit), but not string.
 
-**Parameters:**
+**Параметры:**
 1. address of called proc. It may be the address inside the gta_sa.exe or inside a loaded dll.
 2. number of parameters to pass to the proc.
 3. number of parameters that must be removed from the stack after the proc execution. This value has to be within an interval from zero to num_params. The exact value depends on the calling convention of the procedure. Usually, the exe procedures do not clean the stack themselves, so the pop parameter mostly equals to the num_params (all passed parameters are removed from the stack after the proc execution).
@@ -319,7 +323,7 @@ Parameter: handle to the library
 ```
 [0AA6][]**0AA6** calls the proc for the class. Each class has a set of procedures called methods to operate with the class data (like SB classes for reference). We call the Destroy method of the CVehicle class in this example. With a proviso it’s possible to say that this example is the same as the Car.Destroy() command.
 
-**Parameters:**
+**Параметры:**
 1. address of called proc. It may be the address inside the gta_sa.exe or inside a loaded dll.
 2. pointer to the class structure (can be obtained by the opcodes 0A96 - 0A98).
 3. number of parameters to pass 
@@ -332,7 +336,7 @@ Parameter: handle to the library
 ```
 [0AA7][]**0AA7** work similar to the 0AA5 except that additionally there is a variable to keep the result of called function. It means that the last parameter here is always a variable. Thus the num_params does not include this one. We call the function at address 0x569660 and pass two parameters X and Y to it in this example. The function result will be stored to the $GROUND.
 
-**Parameters:**
+**Параметры:**
 1. address of called function. It may be the address inside the gta_sa.exe or inside a loaded dll.
 2. number of parameters to pass to the function
 3. number of parameters that must be removed from the stack after the function execution. See the 0AA5 for explanation.
@@ -344,7 +348,7 @@ Parameter: handle to the library
 ```
 [0AA8][]**0AA8** calls a function from the class and stores the result to a variable which is always the last parameter. The principle of operation is similar to the opcodes 0AA6 and 0AA7. We call the function at address 0x4048E0 and pass the vehicle handle as a parameter to it in this example. Struct 0xB74494 is a collection of all in-game vehicles. 0x4048E0 is a function that converts the vehicle handle to its struct pointer (analogue of opcode 0A97). This pointer will be stored to the variable 0@.
 
-**Parameters:**
+**Параметры:**
 1. address of called function. It may be the address inside the gta_sa.exe or inside a loaded dll.
 2. pointer to the class structure (can be obtained by the opcodes 0A96 - 0A98).
 3. number of parameters to pass
@@ -364,7 +368,8 @@ This opcode is used as a condition. If you work with the original SA version 1.0
 ```
 [0AAB][]**0AAB** tests if a specified file exists. This check is a part of opcodes 0A9A and 0AA2, so there is no need to duplicate it for them.
 
-Parameter: file name. If the path is relative (without specifying of a disk name), it’s searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)).
+**Параметр:**\
+file name. If the path is relative (without specifying of a disk name), it’s searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)).
 
 ---
 
@@ -373,7 +378,7 @@ Parameter: file name. If the path is relative (without specifying of a disk name
 ```
 [0AAC][]**0AAC** loads a mp3 file and stores a handle to it to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the mp3 handle
 2. mp3 file name. If the path is relative (without specifying of a disk name), it’s searched relatively of the current active directory ([opcode 0A99](../editor/options/formats.md)).
 
@@ -384,7 +389,7 @@ Parameter: file name. If the path is relative (without specifying of a disk name
 ```
 This opcode performs the pre-defined action with the loaded mp3.
 
-**Parameters:**
+**Параметры:**
 1. mp3 handle obtained by 0AAC 
 2. a number to specify an action:
   - `0`: stop
@@ -399,7 +404,8 @@ This opcode performs the pre-defined action with the loaded mp3.
 ```
 [0AAE][]**0AAE** releases the mp3 file and frees the memory.
 
-Parameter: mp3 handle obtained by 0AAC.
+**Параметр:**\
+mp3 handle obtained by 0AAC.
 
 ---
 
@@ -408,7 +414,7 @@ Parameter: mp3 handle obtained by 0AAC.
 ```
 This opcode stores the track length in seconds of the loaded mp3 to a variable.
 
-**Parameters:**
+**Параметры:**
 1. variable to store the result
 2. mp3 handle 
 
@@ -418,9 +424,10 @@ This opcode stores the track length in seconds of the loaded mp3 to a variable.
 0AB0:  key_pressed 0x73
 ```
 
-<span id=0AB0>0AB0</span> is used as a condition. This opcode tests if the key is pressed on keyboard. If the key with specified code is pressed, it returns True, otherwise False.
+[0AB0][]**0AB0** is used as a condition. This opcode tests if the key is pressed on keyboard. If the key with specified code is pressed, it returns True, otherwise False.
 
-Parameter: virtual key code. See [here](../scm-documentation/virtual-key-codes.md) the list of them.
+**Параметр:**\
+virtual key code. See [here](../scm-documentation/virtual-key-codes.md) the list of them.
 
 ---
 
@@ -433,7 +440,8 @@ CLEO 3 Opcodes
 ```
 [0A92][]**0A92** creates a new thread from the file. If the file has an extension .cs the thread from it is created automatically at game startup. At creating a custom thread, you can pass up to 34 parameters to it, like in opcode 004F.
 
-Parameter: file name. The name must be specified with an extension if it has one. The file is retrieved relatively of the directory ‘game\CLEO’ which is default path for any CLEO files.
+**Параметр:**\
+file name. The name must be specified with an extension if it has one. The file is retrieved relatively of the directory ‘game\CLEO’ which is default path for any CLEO files.
 
 ---
 
@@ -450,7 +458,8 @@ To stop a CLEO-mission, use opcode 004E.
 ```
 [0A94][]**0A94** begins a CLEO mission from the specified file as the 0147 does. Look that the file extension is not needed to specify. In fact the opcode will search for the file with the extension .cm (Custom Mission). The mission starts from the file CLEO\missions\CustomMission1.cm in this example.
 
-Parameter: file name without an extension. The file is retrieved relatively of the directory ‘game\CLEO’.
+**Параметр:**\
+file name without an extension. The file is retrieved relatively of the directory ‘game\CLEO’.
 
 ---
 
@@ -466,7 +475,7 @@ Parameter: file name without an extension. The file is retrieved relatively of t
 ```
 This opcode tests if a thread with given name is active. If so, opcode will store the address  of this thread to a variable. If a thread with given name is not found in the game memory, the  variable's value will be 0.
 
-**Parameters:**
+**Параметры:**
 1 - a variable to store search result 
 2 - a thread name to search
 
@@ -476,7 +485,7 @@ This opcode tests if a thread with given name is active. If so, opcode will stor
 0AB1: call_scm_func @GetSQR 1  10 $result
 ```
 This opcode calls a SCM function, passes the parameters to it and stores the result to a variable(s). The passed parameters values are copied to the local variables in series, then the thread execution is transferred to the label, it executes code there and returns after the opcode 0AB2.
-**Parameters:**
+**Параметры:**
 1. label (SCM function beginning)
 2. number of parameters to pass
 
@@ -489,7 +498,7 @@ Then there are the passed parameters, a number of 10 in our case. After that, th
 ```
 [0AB2][]**0AB2** This opcode transfers the thread execution back to the 0AB1 opcode and stores the returned values in its variables. **Total number of returned values must equals to the number of variables storing the result in the 0AB1**. In this example the 0AB2 returns one value, which is the value of the variable `0@`, this value will be copied to the variable $result (see 0AB1 example). If the 0AB2 opcode does not return any values, it must have a `0` as the only parameter, and proper 0AB1 that calls such a function should have no variables to store.
 
-**Parameters:**
+**Параметры:**
 1. number of values to return
 After that there are the returned values.
 
@@ -522,7 +531,7 @@ Also pay attention that the local variables are stayed unchanged after the funct
 [0AB3][]**0AB3** sets a new value of the global CLEO variable. These variables can be used to data communication between CLEO threads, or between CLEO and the main.scm. The total number of such variables is 100. Their values are saved in the CLEO save.
 This variables can be used in the main.scm as alternative to the common global variables.
 
-**Parameters:**
+**Параметры:**
 1. global variable ID. Should be in a range of 0..999
 2. new value for the variable. (any number).
 
@@ -533,7 +542,7 @@ This variables can be used in the main.scm as alternative to the common global v
 ```
 [0AB4][]**0AB4** stores to a variable the value of the global CLEO variable. In this example, the 0@ will be equal to 10 (see 0AB3).
 
- **Parameters:** 
+ **Параметры:** 
 1. variable to store the global CLEO variable value
 2. global CLEO variable ID. Should be in range of 0..999.
 
@@ -544,7 +553,7 @@ This variables can be used in the main.scm as alternative to the common global v
 ```
 This opcode stores to the variables handles of a vehicle and ped being closest to the actor. If there’s no any vehicle or ped close to him, the proper variable will contain value of -1.
 
-**Parameters:**
+**Параметры:**
 1. actor handle
 2. variable to store a vehicle being closest to him
 3. variable to store a ped being closest to him
@@ -556,7 +565,7 @@ This opcode stores to the variables handles of a vehicle and ped being closest t
 ```
 This opcode stores to the variables coordinates of the place marked with red target point on the map (right-click on the map). If the target point does not exist, the variables do not change their values.
 
-**Parameters:**
+**Параметры:**
 - 1,2,3 – variables to store XYZ coords
 
 ---
@@ -566,7 +575,7 @@ This opcode stores to the variables coordinates of the place marked with red tar
 ```
 Opcode 0AB7 stores to a variable total number of gears for specified vehicle. This number equals to the parameter TransmissionData.nNumberOfGears in the file handling.cfg.
 
-**Parameters:**
+**Параметры:**
 1. a vehicle handle
 2. variable to store number of gears
 
@@ -577,7 +586,7 @@ Opcode 0AB7 stores to a variable total number of gears for specified vehicle. Th
 ```
 This opcode stores to a variable number of current gear for specified vehicle.
 
-**Parameters:**
+**Параметры:**
 1. a vehicle handle
 2. variable to store current gear
 
@@ -588,7 +597,7 @@ This opcode stores to a variable number of current gear for specified vehicle.
 ```
 This opcode stores to a variable a state of a MP3 file.
 
-**Parameters:**
+**Параметры:**
 1. handle of a loaded mp3-file ([opcode 0AAC](#0AAC))
 2. variable to store mp3 file state:
   - `1` – file is playing
@@ -602,7 +611,7 @@ This opcode stores to a variable a state of a MP3 file.
 ```
 [0ABA][]**0ABA** ends a CLEO-thread with given name. A thread gets its name with the opcode 03A4. If the thread wasn't named with 03A4, the thread gets its name by first 7 letters of the file name. For example, the thread from the file test.cs will have name 'test.cs'; from the file myscript.cs - 'myscrip'. The opcode 0ABA immediately finishes the execution of a thread with given name. This opcode is the same as 0459, but is made for the CLEO scripts.
 
-**Parameters:**
+**Параметры:**
 - 1 - name of the thread to end.
 
 ---
@@ -612,8 +621,8 @@ This opcode stores to a variable a state of a MP3 file.
 ```
 [0ABD][]**0ABD** checks if the siren of the vehicle `0@` is on. If so, the condition will be true.
 
-**Parameters:**
-- 1 - handle of the vehicle
+**Параметры:**
+1. handle of the vehicle
 
 ---
 
@@ -622,8 +631,8 @@ This opcode stores to a variable a state of a MP3 file.
 ```
 [0ABE][]**0ABE** checks if the engine of the vehicle `0@` is on. If so, the condition will be true.
 
-**Parameters:**
-- 1 - handle of the vehicle
+**Параметры:**
+1. handle of the vehicle
 
 ---
 
@@ -632,14 +641,10 @@ This opcode stores to a variable a state of a MP3 file.
 ```
 [0ABF][]**0ABF** enables or disables the vehicle's engine.
 
-**Parameters:**
-- 1 - handle of the vehicle 
-- 2 - engine's new state: 
+**Параметры:**
+1. handle of the vehicle 
+2. engine's new state: 
   - `0` - off 
   - `1` - on
 
-
-
-
-\[([0-9a-fA-F]{4})\]\[\]([0-9a-fA-F]{4})
 <script src="../../js/main.min.js"></script>

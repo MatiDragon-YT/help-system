@@ -403,11 +403,16 @@
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Users Experienced">
+			<param name="Local" value="es\articles\users.html">
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Mission Pack">
 				<param name="Local" value="en\articles\mpack.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="External Script">
+				<param name="Local" value="en\articles\users.html">
 				</OBJECT>
 		</UL>
 	</UL>

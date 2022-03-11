@@ -17,6 +17,7 @@ const EMOJIS = {
 const D = document
 
 const SP = String.prototype
+const EP = Element.prototype
 
 /** Smart selector for elements of the DOM
  * @param {DOMString}
@@ -111,6 +112,14 @@ function ModeLight(){
 		CSS.Remove(TEMPLADE)
 		return false
 	}
+}
+
+EP.show = function(){
+    this.style.display="block"
+}
+
+EP.hide = function(){
+    this.style.display="none"
 }
 
 /** Shotcun of String.replace()

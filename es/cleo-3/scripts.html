@@ -40,7 +40,16 @@ El hilo CLEO es el hilo ordinario en general. Tiene 32 variables locales y 2 tem
 Una cosa importante se refiere a la comunicación de datos entre un script CLEO y main.scm. Para usar el código SCM, sus variables, hilos, debe compilar el script CLEO como uno externo (primera forma). Pero no se recomienda este método, ya que dicho script se vuelve muy sensible a cualquier cambio de main.scm. *Implícitamente, un script CLEO debería ser suficiente por sí mismo y usar un mínimo de datos SCM*. Sin embargo, puede usar libremente nombres de variables globales de CustomVaribles.ini (por ejemplo, `$PLAYER_CHAR`, `$PLAYER_ACTOR`, `$ONMISSION`, etc.).
 Además, para la comunicación de datos entre main.scm y CLEO, o entre los scripts de CLEO, puede usar las variables CLEO (consulte los opcodes 0AB3, 0AB4).
 
-El conjunto completo de CLEO incluye ejemplos de scripts simples con fuentes.
+El conjunto completo de CLEO incluye ejemplos de scripts simples con el codigo fuentes.
 
+Descripción de los ejemplos de scripts de CLEO:
+
+|archivo|descripción|
+|-|
+|[`test_example.txt`](%e/examples/test_example.txt)|Un ejemplo básico de creación de un script de CLEO. El objetivo es mostrar un mensaje al iniciar el juego. Esto se hace mediante el script ShowTextBox, que muestra un cuadro de texto en la pantalla. Este ejemplo puede servir de base para la salida de mensajes de prueba en cualquier mod.\n\nEl script se activa una vez al inicio del juego. Después de guardar la carga, el mensaje no aparecerá (gracias al opcode 0A95).|
+|[`showsavescreen.txt`](%e/examples/showsavescreen.txt)|Un ejemplo de un script que se ejecuta constantemente. Es un bucle sin fin que comprueba si se pulsa el botón F4. Tras pulsarlo, aparece una ventana de guardado.|
+|[`CustomMission.txt`](%e/examples/CustomMission.txt)|Perno de la misión CLEO. Si creas un script similar a showsavescreen, sólo que usando 0A94 en lugar de la salida de la pantalla de guardado, puedes ejecutar esta misión.|
+|[`otbhook.txt`](%e/examples/otbhook.txt)|Ejemplo de gancho. Este script comprueba si la misión OTB (carreras de caballos) está en marcha, y si es así, sube las apuestas. El guión está diseñado para el juego original.|
+|[`VCCam.txt`](%e/examples/VCCam.txt)|Tomado prestado del multimodal de Capushon. El guión cambia la posición de la cámara cuando se monta en el coche, haciendo que la vista sea mucho más cómoda.|
 
 <script src="../../js/main.min.js"></script>

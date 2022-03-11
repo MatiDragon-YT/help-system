@@ -42,5 +42,28 @@ Also, for the data communicate between the main.scm and CLEO, or between the CLE
 
 The CLEO complete set includes the examples of simple scripts with sources.
 
+Description of CLEO script examples:
+
+**test_example.txt**
+
+A basic example of creating a CLEO script. The point of it is to display a message when you start the game. To do this, an add-on script ShowTextBox is used, which shows a text box on the screen. This example can serve as a basis for displaying test messages in any mod.
+
+The script is triggered once when you start the game. After save-loading the message will not appear (thanks to opcode 0A95). TXT file (source), [here](%e/examples/test_example.txt).
+
+**showsavescreen.txt**
+
+An example of a constantly running script. It is an endless loop that checks if the F4 button is pressed. After pressing it the save window appears. TXT file (source), [here](%e/examples/showsavescreen.txt).
+
+**CustomMission.txt**
+
+The CLEO mission bolt. If you create a script similar to showsavescreen, only using 0A94 instead of the save screen output, you can run this mission. TXT file (source), [here](%e/examples/CustomMission.txt).
+
+**otbhook.txt**
+
+Example hook. This script checks if the OTB (horse racing) mission is running, and if so, it raises the stakes. The script is designed for the original game. TXT file (source), [here](%e/examples/otbhook.txt).
+
+**VCCam.txt**
+
+Borrowed from Capushon's multimod. The script changes the position of the camera when driving the car, making the view much more convenient. TXT file (source), [here](%e/examples/VCCam.txt).
 
 <script src="../../js/main.min.js"></script>
