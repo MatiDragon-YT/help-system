@@ -394,7 +394,7 @@ SP.toMarkdown = function(){
 	.r(/\|[^\n]+\|/g, function (input) {
 		input = input.split('|')
 
-		let newTable = ""
+		var newTable = ""
 
 		input.forEach( function (element, count) {
 			if (count == 0) newTable += "<tr>";
