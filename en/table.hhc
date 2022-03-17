@@ -228,6 +228,10 @@
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Actor IDs">
+				<param name="Local" value="en\scm-documentation\sa\actors.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Buttons IDs">
 				<param name="Local" value="en\scm-documentation\sa\buttons.html">
 				</OBJECT>
