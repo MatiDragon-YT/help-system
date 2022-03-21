@@ -18,7 +18,7 @@ San Andreas:\
 
 ```sb3
 $index = 0
-$array($index,10i) = 1
+$array($index, 10i) = 1
 ```
 
 `<array name>`: local or global [variable](variables.md)\
@@ -26,45 +26,19 @@ $array($index,10i) = 1
 `<size>`: any value greater than 0\
 `<type>`: one of characters `i` `f` `s` `v`:
 
-<table>
-<thead>
-<tr>
-<th>Letter</th>
-<th>Item Type</th>
-<th>Item Size (bytes)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>i</td>
-<td>integer</td>
-<td>4</td>
-</tr>
-<tr>
-<td>f</td>
-<td>float</td>
-<td>4</td>
-</tr>
-<tr>
-<td>s</td>
-<td>string</td>
-<td>8</td>
-</tr>
-<tr>
-<td>v</td>
-<td>string</td>
-<td>16</td>
-</tr>
-</tbody>
-</table>
-
+|Letter|Item Type|Item Size (bytes)|
+|-|
+|i|integer|4|
+|f|float|4|
+|s|string|8|
+|v|string|16|
 
 Liberty City Stories, Vice City Stories:\
 `<array name>(<index var name>,<size>)`
 
-{% hint style="info" %}
+:::info
 In LCS, VCS, array elements are only 4 bytes in length. Therefore, there is no need in type declaration.
-{% endhint %}
+:::
 
 ```sb3
 $index = 0
@@ -125,8 +99,8 @@ end
 $players[0].Build
 ```
 
-{% hint style="info" %}
+:::info
 By default in the `GTA SA` [edit mode](../edit-modes/), the disassembler prints array elements with the numbers as indexes. The same feature is available in LCS and VCS but is disabled by default. You can turn this feature on and off using the [debug option](../editor/console.md#constant_indexes) `CONSTANT_INDEXES`. 
-{% endhint %}
+:::
 
 <script src="../../js/main.min.js"></script>

@@ -9,9 +9,9 @@
 </head>
 <body>
 
-{% hint style="success" %}
+:::success
 Opcodes documentation can be found in [Sanny Builder Library](https://library.sannybuilder.com).
-{% endhint %}
+:::
 
 `SCM.INI` is the file containing information about opcodes used during disassembling and compiling script files. Sanny Builder ships a list of opcodes for each [edit mode](README.md#opcodes).
 
@@ -86,13 +86,13 @@ If the parameters will follow their original order, the opcode `0053` would look
 0053: create_player #NULL at 2488.562 -1666.865 12.8757 $PLAYER_CHAR
 ```
 
-{% hint style="warning" %}
+:::warning
 Changing parameters order in the INI file should be avoided by any means as it makes the source code incompatible with the default opcode definitions or earlier scripts.
-{% endhint %}
+:::
 
-{% hint style="info" %}
+:::info
 Parameters order may vary from mode to mode. See the comparison table in [Edit modes](README.md#available-modes) to find out which mode uses which type.
-{% endhint %}
+:::
 
 #### Parameter Types
 
@@ -106,8 +106,8 @@ A letter following the index number indicates the parameter type.
 `x` - an external script ID\
 `k` - a fixed-size null-terminated string literal (128 bytes)
 
-{% hint style="info" %}
+:::info
 You can freely change parameters types, if needed.
-{% endhint %}
+:::
 
 <script src="../../js/main.min.js"></script>

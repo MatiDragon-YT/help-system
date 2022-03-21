@@ -54,8 +54,8 @@ Variables `$MyCounter` and `$final` both have the `Float` type after the loop.
 
 Syntax:
 ```
-WHILE &lt;loop condition&gt;
-  &lt;the loop body&gt;
+WHILE <,loop condition>
+  <,the loop body>
 END
 ```
 
@@ -73,7 +73,7 @@ The `WHILE` loop works while the loop condition is true. The condition is evalua
 ```sb3
 $var = 10
 
-while $var &gt; 11
+while $var < 11
     inc($var)
 end
 
@@ -84,7 +84,7 @@ end
 
 ```sb3
 while true
-    &lt;loop body&gt;
+    <,loop body>
 end
 ```
 
@@ -92,7 +92,7 @@ This loop body executes infinitely until the loop is stopped with the `Break` co
 
 ```sb3
 while false
-    &lt;loop body&gt;
+    <,loop body>
 end
 ```
 
@@ -104,14 +104,14 @@ Currently the compiler accepts only one opcode in the loop condition, but you ca
 ```sb3
 while true
     if and
-       $var &gt;= 0
-       $var &lt;= 100
+       $var >= 0
+       $var <= 100
     then
        Break
     end
     // loop executes while $var is in the range [0...100]
       
-    &lt;loop body&gt;
+    <,loop body>
 end
 ```
 {% endhint %}
@@ -121,8 +121,8 @@ end
 Syntax:
 ```
 REPEAT
-    &lt;the loop body&gt;
-UNTIL &lt;loop condition&gt;
+    <,the loop body>
+UNTIL <,loop condition>
 ```
 
 `loop body` - commands to execute on each iteration; can be omitted\
@@ -149,10 +149,10 @@ Currently the compiler accepts only one opcode in the loop condition, but you ca
 
 ```sb3
 repeat  
-   &lt;loop body&gt;
+   <,loop body>
    if and
-     $var &gt;= 0
-     $var &lt;= 100
+     $var >= 0
+     $var <= 100
    then
      Break
    end

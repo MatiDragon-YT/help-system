@@ -425,6 +425,10 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="FAQ">
+			<param name="Local" value="es\cleo-3\faq.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Code Library">
 			<param name="Local" value="es\cleo-3\code-library.html">
 			</OBJECT>

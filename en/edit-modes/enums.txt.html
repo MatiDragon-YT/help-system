@@ -19,14 +19,14 @@ Enumerated types have a few advantages over ordinary constants. They don't pollu
 
 Each enumerated type is defined with the following syntax:
 ```
-enum &lt;enum name&gt;
-    &lt;enum fields&gt;
+enum <,enum name>
+    <,enum fields>
 end```
 
 `enum name` -  any combination of letters, digits and `_` \
 `enum fields` - one or many lines with the format:
 
-- `&lt;enum field name&gt; [= &lt;enum field value&gt;]`
+- `<enum field name> [= <enum field value>]`
 - where
 - `enum field name` - any combination of letters, digits and `_`
 - `enum field value` - a number or a [string literal](../coding/data-types.md#string-literals) enclosed in double quotes. if not present, the compiler assigns a [new value](enums.txt.md#enum-values) automatically.

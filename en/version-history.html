@@ -455,7 +455,7 @@ The class member `Car.SetSpeedInstantly` was named incorrectly (with a wrong opc
 * minor changes:
   * missions can be referenced by their name (`start_mission MYMISSION` where `MYMISSION `is the label defined in line`DEFINE MISSION XX at @MYMISSION`)
   * `Ctrl+Space` displays the list of imported models (`DEFINE OBJECT`)
-  * new [operator](coding/conditions.md#relational-operators) `<>`
+  * new [operator](coding/conditions.md#relational-operators) `<,>`
   * if the disassembler can't find a `script.img` file, it uses the one from the game folder
   * added `handle` type for [arrays](coding/arrays.md)
   * an [opportunity](editor/options/general.md#show-warning) to switch off a warning that the `script.img` file is being used by the game
@@ -466,7 +466,7 @@ The class member `Car.SetSpeedInstantly` was named incorrectly (with a wrong opc
 * added [code templates](editor/features.md#code-templates) support
 * added construction [VAR...END](coding/variables.md#var-end-construct) for variables declaration
 * all math commands can be used without opcodes (`0004..008B`)
-* new [operators](coding/conditions.md#relational-operators) `<` and `<=`
+* new [operators](coding/conditions.md#relational-operators) `<,` and `<,=`
 * added a capability that the compiler itself set necessary value for the [IF command](coding/conditions.md#low-level-if-statements)
 * added [extended parameters](coding/classes.md#extended-parameters-class-constants) support
 * added models list showing
@@ -515,4 +515,4 @@ The class member `Car.SetSpeedInstantly` was named incorrectly (with a wrong opc
 * compilation of text sources into `main.scm` and `script.img`
 * basic features for text editing
 
-<script src="../js/main.js"></script>
+<script src="../js/main.min.js"></script>

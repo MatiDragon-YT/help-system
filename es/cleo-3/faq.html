@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<title>FAQ</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+**P: ¿Dónde puedo encontrar una lista de nuevos opcodes con sus parámetros?**
+
+R: [aquí por supuesto](opcodes.md).
+
+---
+
+**P: ¿Es cierto que se pueden añadir nuevos scripts y sin necesidad de iniciar una nuevo juego?**
+
+A: Sí, esta es una de las principales innovaciones de CLEO 3. Lea más sobre la nueva forma de hacer scripts aquí: [CLEO3: guiones](scripts.md).
+
+---
+
+**P: ¿Cómo puedo utilizar un modelo en una secuencia de comandos que normalmente aparece como DEFINE OBJECT?**
+
+R: Los scripts de CLEO están contenidos en archivos scm sin cabecera, es decir, son un análogo de los scripts externos del archivo script.img. Por lo tanto, no existe el concepto de DEFINIR OBJETO en ellos. Para utilizar un modelo de este tipo, es necesario especificar su ID global (número) en lugar de #nombre.
+
+Puede utilizar la [función de búsqueda](../editor/hotkeys.md#CtrlAltH) incorporada de SB modelo ID (Ctrl+Alt+H).\
+[También puede utilizar el método descrito aquí.](#! `$("#one").toggle()`)
+
+:::d-none my-3#one
+Si necesitas usar el ID del modelo global de la lista de modelos importados (DEFINE OBJECTS) en el script, puedes leerlo de la dirección de la memoria del juego usando la siguiente fórmula:
+
+```sb3
+MA = -4982 + (ModelID * -7)
+```
+
+Por ejemplo, para leer el ID del modelo global INFO utilice el siguiente código:
+
+```sb3
+0@ = #INFO
+0@ *= -7
+0@ += -4982
+0084: $modelID = &0(0@, 1i)
+```
+
+el modelID registrará 1239. 
+
+A continuación se muestra un ejemplo de bucle que emite sucesivamente todos los identificadores de modelo de las mayas estándar
+
+```sb3
+03C4: set_status_text_to $modelID 0 'FEC_NMN'
+
+ // -4982 + (ModelID * -7)
+for 1@ = -1 downto -388 // de #INFO hasta #SFCOPDR
+ 0085: 0@ = 1@ 
+ 0@ *= -7
+ 0@ += -4982
+ 0084: $modelID = &0(0@, 1i) 
+ wait 1000
+end // for
+```
+\
+:::right
+[:note: Colapsar](#! `$("#one").toggle()`)
+:::
+
+:::
+
+---
+
+**P: ¿Puedo escribir scripts de CLEO en otros editores?**
+
+R: Si por alguna razón no quieres o no puedes usar SB como editor de scripts, esto no te impide escribir scripts para CLEO 3. Para ello hay que utilizar el primer método de escritura de scripts [descrito aquí](scripts.md) (extraer el script del script.img).
+
+---
+
+**P: ¿Por qué algunos scripts comienzan con el opcode 0000?**
+
+R: Esto se debe al manejo incorrecto de las "transiciones cero" por parte del motor de scripting del juego (es decir, las transiciones al principio de un guión o misión externa). Si el script es un bucle continuo, este opcode 0000 está diseñado para crear un desplazamiento mínimo desde el inicio del script (una especie de buffer). Puede utilizar, por ejemplo, wait 0 en lugar de 0000.\
+[Lea más aquí](#! `$("#two").toggle()`).
+
+:::d-none my-3#two
+
+El motor de scripts de SA tiene un desagradable error relacionado con las etiquetas. No se puede saltar del cuerpo de un script externo a su inicio, es decir, hacer un salto a la primera etiqueta.
+
+```sb3
+DEFINE SCRIPT TEST_SCR AT @TEST_SCR
+...
+
+
+//-------------External script (TEST_SCR)---------------
+
+:TEST_SCR
+wait 0
+jump @TEST_SCR // este opcode causará un error
+```
+
+Por lo tanto, si el script externo es un bucle continuo, hay que insertar algún opcode al principio y luego una etiqueta a la que saltar:
+
+```sb3
+DEFINE SCRIPT TEST_SCR AT @TEST_SCR
+...
+
+
+//-------------External script (TEST_SCR)---------------
+
+:TEST_SCR
+0000: // puedes insertar 03A4
+
+:TEST_SCR_1
+wait 0
+jump @TEST_SCR_1 // este opcode funcionará.
+```
+
+El mismo error ocurre en las misiones, pero casi nunca hay que ir al principio.\
+\
+:::right
+[:note: Colapsar](#! `$("#one").toggle()`)
+:::
+
+:::
+
+---
+
+**P: ¿Por qué no puedo utilizar variables globales en los scripts de CLEO? ¿Qué usar entonces?**\
+\
+[bueno, lea aquí.](#! `$("#three").toggle()`)
+
+:::d-none my-3#three
+Cuando compilamos main.scm junto con todas las misiones y scripts, todas las variables globales obtienen su ID (número de secuencia). Algunos de ellos obtienen siempre el mismo ID (por ejemplo, $PLAYER_CHAR compila como $2, $PLAYER_ACTOR compila como $3, etc.). Esto es así para todas las variables globales que se definen en CustomVariables.ini
+
+Este mismo número de secuencia se refiere al número de una celda de la memoria del juego donde se almacena el valor de la variable. Obviamente, este número tiene que ser único para cada variable. En otras palabras, cada variable debe ser compilada con un ID único.
+
+Todas las demás variables se compilan de la siguiente manera. Si un nombre de variable no se encuentra en CustomVariables.ini, se compila con el número que viene después de la mayor variable utilizada en el script. Esto parece complicado, así que lo explicaré con un ejemplo:
+
+Un simple script de 2 líneas:
+
+```sb3
+$PLAYER_CHAR = 1
+$MYVAR = 1
+```
+
+`$PLAYER_CHAR` se compila como `$2`. Así, una variable `$MYVAR` que no esté contenida en CustomVariables.ini y cuyo nombre no sea numérico, se compilará como `$3`. (En realidad no será `$3` allí porque `$3` está reservado para `$PLAYER_ACTOR`, así que `$MYVAR` obtendrá el primer nombre libre, `$4`.
+
+Otro ejemplo
+
+```sb3
+$PLAYER_CHAR = 1
+$MYVAR = 1
+$100 = 1
+```
+
+La variable más grande del script es ahora `$100`, por lo que `$MYVAR` se convertirá en `$101`.
+
+Este mecanismo le permite dar a cada variable un nombre único.
+
+En main.scm, todas las nuevas variables reciben nombres a partir de $10948 en tiempo de compilación, ya que $10947 es la variable más grande utilizada en el main.scm original.
+
+Ahora volvamos a los scripts de CLEO. Cada vez que compilamos un nuevo script, el compilador no sabe nada sobre el estado de main.scm o cuántas variables se han utilizado. Nombra las variables desde cero cada vez. Esto significa que si haces dos scripts con
+
+una sola operación.
+
+```sb3
+$MYVAR = 1
+```
+
+con otro script
+
+```sb3
+$MYVAR1 = 1
+```
+
+entonces ambas variables serán compiladas como
+
+```sb3
+$4 = 1
+```
+
+aunque tengan nombres diferentes. Y cada vez el compilador, en un nuevo cleo-script, nombrará las variables empezando por `$4`. El efecto, creo, es claro. Las variables utilizarán la misma ubicación de memoria y cambiarán los valores de cada una. Si escribes un actor en un script a `$MYVAR` y en otro script a `$MYVAR1 = 0`, cuando el primer script acceda a `$MYVAR`, leerá `0` no el actor, ya que ambas variables utilizan la 4ª posición de memoria.
+
+La otra situación es que se quede sin memoria para las variables globales. Por ejemplo, una tira normal tiene un tamaño de memoria para las variables globales de 409 celdas, porque la mayor variable utilizada `$ONMISSION` es `$409`. Supongamos que hemos creado un cleo-script:
+
+```sb3
+$ONMISSION = 1
+$MYVAR = 0
+```
+
+¿Cómo se compilaría la variable `$MYVAR`, si se entiende lo que he dicho arriba? La respuesta correcta es " $411". `$ONMISSION` es `$409`, por lo que la variable debería convertirse en `$410`, pero este ID ya está reservado para `$Help_SprayCan_Shown` ( mira CustomVariables.ini). Así que el primer número gratuito es `411`.
+
+Ahora volvamos al despojo. El tamaño de la memoria sigue siendo `409` (si `$MYVAR = 0` se compilara sobre el mío, el tamaño de la memoria se incrementaría a `411`). Por lo tanto, cuando el cleo-script maneja la variable `$MYVAR`, sus valores serán leídos y escritos fuera del área de memoria permitida. En el peor de los casos, dichas variables cambiarán el propio código de main.scm (opcodes y parámetros), lo que inevitablemente conducirá a un crash.
+\
+:::right
+[:note: Colapsar](#! `$("#three").toggle()`)
+:::
+
+:::
+\
+\
+[y también aquí.](#! `$("#four").toggle()`)
+
+:::d-none my-3#four
+No se recomienda el uso de variables globales ($) en los scripts de CLEO, independientemente de cómo se llamen. Solamente en 2 excepciones;
+1. variables comunes como $PLAYER_CHAR, $PLAYER_GROUP, $ONMISSION
+2. variables no utilizadas como $30, $56. En cualquier caso, utiliza las variables globales con mucho cuidado, o puedes tener fallos en el juego.
+
+Pero puede utilizar libremente las variables locales sin restricciones. ¿No hay suficientes 32 variables? Hay muchas formas de saltarse las restricciones (desde la simple optimización hasta el uso de funciones scm - 0AB1, 0AB2).
+
+Si es inconveniente utilizar variables locales por su nombre (estoy de acuerdo, 1@ no siempre expresa explícitamente el significado de una variable), utilice la construcción **CONST..END** En un par de líneas 
+
+```sb3
+const
+TRAIN_MODEL = 1@
+end
+```
+
+le permite utilizar la palabra TRAIN_MODEL en el script, que en realidad denotará una variable local y compilará en consecuencia. Por ejemplo, `TRAIN_MODEL = 400` - este es el número `400` escrito en la variable `1@`. Ya está, no hay más problemas por las variables globales.
+\
+:::right
+[:note: Colapsar](#! `$("#four").toggle()`)
+:::
+
+:::
+
+---
+
+**P: ¿Puedo utilizar los opcodes set_status_text y set_timer en los scripts de CLEO?**\
+\
+[Mire aquí](#! `$("#five").toggle()`)
+
+:::d-none my-3#five
+
+Los opcodes set_status_text y set_timer y sus opcodes asociados no pueden utilizarse en los scripts de CLEO por el momento. Esto se debe a que estos opcodes requieren el establecimiento de una variable global, que, con pocas excepciones, no se puede utilizar en los scripts de CLEO.
+
+Como no es fácil escribir una alternativa a esos opcodes, decidí tomar otro camino. Escribí 4 funciones que funcionan de la misma manera que 03C3, 03C4, 014F, 0151, sólo tomando una variable local. Permite utilizar status_text y temporizadores en los scripts de CLEO y en las misiones de CLEO.
+
+[Las funciones necesitan CLEO 3 v3.0.950 o superior para funcionar correctamente.
+
+Dichas funciones sólo funcionan en GTA: SA v1.0
+
+```sb3
+:AddStatusText                 
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AB1: call_scm_func @__LabelToOffset 1 2@ 2@
+0AA6: call_method 0x0044CDA0 struct 0x00BA1788 num_params 4 pop 0 ( LINE = 3@ GXT = 2@ TYPE = 1@ VARNUMBER = 0@ )
+0AB2: ret 0
+
+:RemoveStatusText
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AA6: call_method 0x0044CE80 struct 0x00BA1788 num_params 1 pop 0 ( VARNUMBER = 0@ )
+0AB2: ret 0
+
+:SetTimer
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AB1: call_scm_func @__LabelToOffset 1 2@ 2@
+0AA6: call_method 0x0044CD50 struct 0x00BA1788 num_params 3 pop 0 ( TYPE = 1@ GXT = 2@ VARNUMBER = 0@ )
+0AB2: ret 0
+
+:StopTimer
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AA6: call_method 0x0044CE60 struct 0x00BA1788 num_params 1 pop 0 ( VARNUMBER = 0@ )
+0AB2: ret 0
+
+:__VarToOffset
+0A9F: 1@ = current_thread_pointer
+0A8E: 2@ = 1@ + 0xDC // mission Flag
+0A8D: 2@ = read_memory 2@ size 1 virtual_protect 0
+if
+    2@ == 1
+then
+    1@ = 0x00A48960 // mission locals
+else
+    1@ += 0x3C
+end
+0@ *= 4
+005A: 1@ += 0@ // address of the local variable 
+1@ -= 0xA49960
+0AB2: ret 1 1@
+
+:__LabelToOffset
+if
+    0@ == 0
+then
+    0AB2: ret 1 0
+end
+0A9F: 1@ = current_thread_pointer
+1@ += 0x10 
+0A8D: 1@ = read_memory 1@ size 4 virtual_protect 0 // baseIP
+0062: 1@ -= 0@ // label address
+1@ += 3
+0AB2: ret 1 1@
+
+:StatusText
+0900: 'BB_19'
+0000:
+```
+
+Estas 4 funciones son.
+
+1\. **AddStatusText** emula este opcode
+```sb3
+03C4: set_status_text $BEEFYBARON_SCORE type 0 GXT 'ZER2_43'.
+```
+
+Ejemplo de uso:
+```sb3
+0AB1: call_scm_func @AddStatusText 4 VARNUMBER = 33 TYPE = 0 GXT = @StatusText LINE = 3
+```
+Parámetros: `VARNUMBER = 33` - es el número de la variable local cuyo valor se emitirá (es decir, `33@`)
+
+`TYPE = 0` - como en 03C4, tipo de estado: barra (1) o número (0).
+
+`GXT = @StatusText` - esta es la principal diferencia con el opcode. No podemos pasar una cadena directamente a una función (ni a un nuevo hilo, por ejemplo). Así que pasamos una etiqueta con el opcode 0900 con el texto deseado (GXT) (en este caso `0900: 'BB_19'`). Puede añadir varios opcodes 0900 seguidos, cada uno con su propio GXT y su propia etiqueta, y pasar la etiqueta correcta a la función. Esperemos que esto no sea un problema.
+Puede escribir `0` en lugar de la etiqueta, entonces sólo se emitirá el número, sin texto a la izquierda.
+
+`LINE = 3` - El número de la línea donde aparecerá el estado. Si es 0, el estado se añadirá a la primera línea libre.
+
+2\. **RemoveStatusText** emula este opcode
+```sb3
+0151: remove_status_text $1924
+```
+
+Ejemplo de uso:
+
+```sb3
+0AB1: call_scm_func @RemoveStatusText 1 VARNUMBER = 33
+```
+El único parámetro es el número de la variable local utilizada en AddStatusText.
+
+3\. **SetTimer** emula este opcode
+```sb3
+03C3: set_timer_to $1923 type 1 GXT 'BB_19'
+```
+
+Ejemplo de uso:
+
+```sb3
+0AB1: call_scm_func @SetTimer 3 VARNUMBER = 1 TYPE = 1 GXT = @StatusText
+```
+Los parámetros VARNUMBER y GXT son los mismos que los de AddStatusText. El parámetro TYPE indica si el temporizador es creciente o decreciente.
+
+4\. **StopTimer** emula a este
+```sb3
+014F: stop_timer $1923
+```
+
+Ejemplo de uso:
+
+```sb3
+0AB1: call_scm_func @StopTimer 1 VARNUMBER = 1
+```
+**Parámetro** es el número de la variable local utilizada en SetTimer.
+
+Como esto es sólo una emulación de los opcodes reales, todas las restricciones permanecen (1 temporizador y 4 estados).
+
+Para utilizar estas funciones, debe copiarlas sin cambios en su script, cambiar o añadir las teclas GXT necesarias y llamar a la función correspondiente.
+
+Este [status_text.cs](http://cleo.sannybuilder.com/scripts/status_text.cs) es un ejemplo de un script que muestra el estado de la variable 33@ (es decir, el temporizador) durante 10 segundos.
+
+:::right
+[:note: Colapsar](#! `$("#one").toggle()`)
+:::
+
+:::
+
+---
+
+**P: Tengo el código del script de CLEO, ¿cómo obtengo un archivo .cs de él?**
+
+R: Necesitarás Sanny Builder 3.03 y superior (se puede encontrar en la misma página web). Descárgalo, instálalo. Ejecútalo, ve a opciones (F10), especifica la ruta de la carpeta del juego. Ahora pulse Archivo-Nuevo (Ctrl+N), copie todo el script en la ventana del editor (empezando por la palabra `{$CLEO}`) y guarde el archivo de texto resultante. A continuación, pulse F7. Si todo ha ido bien, debería aparecer un nuevo archivo .cs en la carpeta del juego en la carpeta CLEO. Si se produce algún error durante la compilación, intenta solucionarlo siguiendo los consejos de la ayuda (¡está en español payazo!).
+
+<script src="../../js/main.min.js"></script>

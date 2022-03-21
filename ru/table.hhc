@@ -228,7 +228,7 @@
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Actors">
+				<param name="Name" value="Actor IDs">
 				<param name="Local" value="ru\scm-documentation\sa\actors.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
@@ -424,6 +424,10 @@
 		<param name="Name" value="CLEO 3">
 		</OBJECT>
 	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="FAQ">
+			<param name="Local" value="ru\cleo-3\faq.html">
+			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Code Library">
 			<param name="Local" value="ru\cleo-3\code-library.html">

@@ -5,15 +5,6 @@ function log(value){
 	console.log(value)
 }
 
-// GLOBAL VARS
-const EMOJIS = {
-	'clap': '👏',
-	'wave' : '👋',
-	'+1' : '👍',
-	'-1' : '👎',
-	'smile' : '😄',
-	'eyes' : '👀'
-}
 const D = document
 
 const SP = String.prototype
@@ -37,17 +28,35 @@ function $(element, _parent) {
 		return xElements;
 	}
 }
-const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
-const ROOT = $('head').innerHTML.match(/"([\/\.]+)\/style\/style\.css"/)[1] + "/"
-function exROOT (){
-	const HREF = location.href,
-		X = HREF.search(/:/) == 2
-			? 14
-			: 7,
-		Y = HREF.lastIndexOf("\\") + 1
 
-	return 'file:///' + location.href.substring(X, Y) + "/files/"
-}
+/** Get the language specified in the html
+ * @return {String}
+*/
+const LANG = ($('html').getAttribute('lang') || 'en').toUpperCase()
+
+/** Get the root folder of the resources internal to the language
+ * @return {String}
+*/
+const ROOT = $('head').innerHTML.match(/"([\/\.]+)\/style\/style\.css"/)[1] + "/"
+
+/** Get the root folder of the resources external to the language
+ * @return {String}
+*/
+const exROOT = function(){
+	// In order to have a visible resource load from the browsers
+	if (navigator.userAgent.match("MSIE") != null){
+		// it is checked only if IE is being used
+		
+		const HREF = location.href
+
+		const X = HREF.search(/:/) == 2 ? 14 : 7
+		const Y = HREF.lastIndexOf("\\") + 1
+
+		return 'file:///' + location.href.substring(X, Y) + "/files/"
+	}
+
+	return ROOT + "/files/"
+}()
 
 var CSS = {
 	Add: function(styles){STYLES.innerHTML += styles},
@@ -114,12 +123,36 @@ function ModeLight(){
 	}
 }
 
+EP.next = function(){
+	return this.nextElementSibling
+}
+
 EP.show = function(){
-    this.style.display="block"
+    this.style.display = "block"
 }
 
 EP.hide = function(){
-    this.style.display="none"
+    this.style.display = "none"
+}
+
+EP.toggle = function(){
+	setTimeout(function(){
+		// Clear the hash
+		history.pushState('', document.title, location.pathname)
+	}, 0)
+
+	this.style.display == "block"
+		? this.hide()
+		: this.show()
+}
+
+const CopyTextContent = function(id) {
+	var $temp = D.createElement("textarea")
+	$temp.value = (typeof id == 'object' ? id.textContent : id)
+	$('body').appendChild($temp)
+	$temp.select();
+	D.execCommand("copy")
+	$('body').removeChild($temp)
 }
 
 /** Shotcun of String.replace()
@@ -182,7 +215,7 @@ SP.toMarkdown = function(){
 	}
 
 	SP.rLinks = function(){
-		const img   = exROOT() + "img/",
+		const img   = exROOT + "img/",
 			
 			sa   = img+"sa/",
 			vc   = img+"vc/",
@@ -198,7 +231,7 @@ SP.toMarkdown = function(){
 		.r(/^%vc-r\//m,   vc   + radar)
 		.r(/^%gta3-r\//m, gta3 + radar)
 		.r(/^%sa-t\//m,   sa   + "tatoo/")
-		.r(/^%e\//m, exROOT())
+		.r(/^%e\//m, exROOT)
 		.r(/^%g\//m, ROOT)
 	}
 
@@ -209,12 +242,16 @@ SP.toMarkdown = function(){
 	// SCAPE CHAR
 	.rA("\\(", "&lpar;")
 	.rA("\\)", "&rpar;")
+	.rA("\\<", "&#x3C;")
+	.rA("\\>", "&#x3E;")
 	.rA("\\-", "&#45;")
 	.rA("\\\\", "&#x5C;")
 	.rA("\\|", "&vert;")
 	.rA("\\s", "&nbsp;")
 	.rA("\\n", "<br/>")
 	.rA("\\*", "&#x2A;")
+	.rA("\\`", "&#x60;")
+	.rA("\\.", "&#x2E;")
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
@@ -256,17 +293,32 @@ SP.toMarkdown = function(){
 
 	// EMOJIS
 	.r(/(\B|\s+):([^:\s]+):(\B)/g, function(input){
-
+		const EMOJIS = {
+			'clap': '👏',
+			'wave' : '👋',
+			'+1' : '👍',
+			'-1' : '👎',
+			'smile' : '😄',
+			'eyes' : '👀',
+			'sunglasses' : '😎',
+			'note' : '📝',
+		}
+		
 		input = input.split(':')
 
 		return input[0] + EMOJIS[input[1]] + input[2]
 	})
 
 	/*** DIVS ***/
-	.r(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
-	.r(/{% hint style="(\w+)" %}|:::([\w\d\x20-]+)\n/g, '<div class="$1$2">')
-	.r(/{% endhint %}|:::\n/g, '</div>\n')
-	//.r(/:::([\w\d\x20-]+)\n([\x09-\x39\x3B-\uFFFF]+):::/gim, '<div class=$1>$2</div>')
+	  // SINTAX OF GITBOOK
+		.r(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
+		.r(/{% hint style="(\w+)" %}\n/g, '<div class="$1">')
+		.r(/{% endhint %}\n/g, '</div>\n')
+	  // SYNTAX OF MATIDRAGON 
+		.r(/:::([\w\d\x20\-_]+)(#([\w\d\-_]+))?\n/g, '<div id="$3" class="$1">\n')
+		.r(/:::\n/g, '</div>\n')
+
+
 
 	/*** BLOCKQUOTE ***/
 	.r(/^>\x20(.+)/gm, '<blockquote>\n$1</blockquote>')
@@ -316,22 +368,25 @@ SP.toMarkdown = function(){
 	.r(/^\[x\]\x20(.+)/gim, "<input type='checkbox' disabled checked > $1<br>")
 
 	// IMG
-	.r(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
-		input = input.match(/\!\[([^\[\]]+)?\]\(([^\(\)]+)(\x20"[^"]+")?\)/)
+	.r(/\!\[([^\[\]]+)?\]\([^\(\)]+\)/g, function(input){
+		input = input.match(
+			/\!\[([^\[\]]+)?\]\(([^\(\)\s]+)(\x20"(([\w\d\x20\-_]+)(#[\w\d\-_]+)?)")?\)/
+		)
+		
+		var comilla = '"',
 
-		const comilla = '"',
+			title   = input[1] ? ' title="' + input[1]          + comilla : "",
+			src     = input[2] ? ' src="'   + input[2].rLinks() + comilla : "",
+			classes = input[5] ? ' class="' + input[5]          + comilla : "",
+			id      = input[6] ? ' id="'    + input[6]          + comilla : ""
 
-			alt   = input[1] ?  ' alt="' + input[1] + comilla : "",
-			src   = input[2] ?  ' src="' + input[2]
-				 	.rLinks() + comilla : "",
-			title = input[3] ? ' title="' + input[3] + comilla : ""
+		return '<img'+ id + src + title + classes +'>'
 
-		return '<img'+ src + alt + title +'>'
 	})
 
 	// A
-	.r(/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/g, function(input){
-		input = input.match(/\[([^\[\]]+)\]\(([^\(\)]+)(\x20"[^"]+")?\)/)
+	.r(/\[([^\[\]]+)\]\(([^\(\)\s]+)(\x20"[^"]+")?(\x20'[^']+')?(\x20`[^`]+`)?\)/g, function(input){
+		input = input.match(/\[([^\[\]]+)\]\(([^\(\)\s]+)(\x20"[^"]+")?(\x20'[^']+')?(\x20`[^`]+`)?\)/)
 
 		var display = input[1],
 			comilla = '"',
@@ -340,7 +395,10 @@ SP.toMarkdown = function(){
 				.rLinks()
 				.r('.md', '.html') + comilla,
 
-			title = input[3] ? ' title="' + input[3] + comilla : "",
+			title   = ' title="'   + (input[3] ? input[3].r(/"/g, '') + comilla : comilla),
+			classes = ' class="'   + (input[4] ? input[4].r(/#.+/, '').r(/'/g, '') + comilla : comilla),
+			id      = ' id="'      + (input[4] ? input[4].r(/.+#/, '').r(/'/g, '') + comilla : comilla),
+			func    = ' onclick="' + (input[5] ? input[5].r(/`/g, '').r(/"/g, '\'') + comilla : comilla),
 
 			target = function(){
 				var set = ' target="'
@@ -349,7 +407,7 @@ SP.toMarkdown = function(){
 					: set + '_self"'
 			}()
 
-		return '<a'+ href + title + target + '>' + display + '</a>'
+		return "<a"+ id + title  + href + target + classes + func +">" + display + "</a>"
 	})
 	
 	// HR
@@ -359,26 +417,22 @@ SP.toMarkdown = function(){
 	.r(/([^`])`\n\n`([^`])/, "$1`<br><br>`$2")
 	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br><br>$3')
 	.r(/(\x20\x20\n|\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br>$3')
-
+	
 	// PRE
 	.r(/```([^`]*)```/g, function(input){
+		input = input.match(/```([\w\d\x20\-_]+)?(#[\w\d\-_]+)?\n([^`]*)```/)
 
-		var display = input
-			.r(/```(\w+)?\n([^`]*)```/, '$2').parseHTML()
+		var eClass = input[1] || '',
+			eId = input[2] || '',
+			eText = input[3] || ''
 
-		function getLang(){
-			if(/```(\w+)\n/.test(input)){
-				return input.match(/```(\w+)\n/)[1]
-			}
-			return ''
-		}
-
-		return '<pre class="' + getLang() + '">' + display + '</pre>'
+		return "<pre id='" + eId.r('#', '') + "' class='" + eClass + "'>" + eText.rA('<br>', '\n').rA('<,', '&#x3C;') + "</pre>"
 	})
 
 	// CODE
 	.r(/`([^\n`]+)`/g, function(input){
 		input = input
+		.rA('<,', '&#x3C;')
 		.r(/`([^\n`]+)`/, '$1')
 		.r(/<(\/?)i>/g, "*")
 		.parseHTML()
@@ -411,7 +465,7 @@ SP.toMarkdown = function(){
 
 $('body').innerHTML = '\
 <div id="navbar">\
-	<h1>' + D.title +'<button id="CHANGE"><img src="'+ exROOT() +'img/dm-baseline.png"></button></h1>\
+	<h1>' + D.title +'<button id="CHANGE"><img src="'+ exROOT +'img/dm-baseline.png"></button></h1>\
 </div>\
 <div id="c"><div id="d"><textarea id="inputText" style="display:none;" disabled>'
 + $('body').innerHTML +
@@ -429,6 +483,7 @@ var htmlGenerated = $('#inputText').value.toMarkdown()
 
 $('.markdown .cont').innerHTML = htmlGenerated
 $('body').style.display = 'block'
+setTimeout(function(){$('#c').style.opacity = 1}, 12)
 
 apply($('a'), function(element){
 	element.onmouseover = function(){
@@ -461,7 +516,7 @@ apply($('.sb3'), function(element){
 	.rA('\t', '    ')
 	.rA('&lt;br/&gt;', "\\n")
 	//Comentarios 
-	.r(/(\/\/.+)/gm, enter.comments)
+	.r(/(\/\/[^\n]+)/gm, enter.comments)
 	.r(/(\/\*[^\/]*\*\/)/gmi, enter.comments)
 	.r(/(\{[^\$][^\{\}]*\})/gmi, enter.comments)
 	//Directivas
@@ -516,7 +571,7 @@ apply($('.ini'), function(element){
 $("#CHANGE").onclick = function(){
 	const $THIS_ELEMENT = this
 	function IMAGE(X){
-		$("img", $THIS_ELEMENT).setAttribute("src", exROOT() +'img/dm-'+ X +'line.png')
+		$("img", $THIS_ELEMENT).setAttribute("src", exROOT +'img/dm-'+ X +'line.png')
 	} 
 
 	ModeLight()

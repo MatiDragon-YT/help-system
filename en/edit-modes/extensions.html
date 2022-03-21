@@ -13,7 +13,7 @@ An **extension** is a set of new instructions added to the vanilla game. The [CL
 
 To make Sanny Builder aware of the custom instructions and explicitly signal their intentional usage, a script must have `{$USE}` [directive](../coding/directives.md#usduse). The `{$USE}` directive enables a particular set of instructions (see below the [list of extensions](extensions.md#extensions-list)).
 
-```
+```sb3
 {$USE CLEO}
 {$USE ini}
 {$USE CLEO+}
@@ -21,9 +21,9 @@ To make Sanny Builder aware of the custom instructions and explicitly signal the
 
 Each opcode included in Sanny Builder's [INI files](opcodes-list-scm.ini.md) has been categorized to belong to some extension. Currently it is done via the file `extensions.txt`.
 
-{% hint style="info" %}
+:::info
 See [#74](https://github.com/sannybuilder/dev/issues/74) for more information on how this feature is expected to function in the future.
-{% endhint %}
+:::
 
 ## Implicit Extensions
 
@@ -45,7 +45,7 @@ Sanny Builder ships some common and recognized extensions for different edit mod
 | **memory**  `{$USE memory}`|MemoryModule plugin|GTA III\nVice City|
 | **CLEO+**  `{$USE CLEO+}`|CLEO+ plugin|GTA SA v1.0, v2.0, (v1.0 - SCR)|
 | **newOpcodes**  `{$USE newOpcodes}`|newOpcodes plugin|GTA SA v1.0, v2.0|
-| **Restoration**  `{$USE Restoration}`|<a href="https://gtamods.com/wiki/Opcodes_Restoration_Project">Opcode Restoration Project</a>|Vice City|
+| **Restoration**  `{$USE Restoration}`|[Opcode Restoration Project](https://gtamods.com/wiki/Opcodes_Restoration_Project)|Vice City|
 
 Using opcodes from the third-party libraries not listed there is possible, the compiler will not require the `{$USE}` directive.
 

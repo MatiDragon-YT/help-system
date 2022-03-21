@@ -28,13 +28,13 @@ The `IF` operator evaluates one or more conditions and creates a new branch of c
 |1..7|2..8|`AND` (all conditions must be true for the IF statement to be true)|
 |21..27|2..8|`OR` (at least one of the conditions must be true for the IF statement to be true)|
 
-{% hint style="info" %}
+:::info
 A single IF statement can contain up to 8 conditions. 
-{% endhint %}
+:::
 
-{% hint style="info" %}
+:::info
 Sanny Builder allows to omit  `0` after `IF. IF 0` and  `IF` are equivalent.
-{% endhint %}
+:::
 
 - `<label>`- a name of the [label](data-types.md#labels) where script jumps if the IF statement is false.
 - `<condition>` - any conditional opcode evaluating to `true` or `false` 
@@ -64,7 +64,7 @@ To make writing conditions easier there are high-level constructs that don't req
 `THEN`\
 `  <commands if the statement is true>`\
 `END`
-<br><br>
+\n\n
 `IF <N>/AND/OR`\
 `  <condition 1>`\
 `  <condition 2>`\
@@ -90,13 +90,13 @@ else
 end
 ```
 
-{% hint style="info" %}
+:::info
 The  [`Conditions check`](../editor/options/general.md#check-conditions) option  has to be enabled.
-{% endhint %}
+:::
 
-{% hint style="info" %}
+:::info
 Nested IF statements are supported.
-{% endhint %}
+:::
 
 ## Relational Operators
 

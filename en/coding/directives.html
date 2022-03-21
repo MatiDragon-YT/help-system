@@ -13,9 +13,9 @@ Preprocessing **directives** are the special words that make the compiler functi
 
 ## $VERSION
 
-{% hint style="warning" %}
+:::warning
 This directive is deprecated since v3.1.0
-{% endhint %}
+:::
 
 Sets what version of [opcodes](../edit-modes/opcodes-list-scm.ini.md) to use during compilation.
 
@@ -32,9 +32,9 @@ By default the compiler uses the version `current_edit_mode.1.0000`.
 
 ## $VERSION_RESTORE
 
-{% hint style="warning" %}
+:::warning
 This directive is deprecated since v3.1.0
-{% endhint %}
+:::
 
 Restores the version to the value prior to using `$VERSION`.
 
@@ -64,9 +64,9 @@ If none of these directories contains a requested file the compiler throws an ex
 
 You may use this directive unlimited number of times. The included files may contain this directive too.
 
-{% hint style="info" %}
+:::info
 A shorter form of this directive is `$I`.
-{% endhint %}
+:::
 
 ## $EXTERNAL
 
@@ -77,16 +77,16 @@ An alternative way to get such file is the debug [option](../editor/console.md#s
 Syntax:\
 `{$EXTERNAL}`
 
-{% hint style="info" %}
+:::info
 A shorter form of this directive is `$E`.
-{% endhint %}
+:::
 
 ## $CLEO
 
 An analogue of the `$E` one, but the compiler automatically copies an output file to the `game\CLEO` directory. The file also gets an extension provided as the directive parameter.
 
 Syntax:\
-`{$CLEO &lt;extension&gt;}`
+`{$CLEO <extension>}`
 
 `extension` is an optional parameter specifying the file extension of the output file. It starts with the period character `.`. If no extension is present, the compiler uses the default value `.cs`
 
@@ -97,9 +97,9 @@ Syntax:\
 
 So this directive is the perfect solution to make a CLEO script.
 
-{% hint style="info" %}
+:::info
 `{$CLEO}` also implies `{$USE CLEO}`
-{% endhint %}
+:::
 
 ## $NOSOURCE
 
@@ -117,9 +117,9 @@ Registers a custom opcode via the script.
 All the opcodes definitions are contained in a [special file](../edit-modes/opcodes-list-scm.ini.md), one for each supported game. But sometimes it's necessary to add a custom opcode to use in the current script. `$OPCODE` makes it possible without touching the INI file.
 
 Syntax:\
-`{$OPCODE &lt;opcode definition&gt;}`\
+`{$OPCODE <,opcode definition>}`\
  or\
-`{$OPCODE &lt;path\to\file&gt;}`\
+`{$OPCODE <,path\to\file>}`\
  or\
 `{$OPCODE}`
 
@@ -141,9 +141,9 @@ When used without any parameter, this directive reloads the original opcodes def
 {$OPCODE}
 ```
 
-{% hint style="info" %}
+:::info
 A shorter form of this directive is `$O`.
-{% endhint %}
+:::
 
 ## $USE
 

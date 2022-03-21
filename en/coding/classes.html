@@ -80,7 +80,7 @@ Player($PLAYER_CHAR).Money > 461@ // check the amount
 ```
 
 
-<div class="warning">
+:::warning
 In the current version the compiler ignores whitespace characters in [string literals](data-types.md#string-literals) used in property parameters:
 
 ```sb3
@@ -92,7 +92,7 @@ will be compiled as:
 ```sb3
 0@ = File.Open("filename","wb")
 ```
-</div>
+:::
 ## Class Instances
 
 Almost all class members take a variable as the first parameter. This variable holds a handle of the class instance which is a concrete in-game entity the command is applied to:
@@ -127,7 +127,7 @@ if
 jf @anywhere
 ```
 
-<div class="warning">
+:::warning
 If a variable substitutes a class name, the compiler also makes it the first parameter, hence no need to use it again in the list of parameters:
 
 ```sb3
@@ -139,7 +139,7 @@ is equivalent to:
 ```sb3
 Player.SetClothes($PLAYER_CHAR, "PLAYER_FACE", "HEAD", Head)
 ```
-</div>
+:::
 
 Variables declared as instances of a class can be redeclared with another type.
 

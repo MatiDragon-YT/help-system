@@ -24,7 +24,7 @@ end // for
 There are two types of templates: *shared* and *exclusive*. Shared templates are available across all [edit modes](README.md). They are contained in the file `data\templates.txt`. Exclusive templates are designed specifically for the current edit mode. A path to the exclusive template file can be customized with the [`template`](README.md/#templates) key in the `modes.xml`:
 
 ```
-&lt;templates type="default">@sb:\data\gta3\templates.txt&lt;/templates>
+<,templates type="default">@sb:\data\gta3\templates.txt<,/templates>
 ```
 
 The editor merges the content of shared and exclusive templates in a single list. Exclusive templates have priority over the shared with the same name.
@@ -44,14 +44,14 @@ It's also possible to add a new template from the editor. Select the code and cl
 
 Enter a name of the template, a description (optionally) in the dialog window, choose the type of the template, and press the `OK` button. The template is ready to use. 
 
-Custom templates are saved in either `data\templates.custom.txt` (*custom shared templates*) or in `data\&lt;edit mode>\templates.custom.txt`(*custom exclusive templates*). The latter can be customized in the [modes configuration](README.md#templates).
+Custom templates are saved in either `data\templates.custom.txt` (*custom shared templates*) or in `data\<,edit mode>\templates.custom.txt`(*custom exclusive templates*). The latter can be customized in the [modes configuration](README.md#templates).
 
-{% hint style="info" %}
-The option to save a template only for current mode becomes available if `modes.xml` has a file path defined in `&lt;template type="custom">`tag.
-{% endhint %}
+:::info
+The option to save a template only for current mode becomes available if `modes.xml` has a file path defined in `<,template type="custom">`tag.
+:::
 
-{% hint style="info" %}
+:::info
 A template with the name `CLEO` unlocks the "New CLEO Script..." item in the main menu. The editor uses this template as the content for a newly created file.
-{% endhint %}
+:::
 
 <script src="../../js/main.min.js"></script>
