@@ -93,7 +93,7 @@ thead {
 	font-weight: bold;
 }
 
-td {
+td, th {
 	padding: .6rem;
 	border-left: #30363d 1px solid;
 	border-top: #30363d 1px solid;
@@ -101,10 +101,14 @@ td {
 	width: 1%;
 }
 
-td:first-child {
+td:first-child, th:first-child {
 	position: relative;
 	border-left: none;
 	text-align: left;
+}
+
+th {
+    border-top: none;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -154,7 +158,12 @@ hr {
 
 p { padding: 8px 0 }
 
-b { font-weight: 700 }
+b, mark { font-weight: 700 }
+
+mark {
+	background: #ffeb3b;
+    padding: 0 .25rem;
+}
 
 ins { 
 	text-decoration: dotted underline;
@@ -232,8 +241,8 @@ a:hover {
 blockquote {
 	padding: 5px 1rem;
 	margin: 5px 0;
-	border-left: #ff5252 4px solid;
-	color: #ff5252;
+	border-left: #00c853 4px solid;
+	color: #009688;
 }
 
 .warning {

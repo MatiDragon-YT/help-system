@@ -14,13 +14,17 @@ Markdown - **By MatiDragon**
 ========================
 
 [x] [lorem][]Lorem, __ipsum__ dolor :clap: sit amet **consectetur** adipisicing, elit.
-Nam ~~animi~~ *mollitia* nesciunt ***reprehenderit***, voluptate [error](#how-to-use-the-demo 'orange') similique saepe.
+[] Nam ~~animi~~ *mollitia* nesciunt ***reprehenderit***, voluptate [error](#how-to-use-the-demo 'orange') similique saepe.
 
 | table | number one |
 | ----- | ---------- |
 | jejeje|Dolorem ++provident++ officia `magnam` rerum [red][laboriosam] quas id a [`excepturi`](#how-to-use-the-demo "read labo id qusa") perspiciatis ==exercitationem==. Esse.|
 
-:::l#code-block
+:::center p-2
+[Enter to Google](https://google.com "at new window") \| [Relogin `.MD`](html.md "MD transformed at HTML") \| [Run JavaScript](#! "no is fake" 'bg-yellow black py-1 px-2 bold#run_js' `$('#show').toggle()`)
+:::
+
+:::l#show display:none;
 :::row
 :::col-6
 ```javascript
@@ -31,18 +35,22 @@ if (!ache) {
 ```
 :::
 :::col-6
-```javascript bg-pink white#code_JS
+```javascript bg-pink white
 var ache = "example"
 if (!ache) {
   ache = ache.toUpperCase()
 }
 ```
 :::
+:::col-12
+```sb3
+{$CLEO} nop
+while v = Actor.GetCurrentCar($PLAYER_ACTOR)
+  // xddddddddddddddddddddddddddddd
+end 
+```
 :::
 :::
-
-:::center p-2
-[Enter to Google](https://google.com "at new window") \| [Relogin `.MD`](html.md "MD transformed at HTML") \| [Run JavaScript](#! "no is fake" 'bg-blue black#run_js' `alert('Example ' + "number 1")`)
 :::
 
 How To Use The Demo
@@ -50,10 +58,10 @@ How To Use The Demo
 
 Lorem, ipsum dolor sit, amet consectetur adipisicing elit:
 
-> [h5 light][Lorem, ipsum dolor sit :eyes:].
-> Lorem ipsum ![image](%sa-r/icon28.gif) dolor [orange][sit amet consectetur].
-> Lorem [code numbers][ipsum] consectetur [red][adipisicing] [blue uppercase][elit].
-> Lorem ipsum dolor, sit :smile: :smile: :smile: :smile: consectetur adipisicing elit.
+> [h5 light][Lorem, ipsum dolor sit :eyes:]
+> * Lorem ipsum ![image](%sa-r/icon28.gif) dolor [orange][sit amet consectetur] sds
+> Lorem [code numbers][ipsum] consectetur [red][adipisicing] [blue uppercase][elit]
+> ##### Lorem ipsum dolor, sit :smile::smile::smile: consectetur adipisicing elit
 
 Lorem, ipsum dolor sit, amet consectetur adipisicing elit:
 
@@ -115,8 +123,7 @@ Lorem, ipsum dolor sit
 :::
 :::
 
-:::l
-<div class="w-100 h-43 p-2 o-auto bg-gray black" id="html" style="font-family: monospace;"></div>
+:::w-100 h-43 p-2 o-auto bg-gray black#html
 :::
 
 <script src="../../js/main.js"></script>
@@ -145,4 +152,9 @@ $('div #html').innerText = htmlGenerated
 </script>
 <style>
 textarea{resize: unset}
+#html{
+    box-shadow: 0px -14px 17px #0d1117;
+    font-family: monospace;
+    position: relative;
+}
 </style>

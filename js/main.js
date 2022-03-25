@@ -127,6 +127,10 @@ EP.next = function(){
 	return this.nextElementSibling
 }
 
+EP.previous = function(){
+	return this.previousElementSibling
+}
+
 EP.show = function(){
     this.style.display = "block"
 }
@@ -136,11 +140,6 @@ EP.hide = function(){
 }
 
 EP.toggle = function(){
-	setTimeout(function(){
-		// Clear the hash
-		history.pushState('', document.title, location.pathname)
-	}, 0)
-
 	this.style.display == "block"
 		? this.hide()
 		: this.show()
@@ -185,14 +184,18 @@ SP.toCapitalCase = function(){
 */
 
 /** Apply a function to all elements of the DOM
- * @param {DocumentElement} 
+ * @param {NodeList || [...NodeList]} 
  * @param {function}
 */
 function apply(element, callback){
-	if(element){ 
+	if(element){
 		if('' + element == '[object NodeList]'){ 
 			for (var i = 0; i < element.length; i++) {
 				callback(element[i])
+			}
+		}else if (typeof element == 'object'){
+			for (var i = 0; i < Object.keys(element).length; i++) {
+				apply(element[i], callback)
 			}
 		}else{  
 			callback(element)
@@ -240,21 +243,43 @@ SP.toMarkdown = function(){
 	/******** LIST ********/
 
 	// SCAPE CHAR
+	.rA("\\[", "&#91;")
+	.rA("\\]", "&#93;")
 	.rA("\\(", "&lpar;")
 	.rA("\\)", "&rpar;")
 	.rA("\\<", "&#x3C;")
 	.rA("\\>", "&#x3E;")
 	.rA("\\-", "&#45;")
+	.rA("\\+", "&#x2B;")
+	.rA("\\*", "&#x2A;")
 	.rA("\\\\", "&#x5C;")
 	.rA("\\|", "&vert;")
+	.rA("\\~", "&#126;")
+	.rA("\\.", "&#x2E;")
 	.rA("\\s", "&nbsp;")
 	.rA("\\n", "<br/>")
-	.rA("\\*", "&#x2A;")
 	.rA("\\`", "&#x60;")
-	.rA("\\.", "&#x2E;")
+	.rA("\\#", "&#x23;")
+	.rA("\\:", "&#x3A;")
+	.rA("\\=", "&#x3D;")
+	.rA("\\_", "&#x5F;")
+	.r(/<\!--(.+)-->/g, '')
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
+
+	// DIVS
+	  // SINTAX OF GITBOOK
+		.r(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
+		.r(/{% hint style="(\w+)" %}\n/g, '<div class="$1">')
+		.r(/{% endhint %}\n/g, '</div>\n')
+	  // SYNTAX OF MATIDRAGON
+		.r(/:::([\w\d\x20\-_]+)(#([\w\d\-_]+))?(\x20([^\n]+))?\n/g, '<div id="$3" class="$1" style="$5">\n')
+		.r(/:::\n/g, '</div>\n')
+
+	// BLOCKQUOTES
+	.r(/^>\x20(.+)/gm, '<blockquote>\n$1</blockquote>')
+	.r(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
 	// UL LI
 	.r(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
@@ -267,10 +292,12 @@ SP.toMarkdown = function(){
 	// OL LI
 	.r(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
 	.r(/^\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1</li></ol></ol>')
+	.r(/^\x20{4}\d\.\s(.+)/gim, '<ol><ol><ol><li>$1</li></ol></ol></ol>')
 
 	.r(/<\/li><\/ol>\n<ul><ul><li>(.*)<\/ul><\/ul>/g, '<\/li><ul><li>$1</ul></ol>')
 
 	.r(/<\/ol>(\s+)<ol>/g, '')
+	.rA('<\/ol><\/ol><ol><ol>', '')
 	.rA('<\/ol><ol>', '')
 
 	// DL DD
@@ -287,7 +314,7 @@ SP.toMarkdown = function(){
 	.r(/\*([^\*\n]+)\*/g, '<i>$1</i>')
 	.r(/~~([^~\n]+)~~/g, '<s>$1</s>')
 	.r(/__([^_\n]+)__/g, '<u>$1</u>')
-	.r(/\b_([^_\n]+)_\b/g, '<i>$1</i>')
+	.r(/\b_([^_\n]+)_\b/g, '<address>― $1</address>')
 	.r(/==([^=\n\"\'\\\/]+)==/g, '<mark>$1</mark>')
 	.r(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
 
@@ -299,6 +326,7 @@ SP.toMarkdown = function(){
 			'+1' : '👍',
 			'-1' : '👎',
 			'smile' : '😄',
+			'emoji' : '😄',
 			'eyes' : '👀',
 			'sunglasses' : '😎',
 			'note' : '📝',
@@ -306,23 +334,9 @@ SP.toMarkdown = function(){
 		
 		input = input.split(':')
 
-		return input[0] + EMOJIS[input[1]] + input[2]
+		return input[0] + EMOJIS[input[1].toLowerCase()] + input[2]
 	})
 
-	/*** DIVS ***/
-	  // SINTAX OF GITBOOK
-		.r(/{% hint (\w+) %}([\w\W]*){% endhint %}/g, "<div class='$1'>$2</div>")
-		.r(/{% hint style="(\w+)" %}\n/g, '<div class="$1">')
-		.r(/{% endhint %}\n/g, '</div>\n')
-	  // SYNTAX OF MATIDRAGON 
-		.r(/:::([\w\d\x20\-_]+)(#([\w\d\-_]+))?\n/g, '<div id="$3" class="$1">\n')
-		.r(/:::\n/g, '</div>\n')
-
-
-
-	/*** BLOCKQUOTE ***/
-	.r(/^>\x20(.+)/gm, '<blockquote>\n$1</blockquote>')
-	.r(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
 	/*** TITLE ***/
 
@@ -482,6 +496,12 @@ $('body').innerHTML = '\
 var htmlGenerated = $('#inputText').value.toMarkdown()
 
 $('.markdown .cont').innerHTML = htmlGenerated
+
+apply($('thead'), function(element){
+	element.innerHTML = element.innerHTML
+	.r(/<td(\/)?>/g, '<th$1>')
+})
+
 $('body').style.display = 'block'
 setTimeout(function(){$('#c').style.opacity = 1}, 12)
 
