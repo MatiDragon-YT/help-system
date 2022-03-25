@@ -184,7 +184,7 @@ SP.toCapitalCase = function(){
 */
 
 /** Apply a function to all elements of the DOM
- * @param {NodeList || [...NodeList]} 
+ * @param {NodeList} 
  * @param {function}
 */
 function apply(element, callback){
@@ -192,10 +192,6 @@ function apply(element, callback){
 		if('' + element == '[object NodeList]'){ 
 			for (var i = 0; i < element.length; i++) {
 				callback(element[i])
-			}
-		}else if (typeof element == 'object'){
-			for (var i = 0; i < Object.keys(element).length; i++) {
-				apply(element[i], callback)
 			}
 		}else{  
 			callback(element)
