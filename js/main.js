@@ -158,20 +158,23 @@ const CopyTextContent = function(id) {
 
 /** Shotcun of String.replace()
 */
-SP.r = function(this_text, with_text, flags){
-	flags = flags ? flags : ''
-	return this.replace(this_text, with_text, flags)
+SP.r = function(text, _text, _flags){
+	_text = _text || ''
+	_flags = _flags || ''
+	return this.replace(text, _text, _flags)
 }
 
 /** Polifill and shotcun of String.replaceAll()
 */
-SP.rA = function(xText, zText){
+SP.rA = function(text, _text){
 	var temp = this
+	_text = _text || ''
 
-	if(temp.indexOf(xText, 0) !== -1){
+
+	if(temp.indexOf(text, 0) !== -1){
 		temp = temp
-		.r(xText, zText)
-		.rA(xText, zText)
+		.r(text, _text)
+		.rA(text, _text)
 	}
 	
 	return temp
@@ -207,7 +210,7 @@ var aTables = [] // contenedor de tablas
 SP.toMarkdown = function(){
 	SP.toLinkCase = function(){
 		return this.toLowerCase()
-		.r(/<(\/)?[\!\w\d\s\.,-="]+>/g, '')
+		.r(/<(\/)?[\!\w\d\s\.,-="]+>/g)
 		.rA('\x20', '-')
 	}
 
@@ -215,7 +218,7 @@ SP.toMarkdown = function(){
 		return this
 		.rA('<br>', '\n')
 		.rA('<', '&lt;')
-		.rA('=""', '')
+		.rA('=""')
 	}
 
 	SP.rLinks = function(){
@@ -265,7 +268,7 @@ SP.toMarkdown = function(){
 	.rA("\\:", "&#x3A;")
 	.rA("\\=", "&#x3D;")
 	.rA("\\_", "&#x5F;")
-	.r(/<\!--(.+)-->/g, '')
+	.r(/<\!--(.+)-->/g)
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
@@ -287,9 +290,9 @@ SP.toMarkdown = function(){
 	.r(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
 	.r(/^\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1</li></ul></ul>')
 	.r(/^\x20{4}\*\s(.+)/gim, '<ul><ul><ul><li>$1</li></ul></ul></ul>')
-	.r(/<\/ul>(\s+)<ul>/g, '')
-	.rA('<\/ul><\/ul><ul><ul>', '')
-	.rA('<\/ul><ul>', '')
+	.r(/<\/ul>(\s+)<ul>/g)
+	.rA('<\/ul><\/ul><ul><ul>')
+	.rA('<\/ul><ul>')
 
 	// OL LI
 	.r(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
@@ -298,17 +301,17 @@ SP.toMarkdown = function(){
 
 	.r(/<\/li><\/ol>\n<ul><ul><li>(.*)<\/ul><\/ul>/g, '<\/li><ul><li>$1</ul></ol>')
 
-	.r(/<\/ol>(\s+)<ol>/g, '')
-	.rA('<\/ol><\/ol><ol><ol>', '')
-	.rA('<\/ol><ol>', '')
+	.r(/<\/ol>(\s+)<ol>/g)
+	.rA('<\/ol><\/ol><ol><ol>')
+	.rA('<\/ol><ol>')
 
 	// DL DD
 	.r(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
 	.r(/^\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1</dd></dl></dl>')
 	.r(/^\x20{4}\-\s(.+)/gim, '<dl><dl><dl><dd>$1</dd></dl></dl></dl>')
-	.r(/<\/dl>(\s+)<dl>/g, '')
-	.rA('<\/dl><\/dl><dl><dl>', '')
-	.rA('<\/dl><dl>', '')
+	.r(/<\/dl>(\s+)<dl>/g)
+	.rA('<\/dl><\/dl><dl><dl>')
+	.rA('<\/dl><dl>')
 
 	/*** FORMAT ***/
 	.r(/\*\*\*([^\*\n]+)\*\*\*/g, '<b><i>$1</i></b>')
@@ -355,33 +358,21 @@ SP.toMarkdown = function(){
 		input = input.trim().r(/^(\w.+)\n--+-/gim, '$1')
 		return '<h2 id="'+ input.toLinkCase() +'">' + input + '</h2>'
 	})
-	.r(/^#+\x20(.+)/gm, function(input) {
-		var number = 0
-		var output
+	.r(/^#+\x20(.+)/gm, function(input){
+		[
+			input,
+			header,
+			text,
+			customSection,
+			classes,
+			id
+		] = input.match(/(#+)\x20([^\{\}\n]+)(\{([^#\{\}\n]+)?(#[^#\{\}\n]+)?\})?/)
 
-		function index(text) {
-
-			if(/^#+\x20/.test(text)){
-				number++
-				text = text.r(/^#/, '')
-				index(text, number)
-			}else{
-				if (number == 0){
-					output = text
-					return;
-				}
-				var TITLE = text.r(/^\x20/, '')
-				/* auto capitalize
-				if (number < 4){ // is H1, H2 or H3
-					TITLE = TITLE.toCapitalCase()
-				}
-				*/
-				output = '<h'+number+' id="'+ TITLE.toLinkCase() +'">' + TITLE + '</h'+number+'>'
-			}
-		}
-		index(input)
-
-		return output
+		return '<h' + header.length + 
+			' id="' + (id||text.trim().toLinkCase()).r('#') + 
+			'" class="' + (classes||'') +
+			'">' + text.trim() +
+			'</h' + header.length + '>'
 	})
 
 	// CHECKBOX
@@ -416,10 +407,10 @@ SP.toMarkdown = function(){
 				.rLinks()
 				.r('.md', '.html') + comilla,
 
-			title   = ' title="'   + (input[3] ? input[3].r(/"/g, '') + comilla : comilla),
-			classes = ' class="'   + (input[4] ? input[4].r(/#.+/, '').r(/'/g, '') + comilla : comilla),
-			id      = ' id="'      + (input[4] ? input[4].r(/.+#/, '').r(/'/g, '') + comilla : comilla),
-			func    = ' onclick="' + (input[5] ? input[5].r(/`/g, '').r(/"/g, '\'').r(/\(([^\(\)]+)?\)(\s+)?=>(\s+)?\{/g, 'function($1){') + comilla : comilla),
+			title   = ' title="'   + (input[3] ? input[3].r(/"/g) + comilla : comilla),
+			classes = ' class="'   + (input[4] ? input[4].r(/#.+/).r(/'/g) + comilla : comilla),
+			id      = ' id="'      + (input[4] ? input[4].r(/.+#/).r(/'/g) + comilla : comilla),
+			func    = ' onclick="' + (input[5] ? input[5].r(/`/g).r(/"/g, '\'').r(/\(([^\(\)]+)?\)(\s+)?=>(\s+)?\{/g, 'function($1){') + comilla : comilla),
 
 			target = function(){
 				var set = ' target="'
@@ -432,7 +423,7 @@ SP.toMarkdown = function(){
 	})
 	
 	// HR
-	.r(/(\n|^)--+-\n/g, '$1<hr>\n')
+	.r(/^--+-$/gm, '<hr>')
 
 	// BR
 	.r(/([^`])`\n\n`([^`])/, "$1`<br><br>`$2")
@@ -444,10 +435,10 @@ SP.toMarkdown = function(){
 		input = input.match(/```([\w\d\x20\-_]+)?(#[\w\d\-_]+)?\n([^`]*)```/)
 
 		var eClass = input[1] || '',
-			eId = input[2] || '',
-			eText = input[3] || ''
+			eId = (input[2] || '').r('#'),
+			eText = (input[3] || '').rA('<br>', '\n').rA('<,', '&#x3C;')
 
-		return "<pre id='" + eId.r('#', '') + "' class='" + eClass + "'>" + eText.rA('<br>', '\n').rA('<,', '&#x3C;') + "</pre>"
+		return "<pre id='" + eId + "' class='" + eClass + "'>" + eText + "</pre>"
 	})
 
 	// CODE
