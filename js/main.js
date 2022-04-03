@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.15";
+const VERSION = "1.16";
 
 function log(value){
 	console.log(value)
@@ -9,6 +9,8 @@ const D = document
 
 const SP = String.prototype
 const EP = Element.prototype
+
+NodeList.prototype.forEach = Array.prototype.forEach
 
 /** Smart selector for elements of the DOM
  * @param {DOMString}
@@ -140,7 +142,7 @@ EP.hide = function(){
 }
 
 EP.toggle = function(){
-	this.style.display == "block"
+	getComputedStyle(this).display == "block"
 		? this.hide()
 		: this.show()
 }
@@ -156,8 +158,9 @@ const CopyTextContent = function(id) {
 
 /** Shotcun of String.replace()
 */
-SP.r = function(a, b){
-	return this.replace(a, b)
+SP.r = function(this_text, with_text, flags){
+	flags = flags ? flags : ''
+	return this.replace(this_text, with_text, flags)
 }
 
 /** Polifill and shotcun of String.replaceAll()
@@ -190,14 +193,16 @@ SP.toCapitalCase = function(){
 function apply(element, callback){
 	if(element){
 		if('' + element == '[object NodeList]'){ 
-			for (var i = 0; i < element.length; i++) {
-				callback(element[i])
-			}
+			element.forEach(function(e){
+				callback(e)
+			})
 		}else{  
 			callback(element)
 		}
 	}
 }
+
+var aTables = [] // contenedor de tablas
 
 SP.toMarkdown = function(){
 	SP.toLinkCase = function(){
@@ -251,6 +256,7 @@ SP.toMarkdown = function(){
 	.rA("\\\\", "&#x5C;")
 	.rA("\\|", "&vert;")
 	.rA("\\~", "&#126;")
+	.rA("\\^", "&#x5E;")
 	.rA("\\.", "&#x2E;")
 	.rA("\\s", "&nbsp;")
 	.rA("\\n", "<br/>")
@@ -309,13 +315,15 @@ SP.toMarkdown = function(){
 	.r(/\*\*([^\*\n]+)\*\*/g, '<b>$1</b>')
 	.r(/\*([^\*\n]+)\*/g, '<i>$1</i>')
 	.r(/~~([^~\n]+)~~/g, '<s>$1</s>')
+	.r(/~([^~\s]+)~/g, '<sub>$1</sub>')
+	.r(/\^([^\^\s]+)\^/g, '<sup>$1</sup>')
 	.r(/__([^_\n]+)__/g, '<u>$1</u>')
 	.r(/\b_([^_\n]+)_\b/g, '<address>― $1</address>')
 	.r(/==([^=\n\"\'\\\/]+)==/g, '<mark>$1</mark>')
 	.r(/\+\+([^\+\n]+)\+\+/g, '<ins>$1</ins>')
 
 	// EMOJIS
-	.r(/(\B|\s+):([^:\s]+):(\B)/g, function(input){
+	.r(/([^\d\w\|]):([^:\s\|]+):([^\d\w\|])/g, function(input){
 		const EMOJIS = {
 			'clap': '👏',
 			'wave' : '👋',
@@ -326,6 +334,9 @@ SP.toMarkdown = function(){
 			'eyes' : '👀',
 			'sunglasses' : '😎',
 			'note' : '📝',
+			'memo' : '📝',
+			'warning' : '⚠',
+			'bulb' : '💡',
 		}
 		
 		input = input.split(':')
@@ -408,7 +419,7 @@ SP.toMarkdown = function(){
 			title   = ' title="'   + (input[3] ? input[3].r(/"/g, '') + comilla : comilla),
 			classes = ' class="'   + (input[4] ? input[4].r(/#.+/, '').r(/'/g, '') + comilla : comilla),
 			id      = ' id="'      + (input[4] ? input[4].r(/.+#/, '').r(/'/g, '') + comilla : comilla),
-			func    = ' onclick="' + (input[5] ? input[5].r(/`/g, '').r(/"/g, '\'') + comilla : comilla),
+			func    = ' onclick="' + (input[5] ? input[5].r(/`/g, '').r(/"/g, '\'').r(/\(([^\(\)]+)?\)(\s+)?=>(\s+)?\{/g, 'function($1){') + comilla : comilla),
 
 			target = function(){
 				var set = ' target="'
@@ -454,7 +465,27 @@ SP.toMarkdown = function(){
 	.r(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
 
 	// TABLE
-	.r(/\|[\|\-\x20:]+\|/g, "</thead><tbody>")
+	.r(/\|[\|\-\x20:]+\|/g, function(input){
+		let aCol = [] // contenedor columnas
+
+		if (input.r(/-+/, '-') != '|-|'){ // es la tabla no minificada
+
+			input = input.split('|')
+			input = input.splice(1, --input.length)
+
+			input.forEach(function(a){
+				if (/^:-+:/.test(a)) aCol.push('center')
+				if (/^-+:/.test(a)) aCol.push('right')
+				if (/^:-+/.test(a)) aCol.push('left')
+				if (/^-+$/.test(a)) aCol.push('center')
+			})
+
+		}
+		aTables.push(aCol)
+
+		return "</thead><tbody>"
+
+	})
 	.r(/\|[^\n]+\|/g, function (input) {
 		input = input.split('|')
 
@@ -500,6 +531,24 @@ apply($('thead'), function(element){
 
 $('body').style.display = 'block'
 setTimeout(function(){$('#c').style.opacity = 1}, 12)
+
+aTables.forEach(function(tabla, numTabla){
+	if (tabla.length != 0){ 
+		var $tablas = $("table")
+		tabla.forEach(function(alineaminto, columna){
+			if("" + $tablas == '[object NodeList]'){
+				$("tr" ,$tablas[numTabla]).forEach(function(fila){
+					fila.childNodes[columna].className = alineaminto
+				})
+			}
+			else{
+				$("tr").forEach(function(fila){
+					fila.childNodes[columna].className = alineaminto
+				})
+			}
+		})
+	}
+})
 
 apply($('a'), function(element){
 	element.onmouseover = function(){

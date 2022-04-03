@@ -194,6 +194,10 @@ code, .code {
 	margin: 0 2px;
 }
 
+table code, table .code {
+	display: inline-block;
+}
+
 textarea{
 	font-size: 1rem;
 	padding: 0.5rem;
@@ -406,14 +410,20 @@ input[type='checkbox']{
 	.markdown { max-width: 90% }
 }
 
-.center, .c { text-align: center }
-.right, .r {text-align: right}
-.left, .l {text-align: left}
+.center, .c { text-align: center !important}
+.right, .r {text-align: right !important}
+.left, .l {text-align: left !important}
 
 .light { font-weight: 300 }
 .bold { font-weight: 700 }
 
 .uppercase { text-transform: uppercase }
+.r-0 { border-radius: 0 }
+.r-1 { border-radius: .25rem }
+.r-2 { border-radius: .5rem }
+.r-3 { border-radius: 1rem }
+.r-4 { border-radius: 1.5rem }
+.r-5 { border-radius: 3rem }
 .p-0 { padding: 0 }
 .p-1 { padding: .25rem }
 .p-2 { padding: .5rem }
