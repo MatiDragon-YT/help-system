@@ -35,6 +35,16 @@ body {
 	transition: opacity .48s;
 }
 
+.cont::after {
+    content: '';
+    box-shadow: 0px -14px 17px #0d1117;
+    width: 100%;
+    height: 2rem;
+    position: fixed;
+    left: 0;
+    bottom: -2rem;
+}
+
 ::-webkit-scrollbar { width: 1rem;}
 ::-webkit-scrollbar-track { background: #0a0d14 }
 ::-webkit-scrollbar-thumb { background: #262b32; border: 1px #0a0d14 solid; }
@@ -475,10 +485,10 @@ input[type='checkbox']{
 
 .pre {white-space: pre}
 
-.white{color:#c9d1d9}
+[white], .white, .white * {color:#c9d1d9}
 .bg-white{background:#c9d1d9}
-.black,
-.black * {color:#0d1117}
+
+[black], .black, .black * {color:#0d1117}
 .bg-black{background:#0d1117}
 .bg-black-2{background:#000;}
 

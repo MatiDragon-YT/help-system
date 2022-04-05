@@ -296,6 +296,10 @@
 				<param name="Local" value="ru\scm-documentation\sa\vehicles.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Vehicle Colors">
+				<param name="Local" value="ru\scm-documentation\sa\vehicle-color.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Vehicle Variations">
 				<param name="Local" value="ru\scm-documentation\sa\vehicle-variations.html">
 				</OBJECT>
