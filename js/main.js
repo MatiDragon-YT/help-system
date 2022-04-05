@@ -170,7 +170,6 @@ SP.rA = function(text, _text){
 	var temp = this
 	_text = _text || ''
 
-
 	if(temp.indexOf(text, 0) !== -1){
 		temp = temp
 		.r(text, _text)
@@ -247,27 +246,12 @@ SP.toMarkdown = function(){
 	/******** LIST ********/
 
 	// SCAPE CHAR
-	.rA("\\[", "&#91;")
-	.rA("\\]", "&#93;")
-	.rA("\\(", "&lpar;")
-	.rA("\\)", "&rpar;")
-	.rA("\\<", "&#x3C;")
-	.rA("\\>", "&#x3E;")
-	.rA("\\-", "&#45;")
-	.rA("\\+", "&#x2B;")
-	.rA("\\*", "&#x2A;")
-	.rA("\\\\", "&#x5C;")
-	.rA("\\|", "&vert;")
-	.rA("\\~", "&#126;")
-	.rA("\\^", "&#x5E;")
-	.rA("\\.", "&#x2E;")
-	.rA("\\s", "&nbsp;")
 	.rA("\\n", "<br/>")
-	.rA("\\`", "&#x60;")
-	.rA("\\#", "&#x23;")
-	.rA("\\:", "&#x3A;")
-	.rA("\\=", "&#x3D;")
-	.rA("\\_", "&#x5F;")
+	.rA("\\s", "&nbsp;")
+	.rA("\\\\", "&#x5C;")
+	.r(/\\./g, function(input){
+		return '&#' + input.r('\\').charCodeAt(0) + ';'
+	})
 	.r(/<\!--(.+)-->/g)
 
 	// ID
@@ -331,7 +315,9 @@ SP.toMarkdown = function(){
 			'clap': '👏',
 			'wave' : '👋',
 			'+1' : '👍',
+			'thumbsup' : '👍',
 			'-1' : '👎',
+			'thumbsdown' : '👎',
 			'smile' : '😄',
 			'emoji' : '😄',
 			'eyes' : '👀',
@@ -359,14 +345,12 @@ SP.toMarkdown = function(){
 		return '<h2 id="'+ input.toLinkCase() +'">' + input + '</h2>'
 	})
 	.r(/^#+\x20(.+)/gm, function(input){
-		[
-			input,
-			header,
-			text,
-			customSection,
-			classes,
-			id
-		] = input.match(/(#+)\x20([^\{\}\n]+)(\{([^#\{\}\n]+)?(#[^#\{\}\n]+)?\})?/)
+		input = input.match(/(#+)\x20([^\{\}\n]+)(\{([^#\{\}\n]+)?(#[^#\{\}\n]+)?\})?/)
+
+		var header = input[1]
+		var text = input[2]
+		var classes = input[4]
+		var id = input[5]
 
 		return '<h' + header.length + 
 			' id="' + (id||text.trim().toLinkCase()).r('#') + 
@@ -456,8 +440,8 @@ SP.toMarkdown = function(){
 	.r(/\[([\w\d\-\x20]+)\]\[([^\[\]]+)\]/gim, '<span class="$1">$2</span>')
 
 	// TABLE
-	.r(/\|[\|\-\x20:]+\|/g, function(input){
-		let aCol = [] // contenedor columnas
+	.r(/^\|[\|\-\x20:]+\|/gm, function(input){
+		var aCol = [] // contenedor columnas
 
 		if (input.r(/-+/, '-') != '|-|'){ // es la tabla no minificada
 
@@ -465,19 +449,18 @@ SP.toMarkdown = function(){
 			input = input.splice(1, --input.length)
 
 			input.forEach(function(a){
-				if (/^:-+:/.test(a)) aCol.push('center')
-				if (/^-+:/.test(a)) aCol.push('right')
-				if (/^:-+/.test(a)) aCol.push('left')
-				if (/^-+$/.test(a)) aCol.push('center')
+				if (/^(:-+:|-+)$/.test(a)) aCol.push('center')
+				if (/^-+:$/.test(a)) aCol.push('right')
+				if (/^:-+$/.test(a)) aCol.push('left')
 			})
-
 		}
+		
 		aTables.push(aCol)
 
 		return "</thead><tbody>"
 
 	})
-	.r(/\|[^\n]+\|/g, function (input) {
+	.r(/^\|[^\n]+\|/gm, function (input) {
 		input = input.split('|')
 
 		var newTable = ""
