@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Opcodes Condicionales</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+1) Contemple los chequeos que se pueden aplicar a los actores y al jugador, es decir, a CJ:
+
+**Jugador ($PLAYER_CHAR):**
+
+**Player.Defined($PLAYER_CHAR)** - el jugador ya ha sido encontrado o ha sido creado.
+**player.PressingHorn($PLAYER_CHAR)** - el jugador toca el claxon mientras está sentado en el auto.
+**wasted_or_busted** - el jugador es arrestado o asesinado.
+**Player.Controllable($PLAYER_CHAR)** - el jugador es controlable.
+**0457: player $PLAYER_CHAR aiming_at_actor $Act** - el jugador apunta al actor llamado $Act.
+**Player.WantedLevel($PLAYER_CHAR) > 0** - comprueba el nivel de búsqueda del jugador.
+**Player.Money($PLAYER_CHAR) > $money** - compara su dinero con el número entero $money.
+
+**Jugador ($PLAYER_ACTOR) y actores:**
+
+**Actor.Animation($PLAYER_ACTOR) == "FIGHTC_SPAR"** - si la animación del actor se produce.
+**0965: actor $PLAYER_ACTOR swimming_in_water** - el actor nada en el agua.
+**06EE: actor $PLAYER_ACTOR in_group 260@** - el actor pertenece a un grupo determinado de actores.
+**actor.InCar($PLAYER_ACTOR,$Car)** - $PLAYER_ACTOR se encuentra en $Car.
+**actor.Driving($PLAYER_ACTOR)** - el actor $PLAYER_ACTOR está en el volante.
+**actor.DrivingPoliceVehicle($PLAYER_ACTOR)** - el actor $PLAYER_ACTOR conduce un auto de policía.
+**actor.DrivingTaxiVehicle($PLAYER_ACTOR)** - el actor $PLAYER_ACTOR conduce un taxi.
+**04A7: actor $PLAYER_ACTOR driving_boat** - el actor $PLAYER_ACTOR conduce un bote.
+**actor.DrivingVehicleType($ACTOR,#CAR_MODEl)** - el actor $ACTOR conduce el vehículo #CAR_MODEl.
+**actor.Dead($PLAYER_ACTOR)** - el actor $PLAYER_ACTOR está muerto.
+**actor.HasWeapon($ACTOR,Number)** - el actor $ACTOR lleva un arma con el numero de ID, que puede ser vistos en el capítulo "PickUps".
+**actor.Stopped($PLAYER_ACTOR)** - el actor $PLAYER_ACTOR está parado.
+**04AD: actor $PLAYER_ACTOR touching_water** - el actor $PLAYER_ACTOR toca el agua.
+**04C5: actor $PLAYER_ACTOR photographed** - un actor hace una foto.
+**051A: actor $Act1 damaged_by_actor $Act2** - si el actor1 fue herido por el actor2.
+**031D: actor $Act hit_by_weapon 23** - si el actor ha sido herido por un arma determinada.
+
+2) Chequeos (condiciones) de las estructuras:
+
+**03CA: object $Obj exists** - el objeto $Obj existe.
+**83CA: not object $Obj exists** - el objeto $Obj no existe.
+**0685: object $Obj attached** - el objeto está unido a algo.
+**8685: not object $Obj attached** - el objeto no está unido a algo.
+**023B: actor $Act colliding_with_object $Obj** - el actor está en contacto con el objeto.
+**823B: not actor $Act colliding_with_object $Obj** - el actor no está en contacto con el objeto.
+**0179: actor $Act picked_up_object $Obj** - el actor ha levantado el objeto (se refiere a una recogida).
+**8179: not actor $Act picked_up_object $Obj** - el actor no ha levantado el objeto (se refiere a una recogida).
+**0737: actor $Act lifting_object $Obj** - un actor recoge el objeto.
+**8737: not actor $Act lifting_object $Obj** - el actor no recoge el objeto.
+**0366: object $Obj blown_up** - el objeto $Obj ha estallado.
+**8366: not object $Obj blown_up** - el objeto $Obj no ha estallado.
+**04E7: object $Obj in water** - el objeto $Obj está en el agua.
+**84E7: not object $Obj in water** - el objeto $Obj no está en el agua.
+**0471: unknown_actor $Act near_object $Obj radius 50.0 50.0 unknown 0** - el actor se encuentra en un radio determinado del objeto.
+**8471: not unknown_actor $Act near_object $Obj radius 50.0 50.0 unknown 0** - el actor no se encuentra en un radio determinado del objeto.
+
+3) Estos son los controles que se aplican a los vehículos:
+
+**0185: car $Car health >= 10** - la vida del auto $Car es mayor o igual a 10.
+**07AB: car $Car_1 attached_to_car $Car_2** - El auto 1 está enganchado al auto 2.
+**0495: car $Car burning** - el auto está en llamas.
+**0975: car $Car emergency_vehicle** - el $Car es un vehículo de servicio (bomberos, policía...).
+**096F: car $Car street_racing_vehicle** - el $Car es un auto de carreras de calle.
+**02CA: car $Car bounding_sphere_visible** - el jugador ve $Car.
+**02BF: car $Car sunk** - el auto $Car cayó al agua.
+**0981: train $Poezd wrecked** - el tren $Poezd está destruido.
+**01C1: car $Car stopped** - el auto $Car está detenido.
+**03C9: car $Car damaged** - el auto $Car está dañado.
+**096E: car $Car lowrider** - el auto $Car es un lowrider.
+**Car.Id($car) == #HYDRA** - el modelo del auto $Car es #HYDRA.
+//puedes poner un `not` delante de todo el opcode porque aquí no hay ninguna palabra clave.
+**01F3: car $Car airborne** - el auto $Car está en el aire.
+//creo que te has dado cuenta de que también puedes poner un `not` en este comando.
+**03CE: car $Car stuck** - el auto $Car está volteado.
+**0119: car $Car wrecked** - el auto $Car está destruido.
+**01B0: car $Car stopped 0 near_point X Y Z radius 4.0 4.0 4.0** - el auto $Car se detiene en un rango de 4.0 de las coordenadas X Y Z.
+**01F4: car $Car flipped** - el auto $Car se hunde.
+**056E: car $Car defined** - El auto $Car existe.
+**0431: car $Car car_passenger_seat_free 0** - el asiento 0 del auto $El está libre.
+**051D: cars $Car_1 and $Car_2 collided** - $Car_1 y $Car_2 chocan.
+**0803: car $Car have_hydraulics** - el $Car tiene sistema hidráulico.
+
+4) Otras condiciones
+
+**model.Available(#MODEl)** - el modelo está cargado.
+**not model.Available(#MODEl)** - el modelo no está cargado.
+**04EE: animation "GANGS" loaded** - la animación está cargada.
+**84EE: not animation "GANGS" loaded** - la animación no se carga.
+**00E1: key_pressed 0 19** - la tecla es pulsado. Las teclas se describen en el capítulo "Teclas". 
+**80E1: not key_pressed 0 19** - la tecla no es pulsado.
+**$ONMISSION == X** - una misión sin empezar, X es 0 y una empezada X es 1.
+**02D0: fire $Fire extinguished** - si un determinado incendio se ha extinguido.
+**82D0: not fire $Fire extinguished** - si un determinado incendio no se ha extinguido.
+**03D0: wav 3@ loaded** - el sonido está cargado.
+**83D0: not wav 3@ loaded** - el sonido no está cargado.
+**03D2: wav 3@ ended** - el sonido ha terminado.
+**83D2: not wav 3@ ended** - el sonido no ha terminado.
+
+
+<script src="../../js/main.js"></script>

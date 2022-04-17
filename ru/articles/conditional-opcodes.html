@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Условные опкоды</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+1) Рассмотрим проверки, которые можно применять к актёрам и игроку, т.е. к CJ'ю:
+
+**Игрок ($PLAYER_CHAR):**
+
+**Player.Defined($PLAYER_CHAR)** - игрок найден или уже создан.
+**player.PressingHorn($PLAYER_CHAR)** - игрок бибикает, сидя в машине.
+**wasted_or_busted** - игрок арестован или убит.
+**Player.Controllable($PLAYER_CHAR)** - игрок контролируем.
+**0457: player $PLAYER_CHAR aiming_at_actor $Act** - игрок целится в актёра c именем $Act.
+**Player.WantedLevel($PLAYER_CHAR) > 0** - проверяет уровень розыска у игрока.
+**Player.Money($PLAYER_CHAR) > $money** - cравнивает ваши деньги с целым числом $money.
+
+**Игрок ($PLAYER_ACTOR) и актёры:**
+
+**Actor.Animation($PLAYER_ACTOR) == "FIGHTC_SPAR"** - является ли анимация актёра данной.
+**0965: actor $PLAYER_ACTOR swimming_in_water** - актёр плавает в воде.
+**06EE: actor $PLAYER_ACTOR in_group 260@** - актёр в определённой группе актёров.
+**actor.InCar($PLAYER_ACTOR,$Car)** - $PLAYER_ACTOR в машине $Car.
+**actor.Driving($PLAYER_ACTOR)** - актёр $PLAYER_ACTOR за рулём.
+**actor.DrivingPoliceVehicle($PLAYER_ACTOR)** - актёр $PLAYER_ACTOR за рулём ментовской тачки.
+**actor.DrivingTaxiVehicle($PLAYER_ACTOR)** - актёр $PLAYER_ACTOR за рулём такси.
+**04A7: actor $PLAYER_ACTOR driving_boat** - актёр $PLAYER_ACTOR плывёт на лодке.
+**actor.DrivingVehicleType($ACTOR,#CAR_MODEl)** - актёр $ACTOR в маш. типа #CAR_MODEl.
+**actor.Dead($PLAYER_ACTOR)** - актёр $PLAYER_ACTOR умер.
+**actor.HasWeapon($ACTOR,Number)** - актёр $ACTOR имеет оружие с номером Number, номера можно посмотреть в главе "ПикАпы (PickUps)".
+**actor.Stopped($PLAYER_ACTOR)** - актёр $PLAYER_ACTOR остановился.
+**04AD: actor $PLAYER_ACTOR touching_water** - актёр $PLAYER_ACTOR касается воды.
+**04C5: actor $PLAYER_ACTOR photographed** - актёр фотографирует.
+**051A: actor $Act1 damaged_by_actor $Act2** - получил ли актёр1 к-л повреждения от актёра2.
+**031D: actor $Act hit_by_weapon 23** - получил ли актёр к-л повреждения от опред. оружия.
+
+2) Проверки (условия) для объектов:
+
+**03CA: object $Obj exists** - объект $Obj существует.
+**83CA: not object $Obj exists** - объект $Obj не существует.
+**0685: object $Obj attached** - объект прицеплен к ч-л.
+**8685: not object $Obj attached** - объект не прицеплен к ч-л.
+**023B: actor $Act colliding_with_object $Obj** - актёр соприкасается с объектом.
+**823B: not actor $Act colliding_with_object $Obj** - актёр не соприкасается с объектом.
+**0179: actor $Act picked_up_object $Obj** - актёр поднял объект (относится к пикапам).
+**8179: not actor $Act picked_up_object $Obj** - актёр не поднял объект (относится к пикапам).
+**0737: actor $Act lifting_object $Obj** - актёр поднимает объект.
+**8737: not actor $Act lifting_object $Obj** - актёр не поднимает объект.
+**0366: object $Obj blown_up** - объект $Obj взорвался.
+**8366: not object $Obj blown_up** - объект $Obj не взорвался.
+**04E7: object $Obj in water** - объект $Obj в воде.
+**84E7: not object $Obj in water** - объект $Obj не в воде.
+**0471: unknown_actor $Act near_object $Obj radius 50.0 50.0 unknown 0** - актёр находится в определённом радиусе от объекта.
+**8471: not unknown_actor $Act near_object $Obj radius 50.0 50.0 unknown 0** - актёр не находится в определённом радиусе от объекта. 
+
+3) Вот проверки, применяющиеся к транспортным средствам :
+
+**0185: car $Car health >= 10** - жизни машины $Car больше либо равняется 10.
+**07AB: car $Car_1 attached_to_car $Car_2** - машина 1 прицеплена к машине 2.
+**0495: car $Car burning** - машина горит.
+**0975: car $Car emergency_vehicle** - машина $Car является служебной (пожарная, полиция...).
+**096F: car $Car street_racing_vehicle** - машина $Car является машиной для уличных гонок.
+**02CA: car $Car bounding_sphere_visible** - игрок видит авто $Car.
+**02BF: car $Car sunk** - машина с именем $Car упало в воду.
+**0981: train $Poezd wrecked** - поезд с именем $Poezd уничтожен.
+**01C1: car $Car stopped** - машина с именем $Car остановилась.
+**03C9: car $Car damaged** - машина с именем $Car повреждена.
+**096E: car $Car lowrider** - машина с именем $Car лоурайдер.
+**Car.Id($car) == #HYDRA** - модель машины с именем $Car-это #HYDRA.
+//тут перед всем опкодом можно поставить "not", потому что тут нет кодового слова.
+**01F3: car $Car airborne** - машина с именем $Car находится в воздухе.
+//я думаю, что вы поняли, что и в эту команду можно вставить "not".
+**03CE: car $Car stuck** - машина с именем $Car перевёрнута.
+**0119: car $Car wrecked** - машина с именем $Car уничтожена.
+**01B0: car $Car stopped 0 near_point X Y Z radius 4.0 4.0 4.0** - машина с именем $Car остановилась в радиусе 4.0 от точку с координатами X Y Z.
+**01F4: car $Car flipped** - машина с именем $Car тонет.
+**056E: $Car** - машина $Car существует.
+**0431: car $Car car_passenger_seat_free 0** - место 0 в машине $Car свободно.
+**051D: cars $Car_1 and $Car_2 collided** - машина $Car_1 и $Car_2 столкнулись.
+**0803: car $Car have_hydraulics** - у машины $Car есть гидравлика.
+
+4)Разные проверки:
+
+**model.Available(#MODEl)** - модель загружена.
+**not model.Available(#MODEl)** - модель не загружена.
+**04EE: animation "GANGS" loaded** - анимация загружена.
+**84EE: not animation "GANGS" loaded** - анимация не загружена.
+**00E1: key_pressed 0 19** - нажата клавиша. Про клавиши написано в главе "Клавиши". 
+**80E1: not key_pressed 0 19** - не нажата клавиша.
+**$ONMISSION == X** - миссия не запущена, если X = 0, и миссия запущена, если X = 1.
+**02D0: fire $Fire extinguished** - проверка на потушенность определённого огня.
+**82D0: not fire $Fire extinguished** - проверка на горение определённого огня.
+**03D0: wav 3@ loaded** - звук загружен.
+**83D0: not wav 3@ loaded** - звук не загружен.
+**03D2: wav 3@ ended** - звук закончился.
+**83D2: not wav 3@ ended** - звук не закончился.
+
+
+<script src="../../js/main.js"></script>

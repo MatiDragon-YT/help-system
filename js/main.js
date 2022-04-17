@@ -60,6 +60,76 @@ const exROOT = function(){
 	return ROOT + "/files/"
 }()
 
+const CSSComputarized = function(){
+	let tempCSS = ``
+
+	const prefixes = ['-','-sm-','-md-','-lg-','-xl-','-xxl-']
+	const size = [0,576,768,992,1200,1400]
+
+	prefixes.forEach(function(prefix, resolucion){
+		if (resolucion != 0) {tempCSS += '@media(min-width:' + size[resolucion] + 'px){'}
+	
+		var vIndex = 0
+		while(vIndex < 13){
+			tempCSS += '.cols'+prefix+vIndex+'{columns:'+vIndex+' auto}'
+
+			vIndex++
+		}
+		
+		[
+			['m', 'margin'],
+			['mt', 'margin-top'],
+			['mb', 'margin-bottom'],
+			['ml', 'margin-left'],
+			['mr', 'margin-right'],
+			['mx', 'margin-block'],
+			['my', 'margin-inline'],
+			['p', 'padding'],
+			['pt', 'padding-top'],
+			['pb', 'padding-bottom'],
+			['pl', 'padding-left'],
+			['pr', 'padding-right'],
+			['px', 'padding-block'],
+			['py', 'padding-inline'],
+			['g', 'gap'],
+			['r', 'border-radius']
+		].forEach(function(attribute){
+			[
+				'0',
+				'.25rem',
+				'.5rem',
+				'1rem',
+				'1.5rem',
+				'3rem'
+			].forEach(function(value, index){
+				tempCSS += '.' + attribute[0] + prefix + index + '{' + attribute[1]+ ':' + value + '!important}'
+			})
+		});
+
+		[
+			'auto',
+			'8.33333333%',
+			'16.66666667%',
+			'25%',
+			'33.33333333%',
+			'41.66666667%',
+			'50%',
+			'58.33333333%',
+			'66.66666667%',
+			'75%',
+			'83.33333333%',
+			'91.66666667%',
+			'100%'
+		].forEach(function(value, index){
+			tempCSS += '.col' + prefix + (index == 0 ? 'auto' : ++index) + '{width:' + value + '!important}'
+			tempCSS += '.offset' + prefix + (index == 0 ? 'auto' : ++index) + '{margin-left:' + value + '!important}'
+		});
+
+		if (resolucion != 0) {tempCSS += '}\n\n'}
+	})
+	return tempCSS
+}()
+
 var CSS = {
 	Add: function(styles){STYLES.innerHTML += styles},
 	Remove: function(styles){STYLES.innerHTML = STYLES.innerHTML.r(styles, "")}
@@ -410,6 +480,7 @@ SP.toMarkdown = function(){
 	.r(/^--+-$/gm, '<hr>')
 
 	// BR
+	.r(/(\n\[)/g, '<br>$1')
 	.r(/([^`])`\n\n`([^`])/, "$1`<br><br>`$2")
 	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br><br>$3')
 	.r(/(\x20\x20\n|\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br>$3')
@@ -503,6 +574,8 @@ apply($('thead'), function(element){
 	.r(/<td(\/)?>/g, '<th$1>')
 })
 
+CSS.Add(CSSComputarized)
+
 $('body').style.display = 'block'
 setTimeout(function(){$('#c').style.opacity = 1}, 12)
 
@@ -545,7 +618,7 @@ apply($('.sb3'), function(element){
 		comments  : span.start + "comments"   + span.end,
 		numbers   : span.start + "numbers"    + span.end,
 		variables : span.start + "variables"  + span.end,
-		opcodes   : span.start + "uppercase"  + span.end,
+		opcodes   : span.start + "opcodes"  + span.end,
 		directives: span.start + "directives" + span.end,
 		commands  : span.start + "commands"   + span.end,
 		classes   : span.start + "classes"    + span.end
@@ -568,7 +641,7 @@ apply($('.sb3'), function(element){
 	.rA("\\'</span>", "\\'")
 	.rA("\\'<span>", "\\'")
 	//Palabras Reservadas
-	.r(/(^|\s+)(longstring|shortstring|integer|jump_if_false|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|of|and|or|to|downto|step|call|return_true|return_false|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|select_interior|set_weather|set_wb_check_to|nop)\b/gmi, "$1<span class=keywords>$2<\/span>")
+	.r(/([-,\s()]|^)(longstring|shortstring|integer|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|and|or|to|downto|step|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|nop|wasted_or_busted)($|[^\w\d])/gmi, "$1<span class=keywords>$2<\/span>$3")
 	//Etiquetas
 	.r(/(^|\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
 	.r(/(^|\s+)([A-Za-z0-9_]+\(\))/gm, "$1<span class=commands>$2<\/span>")
@@ -579,14 +652,14 @@ apply($('.sb3'), function(element){
 	//Numeros
 	.r(/\b(\d+(x|\.)\w+)\b/gmi, enter.numbers)
 	.r(/\b(true|false)\b/gmi, enter.numbers)
-	.r(/((\s|\-|\,)(?!\$)(\d+)(?!\:|\@)(i|f|s|v)?)\b/gmi, enter.numbers)
+	.r(/(\W)(?!\$)(\d+)(?!\:|\@)([ifsv]?)\b/gmi, '$1<span class=numbers>$2$3<\/span>')
 	//Modelos
 	.r(/(\#[^\"\'\#\s]+)/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
 	.r(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
 	.r(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
 	.r(/(\$\w+|\d+\@)\.([0-9A-Z_a-z]+)/gm, "$1.<span class=commands>$2</span>")
-	.r(/: (\w+)\n/gm,          ": "+ enter.classes  +"\n")
+	.r(/(:|of) (\w+)\n/gm,          "$1 <span class=classes>$2</span>\n")
 	.r(/\.([0-9A-Z_a-z]+)\n/gm,"." + enter.commands +"\n")
 	//Variables  
 	.r(/\b(timer(a|b))\b/gmi, enter.variables)
