@@ -317,6 +317,19 @@
 				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="SA Mobile">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Version">
+				<param name="Local" value="en\scm-documentation\sa_mobile\version.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Widget">
+				<param name="Local" value="en\scm-documentation\sa_mobile\widget.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Liberty City Stories">
 			</OBJECT>
 		<UL>

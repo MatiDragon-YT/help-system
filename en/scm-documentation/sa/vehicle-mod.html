@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vehicle mod</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+</head>
+<body>
+Returns a model id available for the vehicle's mod slot, or -1 otherwise
+```sb3
+06E5: $return = get_car $car possible_to_built_in_component_pool_index $area itemID
+```
+
+|Description|Area|
+|-|
+|Upgrade bonnet|0|
+|Upgrade bonnet left right|1|
+|Upgrade spoiler|2|
+|Upgrade wing|3|
+|Upgrade front bullbar|4|
+|Upgrade rear bullbar|5|
+|Upgrade front lights|6|
+|Upgrade roof|7|
+|Upgrade nitro|8|
+|Upgrade hydraulics|9|
+|Upgrade stereo|10|
+|Replacement wheel|12|
+|Replacement exhaust|13|
+|Replacement front bumper|14|
+|Replacement rear bumper|15|
+|Replacement misc|16|
+
+```sb3
+// Car colour and paintjobs
+MOD_GARAGE_PAINTJOB = 100
+MOD_GARAGE_CAR_COLOUR = 101
+```
+<script src="../../../js/main.min.js"></script>

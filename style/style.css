@@ -306,7 +306,8 @@ input[type='checkbox']{
 .commands { color: #0288d1 }
 .numbers,
 .numbers * { color: #7e57c2 }
-.variables { color: #7091a0 }
+.variables,
+.variables * { color: #7091a0 }
 .strings,
 .strings * { color: #ffd54f }
 .opcodes,

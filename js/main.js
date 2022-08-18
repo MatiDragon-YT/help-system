@@ -294,14 +294,17 @@ SP.toMarkdown = function(){
 		const img   = exROOT + "img/",
 			
 			sa   = img+"sa/",
+			sam  = img+"sa_mobile/",
 			vc   = img+"vc/",
 			gta3 = img+"gta3/",
 			
 			weapon = "weapon/",
+			widget = "widget/",
 			radar  = "radar/"
 		
 		return this
 		.r(/^%sa-w\//m,   sa   + weapon)
+		.r(/^%sam-w\//m,  sam  + widget)
 		.r(/^%vc-w\//m,   vc   + weapon)
 		.r(/^%sa-r\//m,   sa   + radar)
 		.r(/^%vc-r\//m,   vc   + radar)
@@ -341,31 +344,37 @@ SP.toMarkdown = function(){
 	.r(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
 	// UL LI
-	.r(/^\*\s(.+)/gim, '<ul><li>$1</li></ul>')
-	.r(/^\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1</li></ul></ul>')
-	.r(/^\x20{4}\*\s(.+)/gim, '<ul><ul><ul><li>$1</li></ul></ul></ul>')
-	.r(/<\/ul>(\s+)<ul>/g)
-	.rA('<\/ul><\/ul><ul><ul>')
-	.rA('<\/ul><ul>')
+	.r(/^(\x20)?\*\s(.+)/gim, '<ul><li>$1$2</li></ul>')
+	.r(/^(\x20)?\x20{2}\*\s(.+)/gim, '<ul><ul><li>$1$2</li></ul></ul>')
+	.r(/^(\x20)?\x20{4}\*\s(.+)/gim, '<ul><ul><ul><li>$1$2</li></ul></ul></ul>')
+	.r(/<\/ul>(\s+)<ul>/g, '')
+	.rA('<\/ul><\/ul><ul><ul>', '')
+	.rA('<\/ul><ul>', '')
 
 	// OL LI
-	.r(/^\d\.\s(.+)/gim, '<ol><li>$1</li></ol>')
-	.r(/^\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1</li></ol></ol>')
-	.r(/^\x20{4}\d\.\s(.+)/gim, '<ol><ol><ol><li>$1</li></ol></ol></ol>')
+	.r(/^(\x20)?\d\.\s(.+)/gim, '<ol><li>$1$2</li></ol>')
+	.r(/^(\x20)?\x20{2}\d\.\s(.+)/gim, '<ol><ol><li>$1$2</li></ol></ol>')
+	.r(/^(\x20)?\x20{4}\d\.\s(.+)/gim, '<ol><ol><ol><li>$1$2</li></ol></ol></ol>')
 
 	.r(/<\/li><\/ol>\n<ul><ul><li>(.*)<\/ul><\/ul>/g, '<\/li><ul><li>$1</ul></ol>')
 
-	.r(/<\/ol>(\s+)<ol>/g)
-	.rA('<\/ol><\/ol><ol><ol>')
-	.rA('<\/ol><ol>')
+	.r(/<\/ol>(\s+)<ol>/g, '')
+	.rA('<\/ol><\/ol><ol><ol>', '')
+	.rA('<\/ol><ol>', '')
 
 	// DL DD
-	.r(/^\-\s(.+)/gim, '<dl><dd>$1</dd></dl>')
-	.r(/^\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1</dd></dl></dl>')
-	.r(/^\x20{4}\-\s(.+)/gim, '<dl><dl><dl><dd>$1</dd></dl></dl></dl>')
-	.r(/<\/dl>(\s+)<dl>/g)
-	.rA('<\/dl><\/dl><dl><dl>')
-	.rA('<\/dl><dl>')
+	.r(/^(\x20)?\-\x20\[\]\s(.+)/gim, "<dl><dd><input type='checkbox' disabled> $1$2</dd></dl>")
+	.r(/^(\x20)?\-\x20\[x\]\s(.+)/gim, "<dl><dd><input type='checkbox' disabled checked> $1$2</dd></dl>")
+	.r(/^(\x20)?\-\s(.+)/gim, '<dl><dd>$1$2</dd></dl>')
+	.r(/^(\x20)?\x20{2}\-\s(.+)/gim, '<dl><dl><dd>$1$2</dd></dl></dl>')
+	.r(/^(\x20)?\x20{4}\-\s(.+)/gim, '<dl><dl><dl><dd>$1$2</dd></dl></dl></dl>')
+	.r(/<\/dl>(\s+)<dl>/g, '')
+	.rA('<\/dl><\/dl><dl><dl>', '')
+	.rA('<\/dl><dl>', '')
+
+	// CHECKBOX
+	.r(/^\[\]\x20(.+)/gm, "<input type='checkbox' disabled> $1<br>")
+	.r(/^\[x\]\x20(.+)/gim, "<input type='checkbox' disabled checked> $1<br>")
 
 	/*** FORMAT ***/
 	.r(/\*\*\*([^\*\n]+)\*\*\*/g, '<b><i>$1</i></b>')
@@ -428,10 +437,6 @@ SP.toMarkdown = function(){
 			'">' + text.trim() +
 			'</h' + header.length + '>'
 	})
-
-	// CHECKBOX
-	.r(/^\[\]\x20(.+)/gm, "<input type='checkbox' disabled> $1<br>")
-	.r(/^\[x\]\x20(.+)/gim, "<input type='checkbox' disabled checked > $1<br>")
 
 	// IMG
 	.r(/\!\[([^\[\]]+)?\]\([^\(\)]+\)/g, function(input){
@@ -560,7 +565,7 @@ $('body').innerHTML = '\
 	<div class="cont"></div>\
 	<hr>\
 	<p id="credits">\
-		CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann & Yushae Raza.\
+		CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann, Yushae Raza & VitalRus95.\
 	</p>\
 	<span id="ALINKS"></span>\
 </div></div><style id="STYLES"></style>'
@@ -649,6 +654,10 @@ apply($('.sb3'), function(element){
 	.r(/(\[)([\d+]*)(\])/gmi, "$1<span class=numbers>$2<\/span>$3")
 	//Opcodes
 	.r(/([a-fA-F0-9]{4}\:)/gmi, enter.opcodes)
+	//Variables ADMA
+	.r(/((\&amp;)[\d\-abcdefx]+)/gim, enter.variables)
+	//Variables globales
+	.r(/((\x{00}|s|v)(\$[0-9A-Z_a-z]+))/gm, enter.variables)
 	//Numeros
 	.r(/\b(\d+(x|\.)\w+)\b/gmi, enter.numbers)
 	.r(/\b(true|false)\b/gmi, enter.numbers)
@@ -664,8 +673,6 @@ apply($('.sb3'), function(element){
 	//Variables  
 	.r(/\b(timer(a|b))\b/gmi, enter.variables)
 	.r(/(\d+\@(s|v|\B)[^\w\d])/gm, enter.variables)
-	.r(/(\&amp;\d+)/gim, enter.variables)
-	.r(/((\x{00}|s|v)(\$[0-9A-Z_a-z]+))/gm, enter.variables)
 	// Operadores
 	//.r(/\s(\.|\=|\+|\-|\*|\/|\%|\=\=|\+\=|\-\=|\*\=|\/\=|\%\=|\+\+|\-\-|\<|\>|\<\=|\>\=)\s/gmi," <font class=operador>$1<\/font> ")
 })
