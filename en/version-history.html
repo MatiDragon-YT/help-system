@@ -9,21 +9,34 @@
 </head>
 <body>
 
-## v. 3.8.1 Release Plan
-#### Features
-[x] translation updates (Spanish, Ukrainian, Romanian, Armenian).
-[x] add new community themes [https://github.com/sannybuilder/themes](https://github.com/sannybuilder/themes).
-[x] data files update [version 3.8.1](https://github.com/sannybuilder/data/pull/22) [gray][data#22].
-- [x] new GTA SA PS2 edit mode [Add PS2 SA support](https://github.com/sannybuilder/data/pull/24) [gray][data#24].
-[x] update local CHM help [https://github.com/MatiDragon-YT/help-system](https://github.com/MatiDragon-YT/help-system).
-[] update CLEO
-- [] [CLEO 4.4.1](https://github.com/cleolibrary/CLEO4/releases/tag/v4.4.1).
-- [x] [CLEO for GTA III and Vice City v2.0.0.6](https://github.com/cleolibrary/III.VC.CLEO/releases/tag/2.0.0.6).
-- [x] [CLEO+ 1.1.1](https://github.com/JuniorDjjr/CLEOPlus/releases/tag/v1.1.1).
-[x] [🟢 Add support for more branching opcodes](https://github.com/sannybuilder/dev/issues/133) [gray][#133].
-#### Bug Fixes
-[x] [🟢 Updating Library files from IDE does not work for some users #172](https://github.com/sannybuilder/dev/issues/172).
-[x] [🟢 For Loop Bug](https://github.com/sannybuilder/dev/issues/189) [gray][#189].
+## v. 3.8.2 - 08.09.2022
+
+* fix bugs [#200](https://github.com/sannybuilder/dev/issues/200), [#187](https://github.com/sannybuilder/dev/issues/187)
+
+## v. 3.8.1 - 01.09.2022
+
+* added support for more commands terminating an if statement with multiple conditions [#133](https://github.com/sannybuilder/dev/issues/133)
+
+```sb3
+if and
+    0AB0: is_key_pressed 9
+    0AB0: is_key_pressed 10
+0AA0: gosub_if_false @label // was not working before, now compiles
+```
+
+* new and updated [translations](https://github.com/sannybuilder/translations) (Spanish, Ukrainian, Romanian, Armenian)
+* [new color themes](https://github.com/sannybuilder/themes) contributed by the users
+* [massive update](https://github.com/MatiDragon-YT/help-system) for local help files (CHM)
+* new [edit mode](edit-modes/) for GTA SA PS2 with PS2 CLEO commands
+* updated local [CLEO](https://cleo.li/) and plugin files:
+  * CLEO for San Andreas 4.4.1
+  * CLEO for GTA III and Vice City 2.0.0.6
+  * plugin [CLEO+ 1.1.2](https://github.com/JuniorDjjr/CLEOPlus/releases/tag/v1.1.2)
+* fixed bugs [#172](https://github.com/sannybuilder/dev/issues/172), [#189](https://github.com/sannybuilder/dev/issues/189)
+
+👏 Thanks to everyone who contributed to this version: [NicusorN5](https://github.com/NicusorN5), [Junior\_Djjr](https://github.com/JuniorDjjr), [wmysterio](https://github.com/wmysterio), [MatiDragon](https://github.com/MatiDragon-YT), [DanielSant0s](https://github.com/DanielSant0s), [JaggerJam69](https://github.com/JaggerJam69), [Vital](https://github.com/VitalRus95), [Sdas50](https://github.com/Sdas50), [nick7](https://github.com/nick7)
+\n
+[Complete list of changes](https://github.com/sannybuilder/dev/issues/182)
 
 ## v. 3.8.0 - 04.08.2021
 
@@ -39,7 +52,7 @@
 * [fixed 16 bugs](https://github.com/sannybuilder/dev/issues/130#issue-805022048)
 
 :clap: Kudos to contributors to this release: [forms55](https://github.com/forms55), [MatiDragon](https://github.com/MatiDragon-YT), [Vital](https://github.com/VitalRus95), [wmysterio](https://github.com/wmysterio), [XMDS](https://github.com/XMDS)
-
+\n
 [Complete list of changes](https://github.com/sannybuilder/dev/issues/130)
 
 ## v. 3.7.0 - 30.01.2021

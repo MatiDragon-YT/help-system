@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.16";
+const VERSION = "1.17";
 
 function log(value){
 	console.log(value)
@@ -182,6 +182,7 @@ function ModeLight(){
 		.comments * { color: #0288d1 }\
 		.directives,\
 		.directives * { color: #607d8b }\
+		.cont::after { box-shadow: 0px -14px 17px #fff }\
 		'
 	if (!modeLight) {
 		modeLight++
@@ -459,6 +460,10 @@ SP.toMarkdown = function(){
 	.r(/\[([^\[\]]+)\]\(([^\(\)\s]+)(\x20"[^"]+")?(\x20'[^']+')?(\x20`[^`]+`)?\)/g, function(input){
 		input = input.match(/\[([^\[\]]+)\]\(([^\(\)\s]+)(\x20"[^"]+")?(\x20'[^']+')?(\x20`[^`]+`)?\)/)
 
+		if(/^[.\/\w\d-]+(\\|\/)$/.test(input[2])){
+			input[2] = input[2] + 'README.html'
+		}
+
 		var display = input[1],
 			comilla = '"',
 
@@ -646,7 +651,7 @@ apply($('.sb3'), function(element){
 	.rA("\\'</span>", "\\'")
 	.rA("\\'<span>", "\\'")
 	//Palabras Reservadas
-	.r(/([-,\s()]|^)(longstring|shortstring|integer|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|and|or|to|downto|step|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|nop|wasted_or_busted)($|[^\w\d])/gmi, "$1<span class=keywords>$2<\/span>$3")
+	.r(/([-,\s()]|^)(longstring|shortstring|integer|thread|create_thread|create_custom_thread|end_thread|name_thread|end_thread_named|if and|if or|if|then|else|hex|end|else_jump|jump|jf|print|const|while|not|wait|repeat|until|break|continue|for|gosub|goto|var|array|to|downto|step|return|ret|rf|tr|Inc|Dec|Mul|Div|Alloc|Sqr|Random|int|string|float|bool|fade|DEFINE|nop|wasted_or_busted)($|[^\w\d])/gmi, "$1<span class=keywords>$2<\/span>$3")
 	//Etiquetas
 	.r(/(^|\s+)(\@+\w+|\:+\w+)/gm, "$1<span class=labels>$2<\/span>")
 	.r(/(^|\s+)([A-Za-z0-9_]+\(\))/gm, "$1<span class=commands>$2<\/span>")
@@ -661,9 +666,9 @@ apply($('.sb3'), function(element){
 	//Numeros
 	.r(/\b(\d+(x|\.)\w+)\b/gmi, enter.numbers)
 	.r(/\b(true|false)\b/gmi, enter.numbers)
-	.r(/(\W)(?!\$)(\d+)(?!\:|\@)([ifsv]?)\b/gmi, '$1<span class=numbers>$2$3<\/span>')
+	.r(/(?!\#)(\W)(?!\$)(\d+)(?!\:|\@)([ifsv]?)\b/gmi, '$1<span class=numbers>$2$3<\/span>')
 	//Modelos
-	.r(/(\#[^\"\'\#\s]+)/gm, "<span class='models uppercase'>$1<\/span>")
+	.r(/(\#[^\"\'\#\s]+)\b/gm, "<span class='models uppercase'>$1<\/span>")
 	//Clases
 	.r(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
 	.r(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")

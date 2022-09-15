@@ -321,11 +321,11 @@
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Version">
+				<param name="Name" value="Game Version IDs">
 				<param name="Local" value="en\scm-documentation\sa_mobile\version.html">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Widget">
+				<param name="Name" value="Widget IDs">
 				<param name="Local" value="en\scm-documentation\sa_mobile\widget.html">
 				</OBJECT>
 		</UL>

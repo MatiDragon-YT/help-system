@@ -9,21 +9,34 @@
 </head>
 <body>
 
-## v. 3.8.1 Plan de Lanzamiento
-#### Features
-[x] translation updates (Spanish, Ukrainian, Romanian, Armenian).
-[x] add new community themes [https://github.com/sannybuilder/themes](https://github.com/sannybuilder/themes).
-[x] data files update [version 3.8.1](https://github.com/sannybuilder/data/pull/22) [gray][data#22].
-- [x] new GTA SA PS2 edit mode [Add PS2 SA support](https://github.com/sannybuilder/data/pull/24) [gray][data#24].
-[x] update local CHM help [https://github.com/MatiDragon-YT/help-system](https://github.com/MatiDragon-YT/help-system).
-[] update CLEO
-- [] [CLEO 4.4.1](https://github.com/cleolibrary/CLEO4/releases/tag/v4.4.1).
-- [x] [CLEO for GTA III and Vice City v2.0.0.6](https://github.com/cleolibrary/III.VC.CLEO/releases/tag/2.0.0.6).
-- [x] [CLEO+ 1.1.1](https://github.com/JuniorDjjr/CLEOPlus/releases/tag/v1.1.1).
-[x] [🟢 Add support for more branching opcodes](https://github.com/sannybuilder/dev/issues/133) [gray][#133].
-#### Bug Fixes
-[x] [🟢 Updating Library files from IDE does not work for some users #172](https://github.com/sannybuilder/dev/issues/172).
-[x] [🟢 For Loop Bug](https://github.com/sannybuilder/dev/issues/189) [gray][#189].
+## v. 3.8.2 - 08.09.2022
+
+* Bugs arreglados [#200](https://github.com/sannybuilder/dev/issues/200), [#187](https://github.com/sannybuilder/dev/issues/187)
+
+## v. 3.8.1 - 01.09.2022
+
+* Se agrego compatibilidad con más comandos que terminan una instrucción if con varias condiciones [#133](https://github.com/sannybuilder/dev/issues/133)
+
+```sb3
+if and
+    0AB0: is_key_pressed 9
+    0AB0: is_key_pressed 10
+0AA0: gosub_if_false @label // antes no funcionaba, ahora compila
+```
+
+* nuevas y mejores [traducciones](https://github.com/sannybuilder/translations) al (Español, Ucraniano, Rumano, Armenio)
+* [nuevos temas de colores](https://github.com/sannybuilder/themes)  aportados por los usuarios
+* [actualización masiva](https://github.com/MatiDragon-YT/help-system)  para archivos de ayuda local (CHM)
+* nuevo [modo de edición](edit-modes/) para GTA SA PS2 con comandos CLEO de PS2
+* archivos [CLEO](https://cleo.li/) y plugin locales actualizados:
+  * CLEO 4.4.1 para San Andreas
+  * CLEO 2.0.0.6 para GTA III y Vice City
+  * plugin [CLEO+ 1.1.2](https://github.com/JuniorDjjr/CLEOPlus/releases/tag/v1.1.2)
+* bugs reparados [#172](https://github.com/sannybuilder/dev/issues/172), [#189](https://github.com/sannybuilder/dev/issues/189)
+
+👏 Felicitaciones a los colaboradores de esta versión: [NicusorN5](https://github.com/NicusorN5), [Junior\_Djjr](https://github.com/JuniorDjjr), [wmysterio](https://github.com/wmysterio), [MatiDragon](https://github.com/MatiDragon-YT), [DanielSant0s](https://github.com/DanielSant0s), [JaggerJam69](https://github.com/JaggerJam69), [Vital](https://github.com/VitalRus95), [Sdas50](https://github.com/Sdas50), [nick7](https://github.com/nick7)
+\n
+[Lista completa de cambios](https://github.com/sannybuilder/dev/issues/182)
 
 ## v. 3.8.0 - 04.08.2021
 
@@ -38,8 +51,8 @@
 * actualizado las traducciones a los idiomas húngaro, español, ucraniano y chino
 * [corregidos 16 errores](https://github.com/sannybuilder/dev/issues/130#issue-805022048)
 
-:clap: Felicitaciones a los colaboradores de este lanzamiento: [forms55](https://github.com/forms55), [MatiDragon](https://github.com/MatiDragon-YT), [Vital](https://github.com/VitalRus95), [wmysterio](https://github.com/wmysterio), [XMDS](https://github.com/XMDS)\
-\
+:clap: Felicitaciones a los colaboradores de este versión: [forms55](https://github.com/forms55), [MatiDragon](https://github.com/MatiDragon-YT), [Vital](https://github.com/VitalRus95), [wmysterio](https://github.com/wmysterio), [XMDS](https://github.com/XMDS)\
+\n
 [Lista completa de cambios](https://github.com/sannybuilder/dev/issues/130)
 
 ## v. 3.7.0 - 30.01.2021
