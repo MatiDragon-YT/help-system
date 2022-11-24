@@ -124,3 +124,7 @@
 |\\|226|
 
 <script src="../../js/main.min.js"></script>
+<script>
+$('thead tr').innerHTML += '<th>HEX</th>';
+$('tbody tr').forEach(function(tr){tr.innerHTML += '<td>'+String(Number(tr.lastChild.innerHTML).toString(16).padStart (2, "0")).toUpperCase()+'</td>'})
+</script>
