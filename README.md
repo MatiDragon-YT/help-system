@@ -22,7 +22,8 @@ Just download the chm corresponding to your language:
 | --- | --- | --- |
 | English | help | `[##########]` ⭐ complete |
 | Español | help3082 | `[#########.]` ⌛ in process |
-| Pусский | help1049 | `[#######...]` ⌛ in process |
+| Pусский | help1049 | `[########..]` ⌛ in process |
+| Türkçe | help1055 | `[##........]` ⌛ in process |
 
 And optionally, move the file to directory.
 ```
