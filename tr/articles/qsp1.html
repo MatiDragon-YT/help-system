@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+<head>
+  <title>Quick Start. Part 1</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+To start with, if at first you are not used to the innovations in Sanny, just enable the Write opcodes option in the settings and use it the same way as SaMB (and by tweaking the other settings, you can make the two editors look almost the same). At the same time you will still have a lot of various features and conveniences of the program, as well as high speed of work at your disposal.
+
+You will also discover a lot of useful things by carefully reading the readme.txt of the Sanny Builder package. There are absolutely all the differences and innovations of Sanny compared to the Mission Builder editor. Unfortunately, the readme at the moment doesn't really cover the basics of scripting (creating threads, missions, etc.). However, the basics are common to both programs, and if you're having trouble, you can check out this Mission Builder question book. Most of what is written there is valid for SB as well.
+SB can be used to edit the scripts of the whole GTA3 line (GTA3, VC, SA).
+
+A brief list of important differences between the programs:
+
+a) Transitions in SB use the @ symbol instead of the unreadable English pound symbol (JJ) on many forums: `jump @Label`, `gosub @Label`.
+The important point is that labels, regardless of their position in the code, are written the same way. In SAMB you would have to write labels with one J sign in missions and JJ in threads with two.
+Local variables, therefore, are written with the variable number at the beginning (not at the end as in SAMB). For example:
+
+```sb3
+@1, @2, @3 - format SAMB 
+1@, 2@, 3@ - format SB 
+```
+
+b) Many simple script commands can be written WITHOUT opcodes, such as wait, end_thread, jump, etc. These words are called keywords and replace the frequently used opcodes. For example:
+
+`wait 0` - analog of `0001: wait 0 ms`\
+`if` is analog of `00D6: if 0`\
+`if and` - analog of `00D6: if 1-7`\
+`if or` - analog of `00D6: if 21-27`\
+`jf @Label` - analogous to `004D: jump_if_false @Label`\
+\
+and many others. The list of possible keywords can be called in the editor by pressing Ctrl+Space.
+
+c) Working with numbers. All arithmetic operations can (and should) also be written without opcode, e.g. like this:
+
+```sb3
+$Var = 1
+$Var = 45.5
+$Var += 5
+$Var *= 0.01
+```
+
+This feature completely relieves the compiler of the job of selecting the right opcode for an expression. You just need to specify the action signs (+, -, >, ==, etc.), and the opcodes are chosen both for local and global variables. Sanny Builder supports ALL kinds of math signs, including <=, <>, <. The latter are convenient to use in negative conditions (with the word not). For example instead of: 
+
+```sb3
+if
+not $Var == 1
+jf @label
+```
+
+you can write 
+
+```sb3
+if
+$Var <> 1
+jf @label
+```
+
+In the case when both parameters in an expression are variables, the compiler cannot immediately determine whether they are of integer or fractional type. In this case use the VAR...END construct, i.e. like this: 
+
+```sb3
+var 
+1@: Int 
+// tell the compiler that variable 1@ will contain integers 
+$Var2: Float 
+// and the $Var2 variable will contain fractional numbers (floating-point) 
+end 
+
+$Var2 = 45.5 
+if 
+$Var = 1@ 
+jf @Label2
+```
+
+In addition, there are handy functions like Inc (analog of $Var = $Var + 1), Random (generates random numbers, replaces two opcodes at once), and others, more about them is written in the README.
+
+d) Comments. In SB you can comment comment out a line with double slash character //,\
+for example:
+
+```sb3
+01F0: set_max_wanted_level_to 6 
+// everything from here to the end of the line is ignored by the compiler
+```
+
+as well as { } blocks, with which you can comment out several lines or part of a line at once. 
+
+```sb3
+01F0: set_max_wanted_level_to {this part is ignored} 6 
+```
+
+e) You don't have to bother writing the DEFINE OBJECTS list at all, because the compiler counts the objects used by itself.
+
+You can see the capabilities of the editor (IDE) itself [here](../editor/features.md).
+
+Once you have seriously experimented with Sanny, you will find that working with its many features is really easy, because they save you from a lot of routine work.
+
+<script src="../../js/main.min.js"></script>

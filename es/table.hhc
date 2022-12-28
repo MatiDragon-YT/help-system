@@ -189,6 +189,10 @@
 				<param name="Name" value="Iconos del Radar">
 				<param name="Local" value="es\scm-documentation\gta3\radar-icons.html">
 				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Tiempos">
+				<param name="Local" value="es\scm-documentation\gta3\weather.html">
+				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Vice City">
@@ -434,6 +438,14 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Scripts Externos">
 				<param name="Local" value="es\articles\users.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Variables Adicionales en CLEO">
+				<param name="Local" value="es\articles\995.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Guia de CLEO4">
+				<param name="Local" value="es\articles\882.html">
 				</OBJECT>
 		</UL>
 	</UL>

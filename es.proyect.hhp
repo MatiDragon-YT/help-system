@@ -55,6 +55,7 @@ es\scm-documentation\ascii-character-codes.html
 es\scm-documentation\virtual-key-codes.html
 es\scm-documentation\gta3\pedtypes.html
 es\scm-documentation\gta3\radar-icons.html
+es\scm-documentation\gta3\weather.html
 es\scm-documentation\lcs\clothes.html
 es\scm-documentation\lcs\gangs.html
 es\scm-documentation\lcs\models.html
@@ -125,6 +126,8 @@ es\articles\datat.html
 es\articles\cond.html
 es\articles\users.html
 es\articles\intro.html
+es\articles\882.html
+es\articles\995.html
 es\cleo-3\faq.html
 es\cleo-3\code-library.html
 es\cleo-3\opcodes.html

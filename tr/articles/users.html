@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+<head>
+	<title>Users Experienced</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+**External Script - what is it and how do I work with it?**
+
+External Script - external script is used only in GTA San Andreas. It is separate from the main.scm, that's why it's called "external". External script is a compiled binary file with the extension .scm. Unlike main.scm, the external script has no header. All information about it is in the main.scm header.
+
+```sb3
+DEFINE EXTERNAL_SCRIPTS 0 // Use -1 in order not to compile AAA script
+//DEFINE SCRIPT {NAME}  AT {LABEL} @
+```
+
+The external scripts are located in the script.img file in the script folder (data/script). The maximum number of external scripts is 82. The maximum number of external scripts that can be used simultaneously is 70.
+
+An external script, as well as the mission, needs to be started, i.e., an external script starter is needed. For example we will use stripped.txt main.scm. It can be found in the SannyBuilder\data\sa folder.
+
+Open stripped.txt in SannyBuilder and above the comment
+
+```sb3
+{
+use macro (Ctrl+J) "headsa"
+to insert a file header      
+}
+```
+
+or put the cursor instead and press Ctrl+J. In the list that appears, choose "headsa" and press ENTER.  With this simple operation, we have added a header to our file (stripped.txt):
+
+```sb3
+DEFINE MISSIONS 0
+//DEFINE MISSION {ID} 0 AT {LABEL} @
+DEFINE EXTERNAL_SCRIPTS 0 // Use -1 in order not to compile AAA script
+//DEFINE SCRIPT {NAME}  AT {LABEL} @
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+DEFINE UNKNOWN_THREADS_MEMORY 0
+```
+
+The `DEFINE EXTERNAL_SCRIPTS` line records the total number of external scripts. Let's change 0 to 1, i.e., tell the compiler that we will have 1 external script added.
+The next line is.
+```sb3
+DEFINE SCRIPT {NAME} AT {LABEL} @
+```
+where NAME is the name of the external script, let's call it e.g. MILITIA and name it @MILITIA also to avoid confusion with labels. Now we have the following header:
+
+```sb3
+DEFINE MISSIONS 0
+//DEFINE MISSION {ID} 0 AT {LABEL} @
+
+DEFINE EXTERNAL_SCRIPTS 1 // Use -1 in order not to compile AAA script
+DEFINE SCRIPT MILITIA  AT  @MILITIA  // 0
+
+DEFINE UNKNOWN_EMPTY_SEGMENT 0
+DEFINE UNKNOWN_THREADS_MEMORY 0 
+```
+
+Now we need to add the external script itself. It can be written by yourself, but in order to save time, we will use the standard one. This is the bouncer script (External script 39 (BOUNCER)).  I have made some changes to it and renamed it MILITIA.  Let's add it to our file after the line 
+
+```sb3
+// put your external scripts here.
+```
+
+Save the file, compile and run the game.
+
+Well, half of the job is done, now we need to make it work.
+
+Here we need an external script starter. There are different options for starting external scripts. Consider all of them. :)
+
+To begin with, it should be said that it is possible to bind an external script to an object you need. This is done by the opcode:
+
+```sb3
+0929: init_external_script_trigger 7 (ARCADE) with_object_model #CJ_COIN_OP_3 priority 100 radius 4.0 type -1
+```
+
+Bind an external video game script to the object `#CJ_COIN_OP_3` (space monkey slot machine).
+Or 
+
+```sb3
+0929: init_external_script_trigger 10 (GATES_SCRIPT) with_object_model #GATE_AUTOL priority 100 radius 80.0 type -1
+```
+
+here, respectively, to the object `#GATE_AUTOL` (the grid on the left) bind the external script for opening the Airport Gate.
+
+You can also bind the external script to the interior:
+
+```sb3
+07D3: 'HOUSE' = init_external_script_named_handle 23 (BURG_BRAINS)
+```
+
+or declare the name of the external script
+
+```sb3
+0884: 'DANCER' = init_external_script_named_handle 52 (DANCER)
+```
+
+Note that I do not know how opcodes 07D3 and 0884 work, and it is not clear whether they work or not.
+
+It is possible to bind an external script to the actor's model 
+
+```sb3
+0928: init_external_script_trigger 19 (DEALER) with_actor_model #BMYDRUG priority 100
+```
+
+In the original mayna this opcode is paired with
+
+```sb3
+08E8: assign_external_script_handle 'DEALER' to_model #BMYDRUG
+```
+
+it seems to me that opcode 08E8 binds the actor model `#BMYDRUG` to a thread named `'DEALER'` ( `03A4: name_thread 'DEALER'`).
+
+Well, let's start with opcode 0928.
+Once again start the game. Approach the young lady in a light cap and a dark T-shirt with the number 31. We hit her in the jaw (right hook :) ) and watch her reaction.
+
+Now let's add the following entry to our main thread `'MAIN'` above the end_thread line:
+
+```sb3
+0928: init_external_script_trigger 0 (MILITIA) with_actor_model #BFYST priority 100 
+08E8: assign_external_script_handle 'MILITIA' to_model #BFYST  
+```
+
+compile and run the game.
+Approach the lady in a light cap and a dark T-shirt with the number 31. Punch her in the jaw (hook right :) ) and watch her reaction. Notice that her reaction has changed. So, our external script is up and running. You can also verify this by the fact that this miss has a weapon (model `#COLT45`). But as soon as you get one wanted star, the miss will attack the player. And if the player starts shooting (in the presence of stars), the barbie will attack the player with a weapon.
+Let me explain a little bit how opcode 0928 works.
+The game generates random actors, with opcode 0928 we tell the game to bind our external script to the actor model `#BFYST`. Now every time we create a random actor with the model `#BFYST`, the game will apply the external script to that actor.
+On this startup, the external script will always run, whether the player is on a mission or not. For our case, this is not fatal, because we have one. But there is a limit for the number of simultaneously running external scripts in the original mayna, and it is not recommended to exceed it. [See example](%e/template/external_script[0].txt)
+
+Now it's time to consider running an external script when the condition(s) are met. To do this, let's write an external script starter:
+
+```sb3
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 // не на  миссии 
+0256: player $PLAYER_CHAR defined  
+004D:  jump_if_false @STARTEX_120 
+0226: 0@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  0@ == 0 
+// If the player's health is 0, then go to the external script completion mark
+004D:  jump_if_false @STARTEX_131 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+// determine whether an external script is running or not
+00D6: if 
+0038: $Script_Status == 0// при 0 запускаем внешний скрипт 
+004D: jump_if_false @STARTEX_120 
+// if $Script_Status = 1,
+// then there is no need to run the script a second time
+08A9:  load_external_script 0 (MILITIA)  // loading an external script 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded //check if the script is loaded 
+004D:  jump_if_false @STARTEX_120 
+0913:  run_external_script 0 (MILITIA)  // Run an external script 
+  
+:STARTEX_120
+0001: wait 0 ms 
+0002: jump @STARTEX 
+  
+:STARTEX_131
+090F:  end_external_script 0 (MILITIA) // stop the script 
+0001: wait 0 ms 
+0002: jump @STARTEX  
+```
+
+well, the external script starter works, but it doesn't work for us, because our script doesn't create an actor, and hence our external script doesn't work completely. [See example](%e/template/external_script[1].txt).
+
+Let's add actor creation to the starter
+
+```sb3
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 
+0256: player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_120 
+0226: 0@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  0@ == 0 
+004D: jump_if_false @STARTEX_131
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038: $Script_Status == 0 
+004D: jump_if_false @STARTEX_120 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_120 
+04C4: store_coords_to 2@ 3@ 4@ from_actor $PLAYER_ACTOR with_offset 1.0 3.0 -0.9 
+009A: 1@ =  create_actor_pedtype 4  model #MALE01 at 2@ 3@ 4@  
+0913: run_external_script 0 (MILITIA) 1@
+
+:STARTEX_120
+0001: wait 0 ms 
+0002: jump @STARTEX 
+
+:STARTEX_131
+090F: end_external_script 0 (MILITIA) 
+0002: jump @STARTEX
+```
+
+With opcode 04C4: - write to the variables `2@ 3@ 4@` the coordinates relative to the actor `$PLAYER_ACTOR` with offset `1.0 3.0 -0.9`.
+With opcode 009A: - create an actor with at coordinates `2@ 3@ 4@`,  
+models `#MALE01` and `#NULL` require no preloading.
+`0913: run_external_script 0 (MILITIA) 1@` - run the external script with the actor we created. This is running the external script with the parameters. [See example](%e/template/external_script[2].txt)
+
+```sb3
+:STARTEX
+03A4: name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 
+0256: player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_159 
+0226: 0@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  0@ == 0 
+004D: jump_if_false @STARTEX_170 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038:  $Script_Status == 0 
+004D: jump_if_false @STARTEX_159 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_159 
+0615: define_AS_pack_begin 5@ 
+05DE: AS_actor -1 walk_around_ped_path 
+0616: define_AS_pack_end 5@ 
+04C4: store_coords_to 2@ 3@ 4@ from_actor $PLAYER_ACTOR with_offset 1.0 3.0 -0.9 
+04C4: store_coords_to 7@ 8@ 9@ from_actor $PLAYER_ACTOR with_offset 1.0 -3.0 -0.9 
+061D: create_AS_origin_at 7@ 8@ 9@ Z_angle 60.0 unknown_angle 300.0 AS_pack 5@ handle_as 6@
+0621: create_actor_pedtype 6 model #NULL at_AS_origin 6@ task 1502 handle_as 10@ 
+009A: 1@ =  create_actor_pedtype 6 model #MALE01 at 2@ 3@ 4@ 
+0913: run_external_script 0 (MILITIA) 1@ 
+0913: run_external_script 0 (MILITIA) 10@   
+  
+:STARTEX_159
+0001: wait 0 ms 
+0002: jump @STARTEX 
+  
+:STARTEX_170
+090F: end_external_script 0 (MILITIA) 
+0001: wait 0 ms 
+0002: jump @STARTEX
+```
+
+Here is your second option. With opcode 061D: - write to variable `6@` a sequence of 5@ actions at the point `7@ 8@ 9@`. With opcode 0621: - in variable `10@` write the creation of an actor with type 6 (policeman), model `#NULL` with action sequence 6@ 
+[See example](%e/template/external_script[3].txt).
+
+Now consider running an external script with different parameters.
+For example to run GF_MEETING we use the following entry
+```sb3
+0913: run_external_script 24 (GF_MEETING) $Girlfriend 10@ 11@ 12@ 13@
+```
+where, respectively:
+`$Girlfriend` - actor\
+`10@` - X\
+`11@` - Y\
+`12@` - Z\
+`13@` - angle\
+and to run GF_SEX:
+```sb3
+0913: run_external_script 26 (GF_SEX) $Girlfriend 1 3@ 10@ 11@ 12@ 13@
+```
+`10@`, `11@`, `12@`, `13@` - X, Y, Z, corner 
+`3@` - interior\
+`1` is not quite clear yet
+or this
+```sb3
+0913: run_external_script 26 (GF_SEX) 40@ 41@ 0 2037.651 2723.871 9.8352 0.0702
+```
+
+I couldn't figure out why the parameter order is different for different scripts. In some scripts, the actor variable comes first
+```sb3
+0913: run_external_script 26 (GF_SEX) $Girlfriend 1 3@ 10@ 11@ 12@ 13@
+```
+and in others, the actor variable can be in any other place
+```sb3
+0913: run_external_script 1 (PARACHUTE) -1 -10.0 10.0 -5.0 -2.0 10.0 12.0 1 70@
+```
+Where\
+`70@` - actor variable.
+Now I can say that the order of the parameters is determined in an external script,
+(THANK YOU **Seemann for your help :)**)
+Let's look at an example of parameter passing\.
+For this let's write a simple external script
+
+````sb3
+:MILITIA
+03A4:  name_thread 'MILITIA' 
+  
+:MILITIA_1 
+009A: 4@ =  create_actor_pedtype 4 model 0@ at 1@ 2@ 3@ 
+  
+:MILITIA_2
+wait 0
+if
+ 8118: not  actor 4@ dead 
+jf @MILITIA_717
+062E:  unknown_get_actor 4@ task 1506 status_store_to 5@ // ret 7 if not found 
+00D6: if 
+04A4: 5@ == 7 // @ == any 
+004D:  jump_if_false @MILITIA_2
+05E2:  AS_actor 4@ kill_actor $PLAYER_ACTOR  
+jump @MILITIA_2
+
+:MILITIA_717
+01C2:  remove_references_to_actor 4@
+004E: end_thread
+```
+
+and external script starter
+
+```sb3
+:STARTEX
+03A4:  name_thread 'STARTEX' 
+00D6: if  and
+0038: $ONMISSION == 0 
+0256: player $PLAYER_CHAR defined 
+004D: jump_if_false @STARTEX_159 
+0226: 10@ =  actor $PLAYER_ACTOR health 
+00D6: if 
+8039: not  10@ == 0 
+004D: jump_if_false @STARTEX_170 
+0926: $Script_Status = external_script_status 0 (MILITIA) 
+00D6: if 
+0038: $Script_Status == 0 
+004D: jump_if_false @STARTEX_159 
+08A9: load_external_script 0 (MILITIA) 
+00D6: if 
+08AB: external_script 0 (MILITIA) loaded 
+004D: jump_if_false @STARTEX_159 
+04C4: store_coords_to 1@ 2@ 3@ from_actor $PLAYER_ACTOR with_offset 1.0 3.0 -0.9 
+0913: run_external_script 0 (MILITIA) #MALE01 2482.72 -1658.6648 13.3372 
+  
+:STARTEX_159
+0001: wait 250 ms 
+0002: jump @STARTEX 
+  
+:STARTEX_170
+090F: end_external_script 0 (MILITIA) 
+0001: wait 0 ms 
+0002: jump @STARTEX
+```
+
+The order of the pass depends on the order of the local variables in the external script.
+We run the external script with the parameters
+```sb3
+0913: run_external_script 0 (MILITIA) #MALE01 2482.72 -1658.6648 13.3372
+```
+Where\
+`#MALE01` is passed to the variable 0@ in the external script,\
+`2482.72` - `1@`\
+`-1658.6648` - `2@`\
+`13.3372` - `3@`
+
+```sb3
+:MILITIA_1 
+009A: 4@ = create_actor_pedtype 4 model 0@ at 1@ 2@ 3@
+```
+
+[See example](%e/template/external_script[4].txt)
+
+Up to 34 parameters can be transferred in this way. 32 local variables (`0@`...`31@`) + 2 timers (`32@`,`33@`).
+
+The original game currently has 78 external scripts. 
+You can see a list of them, [here](../scm-documentation/sa/scripts.md).
+
+<script src="../../js/main.min.js"></script>

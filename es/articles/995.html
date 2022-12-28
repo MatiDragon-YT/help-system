@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Variables Adicionales en CLEO</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+:::center
+**[\[CLEO|Tut\]Inicio De Un Índice De Variables Adicionales](http://gtag.gtagaming.com/forums/index.php?showtopic=310)**
+:::
+\
+Nueva publicacion (caida): [\[CLEO|TuT\] Variables Adicionales, (La forma más fácil y segura!)](http://gtag.gtagaming.com/forums/index.php?showtopic=346)
+
+Es un tema largo, así que no me molestaré en publicarlo todo aquí, pero aquí está el código básico:
+
+## Nuevo método (Globales)
+
+**CLEO 4: Allocated Memory**
+Todavía tengo que arreglar esto - la última vez el desplazamiento se estropeó.
+
+**CLEO 4: Thread Memory**
+```sb3
+0AC6: 31@ = label @Variables offset   // :Variables debe contener, por supuesto, datos en blanco
+000E: 31@ -= 0xA49984   // vamos a empezar en $ 1, así que vamos a tomar que fuera de la cantidad de memoria para saltar
+0016: 31@ /= 4   // repartir en partes iguales entre vars.. lol
+```
+
+**CLEO 3: Thread Memory**
+```sb3
+0A9F: 31@ = current_thread_pointer
+000A: 31@ += 0x10
+0A8D: 31@ = read_memory 31@ size 4 virtual_protect 0
+000E: 31@ -= @Variables
+000E: 31@ -= 0xA49984
+0016: 31@ /= 4
+```
+
+## Viejo método (Locales)
+
+**Method 1**
+```sb3
+0A9F: 0@ = current_thread_pointer
+0AB1: call_scm_func @MakeNewVars 2 amount 3 this_threads_pointer 0@ use_index 31@  // para añadir 3 nuevas variables, utilizando 31@ como índice
+ 
+009A: 34@(31@,1i) = create_actor_pedtype 4 model #MALE01 at 2488.5933 -1664.223 13.3437
+009A: 35@(31@,1i) = create_actor_pedtype 4 model #MALE01 at 2488.5933 -1664.223 13.3437
+009A: 36@(31@,1i) = create_actor_pedtype 4 model #MALE01 at 2488.5933 -1664.223 13.3437
+0762: AS_actor 34@(31@,1i) dies
+0762: AS_actor 35@(31@,1i) dies
+0762: AS_actor 36@(31@,1i) dies
+01C2: remove_references_to_actor 34@(31@,1i)
+01C2: remove_references_to_actor 35@(31@,1i)
+01C2: remove_references_to_actor 36@(31@,1i)
+ 
+0AB1: call_scm_func @ReleaseVars 2 at_index 31@ this_threads_pointer 0@  // liberar memoria
+0A93: end_custom_thread
+ 
+:MakeNewVars
+0012: 0@ *= 4           // cantidad \* tamaño de las variables
+0AC8: 0@ = malloc 0@    // asignar el tamaño adecuado para contener las variables
+000A: 1@ += 0xC4        // llegar al var 34@ 
+0A8F: 0@ = 0@ - 1@      // obtener el desplazamiento de la memoria asignada
+0016: 0@ /= 4           // dividir por el tamaño de la variable/array para obtener el índice
+0AB2: ret 1 0@          // retorna el índice
+ 
+:ReleaseVars
+0012: 0@ *= 4           // obtener el desplazamiento del índice
+000A: 1@ += 0xC4        // llegar al var 34@ 
+0A8E: 0@ = 0@ + 1@      // obtener el puntero a la memoria asignada
+0AC9: free_malloc 0@    // liberar la memoria/variables... lo que sea
+0AB2: ret 0
+```
+**Method 2**
+```sb3
+0AC7: 0@ = var 33@ offset            // obtener el puntero a la última variable utilizable
+000A: 0@ += 4                        // ir al puntero de la siguiente variable (inexistente - 34@)
+0AC6: 1@ = label @Variables offset  // obtener el puntero al hilo para almacenar los datos de las nuevas variables
+0A8F: 31@ = 1@ - 0@                 // obtener el desplazamiento de la variable 34@ a la memoria
+0016: 31@ /= 4                      // dividir por el tamaño de la matriz para obtener el índice
+0A93: end_custom_thread
+ 
+:Variables
+hex
+   00 00 00 00  // 34@ 
+   00 00 00 00  // 35@ 
+   00 00 00 00  // 36@ 
+   00 00 00 00  // 37@ 
+   00 00 00 00  // 38@ 
+   00 00 00 00  // 39@ 
+   00 00 00 00  // 40@ 
+end
+```
+
+**Method 3**
+```sb3
+// (versión más larga del código CLEO 4)
+0A9F: 0@ = current_thread_pointer
+0A8E: 1@ = 0@ + 0x10
+0A8D: 1@ = read_memory 1@ size 4 virtual_protect 0
+000E: 1@ -= @Variables
+000A: 0@ += 0xC4
+0A8F: 31@ = 1@ - 0@
+0016: 31@ /= 4
+0A93: end_custom_thread
+ 
+:Variables
+hex
+   00 00 00 00  // 34@ 
+   00 00 00 00  // 35@ 
+   00 00 00 00  // 36@ 
+   00 00 00 00  // 37@ 
+   00 00 00 00  // 38@ 
+   00 00 00 00  // 39@ 
+   00 00 00 00  // 40@ 
+end
+```
+
+**Method 1** - CLEO 4 _Asignación De Memoria Mediante Funciones SCM (Recomendado)_
+**Method 2** - CLEO 4 _Espacio por Hilo_
+**Method 3** - CLEO 3 _Espacio por Hilo (Compatible)_
+\
+Y sí, no me refiero literalmente a "variables adicionales". Sólo una forma fácil y directa de utilizar la memoria del hilo como si fueran variables.
+
+---
+
+Al principio me preocupaban los problemas con la memoria no liberada, pero supuse que CLEO 4 liberaba la memoria asignada cuando reiniciabas el juego, lo que significa que, en general, la opción de asignar memoria ahorra muchos más bytes.
+
+El método 2 está bien si es para un script que no se ejecuta todo el tiempo, pero los bytes extra que están todos a 00 parecen ser inútiles en un script que aún no está activo. Sin embargo, los métodos de hilos permiten establecer valores por defecto a cada variable antes de comenzar, lo que podría ser útil en algunas situaciones.
+
+También olvidé mencionar que el tipo de array debería, por supuesto, cambiarse según el tipo de datos que estés usando.
+
+```sb3
+0093: 34@(31@,1f) = integer 34@(31@,1i) to_float
+05AA: 34@(31@,1s) = 'text'    // @s = 'short'
+06D2: 34@(31@,1v) = "LAPDAN1" // @v = string
+```
+Las variables son "ilimitadas". El límite depende de tu sistema... Estoy seguro de que muchos otros trucos de codificación podrían surgir del uso de estos métodos. Tampoco tenemos que preocuparnos tanto por los límites al usar variables locales para cadenas.
+
+La idea de tener que definir el tamaño del array siempre me ha confundido.. ¿Hay alguna explicación de cómo GTA utiliza esta información? Podrías usar "1" para cualquier cosa y aún así iría a la variable correcta.
+
+---
+
+:::gray
+Publicación original:
+En [SannyBuilder.com Forums](https://sannybuilder.com/forums/viewtopic.php?id=995)
+_Por Deji - 19/08/2010 01:37_
+:::
+<script src="../../js/main.min.js"></script>

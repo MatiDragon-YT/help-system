@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html lang="tr">
+<head>
+  <title>Quick Start. Part 2</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Let's take a closer look at additional innovations in the scripting language.
+
+In the [previous article](qsp1.md), we said that all mathematical and arithmetic expressions can be written without opcodes. This is much more convenient and faster. However, the Sanny compiler has built-in commands that allow you to shorten even simple expressions.
+
+1) The **Inc**. This command is an alternative to the usual addition. This is the alternative to the normal addition. This is the value of the first parameter, multiplied by the number passed in the second parameter. The first parameter can be a variable (of Integer or Float type) or a property of the class
+
+```sb3
+$Var += 10
+Inc($Var, 10)
+```
+
+The `$Var` variable will have 10 added to it in both variants. 
+Recall that if the second number is an Integer and the variable is Float, the compiler automatically converts it to a fractional number.
+This command is convenient to use if you only want to add 1 to the variable, because the second parameter is 1 by default
+
+```sb3
+$Var += 1 
+Inc($Var)
+```
+
+Both options are equivalent.
+The first parameter can be a property of the class. We will talk about them in detail in a separate article, for now I will only give you an example:
+
+```sb3
+0109: player $PLAYER_CHAR money += 1 
+Player.Money($PLAYER_CHAR) += 1 
+Inc(Player.Money($PLAYER_CHAR)) 
+```
+
+All three options have the same value: the amount of player's money will be increased by one.
+
+2) **Dec** command. This is a substitute for the subtraction operation:
+
+```sb3
+$Var -= 3 
+Dec($Var, 3) 
+```
+
+All of the above applies to it, except for the property example. The point is that the Money property of the player can only increase (opcode 0109). There is no opcode for subtracting money. Therefore, an expression like `Player.Money($PLAYER_CHAR) -= 1` will not work. This limitation will be overcome in next versions of SB.
+
+3) **Mul** command. Multiplication operation. Everything is the same, except that by default the second parameter is 2:
+
+```sb3
+$Var *= 2 
+Mul($Var) 
+```
+4) The final arithmetic operation is division. There is a **Div** command for it, which divides a variable in two without a second parameter:
+
+```sb3
+$Var /= 2 
+Div($Var) 
+```
+In all four cases the second parameter can be a variable. But then the types of both variables must be defined in the var..end block.
+
+5) The **SQR** procedure calculates the square of the variable. That is, it is a substitute for the operation of multiplication of the variable by itself:
+
+```sb3
+$Var *= $Var 
+Sqr($Var) 
+```
+The type of the variable, as you hopefully realized, must be known to the compiler.
+
+6) The **Random** function returns a random number in the interval between the numbers passed in as parameters. It is a replacement of two opcodes at once:
+
+```sb3
+0208: $Var = random_float 10.0 100.0 
+0209: $Var = random_int 10 100 
+```
+
+Both options can be represented as
+
+```sb3
+$Var = Random(10, 100) 
+```
+
+As you can see, the compiler itself chooses an opcode depending on the type of variable in which the result of the function (`$Var`) is written. If its type is unknown, or it is not an Integer or Float, the compiler will report an error. 
+Variables can be used as parameters, of course. However, their type is not checked.
+The next command will probably be hard to understand. For this you need to know how variables are stored in main.scm and what DMA is. This is out of the scope of this article, although it will probably be explained later. So, the command **Alloc**. This sets the memory address of a variable with a character name:
+
+```sb3
+Alloc($PLAYER_CHAR, 10) 
+```
+
+The `$PLAYER_CHAR` variable will then compile as `$10`.
+You can use the **Alloc** command to line up a group of variables, thus turning them into array elements:
+
+```sb3
+Alloc($Array, 40) 
+Alloc($Value2, 41) 
+Alloc($Value3, 42) 
+Alloc($Value4, 43) 
+```
+
+These variables are now an array. You can now use code like this:
+
+```sb3
+Alloc($Array, 40) 
+Alloc($Value2, 41) 
+Alloc($Value3, 42) 
+Alloc($Value4, 43)
+var 
+$Array: array 4 of Integer 
+$Result: Int 
+end 
+
+$Value3 = 100 // write 100 in the third element of the array 
+
+$Index = 2 
+// offset from the beginning of the array -> $Value3, don't forget to count from zero 
+
+$Result = $Array[$Index]
+// will read the third cell, starting from the first element 
+
+Player.Money($PLAYER_CHAR) += $Result // + 100 
+```
+
+Of course, you could alternatively use "pure" DMA here, i.e., numeric variable names (`$40`, `$41`, `$42`, etc.), but character names are more pleasant to work with.
+The final feature for today is mission number substitution. Any mission is started with the start_mission command. This number is defined in the DEFINE MISSION block:
+
+```sb3
+DEFINE MISSIONS 135 
+DEFINE MISSION 0 AT @INITIAL 
+DEFINE MISSION 1 AT @INITIL2 
+DEFINE MISSION 2 AT @INTRO 
+```
+
+However, remembering these numbers is not always convenient. Therefore, the SB added the ability to replace the mission number with its name. The name in this case is the name of the label written in the same block. Thus, to start the 2nd mission it is enough to write 
+
+```sb3
+start_mission intro 
+```
+
+For greater convenience, two more features were built into the SB:
+1) [replacing all numbers with names during decompilation](../editor/options/general.md#replace-mission-numbers).
+2) you can call the list of names by pressing **Ctrl+Space**. The cursor must be placed after the command start_mission.
+
+<script src="../../js/main.min.js"></script>

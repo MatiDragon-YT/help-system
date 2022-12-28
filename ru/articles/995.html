@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Additional Variables in CLEO</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+:::center
+**[\[CLEO|Tut\]Setting Up An Additional Variables Index](http://gtag.gtagaming.com/forums/index.php?showtopic=310)**
+:::
+\
+New (fixed) post: [\[CLEO|TuT\] Additional Variables, (The easier, safer way!)](http://gtag.gtagaming.com/forums/index.php?showtopic=346)
+
+It's a long topic, so I won't bother to post the whole thing here, but here's the basic code:
+
+
+## New (Globals) Method
+
+**CLEO 4: Allocated Memory**
+Still gotta fix this one - last time the offset messed up.
+
+**CLEO 4: Thread Memory**
+```sb3
+0AC6: 31@ = label @Variables offset   // :Variables  should, of course, contain blank data
+000E: 31@ -= 0xA49984   // we'll be starting at $1, so lets take that off the amount of memory to skip
+0016: 31@ /= 4   // share equally between vars.. lol
+```
+
+**CLEO 3: Thread Memory**
+```sb3
+0A9F: 31@ = current_thread_pointer
+000A: 31@ += 0x10
+0A8D: 31@ = read_memory 31@ size 4 virtual_protect 0
+000E: 31@ -= @Variables
+000E: 31@ -= 0xA49984
+0016: 31@ /= 4
+```
+
+## Old (Locals) Method
+
+**Method 1**
+```sb3
+0A9F: 0@ = current_thread_pointer
+0AB1: call_scm_func @MakeNewVars 2 amount 3 this_threads_pointer 0@ use_index 31@  // add 3 new variables, using 31@ as the index
+ 
+009A: 34@(31@,1i) = create_actor_pedtype 4 model #MALE01 at 2488.5933 -1664.223 13.3437
+009A: 35@(31@,1i) = create_actor_pedtype 4 model #MALE01 at 2488.5933 -1664.223 13.3437
+009A: 36@(31@,1i) = create_actor_pedtype 4 model #MALE01 at 2488.5933 -1664.223 13.3437
+0762: AS_actor 34@(31@,1i) dies
+0762: AS_actor 35@(31@,1i) dies
+0762: AS_actor 36@(31@,1i) dies
+01C2: remove_references_to_actor 34@(31@,1i)
+01C2: remove_references_to_actor 35@(31@,1i)
+01C2: remove_references_to_actor 36@(31@,1i)
+ 
+0AB1: call_scm_func @ReleaseVars 2 at_index 31@ this_threads_pointer 0@  // free memory
+0A93: end_custom_thread
+ 
+:MakeNewVars
+0012: 0@ *= 4           // amount \* size of variables
+0AC8: 0@ = malloc 0@    // allocate the right size to contain the vars
+000A: 1@ += 0xC4        // get to var 34@ 
+0A8F: 0@ = 0@ - 1@      // get the offset to the allocated memory
+0016: 0@ /= 4           // divide by variable/array size to get the index
+0AB2: ret 1 0@          // return the index
+ 
+:ReleaseVars
+0012: 0@ *= 4           // get the offset from the index
+000A: 1@ += 0xC4        // get to var 34@ 
+0A8E: 0@ = 0@ + 1@      // get the pointer to the allocated memory
+0AC9: free_malloc 0@    // release the memory/variables.. whatever
+0AB2: ret 0
+```
+**Method 2**
+```sb3
+0AC7: 0@ = var 33@ offset            // get the pointer to the last usable variable
+000A: 0@ += 4                        // go the pointer to the next (inexistant) variable (34@)
+0AC6: 1@ = label @Variables offset  // get the pointer to the thread to store the new variables data
+0A8F: 31@ = 1@ - 0@                // get the offset from variable 34@ to the memory
+0016: 31@ /= 4                      // divide by array size to get the index
+0A93: end_custom_thread
+ 
+:Variables
+hex
+   00 00 00 00  // 34@ 
+   00 00 00 00  // 35@ 
+   00 00 00 00  // 36@ 
+   00 00 00 00  // 37@ 
+   00 00 00 00  // 38@ 
+   00 00 00 00  // 39@ 
+   00 00 00 00  // 40@ 
+end
+```
+
+**Method 3**
+```sb3
+// (longer version of the CLEO 4 code)
+0A9F: 0@ = current_thread_pointer
+0A8E: 1@ = 0@ + 0x10
+0A8D: 1@ = read_memory 1@ size 4 virtual_protect 0
+000E: 1@ -= @Variables
+000A: 0@ += 0xC4
+0A8F: 31@ = 1@ - 0@
+0016: 31@ /= 4
+0A93: end_custom_thread
+ 
+:Variables
+hex
+   00 00 00 00  // 34@ 
+   00 00 00 00  // 35@ 
+   00 00 00 00  // 36@ 
+   00 00 00 00  // 37@ 
+   00 00 00 00  // 38@ 
+   00 00 00 00  // 39@ 
+   00 00 00 00  // 40@ 
+end
+```
+
+**Method 1** - CLEO 4 w/ Memory Allocation using SCM Functions (Reccommended).
+**Method 2** - CLEO 4 w/ Thread Space.
+**Method 3** - CLEO 3 Compatible Code w/ Thread Space.
+
+And yes, I don't literally mean "additional variables". Just an easy, direct way to use thread memory as if they were variables.
+
+---
+
+I did originally worry about problems with memory not releasing but I assumed that CLEO 4 released the allocated memory when you restart the game, meaning that overall, the allocate memory option saves a lot more bytes.
+
+Method 2 is fine if it is for a script that doesn't run all the time, but extra bytes that are all set to 00 seems to be useless in a script that is not yet active. However, the thread methods do allow for default values to be set to each variable before starting, which could be useful in some situations.
+
+I also forgot to mention that the array type should, of course, be changed according to which data type you're using.
+
+```sb3
+0093: 34@(31@,1f) = integer 34@(31@,1i) to_float
+05AA: 34@(31@,1s) = 'text' // @s = 'short'
+06D2: 34@(31@,1v) = "LAPDAN1" // @v = string
+```
+Variables are "limitless". The limit is dependant on your system... I'm sure many other coding tricks could come from using these methods. We also don't have to worry as much about limits to using local variables for strings.
+
+The idea of having to define the array size always confused me.. Is there any explanation of how GTA uses this information? You could just use "1" for anything and it would still go to the right variable.
+
+---
+
+:::gray
+Original post:
+At [SannyBuilder.com Forums](https://sannybuilder.com/forums/viewtopic.php?id=995)
+_By Deji - 19/08/2010 01:37_
+:::
+<script src="../../js/main.min.js"></script>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="tr">
+<head>
+	<title>FAQ</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+
+**Q: Where can I find a list of new opcodes and parameter values?**
+
+A: [see here](opcodes.md).
+
+---
+
+**Q: Is it true that you can add new scripts and not start a new game?**
+
+A: Yes, this is a major innovation of CLEO 3. You can learn more about the new way of scripting here: [CLEO3: scripts](scripts.md).
+
+---
+
+**Q: How do I use a model in a script that is normally contained in the DEFINE OBJECT list?**
+
+A: CLEO scripts are contained in scm files without a header, i.e. they are an analogue of external scripts from the script.img file. That's why they don't have such a notion as DEFINE OBJECT. In order to use such a model you have to specify its global ID (number) instead of #name.
+
+You can use SB's built-in [search function](../editor/hotkeys.md#CtrlAltH) model ID (Ctrl+Alt+H).\
+[You can also use the method described here](#! `$("#one").toggle()`)
+
+:::d-none my-3#one
+If you need to use the global model ID from the list of imported models (DEFINE OBJECTS) in your script, you can read it from the game memory address using the following formula:
+
+```sb3
+MA = -4982 + (ModelID * -7)
+```
+
+For example, to read the INFO global model ID, use the following code:
+
+```sb3
+0@ = #INFO
+0@ *= -7
+0@ += -4982
+0084: $modelID = &0(0@, 1i)
+```
+
+the modelID will contain 1239. 
+
+Here is an example of a loop that outputs all modelIDs from standard maynas in turn
+
+```sb3
+03C4: set_status_text_to $modelID 0 'FEC_NMN'
+
+ // -4982 + (ModelID * -7)
+for 1@ = -1 downto -388 // #INFO downto #SFCOPDR
+ 0085: 0@ = 1@ 
+ 0@ *= -7
+ 0@ += -4982
+ 0084: $modelID = &0(0@, 1i) 
+ wait 1000
+end // for
+```
+\
+:::right
+[:note: Collapse](#! `$("#one").toggle()`)
+:::
+
+:::
+
+---
+
+**Q: Can I write CLEO scripts in other editors?**
+
+A: If you don't want or can't use SB as a script editor for some reason, it doesn't stop you from writing scripts for CLEO 3. For that you have to use the first method of script writing [described here](scripts.md) (extracting script from script.img).
+
+---
+
+**Q: Why is the opcode 0000 at the beginning of some scripts?**
+
+A: This is due to incorrect processing of "zero transitions" by the game script engine (i.e. transitions to the very beginning of an external script or mission). If the script is a continuous loop, this opcode 0000 is designed to create a minimum offset from the beginning of the script (a sort of buffer). You can use wait 0 instead of 0000, for example.\
+[Read more here.](#! `$("#two").toggle()`)
+
+:::d-none my-3#two
+
+The SA script engine has one nasty bug related to labels. You can't jump from the body of an external script to its beginning, i.e. make a jump to the very first marker.
+
+```sb3
+DEFINE SCRIPT TEST_SCR AT @TEST_SCR
+...
+
+
+//-------------External script (TEST_SCR)---------------
+
+:TEST_SCR
+wait 0
+jump @TEST_SCR // this opcode will cause an error
+```
+
+Therefore, if the external script is a continuous loop, you need to insert some opcode at the beginning and then a label for the transition:
+
+```sb3
+DEFINE SCRIPT TEST_SCR AT @TEST_SCR
+...
+
+
+//-------------External script (TEST_SCR)---------------
+
+:TEST_SCR
+0000: // you can insert 03A4
+
+:TEST_SCR_1
+wait 0
+jump @TEST_SCR_1 // this opcode will work.
+```
+
+The same bug shows up in missions, but you almost never need to go to the very beginning.\
+\
+:::right
+[:note: Collapse](#! `$("#one").toggle()`)
+:::
+
+:::
+
+---
+
+**Q: Why can't I use global variables in CLEO scripts? What should I use then?**\
+\
+[Read more here.](#! `$("#three").toggle()`)
+
+:::d-none my-3#three
+When we compile main.scm along with all missions and scripts, all global variables get their own ID (sequence number). Some of them always get the same ID (for example, $PLAYER_CHAR compiles as $2, $PLAYER_ACTOR compiles as $3, etc.). This is true for all global variables that are defined in CustomVariables.ini
+
+This sequence number means the number of the cell in the game memory where the variable's value is stored. Obviously, this number must be unique for each variable. In other words, each variable must be compiled with a unique ID.
+
+All other variables are compiled as follows. If no variable name is found in CustomVariables.ini, it is compiled with the number that comes after the largest used variable in the script. This sounds complicated, so I'll explain it by example:
+
+A simple 2-line script:
+
+```sb3#a
+$PLAYER_CHAR = 1
+$MYVAR = 1
+```
+
+`$PLAYER_CHAR` is compiled as `$2`. So a variable `$MYVAR` which is not in CustomVariables.ini and whose name is not numeric will be compiled as `$3`. (It won't actually be `$3` there because `$3` is reserved for `$PLAYER_ACTOR`, so `$MYVAR` will get the first free name, `$4`.
+
+Another example
+
+```sb3
+$PLAYER_CHAR = 1
+$MYVAR = 1
+$100 = 1
+```
+
+The largest variable in the script is now `$100`, so `$MYVAR` becomes `$101`.
+
+This mechanism allows you to give each variable its own unique name.
+
+In main.scm all new variables get names starting from $10948 because $10947 is the largest variable used in the original main.scm.
+
+Now back to the CLEO scripts. Every time we compile a new script, the compiler doesn't know anything about the state of main.scm or how many variables were used in it. It names variables from scratch every time. This means that if you make two scripts that have:
+
+in one script.
+
+```sb3
+$MYVAR = 1
+```
+
+in another script
+
+```sb3
+$MYVAR1 = 1
+```
+
+then both variables will be compiled as:
+
+```sb3
+$4 = 1
+```
+
+even though their names are different. And each time the compiler will, in a new clo-script, name the variables starting with `$4`. The effect, I think, is clear. The variables will use the same memory location and change each other's values. If you write an actor in one script to `$MYVAR` and in another script to `$MYVAR1 = 0`, when the first script accesses `$MYVAR`, it will read `0` not the actor, since both variables use the 4th memory location.
+
+The other situation is that it is out of memory for global variables. For example, a normal stripped has a memory size for global variables of 409 cells because the largest used variable `$ONMISSION` is `$409`. Suppose we have created a clo-script:
+
+```sb3
+$ONMISSION = 1
+$MYVAR = 0
+```
+
+How would the variable `$MYVAR` be compiled, if you understood what I was talking about above? The correct answer is `$411`. `$ONMISSION` is `$409`, so the variable should be `$410`, but this ID is already reserved for `$Help_SprayCan_Shown` (see CustomVariables.ini). So the first free number is `$411`.
+
+Now back to stripped. Its memory size is still `409` (if `$MYVAR = 0` had been compiled in mine, the memory would have been increased to `411`). So when the clo-script works with the `$MYVAR` variable, its values will be read and written outside the allowed memory area. In the worst case, such variables will change the code of main.scm itself (opcodes and parameters), which will inevitably lead to crash.
+\
+:::right
+[:note: Collapse](#! `$("#three").toggle()`)
+:::
+
+:::
+\
+\
+[Also here.](#! `$("#four").toggle()`)
+
+:::d-none my-3#four
+It's not recommended to use global variables ($) at all in CLEO scripts, no matter how you call them. There are only 2 exceptions: 1) the commonly used variables like $PLAYER_CHAR, $PLAYER_GROUP, $ONMISSION and 2) unused variables like $30, $56. In any case, you have to be very careful when using global variables, otherwise you will get all sorts of glitches in the game.
+
+But you can freely use local variables without restrictions. Not enough 32 variables? There are plenty of ways to bypass restrictions (from simple optimization to using scm-functions - 0AB1, 0AB2).
+
+If it is inconvenient to use local variables because of their name (I agree, 1@ is not always explicitly expressing the meaning of a variable), use construct **CONST..END** A couple of lines 
+
+```sb3
+const
+TRAIN_MODEL = 1@
+end
+```
+
+allows you to use the word TRAIN_MODEL in the script, which will actually denote a local variable and compile accordingly. For example, `TRAIN_MODEL = 400` - this is the number `400` written into the variable `1@`. That's all, no more problems because of global variables.
+\
+:::right
+[:note: Collapse](#! `$("#four").toggle()`)
+:::
+
+:::
+
+---
+
+**Q: Can I use set_status_text and set_timer opcodes in CLEO scripts?**\
+\
+[Read more here.](#! `$("#five").toggle()`)
+
+:::d-none my-3#five
+
+The set_status_text and set_timer opcodes and their associated opcodes cannot be used in CLEO scripts at the moment. That's because these opcodes require setting a global variable, which, with few exceptions, cannot be used in CLEO scripts.
+
+As it's not so easy to write an alternative to those opcodes, I decided to go another way. I wrote 4 functions that work like the 03C3, 03C4, 014F, 0151 opcodes, only taking a local variable. It allows to use status_text and timers in CLEO scripts and CLEO missions.
+
+[red][Warning!] For the functions to work correctly you need CLEO 3 v3.0.950 or higher.
+
+The functions work only in GTA: SA v1.0
+
+```sb3
+:AddStatusText                 
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AB1: call_scm_func @__LabelToOffset 1 2@ 2@
+0AA6: call_method 0x0044CDA0 struct 0x00BA1788 num_params 4 pop 0 ( LINE = 3@ GXT = 2@ TYPE = 1@ VARNUMBER = 0@ )
+0AB2: ret 0
+
+:RemoveStatusText
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AA6: call_method 0x0044CE80 struct 0x00BA1788 num_params 1 pop 0 ( VARNUMBER = 0@ )
+0AB2: ret 0
+
+:SetTimer
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AB1: call_scm_func @__LabelToOffset 1 2@ 2@
+0AA6: call_method 0x0044CD50 struct 0x00BA1788 num_params 3 pop 0 ( TYPE = 1@ GXT = 2@ VARNUMBER = 0@ )
+0AB2: ret 0
+
+:StopTimer
+0AB1: call_scm_func @__VarToOffset 1 0@ 0@
+0AA6: call_method 0x0044CE60 struct 0x00BA1788 num_params 1 pop 0 ( VARNUMBER = 0@ )
+0AB2: ret 0
+
+:__VarToOffset
+0A9F: 1@ = current_thread_pointer
+0A8E: 2@ = 1@ + 0xDC // mission Flag
+0A8D: 2@ = read_memory 2@ size 1 virtual_protect 0
+if
+    2@ == 1
+then
+    1@ = 0x00A48960 // mission locals
+else
+    1@ += 0x3C
+end
+0@ *= 4
+005A: 1@ += 0@ // address of the local variable 
+1@ -= 0xA49960
+0AB2: ret 1 1@
+
+:__LabelToOffset
+if
+    0@ == 0
+then
+    0AB2: ret 1 0
+end
+0A9F: 1@ = current_thread_pointer
+1@ += 0x10 
+0A8D: 1@ = read_memory 1@ size 4 virtual_protect 0 // baseIP
+0062: 1@ -= 0@ // label address
+1@ += 3
+0AB2: ret 1 1@
+
+:StatusText
+0900: 'BB_19'
+0000:
+```
+
+These 4 functions are.
+
+1\. **AddStatusText** emulates opcode
+```sb3
+03C4: set_status_text $BEEFYBARON_SCORE type 0 GXT 'ZER2_43'.
+```
+
+Example of use:
+```sb3
+0AB1: call_scm_func @AddStatusText 4 VARNUMBER = 33 TYPE = 0 GXT = @StatusText LINE = 3
+```
+Parameters: `VARNUMBER = 33` - this is the number of local variable whose value will be output (i.e. `33@`)
+
+`TYPE = 0` - as in 03C4 the status type: bar (1) or number (0).
+
+`GXT = @StatusText` - this is the main difference from the opcode. You can't pass a string directly to a function (nor to a new thread, for example). So we pass in a label with opcode 0900 with the right text (GXT) (in this case `0900: 'BB_19'`). You can add several 0900 opcodes in a row, each with its own GXT and its own label, and pass the right label to the function. Hopefully this won't be a problem.
+You can write `0` instead of the label, and then it will output just the number, without the text on the left.
+
+`LINE = 3` - The number of the line where the status will appear. If it is 0, then the status will be added to the first free line.
+
+2\. **RemoveStatusText** emulates opcode
+```sb3
+0151: remove_status_text $1924
+```
+
+Example of use:
+
+```sb3
+0AB1: call_scm_func @RemoveStatusText 1 VARNUMBER = 33
+```
+There is only one parameter - the number of the local variable that was used in AddStatusText.
+
+3\. **SetTimer** emulates opcode
+```sb3
+03C3: set_timer_to $1923 type 1 GXT 'BB_19'
+```
+
+Example of use:
+
+```sb3
+0AB1: call_scm_func @SetTimer 3 VARNUMBER = 1 TYPE = 1 GXT = @StatusText
+```
+The parameters VARNUMBER and GXT are the same as AddStatusText. The TYPE parameter means the type of timer: increasing or decreasing.
+
+4\. **StopTimer** emulates
+```sb3
+014F: stop_timer $1923
+```
+
+Example of use:
+
+```sb3
+0AB1: call_scm_func @StopTimer 1 VARNUMBER = 1
+```
+**Parameter** - is the number of local variable used in SetTimer.
+
+Since this is only emulation of real opcodes, all restrictions are preserved (1 timer and 4 statuses).
+
+To use these functions, you need to copy them without changes into your script, change or add the necessary GXT keys, and call the corresponding function.
+
+Here is an example of a script that shows the status of variable 33@ (i.e. timer) for 10 seconds [status_text.cs](http://cleo.sannybuilder.com/scripts/status_text.cs)
+
+:::right
+[:note: Collapse](#! `$("#one").toggle()`)
+:::
+
+:::
+
+---
+
+**Q: I have CLEO script code, how do I get a .cs file out of it?**
+
+A: For this you need the program Sanny Builder 3.03 or higher (you can find it on the same site). Download it, install it. Run it, go to options (F10), specify the path to the game folder. Now press File-Create (Ctrl+N), copy the entire script into the editor window (starting with the word `{$CLEO}`) and save the resulting text file. After that press F7. If all went well, a new .cs-file should appear in the game folder in the CLEO folder. If you encountered errors during compilation, try to fix them, following the advice from the help (it's in Russian!).
+
+<script src="../../js/main.min.js"></script>

@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.17";
+const VERSION = "1.18";
 
 function log(value){
 	console.log(value)
@@ -168,6 +168,7 @@ function ModeLight(){
 			border-left: #c9cfd5 1px solid;\
 			border-top: #c9cfd5 1px solid;\
 		}\
+		.opcodes {color:#000}\
 		.labels { color: #009688 }\
 		.keywords { color: #ff5722 }\
 		.models { color: #607d8b }\
@@ -311,6 +312,9 @@ SP.toMarkdown = function(){
 		.r(/^%vc-r\//m,   vc   + radar)
 		.r(/^%gta3-r\//m, gta3 + radar)
 		.r(/^%sa-t\//m,   sa   + "tatoo/")
+		.r(/^%sa\//m,   sa  )
+		.r(/^%vc\//m,   vc  )
+		.r(/^%gta3\//m, gta3)
 		.r(/^%e\//m, exROOT)
 		.r(/^%g\//m, ROOT)
 	}

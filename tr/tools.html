@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <title>Tools</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+<body>
+#### Depurator for FXT
+Paste here text:
+
+<pre id="input" contenteditable="true" class="h-33">
+@LPG02 Hello bro :D
+kkkkkk ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ
+llllll ÙÚÛÜÝÞßàáâãäåæçèéêëìíî
+oooooo ïðñòóôõö÷øùúûüýþÿ¨¸ªº
+EJEMPLO aquí uno con errores         
+8767 á Á ñoquíz ó ú ñ ñ 
+asd@q asd UYYGBJKGU      
+JKSD 
+</pre>
+
+```h-33#output
+```
+
+:::row
+:::col-6
+:::mx-3
+[copy to clipboard](#! 'bg-teal black p-2 py-3' `
+  CopyTextContent($('#output'))
+`):::
+:::
+:::col-6
+[blue][`abc`] key well placed\
+[code bg-red black bold][abd] key bad placed.
+:::
+:::
+
+<script src="../js/main.min.js"></script>
+<script>
+$("#input").onkeyup = render
+
+function render(){
+  var input = $("#input").innerText + '\n'
+
+  var tras = [
+    ["¡", "^"],      ["Ä", "ƒ"],      ["Æ", "„"],      ["æ", "›"],
+    ["Á", "\x81"],   ["Ã", "Ä"],      ["À", "€"],      ["Â", "‚"],
+    ["É", "‡"],      ["Ë", "‰"],      ["È", "†"],      ["Ê", "ˆ"],
+    ["Í", "‹"],      ["Ï", "\x8D"],   ["Ì", "Š"],      ["Î", "Œ"],
+    ["Ó", "\x8F"],   ["Ö", "‘"],      ["Ò", "Ž"],      ["Ô", "\x90"],
+    ["Ú", "“"],      ["Ü", "•"],      ["Ù", "’"],      ["Û", "”"],
+    ["Ñ", "\xAD"],   ["º", "|"],      ["Ç", "…"],      ["°", "|"],
+    ["á", "˜"],      ["ä", "š"],      ["à", "—"],      ["â", "™"],
+    ["é", "ž"],      ["ë", "\xA0"],   ["è", "\x9D"],   ["ê", "Ÿ"],
+    ["í", "¢"],      ["ï", "¤"],      ["ì", "¡"],      ["î", "£"],
+    ["ó", "¦"],      ["¿", "¯"],      ["ò", "¥"],      ["ô", "§"],
+    ["ü", "¬"],      ["ù", "©"],      ["&", "*"],
+    ["û", "«"],      ["ñ", "®"],      ["ç", "œ"],      ["ß", "–"],
+    ["ö", "🧐"],     ["ú", "🥂"],    ["¨", "🍷"],      ["ª", "😎"],
+    ["🧐", "¨"],     ["🥂", "ª"],    ["🍷", "ö"],      ["😎", "ú"]
+  ].forEach(function(e){
+    input = input.rA(e[0], e[1])
+  })
+
+  $("#output").innerHTML = input
+  .rA("<p></p>", "\n")
+  .r(/([^\s])\s+\n/g, "$1\n")
+  .r(/\n+\n/g, "\n")
+  .r(/^([\w\d@]{6}[^\s]+)\x20/gm, '<b class="bg-red black">$1</b> ')
+  .r(/^([\w\d@]+)\x20/gm, "<font class='blue'>$1</font> ")
+  .r(/^([\w\d@]+)(?!\x20)/gm, "<b class='bg-red black'>$1</b> ")
+}
+
+onload = function(){
+  render()
+}
+
+
+
+
+</script>
