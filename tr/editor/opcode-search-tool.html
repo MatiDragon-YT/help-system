@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <title>Opcode Search Tool</title>
+  <title>Kaynak Kodu Bulma Aracı</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,116 +9,116 @@
 </head>
 <body>
 
-You can call this tool by pressing `Ctrl+Alt+2` or by selecting the menu item: `Tools->IDE Tools->Opcode Search`.
+Bu aracı `Ctrl+Alt+2` tuşlarına basarak veya `Tools->IDE Tools->Opcode Search` menü öğesini seçerek çağırabilirsiniz.
 
 :::center
 ![](../img/ost.png)
 :::
 
-To find an opcode, type some words in the input line, e.g. `actor car`. The tool displays the opcodes with these words. You can also use special search operators.
+Bir işlem kodu bulmak için giriş satırına bazı sözcükler yazın, örn. `actor car`. Araç, işlem kodlarını bu kelimelerle görüntüler. Özel arama operatörlerini de kullanabilirsiniz.
 
-When the tool is open, it checks if there is a selected word in the editor. If the selected word is found, it will be copied into the search field.
+Araç açıldığında, editörde seçili bir kelime olup olmadığını kontrol eder. Seçilen kelime bulunursa, arama alanına kopyalanacaktır.
 
-## Copying Results
+## Bulma Aracındakileri Kopyalama
 
-To copy an opcode into clipboard, select it in the list and press `Enter`. \
-To add another opcode to the clipboard content press `Shift+Enter`. \
-To copy the entire results list press `F2`.
+Bir işlem kodunu panoya kopyalamak için listeden seçin ve `Enter` tuşuna basın. \
+Pano içeriğine başka bir işlem kodu eklemek için `Shift+Enter` tuşlarına basın. \
+Sonuç listesinin tamamını kopyalamak için `F2`ye basın.
 
-## Hotkeys
+## Tuş Kısayolları
 
-`Enter` copy selected opcode onto clipboard\
-`Shift+Enter` add selected opcode to the clipboard\
-`F1` - show help information\
-`F2` - copy all opcodes from the results list into clipboard\
-`F3` - sort the list by opcodes\
-`F4` - sort the list alphabetically\
-`F11` - clear the search field, display all opcodes\
-`ESC` - close the tool window
+`Enter` seçili kaynak kodunu panoya kopyala\
+`Shift+Enter` seçili kaynak kodunu panoya ekle\
+`F1` - yardım bilgilerini göster\
+`F2` - sonuç listesindeki tüm kaynak kodlarını panoya kopyala\
+`F3` - listeyi kaynak kodlarına göre sırala\
+`F4` - listeyi alfabetik olarak sırala\
+`F11` - arama alanını temizle, tüm kaynak kodlarını göster\
+`ESC` - araç penceresini kapat
 
-## Search Queries
+## Arama sorguları
 
-### AND operator
+### AND Fonksiyonu
 
-A single space between words serves as the `AND` operator:
+Sözcükler arasındaki tek boşluk, `AND` işleci olarak işlev görür:
 
 ```
 @ player
 ```
 
-Finds all opcodes with both `@` and the word `player`.
+Hem `@` hem de `player` kelimesini içeren tüm işlem kodlarını bulur.
 
-### OR operator
+### OR fonksiyonu
 
-The pipe character `|` is the `OR` operator:
+`|` boru karakteri, `OR` operatörüdür:
 
 ```
 @ | player
 ```
 
-Finds all opcodes with either `@` or `player`.
+`@` veya `player` ile tüm işlem kodlarını bulur.
 
-If you write `|` as the first character in the search, the tool will connect all the following words with the OR operator.
+Aramada ilk karakter olarak `|` yazarsanız, araç takip eden tüm kelimeleri OR operatörüne bağlar.
 
 ```
  | actor player car
 ```
 
-Finds opcodes with either `actor`, `player` or `car`.
+`actor`, `player` ve `car` ile işlem kodlarını bulur.
 
-### NOT operator
+### NOT fonksiyonu
 
-Two dashes before the word exclude opcodes with this word from the result:
+Kelimeden önceki iki çizgi, bu kelimeyi içeren işlem kodlarını sonuçtan hariç tutar:
 
 ```
 car --actor
 ```
 
-Finds opcodes with `car` but without `actor`.
+`car` içeren ancak `actor` içermeyen işlem kodlarını bulur.
 
-A single dash can be used before identifiers or `$` and `@` characters, but not numbers:
+Tanımlayıcılardan veya `$` ve `@` karakterlerinden önce tek bir tire kullanılabilir, ancak sayılardan önce kullanılamaz:
 
 ```
 -10 -@ -car ---1
 ```
 
-Finds opcodes with the number `-10` and without `@`, `car` and `-1`
+`-10` numaralı ve `@`, `car` ve `-1` içermeyen işlem kodlarını bulur
 
-### Search in conditional opcodes 
+### Koşullu kaynak kodlarında ara 
 
-`^` - shows only conditional opcodes \
-`^word` - finds `word` in the conditional opcodes:
+`^` - yalnızca koşullu işlem kodlarını gösterir \
+`^word` - koşullu kaynak kodlarında `word`ü bulur:
 
 ```
 ^car ==
 ```
 
-Finds all conditional opcodes with `car` and `==`.
+`car` ve `==` içeren tüm koşullu işlem kodlarını bulur.
 
-`-^` - excludes all conditional opcodes from the list:
+`-^` - tüm koşullu kaynak kodlarını listeden hariç tutar:
 
 ```
 player -^
 ```
 
-Finds all non-conditional opcodes with `player`.
+`player` ile tüm koşulsuz işlem kodlarını bulur
 
-`-^word` - excludes the conditional opcodes with `word`:
+`-^word` - `word` içeren koşullu kaynak kodlarını hariç tutar:
 
 ```
 player -^actor
 ```
 
-Finds opcodes with `player`, with the exception of the conditional opcodes with `actor`.
+`actor` ile koşullu işlem kodları dışında, `player` ile kaynak kodlarını bulur.
 
-### Respect the order of the words
+### Kelimelerin sırasına saygı gösterin
 
-`%` - finds opcodes with the words in the given order:
+`%` - verilen sırada kelimelerle kaynak kodlarını bulur:
 
 ```
 % @ = @
 ```
 
-Finds opcodes where `@` `=` `@` follow each other (possibly with other words in between).
+`@` `=` `@` birbirini takip eden kaynak kodlarını bulur (muhtemelen aradaki diğer kelimelerle).
 
 <script src="../../js/main.min.js"></script>

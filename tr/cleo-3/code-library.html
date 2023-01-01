@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="tr">
 <head>
-	<title>Code Library</title>
+	<title>Kod Kütüphanesi</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,63 +12,63 @@
 :::right
 [h2][CLEO 3]
 :::light gray p-2
-What is CLEO 3? -------
+CLEO 3 Nedir? -------
 :::
 :::
 
-CLEO 3 is the next step in the CLEO project development that extends coding possibilities in San Andreas. After installing CLEO 3, you get everything that CLEO 2 can, plus some new features.
+CLEO 3, San Andreas'ta kodlama olanaklarını genişleten CLEO projesi geliştirmedeki bir sonraki adımdır. CLEO 3'ü kurduktan sonra, CLEO 2'nin sahip olabileceği her şeye ek olarak bazı yeni özelliklere sahip olursunuz.
 
-1. [New opcodes](opcodes.md).<br>CLEO 3 has 40 useful opcodes in store, such as file management, game memory handling, ability to call exe functions and much more. The third version [adds such opcodes](opcodes.md) as a call of a SCM function, creating a thread or starting a mission from an external file and more.
-2. [Plugins](#plugins).<br>Read more about them below.
-3. [Custom scripts](scripts.md).<br>CLEO 3 allows adding the custom scripts to the game written in Sanny Builder without need for starting of a new game. All you need is to write a script, place it in the CLEO folder and run the game (new or saved). 
+1. [New opcodes](opcodes.md).<br>CLEO 3, dosya yönetimi, oyun belleği kullanımı, exe işlevlerini çağırma yeteneği ve çok daha fazlası gibi mağazada 40 kullanışlı işlem koduna sahiptir. Üçüncü versiyon (CLEO3) [adds such opcodes](opcodes.md) bir SCM işlevinin çağrısı olarak, bir iş parçacığı oluşturma veya harici bir dosyadan bir görev başlatma ve daha fazlası.
+2. [Plugins](#plugins).<br>Aşağıda onlar hakkında daha fazlasını okuyun.
+3. [Custom scripts](scripts.md).<br>CLEO 3, Sanny Builder'da yazılan oyuna yeni bir oyun başlatmaya gerek kalmadan özel komut dosyalarının eklenmesine izin verir. Tek ihtiyacınız olan bir komut dosyası yazmak, onu CLEO klasörüne yerleştirmek ve oyunu çalıştırmak (yeni veya kaydedilmiş). 
 
 :::right light gray p-2
-What game versions are supported? -------
+Hangi oyun versiyonlarını destekliyor? -------
 :::
 
-CLEO 3 supports SA versions 1.0 and 1.01. It was tested with the US 1.0 and EUR 1.01 versions. If you have another version, please, let me know if CLEO 3 works or does not for you.
+CLEO 3, SA sürüm 1.0 ve 1.01'i destekler. US 1.0 ve EUR 1.01 sürümleriyle test edilmiştir. Başka bir sürümünüz varsa, lütfen CLEO 3'ün sizin için çalışıp çalışmadığını bana bildirin.
 
 :::right light gray p-2
-How to install CLEO 3? -------
+Nasıl indirilir bu CLEO 3? -------
 :::
 
-To install CLEO 3 run Sanny Builder 3. You will see word CLEO in the status bar outlined in red. Click it, read the license agreement and press the button ‘Install’.
-Physically, CLEO 3 uses 3 files in work: vorbisFile.dll, vorbishooked.dll, cleo.asi. You always can find latest versions of these files on the website [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
+CLEO 3'ü kurmak için Sanny Builder 3'ü çalıştırın. Durum çubuğunda kırmızıyla çerçevelenmiş CLEO kelimesini göreceksiniz. Tıklayın, lisans sözleşmesini okuyun ve ‘Install’ düğmesine basın.
+Fiziksel olarak CLEO 3, işte 3 dosya kullanır: vorbisFile.dll, vorbishooked.dll, cleo.asi. Bu dosyaların en son sürümlerini her zaman web sitesinde bulabilirsiniz. [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
 
-If you used CLEO 2 or CLEO 1, delete it manually to avoid conflicts with new version. If you used the cleo.asi of version 2, replace it with the new one. If you used the cleo.dll running from the main.scm, you must delete the cleo.dll and remove its loading code from the main.scm.
+CLEO 2 veya CLEO 1 kullandıysanız, yeni sürümle çakışmaları önlemek için manuel olarak silin. Sürüm 2'nin cleo.asi'sini kullandıysanız, yenisiyle değiştirin. main.scm'den çalışan cleo.dll'yi kullandıysanız, cleo.dll'yi silmeli ve yükleme kodunu main.scm'den kaldırmalısınız.
 
-The libraries CLEO 2 and CLEO 3 are fully compatible. All mods/plugins written for CLEO 2 should work with the new version.
+CLEO 2 ve CLEO 3 kitaplıkları tamamen uyumludur. CLEO 2 için yazılan tüm modlar/eklentiler yeni sürümle çalışmalıdır.
 
 :::right light gray p-2
-Should I change my SASCM.INI? -------
+SASCM.INI dosyasımı değiştirmeli miyim? -------
 :::
 
-Sanny Builder 3 has the files SASCM.INI and OPCODES.TXT already up to date. Future updates of the CLEO library may require some changes of these files. You will get all instructions along with the updates on [cleo.sannybuilder.com](http://cleo.sannybuilder.com/). 
+Sanny Builder 3'te SASCM.INI ve OPCODES.TXT dosyaları zaten güncel. CLEO kitaplığının gelecekteki güncellemeleri, bu dosyalarda bazı değişiklikler gerektirebilir. Güncellemelerle birlikte tüm talimatları alabilirsiniz: [cleo.sannybuilder.com](http://cleo.sannybuilder.com/). 
 
 :::right light gray p-2
-What about plugins? ------- [plugins][]
+Eklentileri ne olacak? ------- [plugins][]
 :::
 
-The plugins are the DLL files having an extension .CLEO. At startup, the CLEO library scans the folder GTASA\CLEO for the files with that extension and tries to load them. If successful, the plugin begins to work and complete the functions it was made for.
+Eklentiler, .CLEO uzantılı DLL dosyalarıdır. Başlangıçta, CLEO kütüphanesi GTASA\CLEO klasörünü bu uzantıya sahip dosyalar için tarar ve onları yüklemeye çalışır. Başarılı olursa, eklenti çalışmaya başlar ve yapıldığı işlevleri tamamlar.
 
-The plugin installation is very simple: just copy the plugin file to the folder GTASA\CLEO. TO cancel the plugin usage, delete proper file.
+Eklenti kurulumu çok basittir: sadece eklenti dosyasını GTASA\CLEO klasörüne kopyalayın. Eklenti kullanımını iptal etmek için uygun dosyayı silin.
 
-You may find the list of available plugins on [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
+Kullanılabilir eklentilerin listesini şu adreste bulabilirsiniz: [cleo.sannybuilder.com](http://cleo.sannybuilder.com/).
 
 :::right light gray p-2
-Is CLEO 3 redistributable? -------
+CLEO 3 paylaşılabilir mi? -------
 :::
 
-If you wrote a script using the CLEO library and (or) its plugins, you may distribute needed files along with that script. You also may direct the script users on [cleo.sannybuilder.com](http://cleo.sannybuilder.com/) to inform them how to use CLEO.
+CLEO kitaplığını ve/veya eklentilerini kullanarak bir komut dosyası yazdıysanız, gerekli dosyaları bu komut dosyasıyla birlikte dağıtabilirsiniz. Komut dosyası kullanıcılarını da yönlendirebilirsiniz: [cleo.sannybuilder.com](http://cleo.sannybuilder.com/) to inform them how to use CLEO.
 
 :::right light gray p-2
-Credits? -------
+Emeği Geçenler? -------
 :::
 
-The author of the CLEO library is [Seemann](http://www.gtaforums.com/index.php?showuser=49411). The author has no liability for any negative consequences caused by using this product. Use it at your own risk.
+CLEO kütüphanesinin yapımcısı [Seemann](http://www.gtaforums.com/index.php?showuser=49411). Yapımcı, bu ürünün kullanılmasından kaynaklanan herhangi bir olumsuz sonuçtan sorumlu değildir. Kendi sorumluluğunuzdadır kullanın.
 
-If you want to help in developing of the library or its plugins, contact me by forum or e-mail.
+Kütüphanenin veya eklentilerinin geliştirilmesine yardımcı olmak istiyorsanız, forum veya e-posta yoluyla benimle iletişime geçin.
 
-Also thanks to [Stanislav Golovin](http://www.gtaforums.com/index.php?showuser=236130 "(aka listener)") for his support and useful information.
+Ayrıca teşekkürlerimi dilerim [Stanislav Golovin](http://www.gtaforums.com/index.php?showuser=236130 "(bir diğer ismi ile: dinleyici)") Desteği ve faydalı bilgileri için...
 
 <script src="../../js/main.min.js"></script>
