@@ -297,6 +297,7 @@ SP.toMarkdown = function(){
 			
 			sa   = img+"sa/",
 			sam  = img+"sa_mobile/",
+			samp = img+"samp/",
 			vc   = img+"vc/",
 			gta3 = img+"gta3/",
 			
@@ -323,6 +324,12 @@ SP.toMarkdown = function(){
 
 	/******** LIST ********/
 
+	// Import the value of vars
+	.r(/{{ ([^\n]+) }}/g, function(input){
+		input = input.r(/{{ ([^\n]+) }}/, '$1')
+
+		return new Function('return '+ input)()
+	})
 	// SCAPE CHAR
 	.rA("\\n", "<br/>")
 	.rA("\\s", "&nbsp;")
@@ -330,7 +337,7 @@ SP.toMarkdown = function(){
 	.r(/\\./g, function(input){
 		return '&#' + input.r('\\').charCodeAt(0) + ';'
 	})
-	.r(/<\!--(.+)-->/g)
+	.r(/<\!--(.+)-->/g, '')
 
 	// ID
 	.r(/\[([^\[\]]+)\]\[\]/g, '<a id="$1"></a>')
@@ -341,10 +348,14 @@ SP.toMarkdown = function(){
 		.r(/{% hint style="(\w+)" %}\n/g, '<div class="$1">')
 		.r(/{% endhint %}\n/g, '</div>\n')
 	  // SYNTAX OF MATIDRAGON
+		//:::<class>[#<id>][ <styles>]
+		//<body of element>
+		//:::
 		.r(/:::([\w\d\x20\-_]+)(#([\w\d\-_]+))?(\x20([^\n]+))?\n/g, '<div id="$3" class="$1" style="$5">\n')
 		.r(/:::\n/g, '</div>\n')
 
 	// BLOCKQUOTES
+	//> <body of element>
 	.r(/^>\x20(.+)/gm, '<blockquote>\n$1</blockquote>')
 	.r(/<\/blockquote>(\s+)<blockquote>/g, '<br>')
 
@@ -378,8 +389,8 @@ SP.toMarkdown = function(){
 	.rA('<\/dl><dl>', '')
 
 	// CHECKBOX
-	.r(/^\[\]\x20(.+)/gm, "<input type='checkbox' disabled> $1<br>")
-	.r(/^\[x\]\x20(.+)/gim, "<input type='checkbox' disabled checked> $1<br>")
+	.r(/^(\x20|\t)?\[\]\x20(.+)/gm, "<div><input type='checkbox' disabled> $2</div>")
+	.r(/^(\x20|\t)?\[x\]\x20(.+)/gim, "<div><input type='checkbox' disabled checked> $2</div>")
 
 	/*** FORMAT ***/
 	.r(/\*\*\*([^\*\n]+)\*\*\*/g, '<b><i>$1</i></b>')
@@ -410,6 +421,7 @@ SP.toMarkdown = function(){
 			'memo' : '📝',
 			'warning' : '⚠',
 			'bulb' : '💡',
+			'tip' : '💡',
 		}
 		
 		input = input.split(':')
@@ -491,15 +503,18 @@ SP.toMarkdown = function(){
 	})
 	
 	// HR
-	.r(/^--+-$/gm, '<hr>')
+	.r(/^(--+-|\*\*+\*|__+_)$/gm, '<hr />')
 
 	// BR
-	.r(/(\n\[)/g, '<br>$1')
+	.r(/([^\s])\x20\x20$/gm, '$1<br>')
 	.r(/([^`])`\n\n`([^`])/, "$1`<br><br>`$2")
 	.r(/(\n^\.\n|(\.|:|\!|\)|b>|a>)\n\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br><br>$3')
 	.r(/(\x20\x20\n|\\\n|\\n\w|(\.|:|\!|\)|b>|a>)\n([0-9\u0041-\u005A\u0061-\u007A\u00C0-\uFFFF]|¿|<b|<(ul|ol)?!|\*|`[^`]))/g, '$2<br>$3')
 	
 	// PRE
+	//```<classes>[#<id>]
+	//<body of element>
+	//```
 	.r(/```([^`]*)```/g, function(input){
 		input = input.match(/```([\w\d\x20\-_]+)?(#[\w\d\-_]+)?\n([^`]*)```/)
 
