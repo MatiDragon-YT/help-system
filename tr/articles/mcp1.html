@@ -1,7 +1,7 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-	<title>Coding Bible. Part I</title>
+	<title>CLEO Kodlama İncili. Bolüm I</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,54 +13,54 @@
 Grand Theft Auto
 [orange][San Andreas]
 \n
-[red][Mission Coding with Sanny Builder Tutorial]
-[gray][Part I]
-[gray][Getting started]
+[red][SannyBuilder ile Görev Kodlama Eğitimi]
+[gray][Bölüm I]
+[gray][Kodlamaya Başlangıç]
 \
 \
 :::
 
-## Introduction 
+## Öndeyiş 
 
-Hi, since a long time I wanted to make a tutorial for newbies, it won't tell you what to do, it will helps you doing what you want to do. It can also be a good tutorial for Sanny builder. I tried to make a tutorial for anyone even if you don't know anything about programming. You might want jump straight to [part II](mcp2.html), if you think you know enough about coding to get started.
+Merhabalar, uzun zaman boyunca yeni kodlayanlara bir öğretici yapmak istemişimdir, ne yapmanızı gerektiğini değil de, ne yaptığınızda yardımcı olacak şeyi anlatacak. Ayrıca SannyBuilder içinde güzel bir öğretici olacak. Bunun gibi bir öğretici yazısı daha yazdım, kodlamaya hiç girişmeyenler varsa diye bu sayfa var. Eğer siz biliyorsanız [Bölüm II](mcp2.html) sayfasına atlayabilirsiniz, Eğer kodlamaya yeni değilseniz...
 
-With Mission coding (or Mission scripting) you can make your own missions, your own mods or modificate existing ones (you can find many in this [Mission Mods](http://www.gtaforums.com/index.php?showforum=65) and this [Mission Coding](http://www.gtaforums.com/index.php?showforum=49) (and is where you can ask questions about coding).
+Görev kodlama ile (yada Görev entegre etmek) kendi görevlerinizi oluşturabilirsiniz, kendi modifikasyonlarınız için yada var olan modifikasyonlara (onları [Görev Modları](http://www.gtaforums.com/index.php?showforum=65) sayfasında bulabilir ve bu [Görev kodlama](http://www.gtaforums.com/index.php?showforum=49) sayfalarında (bu sayfada da görev kodlama hakkında sorularınızı sorabilirsiniz.).
 
-Mission coding is done with the files main.scm and script.img in data\script folder of San Andreas. Main.scm is a compiled file, so it's made in a language that the computer can understand it easily. If you open main.scm with hexadecimal editor it looks like that inside:
-**CODE**
+Görev kodlamaları main.scm yardımı ile ve script.img dosyası ile yapılıyor ki bunlar San Andreas'ın data\script klasöründe bulunabilir. Main.scm derlenmiş ve paketlenmiş dosyadır, yani Bilgisayarın anlayabileceği türden yazılmış bir dosya türünde ve dilinde. Eğer main.scm dosyasını bir tür hexadecimal editor ile açarsanız içini şöyle göreceksiniz:
+**KOD**
 
 ```
 D6 00 04 00 19 01 02 45 0E 4D 00 01 FE 3D 87 02 A6 00 02 45 0E
 ```
 
-So you need to uncompile it to have it in a human readable format, then we will be able to program in it. You don't need to do anything on the file script.img, the file is needed, so each main.scm will need his own script.img.
+İşte bu yüzden bunu bir insanın anlayacağı türden formatta derlenmesi lazım, ki üzerinde programlama yapalım. Unutmayın ki script.img dosyasını ellemenize gerek yok, ama dosya lazım, çünkü her main.scm kendi script.img dosyasına ihtiyaç duyuyor.
 
-So to decompile main.scm you need [Sanny Builder](https://sannybuilder.com/). There is many other decompiler but if you a beginer Sanny will be the best coding solution, because it's continuously update, has proper support, is fast, is colorfull 😏!!!!! And the tutorial is made with and for [Sanny Builder](https://sannybuilder.com/). 
-Sanny Builder is close to Barton Waterduck's San Andreas Mission builder but because the syntax is different I highly advise to use [Sanny Builder](https://sannybuilder.com/) but if you want to disobey, here it is : [Barton's Waterduck Mission Builder](http://www.kostelecky.com/craig/SAMB033.rar) -Craig's version, thanks to him.
+Main.scm'yi geri-derlememiz için gerekli alet tabiki [Sanny Builder](https://sannybuilder.com/). Tabiki birçok farklı geri-derleyen aletler var ama siz yeni bir kullanıcı iseniz Sanny kodlamak için en iyi seçenektir, çünkü çok yenileniyor, çok destek destek sağlıyor (bu çeviri gibi ☻), hızlı, ve baya rengarenk 😏!!!!! Ve bu öğretici yazısı [Sanny Builder](https://sannybuilder.com/) için yapılmıştır. 
+Sanny Builder birçok yönü ile Barton Waterduck's San Andreas Mission builder aletine benziyor ama kodlama dizimi türü farklıdır. Kesinlikle ama kesinlike [Sanny Builder](https://sannybuilder.com/) kullanılmasını öneririm ama karşıt çıkıyorsanız, buyrun : [Barton's Waterduck Mission Builder](http://www.kostelecky.com/craig/SAMB033.rar) -Craig'in özel versiyonu, teşekkürler Craig.
 
-Something very important, to get informations, the Sanny Builder's Help, it' full of very useful information and always available (like offline).
+Önemli olan bir diğer şey ise, bilgi edinmektir, Sanny Builder'ın Help aleti, birçok bilgiye sahip bu alet/program hakkında ve çeşitli özellikleri var. (İnternetsiz kullanabilmek gibi).
 
-Launch the executable follow usual installation process. Then go first to Tools\options (or press F10). In general tab check Show progress, Show report, Show warning, Quick game loading, Condition check, Ranges check, Writes opcodes, maybe Replace mission numbers, Insert Original mission names, Add extra info to SCM. I will explain later why we need those.
+İndirici aleti EXE kısaltımlı dosyaya tıklayarak indirin. Ve ilk olarak Tools\options kısmına girin (ya da direk F10 basın). General ya da Genel penceresinde Show progress, Show report, Show warning, Quick game loading, Condition check, Ranges check, Writes opcodes, maybe Replace mission numbers, Insert Original mission names, Add extra info to SCM ayarlarını tikleyin. Onlara neden ihtiyaç duyduğumuzu sonradan anlatacağım.
 
-Like this:
+Bunun gibi yapın:
 
 :::l
 ![](mcp1/rdfgbh3.png)
 :::
 
-Close Sanny Builder and reopen it.
+Sonra programı bir kapat-aç yapın.
 
-There is many other good tutorials that should help you: [YeTi's SA Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=214055&view=findpost&%20%20p=3163789), [YeTi's SA Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=214321&view=findpost&%20%20p=3167813), [Y_less quick tuto](http://www.gtaforums.com/index.php?showtopic=232687&view=findpost&%20%20p=3498916), those are for San Andreas. Vice City tutorials can help you too: [Alex "Y_Less" Cole's n00b guide to coding](http://www.gtaforums.com/index.php?showtopic=169526&view=findpost&%20%20p=2352371), [littleguna's VC Coding Tutorial](http://www.gtaforums.com/index.php?showtopic=156033&view=findpost&%20%20p=2137684), [YeTi's VC Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=189876&view=findpost&%20%20p=2794115), [YeTi's VC Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=191001&view=findpost&%20%20p=2819222). The [GTAforums tutorial archive](http://www.gtaforums.com/index.php?showtopic=141222&view=findpost&%20%20p=1834859). You can find more in this forum here. 
+Size yardım edebilecek birçok öğretici var: [YeTi's SA Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=214055&view=findpost&%20%20p=3163789), [YeTi's SA Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=214321&view=findpost&%20%20p=3167813), [Y_less quick tuto](http://www.gtaforums.com/index.php?showtopic=232687&view=findpost&%20%20p=3498916), bunlar San Andreas için. Vice City öğreticileri de size yardımcı olabilir: [Alex "Y_Less" Cole's n00b guide to coding](http://www.gtaforums.com/index.php?showtopic=169526&view=findpost&%20%20p=2352371), [littleguna's VC Coding Tutorial](http://www.gtaforums.com/index.php?showtopic=156033&view=findpost&%20%20p=2137684), [YeTi's VC Coding Tutorial Part One](http://www.gtaforums.com/index.php?showtopic=189876&view=findpost&%20%20p=2794115), [YeTi's VC Coding Tutorial Part Two](http://www.gtaforums.com/index.php?showtopic=191001&view=findpost&%20%20p=2819222). The [GTAforums tutorial archive](http://www.gtaforums.com/index.php?showtopic=141222&view=findpost&%20%20p=1834859). Daha fazla öğretici bu forumlarda bulabilirsiniz. 
 You can visit [GTAmodding.com](http://www.gtamodding.com/) and particulary [Mission scripting](http://www.gtamodding.com/index.php?title=Category:Mission_Scripti%20%20ng) category.
 
-### 1. Main.scm architecture
+### 1. Main.scm'nin mimarisi
 
-So now copy original main.scm and script.img to a new coding working folder (or anywhere you want : desktop, My docs, recycle bin, your mum's docs 😁 ....) you've created and open it (make backups !!!!! like doing right away a new folder for original main.scm and script.img) by clicking open and selecting SCM File (*.scm). You can see the progress bar filling up (That's why we've truned on the option "Show progress"). 
+Şimdi orijinal main.scm ve script.img'yi yeni bir kodlama çalışma klasörüne kopyalayın (veya istediğiniz herhangi bir yer: masaüstü, Belgelerim, geri dönüşüm kutusu, annenizin belgeleri 😁 ....) oluşturdunuz ve şimdi açınız (yedekleme yapın !!!!! orijinal main.scm ve script.img için hemen yeni bir klasör oluşturun) aç'a tıklayarak ve SCM Dosyasını seçin (*.scm). İlerleme çubuğunun dolduğunu görebilirsiniz (Bu nedenle "İlerlemeyi göster" seçeneğini kapatalım). 
 
-#### Define section:
+#### Tanım listesi bölümü:
 
-And you will get something like that:\
-**CODE**
+Açtığınızda ise şunu göreceksiniz:\
+**KOD**
 
 ```sb3
 // This file was decompiled using sascm.ini published by Seemann (http://sannybuilder.com/files/SASCM.rar) on 13.10.2007
@@ -73,10 +73,10 @@ DEFINE OBJECT KB_BANDIT_U              // Object number -4
 etc...
 ```
 
-As you can see it defines the objects that will be used in the main.scm, there is 389 of them like said on top (DEFINE OBJECTS 389). To add an object just go to to last one and add yours.
+Gördüğünüz gibi main.scm içinde kullanılacak nesneleri tanımlıyor, üstte söylendiği gibi 389 tane var (DEFINE OBJECTS 389). Bir nesne eklemek için sonuncuya gidin ve kendinizinkini ekleyin.
 
-Further down (much further down) you can find that:\
-**CODE**
+Daha aşağıda (çok daha aşağıda) bunu bulabilirsiniz:\
+**KOD**
 
 ```sb3
 DEFINE MISSIONS 135
@@ -87,9 +87,9 @@ DEFINE MISSION 3 AT @NONE
 etc...
 ```
 
-This defines the missions, there is 135 of them like said on top (`DEFINE MISSIONS 135`). If you use Xbox, Playstation 2, or [jarjar 2-player](http://www.gtaforums.com/index.php?showtopic=208450&view=findpost&%20%20p=3069233) mod files you can see that there is more missions which are 2 player console mission but that's another story...\
+Bu, görevleri tanımlar, üstte söylendiği gibi 135 tane var. (`DEFINE MISSIONS 135`). Xbox, Playstation 2 veya [jarjar 2-player](http://www.gtaforums.com/index.php?showtopic=208450&view=findpost&%20%20p=3069233) mod dosyalarında 2 oyunculu konsol görevi olan daha fazla görev olduğunu görebilirsiniz ama bu başka bir hikaye...\
 \
-**CODE**
+**KOD**
 ```sb3
 DEFINE EXTERNAL_SCRIPTS 78 // Use -1 in order not to compile AAA script
 DEFINE SCRIPT PLAYER_PARACHUTE AT @PLCHUTE // 0
@@ -100,9 +100,9 @@ DEFINE SCRIPT SLOT_MACHINE AT @BANDIT // 4
 etc...
 ```
 
-This defines the external scripts which are scripts (programs) that are triggered when needed, there is 78 of them like said on top. That's what handles the Parachute (player -`PLAYER_PARACHUTE`- and non-players -`PARACHUTE`-), Games at the casino (`ROULETTE`, `VIDPOK` -Video Poker-, `BLACKJ` -Black Jack-, `WHEELO` -Wheel Of Fortune-, etc...), Shops (`AMMU`, `TATTOO`, `BARBER`, `JUNKFUD`, `CARMOD`), and many other thing more or less weird (`DEBT`, `STRIPW`, `GF_SEX`, `HOME_BRAINS`...) More about those later on.
+Bu, gerektiğinde tetiklenen komut dosyaları (programlar) olan harici komut dosyalarını tanımlar, yukarıda belirtildiği gibi 78 tane vardır. Paraşütü idare eden şey bu (player -`PLAYER_PARACHUTE`- and non-players -`PARACHUTE`-), Kumarhanedeki oyunlar (`ROULETTE`, `VIDPOK` -Video Poker-, `BLACKJ` -Black Jack-, `WHEELO` -Şans Çarkı-, etc...), Dükkanlar (`AMMU`, `TATTOO`, `BARBER`, `JUNKFUD`, `CARMOD`), ve birçok değişik şey yada çokta değişik olmayan (`DEBT`, `STRIPW`, `GF_SEX`, `HOME_BRAINS`...) şeylerde var ama sonra anlatacağım bunları.
 
-Then you get to those 2 lines:\
+Sonra bu 2 satıra geliyorsunuz:\
 **CODE**
 ```sb3
 DEFINE UNKNOWN_EMPTY_SEGMENT 0
@@ -110,9 +110,9 @@ DEFINE UNKNOWN_EMPTY_SEGMENT 0
 DEFINE UNKNOWN_THREADS_MEMORY 574
 ```
 
-Which are undocumented and useless for me and you.
+Bunlar belgelenmemiş ve bizim için yararsız.
 
-#### Main section:
+#### ANAYAPIT (MAIN) kısmı:
 
 Now you can see something like this:\
 **CODE**
@@ -139,7 +139,7 @@ Now you can see something like this:\
 etc...
 ```
 
-Up to **before** there (use Sanny search tool and search "mission 0"):\
+**Oraya** kadar (Sanny arama aracını kullanın ve "görev 0"ı arayın):\
 **CODE** 
 ```sb3
 //-------------Mission 0---------------
@@ -152,11 +152,11 @@ Up to **before** there (use Sanny search tool and search "mission 0"):\
 etc...
 ```
 
-It is called the main part or the main section (and sometimes with imprecision named the main thread). In this there is many little bit of scripts that for example create the red circles which start missions, the thing that handles the phone calls (`CELLFON` and other things), that handles grilfriends, from where everything is triggered (started), where many many mods are added, and that's where you will start coding. The main section is composed of many little threads, but it starts with the main thread. And the thread is (and is the only one) created by the engine itself, you don't have to use the opcode that create threads `004F` (**create_thread**) like everyother ones to ingnite it. Don't worry, a whole part will be dedicated to threads later.
+Ana bölüm veya ana bölüm olarak adlandırılır (ve bazen ana iş parçacığı olarak adlandırılan belirsizlikle). Bunda, örneğin görevleri başlatan kırmızı daireleri oluşturan, telefon görüşmelerini yöneten şey ('CELLFON' ve diğer şeyler), grilfriends'i yöneten, her şeyin tetiklendiği (başlatıldığı) yer olan pek çok küçük komut dosyası vardır. birçok mod eklendi ve kodlamaya buradan başlayacaksınız. Ana bölüm birçok küçük iplikten oluşur, ancak ana konu ile başlar. Ve iş parçacığı (ve tek iş parçacığı) motorun kendisi tarafından oluşturulur, onu başlatmak için diğerleri gibi "004F" (**create_thread**) iş parçacıkları oluşturan işlem kodunu kullanmanız gerekmez. Endişelenmeyin, daha sonra tüm bölüm konulara ayrılacaktır.
 
-In the main part you can only use locals variables (`0@`, `1@`, `2@`, etc...) up to `31@` included, `32@` and `33@` are internals local timers (counts the amount of time elapsed, we'll see it later) that you can use too. But any over `33@` will not work in the main part. Sanny won't be happy and will tell you that the local var. is out of range (that's why we've turned "Range check" option on). You can use any globals you want but their number is limited to 16383, it should be far enough.
+Ana bölümde yalnızca yerel değişkenleri kullanabilirsiniz ('0@', '1@', '2@', vb.) '31@' dahil, '32@' ve '33@' dahili değişkenlerdir sizin de kullanabileceğiniz yerel zamanlayıcılar (geçen süreyi sayar, daha sonra göreceğiz). Ancak `33@` üzerindeki herhangi biri ana kısımda çalışmaz. Sanny mutlu olmayacak ve size yerel var olduğunu söyleyecektir. menzil dışında (bu yüzden "Menzil kontrolü" seçeneğini açtık). İstediğiniz küreselleri kullanabilirsiniz ancak sayıları 16383 ile sınırlıdır, yeterince uzak olmalıdır.
 
-#### Now Mission section:
+#### Şimdide görev bölümü:
 
 Then after:\
 **CODE**
@@ -171,9 +171,9 @@ Then after:\
 etc...
 ```
 
-It's the first mission (which actually ain't a mission because it's done during the first milliseconds of a new game before the cutscene and doesn't give any mission points). This mission actually create parked cars, some weapons pick up and other thing.
+Bu ilk görevdir (aslında bir görev değildir çünkü yeni bir oyunun ara sahneden önceki ilk milisaniyelerinde yapılır ve herhangi bir görev puanı vermez). Bu görev aslında park halindeki arabaları yaratıyor, bazı silahlar toplanıyor ve başka şeyler.
 
-After will get to the mission 1 (search mission 1)\
+Görev 1'e ulaşıldıktan sonra (Görev 1'i bulun)\
 **CODE**
 ```sb3
 //-------------Mission 1---------------
@@ -186,9 +186,9 @@ After will get to the mission 1 (search mission 1)\
 etc...
 ```
 
-Same as mission 0 it's not a mission, it only set some variables equal to number value, parked some cars again, activate some doors and lifts.
+Görev 0 ile aynı, ama bu bir görev değil, sadece bazı değişkenleri sayı değerine eşitliyor, bazı arabaları tekrar park ediyor, bazı kapıları ve asansörleri çalıştırıyor.
 
-Then Mission 2\
+Şimdi ise Görev 2\
 **CODE**
 
 ```sb3
@@ -204,16 +204,16 @@ Then Mission 2\
 etc...
 ```
 
-This one is part of the intro cutscene and the mission ends when you got to the red circle at CJ's home (Jonhson House in Ganton).
+Bu, giriş ara sahnesinin bir parçasıdır ve görev, CJ'nin evindeki (Ganton'daki Johnson House) kırmızı daireye geldiğinizde sona erer.
 
-After there is the arcades games (*originally: Video game: They crawled from uranus; originally: Video game: Duality; originally: Video game: Go Go Space Monkey; originally: Video game: Let's get ready to BUMBLE; originally: Video game: poker*) then other thing like pool (*originally: Pool*), dance (originally: Lowrider (bet and dance)) and Zero "hidden/bonus" mission (*originally: Beefy Baron*) and after those, the "Big smoke" Mission (mission 11) which is first mission of the game. 
+Oyun salonlarından sonra oyun salonları gelir (*orijinal olarak: Video oyunu: Uranüs'ten süründüler; orijinal olarak: Video oyunu: Duality; orijinal olarak: Video oyunu: Go Go Space Monkey; orijinal olarak: Video oyunu: BUMBLE'a hazırlanalım; orijinal olarak: Video oyunu : poker*) sonra bilardo (*başlangıçta: Havuz*), dans (başlangıçta: Lowrider (bahis ve dans)) ve Sıfır "gizli/bonus" görevi (*başlangıçta: Beefy Baron*) gibi diğer şeyler ve bunlardan sonra, " Oyunun ilk görevi olan Big Smoke" Görevi (görev 11).
 
-And then like that up to mission's 134 end.
-If you want to add a mission add after that and define it in define mission section. (more later on).
+Ve sonra görevin 134. sonuna kadar böyle.
+Eğer bir görev eklemek istiyorsanız, bundan sonra ekleyin ve görev tanımla bölümünde tanımlayın. (devamı daha sonra).
 
-#### External script section (last section)
+#### Ekstradan Scriptler (External Scripts) bölümü (son bölüm)
 
-After the last mission you can see all the defined external script starting with the first one `PLAYER_PARACHUTE`:\
+Son görevden sonra, ilk `PLAYER_PARACHUTE` ile başlayan tanımlanmış tüm harici komut dosyasını görebilirsiniz.:\
 **CODE**
 ```sb3
 //-------------External script 0 (PLAYER_PARACHUTE)---------------
@@ -223,7 +223,7 @@ After the last mission you can see all the defined external script starting with
 :PLCHUTE_16
 etc...
 ```
-and then **CODE**
+ve ondan sonra, **CODE**
 
 ```sb3
 //-------------External script 1 (PARACHUTE)---------------
@@ -233,29 +233,29 @@ and then **CODE**
 etc...
 ```
 
-and so on till the 77th external scripts. Many things in external scripts, by looking at the name of the external, you can often figure out what it is used for.
+ve böylece 77. harici komut dosyalarına kadar. Harici komut dosyalarındaki birçok şeyin, harici ismine bakarak, genellikle ne için kullanıldığını anlayabilirsiniz.
 
-What's most important for now is the main part.
+Şimdilik en önemli kısım ana kısım.
 
-But still about main.scm architecture, you need to know that some things are limited in main.scm look, [here](http://www.gtaforums.com/index.php?showtopic=213017&view=findpost&%20%20p=3145932). As you can see the main size (the lenght of all 'main part' threads) is limited to 200 000 bytes. To know how long the 'main part' is compile and look the report it tells you "MAIN size : XXXXXX b." and then the biggest mission "Largest Mission : XXXX b." and the Largest external script :
+Ama yine de main.scm mimarisi hakkında, main.scm görünümünde bazı şeylerin sınırlı olduğunu bilmeniz gerekir, [here](http://www.gtaforums.com/index.php?showtopic=213017&view=findpost&%20%20p=3145932). Gördüğünüz gibi ana boyut (tüm 'ana kısım' iş parçacıklarının uzunluğu) 200 000 bayt ile sınırlıdır. 'Ana bölümün' ne kadar süredir derlendiğini bilmek ve rapora bakmak için size "ANA boyut: XXXXXX b" diyor ve ardından en büyük görev olan "En Büyük Görev: XXXX b." ve En Büyük harici komut dosyası :
 
 :::l
 ![](mcp1/retfyhj2.png)
 :::
 
-That's why we've set on the option "Show report".
+Bu nedenle "Raporu göster" seçeneğini tikledik.
 
-### 2. Stripped scm and Opcodes
+### 2. Fix Paket bir SCM ve Kaynak Kodları
 
-#### A. Stripped SCM
+#### A. Fix Paket Bir SCM
 
-For your first coding projects you need a main.scm that is small (orgininal one is just hudge), and doesn't have thing that is useless for scripting. You will gain time compiling and not having to wait for the first cutscene. And also because of the scm limits, read above. 
+İlk kodlama projeleriniz için küçük (orijinal olan çok büyük) ve komut dosyası yazmak için yararsız hiçbir şeye sahip olmayan bir main.scm'ye ihtiyacınız var. Derleme yaparken zaman kazanacaksınız ve ilk ara sahneyi beklemek zorunda kalmayacaksınız. Ayrıca scm sınırları nedeniyle yukarıyı okuyun. 
 
-So a stripped scm is a main.scm which don't contains any mission, any external script, any main threads. Contains almost nothing, it just creates the player. 
+Yani fix paket bir scm, herhangi bir görev, herhangi bir harici komut dosyası, herhangi bir ana iş parçacığı içermeyen bir main.scm'dir. Neredeyse hiçbir şey içermez, sadece oynatıcıyı oluşturur. 
 
-You can find one in the folder \data\sa where you installed Sanny Builder under the name stripped.txt, it looks weird because it's written in Sanny Builder classes syntax, I won't tell much you about it, find more in Sanny Builder's Help. Not because it isn't good because I think it'll be easier to first learn with the "opcode method".
+Sanny Builder'ı kurduğunuz \data\sa klasöründe stripped.txt adıyla bir tane bulabilirsiniz, garip görünüyor çünkü Sanny Builder sınıfları sözdiziminde yazılmış, size bu konuda fazla bir şey anlatmayacağım, daha fazlasını Sanny Builder'ın dosyasında bulabilirsiniz Yardım. İyi olmadığından değil çünkü önce "opcode yöntemi" ile öğrenmenin daha kolay olacağını düşünüyorum.
 
-You should have something like that:
+Böyle bir şeye sahip olmalı:
 
 **CODE**
 ```sb3
@@ -333,23 +333,23 @@ DEFINE UNKNOWN_EMPTY_SEGMENT 0
 DEFINE UNKNOWN_THREADS_MEMORY 0
 ```
 
-Now you can define your missions and external scripts.
+Artık görevlerinizi ve harici komut dosyalarınızı tanımlayabilirsiniz.
 
-To put mods in this stripped scm you need to put your create threads command (like `004F: create_thread @MYTHREAD`) where it says : `// put your create_thread commands here`. And put your scripts after the `MAIN_LOOP` where it says `// put your mods (threads) here`.
+Modları bu soyulmuş scm'ye koymak için, create threads komutunuzu ('004F: create_thread @MYTHREAD' gibi) şunun yazdığı yere koymanız gerekir: `// create_thread komutlarınızı buraya koyun`. Ve komut dosyalarınızı "MAIN_LOOP"tan sonra "// modlarınızı (thread'lerinizi) buraya koyun" yazan yere koyun.
 
-### B. Opcodes
+### B. Kaynak Kodları
 
-In begining of most lines there is a 4 digit number followed by two dots like 0001:, 087B:, 016A: or 004E: like this 0605: in Sanny Builder . Those are called opcodes !!!!!!! And that's why we've set on the "Write opcodes" option.
+Çoğu satırın başında 4 basamaklı bir sayı ve ardından 0001:, 087B:, 016A: veya 004E: gibi iki nokta vardır, bunun gibi 0605: Sanny Builder'da. Bunlara işlem kodları (kaynak kodları) denir !!!!!! İşte bu yüzden "İşlem kodlarını yaz" seçeneğini belirledik.
 
-The opcode is the number of the command (action or operation) that the game engine will do with the parameters given, all opcodes (expect for a few) has a fixed number of parameters.
+İşlem kodu, oyun motorunun verilen parametrelerle yapacağı komutun (eylem veya işlem) sayısıdır, tüm işlem kodlarının (birkaç tanesi hariç) sabit sayıda parametresi vardır.
 
-Parameters (also called Params, or just P1, P2, or %p ) are the input (numbers, actors, vehicles, text strings or any type of variables) of the command. Sanny builder on bottom left tells you how much parameters an opcode needs:
+Parametreler (Paramlar veya yalnızca P1, P2 veya %p olarak da adlandırılır) komutun girdileridir (sayılar, aktörler, araçlar, metin dizileri veya herhangi bir değişken türü). Sol alttaki Sanny oluşturucu size bir işlem kodunun ne kadar parametreye ihtiyacı olduğunu söyler:
 
 :::l
 ![](mcp1/yrrgrg.png)
 :::
 
-Here is two example:
+İşte iki örnek:
 
 **simple**\
 **CODE**
@@ -357,10 +357,10 @@ Here is two example:
 000A: 3@ += 1 // integer values
 ```
 
-* `000A` : the opcode which does the operation add to integers.
-* `3@` and 1 : are the parameters, this opcode has 2 parameters.
+* `000A` : işlemi yapan işlem kodu tamsayılara ekler.
+* `3@` and 1 : parametrelerdir, bu işlem kodunun 2 parametresi vardır.
 
-So this get the local variable (more later) `3@` and adds one to it, like if `3@` was equal to 1 now it will be equal to 2 !!!
+Böylece bu yerel değişkeni (daha sonra) `3@` alır ve ona bir ekler, sanki `3@` 1'e eşitse, şimdi 2'ye eşit olacaktır !!!
 
 ```sb3
 0605: actor $PLAYER_ACTOR perform_animation_sequence "ATM" from_file "PED" 4.0 loop 0 0 0 0 6000 ms
@@ -369,49 +369,49 @@ So this get the local variable (more later) `3@` and adds one to it, like if `3@
 * `0605` : the opcode of the command 
 * `$PLAYER_ACTOR`, `"ATM"`, `"PED"`, `4.0`, `0`, `0`, `0`, `0`, `6000` : are the parameters, this opcode has 9 parameters. 
 
-This command make an existing actor (character) `$PLAYER_ACTOR` perform the animation `"ATM"` in the animation file `"PED"`, `4.0` is the playback rate of the animation, loop 0 mean it won't do the anim again once finish if the integer is set to 1 the actor will do the again again and again (loop) until it's told to do something else (or destroy, or "free" -changing it to any others ped you see in the game, opcode 01C2), then there is other parameters that we will talk later about them. The last one is the time for how long the animation will be executed by the engine, act like a wait and will make the engine stop executing the code until that time.
+Bu komut, mevcut bir aktörün (karakter) `$PLAYER_ACTOR` animasyonunu `"PED"` animasyon dosyasında `"ATM"` gerçekleştirmesini sağlar, `4.0` animasyonun oynatma hızıdır, döngü 0, yapmayacağı anlamına gelir anim tekrar bittiğinde, eğer tamsayı 1'e ayarlanmışsa, oyuncu başka bir şey yapması (veya yok etmesi veya "özgür" olması söylenene kadar) bunu tekrar tekrar yapacaktır (döngü) - ekranda gördüğünüz diğer pedlere değiştirerek oyun, opcode 01C2), daha sonra onlar hakkında konuşacağımız başka parametreler var. Sonuncusu, animasyonun motor tarafından ne kadar süreyle yürütüleceği, bir bekleme gibi davranacağı ve motorun o zamana kadar kodu yürütmesini durduracağı zamandır.
 
-Now to find the opcode you need you have many places:
+Şimdi ihtiyacınız olan işlem kodunu bulmak için birçok yere sahipsiniz:
 
-* Brilliant new "Opcode search tool" in Sanny Builder. In Tools menu, IDE tools, opcode search. Here just write what you're looking for and you'll get a chance to find it. There is a special section in Sanny Builder Help [here](../editor/opcode-search-tool.md) at It tells you the keys to copy opcodes to clipboard (selected opcode = Enter), to sort opcodes, etc... It uses the opcodes.txt that is created by Sanny and that you have to recrate manually if you change sacm.ini.
+* Sanny Builder'da parlak yeni "İşlem kodu arama aracı". Araçlar menüsünde, IDE araçları, işlem kodu araması. Buraya sadece aradığınızı yazın ve onu bulma şansınız olacak. Sanny Builder Yardım'da özel bir bölüm var, [buraya tıkla](../editor/opcode-search-tool.md) Burada size işlem kodlarını panoya kopyalamak için tuşları söyler (seçili işlem kodu = Enter), işlem kodlarını sıralamak için vb... Sanny tarafından oluşturulan ve sacm.ini'yi değiştirirseniz manuel olarak yeniden kaydetmeniz gereken opcodes.txt dosyasını kullanır.
 * Original main.scm uncompiled (the more __trustable__ one most times -pretty good explanation and if used here it DOES work-) Thanks to R* for making the game !!!!! Thanks to Barton Waterduck, Sanny Builder authors, and many others who help decompiling the scm, they should recognize themselves (if they have time reading this). 
-* [GTA:SA Opcodes](http://www.gtaforums.com/index.php?showtopic=194990&view=findpost&%20%20p=2888074) @ [GTAforums](http://www.gtaforums.com/) the place for opcodes and is very good because it contains good description, explainations, and what the value of a parameter do.
-Thanks to everyone who posted in the topic and to opius for starting it.
-* [http://sa-db.webtools4you.net/](http://sa-db.webtools4you.net/) THE interactive database, the best way to use it is to search "nothing" (just clic go) you'll have all opcodes, and then search with your internet browser "find in the page".
+* [GTA:SA Opcodes](http://www.gtaforums.com/index.php?showtopic=194990&view=findpost&%20%20p=2888074) @ [GTAforums](http://www.gtaforums.com/) işlem kodları için yer ve çok iyi çünkü iyi açıklama, açıklamalar ve bir parametrenin değerinin ne işe yaradığını içeriyor.
+Konuya mesaj gönderen herkese ve konuyu başlattığı için opius'a teşekkürler.
+* [http://sa-db.webtools4you.net/](http://sa-db.webtools4you.net/) Etkileşimli veritabanı, onu kullanmanın en iyi yolu, "hiçbir şey" araması yapmaktır (sadece git'e tıklayın), tüm işlem kodlarına sahip olacaksınız ve ardından internet tarayıcınızla "sayfada bul" şeklinde arama yapın.
 
-But the best way is to refer to all of them!!!\
+Ama en iyi yol hepsine atıfta bulunmaktır!!!\
 \
 The opcode descriptions come from a file called sascm.ini which is located in data\sa of Sanny builder installation folder. Updating this file will make new descriptions or/and change the opcode parameters. 
 
-* Original Sanny Builder sascm.ini is very good I advise you to keep it for the begining.
-* Unified opcode databse from PLPynton here, or the file here.. If you don't want to use the file you can still find some opcodes in the topic.
-- This opcode "database" has two big advantage, because it's very complete and keeps original parameters order, and a disadvantage is that it use a completly different syntax for description. 
-* Thanks to PLPynton for creating it.
+* Orijinal Sanny Builder sascm.ini çok iyi, onu başlangıç ​​için saklamanızı tavsiye ederim.
+* PLPynton'dan birleşik işlem kodu veritabanı burada veya dosya burada.. Dosyayı kullanmak istemiyorsanız, yine de konuda bazı işlem kodlarını bulabilirsiniz.
+- Bu işlem kodu "veritabanı"nın iki büyük avantajı vardır, çünkü çok eksiksizdir ve orijinal parametrelerin sırasını korur ve bir dezavantajı, açıklama için tamamen farklı bir sözdizimi kullanmasıdır.
+* Oluşturduğu için PLPynton'a teşekkürler.
 
-Spaceeinstein's sascm.ini here. Use the syntax which has always been used. Thanks to him. 
-To use the files sascm.ini that are given there you have to compile all the files you are working on close Sanny builder (if open) put the file in folder \data\sa in Sanny Builder installation folder (make backup), open Sanny and uncompile the files. Evrytime you change sascm.ini you have to do that.\
+Spaceeinstein'ın sascm.ini burada. Her zaman kullanılan sözdizimini kullanın. Onun sayesinde.
+Orada verilen sascm.ini dosyalarını kullanmak için, üzerinde çalıştığınız tüm dosyaları derlemeniz gerekir, Sanny builder'ı kapatın (açıksa), dosyayı Sanny Builder kurulum klasöründeki \data\sa klasörüne koyun (yedekleme yapın), Sanny'yi açın ve dosyaları derleyin. Sascm.ini'yi her değiştirdiğinizde bunu yapmanız gerekir.\
 \
 :::center
-!!!!!!!!!!!! Important !!!!!!!!!!!!\
+!!!!!!!!!!!! ÖNEMLİİİİİ !!!!!!!!!!!!\
 \
-About sascm.ini, don't mess too much with them, choose one and stick to it for a while. Everytime you change it you have to convert all your files, or compile and uncompile, but you have to watch out for opcode parameters, they get sometimes mess up in changing sascm.ini and you'll get crashes and bugs (and they'll be very hard to find).
+Sascm.ini hakkında, onlarla fazla uğraşmayın, birini seçin ve bir süre ona bağlı kalın. Her değiştirdiğinizde, tüm dosyalarınızı dönüştürmeniz veya derlemeniz ve derlemeden çıkarmanız gerekir, ancak işlem kodu parametrelerine dikkat etmeniz gerekir, bunlar bazen sascm.ini'yi değiştirirken karışırlar ve çökmeler ve hatalar alırsınız (ve bunlar bulmak çok zor).
 
-You will also have to recreate your opcodes.txt files otherwise completion with F1 or in the Opcode search. To do this go Tools and "Make opcodes.txt". My advise is to choose one of those, or keep the one that is given in Sanny Builder, and don't change it until you have a good reason to do so.\
-The tutorial is made with the sascm.ini given in Sanny Builder.
+Ayrıca, opcodes.txt dosyalarınızı yeniden oluşturmanız gerekecek, aksi halde F1 ile veya Opcode aramayla tamamlayabilirsiniz. Bunu yapmak için Araçlar'a gidin ve "Make opcodes.txt". Benim tavsiyem, bunlardan birini seçin veya Sanny Builder'da verileni saklayın ve bunun için iyi bir nedeniniz olana kadar değiştirmeyin.\
+Öğretici, Sanny Builder'da verilen sascm.ini ile yapılmıştır.
 :::
 
-### 3. Parameters and variables
+### 3. Parametreler ve değişkenler
 
-There is different types of parameters:
+Farklı parametre türleri vardır:
 
-* __Integer__ (or int), also called whole numbers like `1` or `-2` or `321` or any other.
-* __Floats__ or floating point values, any decimal number like `1.2` or `-2372.3845`. More on floating point numbers.
-* An __actor__ like CJ (YOU) which is store in the global variable `$PLAYER_ACTOR`, or Ryder ingame character in `$SA_RYDER`, or the soldier who watch the gate of the army base in Ryder's mission is store in the local variable `@102` . The variable gets called an handle when holding (keeping in memory) an actor (or a car), it will be the name of the object next, the handle form where you grab it.
-* __A "car"__ (in coding every vehicle -flying, floating, choppering- is a car), like often the car you're driving `$PLAYER_CAR`, well like the actors they're stored in local or global variables. Same as actors when stocking a car in a variable it's then called an handle.
-* __Model identifier__ like `#CHEETAH`, `#ARMY`, `#PARACHUTE`, the 3D model of a car, an actor, an object. It refers to the dff files that are store in gta3.img. And this model is needed to be loaded (put in memory) to create cars, actors or objects.
-* __Short text strings__ (8 bytes long) like `'STRAP_4'` or `'MTIME3'` which are lettred words that the engine "reads" when passing through and look for the file -or the line a the file- named. They're always 7 character maximum. It refers to file names such as gxt, animation files, IPL files (interiors garage etc...) or threads names, text entries (from gxt file), animations (the animation in the animation file), and many other things. Don't worry much it's just a format for the parameter.
-* __Long text strings__ (16 bytes or more long,) like `"ATM"` or `"JEANSDENIM"` . It's exactly the same as above it's just a format for the parameter, but this one can handle longer words (Sanny's ReadMe says up to 255 characters) and is used even if the word is shorter than 7 characters. You can find more explanations on strings (both short and long in this message from Seemann)
-* __Labels__ like `MAIN_4059` which are used only in jumps (and gosubs) because those opcodes (`0002: jump @`; `004D: jump_if_false @`; `0050: gosub @` ; or `004F: create_thread @` ) make the engine travels to (jump at) the label told. The label is represented with : before it.
+* __Tamsayı__ (veya int), "1" veya "-2" veya "321" veya başka herhangi bir tam sayı olarak da adlandırılır.
+* __Floats__ veya kayan nokta değerleri, "1.2" veya "-2372.3845" gibi herhangi bir ondalık sayı. Kayan nokta sayıları hakkında daha fazlası.
+* `$PLAYER_ACTOR` global değişkeninde saklanan CJ (YOU) gibi bir __actor__ veya `$SA_RYDER`da Ryder oyun içi karakteri veya Ryder'ın görevinde ordu üssünün kapısını izleyen asker yerel değişkende saklanır "@102" Değişken, bir oyuncuyu (veya bir arabayı) tutarken (hafızada tutarken) tutamaç olarak adlandırılır, sonraki nesnenin adı, onu yakaladığınız tutamaç formu olacaktır.
+* __Bir "araba"__ (kodlamada her araç -uçan, süzülen, doğrayan- bir arabadır), genellikle kullandığınız araba gibi `$PLAYER_CAR`, yerel veya küresel değişkenlerde depolanan aktörler gibi. Bir değişkende bir araba stoklarken aktörlerle aynı, buna tutamaç denir.
+* __Model tanımlayıcısı__ `#CHEETAH`, `#ARMY`, `#PARACHUTE` gibi, bir arabanın, aktörün, nesnenin 3B modeli. gta3.img'de depolanan dff dosyalarını ifade eder. Ve arabalar, aktörler veya nesneler yaratmak için bu modelin yüklenmesi (belleğe alınması) gerekir.
+* __Kısa metin dizileri__ (8 bayt uzunluğunda) `'STRAP_4'' veya ''MTIME3'' gibi, motorun içinden geçerken "okuduğu" ve dosyayı - veya dosyanın - adlı satırını aradığı harfli kelimelerdir. Her zaman maksimum 7 karakterdir. Gxt, animasyon dosyaları, IPL dosyaları (iç garaj vb...) veya konu adları, metin girişleri (gxt dosyasından), animasyonlar (animasyon dosyasındaki animasyon) ve diğer birçok şey gibi dosya adlarını ifade eder. Endişelenmeyin, bu sadece parametre için bir formattır.
+* __Uzun metin dizileri__ (16 bayt veya daha uzun) `"ATM"` veya `"JEANSDENIM"` gibi. Yukarıdakiyle tamamen aynıdır, yalnızca parametre için bir biçimdir, ancak bu daha uzun sözcükleri işleyebilir (Sanny'nin ReadMe'si 255 karaktere kadar diyor) ve sözcük 7 karakterden kısa olsa bile kullanılır. Dizeler hakkında daha fazla açıklama bulabilirsiniz (Seemann'dan gelen bu mesajda hem kısa hem de uzun)
+* __Etiketler__ `MAIN_4059` gibi, yalnızca atlamalarda (ve gosub'larda) kullanılır çünkü bu işlem kodları (`0002: jump @`; `004D: jump_if_false @`; `0050: gosub @` ; veya `004F: create_thread @` ) yapar motora yolculuk (atlama) etiketi söylendi. Etiket, önünde : ile gösterilir.
 
 example:\
 **CODE**
@@ -421,42 +421,42 @@ example:\
 0002: jump @label
 ```
 
-Variables are a little piece of memory where you store something in it. Once you've defined it the engine will remeber it until it's changed or cleared, even after saving the variable will still present (saving saves all the variable and reloads it when the game is loaded). Like when you create an actor you assign it a variable, which would be like it's name. In those you can put anything integer, floats, actors, vehicles, text strings (special format).
+Değişkenler, içinde bir şey sakladığınız küçük bir bellek parçasıdır. Tanımladıktan sonra motor, değiştirilene veya temizlenene kadar onu hatırlayacaktır, değişkeni kaydettikten sonra bile mevcut olmaya devam edecektir (kaydetmek tüm değişkeni kaydeder ve oyun yüklendiğinde yeniden yükler). Tıpkı bir aktör yarattığınızda, ona bir değişken atarsınız, bu onun adı gibi olur. Bunlara tamsayı, değişkenler, aktörler, araçlar, metin dizileri (özel biçim) gibi her şeyi koyabilirsiniz.
 
-Then there is two big family of variables:
+O zaman iki büyük değişken ailesi vardır:
 
-* Global variables : which are represented by starting with `$` . Globals can be use everywhere in the main.scm. If you set it to something in the main part in mission it will still be accessible and equal to something. Exemples : `$ONMISSION`, `$PLAYER_ACTOR`.
+* Global değişkenler: `$` ile başlayarak temsil edilirler. Globaller main.scm'de her yerde kullanılabilir. Görevin ana bölümünde bir şeye ayarlarsanız, yine de erişilebilir olacak ve bir şeye eşit olacaktır. Örnekler: `$ONMISSION`, `$PLAYER_ACTOR`.
 
-* Local variables : Locals are represented by an `@` at the end like `1@`, `2@`. Each thread (created by `004F`) has his own set of locals, like `0@` in `:thread_A` isn't the same as `0@` in `:thread_B`. In main part you __cannot__ use over `33@` (which is a local timer see downer for more details). But in mission you can use up to `1024@`.
+* Yerel değişkenler : Yereller, sonunda "1@", "2@" gibi bir "@" ile temsil edilir. Her iş parçacığının ('004F' tarafından oluşturulan) kendi yerel kümeleri vardır, örneğin ':thread_A' içindeki '0@', ':thread_B' içindeki '0@' ile aynı değildir. Ana kısımda `33@` üzerinden __yapamazsınız__ (bu yerel bir zamanlayıcıdır, daha fazla ayrıntı için aşağıya bakın). Ancak görevde en fazla `1024@` kullanabilirsiniz.
 
-Locals timers : `32@` and `33@`, are internal locals timers, they count the number of milliseconds that have elapsed. Like if you set it to 0 , wait 10 seconds and look how much `32@` or `33@` worth you'll find 10 000. if you set it to 1 000 and wait 5 second before looking it will then be equal to 6 000 ms.
+Yerel zamanlayıcılar : "32@" ve "33@" dahili yerel zamanlayıcılardır, geçen milisaniye sayısını sayarlar. Örneğin, 0 olarak ayarlarsanız, 10 saniye bekleyin ve bakın ne kadar '32@' veya '33@' değerinde 10 000 bulacaksınız. 1 000 olarak ayarlarsanız ve bakmadan önce 5 saniye beklerseniz eşit olacaktır 6 000 ms'ye kadar.
 
-Short and long text strings : text strings are stored in special format of variables. Text string a highlighted in red in Sanny. There is 4 kind of text variables 2 for short (8 bytes, `'STRING'`) strings, 2 for long strings (16 bytes, `"LONGSTRING"`):
+Kısa ve uzun metin dizileri : metin dizileri, özel değişken biçiminde saklanır. Metin dizisi a Sanny'de kırmızıyla vurgulanır. 4 tür metin değişkeni vardır 2 kısa (8 bayt, `'STRING'') dizeler için, 2 uzun dizeler için (16 bayt, `"LONGSTRING"`):
 
-#### For short strings
+#### Kısa dizeler için
 
-- a global text string like : `s$1169` or `s$ACTOR_SPEECH_GXT_REFERENCE` which can always be accessible like other globals.
-- a local text string like : `170@s` or `5@s` which are accessible only in their own thread.
+- `s$1169` veya `s$ACTOR_SPEECH_GXT_REFERENCE` gibi, diğer globaller gibi her zaman erişilebilen global bir metin dizesi.
+- "170@s" veya "5@s" gibi, yalnızca kendi ileti dizisinde erişilebilen yerel bir metin dizesi.
 
-#### For long strings
+#### Uzun dizeler için
 
-- a global text string : `v$1225` or `v$MYLONGSTRING`, same as short string but for long ones...
-- a local long string : `28@v`, same as short ones...
+- genel bir metin dizesi : `v$1225` veya `v$MYLONGSTRING`, kısa dizeyle aynı, ancak uzun olanlar için...
+- yerel bir uzun dize : `28@v`, kısa olanlarla aynı...
 
-BUT watch out, for `exemple0@s` replace `0@` if existing and vice versa, it is the same variable but they're just in a different format.
+ANCAK dikkat edin, "example0@s" için varsa "0@" yerine "0@" koyun, bu aynı değişkendir ancak yalnızca farklı bir biçimdedirler.
 
-And I want to remind (or tell) you that a integer and a float are different to game engine ( 1 isn't the same as 1.0 !!!!!). If the opcode needs a float and you give it a int (and vice versa) the game WILL crash. 
-You can convert an integer to a float with opcode `008D`. And convert a float to an integer with `008C`.
+Ve size bir tamsayı ve bir kayan noktanın oyun motorundan farklı olduğunu hatırlatmak (veya söylemek) istiyorum ( 1, 1.0 ile aynı değildir !!!!!). İşlem kodunun bir değişkene ihtiyacı varsa ve ona bir int verirseniz (ve tersi), oyun ÇÖKECEKTİR.
+Bir tamsayıyı "008D" işlem koduyla kayan sayıya dönüştürebilirsiniz. Ve "008C" ile bir kayan noktayı bir tamsayıya dönüştürün.
 
-### 4. Threads and labels
+### 4. Script Başlıkları ve etiketler
 
-A thread is a "stand alone" (something that needs nothing but itself) piece of code. It's like a program by itself (like an opened window on your operating system -like Microsoft Windows-). So to use (play ingame with) your future mods (programs, windows) you'll need to create a new one. What you do with `004F` like:\
+Bir iş parçacığı, "tek başına" (kendisinden başka hiçbir şeye ihtiyaç duymayan bir şey) kod parçasıdır. Kendi başına bir program gibidir (işletim sisteminizde açılan bir pencere gibi -Microsoft Windows gibi-). Gelecekteki modlarınızı (programlar, pencereler) kullanmak (oyun içinde oynamak) için yeni bir tane oluşturmanız gerekecek. "004F" ile ne yaparsınız:\
 **CODE**
 ```sb3
 004F: create_thread @MYTHREAD
 ```
 
-Threads are like fire in a world with matches (ligther, silex, well you cannot "make" fire you need to ingnite it from another fire -like the Olympic Flame never switched off between 2 olympic games). You must create a new one from an existing one. As I said before the main thread is created by the engine itself. The `'MAIN'` thread will lite your fire. So if it's the only existing thread (like in a stripped main.scm) you'll need to create your thread in the main thread BEFORE it gets switched off by (before this line):
+İplikler, kibritlerin olduğu bir dünyada ateş gibidir (daha hafif, silex, yani ateş "yakamazsınız", onu başka bir ateşten tutuşturmanız gerekir - tıpkı Olimpiyat Meşalesinin 2 olimpiyat oyunu arasında hiç sönmemesi gibi). Mevcut olandan yeni bir tane oluşturmalısınız. Daha önce de söylediğim gibi, ana iş parçacığı motorun kendisi tarafından oluşturulur. ''ANA'' iş parçacığı ateşinizi yakacak. Bu nedenle, mevcut tek iş parçacığıysa (soyulmuş bir main.scm'deki gibi), iş parçacığınızı kapatmadan ÖNCE (bu satırdan önce) ana iş parçacığında oluşturmanız gerekir:
 **CODE**
 ```sb3
 004E: end_thread
@@ -481,35 +481,35 @@ If using a bigger file (like orignal main.scm) just create it where there is man
 etc...
 ```
 
-Don't worry about `00D7: create_thread_with_wasted_busted_check` because their real use is actually unknown yet. Use `004F`, there is better ways to check if player is wasted or busted (like conditional opcode `0112`). As Seeman tells us later in the topic `004f` creates a thread with 0 to 32 extra-parameters, and `00d7` creates a thread with 0 extra-parameters. So don't worry at all about `00d7` because `004f` does the same and as more functionalities. (Seemann's message).
+"00D7: create_thread_with_wasted_busted_check" hakkında endişelenmeyin çünkü gerçek kullanımları henüz bilinmiyor. "004F" kullanın, oyuncunun boşa mı yoksa bozuk mu olduğunu kontrol etmenin daha iyi yolları vardır (koşullu işlem kodu "0112" gibi). Seeman'ın daha sonra bu konuda bize söylediği gibi, "004f" 0 ila 32 ekstra parametreli bir iş parçacığı oluşturur ve "00d7" 0 ekstra parametreli bir iş parçacığı oluşturur. Bu yüzden "00d7" hakkında hiç endişelenmeyin çünkü "004f" aynı işlevi görür ve daha fazla işlevsellik sunar. (Seemann'ın mesajı).
 
-Like I said before in each single thread you've create you have for each thread it's very own set of locals from `0@` to `33@` (`32@` and `33@` being local timers). They're pretty usefull because not sucking up memory.
+Daha önce de söylediğim gibi, oluşturduğunuz her bir iş parçacığında, her iş parçacığı için "0@" ile "33@" ("32@" ve "33@" yerel zamanlayıcılardır) arasında kendi yerel kümeniz vardır. Hafızayı emmedikleri için oldukça kullanışlıdırlar.
 
-A label is a little piece of thread like `:MAIN_4059`. Think now the thread as a book (no more fire 😧 ) and labels would be pages of this book. Then you can easily understand that a `jump` (or `jump_if_false`, or `gosub`) to a certain label would be like a report to a certain page.
+Etiket, `:MAIN_4059` gibi küçük bir ileti dizisidir. Şimdi ipliği bir kitap olarak düşünün (artık ateş yok 😧 ) ve etiketler bu kitabın sayfaları olur. O zaman, belirli bir etikete "atlamanın" (veya "jump_if_false" veya "gosub") belirli bir sayfaya rapor vermek gibi olacağını kolayca anlayabilirsiniz.
 
-I made an animated example for you to see how the game engine travels through the labels:
+Oyun motorunun etiketler arasında nasıl gezindiğini görmeniz için animasyonlu bir örnek yaptım:
 
 :::l
 ![](mcp1/ASDFG2.gif)
 :::
 
-The red line represent the code (the engine is called sometimes simply the code, like the code reader) going through labels.
+Kırmızı çizgi, etiketlerin içinden geçen kodu (motor bazen kod okuyucu gibi basitçe kod olarak adlandırılır) temsil eder.
 
-As you can see the thread `label` is created from another thread. You can see the code "seperating" in two one going to just created thread `label` one keeps doing the thread it use to do, and it gets ended (but could be continuing to do things if you don't end it). 
-It goes through `:label` to `:label_100`. In `:label_100` you can see there is an "if" with a condition in it, followed by a jump_if_false, this means that if `$PLAYER_ACTOR` is near position in 3 dimension `2498.0 -1711.0 1015.0` the code can pass through and jump to `:label_200`.
-So the code keeps looping in `:label_100` until the condition is satisfied.
-Then jumps to `:label_200` without passing through `:label_150`, going straight to `:label_200`. Does what it needs to do in `:label_200` (which is to put the 3D coordinates of actor `$PLAYER_ACTOR` into variables `$X_COORD $Y_COORD $Z_COORD`). Then jumps to `:label_150`, waits 1minute and jump back :label_100 and check again if player's near the point. And will do all over again and again and again. You don't have to end a thread if you don't need to, it can just keep check something to start. Don't forget you got to do something with your thread, keep it running or end it but don't let it free.\ 
+Gördüğünüz gibi `etiket` iş parçacığı başka bir iş parçacığından oluşturuldu. "Ayrılan" kodun ikiye ayrıldığını görebilirsiniz, biri az önce oluşturulan 'etiket' iş parçacığına gidiyor, biri yapmak için kullandığı iş parçacığını yapmaya devam ediyor ve sona eriyor (ancak bitirmezseniz bir şeyler yapmaya devam ediyor olabilir).
+":label"den ":label_100"e gider. ":label_100"de, ​​içinde koşul bulunan bir "if" ve ardından bir jump_if_false olduğunu görebilirsiniz; bu, "$PLAYER_ACTOR" 3 boyutta "2498.0 -1711.0 1015.0" konumuna yakınsa kodun geçebileceği anlamına gelir ve ":label_200" konumuna atlayın.
+Bu nedenle, koşul sağlanana kadar kod ":label_100" içinde döngüye devam eder.
+Ardından, ":label_150"den geçmeden ":label_200"e atlar ve doğrudan ":label_200"e gider. `:label_200`de yapması gerekeni yapar (yani `$PLAYER_ACTOR` aktörünün 3B koordinatlarını `$X_COORD $Y_COORD $Z_COORD` değişkenlerine koymaktır). Sonra `:label_150`ye atlar, 1 dakika bekler ve :label_100'e geri atlar ve oyuncunun noktaya yakın olup olmadığını tekrar kontrol eder. Ve her şeyi tekrar tekrar yapacak. Gerekmiyorsa bir ileti dizisini bitirmek zorunda değilsiniz, yalnızca başlamak için bir şeyi kontrol etmeye devam edebilir. İpliğinle ilgili bir şeyler yapman, devam ettirmen veya bitirmen gerektiğini unutma ama onu serbest bırakma.\ 
 \
 :::center
-!!!!!!! Notice the wait (`0001: wait 0 ms`), because it's compulsory !!!!!!!!!!!!!\
-When looping you have to add a wait so the engine doesn't get itself stucked in it, and it won't even crash then it will just simply freeze. The only way to recover from it is to force resolution change (sometimes just impossible to do, and some laptops have a combo key) and end GTA:SA with task manager.
+!!!!!!! Beklemeye dikkat edin (`0001: 0 ms` bekleyin), çünkü bu zorunludur !!!!!!!!!!!!\
+Döngü yaparken, motorun kendi kendine sıkışmaması için bir bekleme eklemeniz gerekir ve hatta çökmez, sonra sadece donar. Bundan kurtulmanın tek yolu, çözünürlük değişikliğini zorlamak (bazen yapmak imkansızdır ve bazı dizüstü bilgisayarlarda birleşik tuş bulunur) ve GTA:SA'yı görev yöneticisi ile sonlandırmaktır.
 
-If you don't really know if you should add a wait or not just add "wait 0 ms", because most times you will not see the difference at all, and mostly anything under 500 ms you don't notice it.
+Bir bekleme eklemeniz gerekip gerekmediğini gerçekten bilmiyorsanız, sadece "0 ms bekleyin" eklemeyin, çünkü çoğu zaman farkı hiç görmezsiniz ve çoğunlukla 500 ms'nin altındaki herhangi bir şeyi fark etmezsiniz.
 :::
 
-### 5. "If"s and conditional opcodes
+### 5. "Eğer"ler ve koşullu işlem kodları
 
-What's called an `if` is a code strucutre that checks if something is happening. Like:\
+"if" denen şey, bir şeylerin olup olmadığını kontrol eden bir kod yapısıdır. Beğenmek:\
 if\
 I die\
 if not then --> I will finish my mods\
@@ -523,9 +523,9 @@ In Sanny Builder it would look like
 0002: jump @givemods
 ```
 
-The engine will travel straight through if the something checked happens but jump to another label if it doesn't happend (`004D: jump_if_false @`). The something (which could or not happend) of the if is called a condition, for them you use conditionals opcode !!!!!!! And you can put up to seven conditions in one if !!!!!!! (I know you're like "Yes I'm so happy, that's really change my life !!!!!!...." but...).
+Motor, kontrol edilen bir şey olursa doğrudan hareket edecek, eğer olmazsa başka bir etikete atlayacaktır (`004D: jump_if_false @`). İf'in (olabilecek ya da olmayacak) bir şeyine koşul denir, onlar için koşullu opcode kullanırsınız !!!!!!! Ve bir tanesine en fazla yedi koşul koyabilirsiniz, eğer !!!!!!! ("Evet çok mutluyum, bu gerçekten hayatımı değiştirdi !!!!!!...." dediğinizi biliyorum ama...).
 
-Then there is two kind of multiple conditions ifs:
+O zaman iki tür çoklu koşul vardır yani Eğerler:
 
 When you have multiple conditions you might want to have __all__ conditions true (happens) or __at least one of them__ true. 
 
@@ -556,13 +556,13 @@ Here it's if any of these door is open keep going but if not jump to `:MAIN_4336
 </li>
 </ul>
 
-__And__ and __or__ are called logic operators.
+__And__ ve __or__ mantıksal işleçler olarak adlandırılır.
 
-Notice how it wouldn't make sens to add an or or an and in a single condition if. Only one condition, you just cannot use them, only one element !!!!! And sanny builder won't like it neither it will tell you "hey don't do that".
+Tek bir koşulda bir veya veya bir ve eklemenin ne kadar anlamlı olmayacağına dikkat edin. Tek bir koşul, onları kullanamazsınız, yalnızca bir öğe !!!!! Ve sanny inşaatçı bundan hoşlanmayacak ve size "hey bunu yapma" demeyecek.
 
-On the other hand don't forget to put an or or an and to your multiples conditions ifs, becasue sanny won't say anything, the game might not crash, but I'm sure it won't work properly, either and or or, but you need to put something in multiple conditions ifs.
+Öte yandan, if'lerin katlarına bir veya veya bir ve koymayı unutmayın, çünkü sanny bir şey söylemez, oyun çökmeyebilir, ama eminim düzgün çalışmaz, ya ve veya veya, ancak bir şeyi birden çok ifs koşuluna koymanız gerekir.
 
-You can negate all conditional opcodes. Negate is like adding a not in the conditons. If actor not dead, or if actor not driving. Then it means that to pass through it, the condition needs to return false (don't happend). You can negate conditional opcodes in mutlpiple conditions ifs too. To negate a conditional opcode you have to put a 8 at the first digit instead of 0, like :
+Tüm koşullu işlem kodlarını reddedebilirsiniz. Olumsuzlamak, koşullara bir değil eklemek gibidir. Oyuncu ölmediyse veya aktör araba kullanmıyorsa. O zaman bu, içinden geçmek için koşulun yanlış döndürmesi gerektiği anlamına gelir (olmama). Koşullu işlem kodlarını çoklu ifs koşullarında da olumsuzlayabilirsiniz. Koşullu bir işlem kodunu reddetmek için ilk basamağa 0 yerine 8 koymanız gerekir, örneğin:
 
 ```sb3
 00D6: if
@@ -579,9 +579,9 @@ not negated
 ```
 negated.
 
-You don't have to write `not` the compiler (sanny) will not look at it, and it will write it when re-uncompiling. But you still can write `not` if you want, it makes it clearer and easier to work with. But you really HAVE TO write the 8 in the opcode.
+`not` yazmak zorunda değilsiniz derleyici (sanny) ona bakmayacak ve yeniden derlemeyi açarken yazacaktır. Ama yine de isterseniz `not` yazabilirsiniz, bu daha net ve üzerinde çalışmayı kolaylaştırır. Ama gerçekten 8'i işlem koduna yazmak ZORUNDASINIZ.
 
-When you negate all conditions a 'multiple conditions if', you have to change around the logic operator.
+Tüm koşulları bir 'birden fazla koşul' olarak olumsuzladığınızda, mantık işlecini değiştirmeniz gerekir.
 
 ```sb3
 00D6: if or
@@ -607,12 +607,12 @@ When you negate all conditions a 'multiple conditions if', you have to change ar
 0002: jump @labelY
 ```
 
-Those two do the same:
+Bu ikisi aynı şeyi yapıyor:
 
-* the first one checks if player is agressive __or__ aiming at actor `14@` __or__ aiming at actor `15@` __or__ aiming at actor `16@` __or__ aiming at actor `17@` , if any of those is true the code passes through and jump to labelz. 
-* the second one check if player is not agressive __and__ not aiming at actor `14@` __and__ not aiming at actor `15@` __and__ not aiming at actor `16@` __and__ not aiming at actor 17@`, if any of those is false (if player do aims) the code will jump because it's false to labelz. 
+* ilki, oyuncunun agresif olup olmadığını kontrol eder __veya__ aktör `14@` __veya__ `15@` aktörünü hedefliyor __veya__ `16@` aktörünü hedefliyor __veya__ `17@` aktörünü hedefliyor, bunlardan herhangi biri doğruysa kod geçer ve labelz'e atlar.
+* ikincisi, oyuncunun saldırgan olup olmadığını __ve__ `14@` aktörünü hedeflemediğini __ve__ `15@` aktörünü hedeflemediğini __ve__ `16@` aktörünü hedeflemediğini __ve__ bunlardan herhangi biri varsa, 17@` aktörünü hedeflemediğini kontrol eder. false ise (eğer oyuncu nişan alırsa), labelz için false olduğu için kod atlayacaktır.
 
-Sometimes when look for some nice mods you might find:\
+Bazen güzel modlar ararken şunları bulabilirsiniz:\
 **CODE**
 ```sb3
 00D6: if 0
@@ -633,27 +633,27 @@ or\
 00D6: if 25
 ```
 
-Don't worry it's the same, compile, then decompile it and you'll have the logic operator written. And that's why we've enable "Conditions check", so we can use and & or and Sanny writes them when decompiling. 
+Endişelenmeyin, aynı, derleyin, sonra kaynak koda dönüştürün ve mantık operatörünü yazdırmış olacaksınız. İşte bu yüzden "Koşul kontrolü"nü etkinleştirdik, böylece ve & veya kullanabiliriz ve Sanny bunları kaynak koda dönüştürürken yazar.
 
-if 0 = if 
+0 ise = eğer
 
-if x = if and 
+eğer x = ise ve
 
-if 2x = if or 
+eğer 2x = ise veya
 
-Read [Conditions in Sanny Builder's Help](../coding/conditions.md) or/and [here](http://www.gtaforums.com/index.php?showtopic=134970&view=findpost&%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p=2083394) (It's for Vice City but is the same, just ignore "?") for more explanations.
+[Sanny Builder's Help'teki Koşulları](../coding/conditions.md) veya/ve [burayı](http://www.gtaforums.com/index.php?showtopic=134970&view=findpost&%20%20%20) okuyun %20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p=2083394) (Vice City için ama aynı, sadece daha fazla açıklama için "?") öğesini yoksayın.
 
-You might want to do high-level conditions construction, read [Conditions in Sanny Builder's Help](../coding/conditions.md), it explains it pretty well. Low level contructions can be good for now, and you can make high level with low level anyway.
+Üst düzey koşulları oluşturmak isteyebilirsiniz, [Sanny Builder's Help'teki Koşulları](../coding/conditions.md) okuyun, oldukça iyi açıklıyor. Düşük seviye konstrüksiyonlar şimdilik iyi olabilir ve yine de düşük seviye ile yüksek seviye yapabilirsiniz.
 
-:::center
-BUT remember well when doing "if"s, add waits where you know the code is going to loop back. And a wait 0 is never a problem because it actually wait for 0 milisecond which is pretty short !!!!!!! but it will let time to the engine doing other things. Relook at the animated exemple for labels to understand where you'll absolutly need wait.
+:::merkez
+ANCAK, "eğer"leri yaparken iyi hatırlayın, kodun geri döneceğini bildiğiniz yere beklemeler ekleyin. Ve 0 bekleme asla sorun olmaz çünkü aslında 0 milisaniyeyi bekler ki bu oldukça kısadır !!!!!!! ancak motorun başka şeyler yapmasına zaman tanıyacaktır. Nerede kesinlikle beklemeniz gerektiğini anlamak için etiketler için animasyonlu örneğe yeniden bakın.
 :::
 
-### 6. Request models, load them, create, then release them to free memory
+### 6. Modelleri isteyin, yükleyin, oluşturun ve ardından belleği boşaltmak için serbest bırakın
 
-When creating actor (with opcode `009A`), car (with op `00A5`), object (with op `0107`), give weapon to an actor you have to request the dff model before and load it, and check that is it loaded for real !!!!!!
+Aktör ('009A' işlem kodu ile), araba (op '00A5' ile), nesne (op '0107' ile) oluştururken, daha önce dff modelini talep etmeniz ve yüklemeniz gereken bir aktöre silah verin ve olup olmadığını kontrol edin. gerçekten yüklendi !!!!!!
 
-Like:\
+Şunun gibi:\
 **CODE** 
 ```sb3
 :GSHAUTO_564 
@@ -697,9 +697,9 @@ Like:\
 01B2: give_actor 19@ weapon 29 ammo 900 // Load the weapon model before using this
 ```
 
-Look how I first request the models (with `0247: request_model`) then load them (with `038B: load_requested_models`). Then checks if all models requested are available to use (with `0248`). If any of them is load jumps back to top and re-request and reload them. If they all are then create the actor, the weapons and the object. You can see in the comment (after `//`) that `01B2` need the weapon model to be load before using it (for weapons numbers look in [help](../scm-documentation/sa/weapons.md) here or at very good [Generic SA SCM Documentaion](http://www.gtaforums.com/index.php?showtopic=205020&view=findpost&%20%20p=3013775).
+Bakın önce modelleri nasıl talep ediyorum (`0247: request_model` ile), sonra onları yüklüyorum (`038B: load_requested_models` ile). Ardından, talep edilen tüm modellerin kullanıma uygun olup olmadığını kontrol eder ('0248' ile). Bunlardan herhangi biri yük ise, en üste atlar ve yeniden talep edin ve yeniden yükleyin. Bunların hepsi varsa, o zaman aktörü, silahları ve nesneyi yaratın. Yorumda ('//' sonrasında) '01B2'nin kullanmadan önce silah modelinin yüklenmesi gerektiğini görebilirsiniz (silah numaraları için [yardım](../scm-documentation/sa/weapons.md) sayfasına bakın. burada veya çok iyi [Generic SA SCM Documentaion](http://www.gtaforums.com/index.php?showtopic=205020&view=findpost&%20%20p=3013775).
 
-Once you've finished doing what you need to with thoses (they're all dead, player is too far away, don't want them here, etc...) transform them into usuals peds and cars (like all the peds and cars you see in-game) or destroy them (the object must be destroyed):
+Bunlarla yapmanız gerekeni yaptıktan sonra (hepsi öldü, oyuncu çok uzakta, onları burada istemeyin, vb.) oyunda gördüğünüz arabalar) veya yok edin (nesne yok edilmelidir):
 
 **CODE**
 ```sb3
@@ -729,9 +729,9 @@ or **CODE**
 009B: destroy_actor_instantly 19@
 ```
 
-Don't apply those (01C2, 01C3, 0108, 00A6, 009B, etc...) to an actor, or a car that doesn't exist (or when the handle that should hold it -like 0@, $car, etc...- doesn't hold it), because the game will badly crash!!!!!! 
+Bunları (01C2, 01C3, 0108, 00A6, 009B, vb...) bir oyuncuya veya var olmayan bir arabaya (veya onu tutması gereken kol - 0@, $car, vb...- tutmuyor), çünkü oyun kötü bir şekilde çökecek!!!!!!
 
-Once you got rid of actors/cars/objects (So when you finished using them, and after you have delete them, and only after that), you can release the models you've used because you will no longer need them.
+Aktörlerden/arabalardan/nesnelerden kurtulduğunuzda (Yani onları kullanmayı bitirdiğinizde ve onları sildikten sonra ve ancak ondan sonra), kullandığınız modelleri artık onlara ihtiyacınız olmayacağı için serbest bırakabilirsiniz.
 
 **CODE**
 ```sb3
@@ -745,13 +745,13 @@ Once you got rid of actors/cars/objects (So when you finished using them, and af
 0249: release_model #TURISMO
 ```
 
-You actualy could have release those models earlier, you don't need them to be loaded **after** you have created the game object (object, actor or vehicle). But I advise you for a start to release the model only at the end of your script/mission when you sure won't need it anymore. It will prevent you from a few return to desktop.
+Aslında bu modelleri daha önce yayınlayabilirdiniz, oyun nesnesini (nesne, oyuncu veya araç) oluşturduktan **sonra** yüklenmelerine gerek yoktur. Ancak başlangıç ​​olarak, modeli yalnızca senaryonuzun/görevinizin sonunda, artık ihtiyacınız olmayacağından emin olduğunuzda yayınlamanızı tavsiye ederim. Masaüstüne birkaç dönüş yapmanızı engelleyecektir.
 
-#### Conclusion
+#### Sonuç olarak
 
-Well, this part was mostly informations, there isn't much to do. But now you know that an opcode is a 4 digit number that do things in the game depending on the parameters you gave it. You know the different types of parameters, what's a local variable and what's a global one. Creating, naming and ending threads, and many other things that you need to know to keep going. Now we speak the same "language" we can get to real coding.
-Let's get to [part II](mcp2.md)...
+Eh, bu kısım daha çok bilgilendirmeydi, yapacak pek bir şey yok. Ama artık bir işlem kodunun, verdiğiniz parametrelere bağlı olarak oyunda bir şeyler yapan 4 haneli bir sayı olduğunu biliyorsunuz. Farklı parametre türlerini, yerel değişkenin ne olduğunu ve küresel olanın ne olduğunu biliyorsunuz. Devam etmek için bilmeniz gereken ileti dizileri oluşturma, adlandırma ve sonlandırma ve diğer birçok şey. Artık gerçek kodlamaya geçebileceğimiz aynı "dili" konuşuyoruz.
+hadi geçelim [Bölüm II'ye](mcp2.md)...
 
-Have fun
+Keyfini Çıkarın!
 
 <script src="../../js/main.min.js"></script>

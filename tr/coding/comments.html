@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <title>Comments</title>
+  <title>Yorumlar/Yorumlama</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,20 +9,20 @@
 </head>
 <body>
 
-Comments start with the double slash `//`. Everything after `//` to the end of the line is ignored by the compiler.
+Yorum koymak için 2 tane slash koymalısınız `//`. `//` işaretleri sonrasında olan mesajların hepsi derleyicinin aklı dışıdır. Bunu göremez ve o kısmı atlar.
 
 ```sb3
 // comments here
 0001: wait 0 ms
 ```
 
-To comment out multiple lines or a part of the line, use block comments `{}`:
+Bir bölümün bir kısmını ya da daha büyük bir kısmı yorumlamak için, block yorumlarını kullanın `{}`:
 
 ```sb3
 0001: wait {comments here} 0 ms
 ```
 
-Since version 3.06 Sanny Builder also supports the C++-like comments `/* */`.
+3.06 versiyonundaki SannyBuilder ayrıca C++- gibi yorumlama özelliklerine sahiptir `/* */`.
 
 ```sb3
 0000: nop
@@ -33,6 +33,6 @@ Since version 3.06 Sanny Builder also supports the C++-like comments `/* */`.
 0001: wait 0 ms
 ```
 
-To comment out or uncomment multiple selected lines of the code press `Ctrl+Q` (this hotkey is configurable in the [options](../editor/options/hotkeys.md)).
+Eğer kendiniz seçmek istiyorsanız ve programın kendisi yorumlasın istiyorsanız ya da birden fazla satırı yorumlarından kurtarmak istiyorsanız `Ctrl+Q` kullanın (Bu tuş değiştirebilir [ayarlar kısmında](../editor/options/hotkeys.md)).
 
 <script src="../../js/main.min.js"></script>
