@@ -1,5 +1,5 @@
 // GLOBAL VERSION OF THE CHM
-const VERSION = "1.18";
+const VERSION = "1.19";
 
 function log(value){
 	console.log(value)
@@ -589,7 +589,7 @@ $('body').innerHTML = '\
 	<div class="cont"></div>\
 	<hr>\
 	<p id="credits">\
-		CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann, Yushae Raza & VitalRus95.\
+		CHM ' + LANG + ' ' + VERSION + ' - Made with <3 by MatiDragon, Seemann, Yushae Raza, VitalRus95 & Bilinmeyen Bey.\
 	</p>\
 	<span id="ALINKS"></span>\
 </div></div><style id="STYLES"></style>'
