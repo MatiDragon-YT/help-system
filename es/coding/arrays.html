@@ -69,20 +69,16 @@ Después de declarar un arreglo, puede acceder a sus elementos utilizando corche
 
 ```sb3
 var $FloatArray: array 10 of Float
-$index = 1
+
+$index = 0
+// aumentar el valor del primer elemento en 100
 $FloatArray[$index] += 100.0
+
+// tambien
+$FloatArray[0] += 100.0
 ```
 
-### Usando índices constantes
-
-Puedes usar números enteros positivos y cero para acceder a un elemento del arreglo en particular:
-
-```sb3
-var $FloatArray: array 10 of Float
-$FloatArray[1] += 100.0
-```
-
-Se puede acceder a los elementos de un arreglo que contiene [cadenas](data-types.md#cadenas-literarias) con [variables de cadenas](data-types.md#variables-de-cadenas):
+Se puede acceder a los elementos de un arreglo que contiene [cadenas](data-types.md#cadenas-literarias) usando [variables de cadenas](data-types.md#variables-de-cadenas):
 
 ```sb3
 // inicialización de los tres primeros elementos de s$strings
@@ -91,7 +87,7 @@ s$strings[1] = 'str2'
 s$strings[2] = 'str3'
 ```
 
-Un arreglo se puede declarar como una colección de [instancias de clase](classes.md#instancias-de-clase):
+Un arreglo se puede declarar como una colección de [instancias de clase](classes.md#instancias-de-clase), sus métodos están disponibles para cada elemento::
 
 ```sb3
 var $players: array 2 of Player
@@ -99,8 +95,7 @@ $players[0].Build
 ```
 
 :::info
-
-Por predeterminado, en el [modo de edición](../edit-modes/) de `GTA SA`, el desensamblador imprime los elementos del arreglo con los números como índices. La misma función está en LCS y VCS, pero desactivada de forma predeterminada. Puede activar y desactivar esta función mediante la opción de depuración `CONSTANT_INDEXES`.
+Por defecto, el desensamblador imprime los elementos del array con los números como índices en el `GTA SA` [edit mode](../edit-modes/). La misma función está disponible en LCS y VCS pero está desactivada por defecto. Puede activar y desactivar esta función utilizando la opción [debug option](../editor/console.md#constant\_indexes) `CONSTANT_INDEXES`.
 :::
 
 <script src="../../js/main.min.js"></script>
