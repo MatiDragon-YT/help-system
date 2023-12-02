@@ -9,12 +9,11 @@
 </head>
 <body>
 
-Una **variable (var)** es una ubicación de almacenamiento con nombre que contiene un valor y se puede leer/reescribir muchas veces. Hay dos tipos de variables.
+Una **variable (var)** es una ubicación de almacenamiento con nombre que contiene un valor y se puede leer/reescribir muchas veces. Las variables pueden ser _globales_ o _locales_.
 
 ## Variables Globales
 
-Una variable global comienza con `$` seguida de un identificador (nombre).\
-El nombre puede conformarse por cualquier combinación de letras, dígitos y `_`:
+Una variable global empieza por `$` seguido de cualquier combinación de letras, dígitos y `_`:
 
 ```sb3
 $variable1
@@ -22,21 +21,17 @@ $100
 $____
 ```
 
-:::info
-Una variable que conste en su nombre de dígitos se denomina variable `DMA` (**D**irect **M**emory **A**ddress). Mire los [Alloc](built-in-commands.md#alloc).
-:::
-
 Sus valores están disponibles desde cualquier lugar del código.
 
 ### **Variables Guardables**
 
-Una variable guardada es una variable global especial disponible solo en los modos `LCS` y `VCS`. Su nombre tiene el prefijo `$_`, p. `$_var`. El valor de esta variable persiste en los juegos guardados. Las variables globales indicadas solo con `$` (por ejemplo, `$var`) no se guardan y obtienen valores en blanco cuando se carga el juego LCS o VCS.
-:::info
-Desde salida de [CLEO 3](../cleo-3/opcodes.md#0A95), puede habilitase para `SA`:
-```sb3
-0A95: enable_thread_saving
-```
-:::
+Una variable guardada es una variable global especial disponible sólo en los modos `LCS` y `VCS`. Su nombre lleva el prefijo `$_`, por ejemplo, `$_var`. El valor de esta variable persiste en todas las partidas guardadas. Las variables globales denotadas sólo por `$` (por ejemplo, `$var`) no se guardan y obtienen valores en blanco cuando se carga el juego LCS o VCS.
+
+### Variables DMA
+
+Cuando las variables globales son compiladas, cada una de ellas obtiene un nuevo índice en el espacio de variables globales. Este índice será utilizado por el juego para localizar el valor de la variable. Este índice es único en todos los scripts (de ahí lo de global).
+
+Una variable global con el nombre que sólo consta de dígitos se llama una `DMA`-variable (**D**irect **M**emory **A**ddress). Véase también [Alloc](built-in-commands.md#alloc).
 
 ## Variables Locales
 
@@ -73,7 +68,7 @@ Cada script o misión tiene 2 variables locales especiales llamadas 'TIMERA' y '
 Tenga en cuenta que los nombres `TIMERA` y `TIMERB` solo están disponibles a partir de Sanny Builder v3.3.0. Los scripts más antiguos tienen estos temporizadores como variables numéricas `16@`, `17@` (GTA3, VC) o `32@`, `33@` (SA).
 :::
 
-## Constructor VAR..END
+## Declarar un tipo de variable
 
 Las variables se utilizan habitualmente en las expresiones. En el caso de que el operando derecho sea una constante numérica, se puede omitir el opcode:
 
@@ -97,16 +92,45 @@ Suponiendo que no haya un opcode, ¿cuál usar?
 $Var1 += $Var2 // ??
 ```
 
-Para comunicar al compilador un tipo de variable utiliza el constructor `VAR..END`.
+Para indicar al compilador el tipo de la variable, utilice la palabra clave `var`.
 
-Que permite declarar variables y sus tipos para su uso avanzados.
+```
+var <variable>: <tipo>
+```
 
-Sintaxis:\
-`var`\
-`<variable>: <tipo>`\
-`end`\
-\
-Por ejemplo, si se declaran ambas variables, el compilador puede procesar la expresión sin opcodes:
+Una `variable` es un nombre de variable global o local válido como se ha descrito anteriormente.
+
+Un `type` puede ser uno de estos:
+
+* `Integer`, `Int` - valores enteros
+* `Float` - valores de punto flotante
+* `String`, `ShortString` - una variable que contiene un literal de cadena con la longitud fijada (sólo para las matrices, utilice `s$`, `@s` para las variables)
+* `LongString` - una variable que contiene una cadena literal con la longitud variable (sólo para las matrices, utilice `v$`, `@v` para las variables)
+* `<Nombre de clase>` - cualquier [nombre de clase] disponible (classes.md)
+
+Ejemplo:
+
+```sb3
+var $tamaño: entero
+```
+
+Puedes definir tipos para múltiples variables separando cada declaración con una coma de la siguiente manera:
+
+```sb3
+var $x: float, $y: float, $z: float
+```
+
+Si prefieres tener cada declaración en su propia línea, termínalas en una construcción `VAR..END`:
+
+```sb3
+var
+   $x: float
+   $y: float
+   $z: float
+fin
+```
+
+Cuando se conocen los tipos de las variables, el compilador es capaz de procesar la expresión sin opcode:
 
 ```sb3
 var
@@ -115,16 +139,6 @@ var
 end
 $Var1 += $Var2 // opcode 0058
 ```
-
-Se admiten los siguientes tipos de variables:
-
-* `Integer`, `Int` - valores enteros
-* `Float `- valores decimales
-* `String`, `ShortString` - una variable que contiene una cadena de texto con la  longitud fija (solo para los arreglos, use `s$`, `@s` para variables))
-* `LongString `- una variable que contiene una cadena de texto con la longitud fija (solo para los arreglos, use `v$`, `@v` para variables)
-* `<Nombre de la clase>` - el nombre de [cualquier clase](classes.md) disponible any available 
-
-Los tipos de las variables locales tambien se pueden decl.
 
 :::info
 Una vez declarado el tipo de la variable, se utiliza para todo el código que sigue a la declaración.\
@@ -203,9 +217,7 @@ Debido a [limitaciones de diseño](https://github.com/sannybuilder/dev/issues/32
 Puede especificar un valor inicial para la variable al declararla. Escribe `=` y luego el valor:
 
 ```sb3
-var
-    $fVar: float = 1.0
-end
+var $fVar: float = 1.0
 ```
 
 ó

@@ -13,15 +13,17 @@ Un **arreglo** representa una colección indexada de elementos del mismo tipo (l
 
 ## Sintaxis General
 
-San Andreas:\
-`<nombre>(<indice>,<tamaño><tipo>)`
+San Andreas:
+```sb3
+<,nombre>(<,indice>,<,tamaño><,tipo>)
+```
 
 ```sb3
 $index = 0
 $array($index,10i) = 1
 ```
 
-`<nombre>`: [variable](variables.md) local o global\
+`<nombre>`: una [variable](variables.md) local o global\
 `<indice>`: cualquier variable que contenga el índice del elemento para leer o escribir\
 `<tamaño>`: cualquier valor entre 1 y 255\
 `<tipo>`: uno de los caracteres `i` `f` `s` `v`:
@@ -51,15 +53,14 @@ $array($index,10) = 1
 
 ## Declaración de Arreglo
 
-Los arreglos se pueden declarar utilizando el constructor [`VAR..END`](variables.md#constructor-var..end):\
-`var`\
-`   <nombre>: array <tamaño> of <tipo>`\
-`end`
+Las matrices pueden declararse utilizando la palabra clave `var` (similar a [variables](variables.md)):
 
 ```sb3
-var
-    $FloatArray: array 10 of Float
-end
+var <array name>: array <size> of <type>
+```
+
+```sb3
+var $FloatArray: array 10 of Float
 ```
 
 ### Accediendo a los elementos del arreglo después de la declaración
@@ -67,9 +68,7 @@ end
 Después de declarar un arreglo, puede acceder a sus elementos utilizando corchetes:
 
 ```sb3
-var
-    $FloatArray: array 10 of Float
-end
+var $FloatArray: array 10 of Float
 $index = 1
 $FloatArray[$index] += 100.0
 ```
@@ -79,9 +78,7 @@ $FloatArray[$index] += 100.0
 Puedes usar números enteros positivos y cero para acceder a un elemento del arreglo en particular:
 
 ```sb3
-var
-    $FloatArray: array 10 of Float
-end
+var $FloatArray: array 10 of Float
 $FloatArray[1] += 100.0
 ```
 
@@ -97,9 +94,7 @@ s$strings[2] = 'str3'
 Un arreglo se puede declarar como una colección de [instancias de clase](classes.md#instancias-de-clase):
 
 ```sb3
-var
-  $players: array 2 of Player
-end
+var $players: array 2 of Player
 $players[0].Build
 ```
 
