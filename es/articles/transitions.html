@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Transiciones</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Una transicion no es mas que una interpolacion entre el valor de un numero y otro.
+
+# Función lineal
+Esta función equivale a realizar una transición lineal entre dos valores en el tiempo. La velocidad de transición puede ser controlada por el usuario mediante un factor de suavidad.
+
+```javascript
+function transitionLinear(currentValue, targetValue, curTime, totalTime, smoothness) {
+	var diff = targetValue - currentValue;
+	var ratio = curTime / totalTime;
+	var transition = currentValue + (diff \* ratio);
+	var smoothed = currentValue + (diff \* ratio \* smoothness);
+
+	return smoothed;
+}
+```
+
+# Función exponencial
+Al usar una función exponencial, la velocidad de transición aumenta exponencialmente con el tiempo. Esta función también puede ser controlada por un factor de suavidad.
+
+```javascript
+function transitionExponential(currentValue, targetValue, curTime, totalTime, smoothness) {
+	var diff = targetValue - currentValue;
+	var ratio = curTime / totalTime;
+	var transition = currentValue + (diff \* Math.pow(ratio, smoothness));
+	var smoothed = currentValue + (diff \* Math.pow(ratio, smoothness) \* smoothness);
+
+	return smoothed;
+}
+```
+
+# Función sinusoidal
+Al utilizar la función sinusoidal, la transición aumenta y disminuye suavemente en un patrón sinusoidal. Esta función puede ser configurada mediante la frecuencia y amplitud de la onda.
+
+```javascript
+function transitionSinusoidal(currentValue, targetValue, curTime, totalTime, frequency, amplitude) {
+	var diff = targetValue - currentValue;
+	var ratio = curTime / totalTime;
+	var transition = currentValue + (diff \* Math.sin(ratio \* frequency) \* amplitude);
+	var smoothed = currentValue + (diff \* Math.sin(ratio \* frequency) \* amplitude \* amplitude);
+
+	return smoothed;
+}
+```
+
+---
+
+:::gray
+Original post:
+<!--At [matidragon-yt.github.io](https://matidragon-yt.github.io/page/)-->
+_By MatiDragon_
+:::
+<script src="../../js/main.min.js"></script>

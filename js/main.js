@@ -422,6 +422,7 @@ SP.toMarkdown = function(){
 			'warning' : '⚠',
 			'bulb' : '💡',
 			'tip' : '💡',
+			'pi' : 'π',
 		}
 		
 		input = input.split(':')
@@ -683,7 +684,7 @@ apply($('.sb3'), function(element){
 	//Variables globales
 	.r(/((\x{00}|s|v)(\$[0-9A-Z_a-z]+))/gm, enter.variables)
 	//Numeros
-	.r(/\b(\d+(x|\.)\w+)\b/gmi, enter.numbers)
+	.r(/\b(\d+(x|b|\.)\w+)\b/gmi, enter.numbers)
 	.r(/\b(true|false)\b/gmi, enter.numbers)
 	.r(/(?!\#)(\W)(?!\$)(\d+)(?!\:|\@)([ifsv]?)\b/gmi, '$1<span class=numbers>$2$3<\/span>')
 	//Modelos
@@ -709,6 +710,34 @@ apply($('.ini'), function(element){
 	.r(/=(\d+(\.\d+)?)/g, "=<span class=strings>$1<\/span>")
 	// Type parameter
 	.r(/%(\d\w)%/g, "<span class=strings>%$1%<\/span>")
+})
+
+apply($('.math'), function(element){
+	element.innerHTML = element.innerHTML
+	// simbolos
+	.r(/([=+\-*^/%])/g, "<span class=strings>$1<\/span>")
+	// separadores
+	.r(/([()])/g, "<span class=numbers>$1<\/span>")
+	// funciones
+	.r(/(sin|cos|tan)/g, "<span class=labels>$1<\/span>")
+})
+
+apply($('.js'), function(element){
+	element.innerHTML = element.innerHTML
+	.rA('\t', '    ')
+	.rA('&lt;br/&gt;', "\\n")
+	//Comentarios 
+	.r(/(\/\/[^\n]+)/gm, '<span class=comments>$1<\/span>')
+	.r(/(\/\*[^\/]*\*\/)/gmi, '<span class=comments>$1<\/span>')
+	// simbolos
+	.r(/(\s)([=+\-*^/%])?([=+\-*^/%])/g, "$1<span class=strings>$2$3<\/span>")
+	// separadores
+	.r(/([()])/g, "<span class=numbers>$1<\/span>")
+	// funciones
+	.r(/(\s)(sin|cos|tan)/g, "$1<span class=labels>$2<\/span>")
+	.r(/\b([a-z0-9]+)\.([a-z0-9]+)/gmi, "<span class=classes>$1</span>.<span class=commands>$2</span>")
+	.r(/(\w+)(\(.+\)\.)(\w+)/gmi, "<span class=classes>$1</span>$2<span class=commands>$3</span>")
+	.r(/\.([0-9A-Z_a-z]+)\n/gm,".<span class=commands>$1</span>\n")
 })
 
 $("#CHANGE").onclick = function(){

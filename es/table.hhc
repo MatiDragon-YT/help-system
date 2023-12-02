@@ -470,5 +470,15 @@
 			<param name="Local" value="es\cleo-3\scripts.html">
 			</OBJECT>
 	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ERRORES">
+		<param name="Local" value="es\errors.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="0001">
+			<param name="Local" value="es\troubleshooting\errors\0001.html">
+			</OBJECT>
+	</UL>
 </UL>
 </BODY></HTML>

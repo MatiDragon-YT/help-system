@@ -9,21 +9,47 @@
 </head>
 <body>
 
-Una **constante** es un identificador con un valor predefinido. A diferencia de una variable, el valor de la constante no se puede cambiar en tiempo de ejecución. En tiempo de compilación, la constante se reemplaza por el valor asociado a ella. El valor de la constante puede ser numérico (números, [nombres de modelo](data-types.md#nombres-de-modelos) o [etiquetas](data-types.md#etiquetas)) y una [cadena](data-types.md#cadenas-literarias), y contener un expresión.
+Una **constante** es un identificador con un valor predefinido asociado. El identificador debe ser único en el contexto de compilación actual (el archivo fuente principal y todos los [includes](directives.md#usdinclude)).
 
-Las constantes se declaran estática o dinámicamente. Cada [modo de edición](../edit-modes/README.md) uede cargar definiciones de constantes estáticas desde un archivo usando el parámetro `<constants>` en el `modes.xml`. Las declaraciones dinámicas se crean en el código del script con la sintaxis que se describe a continuación.
+En tiempo de compilación, la constante se sustituye por el valor asociado a ella, por ejemplo, un número o un literal de cadena. A diferencia de una variable, el valor de la constante no puede modificarse en tiempo de ejecución.
+
+Las constantes se declaran estática o dinámicamente. Cada [modo de edición](../edit-modes/) uede cargar definiciones de constantes estáticas desde un archivo usando el parámetro `<constants>` en el `modes.xml`. Las declaraciones dinámicas se crean en el código del script con la sintaxis que se describe a continuación.
 
 ## Sintaxis
 
-Para declarar una nueva constante en el código, use la construcción `CONST..END`:\
-\
-`CONST`\
-`    <nombre> = <valor>`\
-`END`\
-\
+Para declarar una nueva constante en el código, use la palabra clave `const`.
+
+```js
+const <,constant name> = <,constant value>
+```
+
 Un nombre constante es cualquier identificador permitido (una combinación de letras, números y `_`). Hay nombres reservados por el compilador que no se pueden usar, como `Continue`, `Break`, `And`, etc. (mire `compiler.ini`).
 
 Un valor constante puede ser un número (también un [identificador de modelo](data-types.md#nombres-de-modelos), una [etiqueta](data-types.md#etiquetas)), una [cadana](data-types.md#cadenas-literarias), una [variable](variables.md) (también una [propiedad de clase](classes.md#propiedades)), o otra constante.
+
+Por ejemplo:
+
+```sb3
+const x = 5
+```
+
+Puedes declarar múltiples constantes separando cada declaración con una coma de la siguiente manera:
+
+```sb3
+const a = 1, b = 2, c = 3
+```
+
+Si prefiere tener cada declaración en su propia línea, conclúyalas en una construcción `CONST..END`:
+
+```js
+const
+    a = 1
+    b = 2
+    c = 3
+end
+```
+
+Un ejemplo más complejo:
 
 ```sb3
 var
@@ -45,25 +71,5 @@ end
 Durante la compilación, la constante `MoneyRequired` se sustituye por el número `30` y `PlayerMoney` con `$PLAYER_CHAR.Money`.
 
 Cuando el [servicio de idioma](../editor/language-service.md) está habilitado, se muestra una lista de constantes después de presionar`Ctrl+Space`.
-
-## Limitaciones
-
-Puede utilizar constantes en cualquier lugar excepto en el caso:
-
-```sb3
-const
-    VarName = $Var
-    IndexName = 25
-end
-VarName[IndexName] = 0
-```
-
-Para compilar dicha expresión, debe escribir el opcode correspondiente, por ejemplo:
-
-```sb3
-0004: VarName[IndexName] = 0
-```
-
-También hay algunas limitaciones con el uso de una expresión como valor constante.
 
 <script src="../../js/main.min.js"></script>

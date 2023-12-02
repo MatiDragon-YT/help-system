@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Trabajando con Bits</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Una forma de guardar múltiples valores booleanos en una sola variable, sería utilizando bits individuales dentro de la variable. Cada bit representa un valor booleano, y su valor puede ser 0 o 1. Para establecer un bit en 1, se utiliza la operación de "OR" (|) con la máscara correspondiente, y para establecerlo en 0, se utiliza la operación de "AND" (&) con la negación de la máscara correspondiente.
+
+Por ejemplo, si queremos guardar tres valores booleanos en una variable int, podemos usar los tres primeros bits. El bit 1 representa el primer valor, el bit 2 representa el segundo valor y el bit 3 representa el tercer valor. La máscara para el primer bit sería `0b001`, para el segundo bit sería `0b010` y para el tercer bit sería `0b100`.
+
+Para establecer el valor del primer bit a verdadero (1), usamos la operación de OR (|) con la máscara correspondiente, como a continuación:
+```sb3
+//----------------js
+variable |= 0b001; //primer bit a verdadero
+//----------------sb3
+08BA: set 0@ bit 1
+```
+Para establecer el valor del segundo y tercer bit a falso (0), usamos la operación de AND (&) con la negación de las máscaras correspondientes, como a continuación:
+```sb3
+//----------------js
+variable &= ~0b010; //segundo bit a falso
+variable &= ~0b100; //tercer bit a falso
+//----------------sb3
+08C0: clear 0@ bit 2
+08C0: clear 0@ bit 3
+```
+Para recuperar los valores booleanos de la variable, podemos hacer uso de operaciones de desplazamiento bit a bit (&gt;&lt;), como a continuación:
+```sb3
+//----------------js
+valor1 = (variable & 0b001) != 0; //retorna verdadero
+valor2 = (variable & 0b010) != 0; //retorna falso
+valor3 = (variable & 0b100) != 0; //retorna falso
+//----------------sb3
+08B4:    test 0@ bit 1
+08B4:    test 0@ bit 2
+08B4:    test 0@ bit 3
+```
+Esto recupera el valor de cada bit y lo convierte en un valor booleano que puede ser utilizado en el programa.
+
+---
+
+:::gray
+Original post:
+<!--At [matidragon-yt.github.io](https://matidragon-yt.github.io/page/)-->
+_By MatiDragon_
+:::
+<script src="../../js/main.min.js"></script>

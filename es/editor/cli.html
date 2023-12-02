@@ -29,23 +29,23 @@ Atajo: `-c`
 
 ## --decompile
 
-`--decompile <input file path> [output file path]` - decompiles the file and exits
+`--decompile <input file path> [output file path]` - descompila el archivo y se cierra.
 
 ```
 sanny.exe --decompile C:\myscm.scm C:\myscm.txt
 ```
 
 {% hint style="info" %}
-The `output file path` __ parameter is optional. If there is no output path parameter, the compiler uses the [format rules](options/formats.md#file-name-format) to compute the output file name.&#x20;
+El parámetro `output file path` es opcional. Si no hay ningún parámetro de ruta de salida, el compilador utiliza las [reglas de formato](options/formats.md#file-name-format) para calcular el nombre del archivo de salida.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-The input file must have no errors. If there are errors found during decompilation, they will be logged in the file `compile.log`. When decompilation ends, the program shuts down.
+El archivo de entrada no debe contener errores. Si se encuentran errores durante la descompilación, se registrarán en el archivo `compile.log`. Cuando finaliza la descompilación, el programa se cierra.
 {% endhint %}
 
 Shortcut: `-d`
 
-**--use-source** - optional argument that makes the decompiler use the source code [embedded in the script](options/general.md#add-extra-info-to-scm) (if present). By default the source is ignored.
+**--use-source** - argumento opcional que hace que el descompilador utilice el código fuente [incrustado en el script](options/general.md#add-extra-info-to-scm) (si está presente). Por defecto, el código fuente se ignora.
 
 ```
 sanny.exe --decompile C:\1.cs --use-source

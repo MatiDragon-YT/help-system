@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>Quat a Euler</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../../style/style.css">
+</head>
+<body>
+Para transformar Quaterniones a Euler, podemos utilizar la siguiente funcion:
+```js
+roll = Math.atan2(2 \* (qw \* qx + qy \* qz), 1 - 2 \* (qx \* qx + qy \* qy));
+pitch = Math.asin(2 \* (qw \* qy - qz \* qx));
+yaw = Math.atan2(2 \* (qw \* qz + qx \* qy), 1 - 2 \* (qy \* qy + qz \* qz));
+```
+
+---
+
+El juego nos da opcodes para trabajar con Senos y Cocenos, pero no con Tangentes.
+Pero de igual forma, se puede calcular facilmente siguiendo la siguiente formula:
+```math
+tan(x) = sin(x) / cos(x)
+```
+siendo traducido a SB de esta forma:
+```sb3
+float 0@ = 1.0 // tan
+
+float 1@ = Math.Sin(0@)
+float 2@ = Math.Cos(0@)
+
+1@ /= 2@ // 1@ = 0.7853981633974483
+```
+
+:::gray
+Original post:
+<!--At [matidragon-yt.github.io](https://matidragon-yt.github.io/page/)-->
+_By MatiDragon_
+:::
+<script src="../../js/main.min.js"></script>
