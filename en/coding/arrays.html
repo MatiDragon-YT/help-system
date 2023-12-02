@@ -56,11 +56,26 @@ $array($index,10) = 1
 Arrays can be declared using the `var` keyword (similar to [variables](variables.md)):
 
 ```sb3
-var <array name>: array <size> of <type>
+var <,array name>: array <,size> of <,type>
 ```
 
 ```sb3
 var $FloatArray: array 10 of Float
+```
+
+You can declare arrays of primitive types (such as numbers or strings) using a more concise syntax:
+
+```sb3
+<,type> <,array name>[<,size>]
+```
+
+Type name can be one of the following: `Int`, `Float`, `String`, or `LongString`:
+
+```sb3
+int intArray[10]
+float floatArray[10]
+string stringArray[10]
+longstring longStringArray[10]
 ```
 
 ### Accessing array elements after declaration

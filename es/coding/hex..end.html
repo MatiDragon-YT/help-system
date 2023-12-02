@@ -9,7 +9,7 @@
 </head>
 <body>
 
-Sanny Builder admite la escritura de contenido sin formato en un archivo de salida. Todos los valores dentro de esta construcción se escriben en un archivo de salida sin controles.
+Sanny Builder permite escribir contenido sin procesar en un archivo de salida. Dentro de esta construcción, todos los valores se escriben directamente en un archivo de salida sin someterse a ninguna comprobación.
 
 :::warning
 Use esta función solo si sabe lo que está haciendo. Cualquier error corromperá el archivo del script y lo hará ilegible para el juego o un editor de scripts.
@@ -17,9 +17,11 @@ Use esta función solo si sabe lo que está haciendo. Cualquier error corromper�
 
 ## Sintaxis
 
-`HEX`\
-`    <cualquier número hexadecimal>`\
-`END`
+```sb3
+hex
+    <,cualquier número hexadecimal>
+end
+```
 
 ```sb3
 hex
@@ -29,7 +31,9 @@ end
 
 Esta secuencia de bytes es la versión compilada del opcode `0004: $2 = 1`, por lo que el juego lo leerá correctamente y establecerá el valor de la variable `$2` en `1`.
 
-Debe especificar cada byte que va a escribir con dos dígitos. Todos los espacios son ignorados. El compilador trata cualquier par de dígitos con un espacio entre ellos como un valor de un solo byte. Un solo dígito (`0..F`) tiene el prefijo `0`. Entonces, por ejemplo, una secuencia de tres letras `A B C` se compilará como el número `0xAB0C`.
+Cada byte consta de dos dígitos. El compilador ignora los espacios, por lo que trata un par de dos dígitos separados por un espacio como un único valor. Además, cuando hay un dígito no emparejado, se le antepone automáticamente un "0".
+
+Por ejemplo, una secuencia de tres letras `A B C` se compilará como el número `0xAB0C`.
 
 El constructor `HEX..END` tambien acepta [cadenas literarias](data-types.md#cadenas-literarias), [etiquetas](data-types.md#etiquetas), [variables globales](variables.md#variables-globales), [nombres de modelos](data-types.md#nombres-de-modelos). Se compilan sin un byte del tipo de datos que los preceda. 
 
@@ -74,9 +78,9 @@ Produce la siguiente secuencia de bytes: `00 08 09 0A 0D DD`.
 
 Actualmente, varios espacios en un literal de cadena se convierten en uno solo. Así, una línea `"Esto    es  una     cadena"` se convierte en `"Esto es una cadena"`. Use el carácter de barra invertida `\` para agregar múltiples espacios en un literal de cadena: `"Esta \ \ \ es \ una \ \ \ \ cadena"`.
 
-## Uso de Números de aDMA
+## Introducción de números grandes
 
-También puede usar el tipo de datos [aDMA](data-types.md#variables) para escribir una constante numérica en un archivo de salida. El número después del signo `&` puede ser positivo o negativo, decimal o hexadecimal.
+Para mayor comodidad, los números grandes pueden ir precedidos del símbolo `&`. El número que sigue al símbolo `&` puede ser positivo o negativo, y puede representarse en formato decimal o hexadecimal.
 
 ```sb3
 hex
@@ -86,4 +90,42 @@ end
 
 Este ejemplo produce la siguiente secuencia de bytes: `E8 03 00 CB 5C FF`.
 
+## Repetición de bytes
+
+En los casos en que sea necesario repetir un byte específico varias veces, como cuando se crea un búfer lleno a cero, indique la cuenta añadiendo `(n)` después del byte, donde `n` es un número entero positivo:
+
+```sb3
+hex
+    00(10)
+end
+```
+
+Esta sintaxis es equivalente a
+
+```sb3
+hex
+    00 00 00 00 00 00 00 00 00 00
+end
+```
+
+Las repeticiones de bytes pueden utilizarse varias veces dentro del mismo bloque, y también pueden establecerse con un valor constante.
+
+```sb3
+const n = 25
+hex
+    00(n) 01(3) 02(4)
+end
+```
+
+## Inclusión de ficheros binarios
+
+La directiva `hex..end` permite utilizar la directiva `$INCLUDE` para incluir el contenido de un archivo binario directamente en el cuerpo del script. La sintaxis es la siguiente:
+
+```sb3
+hex 
+    {$INCLUDE <,ruta>}
+end
+```
+
+La resolución de rutas sigue las reglas establecidas para la directiva [{$INCLUDE}](directives.md#usdinclude).
 <script src="../../js/main.min.js"></script>
